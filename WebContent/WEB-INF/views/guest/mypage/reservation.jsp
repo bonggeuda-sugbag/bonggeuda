@@ -16,16 +16,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	}
 	</style>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="js/scripts.js"></script>
-<link href="css/styles.css" rel="stylesheet">
+<script src="resources/guest/js/scripts.js"></script>
+<link href="resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -43,16 +43,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
+
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
 				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
             <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+
 			</ul>
 
 				<!---
@@ -63,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 			<!---pop-up-box---->
 				   
-				<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+				<link href="resources/guest/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
 				<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 			<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
@@ -103,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							    </div>
 					      </div>
 					 </div>
-					 <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+					 <script src="resources/guest/js/easyResponsiveTabs.js" type="text/javascript"></script>
 				    	<script type="text/javascript">
 						    $(document).ready(function () {
 						        $('#horizontalTab').easyResponsiveTabs({
@@ -154,10 +156,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="mypage_point.html">포인트</a></li>
-			<li class="blog-list"><a href="mypage_coupon.html">쿠폰함</a></li>
-			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="mypage_reservation.html" style="color: #6eceda;">예약 내역</a></li>
-			<li class="blog-list"><a href="mypage_myinformation.html">내 정보 관리</a></li>
+			<li class="blog-list"><a href="mypage_point.jsp">포인트</a></li>
+			<li class="blog-list"><a href="mypage_coupon.jsp">쿠폰함</a></li>
+			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="mypage_reservation.jsp" style="color: #6eceda;">예약 내역</a></li>
+			<li class="blog-list"><a href="mypage_myinformation.jsp">내 정보 관리</a></li>
 		</ul>
 		</nav>
 	</div>
@@ -174,11 +176,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- 예약내역 -->
 			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">예약내역</b>
-				<div onclick="location.href='reservation_list.html';">
+				<div onclick="location.href='reservation_list.jsp';">
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">
-								<img src="images/ga1.jpg" style="width: 100%; height: 100%;">
+								<img src="resources/guest/images/ga1.jpg" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
 						<tr>
@@ -194,11 +196,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- 이용내역 -->
 			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">이용내역</b>
-				<div onclick="location.href='usagehistory.html';">
+				<div onclick="location.href='usagehistory.jsp';">
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">
-								<img src="images/ga1.jpg" style="width: 100%; height: 100%;">
+								<img src="resources/guest/images/ga1.jpg" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
 						<tr>
@@ -214,11 +216,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- 취소내역 -->
 			<div style="padding-bottom: 100px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">취소내역</b>
-				<div onclick="location.href='cancle_list.html';">
+				<div onclick="location.href='cancle_list.jsp';">
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">
-								<img src="images/ga1.jpg" style="width: 100%; height: 100%;">
+								<img src="resources/guest/images/ga1.jpg" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
 						<tr>

@@ -36,16 +36,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 	</style>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="js/scripts.js"></script>
-<link href="css/styles.css" rel="stylesheet">
+<script src="resources/guest/js/scripts.js"></script>
+<link href="resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -63,16 +63,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
+
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
 				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
             <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+
 			</ul>
 
 	 
@@ -84,8 +86,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 			<!---pop-up-box---->
 				   
-				<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-				<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+				<link href="resources/guest/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+				<script src="resources/guest/js/jquery.magnific-popup.js" type="text/javascript"></script>
 			<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
 					    <!----- tabs-box ---->
@@ -124,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							    </div>
 					      </div>
 					 </div>
-					 <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+					 <script src="resources/guest/js/easyResponsiveTabs.js" type="text/javascript"></script>
 				    	<script type="text/javascript">
 						    $(document).ready(function () {
 						        $('#horizontalTab').easyResponsiveTabs({
@@ -175,21 +177,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="more_notice.html">공지사항</a></li>
-			<li class="blog-list"><a href="event.html">이벤트</a></li>
-			<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="FAQ1.html" style="color: #6eceda;">자주 묻는 질문</a></li>
-			<li class="blog-list"><a href="QnA.html">1:1 문의</a></li>
-			<li class="blog-list"><a href="policy1.html">약관 및 정책</a></li>
+			<li class="blog-list"><a href="more_notice.jsp">공지사항</a></li>
+			<li class="blog-list"><a href="event.jsp">이벤트</a></li>
+			<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="FAQ1.jsp" style="color: #6eceda;">자주 묻는 질문</a></li>
+			<li class="blog-list"><a href="QnA.jsp">1:1 문의</a></li>
+			<li class="blog-list"><a href="policy1.jsp">약관 및 정책</a></li>
 		</ul>
 		</nav>
 	</div>
 
 	<div class="FAQ_tab" data-default="term">
 		<ul class="FAQ_tab" style="display: flex;">
-			<li style="margin-right: 20px;"><a href="FAQ1.html">예약취소</a></li>
-			<li style="margin-right: 20px;"><a href="FAQ2.html" style="color: #6eceda; font-weight: bold;">쿠폰/포인트</a></li>
-			<li style="margin-right: 20px;"><a href="FAQ3.html">회원정보</a></li>
-			<li style="margin-right: 20px;"><a href="FAQ4.html">리뷰</a></li>
+			<li style="margin-right: 20px;"><a href="FAQ1.jsp">예약취소</a></li>
+			<li style="margin-right: 20px;"><a href="FAQ2.jsp" style="color: #6eceda; font-weight: bold;">쿠폰/포인트</a></li>
+			<li style="margin-right: 20px;"><a href="FAQ3.jsp">회원정보</a></li>
+			<li style="margin-right: 20px;"><a href="FAQ4.jsp">리뷰</a></li>
 		</ul> 
 	</div>
 

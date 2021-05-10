@@ -245,17 +245,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<!-- 상단메뉴바 -->
 		<div class="top-nav">
 			<ul class="right-icons">
+
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
 				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+
 			</ul>
 			<!-- //상단메뉴바 -->
 			</div>
@@ -361,7 +363,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</section>
 				<br>
-				<!-- <button class="payButton" onclick="location.href='mypage_reservation.html';">결제하기</button> -->
+				<!-- <button class="payButton" onclick="location.href='mypage_reservation.jsp';">결제하기</button> -->
 				<button class="payButton" onclick="location.href='#pop01'">결제하기</button>
 				
 				
@@ -409,7 +411,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="popup">
 					<a href="#none" class="close">&times;</a>
 						<p style="text-align: center; margin-bottom: 20px;">정상예약되었습니다</p>
-						<button style="width: 200px; height: 40px; background-color: #6eceda; border: #6eceda; color: white;box-shadow: 0 3px 0 #0e8c73; border-radius: 10px;  border-style: none;" onclick="location.href='mypage_reservation.html';">확인</button>
+						<button style="width: 200px; height: 40px; background-color: #6eceda; border: #6eceda; color: white;box-shadow: 0 3px 0 #0e8c73; border-radius: 10px;  border-style: none;" onclick="location.href='mypage_reservation.jsp';">확인</button>
 				</div>
 			</div>
 			<!-- //예약성공 -->

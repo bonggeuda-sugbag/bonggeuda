@@ -107,16 +107,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
+
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
 				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+
 			</ul>
 
 			</div>
@@ -175,7 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</a>
 					</div>
 					<div class=" bottom-head"  style="position: relative; left: 310px;">
-						<a href="motelInfo.html">
+						<a href="motelInfo.jsp">
 							<div class="buy-media">
 							<i class="rent"> </i>
 							<h6>호텔</h6>
@@ -183,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</a>
 					</div>
 					<div class=" bottom-head"  style="position: relative; left: 470px;">
-						<a href="motelInfo.html">
+						<a href="motelInfo.jsp">
 							<div class="buy-media">
 							<i class="pg"> </i>
 							<h6>게스트하우스</h6>
@@ -241,19 +243,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h3 style="text-align: center;" >  봉그다 소식  </h3>
 			<br><br><br>
 				<div class="col-md-4 box_2">
-			     	 <a href="more_notice.html" class="mask">
+			     	 <a href="more_notice.jsp" class="mask">
 			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc4.jpg" alt="">
 			     	 </a>
 			     	   <div class="most-1">
+<<<<<<< HEAD
 			     	   	 <h5><a href="more_notice.html">공지사항</a></h5>
+=======
+			     	   	 <h5><a href="more_notice.jsp">일단공지사항으로</a></h5>
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
 			     	   </div>
 			 </div>
 			  <div class="col-md-4 box_2">
-		     	 <a href="event.html" class="mask">
+		     	 <a href="event.jsp" class="mask">
 			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc5.jpg" alt="">
 			     	 </a>
 		     	   <div class="most-1">
+<<<<<<< HEAD
 			     	   	<h5><a href="event.html">이벤트</a></h5>
+=======
+			     	   	<h5><a href="event.jsp">일단이벤트로</a></h5>
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
 			     	   </div>
 		     	
 		      </div>
