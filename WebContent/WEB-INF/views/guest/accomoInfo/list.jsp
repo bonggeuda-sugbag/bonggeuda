@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Buy :: w3layouts</title>
+<title>봉그다숙박</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul class="right-icons">
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
+				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>

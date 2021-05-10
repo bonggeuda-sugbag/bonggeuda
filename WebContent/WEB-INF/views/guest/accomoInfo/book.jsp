@@ -9,18 +9,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Buy :: w3layouts</title>
-<link href="bonggeuda/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<title>봉그다숙박숙박</title>
+<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="bonggeuda/resources/guest/js/jquery.min.js"></script>
+<script src="resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="bonggeuda/resources/guest/js/scripts.js"></script>
-<link href="bonggeuda/resources/guest/css/styles.css" rel="stylesheet">
+<script src="resources/guest/js/scripts.js"></script>
+<link href="resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 
 <!-- theme-style -->
-<link href="bonggeuda/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
@@ -348,7 +348,7 @@ popup>li{
     clear: both;
     width: 120px;
     height: 24px;
-    background: url(../userWebFront/images/reviewStar.png) 0 0 no-repeat;
+    background: url(resources/guest/images/reviewStar.png) 0 0 no-repeat;
     background-size: 120px auto;
     background-position: 0 -24px;
     text-align: right;
@@ -363,9 +363,17 @@ popup>li{
     width: 30px;
     height: 20px;
     margin-left: 13px;
-    background: url(../userWebFront/images/like.png) 0 0 no-repeat;
+    background: url(resources/guest/images/like.png) 0 0 no-repeat;
     background-size: 20px 20px;
     
+}
+
+.unlike{
+    width: 30px;
+    height: 20px;
+    margin-left: 13px;
+    background: url(resources/guest/images/likeun.png) 0 0 no-repeat;
+    background-size: 20px 20px;
 }
 
 .topReview{
@@ -374,6 +382,10 @@ popup>li{
     background: #6eceda;
     color: white;
     border-radius: 5px;
+}
+
+.reviewScore h5{
+	margin-left: 13px;
 }
 </style>
 </head>
@@ -393,7 +405,7 @@ popup>li{
 			<ul class="right-icons" >
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
+				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
@@ -417,7 +429,7 @@ popup>li{
             <!-- 숙소사진, 이름 -->
             <div style=" width : 1100px; height : 500px; padding:10px 10px 10px 0px;display: flex; flex-direction: row;">
                 <!-- 숙소사진 -->
-                <div style=" width : 600px; height: 470px; display: block;background: url(../userWebFront/images/ga2.jpg) no-repeat; background-size: 600px 470px;">
+                <div style=" width : 600px; height: 470px; display: block;background: url(resources/guest/images/ga2.jpg) no-repeat; background-size: 600px 470px;">
                     
                 </div>
                 <!-- 숙소이름 -->
@@ -452,7 +464,7 @@ popup>li{
 				</div>
 				<div style="text-align: right; display: flex; ">
 					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.html';">신고하기</button>
-					<div style="margin-left:5px; width: 30px; height: 30px; background: url(../userWebFront/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
+					<div style="margin-left:5px; width: 30px; height: 30px; background: url(resources/guest/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
 				</div>
 			</div>
             <script>
@@ -511,7 +523,26 @@ popup>li{
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin : 15px;">체크인 </h4>
-						<input type="time">
+						<select style="width: 150px;" >
+							<option value="11:00">11:00</option>
+							<option value="12:00">12:00</option>
+							<option value="13:00">13:00</option>
+							<option value="14:00">14:00</option>
+							<option value="15:00">15:00</option>
+							<option value="16:00">16:00</option>
+							<option value="17:00">17:00</option>
+							<option value="18:00">18:00</option>
+							<option value="19:00">19:00</option>
+							<option value="20:00">20:00</option>
+							<option value="21:00">21:00</option>
+							<option value="22:00">22:00</option>
+							<option value="23:00">23:00</option>
+							<option value="00:00">00:00</option>
+							<option value="01:00">01:00</option>
+							<option value="02:00">02:00</option>
+							<option value="03:00">03:00</option>
+							<option value="04:00">04:00</option>
+						</select>
 					</div>
 					<div style="text-align: left;">
 						<p>체크인 가능시간</p>
@@ -524,7 +555,7 @@ popup>li{
 				<center>
 					<!-- 객실정보 -->
 					<div class="detailList" > 
-						<div class="detailImg" style="background: url(../userWebFront/images/pc1.jpg) no-repeat; background-size: 100%;" ></div>
+						<div class="detailImg" style="background: url(resources/guest/images/pc1.jpg) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
 							<div><h3>더조은컴퓨터아카데미 강남점</h3></div>
 							<br><br>
@@ -543,7 +574,7 @@ popup>li{
 						</div>
 					</div>
 					<div class="detailList" > 
-						<div class="detailImg" style="background: url(../userWebFront/images/pc2.jpg) no-repeat; background-size: 100%;" ></div>
+						<div class="detailImg" style="background: url(resources/guest/images/pc2.jpg) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
 							<div><h3>더조은컴퓨터아카데미 강남별관</h3></div>
 							<br><br>
@@ -633,11 +664,15 @@ popup>li{
                                 <div>
                                     <h4><strong>여기만한 곳은 어디에도 없을거에요.</strong></h4>
                                 </div>
-                                <div class="like" onclick="alert('이게 최선일까? 색깔도 바꿀예정');"></div>
+                               <div class="like"></div>
                                 <div><p>160</p></div>
+                                <div class="unlike"></div>
+                                <div><p>80</p></div>
                             </div>
-                            <div class="reviewScore">
-                                <h5>별표시가 들어갈 거에요</h5>
+                           <div class="reviewScore" style="display: flex;">
+								<div  style="display:flex;width: 90px; height:18px;background: url(resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -38px;">
+								</div>
+                            	<h5>4</h5>
                             </div>
                             <div class="suksoName" >
                                 <b>[조식 1+1 패키지] 슈페리어 트윈 객실 이용 · 햇살02</b>
@@ -667,10 +702,14 @@ popup>li{
                                     <h4><strong>일반리뷰</strong></h4>
                                 </div>
                                 <div class="like"></div>
-                                <div><p>7</p></div>
+                                <div><p>160</p></div>
+                                <div class="unlike"></div>
+                                <div><p>80</p></div>
                             </div>
-                            <div class="reviewScore">
-                                <h5>별표시가 들어갈 거에요</h5>
+                            <div class="reviewScore" style="display: flex;">
+								<div  style="display:flex;width: 90px; height:18px;background: url(resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
+								</div>
+                            	<h5>3</h5>
                             </div>
                             <div class="suksoName" >
                                 <b>객실타입 :슈페리어 트리플 객실 이용 · 햇살02</b>

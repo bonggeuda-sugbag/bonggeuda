@@ -9,15 +9,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Buy :: w3layouts</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<title>봉그다숙박</title>
+<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="js/scripts.js"></script>
-<link href="css/styles.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<script src="resources/guest/js/scripts.js"></script>
+<link href="resources/guest/css/styles.css" rel="stylesheet">
+<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
@@ -253,7 +253,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul class="right-icons">
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
+				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>

@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+<title>봉그다숙박숙박</title>
 <link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="resources/guest/js/jquery.min.js"></script>
@@ -114,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul class="right-icons">
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
+				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
@@ -167,10 +167,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="bottom-header">
 				<div class="header-bottom">
 					<div class=" bottom-head" style="position: relative; left: 170px;">
-						<!-- <a href="/WEB-INF/views/guest/accomoInfo/list.jsp"> -->
-							<div class="buy-media"  onclick="location.href='/WEB-INF/views/guest/accomoInfo/list.jsp'">
+						<a href="motelInfo.html">
+							<div class="buy-media" >
 								<i class="buy"> </i>
-								><h6>모텔</h6>
+								<h6>모텔</h6>
 							</div>
 						</a>
 					</div>
@@ -245,7 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc4.jpg" alt="">
 			     	 </a>
 			     	   <div class="most-1">
-			     	   	 <h5><a href="more_notice.html">일단공지사항으로</a></h5>
+			     	   	 <h5><a href="more_notice.html">공지사항</a></h5>
 			     	   </div>
 			 </div>
 			  <div class="col-md-4 box_2">
@@ -253,7 +253,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc5.jpg" alt="">
 			     	 </a>
 		     	   <div class="most-1">
-			     	   	<h5><a href="event.html">일단이벤트로</a></h5>
+			     	   	<h5><a href="event.html">이벤트</a></h5>
 			     	   </div>
 		     	
 		      </div>
