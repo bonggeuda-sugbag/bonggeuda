@@ -385,17 +385,17 @@ popup>li{
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<!-- 상단메뉴바 -->
 		<div class="top-nav">
 			<ul class="right-icons" >
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
+				<li><a  href="more_notice.jsp">더보기</a></li>
+				<li><a  href="blog.jsp">내주변</a></li>
+				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+				<li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 			<!-- //상단메뉴바 -->
 				
@@ -451,7 +451,7 @@ popup>li{
 					</button>
 				</div>
 				<div style="text-align: right; display: flex; ">
-					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.html';">신고하기</button>
+					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.jsp';">신고하기</button>
 					<div style="margin-left:5px; width: 30px; height: 30px; background: url(../userWebFront/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
 				</div>
 			</div>
@@ -538,7 +538,7 @@ popup>li{
 							</div>
 							<hr>
 							<div >
-								<button class="detail_btn" onclick="location.href='payment.html';">예약하기</button>
+								<button class="detail_btn" onclick="location.href='payment.jsp';">예약하기</button>
 							</div>
 						</div>
 					</div>
@@ -556,7 +556,7 @@ popup>li{
 								<button class="info_btn" onclick="location.href='#pop01'" >객실이용안내 ></button>
 							</div>
 							<hr>
-							<div onclick="location.href='payment.html';">
+							<div onclick="location.href='payment.jsp';">
 								<button class="detail_btn">예약하기</button>
 							</div>
 						</div>

@@ -98,16 +98,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
+				<li><a  href="more_notice.jsp">더보기</a></li>
+				<li><a  href="blog.jsp">내주변</a></li>
+				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+            <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
 				<!---
@@ -209,11 +209,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="more_notice.html">공지사항</a></li>
-			<li class="blog-list"><a href="event.html">이벤트</a></li>
-			<li class="blog-list"><a href="FAQ1.html">자주 묻는 질문</a></li>
-			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.html" style="color: #6eceda;">1:1 문의</a></li>
-			<li class="blog-list"><a href="policy1.html">약관 및 정책</a></li>
+			<li class="blog-list"><a href="more_notice.jsp">공지사항</a></li>
+			<li class="blog-list"><a href="event.jsp">이벤트</a></li>
+			<li class="blog-list"><a href="FAQ1.jsp">자주 묻는 질문</a></li>
+			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.jsp" style="color: #6eceda;">1:1 문의</a></li>
+			<li class="blog-list"><a href="policy1.jsp">약관 및 정책</a></li>
 		</ul>
 		</nav>
 	</div>
@@ -236,7 +236,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div id="menu1" class="tab-pane fade">
 
-				<form method = "get" action = "QnA.html">
+				<form method = "get" action = "QnA.jsp">
 					<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 >
 							<tr>
 							<td bgcolor=white>
@@ -258,7 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</table>
 				
 								<center>
-									<button class="submit_QnA" onclick="location.href='QnA.html'; notice();">작성</button>
+									<button class="submit_QnA" onclick="location.href='QnA.jsp'; notice();">작성</button>
 								</center>
 							</td>
 							</tr>

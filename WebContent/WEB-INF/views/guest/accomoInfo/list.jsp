@@ -107,17 +107,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<!-- 상단메뉴바 -->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
+				<li><a  href="more_notice.jsp">더보기</a></li>
+				<li><a  href="blog.jsp">내주변</a></li>
+				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+				<li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 			<!-- //상단메뉴바 -->
 				
@@ -223,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
 			
-			<div class="suksoList" style="background: url(../userWebFront/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='moteldetailBook.html';" >
+			<div class="suksoList" style="background: url(../userWebFront/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='moteldetailBook.jsp';" >
 				
 				<div class="infoThumb" >
 					<h2>돌체파르니엔펜션</h2>

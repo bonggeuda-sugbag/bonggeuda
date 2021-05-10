@@ -181,17 +181,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<!-- 상단메뉴바 -->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
+				<li><a  href="more_notice.jsp">더보기</a></li>
+				<li><a  href="blog.jsp">내주변</a></li>
+				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+				<li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 			<!-- //상단메뉴바 -->
 				
@@ -237,18 +237,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- 안내/예약, 정보, 리뷰 -->
             <div style="display: flex; width: 100%;">
 				<div class="selectType">
-					<button class="button1" type="button" onclick="location.href='moteldetailBook.html';"style="color: #6eceda; border-bottom: 1px solid #6eceda;">
+					<button class="button1" type="button" onclick="location.href='moteldetailBook.jsp';"style="color: #6eceda; border-bottom: 1px solid #6eceda;">
 						<span>객실안내 / 예약</span>
 					</button>
 					<button class="button2" type="button">
 						<span>숙소정보</span>
 					</button>
-					<button class="button3" type="button" onclick="location.href='motelReview.html';">
+					<button class="button3" type="button" onclick="location.href='motelReview.jsp';">
 						 <span>리뷰</span>
 					</button>
 				</div>
 				<div style="text-align: right; display: flex; ">
-					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.html';">신고하기</button>
+					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.jsp';">신고하기</button>
 					<div style="margin-left:5px; width: 30px; height: 30px; background: url(../userWebFront/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
 				</div>
 			</div>

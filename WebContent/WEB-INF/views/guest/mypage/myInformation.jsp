@@ -140,16 +140,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
+				<li><a  href="more_notice.jsp">더보기</a></li>
+				<li><a  href="blog.jsp">내주변</a></li>
+				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+            <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
 				<!---
@@ -251,10 +251,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="mypage_point.html">포인트</a></li>
-			<li class="blog-list"><a href="mypage_coupon.html">쿠폰함</a></li>
-			<li class="blog-list"><a href="mypage_reservation.html">예약 내역</a></li>
-			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="mypage_myinformation.html" style="color: #6eceda;">내 정보 관리</a></li>
+			<li class="blog-list"><a href="mypage_point.jsp">포인트</a></li>
+			<li class="blog-list"><a href="mypage_coupon.jsp">쿠폰함</a></li>
+			<li class="blog-list"><a href="mypage_reservation.jsp">예약 내역</a></li>
+			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="mypage_myinformation.jsp" style="color: #6eceda;">내 정보 관리</a></li>
 		</ul>
 		</nav>
 	</div>
@@ -364,7 +364,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									로그아웃되었습니다.
 								</div>
 								<div class="password-wrap">
-									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='index.html'">확인</button></div>
+									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='index.jsp'">확인</button></div>
 								</div>
 							</div>
 
@@ -420,7 +420,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</li>
 									</ul>
 								<div class="password-wrap">
-									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='index.html'">탈퇴하기</button></div>
+									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='index.jsp'">탈퇴하기</button></div>
 								</div>
 							</div>
 							<script>
