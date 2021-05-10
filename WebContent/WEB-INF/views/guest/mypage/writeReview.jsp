@@ -42,9 +42,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	.review_rating{width: 100%; height:30px; overflow: hidden; margin: 0 auto; }
   	.rating {display: inline-block;}
   	.rating > input {display: none; margin: 0 5px;}
-  	.rating > label:before {display: inline-block; content: "\f005"; background: url('images/emptystar.png') 0 0 no-repeat; width:30px; height:30px; color:rgba(0,0,0,0); background-size: 30px;}
+  	.rating > label:before {display: inline-block; content: "\f005"; background: url('resources/guest/images/emptystar.png') 0 0 no-repeat; width:30px; height:30px; color:rgba(0,0,0,0); background-size: 30px;}
   	.rating > input[type="radio"] + label {color: #999; float: right; margin: 0 5px;}
- 	.rating > input:checked ~ label{content: "\f005"; display: inline-block; background: url('images/fullstar.png') 0 0 no-repeat; width:30px; height:30px; padding: 0; background-size: 30px; z-index: 5;}
+ 	.rating > input:checked ~ label{content: "\f005"; display: inline-block; background: url('resources/guest/images/fullstar.png') 0 0 no-repeat; width:30px; height:30px; padding: 0; background-size: 30px; z-index: 5;}
   	.rating > input:checked ~ label:before {background:none;}
 
 	input, textarea{
@@ -66,16 +66,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	}
 	</style>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="js/scripts.js"></script>
-<link href="css/styles.css" rel="stylesheet">
+<script src="resources/guest/js/scripts.js"></script>
+<link href="resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -113,8 +113,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 			<!---pop-up-box---->
 				   
-				<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-				<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+				<link href="resources/guest/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+				<script src="resources/guest/js/jquery.magnific-popup.js" type="text/javascript"></script>
 			<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
 					    <!----- tabs-box ---->
@@ -153,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							    </div>
 					      </div>
 					 </div>
-					 <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+					 <script src="resources/guest/js/easyResponsiveTabs.js" type="text/javascript"></script>
 				    	<script type="text/javascript">
 						    $(document).ready(function () {
 						        $('#horizontalTab').easyResponsiveTabs({
