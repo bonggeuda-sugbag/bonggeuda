@@ -131,16 +131,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="index.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">신고하기</a></li>
-				<li><a  href="blog.html">내주변</a></li>
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
+				<li><a  href="more_notice.jsp">신고하기</a></li>
+				<li><a  href="blog.jsp">내주변</a></li>
+				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+            <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
 				<!---
@@ -242,11 +242,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="more_notice.html"></a></li>
-			<li class="blog-list"><a href="event.html"></a></li>
-			<li class="blog-list"><a href="FAQ1.html"></a></li>
-			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.html" style="color: #6eceda;"></a></li>
-			<li class="blog-list"><a href="policy1.html"></a></li>
+			<li class="blog-list"><a href="more_notice.jsp"></a></li>
+			<li class="blog-list"><a href="event.jsp"></a></li>
+			<li class="blog-list"><a href="FAQ1.jsp"></a></li>
+			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.jsp" style="color: #6eceda;"></a></li>
+			<li class="blog-list"><a href="policy1.jsp"></a></li>
 		</ul>
 		</nav>
 	</div> -->
@@ -276,8 +276,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<br>
 				<div class="list_none" style="display:block; text-align: center; width: 780px;">
-					<button class="submit-btn" onclick="location.href='moteldetailBook.html';">작성 취소</button>
-					<button class="submit-btn" type="submit" onclick="location.href='moteldetailBook.html'; notice();" >작성 완료</button>
+					<button class="submit-btn" onclick="location.href='moteldetailBook.jsp';">작성 취소</button>
+					<button class="submit-btn" type="submit" onclick="location.href='moteldetailBook.jsp'; notice();" >작성 완료</button>
 				</div>
 			</div>
 			<script>
@@ -293,7 +293,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div id="menu1" class="tab-pane fade">
 
-				<form method = "get" action = "QnA.html">
+				<form method = "get" action = "QnA.jsp">
 					<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 >
 							<tr>
 							<td bgcolor=white>
