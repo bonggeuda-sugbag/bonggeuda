@@ -247,11 +247,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc4.jpg" alt="">
 			     	 </a>
 			     	   <div class="most-1">
-<<<<<<< HEAD
+
 			     	   	 <h5><a href="more_notice.html">공지사항</a></h5>
-=======
-			     	   	 <h5><a href="more_notice.jsp">일단공지사항으로</a></h5>
->>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
+
 			     	   </div>
 			 </div>
 			  <div class="col-md-4 box_2">
@@ -259,11 +257,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc5.jpg" alt="">
 			     	 </a>
 		     	   <div class="most-1">
-<<<<<<< HEAD
+
 			     	   	<h5><a href="event.html">이벤트</a></h5>
-=======
-			     	   	<h5><a href="event.jsp">일단이벤트로</a></h5>
->>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
+
 			     	   </div>
 		     	
 		      </div>
