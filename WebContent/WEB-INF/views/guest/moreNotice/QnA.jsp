@@ -103,13 +103,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
+				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
+				<li><a  href="more_notice.jsp">더보기</a></li>
+				<!-- <li><a  href="blog.jsp">내주변</a></li> -->
+				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+            <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
 				<!---
@@ -211,7 +209,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="more_notice.jsp">공지사항</a></li>
+			<li class="blog-list"><a href="moreNotice.jsp">공지사항</a></li>
 			<li class="blog-list"><a href="event.jsp">이벤트</a></li>
 			<li class="blog-list"><a href="FAQ1.jsp">자주 묻는 질문</a></li>
 			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.jsp" style="color: #6eceda;">1:1 문의</a></li>
@@ -236,6 +234,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  <br>등록된 1:1 문의가 없습니다.<br><br>
 			  <b>봉그다 숙박숙박은 회원님들의 소중한 의견에 귀기울여 <br> 신속하고 정확하게 답변드리도록 하겠습니다.</b>
 			</div>
+			<div id="home" class="tab-pane fade in active">
+				<table class="table table-hover" style="margin-top: 20px; width: 740px;">
+					<thead>
+						<tr>
+							<th style="text-align: center;"><b>번호</b></th>
+							<th style="text-align: center;"><b>제목</b></th>
+							<th style="text-align: center;"><b>작성자</b></th>
+							<th style="text-align: center;"><b>작성일</b></th>
+							<th style="text-align: center;"><b>답변</b></th>
+						</tr>
+					</thead>
+					<tbody>
+						   <tr>
+							<td style="text-align: center;">2</td>
+							<td>							
+								<a href="QnA_contents.jsp">예약 변경하고 싶어서 글 남깁니다.</a>
+							</td>
+							<td>홍길동</td>
+							<td>21.05.24</td>
+							<td>N</td>
+						</tr>   
+						<tr>
+							<td style="text-align: center;">1</td>
+							<td>							
+								<a href="QnA_contents.jsp">숙소 이용시 취사 가능한가요?</a>
+							</td>
+							<td>홍길동</td>
+							<td>21.05.24</td>
+							<td>N</td>
+						 </tr>   
+					</tbody>
+				 </table>
+			</div>
+
 			<div id="menu1" class="tab-pane fade">
 
 				<form method = "get" action = "QnA.jsp">
@@ -247,7 +279,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td style="width: 50px;">제목</td>
 								<td><select id="QnAType" style="width: 500px;">
 									<option value="cancel">교환/취소/환불 문의</option>
-									<option value="shipping">배송 문의</option>
+									<option value="shipping">회원정보 수정 및 탈퇴 문의</option>
 									<option value="else">기타 문의</option>
                            	 		</select>
 								</td>
@@ -255,7 +287,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 								<tr>
 								<!-- <td>내용</td> -->
-								<td colspan="2"><textarea name = content cols=85 rows=15 placeholder="문의 내용을 입력해주세요"></textarea></td>
+								<td colspan="2"><textarea name = content cols=85 rows=15 placeholder="관리자 문의 작성공간입니다. 문의 내용을 입력해주세요"></textarea></td>
 								</tr>
 								</table>
 				

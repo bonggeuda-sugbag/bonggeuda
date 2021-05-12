@@ -24,16 +24,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     	border-bottom: 1px solid rgba(0,0,0,0.2);
 		width: 575px;
 	}
-	li.gra_grey{
-		background-image: url("resources/guest/images/ticket.png");
-		/* padding-top: 10px; */
-		width: 350px;
-  		height: 190px;
- 		background-position: 50%;
-  		background-repeat: no-repeat;
-  		background-size: 320px 280px;
+	.tab {
+		width: 575px;
+	}
+	.point_list .col_red {
+		color: #6eceda;
+	}
+	.point_list p {
+		margin-top: 5px;
 	}
 
+	
 	</style>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -68,15 +69,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
+            <li><span ><a  href="index.jsp">메인페이지</a></span></li>
+            <li><a  href="more_notice.jsp">더보기</a></li>
+           <!--  <li><a  href="blog.jsp">내주변</a></li> -->
+            <li><a  href="mypage_point.jsp">마이페이지</a></li>
+            <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
+			
 				<!---
 				<a href="#" class="right_bt" id="activator"><i class="glyphicon glyphicon-menu-hamburger"></i>  </a>
 			--->
@@ -177,10 +177,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
 			<li class="blog-list"><a href="point.jsp">포인트</a></li>
-			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="coupon.jsp" style="color: #6eceda;">쿠폰함</a></li>
+			<li class="blog-list"><a href="coupon.jsp">쿠폰함</a></li>
 			<li class="blog-list"><a href="reservation.jsp">예약 내역</a></li>
 			<li class="blog-list"><a href="myInformation.jsp">내 정보 관리</a></li>
-			<li class="blog-list"><a href="warningList.jsp">신고내역</a></li>
+			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="warningList.jsp" style="color: #6eceda;">신고내역</a></li>
 		</ul>
 		</nav>
 	</div>
@@ -188,64 +188,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="mmiddle">
 	<div class="tab">
-		<span class="tab_btn active">보유쿠폰</span>
-		<span class="able_point" style="color: #6eceda; font-weight: bold;">: &nbsp<span>4</span>&nbsp장</span>
+		<span class="tab_btn active">신고 내역</span>
 	</div>
 
 	<div id="cont_area"><!-- 본문 콘텐츠-->
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left;">
-			<ul class="gra_coupon coupon_box" style="padding-top: 30px;">
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>호텔,펜션</b>
-						<strong>7,000원 할인</strong>
-						<p>엘리트 할인쿠폰(4월)</p>
-						<p>100,000원 이상 결제 시 사용가능</p>
-						<p></p>
-						<p></p>
-						<span>04.01 ~ 04.30</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>모바일티켓</b>
-						<strong>4,000원 할인</strong>
-						<p>엘리트 할인쿠폰(4월)</p>
-						<p>40,000원 이상 결제 시 사용가능</p>
-						<p></p>
-						<p></p>
-						<span>04.01 ~ 04.30</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>펜션</b>
-						<strong>8% 할인</strong>
-						<p>지금 예약하면</p>
-						<p></p>
-						<p>최대 15,000원 할인 가능</p>
-						<p></p>
-						<p></p>
-						<span>04.09 ~ 04.13</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>펜션</b>
-						<strong>8% 할인</strong>
-						<p>지금 예약하면</p>
-						<p></p>
-						<p>최대 20,000원 할인 가능</p>
-						<p></p>
-						<p></p>
-						<span>04.09 ~ 04.13</span>
-					</div>
-				</li>
-			</ul>
+			<div id="home" class="tab-pane fade in active">
+			<table class="table table-hover" style="margin-top: 20px; width: 740px;">
+				<thead>
+					<tr>
+						<th style="text-align: center;"><b>번호</b></th>
+						<th style="text-align: center;"><b>제목</b></th>
+						<th style="text-align: center;"><b>신고업체</b></th>
+						<th style="text-align: center;"><b>작성일</b></th>
+						<th style="text-align: center;"><b>처리여부</b></th>
+					</tr>
+				</thead>
+				<tbody>
+					   <tr>
+						<td style="text-align: center;">2</td>
+						<td>							
+							<a href="warningContents.jsp">예약 변경하고 싶어서 글 남깁니다.</a>
+						</td>
+						<td>홍길동</td>
+						<td>21.05.24</td>
+						<td>N</td>
+					</tr>   
+					<tr>
+						<td style="text-align: center;">1</td>
+						<td>							
+							<a href="warningContents.jsp">숙소 이용시 취사 가능한가요?</a>
+						</td>
+						<td>홍길동</td>
+						<td>21.05.24</td>
+						<td>N</td>
+					 </tr>   
+				</tbody>
+			 </table>
+			</div>
 		</div>
 	</div>
 	</div>

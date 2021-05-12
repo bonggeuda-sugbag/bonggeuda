@@ -10,31 +10,73 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 	<style>
-	div.mmiddle {
+		
+div.tab, div.tab-content {
     margin-left: 25%;
     margin-right: 25%;
+}
+
+div.tab_each, div.list_none {
+	margin-left: 25%;
+    margin-right: 25%;
+}
+
+.inquiry .tab_each{display:none}
+.inquiry .tab_each:first-child{display:block}
+.inquiry .tab{display:none}
+.tab_each{clear:both;border-top:1px solid rgba(0,0,0,0.08)}
+
+	.table tbody tr th{
+		background: white;
 	}
-	.point_list li, .point_list span, .point_list p{
-		font-size: 18px;
+	table.table tr th{
+		text-align: center;
+		padding: 5px;
+		line-height: 2.5;
+		font-weight: 500;
+		width: auto;
 	}
-	.point_list li {
-		padding-bottom: 10px;
-		padding-top: 10px;
-    	height: auto;
-    	border-bottom: 1px solid rgba(0,0,0,0.2);
-		width: 575px;
-	}
-	li.gra_grey{
-		background-image: url("resources/guest/images/ticket.png");
-		/* padding-top: 10px; */
-		width: 350px;
-  		height: 190px;
- 		background-position: 50%;
-  		background-repeat: no-repeat;
-  		background-size: 320px 280px;
+	th a:hover{
+		color: #6eceda !important;
 	}
 
+	table.type09 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    width: 740px;
+}
+
+
+table.type09 thead th {
+    /* padding: 10px; */
+    font-weight: bold;
+    vertical-align: top;
+    /* color: #369; */
+    border-bottom: 2px solid #ccc;
+}
+
+table.type09 tbody th {
+    width: 110px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+    text-align: center;
+}
+
+table.type09 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
 	</style>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -68,13 +110,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
+				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
+				<li><a  href="more_notice.jsp">더보기</a></li>
+			<!-- 	<li><a  href="blog.jsp">내주변</a></li> -->
+				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+            <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
 				<!---
@@ -162,109 +202,106 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
-	<h3><span>마이페이지</span></h3> 
+	<h3><span>더보기</span></h3> 
 
 	<div class="clearfix"> </div>      		
 	</div>
 </div>
 <!--//header-->
 <!--blog-->
-<div class="blog">
+<div class="blog" style="padding-bottom: 20px;">
 <div class="container">
 	<h3></h3>
 	<div class="blog-list">
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="point.jsp">포인트</a></li>
-			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="coupon.jsp" style="color: #6eceda;">쿠폰함</a></li>
-			<li class="blog-list"><a href="reservation.jsp">예약 내역</a></li>
-			<li class="blog-list"><a href="myInformation.jsp">내 정보 관리</a></li>
-			<li class="blog-list"><a href="warningList.jsp">신고내역</a></li>
+			<li class="blog-list"><a href="more_notice.jsp">공지사항</a></li>
+			<li class="blog-list"><a href="event.jsp">이벤트</a></li>
+			<li class="blog-list"><a href="FAQ1.jsp">자주 묻는 질문</a></li>
+			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.jsp" style="color: #6eceda;">1:1 문의</a></li>
+			<li class="blog-list"><a href="policy1.jsp">약관 및 정책</a></li>
 		</ul>
 		</nav>
 	</div>
 
 
-	<div class="mmiddle">
-	<div class="tab">
-		<span class="tab_btn active">보유쿠폰</span>
-		<span class="able_point" style="color: #6eceda; font-weight: bold;">: &nbsp<span>4</span>&nbsp장</span>
-	</div>
+<div id="content" class="sub_wrap more_wrap">
+	<div class="align_rt">
+		<!-- Tab -->
+		<div class="tab">
 
-	<div id="cont_area"><!-- 본문 콘텐츠-->
-		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left;">
-			<ul class="gra_coupon coupon_box" style="padding-top: 30px;">
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>호텔,펜션</b>
-						<strong>7,000원 할인</strong>
-						<p>엘리트 할인쿠폰(4월)</p>
-						<p>100,000원 이상 결제 시 사용가능</p>
-						<p></p>
-						<p></p>
-						<span>04.01 ~ 04.30</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>모바일티켓</b>
-						<strong>4,000원 할인</strong>
-						<p>엘리트 할인쿠폰(4월)</p>
-						<p>40,000원 이상 결제 시 사용가능</p>
-						<p></p>
-						<p></p>
-						<span>04.01 ~ 04.30</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>펜션</b>
-						<strong>8% 할인</strong>
-						<p>지금 예약하면</p>
-						<p></p>
-						<p>최대 15,000원 할인 가능</p>
-						<p></p>
-						<p></p>
-						<span>04.09 ~ 04.13</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>펜션</b>
-						<strong>8% 할인</strong>
-						<p>지금 예약하면</p>
-						<p></p>
-						<p>최대 20,000원 할인 가능</p>
-						<p></p>
-						<p></p>
-						<span>04.09 ~ 04.13</span>
-					</div>
-				</li>
-			</ul>
+			<span class="tab_btn active" data-toggle="tab" onclick="location.href='QnA.jsp';">나의 문의 내역</span>
+
 		</div>
+
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+			 
+				<table class="type09" style="margin-top: 20px;">
+					<thead>
+						<tr>
+							<th scope="cols"></th>
+							<th scope="cols"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">제목</th>
+							<td colspan="3">숙소 이용시 취사 가능한가요?</td>
+						</tr>
+						<tr>
+							<th scope="row">작성자</th>
+							<td>홍길동</td>
+							<th scope="row">작성일</th>
+							<td>21.04.29</td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<p>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+				</p>
+				<br>
+				<table class="type09">
+					<thead>
+						<tr>
+							<th scope="cols"></th>
+							<th scope="cols"></th>
+						</tr>
+					</thead>
+				</table>
+				<div>
+					<textarea class="form-control textarea-layer" style="resize:none; width: 700px; height: 120px; margin-top: 10px;" disabled>답변</textarea>
+				</div>
+				
+			</div>
+
+		  </div>
 	</div>
-	</div>
+
+	<script>
+		let targetLink = document.querySelectorAll('.tab span');
+		for(var i = 0; i < targetLink.length; i++) {
+			targetLink[i].addEventListener('click', function(e){
+        		e.preventDefault();
+				for(var x = 0; x < targetLink.length; x++){
+            		targetLink[x].classList.remove('active');
+            		e.target.classList.add('active');
+        		}
+			}
+		)};
+	</script>
+
+</div>
+</div>
 
 
-
-
-	<div class="clearfix"> </div>
-	<nav>
-		<ul class="pagination">
-		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-		  <li><a href="#">2</a></li>
-		  <li><a href="#">3</a></li>
-		  <li><a href="#">4</a></li>
-		  <li><a href="#">5</a></li>
-		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-	   </ul>
-	   </nav>
+	<div class="clearfix" style="margin-bottom: 100px;"> </div>
 </div>
 
 </div>

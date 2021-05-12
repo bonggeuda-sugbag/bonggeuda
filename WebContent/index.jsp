@@ -11,7 +11,7 @@
 
 <%-- 	<jsp:forward page="/WEB-INF/views/guest/main/main.jsp"></jsp:forward>--%>
 	<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%>
-	<jsp:forward page="/WEB-INF/views/guest/main/main.jsp"></jsp:forward>
+	<jsp:forward page="/WEB-INF/views/guest/mypage/warningList.jsp"></jsp:forward>
 	
 <%-- <jsp:forward page="/WEB-INF/views/owner/roomRegistration/registration.jsp"></jsp:forward>
  --%>

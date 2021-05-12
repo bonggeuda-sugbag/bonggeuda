@@ -24,16 +24,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     	border-bottom: 1px solid rgba(0,0,0,0.2);
 		width: 575px;
 	}
-	li.gra_grey{
-		background-image: url("resources/guest/images/ticket.png");
-		/* padding-top: 10px; */
-		width: 350px;
-  		height: 190px;
- 		background-position: 50%;
-  		background-repeat: no-repeat;
-  		background-size: 320px 280px;
+	.tab {
+		width: 575px;
+	}
+	.point_list .col_red {
+		color: #6eceda;
+	}
+	.point_list p {
+		margin-top: 5px;
 	}
 
+	table.type09 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    width: 740px;
+}
+
+
+table.type09 thead th {
+    /* padding: 10px; */
+    font-weight: bold;
+    vertical-align: top;
+    /* color: #369; */
+    border-bottom: 2px solid #ccc;
+}
+
+table.type09 tbody th {
+    width: 110px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+    text-align: center;
+}
+
+table.type09 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+	
 	</style>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -68,15 +102,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
+            <li><span ><a  href="index.jsp">메인페이지</a></span></li>
+            <li><a  href="more_notice.jsp">더보기</a></li>
+            <!-- <li><a  href="blog.jsp">내주변</a></li> -->
+            <li><a  href="mypage_point.jsp">마이페이지</a></li>
+            <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
+			
 				<!---
 				<a href="#" class="right_bt" id="activator"><i class="glyphicon glyphicon-menu-hamburger"></i>  </a>
 			--->
@@ -177,10 +210,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
 			<li class="blog-list"><a href="point.jsp">포인트</a></li>
-			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="coupon.jsp" style="color: #6eceda;">쿠폰함</a></li>
+			<li class="blog-list"><a href="coupon.jsp">쿠폰함</a></li>
 			<li class="blog-list"><a href="reservation.jsp">예약 내역</a></li>
 			<li class="blog-list"><a href="myInformation.jsp">내 정보 관리</a></li>
-			<li class="blog-list"><a href="warningList.jsp">신고내역</a></li>
+			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="warningList.jsp" style="color: #6eceda;">신고내역</a></li>
 		</ul>
 		</nav>
 	</div>
@@ -188,64 +221,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="mmiddle">
 	<div class="tab">
-		<span class="tab_btn active">보유쿠폰</span>
-		<span class="able_point" style="color: #6eceda; font-weight: bold;">: &nbsp<span>4</span>&nbsp장</span>
+		<span class="tab_btn active">신고 내역</span>
 	</div>
 
 	<div id="cont_area"><!-- 본문 콘텐츠-->
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left;">
-			<ul class="gra_coupon coupon_box" style="padding-top: 30px;">
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>호텔,펜션</b>
-						<strong>7,000원 할인</strong>
-						<p>엘리트 할인쿠폰(4월)</p>
-						<p>100,000원 이상 결제 시 사용가능</p>
-						<p></p>
-						<p></p>
-						<span>04.01 ~ 04.30</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>모바일티켓</b>
-						<strong>4,000원 할인</strong>
-						<p>엘리트 할인쿠폰(4월)</p>
-						<p>40,000원 이상 결제 시 사용가능</p>
-						<p></p>
-						<p></p>
-						<span>04.01 ~ 04.30</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>펜션</b>
-						<strong>8% 할인</strong>
-						<p>지금 예약하면</p>
-						<p></p>
-						<p>최대 15,000원 할인 가능</p>
-						<p></p>
-						<p></p>
-						<span>04.09 ~ 04.13</span>
-					</div>
-				</li>
-				<li class="gra_grey">
-					<div style="padding-top: 25px;">
-						<br>
-						<b>펜션</b>
-						<strong>8% 할인</strong>
-						<p>지금 예약하면</p>
-						<p></p>
-						<p>최대 20,000원 할인 가능</p>
-						<p></p>
-						<p></p>
-						<span>04.09 ~ 04.13</span>
-					</div>
-				</li>
-			</ul>
+			<div id="home" class="tab-pane fade in active">
+			 
+				<table class="type09" style="margin-top: 20px;">
+					<thead>
+						<tr>
+							<th scope="cols"></th>
+							<th scope="cols"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">제목</th>
+							<td colspan="3">업체신고신고</td>
+						</tr>
+						<tr>
+							<th scope="row">신고업체</th>
+							<td>웅이네호텔</td>
+							<th scope="row">작성일</th>
+							<td>21.04.29</td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<p>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+				</p>
+				<br>
+				<img src="images/pi2.jpg" style="width: 30%">
+				<br><br>
+				<table class="type09">
+					<thead>
+						<tr>
+							<th scope="cols"></th>
+							<th scope="cols"></th>
+						</tr>
+					</thead>
+				</table>
+				<div>
+					<textarea class="form-control textarea-layer" style="resize:none; width: 700px; height: 120px; margin-top: 10px;" disabled>불편을드려 죄송합니다. 신고처리 완료되었습니다.</textarea>
+				</div>
+				
+			</div>
 		</div>
 	</div>
 	</div>
