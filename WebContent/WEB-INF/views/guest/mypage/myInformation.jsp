@@ -14,7 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     margin-left: 25%;
     margin-right: 25%;
 	}
-	div.cont_inner button {
+	div.cont_inner button, .nickNameCheck {
 		border-radius: 10px;
 		margin-top: 5px;
 		background: #6eceda;
@@ -23,11 +23,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		box-shadow: 0 3px 0 #0e8c73;
 		height: 35px;
 	}
-	div.cont_inner button:hover {
+	div.cont_inner button:hover, .nickNameCheck:hover {
 	background-color: #4aa9b6;
 	box-shadow: 0 3px 0 #23a188;
 	}
-	div.cont_inner button:active {
+	div.cont_inner button:active, .nickNameCheck:active {
 	box-shadow: none;
 	}
 
@@ -100,16 +100,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 .popup .close:hover {
   color: #6eceda;
 }
-
-
-
-
-
-
-
-
-
-
 
 	</style>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
@@ -285,6 +275,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span>&nbsp동두천고도리</span>
 				<br>
 				<input type="text" value="" placeholder="변경할 닉네임을 입력해주세요." style="width: 40%; height: 35px;">
+				&nbsp;<input type="button" value="중복확인" onclick="nickNameCheck()" class="nickNameCheck">
+				<input type="hidden" name="idDuplication" value="idUncheck">
 				<br>
 				<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
 				<button class="btns-wrap__cancle-btn" type="submit">수정취소</button>
@@ -324,6 +316,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 			<script>
+
+			function nickNameCheck() {
+				window.name = "parentForm";
+				wondow.open
+			}
+
 			function isSame() {
 				var pwd = document.getElementById("pwd").value;
 				var pwdcheck = document.getElementById("pwdcheck").value;

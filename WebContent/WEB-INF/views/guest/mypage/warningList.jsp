@@ -33,6 +33,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	.point_list p {
 		margin-top: 5px;
 	}
+	td > a {
+		color: black;
+	}
+	td > a:hover {
+		color: #6eceda;
+	}
 
 	
 	</style>

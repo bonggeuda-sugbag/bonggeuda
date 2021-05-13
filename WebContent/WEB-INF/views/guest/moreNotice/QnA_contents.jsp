@@ -13,12 +13,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		
 div.tab, div.tab-content {
     margin-left: 25%;
-    margin-right: 25%;
+    width: 740px;
 }
 
 div.tab_each, div.list_none {
 	margin-left: 25%;
-    margin-right: 25%;
+    width: 740px;
 }
 
 .inquiry .tab_each{display:none}
