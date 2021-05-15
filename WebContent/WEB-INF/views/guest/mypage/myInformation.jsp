@@ -281,16 +281,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
 				<button class="btns-wrap__cancle-btn" type="submit">수정취소</button>
 			</div>
-			<!-- 마이페이지 예약자 이름 -->
-			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
-				<b style="font-size: 20px;">예약자 이름</b>
-				<span>&nbsp이름이름</span>
-				<br>
-				<input type="text" value="" placeholder="변경할 이름을 입력해주세요." style="width: 40%; height: 35px;">
-				<br>
-				<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
-				<button class="btns-wrap__cancle-btn" type="submit">수정취소</button>
-			</div>
 			<!-- 마이페이지 휴대폰번호 -->
 			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">휴대폰 번호</b>
