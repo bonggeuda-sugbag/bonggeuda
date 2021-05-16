@@ -99,6 +99,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     height: 35px;
     margin: auto;
 }
+.input-picture{
+	text-align: left;
+	padding : 20px
+}
+.input-picture h5{
+	margin-bottom: 10px;
+}
+.input-picture input{
+	width: 100%;
+	padding-top: 2px;
+}
 	</style>
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -131,18 +142,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.jsp">Bonggeuda</a></h1>
+				<h1><a href="index.html">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">신고하기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
             <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
 			</ul>
 
 				<!---
@@ -151,13 +159,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			
 		<div class="clearfix"> </div>
-			<!---pop-up-box---->
+			<!-- <!---pop-up-box---->
 				   
-				<link href="resources/guest/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-				<script src="resources/guest/js/jquery.magnific-popup.js" type="text/javascript"></script>
-			<!---//pop-up-box---->
+				<!-- <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+				<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+			-//pop-up-box--
 				<div id="small-dialog" class="mfp-hide">
-					    <!----- tabs-box ---->
+					    --- tabs-box --
 				<div class="sap_tabs">	
 				     <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 						  <ul class="resp-tabs-list">
@@ -193,7 +201,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							    </div>
 					      </div>
 					 </div>
-					 <script src="resources/guest/js/easyResponsiveTabs.js" type="text/javascript"></script>
+					 <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
 				    	<script type="text/javascript">
 						    $(document).ready(function () {
 						        $('#horizontalTab').easyResponsiveTabs({
@@ -223,7 +231,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</script>
 					
 	
-		</div>
+		</div> -->
 		<div class="clearfix"> </div>
 		</div>	
 </div>
@@ -244,11 +252,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="more_notice.jsp"></a></li>
-			<li class="blog-list"><a href="event.jsp"></a></li>
-			<li class="blog-list"><a href="FAQ1.jsp"></a></li>
-			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.jsp" style="color: #6eceda;"></a></li>
-			<li class="blog-list"><a href="policy1.jsp"></a></li>
+			<li class="blog-list"><a href="more_notice.html"></a></li>
+			<li class="blog-list"><a href="event.html"></a></li>
+			<li class="blog-list"><a href="FAQ1.html"></a></li>
+			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.html" style="color: #6eceda;"></a></li>
+			<li class="blog-list"><a href="policy1.html"></a></li>
 		</ul>
 		</nav>
 	</div> -->
@@ -267,7 +275,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- Tab -->
 				<br>
 				<!-- 신고내용작성 -->
-				<div class="list_none" style="display: block; height: 604px; width: 780px; border: 1px solid lightgray;">
+				<div class="list_none" style="display: block; height: 670px; width: 780px; border: 1px solid lightgray;">
 					<div class="writeNameBox">
 						<div class="writeNameBoxContent">
 							<p style="text-align: center; font-weight: bold;">제목 <input type="text" class="titleInput" placeholder="제목을 입력하세요." required> </p>
@@ -275,11 +283,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 					<textarea class="wirteContent" style="border-radius: 5px;"  rows="22" name="" placeholder="신고내용을 적어주세요." required="required"></textarea>
+					<div class="input-picture">
+						<h5>이미지 첨부하기<h5>
+						<div style="border: 1px solid rgba(0,0,0,0.08); height: 30px; width: 100%;" >
+							<input class="selet-picture" type ="file" name = "report-picture">
+						</div>
+						
+					</div>
 				</div>
 				<br>
 				<div class="list_none" style="display:block; text-align: center; width: 780px;">
-					<button class="submit-btn" onclick="location.href='moteldetailBook.jsp';">작성 취소</button>
-					<button class="submit-btn" type="submit" onclick="location.href='moteldetailBook.jsp'; notice();" >작성 완료</button>
+					<button class="submit-btn" onclick="location.href='moteldetailBook.html';">작성 취소</button>
+					<button class="submit-btn" type="submit" onclick="location.href='moteldetailBook.html'; notice();" >작성 완료</button>
 				</div>
 			</div>
 			<script>
@@ -295,7 +310,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div id="menu1" class="tab-pane fade">
 
-				<form method = "get" action = "QnA.jsp">
+				<form method = "get" action = "QnA.html">
 					<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 >
 							<tr>
 							<td bgcolor=white>
