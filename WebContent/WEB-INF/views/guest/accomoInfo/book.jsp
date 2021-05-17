@@ -391,7 +391,7 @@ popup>li{
     width: 30px;
     height: 20px;
     margin-left: 13px;
-    background: url(../userWebFront/images/like.png) 0 0 no-repeat;
+    background: url(resources/guest/images/like.png) 0 0 no-repeat;
     background-size: 20px 20px;
     
 }
@@ -399,7 +399,7 @@ popup>li{
     width: 30px;
     height: 20px;
     margin-left: 13px;
-    background: url(../userWebFront/images/likeun.png) 0 0 no-repeat;
+    background: url(resources/guest/images/likeun.png) 0 0 no-repeat;
     background-size: 20px 20px;
     
 }

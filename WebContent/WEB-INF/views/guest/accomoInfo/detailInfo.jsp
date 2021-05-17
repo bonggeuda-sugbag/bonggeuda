@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--A Design by W3layouts 
 Author: W3layout
@@ -10,16 +10,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Buy :: w3layouts</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="js/scripts.js"></script>
-<link href="css/styles.css" rel="stylesheet">
+<script src="resources/guest/js/scripts.js"></script>
+<link href="resources/guest/css/styles.css" rel="stylesheet">
 
 <!-- theme-style -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
@@ -213,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- 숙소사진, 이름 -->
             <div style=" width : 1100px; height : 500px; padding:10px 10px 10px 0px;display: flex; flex-direction: row;">
                 <!-- 숙소사진 -->
-                <div style=" width : 600px; height: 470px; display: block;background: url(../userWebFront/images/ga2.jpg) no-repeat; background-size: 600px 470px;">
+                <div style=" width : 600px; height: 470px; display: block;background: url(resources/guest/images/ga2.jpg) no-repeat; background-size: 600px 470px;">
                     
                 </div>
                 <!-- 숙소이름 -->
@@ -249,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div style="text-align: right; display: flex; ">
 					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.jsp';">신고하기</button>
-					<div style="margin-left:5px; width: 30px; height: 30px; background: url(../userWebFront/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
+					<div style="margin-left:5px; width: 30px; height: 30px; background: url(resources/guest/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
 				</div>
 			</div>
 
@@ -374,4 +374,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--//footer-->
 </body>
-</html>
+</html> --%>
