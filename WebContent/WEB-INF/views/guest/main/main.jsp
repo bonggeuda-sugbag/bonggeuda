@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-
+				${ sessionScope.member.userId }
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
 				<!-- <li><a  href="blog.html">내주변</a></li> -->
@@ -164,28 +164,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 	 
 	<!--header-bottom-->
+	<form id="accomoTypeForm" action="${pageContext.servletContext.contextPath}/member/accomoInfo"method="get">
 	<div class="banner-bottom-top">
 			<div class="container">
 			<div class="bottom-header">
 				<div class="header-bottom">
-					<div class=" bottom-head" style="position: relative; left: 170px;">
-						<a href="motelInfo.html">
+					<div class=" bottom-head" style="position: relative; left: 170px; value="a" onclick=selectBookList(this);">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list">
 							<div class="buy-media" >
 								<i class="buy"> </i>
-								<h6>모텔</h6>
+								<h6>호텔</h6>
 							</div>
 						</a>
 					</div>
 					<div class=" bottom-head"  style="position: relative; left: 310px;">
-						<a href="motelInfo.jsp">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list">
 							<div class="buy-media">
 							<i class="rent"> </i>
-							<h6>호텔</h6>
+							<h6>펜션</h6>
 							</div>
 						</a>
 					</div>
 					<div class=" bottom-head"  style="position: relative; left: 470px;">
-						<a href="motelInfo.jsp">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list">
 							<div class="buy-media">
 							<i class="pg"> </i>
 							<h6>게스트하우스</h6>
@@ -198,6 +199,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 	</div>
 	</div>
+	</form>
 			<!--//-->
 				
 	<!--//header-bottom-->
