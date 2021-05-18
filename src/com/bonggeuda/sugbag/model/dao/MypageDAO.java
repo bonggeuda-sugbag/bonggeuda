@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 
@@ -120,6 +121,90 @@ public class MypageDAO {
 		}
 		
 		return pointHistory;
+	}
+
+	/**
+	 * 보유 쿠폰 개수 조회
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public int couponCount(Connection con, int userNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("couponCount");
+		
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				result = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 보유 쿠폰 정보 조회
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public List<CouponDTO> couponSelect(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<CouponDTO> couponList = new ArrayList<>();
+		
+		String query = prop.getProperty("couponList");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				CouponDTO coupon = new CouponDTO();
+				coupon.setCouponName(rset.getString("COUPON_NAME"));
+				coupon.setCouponDiscount(rset.getInt("COUPON_DISCOUNT"));
+				coupon.setCouponCondition(rset.getString("COUPON_CONDITION"));
+				coupon.setCouponStart(rset.getDate("COUPON_START"));
+				coupon.setCouponEnd(rset.getDate("COUPON_END"));
+				
+				couponList.add(coupon);
+			}
+			
+			System.out.println(couponList);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return couponList;
 	}
 
 }
