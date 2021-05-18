@@ -18,7 +18,6 @@ public class MemberDTO {
 	
 	public MemberDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	 
 	public MemberDTO(int userNo, String userId, String userPwd, String userPhone, int reportCnt, String nickName,
