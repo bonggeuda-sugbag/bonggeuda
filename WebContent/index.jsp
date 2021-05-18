@@ -20,18 +20,18 @@
 	<%-- <jsp:forward page="/WEB-INF/views/guest/mypage/warningList.jsp"></jsp:forward> --%>
 
 
-	
+<!-- 	
 	<script>
 		(function(){
 			
 			location.href="${ pageContext.servletContext.contextPath}/user/list";    
 		})();
-	</script>
+	</script> -->
 	<%-- <jsp:forward page="/WEB-INF/views/admin/company/companyInfo.jsp"></jsp:forward> --%>
 <%-- <jsp:forward page="/WEB-INF/views/owner/roomRegistration/registration.jsp"></jsp:forward>
  --%>
 
- 	<jsp:forward page="/WEB-INF/views/owner/mypage/mypage.jsp"></jsp:forward>
+ 	<jsp:forward page="/login/test"></jsp:forward>
 
 
 
