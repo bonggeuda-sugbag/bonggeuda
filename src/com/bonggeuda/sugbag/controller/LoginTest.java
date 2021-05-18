@@ -23,5 +23,7 @@ public class LoginTest extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("member", member);
 		request.getRequestDispatcher("/WEB-INF/views/guest/main/main.jsp").forward(request, response);
+//		System.out.println(request.getContextPath());
+//		response.sendRedirect();
 	}
 }
