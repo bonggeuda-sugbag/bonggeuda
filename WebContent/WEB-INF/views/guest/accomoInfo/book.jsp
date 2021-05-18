@@ -387,6 +387,78 @@ popup>li{
 .reviewScore h5{
 	margin-left: 13px;
 }
+.like{
+    width: 30px;
+    height: 20px;
+    margin-left: 13px;
+    background: url(resources/guest/images/like.png) 0 0 no-repeat;
+    background-size: 20px 20px;
+    
+}
+.unlike{
+    width: 30px;
+    height: 20px;
+    margin-left: 13px;
+    background: url(resources/guest/images/likeun.png) 0 0 no-repeat;
+    background-size: 20px 20px;
+    
+}
+
+.topReview{
+    border: 1px solid;
+    width: 100px;
+    background: #6eceda;
+    color: white;
+    border-radius: 5px;
+}
+
+#btn4_content{
+    display: none;
+}
+table.table2{
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+	margin-bottom: 20px;
+}
+table.table2 tr {
+    padding: 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.table2 td {
+    padding: 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+textarea {
+	resize: none;
+	width: 550px;
+}
+
+.submit_QnA {
+	width: 100px;
+	border-radius: 10px;
+	background: #6eceda;
+	color: white;
+	border-style: none;
+	box-shadow: 0 3px 0 #0e8c73;
+	height: 35px;
+}
+.submit_QnA:hover {
+	background-color: #4aa9b6;
+	box-shadow: 0 3px 0 #23a188;
+}
+.submit_QnA:active {
+	box-shadow: none;
+}
+.question-title{
+	width: 500px;
+}
+.suksoName{
+	display: flex;
+}
 </style>
 </head>
 <body>
@@ -397,19 +469,16 @@ popup>li{
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.jsp">Bonggeuda</a></h1>
+				<h1><a href="index.html">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<!-- 상단메뉴바 -->
 		<div class="top-nav">
 			<ul class="right-icons" >
-
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
 				<li><a  href="more_notice.html">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
 			</ul>
 			<!-- //상단메뉴바 -->
 				
@@ -463,15 +532,13 @@ popup>li{
 					<button class="tab_button3" id="review" type="button" onclick="tabChange(this);">
 						 <span>리뷰</span>
 					</button>
+					<button class="tab_button" id="question" type="button" onclick="tabChange(this);">
+						<span>문의하기</span>
+					</button>
 				</div>
 				<div style="text-align: right; display: flex; ">
-<<<<<<< HEAD
 					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.html';">신고하기</button>
 					<div style="margin-left:5px; width: 30px; height: 30px; background: url(resources/guest/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
-=======
-					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.jsp';">신고하기</button>
-					<div style="margin-left:5px; width: 30px; height: 30px; background: url(../userWebFront/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
->>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
 				</div>
 			</div>
             <script>
@@ -484,31 +551,51 @@ popup>li{
 						document.getElementById("btn1_content").style.display="block";
 						document.getElementById("btn2_content").style.display="none";
 						document.getElementById("btn3_content").style.display="none";
+						document.getElementById("btn4_content").style.display="none";
 						document.getElementById("info").style.color="black";
 						document.getElementById("info").style.borderBottomStyle="none";
 						document.getElementById("review").style.color="black";
 						document.getElementById("review").style.borderBottomStyle="none";
-
+						document.getElementById("question").style.color="black";
+						document.getElementById("question").style.borderBottomStyle="none";
+						
 					}
 					if(tc.id =="info"){
 						document.getElementById("btn1_content").style.display="none";
-						document.getElementById("btn3_content").style.display="none";
 						document.getElementById("btn2_content").style.display="block";
+						document.getElementById("btn3_content").style.display="none";
+						document.getElementById("btn4_content").style.display="none";
 						document.getElementById("book").style.color="black";
 						document.getElementById("book").style.borderBottomStyle="none";
 						document.getElementById("review").style.color="black";
 						document.getElementById("review").style.borderBottomStyle="none";
+						document.getElementById("question").style.color="black";
+						document.getElementById("question").style.borderBottomStyle="none";
 						
 					} 
 					if(tc.id=="review"){
 						document.getElementById("btn1_content").style.display="none";
 						document.getElementById("btn2_content").style.display="none";
 						document.getElementById("btn3_content").style.display="block";
+						document.getElementById("btn4_content").style.display="none";
 						document.getElementById("book").style.color="black";
 						document.getElementById("book").style.borderBottomStyle="none";
 						document.getElementById("info").style.color="black";
 						document.getElementById("info").style.borderBottomStyle="none";
-					
+						document.getElementById("question").style.color="black";
+						document.getElementById("question").style.borderBottomStyle="none";
+					}
+					if(tc.id=="question"){
+					    document.getElementById("btn1_content").style.display="none";
+						document.getElementById("btn2_content").style.display="none";
+						document.getElementById("btn3_content").style.display="none";
+						document.getElementById("btn4_content").style.display="block";
+						document.getElementById("book").style.color="black";
+						document.getElementById("book").style.borderBottomStyle="none";
+						document.getElementById("info").style.color="black";
+						document.getElementById("info").style.borderBottomStyle="none";
+						document.getElementById("review").style.color="black";
+						document.getElementById("review").style.borderBottomStyle="none";
 					}
 				}
 			</script>
@@ -527,6 +614,10 @@ popup>li{
 					<div style="display: flex; ">
 						<h4 style="margin: 15px;">퇴실일</h4>
 						<input type="date">
+					</div>
+					<div style="display: flex;">
+						<h4 style="margin: 15px;">인원</h4>
+						<input type="number" min="1" placeholder="1" style="width: 100px; text-align: center;">
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin : 15px;">체크인 </h4>
@@ -576,7 +667,7 @@ popup>li{
 							</div>
 							<hr>
 							<div >
-								<button class="detail_btn" onclick="location.href='payment.jsp';">예약하기</button>
+								<button class="detail_btn" onclick="location.href='payment.html';">예약하기</button>
 							</div>
 						</div>
 					</div>
@@ -591,11 +682,11 @@ popup>li{
 							</div>
 							<hr>
 							<div>
-								<button class="info_btn" onclick="location.href='#pop01'" >객실이용안내 ></button>
+								<button class="info_btn" onclick="location.href='#pop01';" >객실이용안내 ></button>
 							</div>
 							<hr>
-							<div onclick="location.href='payment.jsp';">
-								<button class="detail_btn">예약하기</button>
+							<div>
+								<button class="detail_btn" onclick="location.href='';">예약하기</button>
 							</div>
 						</div>
 					</div>
@@ -626,7 +717,7 @@ popup>li{
 							<p>- 취소, 환불 시 수수료가 발생할 수 있습니다.</p>
 							<h3>확인사항 및 기타</h3>
 							<p>- 최대 인원 초과시 입실이 불가합니다.</p>
-							<p>- 보호자 동반업ㅅ는 미성년자는 이용하실 수 없습니다.</p>
+							<p>- 보호자 동반없는 미성년자는 이용하실 수 없습니다.</p>
 							<p>- 해당 이미지는 실제와 상이 할 수 있습니다.</p>
 							<p>- 위의 정보는 펜션의 사정에 따라 변경될 수 있습니다.</p>
 							<p>- 성수기 기간동안 일부 객실의 경우 요금변동이 있을 수 있습니다.</p>
@@ -655,7 +746,6 @@ popup>li{
                         <div style="display: flex; width: 180px; margin: 0 auto;">
                             <div class="reviewStar" ></div>
                             <div  style="margin: 0 auto; width: 50px"><h3>8.7</h3></div>
-                            
                         </div>
                     <br>
                      <p>
@@ -671,18 +761,19 @@ popup>li{
                                 <div>
                                     <h4><strong>여기만한 곳은 어디에도 없을거에요.</strong></h4>
                                 </div>
-                               <div class="like"></div>
+                                <div class="like"></div>
                                 <div><p>160</p></div>
                                 <div class="unlike"></div>
                                 <div><p>80</p></div>
                             </div>
-                           <div class="reviewScore" style="display: flex;">
+							
+                            <div class="reviewScore" style="display: flex;">
 								<div  style="display:flex;width: 90px; height:18px;background: url(resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -38px;">
 								</div>
                             	<h5>4</h5>
                             </div>
-                            <div class="suksoName" >
-                                <b>[조식 1+1 패키지] 슈페리어 트윈 객실 이용 · 햇살02</b>
+                            <div class="suksoName">
+                                <p>[조식 1+1 패키지] 슈페리어 트윈 객실 이용 </p><b> · 햇살02</b>
                             </div>
                             <div class=reviewContext>
                                 <p>여기 너무 좋았어요 <br>다음에 또 오고 싶어요!!<br>최고링</p>
@@ -690,17 +781,11 @@ popup>li{
                             <div class=reviewPicture>
                                 사진첨부예정
                             </div>
-                        </div>
-                        <!-- <div class="hostAnswer">
-                            <div class="hostAnswerTitle">
-                                <Strong>답변 제목입니다</Strong>
-                            </div> 
-                            <div class="hostAnswerContext">
-                                <p>답변 내용입니다.<br>다음에 또 이용해주세요~ <br> 감사합니다~</p>
-                            </div>
-                        </div> -->
-                        
+                        </div>                      
                     </li>
+
+					                 
+
                     <hr>
                     <li>
                         <div class="guestReview">
@@ -708,38 +793,70 @@ popup>li{
                                 <div>
                                     <h4><strong>일반리뷰</strong></h4>
                                 </div>
-                                <div class="like"></div>
+								<div class="like"></div>
                                 <div><p>160</p></div>
                                 <div class="unlike"></div>
                                 <div><p>80</p></div>
                             </div>
-                            <div class="reviewScore" style="display: flex;">
+							<div class="reviewScore" style="display: flex;">
 								<div  style="display:flex;width: 90px; height:18px;background: url(resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
 								</div>
                             	<h5>3</h5>
                             </div>
                             <div class="suksoName" >
-                                <b>객실타입 :슈페리어 트리플 객실 이용 · 햇살02</b>
+                                <p>객실타입 :슈페리어 트리플 객실 이용 </p><b> · 햇살03</b>
                             </div>
                             <div class=reviewContext>
                                 <p>여기 너무 좋았어요 <br>다음에 또 오고 싶어요!!<br>최고링</p>
                             </div>
                         </div>
-                        <!-- <div class="hostAnswer">
-                            <div class="hostAnswerTitle">
-                                <Strong>두번쨰 답변 제목입니다</Strong>
-                            </div> 
-                            <div class="hostAnswerContext">
-                                <p>두번쨰 답변 내용입니다.<br>다음에 또 이용해주세요~ <br> 감사합니다~</p>
-                            </div>
-                        </div> -->
                     </li>
-    
+
+
+
                 </ul>
-                <hr>
+				<hr>
+				<div class="clearfix"> </div>
+	<nav>
+		<ul class="pagination">
+		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+		  <li><a href="#">2</a></li>
+		  <li><a href="#">3</a></li>
+		  <li><a href="#">4</a></li>
+		  <li><a href="#">5</a></li>
+		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+	   </ul>
+	   </nav>
+                
                 <!-- //리뷰내용 -->
             </div>
 			<!-- //리뷰 -->
+			<!-- 문의 -->
+			<div id="btn4_content" >
+				<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 style="margin: auto;">
+					<tr>
+					<td bgcolor=white align="center">
+					<table class = "table2">
+						<tr>
+						<td style="width: 50px;">제목</td>
+						<td >
+							<input type="text" class = "question-title">
+						</td>
+						</tr>
+		
+						<tr>
+						<!-- <td>내용</td> -->
+						<td colspan="2"><textarea name = content cols=85 rows=15 placeholder="문의 내용을 입력해주세요"></textarea></td>
+						</tr>
+					</table>
+						<center>
+							<button class="submit_QnA" onclick="location.href='QnA.html'; notice();">작성</button>
+						</center>
+					</td>
+					</tr>
+			</table>
+			</div>
         </center>
 		<div id="pop01" class="overlay">
 			<div class="popup">
