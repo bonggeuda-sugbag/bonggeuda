@@ -1,33 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
 <title>봉그다 숙박숙박</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<!-- Custom Theme files -->
-<!--menu-->
-<script src="js/scripts.js"></script>
-<link href="css/styles.css" rel="stylesheet">
-<!--//menu-->
-<!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- slide -->
-<script src="js/responsiveslides.min.js"></script>
+<link href="resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<script src="resources/owner/js/jquery.min.js"></script>
+
+<script src="resources/owner/js/scripts.js"></script>
+<link href="resources/owner/css/styles.css" rel="stylesheet">
+
+<link href="resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+
+<script src="resources/owner/js/responsiveslides.min.js"></script>
    <script>
     $(function () {
       $("#slider").responsiveSlides({
@@ -39,16 +24,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
   	</script>
 	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-	<title>Simple Icon Hover Effects with CSS Transitions and Animations</title>
-	<meta name="description" content="Simple Icon Hover Effects with CSS Transitions and Animations" />
-	<meta name="keywords" content="icons, hover, round, circular, transition, animation, css3" />
-	<meta name="author" content="Codrops" />
+
 	<link rel="shortcut icon" href="../favicon.ico"> 
-	<link rel="stylesheet" type="text/css" href="css/default.css" />
-	<link rel="stylesheet" type="text/css" href="css/component.css" />
-	<script src="js/modernizr.custom.js"></script>
+	<link rel="stylesheet" type="text/css" href="resources/owner/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="resources/owner/css/component.css" />
+	<script src="resources/owner/js/modernizr.custom.js"></script>
 <style>
 	.col-md-3 {
 		width: 25%;
@@ -57,6 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 </style>
 </head>
+
 <body >
 <!--header-->
 <div class="header">
@@ -68,7 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><a href="mypage.html">마이페이지</a></li>
+				<li><a href="mypage.jsp">마이페이지</a></li>
 				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Logout</a></li>
 			</ul>
 		</div>

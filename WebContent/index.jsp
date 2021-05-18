@@ -8,18 +8,32 @@
 </head>
 <body>
 
-    
- 	<jsp:forward page="login/test"></jsp:forward>
+
+
+	
+	<%-- <jsp:forward page="/WEB-INF/views/guest/accomoInfo/detailInfo.jsp"></jsp:forward> --%>
+
+
 
 	<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%>
 
-<%-- 	<jsp:forward page="/WEB-INF/views/guest/mypage/warningList.jsp"></jsp:forward> --%>
+	<%-- <jsp:forward page="/WEB-INF/views/guest/mypage/warningList.jsp"></jsp:forward> --%>
+
 
 	
-<%-- 	<jsp:forward page="/WEB-INF/views/admin/user/userInfo.jsp"></jsp:forward> --%>
+	<script>
+		(function(){
+			
+			location.href="${ pageContext.servletContext.contextPath}/user/list";    
+		})();
+	</script>
 	<%-- <jsp:forward page="/WEB-INF/views/admin/company/companyInfo.jsp"></jsp:forward> --%>
 <%-- <jsp:forward page="/WEB-INF/views/owner/roomRegistration/registration.jsp"></jsp:forward>
  --%>
+
+ 	<jsp:forward page="/WEB-INF/views/owner/mypage/mypage.jsp"></jsp:forward>
+
+
 
 </body>
 </html>

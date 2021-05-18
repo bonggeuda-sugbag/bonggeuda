@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="">
+	<entry key="point">
+		SELECT POINT
+		  FROM POINT
+		 WHERE USER_NO = ?
+    </entry>
+    
+    <entry key="pointHistory">
+		SELECT PH.POINT_PATH
+     	     , PH.GU_DATE
+             , PH.POINT
+             , ph.GETUSE_TYPE_GU
+  	      FROM POINT_HISTORY PH
+  		  JOIN POINT P ON(P.POINT_NO = PH.POINT_NO)
+         WHERE P.USER_NO = ?
     </entry>
 </properties>
