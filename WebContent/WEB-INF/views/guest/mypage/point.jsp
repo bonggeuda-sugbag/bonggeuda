@@ -96,8 +96,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
 			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="point.jsp" style="color: #6eceda;">포인트</a></li>
-			<li class="blog-list"><a href="coupon.jsp">쿠폰함</a></li>
-			<li class="blog-list"><a href="reservation.jsp">예약 내역</a></li>
+			<li class="blog-list"><jsp:forward page="/WEB-INF/views/owner/mypage/mypage.jsp"></jsp:forward>쿠폰함</a></li>
+			<li class="blog-list"><jsp:forward page="/WEB-INF/views/owner/mypage/reservation.jsp"></jsp:forward>예약 내역</a></li>
 			<li class="blog-list"><a href="myinformation.jsp">내 정보 관리</a></li>
 			<li class="blog-list"><a href="warningList.jsp">신고내역</a></li>
 		</ul>
