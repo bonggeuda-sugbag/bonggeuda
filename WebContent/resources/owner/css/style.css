@@ -117,7 +117,7 @@ table.table-striped tbody tr:nth-of-type(odd) {
 
 .pagination{
 	margin-top: 50px;
-	margin-left: 370px;
+	margin-left: 380px;
     width: 300px;
 }
 
@@ -323,7 +323,7 @@ ul.stepbox a{
 
 .warning {
 	font-weight: 500;
-	font-size: 12px;
+	font-size: 14px;
 	margin-bottom: 24px;
 	color: #f2114c;
 }
@@ -366,7 +366,7 @@ ul.stepbox a{
 	margin-top: 9px;
 	height: 40px;
 	width: 350px;
-	font-size: 12px;
+	font-size: 14px;
 	background-color: rgba(0, 0, 0, 0.01);
 	border-radius: 3px;
 	border: rgba(0, 0, 0, 0.2) solid 1px;
@@ -384,7 +384,7 @@ ul.stepbox a{
 }
 
 .description{
-	font-size: 12px;
+	font-size: 14px;
 	color: rgba(0, 0, 0, 0.56);
 	margin-bottom: 10px;
 }
@@ -465,7 +465,7 @@ ul.stepbox a{
 	margin-bottom: 8px;
 
 	padding-top: 16px !important;
-    font-size: 12px;
+    font-size: 14px;
 
 }
 
@@ -658,6 +658,14 @@ div.mmiddle {
 	position: absolute;
 	left: 100px;
     top: 120px;
+}
+
+.rejectrReasonTextarea{
+	margin-left: 15px; 
+	height: 190px;
+	 width: 450px; 
+	 resize: none;
+
 }
 /* 여기까지가 추가한 css -------------------------------------------------------------------------------------------*/
 
