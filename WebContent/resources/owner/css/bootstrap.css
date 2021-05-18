@@ -1962,7 +1962,7 @@ pre code {
   }
   .col-md-3 {
     width: 20%;
-    height: 800px; /*메뉴바 임시지정 길이*/
+    height: 1000px; /*메뉴바 임시지정 길이*/
   }
   .col-md-2 {
     width: 16.66666667%;
