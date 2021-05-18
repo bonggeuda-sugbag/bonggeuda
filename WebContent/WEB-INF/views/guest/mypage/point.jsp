@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -106,19 +107,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="mmiddle">
 	<div class="tab">
 		<span class="tab_btn active">사용 가능한 포인트</span>
-		<span class="able_point" style="color: #6eceda; font-weight: bold;"> :&nbsp <c:out value="${ requestScope.point.point }"/> &nbsppoint</span>
+		<span class="able_point" style="color: #6eceda; font-weight: bold;"> :&nbsp <c:out value="${ requestScope.point }"/> &nbsppoint</span>
 	</div>
 
 	<div id="cont_area"><!-- 본문 콘텐츠-->
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left;">
 			<ul class="point_list" style="padding-top: 25px;">
-				<li>주문포인트 사용 취소<span>2021. 04. 11</span><p class="col_red">+100</p></li>
-				<li>주문포인트 사용<span>2021. 04. 11</span><p class="">-100</p></li>
-				<li>랜덤뽑기 이벤트<span>2021. 04. 11</span><p class="col_red">+100</p></li>
-				<li>5% 적립 포인트 소멸<span>2020. 02. 03</span><p class="">-7,950</p></li>
-				<li>이벤트 포인트 적립(1/31까지 사용)<span>2019. 12. 26</span><p class="col_red">+7,950</p></li>
-				<li>5% 적립 포인트 소멸<span>2019. 10. 01</span><p class="">-5,000</p></li>
-				<li>이벤트 포인트 적립 (유효기간 ~9/30일까지)<span>2019. 08. 12</span><p class="col_red">+5,000</p></li>
+				<c:forEach var="arr" items="${ pointHistory }" varStatus="st">
+
+					<c:if test="${ arr.getuseType eq 'G' }">
+						<li><c:out value="${ arr.pointPath }"/><span><c:out value="${ arr.guDate }"/></span><p class="col_red"><c:out value="+${ arr.point }"/></p></li>
+					</c:if>
+					<c:if test="${ arr.getuseType eq 'U' }">
+						<li><c:out value="${ arr.pointPath }"/><span><c:out value="${ arr.guDate }"/></span><p class=""><c:out value="-${ arr.point }"/></p></li>
+					</c:if>
+				
+				</c:forEach>
 			</ul>
 		</div>
 	</div>

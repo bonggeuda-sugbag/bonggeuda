@@ -4,9 +4,11 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.bonggeuda.sugbag.model.dao.MypageDAO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
+import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 
 public class MypageService {
 	
@@ -19,7 +21,7 @@ public class MypageService {
 	 * @return
 	 */
 	public PointDTO pointSelect(int userNo) {
-		System.out.println("서블릿요청222");
+
 		Connection con = getConnection();
 		
 		PointDTO pointDTO = mypageDAO.pointSelect(con, userNo);
@@ -28,5 +30,26 @@ public class MypageService {
 		
 		return pointDTO;
 	}
+
+
+	/**
+	 * 포인트 이력 정보 조회
+	 * @param userNo 
+	 * @return
+	 */
+	public List<PointHistoryDTO> pointHistorySelect(int userNo) {
+		
+		System.out.println("서블릿요청22222");
+		
+		Connection con = getConnection();
+		
+		List<PointHistoryDTO> pointHistory = mypageDAO.pointHistorySelect(con,userNo);
+		
+		close(con);
+		
+		return pointHistory;
+	}
+
+
 
 }

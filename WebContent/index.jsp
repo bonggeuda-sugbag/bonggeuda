@@ -9,7 +9,7 @@
 <body>
 
 
-	<%-- <jsp:forward page="/WEB-INF/views/guest/mypage/warningList.jsp"></jsp:forward> --%>
+	<jsp:forward page="/point/select"></jsp:forward>
 
 
 </body>
