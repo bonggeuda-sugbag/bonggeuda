@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectTotalCount">
+        SELECT 
+               COUNT(*)
+          FROM TBL_BOARD A
+         WHERE A.BOARD_STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectBoardList">
+SELECT C.* FROM (
+SELECT B.*,ROWNUM RNUM FROM 
+(SELECT
+        A.USER_NO
+      , A.USER_NICKNAME
+      , A.USER_ID
+      , A.USER_PHONE
+  FROM USER_INFO A) B) C
+ WHERE C.RNUM BETWEEN ? AND ?;
+    </entry>
+</properties>
