@@ -28,7 +28,6 @@ public class OwnerMypageServlet extends HttpServlet {
 		OwnerInfoDTO selectOwner = ownerMypageService.selectOwnerInfo(ownerNo);
 		
 		
-		System.out.println("컨트롤러 " + selectOwner);
 		/* 비지니스 로직 실행 결과에 따른 로직*/
 		String path = "";
 		if(selectOwner != null) {
@@ -39,7 +38,7 @@ public class OwnerMypageServlet extends HttpServlet {
 		
 		
 		
-		
+		request.getAttribute(path);
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
