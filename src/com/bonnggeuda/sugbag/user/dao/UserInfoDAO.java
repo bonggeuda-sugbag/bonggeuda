@@ -98,4 +98,39 @@ public class UserInfoDAO {
 	}
 
 
+	public UserInfoDTO selectDetail(Connection con, String userNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectDetail");
+		
+		UserInfoDTO userInfo = new UserInfoDTO();
+		
+		try {
+		
+			pstmt = con.prepareStatement(query);
+			System.out.println("userNo :" + userNo);
+//			pstmt.setString(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				System.out.println("아이디이이ㅣ이이이이이잉 : " +rset.getString("USER_ID"));		
+				userInfo.setEmail(rset.getString("USER_ID"));
+				userInfo.setPassword(rset.getString("USER_PWD"));
+				userInfo.setName(rset.getString("USER_NICKNAME"));
+				userInfo.setPhoneNumber(rset.getString("USER_PHONE"));
+				userInfo.setPoint(rset.getInt("POINT"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return userInfo;
+	}
+
+
 }
