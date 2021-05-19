@@ -36,6 +36,11 @@ public class BookService {
 	}
 
 
+	/**
+	 * 숙소 최저가, 평점 조회
+	 * @param type 숙소타입
+	 * @return 숙소 최저가, 평점
+	 */
 	public List<Map> selectPriceNstar(String type) {
 		
 		Connection con = getConnection();

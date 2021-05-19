@@ -53,7 +53,7 @@ public class AccomoSelectServlet extends HttpServlet {
 		} else {
 			System.out.println("숙소목록 조회에 실패했습니다.!!");
 		}
-		
+		request.getSession().setAttribute("test", accomoList);
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
