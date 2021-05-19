@@ -235,8 +235,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			        </div>
 			    </c:when>
 		    <c:otherwise>
-			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='Book.jsp';" >
-				
+<%-- 			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick= move(${});"location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value=${accomo}';"> --%>
+			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick= "move('${accomo}');">
+			<script>
+			    function move(m){
+			    	alert(m);
+			    	location.href = "${pageContext.servletContext.contextPath}/accomoSelect/room?value=m";
+			    		
+			    };
+			</script>
 				<div class="infoThumb" >
 					<h2>${accomo.accomoName }</h2>
 					<br>
