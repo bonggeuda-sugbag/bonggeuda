@@ -2,6 +2,7 @@ package com.bonggeuda.sugbag.accomo.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,8 +42,11 @@ public class RegistrationAccomo1 extends HttpServlet {
 		accomoDTO.setHomepage(homepage);
 
 		request.setAttribute("accomoName", accomoName);
-		
+
 		System.out.println(accomoDTO);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/registration2");
+		dispatcher.forward(request, response);
 		
 		/*등록 2단계로 이동*/
 		String path="";

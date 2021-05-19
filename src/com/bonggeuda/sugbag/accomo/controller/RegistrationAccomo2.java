@@ -1,6 +1,8 @@
 package com.bonggeuda.sugbag.accomo.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,14 +17,15 @@ import com.bonggeuda.sugbag.accomo.model.dto.AccomoDTO;
 @WebServlet("/registration2")
 public class RegistrationAccomo2 extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getAttribute("accomoName");
-		System.out.println(request.getAttribute("accomoName"));
-
-		Object accomoInfo = request.getAttribute("accomoDTO");
 		
-		AccomoDTO accomoDTO = new AccomoDTO();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String accomoName = (String) request.getAttribute("accomoName");
+		System.out.println(accomoName);
 		
 		/*등록2단계*/
 		//숙소이미지받아오기
@@ -50,12 +53,12 @@ public class RegistrationAccomo2 extends HttpServlet {
 		
 
 		
-		String path="";
-
-		path = "/WEB-INF/views/owner/registration/registration3.jsp";
-		//request.setAttribute("accomoList", accomoList);
-
-		request.getRequestDispatcher(path).forward(request, response);
+//		String path="";
+//
+//		path = "/WEB-INF/views/owner/registration/registration3.jsp";
+//		//request.setAttribute("accomoList", accomoList);
+//
+//		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }
