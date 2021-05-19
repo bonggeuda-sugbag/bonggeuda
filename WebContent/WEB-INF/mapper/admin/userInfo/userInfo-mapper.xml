@@ -2,10 +2,9 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="selectTotalCount">
-        SELECT 
-               COUNT(*)
-          FROM TBL_BOARD A
-         WHERE A.BOARD_STATUS = 'Y'
+       SELECT 
+             COUNT(*)
+         FROM USER_INFO A
 	</entry>
 	
 	<entry key="selectBoardList">
@@ -17,6 +16,32 @@ SELECT B.*,ROWNUM RNUM FROM
       , A.USER_ID
       , A.USER_PHONE
   FROM USER_INFO A) B) C
- WHERE C.RNUM BETWEEN ? AND ?;
+ WHERE C.RNUM BETWEEN ? AND ?
     </entry>
+    
+    <entry key="selectBookList">
+       SELECT
+         B.BOOK_NO
+       , B.BOOK_USER_NAME
+       , U.USER_ID
+       , P.PAYMENT_AMOUNT
+       , B.BOOK_PERSONNEL
+       , B.BOOK_CHECK_DATE
+       , B.BOOK_CHECKOUT_DATE
+  FROM BOOK_LIST B
+  JOIN USER_INFO U ON (B.USER_NO = U.USER_NO)
+  JOIN PAYMENT P ON ( B.BOOK_NO = P.BOOK_NO)
+	</entry>
+	
+	<entry key="selectDetail">
+	SELECT
+       U.USER_ID
+     , U.USER_PWD
+     , U.USER_NICKNAME
+     , U.USER_PHONE
+     , P.POINT
+  FROM USER_INFO U
+  JOIN POINT P ON (U.USER_NO = P.USER_NO)
+  WHERE U.USER_NO = 2
+	</entry>
 </properties>

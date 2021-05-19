@@ -6,6 +6,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,16 +19,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    </style>
 
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/admin/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/admin/js/scripts.js"></script>
-<link href="resources/admin/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath }/resources/admin/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />   
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />   
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -37,9 +38,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!--header-->
-
-
-
 
 <div class="header">
    <div class="container">
@@ -60,8 +58,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="clearfix"> </div>
          <!---pop-up-box---->
                
-            <link href="resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-            <script src="resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
+            <link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+            <script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
          <!---//pop-up-box---->
             <div id="small-dialog" class="mfp-hide">
                    <!----- tabs-box ---->
@@ -100,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </div>
                      </div>
                 </div>
-                <script src="resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
+                <script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
                    <script type="text/javascript">
                       $(document).ready(function () {
                           $('#horizontalTab').easyResponsiveTabs({
@@ -167,18 +165,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                <th>이름</th>
                <th>아이디</th>
                <th>휴대폰번호 </th>
-               <th>이메일</th>
                <th>상세정보</th>
             </tr>
          </thead>
          <tbody>
             <tr>
-               <th>1</th>
-               <th>웅이</th>
-               <th>sw9999</th>
-               <th>010-1234-1234</th>
-               <th>sw6666@naver.com</th>
-               <th><button><a href="adminUserManagementMore.html">상세정보</a></button></th>
+			<c:forEach var="user" items="${ requestScope.userList }">
+			<tr>
+				<td><c:out value="${ user.userNo }"/></td>
+				<td><c:out value="${ user.name }"/></td>
+				<td><c:out value="${ user.email }"/></td>
+				<td><c:out value="${ user.phoneNumber }"/></td>
+				<td><button onclick="location.href='${pageContext.servletContext.contextPath }/WEB-INF/views/admin/user/userInfoDetail.jsp'">상세보기</button></td>
+			</tr>
+			</c:forEach>
             </tr>   
             
          </tbody>
@@ -316,15 +316,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			const $tds = document.getElementsByTagName("td");
 			for(let i = 0; i < $tds.length; i++) {
-				
-				$tds[i].onmouseenter = function() {
-					this.parentNode.style.backgroundColor = "orangered";
-					this.parentNode.style.cursor = "pointer";
-				}
-				
-				$tds[i].onmouseout = function() {
-					this.parentNode.style.backgroundColor = "black";
-				}
 				
 				$tds[i].onclick = function() {
 					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠지? */
