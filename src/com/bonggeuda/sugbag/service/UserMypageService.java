@@ -6,6 +6,7 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bonggeuda.sugbag.model.dao.UserMypageDAO;
@@ -13,6 +14,7 @@ import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
+import com.bonggeuda.sugbag.model.dto.ReportDTO;
 
 public class UserMypageService {
 	
@@ -111,7 +113,7 @@ public class UserMypageService {
 	 * @param userMyinfo
 	 * @return
 	 */
-	public int updateUserNickName(MemberDTO userMyinfo) {
+	public int updateUserinfo(MemberDTO userMyinfo) {
 		
 		int result = 0;
 		
@@ -119,9 +121,11 @@ public class UserMypageService {
 		
 		if(userMyinfo.getNickName() != null) {
 			result = mypageDAO.updateUserNickNmae(con, userMyinfo);			
-		} else if(userMyinfo.getUserPhone() != null) {
+		}
+		if(userMyinfo.getUserPhone() != null) {
 			result = mypageDAO.updateUserPhone(con, userMyinfo);						
-		} else if(userMyinfo.getUserPwd() != null){
+		}
+		if(userMyinfo.getUserPwd() != null){
 			result = mypageDAO.updateUserPwd(con, userMyinfo);									
 		}
 		
@@ -135,6 +139,48 @@ public class UserMypageService {
 		close(con);
 		
 		return result;
+	}
+
+
+	/**
+	 * 사용자 회원탈퇴로 정보변경
+	 * @param userWithdraw
+	 * @return
+	 */
+	public int userWithdraw(MemberDTO userWithdraw) {
+		
+		int result = 0;
+		
+		Connection con = getConnection();
+		
+		result = mypageDAO.userWithdraw(con, userWithdraw);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	/**
+	 * 신고한 리스트 조회
+	 * @param userNo
+	 * @return
+	 */
+	public List<ReportDTO> selectReportList(int userNo) {
+		
+		Connection con = getConnection();
+		
+		List<ReportDTO> report = mypageDAO.selectReportList(con, userNo);
+		
+		close(con);
+		
+		return report;
 	}
 
 

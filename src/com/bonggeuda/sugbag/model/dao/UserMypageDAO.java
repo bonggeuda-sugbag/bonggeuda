@@ -17,6 +17,7 @@ import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
+import com.bonggeuda.sugbag.model.dto.ReportDTO;
 
 public class UserMypageDAO {
 	
@@ -264,6 +265,7 @@ public class UserMypageDAO {
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("nickNameUpdate");
+		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -295,6 +297,7 @@ public class UserMypageDAO {
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("phoneUpdate");
+		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -326,6 +329,7 @@ public class UserMypageDAO {
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("passwordUpdate");
+		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -342,6 +346,85 @@ public class UserMypageDAO {
 		}
 		
 		return result;
+	}
+
+	/**
+	 * 사용자 회원탈퇴로 정보 변경
+	 * @param con
+	 * @param userWithdraw
+	 * @return
+	 */
+	public int userWithdraw(Connection con, MemberDTO userWithdraw) {
+
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("withdrawUpdate");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setDate(1, userWithdraw.getWithDrawDate());
+			pstmt.setInt(2, userWithdraw.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * 신고한 리스트 조회
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public List<ReportDTO> selectReportList(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<ReportDTO> report = new ArrayList<>();
+		
+		String query = prop.getProperty("reportListSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				ReportDTO reportDTO = new ReportDTO();
+				
+				reportDTO.setReportNo(rset.getInt("REPORT_NO"));
+				reportDTO.setReportTitle(rset.getString("REPORT_TITLE"));
+				reportDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				reportDTO.setReportDate(rset.getDate("REPORT_DATE"));
+				reportDTO.setReportStatus(rset.getString("REPORT_STATUS"));
+				
+				report.add(reportDTO);
+			}
+			
+			System.out.println(report);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return report;
 	}
 
 }

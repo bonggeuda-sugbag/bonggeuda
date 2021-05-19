@@ -13,27 +13,25 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.service.UserMypageService;
 
 /**
- * Servlet implementation class UserMyinfoUpdateNickName
+ * Servlet implementation class UserWithdrawUpdate
  */
-@WebServlet("/usermyinfo/update")
-public class UserMyinfoUpdate extends HttpServlet {
+@WebServlet("/userwithdraw/update")
+public class UserWithdrawUpdate extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
 		
 		UserMypageService mypageService = new UserMypageService();
-		MemberDTO userMyinfo = new MemberDTO();
+		MemberDTO userWithdraw = new MemberDTO();
 		
-		userMyinfo.setUserNo(1);
-		userMyinfo.setNickName(request.getParameter("userNickName"));
-		userMyinfo.setUserPhone(request.getParameter("userPhone"));
-		userMyinfo.setUserPwd(request.getParameter("userPwd"));
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		userWithdraw.setWithDrawDate(date);
+		userWithdraw.setUserNo(1);
 		
-		int result = mypageService.updateUserinfo(userMyinfo);
+		int result = mypageService.userWithdraw(userWithdraw);
 		
 		System.out.println(result);
-		
 	}
 
 }
