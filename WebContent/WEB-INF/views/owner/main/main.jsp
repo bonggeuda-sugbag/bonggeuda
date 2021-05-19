@@ -30,9 +30,9 @@
 	<meta charset="UTF-8" />
 
 	<link rel="shortcut icon" href="../favicon.ico"> 
-	<link rel="stylesheet" type="text/css" href="resources/owner/css/default.css" />
-	<link rel="stylesheet" type="text/css" href="resources/owner/css/component.css" />
-	<script src="resources/owner/js/modernizr.custom.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
+	<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
 <style>
 	.col-md-3 {
 		width: 25%;
@@ -101,10 +101,10 @@
 			<div class="bottom-header">
 				<div class="header-bottom">
 					<div class=" bottom-head">
-						<a href="registration.html"> <!--숙소 등록 페이지로 연결-->
+						<a id="registration1" > <!--숙소 등록 페이지로 연결-->
 							<div class="buy-media">
 								<i class="buy"> </i>
-								<h6>숙소 등록</h6>
+								<h6 id="registration1">숙소 등록</h6>
 							</div>
 						</a>
 					</div>

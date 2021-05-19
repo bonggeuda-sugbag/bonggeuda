@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.bonggeuda.sugbag.model.dto.AccomoInfoDTO" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -234,13 +235,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			        </div>
 			    </c:when>
 		    <c:otherwise>
-			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='Book.jsp';" >
+
+
+			<%-- <div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value='+'${accomo}';" > --%>
+			<form name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
+            
+			<button type="submit" name="accomoInfo" value='${accomo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;">
 				
 				<div class="infoThumb" >
 					<h2>${accomo.accomoName }</h2>
 					<br>
 					<div style="display: flex;">
-
 					<c:choose>
 					    <c:when test="${accomo.reviewScore == '0.0' }">
 						<div class="infoScore">평점없음</div>
@@ -260,22 +265,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					</div>
 				</div>
-			</div>
+			</button>
+			</form>
 			</c:otherwise>
 			</c:choose> 
 			</c:forEach>
 			
 		</div>
-		
-		
-
-			
-		
-		
-
-		
-	
-
 </div>
 
 <!--footer-->
