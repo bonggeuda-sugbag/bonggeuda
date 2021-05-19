@@ -12,30 +12,31 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/registration2")
 public class RegistrationAccomo2 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegistrationAccomo2() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		//숙소이미지받아오기
+		String[] facility = request.getParameterValues("facility");
+		String accomoPath = request.getParameter("accomoPath");
+		String near = request.getParameter("near");
+		String rule = request.getParameter("rule");
+		String parking = request.getParameter("parking");
+		
+		for(int i=0; i<facility.length; i++) {
+			
+			System.out.println(facility[i]);
+		}
+		System.out.println(accomoPath);
+		System.out.println(near);
+		System.out.println(rule);
+		System.out.println(parking);
+		
+		String path="";
+
+		path = "/WEB-INF/views/owner/registration/registration3.jsp";
+		//request.setAttribute("accomoList", accomoList);
+
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

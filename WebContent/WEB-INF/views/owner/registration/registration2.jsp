@@ -67,8 +67,8 @@
       <nav>
          <ul class="stepbox" id="ulStep">
             <li>
-            <a href="registration.html">                        
-               <span class="btn-todo-off"><img src="../img/icon/step1.png" width="64px" height="64px"></span>
+            <a href="/WEB-INF/views/owner/registration/registration1.jsp">                        
+               <span class="btn-todo-off"><img src="resources/owner/icon/step1.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc on" style="color: rgb(226, 226, 226);">사업자정보 확인</span>
             </a>                    
@@ -86,7 +86,7 @@
             </li>
             <li>
             <a href="registration2-intro.html">                        
-               <span class="btn-todo-on"><img src="../img/icon/step2.png" width="64px" height="64px"></span>
+               <span class="btn-todo-on"><img src="resources/owner/icon/step2.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: #6eceda;">소개 작성</span>
             </a>                    
@@ -104,7 +104,7 @@
             </li>
             <li>
             <a href="registration3-rule.html">                        
-               <span class="btn-todo-off"><img src="../img/icon/step3.png" width="64px" height="64px"></span>
+               <span class="btn-todo-off"><img src="resources/owner/icon/step3.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">이용규칙 관리</span>
             </a>                    
@@ -122,7 +122,7 @@
             </li>
             <li>
             <a href="registration4-room.html">                        
-               <span class="btn-todo-off"><img src="../img/icon/step4.png" width="64px" height="64px"></span>
+               <span class="btn-todo-off"><img src="resources/owner/icon/step4.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">객실 등록</span>
             </a>                    
@@ -131,9 +131,9 @@
       </nav>
    </div>
 </div>
+<form action="${ pageContext.servletContext.contextPath }/registration2" method="post">
 <table id="registTb" class="table table-bordered">
    <thead>
-
    </thead>
       <tbody>
          <br><br>
@@ -141,7 +141,6 @@
             <th>
                업체 이미지<br>(최대 5장) 
             </th>
-
             <td>
                <div class="basic">
                   <p class="description" style="margin-bottom: 3px;">* 객실 및 업체 전경, 로비, 주차장 등 업체의 전반적인 이미지를 업로드해주시기 바랍니다.</p>
@@ -159,55 +158,52 @@
             편의시설<br>서비스 시설안내 
          </th>
          <td>
-
             <label for="theme1" class="checkbox-inline icon-label" style="margin-right: 25px;">
-               <input type="checkbox" id="theme1" name="ad_theme[]"  value="90">세탁기
+               <input type="checkbox" id="theme1" name="facility"  value="세탁기">세탁기
             </label>
             <label for="theme2" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme2" name="ad_theme[]"  value="90">건조기
+               <input type="checkbox" id="theme2" name="facility"  value="건조기">건조기
             </label>
             <label for="theme5" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme5" name="ad_theme[]"  value="90">객실내흡연
+               <input type="checkbox" id="theme5" name="facility"  value="객실내흡연">객실내흡연
             </label>
             <label for="theme6" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme6" name="ad_theme[]"  value="90" >와이파이
+               <input type="checkbox" id="theme6" name="facility"  value="와이파이" >와이파이
             </label>
             <br>
             <label for="theme7" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme7" name="ad_theme[]"  value="90">욕실용품
+               <input type="checkbox" id="theme7" name="facility"  value="욕실용품">욕실용품
             </label>
             <label for="theme8" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme8" name="ad_theme[]"  value="90">에어컨
+               <input type="checkbox" id="theme8" name="facility"  value="에어컨">에어컨
             </label>
             <label for="theme9" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme9" name="ad_theme[]"  value="90">냉장고
+               <input type="checkbox" id="theme9" name="facility"  value="냉장고">냉장고
             </label>
             <label for="theme11" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme11" name="ad_theme[]"  value="90">반려견동반
+               <input type="checkbox" id="theme11" name="facility"  value="반려견동반">반려견동반
             </label>
             <br>
             <label for="theme13" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme13" name="ad_theme[]"  value="90">조식포함
+               <input type="checkbox" id="theme13" name="facility"  value="조식포함">조식포함
             </label>
             <label for="theme18" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme18" name="ad_theme[]"  value="90">개인사물함
+               <input type="checkbox" id="theme18" name="facility"  value="개인사물함">개인사물함
             </label>
             <label for="theme19" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme19" name="ad_theme[]"  value="90">TV
+               <input type="checkbox" id="theme19" name="facility"  value="TV">TV
             </label>
             <label for="theme20" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme20" name="ad_theme[]"  value="90">무료주차
+               <input type="checkbox" id="theme20" name="facility"  value="무료주차">무료주차
             </label>
-
          </td>
          <tr>
             <th>
                오시는길
             </th>
-
             <td>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="9" name="find_way" placeholder="주요 버스터미널이나 기차역 혹은 공항 등에서 숙소까지 찾아가는 방법을 자세히 기재해 주세요."></textarea>
+                  <textarea class="form-control textarea-layer" rows="9" name="accomoPath" placeholder="주요 버스터미널이나 기차역 혹은 공항 등에서 숙소까지 찾아가는 방법을 자세히 기재해 주세요."></textarea>
                   <div remain-traffic_info" class="maxText">(최대 1000자)</div>
                </div>
                
@@ -222,7 +218,7 @@
                   <p class="description" style="margin-bottom: 3px;">* 숙소 주변의 명소(교통, 관광, 쇼핑 등 )와 이동수단, 게스트하우스로부터 소요시간을 기입해주세요.</p>
                </div>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="9" name="find_way" placeholder="숙소 주변의 명소를 홍보하여 주세요. 교통, 관광, 쇼핑 명소부터 게스트하우스까지의 소요시간을 작성해 주시면 게스트들이 예약할 때 큰 도움이 됩니다."></textarea>
+                  <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="숙소 주변의 명소를 홍보하여 주세요. 교통, 관광, 쇼핑 명소부터 게스트하우스까지의 소요시간을 작성해 주시면 게스트들이 예약할 때 큰 도움이 됩니다."></textarea>
                   <div remain-traffic_info" class="maxText">(최대 1000자)</div>
                </div>
             </td>
@@ -234,7 +230,7 @@
             </th>
             <td>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="7" name="find_way" placeholder="숙소 내 필수 이용규칙이 있을 경우 기재해주세요."></textarea>
+                  <textarea class="form-control textarea-layer" rows="7" name="rule" placeholder="숙소 내 필수 이용규칙이 있을 경우 기재해주세요."></textarea>
                   <div remain-traffic_info" class="maxText">(최대 500자)</div>
                </div>
             </td>
@@ -246,7 +242,7 @@
             </th>
             <td>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="7" name="find_way" placeholder="주차장 유/무료 정보 및 시간당 요금을 기재해주세요."></textarea>
+                  <textarea class="form-control textarea-layer" rows="7" name="parking" placeholder="주차장 유/무료 정보 및 시간당 요금을 기재해주세요."></textarea>
                   <div remain-traffic_info" class="maxText">(최대 500자)</div>
                </div>
             </td>
@@ -275,6 +271,7 @@
     </div>
 </div>
 </div>
+</form>
 <!--//footer-->
 </body>
 </html>

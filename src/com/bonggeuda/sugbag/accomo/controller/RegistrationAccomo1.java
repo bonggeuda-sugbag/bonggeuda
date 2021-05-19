@@ -32,6 +32,13 @@ public class RegistrationAccomo1 extends HttpServlet {
 		System.out.println("adrDetail : " + adrDetail);
 		System.out.println("email : " + email);
 		System.out.println("homepage : " + homepage);
+		
+		String path="";
+
+		path = "/WEB-INF/views/owner/registration/registration2.jsp";
+		//request.setAttribute("accomoList", accomoList);
+
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }
