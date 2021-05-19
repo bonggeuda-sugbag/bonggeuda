@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.bonggeuda.sugbag.model.dto.AccomoInfoDTO" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -226,7 +227,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</button>
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
-				
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<c:choose>
 			    <c:when test="${empty accomo}">
@@ -235,53 +235,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			        </div>
 			    </c:when>
 		    <c:otherwise>
-<%-- 			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick= move(${});"location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value=${accomo}';"> --%>
-			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick= "move('${accomo}');">
-			<script>
-			    function move(m){
-			    	alert(m);
-			    	location.href = "${pageContext.servletContext.contextPath}/accomoSelect/room?value=m";
-			    		
-			    };
-			</script>
+
+
+			<%-- <div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value='+'${accomo}';" > --%>
+			<form name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
+            
+			<button type="submit" name="accomoInfo" value='${accomo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;">
+				
 				<div class="infoThumb" >
 					<h2>${accomo.accomoName }</h2>
 					<br>
 					<div style="display: flex;">
-						<c:choose>
-						    <c:when test="${accomo.reviewScore == '0.0'}">
-						    <div class="infoScore">평점없음</div>
-						    </c:when>
-						    <c:otherwise>
-						    <div class="infoScore">평점 : ${accomo.reviewScore }</div>
-						    </c:otherwise>
-						</c:choose>
-						<c:choose>
-						    <c:when test="${accomo.minPrice == '0'}">
-						    <div class="infoPrice">등록된 최저가 없음</div>
-						    </c:when>
-						    <c:otherwise>
-						    <div class="infoPrice">최저가 : ${accomo.minPrice }</div>
-						    </c:otherwise>
-						</c:choose>
+					<c:choose>
+					    <c:when test="${accomo.reviewScore == '0.0' }">
+						<div class="infoScore">평점없음</div>
+					    </c:when>
+					    <c:otherwise>
+						<div class="infoScore">평점 : ${accomo.reviewScore }</div>
+					    </c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${accomo.minPrice == '0' }">
+						<div class="infoPrice">등록된 최저가 없음</div>
+						</c:when>
+						<c:otherwise>>
+						<div class="infoPrice">최저가 : ${accomo.minPrice}</div>
+						</c:otherwise>
+					</c:choose>
+
 					</div>
 				</div>
-			</div>
+			</button>
+			</form>
 			</c:otherwise>
 			</c:choose> 
 			</c:forEach>
 			
 		</div>
-		
-		
-
-			
-		
-		
-
-		
-	
-
 </div>
 
 <!--footer-->

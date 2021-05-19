@@ -19,9 +19,11 @@ public class BookService {
 	}
 
 	/**
-	 * 숙소리스트 검색
-	 * @param type 숙소타입(호텔,펜션,게스트하우스)
-	 * @return 선택한 타입의 숙소리스트
+
+	 * 숙소타입별 리스트 조회
+	 * @param type 숙소타입
+	 * @return 타입별 숙소리스트
+
 	 */
 	public List<AccomoInfoDTO> selectAccomoList(String type) {
 		
@@ -33,19 +35,19 @@ public class BookService {
 		return accomoList;
 	}
 
+
 	/**
-	 * 최저가 검색
+	 * 숙소 최저가, 평점 조회
 	 * @param type 숙소타입
-	 * @return 숙소의 최저값
+	 * @return 숙소 최저가, 평점
 	 */
-	public List<Map> selectMinPrice(String type) {
+	public List<Map> selectPriceNstar(String type) {
 		
 		Connection con = getConnection();
-		List<Map> accomoPriceNStar = null;
-		accomoPriceNStar = bookDao.selectMinPrice(con, type);
-		
+		List<Map> priceNrvScore = bookDao.selectPriceNScore(con,type);
 		close(con);
-		return accomoPriceNStar;
+		return priceNrvScore;
+
 	}
 
 }

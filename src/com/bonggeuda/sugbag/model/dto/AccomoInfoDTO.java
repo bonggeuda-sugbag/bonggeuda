@@ -227,7 +227,7 @@ public class AccomoInfoDTO {
 	}
 
 	
-	
+
 	
 	
 	

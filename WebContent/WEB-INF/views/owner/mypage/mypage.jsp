@@ -1,19 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <title>봉그다 숙박숙박 :: 마이 페이지</title>
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
 <link href="resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="resources/owner/js/jquery.min.js"></script>
 
-<script src="resources/owner/js/scripts.js"></script>
-<link href="resources/owner/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
 
-<link href="resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 
-<script src="resources/owner/js/responsiveslides.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
 
+
+	<link rel="shortcut icon" href="../favicon.ico"> 
+	<link rel="stylesheet" type="text/css" href="resources/owner/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="resources/owner/css/component.css" />
+	<script src="resources/owner/js/modernizr.custom.js"></script>
 <style>
 .overlay {
   position: fixed;
@@ -108,7 +118,7 @@
 					<td>
 				
 						<div class="form-layer">
-							<input type="text" class="select-nomalsize" name="account_holder" value="myemail@naver.com" disabled style="background-color: lightgrey;">
+							<input type="text" class="select-nomalsize" name="ownerEmail" disabled style="background-color: lightgrey;" value="${ requestScope.selectOwner.ownerID }">
 						</div>
 						
 					</td>
@@ -120,7 +130,7 @@
 						</p>
 						<td>
 							<div class="form-layer" >
-								<input type="password" class="select-nomalsize" name="account_holder"value="">
+								<input type="password" class="select-nomalsize" type="password" name="ownerPwd" value="${ requestScope.selectOwner.ownerPwd }">
 								<button class="submit-btn" type="submit" style="margin-left: 20px;">비밀번호 변경하기</button>
 							</div>
 	
@@ -136,7 +146,7 @@
 					</th>
 					<td>
 						<div class="form-layer">
-							<input type="text" class="select-nomalsize" name="account_holder" placeholder="휴대전화 번호" value="010-1234-5678">
+							<input type="text" class="select-nomalsize" name="ownerPhone" placeholder="휴대전화 번호" value="${ requestScope.selectOwner.ownerPhone }">
 							<button class="submit-btn" type="submit" style="margin-left: 20px;">휴대전화번호 변경하기</button>
 						</div>
 						

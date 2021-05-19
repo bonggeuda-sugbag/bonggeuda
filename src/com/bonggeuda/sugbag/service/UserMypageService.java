@@ -1,19 +1,22 @@
 package com.bonggeuda.sugbag.service;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.bonggeuda.sugbag.model.dao.MypageDAO;
+import com.bonggeuda.sugbag.model.dao.UserMypageDAO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
+import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 
-public class MypageService {
+public class UserMypageService {
 	
-	private MypageDAO mypageDAO = new MypageDAO();
+	private UserMypageDAO mypageDAO = new UserMypageDAO();
 
 	
 	/**
@@ -85,6 +88,54 @@ public class MypageService {
 		return coupon;
 	}
 
+
+	/**
+	 * 내 정보 조회
+	 * @param userNo
+	 * @return
+	 */
+	public MemberDTO myinfoSelect(int userNo) {
+		
+		Connection con = getConnection();
+		
+		MemberDTO myinfo = mypageDAO.myinfoSelect(con, userNo);
+		
+		close(con);
+		
+		return myinfo;
+	}
+
+
+	/**
+	 * 사용자 정보 변경
+	 * @param userMyinfo
+	 * @return
+	 */
+	public int updateUserNickName(MemberDTO userMyinfo) {
+		
+		int result = 0;
+		
+		Connection con = getConnection();
+		
+		if(userMyinfo.getNickName() != null) {
+			result = mypageDAO.updateUserNickNmae(con, userMyinfo);			
+		} else if(userMyinfo.getUserPhone() != null) {
+			result = mypageDAO.updateUserPhone(con, userMyinfo);						
+		} else if(userMyinfo.getUserPwd() != null){
+			result = mypageDAO.updateUserPwd(con, userMyinfo);									
+		}
+		
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
 
 
 

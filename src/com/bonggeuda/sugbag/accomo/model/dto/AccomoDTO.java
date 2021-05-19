@@ -1,8 +1,8 @@
-package com.bonggeuda.sugbag.model.dto;
+package com.bonggeuda.sugbag.accomo.model.dto;
 
 import java.sql.Date;
 
-public class AccomDTO {
+public class AccomoDTO {
 
 	private int accomoNo; 		// 숙소번호
 	private int ownerNo; 		// 업체번호
@@ -15,22 +15,22 @@ public class AccomDTO {
 	private String email; 		// 세금계산서이메일
 	private String homepage; 	// 홈페이지 주소
 	private String facility; 	// 편의시설
-	private String path; 		// 오시는길
+	private String accomoPath; 	// 오시는길
 	private String near; 		// 주변정보
 	private String rule; 		// 이용규칙
-	private String parking; 	// 주자장
+	private String parking; 	// 주차장
 	private String checkIn; 	// 체크인
 	private String checkOut; 	// 체크아웃
 	private Date peakStart; 	// 성수기시작일
 	private Date peakEnd; 		// 성수기종료일
 
-	public AccomDTO() {
+	public AccomoDTO() {
 		super();
 	}
 
-	public AccomDTO(int accomoNo, int ownerNo, String accomoName, String ceoName, String accomoType, String registNo,
-			String address, String adrDetail, String email, String homepage, String facility, String path, String near,
-			String rule, String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd) {
+	public AccomoDTO(int accomoNo, int ownerNo, String accomoName, String ceoName, String accomoType, String registNo,
+			String address, String adrDetail, String email, String homepage, String facility, String accomoPath,
+			String near, String rule, String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd) {
 		super();
 		this.accomoNo = accomoNo;
 		this.ownerNo = ownerNo;
@@ -43,7 +43,7 @@ public class AccomDTO {
 		this.email = email;
 		this.homepage = homepage;
 		this.facility = facility;
-		this.path = path;
+		this.accomoPath = accomoPath;
 		this.near = near;
 		this.rule = rule;
 		this.parking = parking;
@@ -141,12 +141,12 @@ public class AccomDTO {
 		this.facility = facility;
 	}
 
-	public String getPath() {
-		return path;
+	public String getAccomoPath() {
+		return accomoPath;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setAccomoPath(String accomoPath) {
+		this.accomoPath = accomoPath;
 	}
 
 	public String getNear() {
@@ -210,8 +210,10 @@ public class AccomDTO {
 		return "AccomDTO [accomoNo=" + accomoNo + ", ownerNo=" + ownerNo + ", accomoName=" + accomoName + ", ceoName="
 				+ ceoName + ", accomoType=" + accomoType + ", registNo=" + registNo + ", address=" + address
 				+ ", adrDetail=" + adrDetail + ", email=" + email + ", homepage=" + homepage + ", facility=" + facility
-				+ ", path=" + path + ", near=" + near + ", rule=" + rule + ", parking=" + parking + ", checkIn="
-				+ checkIn + ", checkOut=" + checkOut + ", peakStart=" + peakStart + ", peakEnd=" + peakEnd + "]";
+				+ ", accomoPath=" + accomoPath + ", near=" + near + ", rule=" + rule + ", parking=" + parking
+				+ ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", peakStart=" + peakStart + ", peakEnd="
+				+ peakEnd + "]";
 	}
 
+	
 }
