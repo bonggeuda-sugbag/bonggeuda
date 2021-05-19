@@ -92,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 .infoPrice{
 	color:white; 
-	width : 15%; 
+	width : 30%; 
 	text-align:right;
 	font-size:  20px; 
 	font-weight: bold;
@@ -226,19 +226,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
 			
-			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='moteldetailBook.jsp';" >
-				
-				<div class="infoThumb" >
-					<h2>돌체파르니엔펜션</h2>
-					<br>
-					<div style="display: flex;">
-						<div class="infoScore">평점 7.7(5)</div>
-						<div class="infoPrice">72,000원</div>
-					</div>
-					
-				</div>
-			</div>
-			
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='moteldetailBook.jsp';" >
 				
@@ -246,8 +233,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h2>${accomo.accomoName }</h2>
 					<br>
 					<div style="display: flex;">
-						<div class="infoScore">${accomo.path }</div>
-						<div class="infoPrice">${accomo.parking }</div>
+					<c:choose>
+					    <c:when test="${accomo.reviewScore == '0.0' }">
+						<div class="infoScore">평점없음</div>
+					    </c:when>
+					    <c:otherwise>
+						<div class="infoScore">평점 : ${accomo.reviewScore }</div>
+					    </c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${accomo.minPrice == '0' }">
+						<div class="infoPrice">등록된 최저가 없음</div>
+						</c:when>
+						<c:otherwise>>
+						<div class="infoPrice">최저가 : ${accomo.minPrice}</div>
+						</c:otherwise>
+					</c:choose>
 					</div>
 					
 				</div>

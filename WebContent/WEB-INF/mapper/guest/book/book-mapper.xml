@@ -24,4 +24,24 @@
           FROM ACCOMO_INFO 
          WHERE ACCOMO_TYPE = ?
     </entry>
+    <entry key="selectMinPrice">
+        SELECT
+               AI.ACCOMO_NO
+             , MIN(RI.ROOM_FEE) 최저가
+          FROM ACCOMO_INFO AI
+          JOIN ROOM_INFO RI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+         WHERE ACCOMO_TYPE = ? 
+         GROUP BY AI.ACCOMO_NO
+    </entry>
+    <entry key="selectReviewScore">
+        SELECT
+               AI.ACCOMO_NO
+             , ROUND(AVG(RV.STAR_POINT),1) 평점
+          FROM ACCOMO_INFO AI
+          JOIN ROOM_INFO RI ON (AI.ACCOMO_NO = RI.ACCOMO_NO)
+          JOIN BOOK_LIST BL ON(RI.ROOM_NO = BL.ROOM_NO)
+          JOIN REVIEW RV ON(BL.BOOK_NO = RV.BOOK_NO)
+         WHERE ACCOMO_TYPE = ? 
+         GROUP BY AI.ACCOMO_NO
+    </entry>
 </properties>

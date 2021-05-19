@@ -24,11 +24,15 @@ public class AccomoInfoDTO {
 	private Date peakStart;
 	private Date peakEnd;
 	
+	private int minPrice;
+	private double reviewScore;
+	
 	public AccomoInfoDTO() {}
 
 	public AccomoInfoDTO(int accomoNo, int ownerNo, String accomoName, String ceoName, String type,
 			String resgstrationNo, String address, String email, String homepage, String facility, String path,
-			String near, String rule, String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd) {
+			String near, String rule, String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd,
+			int minPrice, double reviewScore) {
 		super();
 		this.accomoNo = accomoNo;
 		this.ownerNo = ownerNo;
@@ -48,6 +52,8 @@ public class AccomoInfoDTO {
 		this.checkOut = checkOut;
 		this.peakStart = peakStart;
 		this.peakEnd = peakEnd;
+		this.minPrice = minPrice;
+		this.reviewScore = reviewScore;
 	}
 
 	public int getAccomoNo() {
@@ -194,14 +200,34 @@ public class AccomoInfoDTO {
 		this.peakEnd = peakEnd;
 	}
 
+	public int getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	public double getReviewScore() {
+		return reviewScore;
+	}
+
+	public void setReviewScore(double reviewScore) {
+		this.reviewScore = reviewScore;
+	}
+
 	@Override
 	public String toString() {
 		return "AccomoInfoDTO [accomoNo=" + accomoNo + ", ownerNo=" + ownerNo + ", accomoName=" + accomoName
 				+ ", ceoName=" + ceoName + ", type=" + type + ", resgstrationNo=" + resgstrationNo + ", address="
 				+ address + ", email=" + email + ", homepage=" + homepage + ", facility=" + facility + ", path=" + path
 				+ ", near=" + near + ", rule=" + rule + ", parking=" + parking + ", checkIn=" + checkIn + ", checkOut="
-				+ checkOut + ", peakStart=" + peakStart + ", peakEnd=" + peakEnd + "]";
+				+ checkOut + ", peakStart=" + peakStart + ", peakEnd=" + peakEnd + ", minPrice=" + minPrice
+				+ ", reviewScore=" + reviewScore + "]";
 	}
+
+	
+	
 	
 	
 	

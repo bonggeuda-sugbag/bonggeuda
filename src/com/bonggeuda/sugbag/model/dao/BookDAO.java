@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
@@ -74,6 +76,63 @@ public class BookDAO {
 			close(pstmt);
 		}
 		return accomoList;
+	}
+	/**
+	 * 숙소의 리뷰 평점과 최저가 조회
+	 * @param con
+	 * @param type 숙소타입
+	 * @return 숙소리뷰, 평점
+	 */
+	public List<Map> selectPriceNScore(Connection con, String type) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<Map> priceNScore = null;
+		
+		Map<Integer, Integer> minPrice = null;
+		Map<Integer, Double> reviewScore = null;
+		
+		// 최저가 구하기		
+		String query = prop.getProperty("selectMinPrice");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, type);
+			
+			rset = pstmt.executeQuery();
+
+			priceNScore = new ArrayList<>();
+			minPrice = new HashMap<>();
+			while(rset.next()) {
+				minPrice.put(rset.getInt("ACCOMO_NO"), rset.getInt("최저가"));
+			}
+			priceNScore.add(minPrice);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//숙소 평점 구하기
+		query = prop.getProperty("selectReviewScore");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, type);
+			
+			rset = pstmt.executeQuery();
+			
+			reviewScore = new HashMap<>();
+			
+			while(rset.next()) {
+				reviewScore.put(rset.getInt("ACCOMO_NO"), rset.getDouble("평점"));
+			}
+			priceNScore.add(reviewScore);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return priceNScore;
 	}
 
 }
