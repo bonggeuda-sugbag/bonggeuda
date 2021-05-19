@@ -150,7 +150,7 @@
 			<h3 style="font-family:'nanum';">나의 숙소</h3>
 			<div class="col-md-4 box_2">
 			 	<a href="managementYesRoom.html" class="mask">
-			 		<img class="img-responsive zoom-img" src="images/pc4.jpg" alt="">
+			 		<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/resources/owner/images/pc4.jpg" alt="">
 			 		<span class="four">100,000원</span>
 			 	</a>
 			 	<div class="most-1">
