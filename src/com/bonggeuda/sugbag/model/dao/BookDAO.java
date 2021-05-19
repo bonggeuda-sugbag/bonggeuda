@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
@@ -27,6 +29,13 @@ public class BookDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 숙소리스트 검색
+	 * @param con 
+	 * @param type 숙소타입(호텔,펜션,게스트하우스)
+	 * @return 숙소리스트
+	 */
 	public List<AccomoInfoDTO> selectAccomoList(Connection con, String type) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -75,5 +84,58 @@ public class BookDAO {
 		}
 		return accomoList;
 	}
+
+	public List<Map> selectMinPrice(Connection con, String type) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectMinPrice");
+		
+		List<Map> accomoPriceNStar = null;
+		
+		Map<Integer, Integer> minPrice = null;
+		try {
+			accomoPriceNStar = new ArrayList<>();
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, type);
+			
+			rset = pstmt.executeQuery();
+			
+			minPrice = new HashMap<>();
+			while(rset.next()) {
+				minPrice.put(rset.getInt("ACCOMO_NO"), rset.getInt("최저가"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		accomoPriceNStar.add(minPrice);
+		
+		Map<Integer, Double> reviewScore = null;
+		
+		query = prop.getProperty("selectReviewScore");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, type);
+			
+			rset = pstmt.executeQuery();
+			
+			reviewScore = new HashMap<>();
+			
+			while(rset.next()) {
+				reviewScore.put(rset.getInt("ACCOMO_NO"), rset.getDouble("평점"));
+			}
+			accomoPriceNStar.add(reviewScore);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return accomoPriceNStar;
+	}
+
+	
 
 }
