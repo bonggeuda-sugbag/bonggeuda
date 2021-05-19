@@ -176,7 +176,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div  style="position :relative; width: 250px; ; display: block; padding: 0 0 0 15px;" >
 			<ul >
 				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" id="possible">  예약 가능</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  주방/식당</li>
+				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" value=diningroom>  주방/식당</li>
+				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" value= >  세탁기</li>
 				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  건조기</li>
 				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  탈수기</li>
 				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  엘레베이터</li>
@@ -225,14 +226,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</button>
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
-			
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
-			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='moteldetailBook.jsp';" >
+			<c:choose>
+			    <c:when test="${empty accomo}">
+			        <div class="suksoList">
+			            <p>일치하는 숙소 정보가 없습니다.</p>
+			        </div>
+			    </c:when>
+		    <c:otherwise>
+			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='Book.jsp';" >
 				
 				<div class="infoThumb" >
 					<h2>${accomo.accomoName }</h2>
 					<br>
 					<div style="display: flex;">
+
 					<c:choose>
 					    <c:when test="${accomo.reviewScore == '0.0' }">
 						<div class="infoScore">평점없음</div>
@@ -249,10 +257,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="infoPrice">최저가 : ${accomo.minPrice}</div>
 						</c:otherwise>
 					</c:choose>
+
 					</div>
-					
 				</div>
 			</div>
+			</c:otherwise>
+			</c:choose> 
 			</c:forEach>
 			
 		</div>

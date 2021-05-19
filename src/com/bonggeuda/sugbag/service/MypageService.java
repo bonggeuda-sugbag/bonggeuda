@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.bonggeuda.sugbag.model.dao.MypageDAO;
+import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 
@@ -49,6 +50,42 @@ public class MypageService {
 		
 		return pointHistory;
 	}
+
+	/**
+	 * 보유 쿠폰 개수 조회
+	 * @param userNo
+	 * @return
+	 */
+	public int couponCount(int userNo) {
+		
+		int result = 0;
+		
+		Connection con = getConnection();
+		
+		result = mypageDAO.couponCount(con, userNo);
+		
+		close(con);
+		
+		return result;
+	}
+
+	/**
+	 * 보유 쿠폰 정보 조회
+	 * @param userNo
+	 * @return
+	 */
+	public List<CouponDTO> couponSelect(int userNo) {
+
+		Connection con = getConnection();
+		
+		List<CouponDTO> coupon = mypageDAO.couponSelect(con, userNo);
+		
+		close(con);
+		
+		return coupon;
+	}
+
+
 
 
 

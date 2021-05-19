@@ -21,17 +21,18 @@ public class AccomoSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("서블릿요청확인");
+		// 숙소타입구분
 		String AccomoType = request.getParameter("value");
-		
 		String type="";
-		
 		switch(AccomoType) {
 		    case "'hotel'" : type = "호텔"; break;
 		    case "'pension'" : type = "펜션"; break;
 		    case "'guestHouse'" : type = "게스트하우스"; break;
 		}
+		// 타입별 숙소 리스트 검색
 		BookService booksvc = new BookService();
 		List<AccomoInfoDTO> accomoList= booksvc.selectAccomoList(type);
+<<<<<<< HEAD
 		
 		//최저가(0), 평점(1) 조회
 		List<Map> priceNrvScore = booksvc.selectPriceNstar(type);

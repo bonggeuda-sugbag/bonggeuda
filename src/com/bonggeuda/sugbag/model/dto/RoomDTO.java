@@ -2,20 +2,21 @@ package com.bonggeuda.sugbag.model.dto;
 
 public class RoomDTO {
 
-	private int roomNo; // 객실번호
-	private int accomoNo; // 숙소번호
-	private String roomName; // 객실명
-	private int roomMax; // 객실정원
-	private String roonIntro; // 객실소개글
-	private int roomFee; // 객실요금
-	private String visibleYn; // 공개여부
+	private int roomNo; 		// 객실번호
+	private int accomoNo; 		// 숙소번호
+	private String roomName;	// 객실명
+	private int roomMax; 		// 객실정원
+	private String roonIntro; 	// 객실소개글
+	private int roomFee; 		// 객실요금
+	private String visibleYn; 	// 공개여부
+	private int peakFee;		// 성수기요금
 
 	public RoomDTO() {
 		super();
 	}
 
 	public RoomDTO(int roomNo, int accomoNo, String roomName, int roomMax, String roonIntro, int roomFee,
-			String visibleYn) {
+			String visibleYn, int peakFee) {
 		super();
 		this.roomNo = roomNo;
 		this.accomoNo = accomoNo;
@@ -24,6 +25,7 @@ public class RoomDTO {
 		this.roonIntro = roonIntro;
 		this.roomFee = roomFee;
 		this.visibleYn = visibleYn;
+		this.peakFee = peakFee;
 	}
 
 	public int getRoomNo() {
@@ -82,10 +84,19 @@ public class RoomDTO {
 		this.visibleYn = visibleYn;
 	}
 
+	public int getPeakFee() {
+		return peakFee;
+	}
+
+	public void setPeakFee(int peakFee) {
+		this.peakFee = peakFee;
+	}
+
 	@Override
 	public String toString() {
 		return "RoomDTO [roomNo=" + roomNo + ", accomoNo=" + accomoNo + ", roomName=" + roomName + ", roomMax="
-				+ roomMax + ", roonIntro=" + roonIntro + ", roomFee=" + roomFee + ", visibleYn=" + visibleYn + "]";
+				+ roomMax + ", roonIntro=" + roonIntro + ", roomFee=" + roomFee + ", visibleYn=" + visibleYn
+				+ ", peakFee=" + peakFee + "]";
 	}
 
 }

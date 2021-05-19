@@ -26,7 +26,7 @@ public class AccomoInfoDTO {
 	
 	private int minPrice;
 	private double reviewScore;
-	
+
 	public AccomoInfoDTO() {}
 
 	public AccomoInfoDTO(int accomoNo, int ownerNo, String accomoName, String ceoName, String type,
@@ -227,7 +227,10 @@ public class AccomoInfoDTO {
 	}
 
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
 	
 	
 	

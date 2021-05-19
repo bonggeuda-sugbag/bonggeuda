@@ -42,6 +42,5 @@
           JOIN BOOK_LIST BL ON(RI.ROOM_NO = BL.ROOM_NO)
           JOIN REVIEW RV ON(BL.BOOK_NO = RV.BOOK_NO)
          WHERE ACCOMO_TYPE = ? 
-         GROUP BY AI.ACCOMO_NO
     </entry>
 </properties>
