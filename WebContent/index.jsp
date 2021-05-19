@@ -9,7 +9,7 @@
 <body>
 
 
-<<<<<<< HEAD
+
 	
 	<%-- <jsp:forward page="/WEB-INF/views/guest/accomoInfo/detailInfo.jsp"></jsp:forward> --%>
 
@@ -21,21 +21,29 @@
 
 <%-- 	<jsp:forward page="/WEB-INF/views/guest/mypage/warningList.jsp"></jsp:forward> --%>
 
-	
-	<script>
+	<%-- <jsp:forward page="/WEB-INF/views/admin/user/userInfoDetail.jsp"></jsp:forward> --%>
+	<%-- <script>
 		(function(){
 			
 			location.href="${ pageContext.servletContext.contextPath}/user/list";    
 		})();
 	</script>
+	--%> 
+	
+	<script>
+		(function(){
+			
+			location.href="${ pageContext.servletContext.contextPath}/user/detail";    
+		})();
+	</script> 
 	<%-- <jsp:forward page="/WEB-INF/views/admin/company/companyInfo.jsp"></jsp:forward> --%>
 <%-- <jsp:forward page="/WEB-INF/views/owner/roomRegistration/registration.jsp"></jsp:forward>
  --%>
-=======
-	<%-- <jsp:forward page="/WEB-INF/views/guest/accomoInfo/detailInfo.jsp"></jsp:forward> --%>
- 	<jsp:forward page="/WEB-INF/views/owner/mypage/mypage.jsp"></jsp:forward>
 
->>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
+	<%-- <jsp:forward page="/WEB-INF/views/guest/accomoInfo/detailInfo.jsp"></jsp:forward> --%>
+ 	
+
+
 
 </body>
 </html>
