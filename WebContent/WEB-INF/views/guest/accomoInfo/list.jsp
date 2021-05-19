@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -10,16 +11,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>봉그다숙박</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
 
 <!--theme-style-->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
@@ -207,7 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 			
 		</div>
-		<div style="width: 900px; height: 900px; padding: 10px; display: flex; flex-direction: column;">
+		<div style="width: 900px; padding: 10px; display: flex; flex-direction: column;">
 
 			<div class=list_wrap style="width:900px; height:30px; margin: 30px 0 0 10px; display: flex; margin-bottom: 50px;">
 				<button type="button" data-sort="HIT">
@@ -225,7 +226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
 			
-			<div class="suksoList" style="background: url(resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='moteldetailBook.jsp';" >
+			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='moteldetailBook.jsp';" >
 				
 				<div class="infoThumb" >
 					<h2>돌체파르니엔펜션</h2>
@@ -237,6 +238,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 				</div>
 			</div>
+			
+			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
+			<div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='moteldetailBook.jsp';" >
+				
+				<div class="infoThumb" >
+					<h2>${accomo.accomoName }</h2>
+					<br>
+					<div style="display: flex;">
+						<div class="infoScore">${accomo.path }</div>
+						<div class="infoPrice">${accomo.parking }</div>
+					</div>
+					
+				</div>
+			</div>
+			</c:forEach>
 			
 		</div>
 		
