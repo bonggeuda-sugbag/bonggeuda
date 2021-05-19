@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +118,7 @@
 					<td>
 				
 						<div class="form-layer">
-							<input type="text" class="select-nomalsize" name="account_holder" value="myemail@naver.com" disabled style="background-color: lightgrey;">
+							<input type="text" class="select-nomalsize" name="ownerEmail" disabled style="background-color: lightgrey;" value="${ requestScope.selectOwner.ownerID }">
 						</div>
 						
 					</td>
@@ -128,7 +130,7 @@
 						</p>
 						<td>
 							<div class="form-layer" >
-								<input type="password" class="select-nomalsize" name="account_holder"value="">
+								<input type="password" class="select-nomalsize" type="password" name="ownerPwd" value="${ requestScope.selectOwner.ownerPwd }">
 								<button class="submit-btn" type="submit" style="margin-left: 20px;">비밀번호 변경하기</button>
 							</div>
 	
@@ -144,7 +146,7 @@
 					</th>
 					<td>
 						<div class="form-layer">
-							<input type="text" class="select-nomalsize" name="account_holder" placeholder="휴대전화 번호" value="010-1234-5678">
+							<input type="text" class="select-nomalsize" name="ownerPhone" placeholder="휴대전화 번호" value="${ requestScope.selectOwner.ownerPhone }">
 							<button class="submit-btn" type="submit" style="margin-left: 20px;">휴대전화번호 변경하기</button>
 						</div>
 						
