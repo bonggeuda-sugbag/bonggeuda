@@ -4,17 +4,22 @@
 <html>
 <head>
 <title>봉그다 숙박숙박 :: 마이 페이지</title>
-<title>봉그다 숙박숙박</title>
-<link href="resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<script src="resources/owner/js/jquery.min.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
 
-<script src="resources/owner/js/scripts.js"></script>
-<link href="resources/owner/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
 
-<link href="resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 
-<script src="resources/owner/js/responsiveslides.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
 
+
+	<link rel="shortcut icon" href="../favicon.ico"> 
+	<link rel="stylesheet" type="text/css" href="resources/owner/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="resources/owner/css/component.css" />
+	<script src="resources/owner/js/modernizr.custom.js"></script>
 <style>
 .overlay {
   position: fixed;
