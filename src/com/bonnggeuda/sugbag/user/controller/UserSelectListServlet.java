@@ -57,7 +57,7 @@ public class UserSelectListServlet extends HttpServlet {
 		
 		String path = "";
 		if(userList != null) {
-			path = "/WEB-INF/views/admin/userInfo.jsp";
+			path = "/WEB-INF/views/admin/user/userInfo.jsp";
 			request.setAttribute("userList", userList);
 			request.setAttribute("pageInfo", pageInfo);
 		} 
