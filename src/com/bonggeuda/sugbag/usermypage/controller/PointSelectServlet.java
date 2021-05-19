@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.controller;
+package com.bonggeuda.sugbag.usermypage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
-import com.bonggeuda.sugbag.service.MypageService;
+import com.bonggeuda.sugbag.service.UserMypageService;
 
 /**
  * Servlet implementation class PointSelectServlet
@@ -23,7 +23,7 @@ public class PointSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int userNo = 1;
-		MypageService mypageService = new MypageService();
+		UserMypageService mypageService = new UserMypageService();
 		
 		/* 포인트 정보 조회 */		
 		PointDTO pointDTO = mypageService.pointSelect(userNo);

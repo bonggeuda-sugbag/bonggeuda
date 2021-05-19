@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.controller;
+package com.bonggeuda.sugbag.usermypage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
-import com.bonggeuda.sugbag.service.MypageService;
+import com.bonggeuda.sugbag.service.UserMypageService;
 
 /**
  * Servlet implementation class CouponSelectServlet
@@ -23,7 +23,7 @@ public class CouponSelectServlet extends HttpServlet {
 
 		int userNo = 1;
 		
-		MypageService mypageService = new MypageService();
+		UserMypageService mypageService = new UserMypageService();
 		
 		/* 보유 쿠폰 개수 조회 */
 		int result = mypageService.couponCount(userNo);
