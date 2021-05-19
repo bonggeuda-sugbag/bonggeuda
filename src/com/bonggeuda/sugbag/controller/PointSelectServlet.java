@@ -22,36 +22,16 @@ public class PointSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		int userNo = 2;
-//		
-//		MypageService mypageService = new MypageService();
-//		
-//		PointDTO pointDTO = mypageService.pointSelect(userNo);
-//		int point = pointDTO.getPoint();
-//		
-//		String path = "";
-//		if(pointDTO != null) {
-//			path = "/WEB-INF/views/guest/mypage/point.jsp";
-//			request.setAttribute("point", point);
-//		}
-//		
-//		
-//		System.out.println(pointDTO);
-//		System.out.println(point);
-//		
-//		request.getRequestDispatcher(path).forward(request, response);
-		
 		int userNo = 1;
-		
-		/* 포인트 정보 조회 */
 		MypageService mypageService = new MypageService();
 		
+		/* 포인트 정보 조회 */		
 		PointDTO pointDTO = mypageService.pointSelect(userNo);
 		int point = pointDTO.getPoint();
 
+		
 		/* 포인트이력 정보 조회 */
 		List<PointHistoryDTO> pointHistory = new ArrayList<>();
-		
 		pointHistory = mypageService.pointHistorySelect(userNo);
 		
 		

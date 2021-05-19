@@ -4,7 +4,6 @@
 <html>
 <head>
 <title>봉그다 숙박숙박 :: 마이 페이지</title>
-<title>봉그다 숙박숙박</title>
 <link href="resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="resources/owner/js/jquery.min.js"></script>
 

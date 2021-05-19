@@ -6,14 +6,15 @@ public class AccomDTO {
 
 	private int accomoNo; 		// 숙소번호
 	private int ownerNo; 		// 업체번호
-	private String accomoName; 	// 숙소명
+	private String accomoName;	// 숙소명(상호명)
 	private String ceoName; 	// 대표명
 	private String accomoType; 	// 업종
 	private String registNo; 	// 사업자번호
 	private String address; 	// 숙소주소
+	private String adrDetail; 	// 숙소 상세주소
 	private String email; 		// 세금계산서이메일
 	private String homepage; 	// 홈페이지 주소
-	private String facility;	// 편의시설
+	private String facility; 	// 편의시설
 	private String path; 		// 오시는길
 	private String near; 		// 주변정보
 	private String rule; 		// 이용규칙
@@ -28,8 +29,8 @@ public class AccomDTO {
 	}
 
 	public AccomDTO(int accomoNo, int ownerNo, String accomoName, String ceoName, String accomoType, String registNo,
-			String address, String email, String homepage, String facility, String path, String near, String rule,
-			String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd) {
+			String address, String adrDetail, String email, String homepage, String facility, String path, String near,
+			String rule, String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd) {
 		super();
 		this.accomoNo = accomoNo;
 		this.ownerNo = ownerNo;
@@ -38,6 +39,7 @@ public class AccomDTO {
 		this.accomoType = accomoType;
 		this.registNo = registNo;
 		this.address = address;
+		this.adrDetail = adrDetail;
 		this.email = email;
 		this.homepage = homepage;
 		this.facility = facility;
@@ -105,6 +107,14 @@ public class AccomDTO {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getAdrDetail() {
+		return adrDetail;
+	}
+
+	public void setAdrDetail(String adrDetail) {
+		this.adrDetail = adrDetail;
 	}
 
 	public String getEmail() {
@@ -199,8 +209,9 @@ public class AccomDTO {
 	public String toString() {
 		return "AccomDTO [accomoNo=" + accomoNo + ", ownerNo=" + ownerNo + ", accomoName=" + accomoName + ", ceoName="
 				+ ceoName + ", accomoType=" + accomoType + ", registNo=" + registNo + ", address=" + address
-				+ ", email=" + email + ", homepage=" + homepage + ", facility=" + facility + ", path=" + path
-				+ ", near=" + near + ", rule=" + rule + ", parking=" + parking + ", checkIn=" + checkIn + ", checkOut="
-				+ checkOut + ", peakStart=" + peakStart + ", peakEnd=" + peakEnd + "]";
+				+ ", adrDetail=" + adrDetail + ", email=" + email + ", homepage=" + homepage + ", facility=" + facility
+				+ ", path=" + path + ", near=" + near + ", rule=" + rule + ", parking=" + parking + ", checkIn="
+				+ checkIn + ", checkOut=" + checkOut + ", peakStart=" + peakStart + ", peakEnd=" + peakEnd + "]";
 	}
+
 }

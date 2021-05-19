@@ -35,17 +35,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		margin-top: 5px;
 	}
 	</style>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<title>봉그다숙박숙박</title>
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${ pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -96,8 +96,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
 			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="point.jsp" style="color: #6eceda;">포인트</a></li>
-			<li class="blog-list"><jsp:forward page="/WEB-INF/views/owner/mypage/mypage.jsp"></jsp:forward>쿠폰함</a></li>
-			<li class="blog-list"><jsp:forward page="/WEB-INF/views/owner/mypage/reservation.jsp"></jsp:forward>예약 내역</a></li>
+			<li class="blog-list"><a href="coupon.jsp">쿠폰함</a></li>
+			<li class="blog-list"><a href="reservation.jsp">예약 내역</a></li>
 			<li class="blog-list"><a href="myinformation.jsp">내 정보 관리</a></li>
 			<li class="blog-list"><a href="warningList.jsp">신고내역</a></li>
 		</ul>

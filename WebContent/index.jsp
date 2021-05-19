@@ -8,15 +8,11 @@
 </head>
 <body>
 
-	
-	<%-- <jsp:forward page="/WEB-INF/views/guest/accomoInfo/detailInfo.jsp"></jsp:forward> --%>
-
-
-
+<%-- 	<jsp:forward page="/WEB-INF/views/owner/registration/registration1.jsp"></jsp:forward>
+ --%>
 	<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%>
 
 	<%-- <jsp:forward page="/WEB-INF/views/guest/mypage/warningList.jsp"></jsp:forward> --%>
-
 
 <!-- 	
 	<script>
@@ -30,8 +26,6 @@
  --%>
 
  	<jsp:forward page="/login/test"></jsp:forward>
-
-
 
 </body>
 </html>
