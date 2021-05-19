@@ -227,11 +227,7 @@ public class AccomoInfoDTO {
 	}
 
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
-	
+
 	
 	
 	
