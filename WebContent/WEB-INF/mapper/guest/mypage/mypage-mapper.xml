@@ -6,4 +6,32 @@
 		  FROM POINT
 		 WHERE USER_NO = ?
     </entry>
+    
+    <entry key="pointHistory">
+		SELECT PH.POINT_PATH
+     	     , PH.GU_DATE
+             , PH.POINT
+             , ph.GETUSE_TYPE_GU
+  	      FROM POINT_HISTORY PH
+  		  JOIN POINT P ON(P.POINT_NO = PH.POINT_NO)
+         WHERE P.USER_NO = ?
+    </entry>
+    
+    <entry key="couponCount">
+		SELECT COUNT(*)
+          FROM COUPON
+         WHERE COUPON_USE_YN = 'N'
+           AND USER_NO = ?
+    </entry>
+    
+    <entry key="couponList">
+		SELECT COUPON_NAME
+		     , COUPON_DISCOUNT
+		     , COUPON_CONDITION
+		     , COUPON_START
+		     , COUPON_END
+		  FROM COUPON
+		 WHERE COUPON_USE_YN = 'N'
+		   AND USER_NO = ?
+    </entry>
 </properties>

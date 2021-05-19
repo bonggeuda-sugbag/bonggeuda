@@ -12,16 +12,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>봉그다숙박숙박</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath}/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -37,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 .coronaBackground{
 	width: 100%;
 	height: 100%;
-	background: url('resources/guest/images/jejuMap.PNG') no-repeat;
+	background: url('${pageContext.servletContext.contextPath}/resources/guest/images/jejuMap.PNG') no-repeat;
 	background-position: 50% 0%;
 }
 
@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </style>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- slide -->
-<script src="resources/guest/js/responsiveslides.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/guest/js/responsiveslides.min.js"></script>
    <script>
     $(function () {
       $("#slider").responsiveSlides({
@@ -164,7 +164,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 	 
 	<!--header-bottom-->
-	<form id="accomoTypeForm" action="${pageContext.servletContext.contextPath}/member/accomoInfo"method="get">
 	<div class="banner-bottom-top">
 			<div class="container">
 			<div class="bottom-header">
@@ -199,7 +198,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 	</div>
 	</div>
-	</form>
 			<!--//-->
 				
 	<!--//header-bottom-->

@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <title>봉그다 숙박숙박</title>
-<link href="resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<script src="resources/owner/js/jquery.min.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
 
-<script src="resources/owner/js/scripts.js"></script>
-<link href="resources/owner/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
 
-<link href="resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 
-<script src="resources/owner/js/responsiveslides.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
+
    <script>
     $(function () {
       $("#slider").responsiveSlides({
@@ -49,7 +53,7 @@
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><a href="mypage.jsp">마이페이지</a></li>
+				<li><a id="mypage">마이페이지</a>
 				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Logout</a></li>
 			</ul>
 		</div>
