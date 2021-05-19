@@ -32,29 +32,26 @@ public class AccomoSelectServlet extends HttpServlet {
 		// 타입별 숙소 리스트 검색
 		BookService booksvc = new BookService();
 		List<AccomoInfoDTO> accomoList= booksvc.selectAccomoList(type);
-		//숙소최저가(0), 평점(1) 가져오기
-		List<Map> accomoPriceNStar = booksvc.selectMinPrice(type);
-		String path="";
-		if(accomoList != null && accomoPriceNStar.get(0) != null && accomoPriceNStar.get(1) !=null) {
-			
+
+		
+		//최저가(0), 평점(1) 조회
+		List<Map> priceNrvScore = booksvc.selectPriceNstar(type);
+		
+ 		String path="";
+		if(accomoList != null) {
 			for(int i = 0; i < accomoList.size(); i++) {
 				int accomoNo = accomoList.get(i).getAccomoNo();
-				
-				if(accomoPriceNStar.get(0).get(accomoNo) != null) {
-				    int price =(int) accomoPriceNStar.get(0).get(accomoNo);
-				    accomoList.get(i).setMinPrice(price);
+				if(priceNrvScore.get(0).get(accomoNo) != null) {
+					accomoList.get(i).setMinPrice((int)priceNrvScore.get(0).get(accomoNo));
 				}
-				
-				if(accomoPriceNStar.get(1).get(accomoNo) != null) {
-					double reviewScore = (double) accomoPriceNStar.get(1).get(accomoNo);
-					accomoList.get(i).setReviewScore(reviewScore);
+				if(priceNrvScore.get(1).get(accomoNo) != null) {
+					accomoList.get(i).setReviewScore((double)priceNrvScore.get(1).get(accomoNo));
 				}
 			}
-			
 			path = "/WEB-INF/views/guest/accomoInfo/list.jsp";
 			request.setAttribute("accomoList", accomoList);
 		} else {
-			System.out.println("실패!!");
+			System.out.println("숙소목록 조회에 실패했습니다.!!");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

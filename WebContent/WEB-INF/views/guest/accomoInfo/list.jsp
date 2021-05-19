@@ -226,7 +226,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</button>
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
-				
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<c:choose>
 			    <c:when test="${empty accomo}">
@@ -241,22 +240,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h2>${accomo.accomoName }</h2>
 					<br>
 					<div style="display: flex;">
-						<c:choose>
-						    <c:when test="${accomo.reviewScore == '0.0'}">
-						    <div class="infoScore">평점없음</div>
-						    </c:when>
-						    <c:otherwise>
-						    <div class="infoScore">평점 : ${accomo.reviewScore }</div>
-						    </c:otherwise>
-						</c:choose>
-						<c:choose>
-						    <c:when test="${accomo.minPrice == '0'}">
-						    <div class="infoPrice">등록된 최저가 없음</div>
-						    </c:when>
-						    <c:otherwise>
-						    <div class="infoPrice">최저가 : ${accomo.minPrice }</div>
-						    </c:otherwise>
-						</c:choose>
+
+					<c:choose>
+					    <c:when test="${accomo.reviewScore == '0.0' }">
+						<div class="infoScore">평점없음</div>
+					    </c:when>
+					    <c:otherwise>
+						<div class="infoScore">평점 : ${accomo.reviewScore }</div>
+					    </c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${accomo.minPrice == '0' }">
+						<div class="infoPrice">등록된 최저가 없음</div>
+						</c:when>
+						<c:otherwise>>
+						<div class="infoPrice">최저가 : ${accomo.minPrice}</div>
+						</c:otherwise>
+					</c:choose>
+
 					</div>
 				</div>
 			</div>

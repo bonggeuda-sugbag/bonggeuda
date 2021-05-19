@@ -41,5 +41,16 @@ public class UserInfoService {
 		return userList;
 		
 	}
+	
+	public UserInfoDTO selectDetail(String userNo) {
+		
+		Connection con = getConnection();
+		
+		UserInfoDTO userInfo = userInfoDAO.selectDetail(con, userNo);
+		
+		close(con);
+		
+		return userInfo;
+	}
 
 }
