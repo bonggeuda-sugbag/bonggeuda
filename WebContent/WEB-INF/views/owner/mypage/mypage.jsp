@@ -6,6 +6,8 @@
 <title>봉그다 숙박숙박 :: 마이 페이지</title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
+<link href="resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<script src="resources/owner/js/jquery.min.js"></script>
 
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>

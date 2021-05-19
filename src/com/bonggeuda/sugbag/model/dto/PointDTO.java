@@ -1,5 +1,7 @@
 package com.bonggeuda.sugbag.model.dto;
 
+import java.sql.Date;
+
 public class PointDTO {
 
 	private int pointNo;
@@ -43,5 +45,5 @@ public class PointDTO {
 	public String toString() {
 		return "PointDTO [pointNo=" + pointNo + ", userNo=" + userNo + ", point=" + point + "]";
 	}
-	
+
 }
