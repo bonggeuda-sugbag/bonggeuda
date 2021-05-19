@@ -22,11 +22,11 @@ public class RegistrationAccomo4 extends HttpServlet {
 		String roomFee = request.getParameter("roomFee");
 		String peakFee = request.getParameter("peakFee");
 	
-		System.out.println(roomName);
-		System.out.println(roomMax);
-		System.out.println(roonIntro);
-		System.out.println(roomFee);
-		System.out.println(peakFee);
+//		System.out.println(roomName);
+//		System.out.println(roomMax);
+//		System.out.println(roonIntro);
+//		System.out.println(roomFee);
+//		System.out.println(peakFee);
 		
 		String path="";
 

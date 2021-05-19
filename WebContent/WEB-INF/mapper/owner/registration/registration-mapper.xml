@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+	<entry key="insertAccomo">
+		INSERT INTO ACCOMO_INFO
+		(
+			ACCOMO_NO
+		  , OWNER_NO
+          , ACCOMO_NAME
+          , CEO_NAME
+          , ACCOMO_TYPE
+          , REGISTRATION_NO
+          , ACCOMO_ADDRESS
+		  , ACCOMO_EMAIL
+          , ACCOMO_HOMEPAGE
+          , ACCOMO_FACILITY
+          , ACCOMO_PATH
+          , ACCOMO_NEAR
+          , ACCOMO_RULE
+          , ACCOMO_PARKING
+          , CHECK_IN
+          , CHECK_OUT
+          , PEAK_DATE_START
+          , PEAK_DATE_END
+		)
+		VALUES
+		(
+			SEQ_ACCOMO_NO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		)
+		
+	</entry>
+</properties>

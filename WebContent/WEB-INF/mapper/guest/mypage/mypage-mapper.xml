@@ -34,4 +34,30 @@
 		 WHERE COUPON_USE_YN = 'N'
 		   AND USER_NO = ?
     </entry>
+
+    <entry key="myinfoSelect">
+		SELECT USER_NICKNAME
+		     , USER_PHONE
+		     , REPORT_COUNT
+		  FROM USER_INFO
+		 WHERE USER_NO = ?
+    </entry>
+    
+    <entry key="nickNameUpdate">
+		UPDATE USER_INFO
+		   SET USER_NICKNAME = ?
+		 WHERE USER_NO = ?
+    </entry>
+    
+    <entry key="phoneUpdate">
+		UPDATE USER_INFO
+		   SET USER_PHONE = ?
+		 WHERE USER_NO = ?
+    </entry>
+    
+    <entry key="passwordUpdate">
+		UPDATE USER_INFO
+		   SET USER_PWD = ?
+		 WHERE USER_NO = ?
+    </entry>
 </properties>

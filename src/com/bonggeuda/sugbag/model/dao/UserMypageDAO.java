@@ -14,14 +14,15 @@ import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
+import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 
-public class MypageDAO {
+public class UserMypageDAO {
 	
 	private Properties prop = new Properties();
 	
-	public MypageDAO() {
+	public UserMypageDAO() {
 		try {
 			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION + "/guest/mypage/mypage-mapper.xml"));
 		} catch (IOException e) {
@@ -205,6 +206,142 @@ public class MypageDAO {
 		}
 		
 		return couponList;
+	}
+
+	/**
+	 * 내 정보 조회
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public MemberDTO myinfoSelect(Connection con, int userNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		MemberDTO member = null;
+		
+		String query = prop.getProperty("myinfoSelect");
+		
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				member = new MemberDTO();
+				member.setNickName(rset.getString("USER_NICKNAME"));
+				member.setUserPhone(rset.getString("USER_PHONE"));
+				member.setReportCnt(rset.getInt("REPORT_COUNT"));
+				
+			}
+			System.out.println(member);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return member;
+	}
+
+	/**
+	 * 사용자 닉네임 변경
+	 * @param con
+	 * @param userMyinfo
+	 * @return
+	 */
+	public int updateUserNickNmae(Connection con, MemberDTO userMyinfo) {
+
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("nickNameUpdate");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, userMyinfo.getNickName());
+			pstmt.setInt(2, userMyinfo.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * 사용자 전화번호 변경
+	 * @param con
+	 * @param userMyinfo
+	 * @return
+	 */
+	public int updateUserPhone(Connection con, MemberDTO userMyinfo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("phoneUpdate");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, userMyinfo.getUserPhone());
+			pstmt.setInt(2, userMyinfo.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * 사용자 비밀번호 변경
+	 * @param con
+	 * @param userMyinfo
+	 * @return
+	 */
+	public int updateUserPwd(Connection con, MemberDTO userMyinfo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("passwordUpdate");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, userMyinfo.getUserPwd());
+			pstmt.setInt(2, userMyinfo.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
