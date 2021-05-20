@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
 import com.bonggeuda.sugbag.service.UserMypageService;
 
@@ -26,9 +27,12 @@ public class UserReportContentSelect extends HttpServlet {
 		UserMypageService mypageService = new UserMypageService();
 		
 		ReportDTO userReportContent = mypageService.selectReportContent(userNo, reportedNo);
+		AttachmentDTO userReportImg = mypageService.selectReportImg(userNo, reportedNo);
 		
 		String path = "/WEB-INF/views/guest/mypage/warningContents.jsp";
 		request.setAttribute("userReportContent", userReportContent);
+		request.setAttribute("userReportImg", userReportImg);
+		System.out.println("이이지경로 : " + userReportImg.getThumbnailPath());
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	
