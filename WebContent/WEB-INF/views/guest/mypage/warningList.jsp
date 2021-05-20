@@ -127,11 +127,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</thead>
 				<tbody>
 					<c:forEach var="arr" items="${ userreportList }" varStatus="st">
-
 						<tr>
 							<td style="text-align: center;"><c:out value="${ arr.reportNo }"/></td>
 							<td>							
-								<a href="warningContents.jsp"><c:out value="${ arr.reportTitle }"/></a>
+								<a href="${ pageContext.servletContext.contextPath }/userreportcontent/select?reportedNo=${ arr.reportNo }"><c:out value="${ arr.reportTitle }"/></a>
 							</td>
 							<td><c:out value="${ arr.accomoName }"/></td>
 							<td><c:out value="${ arr.reportDate }"/></td>
@@ -145,8 +144,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	</div>
-
-
 
 
 	<div class="clearfix"> </div>
