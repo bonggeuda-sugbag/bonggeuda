@@ -213,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<form action="${ pageContext.servletContext.contextPath }/usermyinfo/update" method="post">
 				<input type="text" name="userPhone" value="" placeholder="변경할 번호를 입력해주세요." style="width: 40%; height: 35px;">
 				<br>
-				<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
+				<button class="btns-wrap__submit-btn" type="submit" onclick="modifyphone()">수정완료</button>
 				<button class="btns-wrap__cancle-btn" type="reset">수정취소</button>
 				</form>
 			</div>
@@ -222,12 +222,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%; padding-bottom: 100px;">
 				<b style="font-size: 20px;">비밀번호</b>
 				<br>
-				<form action="${ pageContext.servletContext.contextPath }/usermyinfo/update" method="post">
+				<form action="${ pageContext.servletContext.contextPath }/usermyinfo/update" id="pwdform" method="post" onsubmit="return modifypwd()">
 				<input type="password" name="userPwd" id="pwd" onchange="isSame()" value="" placeholder="새로운 비밀번호를 입력하세요" style="width: 40%; height: 35px; margin-bottom: 10px;">
 				<br>
 				<input type="password" id="pwdcheck" onchange="isSame()" value="" placeholder="비밀번호 확인" style="width: 40%; height: 35px;">&nbsp;&nbsp;<span id="same"></span>
 				<br>
-				<button class="btns-wrap__submit-btn" type="submit" onclick="modifypwd()">수정완료</button>
+				<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
 				<button class="btns-wrap__cancle-btn" type="reset">수정취소</button>
 				</form>
 			</div>
@@ -238,6 +238,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			function nickNameCheck() {
 				window.name = "parentForm";
 				wondow.open
+			}
+			
+			function modifyphone() {
+				alert("전화번호가 변경되었습니다.");
 			}
 
 			function isSame() {
@@ -260,13 +264,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				var pwdcheck = document.getElementById("pwdcheck").value;
 				if(pwd!='' && pwdcheck!='') {
 					if(pwd == pwdcheck) {
-							alert("비밀번호가 변경되었습니다.")
+						alert("비밀번호가 변경되었습니다.");
+						return true;
 					}
 					else {
-							alert("비밀번호가 일치하지 않습니다.")
+						alert("비밀번호가 일치하지 않습니다.");
+						return false;
 					}
 				} else {
-					alert("비밀번호를 입력해주세요")
+					alert("비밀번호를 입력해주세요");
+					return false;
 				}
 			}
 			</script>
@@ -286,7 +293,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='index.jsp'">확인</button></div>
 								</div>
 							</div>
-
 
 					</div>
 				</div>
@@ -339,7 +345,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</li>
 									</ul>
 								<div class="password-wrap">
+								<form action="${ pageContext.servletContext.contextPath }/userwithdraw/update" method="post">
 									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='index.jsp'">탈퇴하기</button></div>
+								</form>	
 								</div>
 							</div>
 							<script>
@@ -361,8 +369,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</script>
 					</div>
 				</div>
-
-
 
 			</div>
 		</div>
