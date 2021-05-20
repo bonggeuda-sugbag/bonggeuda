@@ -26,13 +26,15 @@ public class AccomoInfoDTO {
 	
 	private int minPrice;
 	private double reviewScore;
+	
+	private AttachmentDTO attachment;
 
 	public AccomoInfoDTO() {}
 
 	public AccomoInfoDTO(int accomoNo, int ownerNo, String accomoName, String ceoName, String type,
 			String resgstrationNo, String address, String email, String homepage, String facility, String path,
 			String near, String rule, String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd,
-			int minPrice, double reviewScore) {
+			int minPrice, double reviewScore, AttachmentDTO attachment) {
 		super();
 		this.accomoNo = accomoNo;
 		this.ownerNo = ownerNo;
@@ -54,6 +56,7 @@ public class AccomoInfoDTO {
 		this.peakEnd = peakEnd;
 		this.minPrice = minPrice;
 		this.reviewScore = reviewScore;
+		this.attachment = attachment;
 	}
 
 	public int getAccomoNo() {
@@ -216,6 +219,14 @@ public class AccomoInfoDTO {
 		this.reviewScore = reviewScore;
 	}
 
+	public AttachmentDTO getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(AttachmentDTO attachment) {
+		this.attachment = attachment;
+	}
+
 	@Override
 	public String toString() {
 		return "AccomoInfoDTO [accomoNo=" + accomoNo + ", ownerNo=" + ownerNo + ", accomoName=" + accomoName
@@ -223,11 +234,13 @@ public class AccomoInfoDTO {
 				+ address + ", email=" + email + ", homepage=" + homepage + ", facility=" + facility + ", path=" + path
 				+ ", near=" + near + ", rule=" + rule + ", parking=" + parking + ", checkIn=" + checkIn + ", checkOut="
 				+ checkOut + ", peakStart=" + peakStart + ", peakEnd=" + peakEnd + ", minPrice=" + minPrice
-				+ ", reviewScore=" + reviewScore + "]";
+				+ ", reviewScore=" + reviewScore + ", attachment=" + attachment + "]";
 	}
 
 	
+
 	
+
 	
 	
 	

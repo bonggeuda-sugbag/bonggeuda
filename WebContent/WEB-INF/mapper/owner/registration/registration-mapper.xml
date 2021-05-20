@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+	<entry key="insertAccomo">
+		INSERT INTO ACCOMO_INFO
+		VALUES
+		(
+			12
+		  , 12
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		)
+	</entry>
+
+	<entry key="insertRoom">
+		INSERT INTO ROOM_INFO
+		VALUES
+		(
+		    16
+		  , 6
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , DEFAULT
+		  , ?
+		)
+	</entry>
+</properties>

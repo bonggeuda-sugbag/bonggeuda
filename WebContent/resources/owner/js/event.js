@@ -9,5 +9,12 @@ window.onload = function() {
 		}
 	}
 	
-	
+	if(document.getElementById("registration1")) {
+		
+		const $mypage = document.getElementById("registration1");
+		$mypage.onclick = function() {
+			
+			location.href = "/bonggeuda/registration1";
+		}
+	}
 }

@@ -21,8 +21,11 @@
              , CHECK_OUT
              , PEAK_DATE_START
              , PEAK_DATE_END 
-          FROM ACCOMO_INFO 
+             , THUMBNAIL_PATH
+          FROM ACCOMO_INFO AI
+          JOIN ATTACHMENT AM ON(AI.ACCOMO_NO = AM.REF_NO)
          WHERE ACCOMO_TYPE = ?
+           AND CATEGORY_NO = ?
     </entry>
     <entry key="selectMinPrice">
         SELECT
@@ -35,13 +38,50 @@
     </entry>
     <entry key="selectReviewScore">
         SELECT
-               AI.ACCOMO_NO 
+               AI.ACCOMO_NO
              , ROUND(AVG(RV.STAR_POINT),1) 평점
           FROM ACCOMO_INFO AI
           JOIN ROOM_INFO RI ON (AI.ACCOMO_NO = RI.ACCOMO_NO)
           JOIN BOOK_LIST BL ON(RI.ROOM_NO = BL.ROOM_NO)
           JOIN REVIEW RV ON(BL.BOOK_NO = RV.BOOK_NO)
-         WHERE ACCOMO_TYPE = ?  
+         WHERE ACCOMO_TYPE = ? 
          GROUP BY AI.ACCOMO_NO
+    </entry>
+    <entry key="selectOneAccomo">
+        SELECT 
+               ACCOMO_NO
+             , OWNER_NO
+             , ACCOMO_NAME
+             , CEO_NAME
+             , ACCOMO_TYPE
+             , REGISTRATION_NO
+             , ACCOMO_ADDRESS
+             , ACCOMO_EMAIL
+             , ACCOMO_HOMEPAGE
+             , ACCOMO_FACILITY
+             , ACCOMO_PATH
+             , ACCOMO_NEAR
+             , ACCOMO_RULE
+             , ACCOMO_PARKING
+             , CHECK_IN
+             , CHECK_OUT
+             , PEAK_DATE_START
+             , PEAK_DATE_END
+             , AM.THUMBNAIL_PATH
+          FROM ACCOMO_INFO AI
+          JOIN ATTACHMENT AM ON(AI.ACCOMO_NO = AM.REF_NO) 
+         WHERE ACCOMO_NO = ?
+           AND CATEGORY_NO = ?
+    </entry>
+    <entry key="selectOneAccomoReviewScoe">
+    SELECT 
+           AI.ACCOMO_NO
+         , ROUND(AVG(RV.STAR_POINT),1) 평점
+      FROM ACCOMO_INFO AI
+      JOIN ROOM_INFO RI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+      JOIN BOOK_LIST BL ON(RI.ROOM_NO = BL.ROOM_NO)
+      JOIN REVIEW RV ON(BL.BOOK_NO = RV.BOOK_NO)
+     WHERE AI.ACCOMO_NO = ?
+     GROUP BY AI.ACCOMO_NO
     </entry>
 </properties>

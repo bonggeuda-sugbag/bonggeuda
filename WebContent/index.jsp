@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> 
 	<jsp:forward page="/WEB-INF/views/owner/registration/registration1.jsp"></jsp:forward>
 	
@@ -56,14 +57,24 @@
 	</script> -->
 	<%-- <jsp:forward page="/WEB-INF/views/admin/company/companyInfo.jsp"></jsp:forward> --%>
 <%-- <jsp:forward page="/WEB-INF/views/owner/roomRegistration/registration.jsp"></jsp:forward>
+=======
+
+<%--  	 <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
  --%>
+
 
 	<%-- <jsp:forward page="/WEB-INF/views/guest/accomoInfo/detailInfo.jsp"></jsp:forward> --%>
  	
 
+ 	<jsp:forward page="/WEB-INF/views/owner/registration/registration4.jsp"></jsp:forward>
 
 
-<%--  	<jsp:forward page="/login/test"></jsp:forward>
- --%>
+
+<jsp:forward page="/login/test"></jsp:forward> 
+
+
+
+
 </body>
 </html>

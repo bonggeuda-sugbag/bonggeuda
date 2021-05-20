@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -10,17 +11,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>봉그다숙박숙박</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 
 <!-- theme-style -->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
@@ -348,7 +349,7 @@ popup>li{
     clear: both;
     width: 120px;
     height: 24px;
-    background: url(resources/guest/images/reviewStar.png) 0 0 no-repeat;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat;
     background-size: 120px auto;
     background-position: 0 -24px;
     text-align: right;
@@ -363,7 +364,7 @@ popup>li{
     width: 30px;
     height: 20px;
     margin-left: 13px;
-    background: url(resources/guest/images/like.png) 0 0 no-repeat;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/like.png) 0 0 no-repeat;
     background-size: 20px 20px;
     
 }
@@ -372,7 +373,7 @@ popup>li{
     width: 30px;
     height: 20px;
     margin-left: 13px;
-    background: url(resources/guest/images/likeun.png) 0 0 no-repeat;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeun.png) 0 0 no-repeat;
     background-size: 20px 20px;
 }
 
@@ -391,7 +392,7 @@ popup>li{
     width: 30px;
     height: 20px;
     margin-left: 13px;
-    background: url(resources/guest/images/like.png) 0 0 no-repeat;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/like.png) 0 0 no-repeat;
     background-size: 20px 20px;
     
 }
@@ -399,7 +400,7 @@ popup>li{
     width: 30px;
     height: 20px;
     margin-left: 13px;
-    background: url(resources/guest/images/likeun.png) 0 0 no-repeat;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeun.png) 0 0 no-repeat;
     background-size: 20px 20px;
     
 }
@@ -500,16 +501,26 @@ textarea {
             <!-- 숙소사진, 이름 -->
             <div style=" width : 1100px; height : 500px; padding:10px 10px 10px 0px;display: flex; flex-direction: row;">
                 <!-- 숙소사진 -->
-                <div style=" width : 600px; height: 470px; display: block;background: url(resources/guest/images/ga2.jpg) no-repeat; background-size: 600px 470px;">
+                <div style=" width : 600px; height: 470px; display: block;background: url(${pageContext.servletContext.contextPath }/${accomo.attachment.thumbnailPath }); background-size: 600px 470px;">
                     
                 </div>
                 <!-- 숙소이름 -->
                 <div class="accomoInfo">
-                    <div><h2>더조은컴퓨터아카데미</h2></div>
+                    <div><h2>${accomo.accomoName }</h2></div>
                     <br>
-                    <div><h3><p>평점</p>0점 / 5점</h3></div>
+                    <c:choose>
+                        <c:when test="${accomo.reviewScore == '0.0'}">
+	                    <div><h3>등록된 평점 없음</h3></div>
+                        
+                        </c:when>
+                        <c:otherwise>
+                        <div><h3><p>평점</p>${ accomo.reviewScore }점 / 5점</h3></div>
+                        </c:otherwise>
+                    </c:choose>
                     <br>
-                    <div><h4>주소 : 강남구 강남동</h4></div>
+                    <div><h4> - 주소 : ${accomo.address }</h4></div>
+                    <br>
+                    <div><h4> - 오시는길 : ${accomo.path }</h4></div>
                     <br><br>
                     <div class="ownerComment">
                         <h4 style="text-align: left;"><b>사장님 한마디</b></h4>
@@ -538,7 +549,7 @@ textarea {
 				</div>
 				<div style="text-align: right; display: flex; ">
 					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.html';">신고하기</button>
-					<div style="margin-left:5px; width: 30px; height: 30px; background: url(resources/guest/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
+					<div style="margin-left:5px; width: 30px; height: 30px; background: url(${pageContext.servletContext.contextPath }/resources/guest/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
 				</div>
 			</div>
             <script>
@@ -644,7 +655,7 @@ textarea {
 					</div>
 					<div style="text-align: left;">
 						<p>체크인 가능시간</p>
-						<p>11:00 이후</p>
+						<p> ${accomo.checkIn} 이후</p>
 					</div>
 				<!-- //예약일자 입력 -->
 				</div>
@@ -653,7 +664,7 @@ textarea {
 				<center>
 					<!-- 객실정보 -->
 					<div class="detailList" > 
-						<div class="detailImg" style="background: url(resources/guest/images/pc1.jpg) no-repeat; background-size: 100%;" ></div>
+						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/pc1.jpg) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
 							<div><h3>더조은컴퓨터아카데미 강남점</h3></div>
 							<br><br>
@@ -672,7 +683,7 @@ textarea {
 						</div>
 					</div>
 					<div class="detailList" > 
-						<div class="detailImg" style="background: url(resources/guest/images/pc2.jpg) no-repeat; background-size: 100%;" ></div>
+						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/pc2.jpg) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
 							<div><h3>더조은컴퓨터아카데미 강남별관</h3></div>
 							<br><br>
@@ -701,13 +712,13 @@ textarea {
 						<label for="checkbox-1">기본정보</label>
 						<div class="content">
 							<h3>주변정보</h3>
-							<p>- 두물머리 부근</p>
+							<p>- ${ accomo.near }</p>
 							<h3>공지사항</h3>
-							<p>- 성수기 : 7월 15일 ~ 9월21일</p>
-							<p>- 전객실 금연(적발 시 퇴실조치, 환불 불가)</p>
+							<p>- 성수기 : ${accomo.peakStart } ~ ${accomo.peakEnd }</p>
+							<p>- ${accomo.rule }</p>
 							<h3>기본정보</h3>
-							<p>- 입실 : 15:00 | 퇴실 : 11:00</p>
-							<p>- 무료 Wi-Fi</p>
+							<p>- 입실가능시간 : ${accomo.checkIn } | 퇴실 : ${accomo.checkOut }</p>
+							<p>- 주차요금 : ${accomo.parking}</p>
 							<h3>객실정보</h3>
 							<p>- 흠..?</p>
 							<h3>취소 및 환불 규정</h3>
@@ -728,7 +739,7 @@ textarea {
 						<input type="checkbox" id="checkbox-2" name="checkbox-accordion" />
 						<label for="checkbox-2">편의시설 및 서비스</label>
 						<div class="content2">
-							<p>수영장 / 와이파이 / 픽업가능 / BBQ / TV / 욕실용품</p>
+							<p>${accomo.facility }</p>
 						</div>
 					</li>
 					
@@ -768,7 +779,7 @@ textarea {
                             </div>
 							
                             <div class="reviewScore" style="display: flex;">
-								<div  style="display:flex;width: 90px; height:18px;background: url(resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -38px;">
+								<div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -38px;">
 								</div>
                             	<h5>4</h5>
                             </div>
@@ -799,7 +810,7 @@ textarea {
                                 <div><p>80</p></div>
                             </div>
 							<div class="reviewScore" style="display: flex;">
-								<div  style="display:flex;width: 90px; height:18px;background: url(resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
+								<div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
 								</div>
                             	<h5>3</h5>
                             </div>
@@ -817,7 +828,7 @@ textarea {
                 </ul>
 				<hr>
 				<div class="clearfix"> </div>
-	<nav>
+	    <nav>
 		<ul class="pagination">
 		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>

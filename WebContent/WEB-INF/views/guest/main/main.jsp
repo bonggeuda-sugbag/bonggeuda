@@ -168,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container">
 			<div class="bottom-header">
 				<div class="header-bottom">
-					<div class=" bottom-head" style="position: relative; left: 170px; value="a" onclick=selectBookList(this);">
+					<div class=" bottom-head" style="position: relative; left: 170px;">
 						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value='hotel'">
 							<div class="buy-media" >
 								<i class="buy"> </i>
