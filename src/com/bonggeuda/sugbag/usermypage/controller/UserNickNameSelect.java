@@ -19,6 +19,7 @@ public class UserNickNameSelect extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 닉네임 중복체크 시 필요한 정보 조회 */
 		String inputNickName = request.getParameter("intputNickname");
 		System.out.println(inputNickName);
 		

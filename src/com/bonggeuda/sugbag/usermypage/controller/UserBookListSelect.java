@@ -1,7 +1,6 @@
 package com.bonggeuda.sugbag.usermypage.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.service.UserMypageService;
 
@@ -40,6 +40,7 @@ public class UserBookListSelect extends HttpServlet {
 		List<BookDTO> cancleBooklist = new ArrayList<>();
 		cancleBooklist = mypageService.selectCancleBooklist(userNo);
 		System.out.println(cancleBooklist);
+
 		
 		
 		String path = "/WEB-INF/views/guest/mypage/reservation.jsp";
