@@ -13,6 +13,9 @@
 </head>
 <body>
 <!--header-->
+
+ ${ requestScope.accomoDTO };
+ ${ accomoName };
 <div class="header">
    <div class="container">
       <!--logo-->
@@ -247,12 +250,11 @@
                </div>
             </td>
          </tr>
+         </form>
          <tr>
             <br>
             <th colspan="2" style="background-color: white; ">
-               <form action="registration3-rule.html">
-                  <button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
-               </form>
+                  <button name="accomo1" value="${ requestScope.accomoDTO }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
             </th>
          </tr>
       </tbody>
@@ -271,7 +273,6 @@
     </div>
 </div>
 </div>
-</form>
 <!--//footer-->
 </body>
 </html>

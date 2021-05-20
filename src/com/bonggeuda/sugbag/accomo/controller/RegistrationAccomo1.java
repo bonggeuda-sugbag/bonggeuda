@@ -29,6 +29,15 @@ public class RegistrationAccomo1 extends HttpServlet {
 		String email = request.getParameter("email");
 		String homepage = request.getParameter("homepage");
 		
+		System.out.println(accomoName);
+		System.out.println(ceoName);
+		System.out.println(accomoType);
+		System.out.println(registNo);
+		System.out.println(address);
+		System.out.println(adrDetail);
+		System.out.println(email);
+		System.out.println(homepage);
+		
 		/*전달받은 값을 넣어줄 객체 선언*/
 		AccomoDTO accomoDTO = new AccomoDTO();
 		
@@ -40,19 +49,20 @@ public class RegistrationAccomo1 extends HttpServlet {
 		accomoDTO.setAdrDetail(adrDetail);
 		accomoDTO.setEmail(email);
 		accomoDTO.setHomepage(homepage);
-
-		request.setAttribute("accomoName", accomoName);
-
-		System.out.println(accomoDTO);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/registration2");
-		dispatcher.forward(request, response);
+		request.setAttribute("accomoDTO", accomoDTO);
+		request.setAttribute("accomoName", accomoName);
+		
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/registration2");
+//		dispatcher.forward(request, response);
 		
 		/*등록 2단계로 이동*/
 		String path="";
+
 		path = "/WEB-INF/views/owner/registration/registration2.jsp";
-		//request.setAttribute("accomoList", accomoList);
+		
 		request.getRequestDispatcher(path).forward(request, response);
+
 	}
 
 }

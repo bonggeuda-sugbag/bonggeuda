@@ -17,15 +17,18 @@ import com.bonggeuda.sugbag.accomo.model.dto.AccomoDTO;
 @WebServlet("/registration2")
 public class RegistrationAccomo2 extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String accomoName = (String) request.getAttribute("accomoName");
-		System.out.println(accomoName);
+		System.out.println("2222" + request.getParameter("accomo1"));
+
+//		String accomoName = request.getParameter("accomoName");
+//		String ceoName = request.getParameter("ceoName");
+//		String accomoType = request.getParameter("accomoType");
+//		String registNo = request.getParameter("registNo");
+//		String address = request.getParameter("address");
+//		String adrDetail = request.getParameter("adrDetail");
+//		String email = request.getParameter("email");
+//		String homepage = request.getParameter("homepage");
 		
 		/*등록2단계*/
 		//숙소이미지받아오기
@@ -44,21 +47,26 @@ public class RegistrationAccomo2 extends HttpServlet {
 				facility += ", ";
 			}
 		}
-
+		
+		System.out.println(facility);
+		System.out.println(accomoPath);
+		System.out.println(near);
+		System.out.println(rule);
+		System.out.println(parking);
+		
+//		AccomoDTO accomoDTO = (AccomoDTO)(Object)request.getParameter("accomo1");
+//
 //		accomoDTO.setFacility(facility);
 //		accomoDTO.setAccomoPath(accomoPath);
 //		accomoDTO.setNear(near);
 //		accomoDTO.setRule(rule);
 //		accomoDTO.setParking(parking);
 		
+		String path="";
 
-		
-//		String path="";
-//
-//		path = "/WEB-INF/views/owner/registration/registration3.jsp";
-//		//request.setAttribute("accomoList", accomoList);
-//
-//		request.getRequestDispatcher(path).forward(request, response);
+		path = "/WEB-INF/views/owner/registration/registration3.jsp";
+
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

@@ -236,7 +236,7 @@
 			<tr>
 				<br>
 				<th colspan="2" style="background-color: white; ">
-					<form action="registration4-room.html">
+					<form action="${ pageContext.servletContext.contextPath }/registration3" method="post">
 						<button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
 					</form>
 				</th>
