@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.accomo.model.dao;
+package com.bonggeuda.sugbag.owner.accomo.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,8 +9,8 @@ import java.util.Properties;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 
-import com.bonggeuda.sugbag.accomo.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 
 public class AccomoDAO {
 
@@ -40,34 +40,35 @@ public class AccomoDAO {
 		System.out.println(query);
 		
 		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 11); // <-위치 홀더의 시작인덱스 시작 값은 1.
-			pstmt.setString(2, accomoDTO.getAccomoName());
-			pstmt.setString(3, accomoDTO.getCeoName());
-			pstmt.setString(4, accomoDTO.getAccomoType());
-			pstmt.setString(5, accomoDTO.getRegistNo());
-			pstmt.setString(6, accomoDTO.getAddress());
+			pstmt = con.prepareStatement(query);			
+			pstmt.setString(1, accomoDTO.getAccomoName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
+			pstmt.setString(2, accomoDTO.getCeoName());
+			pstmt.setString(3, accomoDTO.getAccomoType());
+			pstmt.setString(4, accomoDTO.getRegistNo());
+			pstmt.setString(5, accomoDTO.getAddress());
 			//pstmt.setString(7, accomoDTO.getAdrDetail());
-			pstmt.setString(7, accomoDTO.getEmail());
-			pstmt.setString(8, accomoDTO.getHomepage());
-			pstmt.setString(9, accomoDTO.getFacility());
-			pstmt.setString(10, accomoDTO.getAccomoPath());
-			pstmt.setString(11, accomoDTO.getNear());
-			pstmt.setString(12, accomoDTO.getRule());
-			pstmt.setString(13, accomoDTO.getParking());
-			pstmt.setString(14, accomoDTO.getCheckIn());
-			pstmt.setString(15, accomoDTO.getCheckOut());
-			pstmt.setDate(16, accomoDTO.getPeakStart());
-			pstmt.setDate(17, accomoDTO.getPeakEnd());
+			pstmt.setString(6, accomoDTO.getEmail());
+			pstmt.setString(7, accomoDTO.getHomepage());
+			pstmt.setString(8, accomoDTO.getFacility());
+			pstmt.setString(9, accomoDTO.getAccomoPath());
+			pstmt.setString(10, accomoDTO.getNear());
+			pstmt.setString(11, accomoDTO.getRule());
+			pstmt.setString(12, accomoDTO.getParking());
+			pstmt.setString(13, accomoDTO.getCheckIn());
+			pstmt.setString(14, accomoDTO.getCheckOut());
+			pstmt.setDate(15, accomoDTO.getPeakStart());
+			pstmt.setDate(16, accomoDTO.getPeakEnd());
 
 			insert = pstmt.executeUpdate();
+			
+			System.out.println(insert);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-
+     
 		return insert;
 	}
 }

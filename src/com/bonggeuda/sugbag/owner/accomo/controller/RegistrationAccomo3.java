@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.accomo.controller;
+package com.bonggeuda.sugbag.owner.accomo.controller;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bonggeuda.sugbag.accomo.model.dto.AccomoDTO;
-import com.bonggeuda.sugbag.accomo.model.service.AccomoService;
+import com.bonggeuda.sugbag.model.dto.AccomoDTO;
+import com.bonggeuda.sugbag.owner.accomo.service.AccomoService;
 
 /**
  * Servlet implementation class RegistrationAccomo3

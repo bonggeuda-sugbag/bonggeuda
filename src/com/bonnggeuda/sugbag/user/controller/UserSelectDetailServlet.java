@@ -17,9 +17,11 @@ public class UserSelectDetailServlet extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("첫번째 확인 : " + request.getParameter("hduserNo"));
+		
 		UserInfoService userInfoService = new UserInfoService();
 		
-		UserInfoDTO userInfo = userInfoService.selectDetail(request.getParameter("userNo"));
+		UserInfoDTO userInfo = userInfoService.selectDetail(request.getParameter("hduserNo"));
 		
 		System.out.println(userInfo);
 		
@@ -28,6 +30,7 @@ public class UserSelectDetailServlet extends HttpServlet {
 		if(userInfo != null) {
 			path = "/WEB-INF/views/admin/user/userInfoDetail.jsp";
 			request.setAttribute("userInfo", userInfo);
+			request.setAttribute("user", request.getParameter("hduserNo"));
 		} 
 		
 
