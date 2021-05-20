@@ -50,11 +50,8 @@ public class RegistrationAccomo1 extends HttpServlet {
 		accomoDTO.setEmail(email);
 		accomoDTO.setHomepage(homepage);
 		
+		/*숙소등록2번 jsp로 전달*/
 		request.setAttribute("accomoDTO", accomoDTO);
-		request.setAttribute("accomoName", accomoName);
-		
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/registration2");
-//		dispatcher.forward(request, response);
 		
 		/*등록 2단계로 이동*/
 		String path="";

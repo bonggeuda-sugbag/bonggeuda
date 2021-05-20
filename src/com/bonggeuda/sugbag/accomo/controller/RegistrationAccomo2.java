@@ -18,19 +18,18 @@ import com.bonggeuda.sugbag.accomo.model.dto.AccomoDTO;
 public class RegistrationAccomo2 extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("2222" + request.getParameter("accomo1"));
 
-//		String accomoName = request.getParameter("accomoName");
-//		String ceoName = request.getParameter("ceoName");
-//		String accomoType = request.getParameter("accomoType");
-//		String registNo = request.getParameter("registNo");
-//		String address = request.getParameter("address");
-//		String adrDetail = request.getParameter("adrDetail");
-//		String email = request.getParameter("email");
-//		String homepage = request.getParameter("homepage");
+		/*1단계에서 값 넘어오는지 확인*/
+		System.out.println(request.getParameter("accomoName"));
+		System.out.println(request.getParameter("ceoName"));
+		System.out.println(request.getParameter("accomoType"));
+		System.out.println(request.getParameter("registNo"));
+		System.out.println(request.getParameter("address"));
+		System.out.println(request.getParameter("adrDetail"));
+		System.out.println(request.getParameter("email"));
+		System.out.println(request.getParameter("homepage"));
 		
-		/*등록2단계*/
+		/*2단계 입력받기*/
 		//숙소이미지받아오기
 		String[] arrayFacility = request.getParameterValues("arrayFacility");
 		String facility = "";
@@ -48,19 +47,25 @@ public class RegistrationAccomo2 extends HttpServlet {
 			}
 		}
 		
-		System.out.println(facility);
-		System.out.println(accomoPath);
-		System.out.println(near);
-		System.out.println(rule);
-		System.out.println(parking);
+		/*다시 DTO에 한번에 담아줌*/
+		AccomoDTO accomoDTO = new AccomoDTO();
 		
-//		AccomoDTO accomoDTO = (AccomoDTO)(Object)request.getParameter("accomo1");
-//
-//		accomoDTO.setFacility(facility);
-//		accomoDTO.setAccomoPath(accomoPath);
-//		accomoDTO.setNear(near);
-//		accomoDTO.setRule(rule);
-//		accomoDTO.setParking(parking);
+		accomoDTO.setAccomoName(request.getParameter("accomoName"));
+		accomoDTO.setCeoName(request.getParameter("ceoName"));
+		accomoDTO.setAccomoType(request.getParameter("accomoType"));
+		accomoDTO.setRegistNo(request.getParameter("registNo"));
+		accomoDTO.setAddress(request.getParameter("address"));
+		accomoDTO.setAdrDetail(request.getParameter("adrDetail"));
+		accomoDTO.setEmail(request.getParameter("email"));
+		accomoDTO.setHomepage(request.getParameter("homepage"));
+		accomoDTO.setFacility(facility);
+		accomoDTO.setAccomoPath(accomoPath);
+		accomoDTO.setNear(near);
+		accomoDTO.setRule(rule);
+		accomoDTO.setParking(parking);
+		
+		/*숙소등록3번 jsp로 값 넘기기*/
+		request.setAttribute("accomoDTO", accomoDTO);
 		
 		String path="";
 

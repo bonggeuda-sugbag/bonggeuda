@@ -218,7 +218,7 @@
 			<tr>
 				<br>
 				<th colspan="2" style="background-color: white; ">
-						<button name="accomo1" value='${ accomoDTO.name }' class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
+						<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
 				</th>
 			</tr>
 		</tbody>
