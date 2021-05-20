@@ -17,6 +17,7 @@ import java.util.Properties;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class BookDAO {
@@ -264,12 +265,16 @@ public class BookDAO {
 			close(pstmt);
 		}
 		
-		System.out.println(accomo);
-		
 		return accomo;
 	}
 
-	public List<RoomDTO> selectRoomList(Connection con, int accomoNo) {
+	/**
+	 * 숙소의 객실정보 조회
+	 * @param con
+	 * @param accomoNo 숙소번호
+	 * @return 객실리스트
+	 */
+	public List<RoomDTO> selectRoomList(Connection con, int accomoNo, int categoryType) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -281,6 +286,7 @@ public class BookDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, categoryType);
 			
 			rset = pstmt.executeQuery();
 			
@@ -288,6 +294,7 @@ public class BookDAO {
 			
 			while(rset.next()) {
 				room = new RoomDTO();
+				AttachmentDTO attachment = new AttachmentDTO();
 				room.setRoomNo(rset.getInt("ROOM_NO"));
 				room.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				room.setRoomName(rset.getString("ROOM_NAME"));
@@ -295,6 +302,8 @@ public class BookDAO {
 				room.setRoomIntro(rset.getString("ROOM_INTRO"));
 				room.setRoomFee(rset.getInt("ROOM_FEE"));
 				room.setPeakFee(rset.getInt("PEAK_FEE"));
+				attachment.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				room.setAttachment(attachment);
 				
 				roomList.add(room);
 			}
@@ -307,6 +316,32 @@ public class BookDAO {
 		return roomList;
 	}
 
-	
-
+	/**
+	 * 이용자 > 업주 문의 insert
+	 * @param con 
+	 * @param qna 문의 정보
+	 * @return
+	 */
+	public int insertOwnerQnA(Connection con, OwnerQnADTO qna) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertOwnerQnA");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, qna.getTitle());
+			pstmt.setString(2, qna.getContent());
+			pstmt.setDate(3, qna.getWriteDate());
+			pstmt.setInt(4, qna.getAccomoNo());
+			pstmt.setInt(5, qna.getUserNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

@@ -9,12 +9,12 @@ public class OwnerQnADTO {
 	private String content;
 	private Date writeDate;
 	private String answerYN;
-	private int ownerNo;
+	private int accomoNo;
 	private int userNo;
 	
 	public OwnerQnADTO() {}
 
-	public OwnerQnADTO(int qnaAo, String title, String content, Date writeDate, String answerYN, int ownerNo,
+	public OwnerQnADTO(int qnaAo, String title, String content, Date writeDate, String answerYN, int accomoNo,
 			int userNo) {
 		super();
 		this.qnaAo = qnaAo;
@@ -22,7 +22,7 @@ public class OwnerQnADTO {
 		this.content = content;
 		this.writeDate = writeDate;
 		this.answerYN = answerYN;
-		this.ownerNo = ownerNo;
+		this.accomoNo = accomoNo;
 		this.userNo = userNo;
 	}
 
@@ -66,12 +66,12 @@ public class OwnerQnADTO {
 		this.answerYN = answerYN;
 	}
 
-	public int getOwnerNo() {
-		return ownerNo;
+	public int getAccomoNo() {
+		return accomoNo;
 	}
 
-	public void setOwnerNo(int ownerNo) {
-		this.ownerNo = ownerNo;
+	public void setAccomoNo(int accomoNo) {
+		this.accomoNo = accomoNo;
 	}
 
 	public int getUserNo() {
@@ -85,6 +85,6 @@ public class OwnerQnADTO {
 	@Override
 	public String toString() {
 		return "OwnerQnADTO [qnaAo=" + qnaAo + ", title=" + title + ", content=" + content + ", writeDate=" + writeDate
-				+ ", answerYN=" + answerYN + ", ownerNo=" + ownerNo + ", userNo=" + userNo + "]";
+				+ ", answerYN=" + answerYN + ", accomoNo=" + accomoNo + ", userNo=" + userNo + "]";
 	}
 }
