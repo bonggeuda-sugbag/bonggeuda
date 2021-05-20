@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
+import com.bonnggeuda.sugbag.user.dto.UserCouponDTO;
 import com.bonnggeuda.sugbag.user.dto.UserInfoDTO;
 
 public class UserInfoDAO {
@@ -111,7 +112,7 @@ public class UserInfoDAO {
 		
 			pstmt = con.prepareStatement(query);
 			System.out.println("userNo :" + userNo);
-//			pstmt.setString(1, userNo);
+			pstmt.setString(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -122,6 +123,7 @@ public class UserInfoDAO {
 				userInfo.setName(rset.getString("USER_NICKNAME"));
 				userInfo.setPhoneNumber(rset.getString("USER_PHONE"));
 				userInfo.setPoint(rset.getInt("POINT"));
+				userInfo.setUserNo(rset.getInt("USER_NO"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -130,6 +132,36 @@ public class UserInfoDAO {
 			close(pstmt);
 		}
 		return userInfo;
+	}
+
+
+	public int insertCoupon (Connection con, UserCouponDTO dto, int hduserNo) {
+		System.out.println(dto);
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("insertCoupon");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setDate(1, dto.getStartDate());
+			pstmt.setDate(2, dto.getEndDate());
+			pstmt.setInt(3, dto.getCondition());
+			pstmt.setInt(4, hduserNo);
+			pstmt.setString(5, dto.getCouponName());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(con);
+		}
+		
+		return result;
 	}
 
 

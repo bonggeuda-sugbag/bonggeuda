@@ -2,13 +2,16 @@ package com.bonnggeuda.sugbag.user.service;
 
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
 
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonnggeuda.sugbag.user.dao.UserInfoDAO;
+import com.bonnggeuda.sugbag.user.dto.UserCouponDTO;
 import com.bonnggeuda.sugbag.user.dto.UserInfoDTO;
 
 public class UserInfoService {
@@ -52,5 +55,26 @@ public class UserInfoService {
 		
 		return userInfo;
 	}
+
+
+	public int insertCoupon(UserCouponDTO dto,  int hduserNo) {
+		
+
+		Connection con = getConnection();
+		
+		int insertCoupon = userInfoDAO.insertCoupon (con, dto , hduserNo);
+		
+		if(insertCoupon  > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return insertCoupon ;
+	}
+
+
 
 }
