@@ -108,13 +108,15 @@
 							</div>
 						</a>
 					</div>
-					<div class=" bottom-head">
-						<a href="managementNoRoom.html"> <!--숙소 관리 페이지로 연결-->
+					<div class=" bottom-head" id="roomManagement">
+						<a href="/bonggeuda/owner/managementRoom"> <!--숙소 등록 페이지로 연결-->
 							<div class="buy-media">
-							<i class="rent"> </i>
-							<h6>숙소 관리</h6>
+								<i class="buy"> </i>
+								<h6 id="roomManagement">숙소 관리</h6>
 							</div>
-						</a>
+							</a>
+
+						
 					</div>
 					<div class=" bottom-head">
 						<a href="booking.html"> <!--예약 관리 페이지로 연결-->

@@ -17,4 +17,13 @@ window.onload = function() {
 			location.href = "/bonggeuda/registration1";
 		}
 	}
+	
+	if(document.getElementById("roomManagement")) {
+		
+		const $roomManagement = document.getElementById("roomManagement");
+		$roomManagement.onclick = function() {
+			
+			location.href = "/bonggeuda/owner/managementRoom";
+		}
+	}
 }
