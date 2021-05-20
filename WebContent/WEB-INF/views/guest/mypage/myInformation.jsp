@@ -115,6 +115,7 @@
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <!--header-->
@@ -193,8 +194,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span>&nbsp<c:out value="${ requestScope.userMyinfo.nickName }"/></span>
 				<br>
 				
-				<form action="${ pageContext.servletContext.contextPath }/usermyinfo/update" method="post">
-				<input type="text" name="userNickName" value="" placeholder="변경할 닉네임을 입력해주세요." style="width: 40%; height: 35px;">
+				<form action="${ pageContext.servletContext.contextPath }/usermyinfo/update" method="post" onsubmit="return modifyNickName()">
+				<input type="text" name="userNickName" id="userNickName" value="" placeholder="변경할 닉네임을 입력해주세요." style="width: 40%; height: 35px;">
 				&nbsp;<input type="button" value="중복확인" onclick="nickNameCheck()" class="nickNameCheck">
 				<input type="hidden" name="idDuplication" value="idUncheck">
 				<br>
@@ -210,10 +211,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span>&nbsp<c:out value="${ requestScope.userMyinfo.userPhone }"/></span>
 				<p style="font-size: 15px;">개인 정보 보호를 위해 내 정보는 모두 안전하게 암호화됩니다.</p>
 				
-				<form action="${ pageContext.servletContext.contextPath }/usermyinfo/update" method="post">
-				<input type="text" name="userPhone" value="" placeholder="변경할 번호를 입력해주세요." style="width: 40%; height: 35px;">
+				<form action="${ pageContext.servletContext.contextPath }/usermyinfo/update" method="post" onsubmit="return modifyphonenumber()">
+				<input type="text" name="userPhone" id="userPhone" value="" placeholder="변경할 번호를 입력해주세요." style="width: 40%; height: 35px;">
 				<br>
-				<button class="btns-wrap__submit-btn" type="submit" onclick="modifyphone()">수정완료</button>
+				<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
 				<button class="btns-wrap__cancle-btn" type="reset">수정취소</button>
 				</form>
 			</div>
@@ -235,15 +236,72 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<script>
 
+			/* 닉네임 수정 유효성 */
+			var nickNameCnt = 0;
+			
 			function nickNameCheck() {
-				window.name = "parentForm";
-				wondow.open
+				var intputNickname = document.getElementById("userNickName").value;
+				
+				$.ajax({
+			         url: "${ pageContext.servletContext.contextPath }/usernickname/select",
+			         type: "get",
+			         data:{ intputNickname : intputNickname },
+			         success: function(data,textStatus,xhr){
+			        	 console.log(data);
+			            if (data == '0'){
+			               alert("사용할 수 있는 닉네임입니다.");
+			               nickNameCnt = 1;
+			            } else if(data != '0') {
+			                alert("이미 사용중인 닉네임입니다.");
+			            }
+			         },
+			         error: function(xhr, status, error){
+			            console.log(xhr);
+			            console.log(status);
+			            console.log(error);
+			         }
+			         
+			      });
 			}
 			
-			function modifyphone() {
-				alert("전화번호가 변경되었습니다.");
+			/* 닉네임 수정 유효성 */
+			function modifyNickName() {
+				var nickName = document.getElementById("userNickName").value;
+				
+				if(nickName!='') {
+					if(nickNameCnt != 0) {
+						alert("닉네임이 변경되었습니다.");
+	               	 	return true;
+	            	} else {
+	                	alert("중복확인을 해주세요.");
+	                	return false;
+	            	}
+				} else {
+					alert("닉네임을 입력해주세요.");
+					return false;
+				}
+			}
+			
+			/* 전화번호 수정 유효성 */
+			function modifyphonenumber() {
+				var phone = document.getElementById("userPhone").value;
+				var regExp = /010-\d{4}-\d{4}/;
+				
+				if(phone!='') {
+					if(regExp.test(phone)) {
+						alert("전화번호가 변경되었습니다.");
+	               	 	return true;
+	            	} else {
+	                	alert("전화번호 형식으로 입력해주세요. (ex.010-xxxx-xxxx)");
+	                	return false;
+	            	}
+				} else {
+					alert("전화번호를 입력해주세요.");
+					return false;
+				}
 			}
 
+			/* 비밀번호 변경 유효성 */
 			function isSame() {
 				var pwd = document.getElementById("pwd").value;
 				var pwdcheck = document.getElementById("pwdcheck").value;
@@ -259,6 +317,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				}
 			}
 
+			/* 비밀번호 변경 유효성 */
 			function modifypwd() {
 				var pwd = document.getElementById("pwd").value;
 				var pwdcheck = document.getElementById("pwdcheck").value;
@@ -272,13 +331,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						return false;
 					}
 				} else {
-					alert("비밀번호를 입력해주세요");
+					alert("비밀번호를 입력해주세요.");
 					return false;
 				}
 			}
 			</script>
 
-
+			<!-- 로그아웃 -->
 			<div class="bot_btn">
 				<button type="button" onclick="location.href='#pop02'">로그아웃</button>
 				<div id="pop02" class="overlay">

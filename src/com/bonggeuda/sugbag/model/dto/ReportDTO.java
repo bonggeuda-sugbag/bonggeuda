@@ -14,11 +14,13 @@ public class ReportDTO {
 	private String reportedType;
 	private int reportedNo;
 	private String accomoName;
+	private String reportAnswer;
 
 	public ReportDTO() {}
 
 	public ReportDTO(int reportNo, String writerType, String reportReason, int memberNo, Date reportDate,
-			String reportTitle, String reportStatus, String reportedType, int reportedNo, String accomoName) {
+			String reportTitle, String reportStatus, String reportedType, int reportedNo, String accomoName,
+			String reportAnswer) {
 		super();
 		this.reportNo = reportNo;
 		this.writerType = writerType;
@@ -30,9 +32,8 @@ public class ReportDTO {
 		this.reportedType = reportedType;
 		this.reportedNo = reportedNo;
 		this.accomoName = accomoName;
+		this.reportAnswer = reportAnswer;
 	}
-
-
 
 	public int getReportNo() {
 		return reportNo;
@@ -114,12 +115,20 @@ public class ReportDTO {
 		this.accomoName = accomoName;
 	}
 
+	public String getReportAnswer() {
+		return reportAnswer;
+	}
+
+	public void setReportAnswer(String reportAnswer) {
+		this.reportAnswer = reportAnswer;
+	}
+
 	@Override
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", writerType=" + writerType + ", reportReason=" + reportReason
 				+ ", memberNo=" + memberNo + ", reportDate=" + reportDate + ", reportTitle=" + reportTitle
 				+ ", reportStatus=" + reportStatus + ", reportedType=" + reportedType + ", reportedNo=" + reportedNo
-				+ ", accomoName=" + accomoName + "]";
+				+ ", accomoName=" + accomoName + ", reportAnswer=" + reportAnswer + "]";
 	}
 	
 }

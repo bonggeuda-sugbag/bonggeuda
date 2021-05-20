@@ -237,8 +237,21 @@
 				<br>
 				<th colspan="2" style="background-color: white; ">
 					<form action="${ pageContext.servletContext.contextPath }/registration3" method="post">
-						<button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
+						<button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
+		            	<input type="hidden" name="ceoName" value="${ requestScope.accomoDTO.ceoName }">
+		            	<input type="hidden" name="accomoType" value="${ requestScope.accomoDTO.accomoType }">
+		            	<input type="hidden" name="registNo" value="${ requestScope.accomoDTO.registNo }">
+		            	<input type="hidden" name="address" value="${ requestScope.accomoDTO.address }">
+		            	<input type="hidden" name="adrDetail" value="${ requestScope.accomoDTO.adrDetail }">
+		            	<input type="hidden" name="email" value="${ requestScope.accomoDTO.email }">
+		            	<input type="hidden" name="homepage" value="${ requestScope.accomoDTO.homepage }">
+		            	<input type="hidden" name="facility" value="${ requestScope.accomoDTO.facility }">
+		            	<input type="hidden" name="accomoPath" value="${ requestScope.accomoDTO.accomoPath }">
+		            	<input type="hidden" name="near" value="${ requestScope.accomoDTO.near }">
+		            	<input type="hidden" name="rule" value="${ requestScope.accomoDTO.rule }">
+		            	<input type="hidden" name="parking" value="${ requestScope.accomoDTO.parking }">
 					</form>
+					
 				</th>
 			</tr>
 		</tbody>

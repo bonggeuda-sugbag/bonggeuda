@@ -46,7 +46,6 @@
 				<li><a href="QnA.html">공지사항</a></li>
 				<li><a  href="mypage.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
-				
 			</ul>
 		</div>
 	</div>
@@ -268,7 +267,7 @@
 				</th>
 				<td>
 					<div class="form-layer">
-						<textarea class="form-control textarea-layer" rows="8" name="roonIntro" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
+						<textarea class="form-control textarea-layer" rows="8" name="roomIntro" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
 						<div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
@@ -745,9 +744,7 @@
 				<br>
 				<th colspan="2" style="background-color: white; ">
 					<form action="index.html">
-
 						<button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="roomRegiFinish()">숙소 등록 완료</button>
-
 					</form>
 
 				</th>

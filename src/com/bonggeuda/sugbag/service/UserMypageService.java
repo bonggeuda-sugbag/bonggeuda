@@ -6,10 +6,11 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.bonggeuda.sugbag.model.dao.UserMypageDAO;
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
@@ -182,6 +183,74 @@ public class UserMypageService {
 		
 		return report;
 	}
+
+
+	/**
+	 * 신고 상세 내용 조회
+	 * @return
+	 */
+	public ReportDTO selectReportContent(int userNo, int reportedNo) {
+		
+		Connection con = getConnection();
+		
+		ReportDTO userReportContent = mypageDAO.selectReportContent(con, userNo, reportedNo);
+		
+		close(con);
+		
+		return userReportContent;
+	}
+
+
+	/**
+	 * 신고 상세 내용 이미지 조회
+	 * @param userNo
+	 * @param reportedNo
+	 * @return
+	 */
+	public AttachmentDTO selectReportImg(int userNo, int reportedNo) {
+		Connection con = getConnection();
+		
+		AttachmentDTO userReportImg = mypageDAO.selectReportImg(con, userNo, reportedNo);
+		
+		close(con);
+		
+		return userReportImg;
+	}
+
+
+	/**
+	 * 닉네임 변경시 중복체크 할 닉네임 조회
+	 * @param inputNickName
+	 * @return
+	 */
+	public int selectUserNickName(String inputNickName) {
+
+		Connection con = getConnection();
+		
+		int userNickName = mypageDAO.selectUserNickName(con, inputNickName);
+		
+		close(con);
+		
+		return userNickName;
+	}
+
+
+	/**
+	 * 예약리스트 조회
+	 * @param userNo
+	 * @return
+	 */
+	public List<BookDTO> selectUserBookList(int userNo) {
+
+		Connection con = getConnection();
+		
+		List<BookDTO> bookList = mypageDAO.selectUserBookList(con, userNo);
+		
+		close(con);
+		
+		return bookList;
+	}
+
 
 
 

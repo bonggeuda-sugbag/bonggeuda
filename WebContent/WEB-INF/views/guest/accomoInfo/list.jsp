@@ -46,6 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 .suksoList{
     width: 800px; height:250px;background-color: pink;
+    border-style: 0px;
 	
 }
 
@@ -202,13 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  개인콘센트</li>
 			</ul>
 			<hr>
-		
-			
 		</div>
-		
-
-		
-			
 		</div>
 		<div style="width: 900px; padding: 10px; display: flex; flex-direction: column;">
 
@@ -240,8 +235,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<%-- <div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value='+'${accomo}';" > --%>
 			<form name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
             
-			<button type="submit" name="accomoInfo" value='${accomo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;">
-				
+			<button type="submit" name="no" value='${accomo.accomoNo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/${accomo.attachment.thumbnailPath }) no-repeat; background-size: 800px 250px;">
 				<div class="infoThumb" >
 					<h2>${accomo.accomoName }</h2>
 					<br>
@@ -258,7 +252,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<c:when test="${accomo.minPrice == '0' }">
 						<div class="infoPrice">등록된 최저가 없음</div>
 						</c:when>
-						<c:otherwise>>
+						<c:otherwise>
 						<div class="infoPrice">최저가 : ${accomo.minPrice}</div>
 						</c:otherwise>
 					</c:choose>

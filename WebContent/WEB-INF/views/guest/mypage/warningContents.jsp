@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		width: 575px;
 	}
 	.tab {
-		width: 575px;
+		width: 740px;
 	}
 	.point_list .col_red {
 		color: #6eceda;
@@ -39,47 +34,47 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     text-align: left;
     line-height: 1.5;
     width: 740px;
-}
+	}
 
 
-table.type09 thead th {
-    /* padding: 10px; */
-    font-weight: bold;
-    vertical-align: top;
-    /* color: #369; */
-    border-bottom: 2px solid #ccc;
-}
+	table.type09 thead th {
+    	/* padding: 10px; */
+    	font-weight: bold;
+    	vertical-align: top;
+    	/* color: #369; */
+   	 	border-bottom: 2px solid #ccc;
+	}
 
-table.type09 tbody th {
-    width: 110px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #f3f6f7;
-    text-align: center;
-}
+	table.type09 tbody th {
+    	width: 110px;
+    	padding: 10px;
+    	font-weight: bold;
+    	vertical-align: top;
+    	border-bottom: 1px solid #ccc;
+    	background: #f3f6f7;
+    	text-align: center;
+	}
 
-table.type09 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-}
+	table.type09 td {
+    	width: 350px;
+    	padding: 10px;
+    	vertical-align: top;
+    	border-bottom: 1px solid #ccc;
+	}
 
 	
 	</style>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<title>봉그다 숙박숙박</title>
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${ pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -89,16 +84,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!--header-->
-
-
-
-
 <div class="header">
 	<div class="container">
 		<!--logo-->
-			<div class="logo">
-				<h1><a href="index.jsp">Bonggeuda</a></h1>
-			</div>
+		<div class="logo">
+			<h1><a href="index.jsp">Bonggeuda</a></h1>
+		</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
@@ -109,88 +100,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
-			
-				<!---
-				<a href="#" class="right_bt" id="activator"><i class="glyphicon glyphicon-menu-hamburger"></i>  </a>
-			--->
-			</div>
-			
-		<div class="clearfix"> </div>
-			<!---pop-up-box---->
-				   
-				<link href="resources/guest/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-				<script src="resources/guest/js/jquery.magnific-popup.js" type="text/javascript"></script>
-			<!---//pop-up-box---->
-				<div id="small-dialog" class="mfp-hide">
-					    <!----- tabs-box ---->
-				<div class="sap_tabs">	
-				     <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-						  <ul class="resp-tabs-list">
-						  	  <li class="resp-tab-item " aria-controls="tab_item-0" role="tab"><span>All Homes</span></li>
-							  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>For Sale</span></li>
-							  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>For Rent</span></li>
-							  <div class="clearfix"></div>
-						  </ul>				  	 
-						  <div class="resp-tabs-container">
-						  		<h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>All Homes</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
-								 	<div class="facts">
-									  	<div class="login">
-											<input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">		
-									 		<input type="submit" value="">
-									 	</div>        
-							        </div>
-						  		</div>
-							     <h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span>For Sale</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-									<div class="facts">									
-										<div class="login">
-											<input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">		
-									 		<input type="submit" value="">
-									 	</div> 
-							        </div>	
-								 </div>									
-							      <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span>For Rent</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-									 <div class="facts">
-										<div class="login">
-											<input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">		
-									 		<input type="submit" value="">
-									 	</div> 
-							         </div>	
-							    </div>
-					      </div>
-					 </div>
-					 <script src="resources/guest/js/easyResponsiveTabs.js" type="text/javascript"></script>
-				    	<script type="text/javascript">
-						    $(document).ready(function () {
-						        $('#horizontalTab').easyResponsiveTabs({
-						            type: 'default', //Types: default, vertical, accordion           
-						            width: 'auto', //auto or any width like 600px
-						            fit: true   // 100% fit in a container
-						        });
-						    });
-			  			 </script>	
-				</div>
-				</div>
-				 <script>
-						$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
-																						
-						});
-				</script>
-					
-	
 		</div>
+			
 		<div class="clearfix"> </div>
-		</div>	
+		<div class="clearfix"> </div>
+	</div>	
 </div>
 <!--//-->	
 <div class=" banner-buying">
@@ -215,9 +129,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<li class="blog-list"><a href="myInformation.jsp">내 정보 관리</a></li>
 			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="warningList.jsp" style="color: #6eceda;">신고내역</a></li>
 		</ul>
+		</div>
 		</nav>
 	</div>
-
 
 	<div class="mmiddle">
 	<div class="tab">
@@ -238,27 +152,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<tbody>
 						<tr>
 							<th scope="row">제목</th>
-							<td colspan="3">업체신고신고</td>
+							<td colspan="3"><c:out value="${ requestScope.userReportContent.reportTitle }"/></td>
 						</tr>
 						<tr>
 							<th scope="row">신고업체</th>
-							<td>웅이네호텔</td>
+							<td><c:out value="${ requestScope.userReportContent.accomoName }"/></td>
 							<th scope="row">작성일</th>
-							<td>21.04.29</td>
+							<td><c:out value="${ requestScope.userReportContent.reportDate }"/></td>
 						</tr>
 					</tbody>
 				</table>
 				<br>
 				<p>
-					내용내용내용내용내용내용내용내용내용내용내용내용<br>
-					내용내용내용내용내용내용내용내용내용내용내용내용<br>
-					내용내용내용내용내용내용내용내용내용내용내용내용<br>
-					내용내용내용내용내용내용내용내용내용내용내용내용<br>
-					내용내용내용내용내용내용내용내용내용내용내용내용<br>
+					<c:out value="${ requestScope.userReportContent.reportReason }"/>
 				</p>
 				<br>
-				<img src="images/pi2.jpg" style="width: 30%">
+				<c:if test="${ requestScope.userReportImg.thumbnailPath ne null }">
+					<img src="${ pageContext.servletContext.contextPath }/${ requestScope.userReportImg.thumbnailPath }" style="width: 30%">
 				<br><br>
+				</c:if>
 				<table class="type09">
 					<thead>
 						<tr>
@@ -268,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</thead>
 				</table>
 				<div>
-					<textarea class="form-control textarea-layer" style="resize:none; width: 700px; height: 120px; margin-top: 10px;" disabled>불편을드려 죄송합니다. 신고처리 완료되었습니다.</textarea>
+					<textarea class="form-control textarea-layer" style="resize:none; width: 700px; height: 120px; margin-top: 10px;" disabled><c:out value="${ requestScope.userReportContent.reportAnswer }"/></textarea>
 				</div>
 				
 			</div>
@@ -276,21 +188,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 
-
-
-
 	<div class="clearfix"> </div>
-	<nav>
-		<ul class="pagination">
-		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-		  <li><a href="#">2</a></li>
-		  <li><a href="#">3</a></li>
-		  <li><a href="#">4</a></li>
-		  <li><a href="#">5</a></li>
-		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-	   </ul>
-	   </nav>
 </div>
 
 </div>

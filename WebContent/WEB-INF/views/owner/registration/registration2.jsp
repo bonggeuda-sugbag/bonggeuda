@@ -254,7 +254,14 @@
          <tr>
             <br>
             <th colspan="2" style="background-color: white; ">
-                  <button name="accomo1" value="${ requestScope.accomoDTO }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
+                  <button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
+            	  <input type="hidden" name="ceoName" value="${ requestScope.accomoDTO.ceoName }">
+            	  <input type="hidden" name="accomoType" value="${ requestScope.accomoDTO.accomoType }">
+            	  <input type="hidden" name="registNo" value="${ requestScope.accomoDTO.registNo }">
+            	  <input type="hidden" name="address" value="${ requestScope.accomoDTO.address }">
+            	  <input type="hidden" name="adrDetail" value="${ requestScope.accomoDTO.adrDetail }">
+            	  <input type="hidden" name="email" value="${ requestScope.accomoDTO.email }">
+            	  <input type="hidden" name="homepage" value="${ requestScope.accomoDTO.homepage }">
             </th>
          </tr>
       </tbody>
