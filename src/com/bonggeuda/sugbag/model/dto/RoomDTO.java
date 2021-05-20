@@ -6,7 +6,7 @@ public class RoomDTO {
 	private int accomoNo; 		// 숙소번호
 	private String roomName;	// 객실명
 	private int roomMax; 		// 객실정원
-	private String roonIntro; 	// 객실소개글
+	private String roomIntro; 	// 객실소개글
 	private int roomFee; 		// 객실요금
 	private String visibleYn; 	// 공개여부
 	private int peakFee;		// 성수기요금
@@ -15,14 +15,14 @@ public class RoomDTO {
 		super();
 	}
 
-	public RoomDTO(int roomNo, int accomoNo, String roomName, int roomMax, String roonIntro, int roomFee,
+	public RoomDTO(int roomNo, int accomoNo, String roomName, int roomMax, String roomIntro, int roomFee,
 			String visibleYn, int peakFee) {
 		super();
 		this.roomNo = roomNo;
 		this.accomoNo = accomoNo;
 		this.roomName = roomName;
 		this.roomMax = roomMax;
-		this.roonIntro = roonIntro;
+		this.roomIntro = roomIntro;
 		this.roomFee = roomFee;
 		this.visibleYn = visibleYn;
 		this.peakFee = peakFee;
@@ -60,12 +60,12 @@ public class RoomDTO {
 		this.roomMax = roomMax;
 	}
 
-	public String getRoonIntro() {
-		return roonIntro;
+	public String getRoomIntro() {
+		return roomIntro;
 	}
 
-	public void setRoonIntro(String roonIntro) {
-		this.roonIntro = roonIntro;
+	public void setRoomIntro(String roomIntro) {
+		this.roomIntro = roomIntro;
 	}
 
 	public int getRoomFee() {
@@ -95,7 +95,7 @@ public class RoomDTO {
 	@Override
 	public String toString() {
 		return "RoomDTO [roomNo=" + roomNo + ", accomoNo=" + accomoNo + ", roomName=" + roomName + ", roomMax="
-				+ roomMax + ", roonIntro=" + roonIntro + ", roomFee=" + roomFee + ", visibleYn=" + visibleYn
+				+ roomMax + ", roomIntro=" + roomIntro + ", roomFee=" + roomFee + ", visibleYn=" + visibleYn
 				+ ", peakFee=" + peakFee + "]";
 	}
 
