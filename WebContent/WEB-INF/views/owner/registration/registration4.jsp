@@ -130,7 +130,6 @@
 </div>
 <br>
 <br><br>
-<form action="${ pageContext.servletContext.contextPath }/registration4" method="post">
 	<div style="text-align: center; height: 50px; width: 700px; margin-left: 700px;">
 		<button class="btn submit-btn" Id="room1" onclick="roomOneRegi()" style="display: block;"> 1번객실 </button>
 		<button class="btn submit-btn" Id="room2" onclick="roomTwoRegi()" > 2번객실 </button>
@@ -212,6 +211,8 @@
 			document.getElementById("registTb5").style.display="block";
 		}
 	</script>
+	
+	<form action="${ pageContext.servletContext.contextPath }/registration4" method="post">
 	<table class="table table-bordered" id="registTb"> 
 	<tbody id="registTb1">
 		<tr class="tr1">
@@ -293,15 +294,12 @@
 			<tr>
 				<br>
 				<th colspan="2" style="background-color: white; ">
-					<form action="index.html">
 						<button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="roomRegiFinish()">숙소 등록 완료</button>
-					</form>
 				</th>
 			</tr>
 		</tbody>
 </table>
 <br><br>
-
 <table class="table table-bordered"  id="registTb" style=" margin-top: -70px;"> 
 	<tbody id="registTb2" style="display: none; ">
 		<tr class="tr1">
@@ -313,31 +311,12 @@
 			<td>
 				<div class="basic" >
 						<span class="form-title" style="display:inline-block";>객실명</span>
-						<input class="select-nomalsize" type="text" name="account_holder" placeholder="이름을 입력하세요." value="">
+						<input class="select-nomalsize" type="text" name="roomName2" placeholder="이름을 입력하세요." value="">
 					</div>
 					<div class="basic">
-						<span class="form-title" style="display:inline-block";> 정원  </span>
+						<span class="form-title" style="display:inline-block";>최대정원</span>
 						<span>
-							<select name="bank" class="select-nomalsize">
-								<option value="1">1명</option>
-								<option value="2" selected>2명</option>
-								<option value="3">3명</option>
-								<option value="4">4명</option>
-								<option value="5">5명</option>
-								<option value="6">6명</option>
-								<option value="7">7명</option>
-								<option value="8">8명</option>
-								<option value="9">9명</option>
-								<option value="10">10명</option>
-								<option value="11">11명</option>
-								<option value="12">12명</option>
-							</select>
-						</span>
-					</div>
-					<div>
-						<span class="form-title" style="display:inline-block";> 최대  </span>
-						<span>
-							<select name="bank" class="select-nomalsize">
+							<select name="roomMax2" class="select-nomalsize">
 								<option value="1">1명</option>
 								<option value="2" selected>2명</option>
 								<option value="3">3명</option>
@@ -377,8 +356,8 @@
 				</th>
 				<td>
 					<div class="form-layer">
-						<textarea class="form-control textarea-layer" rows="8" name="find_way" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
-						<div remain-traffic_info" class="maxText">(최대 1000자)</div>
+						<textarea class="form-control textarea-layer" rows="8" name="roomIntro2" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
+						<div class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
 			</tr>
@@ -389,13 +368,13 @@
 				<td>
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>정상가(비수기)</span>
-						<input class="select-nomalsize" type="number" name="account_holder"  value="" style="width: 150px;" min="0" step="1000">
+						<input class="select-nomalsize" type="number" name="roomFee2"  value="" style="width: 150px;" min="0" step="1000">
 						<span class="form-title" style="display:inline-block"; >원</span>
 					</div>
 
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>성수기</span>
-						<input class="select-nomalsize" type="number" name="account_holder"  value="" style="width: 150px;" min="0" step="1000">
+						<input class="select-nomalsize" type="number" name="peakFee2"  value="" style="width: 150px;" min="0" step="1000">
 						<span class="form-title" style="display:inline-block"; >원</span>
 					</div>
 				</td>
@@ -422,31 +401,12 @@
 			<td>
 				<div class="basic" >
 						<span class="form-title" style="display:inline-block";>객실명</span>
-						<input class="select-nomalsize" type="text" name="account_holder" placeholder="이름을 입력하세요." value="">
+						<input class="select-nomalsize" type="text" name="roomName3" placeholder="이름을 입력하세요." value="">
 					</div>
 					<div class="basic">
-						<span class="form-title" style="display:inline-block";> 정원  </span>
+						<span class="form-title" style="display:inline-block";>최대 정원</span>
 						<span>
-							<select name="bank" class="select-nomalsize">
-								<option value="1">1명</option>
-								<option value="2" selected>2명</option>
-								<option value="3">3명</option>
-								<option value="4">4명</option>
-								<option value="5">5명</option>
-								<option value="6">6명</option>
-								<option value="7">7명</option>
-								<option value="8">8명</option>
-								<option value="9">9명</option>
-								<option value="10">10명</option>
-								<option value="11">11명</option>
-								<option value="12">12명</option>
-							</select>
-						</span>
-					</div>
-					<div>
-						<span class="form-title" style="display:inline-block";> 최대  </span>
-						<span>
-							<select name="bank" class="select-nomalsize">
+							<select name="roomMax3" class="select-nomalsize">
 								<option value="1">1명</option>
 								<option value="2" selected>2명</option>
 								<option value="3">3명</option>
@@ -487,7 +447,7 @@
 				</th>
 				<td>
 					<div class="form-layer">
-						<textarea class="form-control textarea-layer" rows="8" name="find_way" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
+						<textarea class="form-control textarea-layer" rows="8" name="roomIntro3" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
 						<div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
@@ -499,13 +459,13 @@
 				<td>
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>정상가(비수기)</span>
-						<input class="select-nomalsize" type="number" name="account_holder"  value="" style="width: 150px;" min="0" step="1000">
+						<input class="select-nomalsize" type="number" name="roomFee3"  value="" style="width: 150px;" min="0" step="1000">
 						<span class="form-title" style="display:inline-block"; >원</span>
 					</div>
 
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>성수기</span>
-						<input class="select-nomalsize" type="number" name="account_holder"  value="" style="width: 150px;" min="0" step="1000">
+						<input class="select-nomalsize" type="number" name="peakFee3"  value="" style="width: 150px;" min="0" step="1000">
 						<span class="form-title" style="display:inline-block"; >원</span>
 					</div>
 				</td>
@@ -537,31 +497,12 @@
 			<td>
 				<div class="basic" >
 						<span class="form-title" style="display:inline-block";>객실명</span>
-						<input class="select-nomalsize" type="text" name="account_holder" placeholder="이름을 입력하세요." value="">
+						<input class="select-nomalsize" type="text" name="roomName4" placeholder="이름을 입력하세요." value="">
 					</div>
 					<div class="basic">
-						<span class="form-title" style="display:inline-block";> 정원  </span>
+						<span class="form-title" style="display:inline-block";>최대 정원</span>
 						<span>
-							<select name="bank" class="select-nomalsize">
-								<option value="1">1명</option>
-								<option value="2" selected>2명</option>
-								<option value="3">3명</option>
-								<option value="4">4명</option>
-								<option value="5">5명</option>
-								<option value="6">6명</option>
-								<option value="7">7명</option>
-								<option value="8">8명</option>
-								<option value="9">9명</option>
-								<option value="10">10명</option>
-								<option value="11">11명</option>
-								<option value="12">12명</option>
-							</select>
-						</span>
-					</div>
-					<div>
-						<span class="form-title" style="display:inline-block";> 최대  </span>
-						<span>
-							<select name="bank" class="select-nomalsize">
+							<select name="roomMax4" class="select-nomalsize">
 								<option value="1">1명</option>
 								<option value="2" selected>2명</option>
 								<option value="3">3명</option>
@@ -602,7 +543,7 @@
 				</th>
 				<td>
 					<div class="form-layer">
-						<textarea class="form-control textarea-layer" rows="8" name="find_way" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
+						<textarea class="form-control textarea-layer" rows="8" name="roomIntro4" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
 						<div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
@@ -614,13 +555,13 @@
 				<td>
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>정상가(비수기)</span>
-						<input class="select-nomalsize" type="number" name="account_holder"  value="" style="width: 150px;" min="0" step="1000">
+						<input class="select-nomalsize" type="number" name="roomFee4"  value="" style="width: 150px;" min="0" step="1000">
 						<span class="form-title" style="display:inline-block"; >원</span>
 					</div>
 
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>성수기</span>
-						<input class="select-nomalsize" type="number" name="account_holder"  value="" style="width: 150px;" min="0" step="1000">
+						<input class="select-nomalsize" type="number" name="peakFee4"  value="" style="width: 150px;" min="0" step="1000">
 						<span class="form-title" style="display:inline-block"; >원</span>
 					</div>
 				</td>
@@ -629,9 +570,7 @@
 				<br>
 				<th colspan="2" style="background-color: white; ">
 					<form action="index.html">
-
 						<button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="roomRegiFinish()">숙소 등록 완료</button>
-
 					</form>
 
 				</th>
@@ -652,31 +591,12 @@
 			<td>
 				<div class="basic" >
 						<span class="form-title" style="display:inline-block";>객실명</span>
-						<input class="select-nomalsize" type="text" name="account_holder" placeholder="이름을 입력하세요." value="">
+						<input class="select-nomalsize" type="text" name="roomName5" placeholder="이름을 입력하세요." value="">
 					</div>
 					<div class="basic">
-						<span class="form-title" style="display:inline-block";> 정원  </span>
+						<span class="form-title" style="display:inline-block";>최대 정원</span>
 						<span>
-							<select name="bank" class="select-nomalsize">
-								<option value="1">1명</option>
-								<option value="2" selected>2명</option>
-								<option value="3">3명</option>
-								<option value="4">4명</option>
-								<option value="5">5명</option>
-								<option value="6">6명</option>
-								<option value="7">7명</option>
-								<option value="8">8명</option>
-								<option value="9">9명</option>
-								<option value="10">10명</option>
-								<option value="11">11명</option>
-								<option value="12">12명</option>
-							</select>
-						</span>
-					</div>
-					<div>
-						<span class="form-title" style="display:inline-block";> 최대  </span>
-						<span>
-							<select name="bank" class="select-nomalsize">
+							<select name="roomMax5" class="select-nomalsize">
 								<option value="1">1명</option>
 								<option value="2" selected>2명</option>
 								<option value="3">3명</option>
@@ -717,7 +637,7 @@
 				</th>
 				<td>
 					<div class="form-layer">
-						<textarea class="form-control textarea-layer" rows="8" name="find_way" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
+						<textarea class="form-control textarea-layer" rows="8" name="roomIntro5" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
 						<div remain-traffic_info" class="maxText">(최대 1000자)</div>
 					</div>
 				</td>
@@ -729,13 +649,13 @@
 				<td>
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>정상가(비수기)</span>
-						<input class="select-nomalsize" type="number" name="account_holder"  value="" style="width: 150px;" min="0" step="1000">
+						<input class="select-nomalsize" type="number" name="roomFee5"  value="" style="width: 150px;" min="0" step="1000">
 						<span class="form-title" style="display:inline-block"; >원</span>
 					</div>
 
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>성수기</span>
-						<input class="select-nomalsize" type="number" name="account_holder"  value="" style="width: 150px;" min="0" step="1000">
+						<input class="select-nomalsize" type="number" name="peakFee5"  value="" style="width: 150px;" min="0" step="1000">
 						<span class="form-title" style="display:inline-block"; >원</span>
 					</div>
 				</td>
@@ -743,12 +663,8 @@
 			<tr>
 				<br>
 				<th colspan="2" style="background-color: white; ">
-					<form action="index.html">
 						<button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="roomRegiFinish()">숙소 등록 완료</button>
-					</form>
-
 				</th>
-				
 			</tr>
 		</tbody>
 </table>
