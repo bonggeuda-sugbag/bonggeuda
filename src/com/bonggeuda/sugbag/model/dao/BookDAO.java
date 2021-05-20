@@ -17,6 +17,7 @@ import java.util.Properties;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class BookDAO {
 
@@ -266,6 +267,44 @@ public class BookDAO {
 		System.out.println(accomo);
 		
 		return accomo;
+	}
+
+	public List<RoomDTO> selectRoomList(Connection con, int accomoNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<RoomDTO> roomList = null;
+		RoomDTO room = null;
+		
+		String query = prop.getProperty("selectRoomList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			roomList = new ArrayList<>();
+			
+			while(rset.next()) {
+				room = new RoomDTO();
+				room.setRoomNo(rset.getInt("ROOM_NO"));
+				room.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				room.setRoomName(rset.getString("ROOM_NAME"));
+				room.setRoomMax(rset.getInt("ROOM_MAX"));
+				room.setRoomIntro(rset.getString("ROOM_INTRO"));
+				room.setRoomFee(rset.getInt("ROOM_FEE"));
+				room.setPeakFee(rset.getInt("PEAK_FEE"));
+				
+				roomList.add(room);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return roomList;
 	}
 
 	

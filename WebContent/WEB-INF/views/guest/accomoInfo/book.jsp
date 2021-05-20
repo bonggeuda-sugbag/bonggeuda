@@ -663,33 +663,15 @@ textarea {
 				<hr>
 				<center>
 					<!-- 객실정보 -->
-					<div class="detailList" > 
-						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/pc1.jpg) no-repeat; background-size: 100%;" ></div>
-						<div class="detailInfo" >
-							<div><h3>더조은컴퓨터아카데미 강남점</h3></div>
-							<br><br>
-							<div style="display: flex;">
-								<div style="width: 40%;">가격</div>
-								<div style="margin-left: 40px; width: 50%;">10000원 / 1박</div>
-							</div>
-							<hr>
-							<div style="display: flex;"onclick="location.href='#pop01';">
-								<button class="info_btn" >객실이용안내 ></button>
-							</div>
-							<hr>
-							<div >
-								<button class="detail_btn" onclick="location.href='payment.html';">예약하기</button>
-							</div>
-						</div>
-					</div>
+					<c:forEach var="roomList" items="${ roomList }" varStatus ="st">
 					<div class="detailList" > 
 						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/pc2.jpg) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
-							<div><h3>더조은컴퓨터아카데미 강남별관</h3></div>
+							<div><h3>${roomList.roomName}</h3></div>
 							<br><br>
 							<div style="display: flex;">
 								<div style="width: 40%;">가격</div>
-								<div style="margin-left: 40px; width: 50%;">25000원 / 1박</div>
+								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
 							</div>
 							<hr>
 							<div>
@@ -701,6 +683,7 @@ textarea {
 							</div>
 						</div>
 					</div>
+					</c:forEach>
 					<!--// 객실정보 -->
 				</center>
 			</div>

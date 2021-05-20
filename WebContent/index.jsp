@@ -12,7 +12,7 @@
  --%>
 
 
- 	<jsp:forward page="/WEB-INF/views/owner/registration/registration4.jsp"></jsp:forward>
+<%--  	<jsp:forward page="/WEB-INF/views/owner/registration/registration4.jsp"></jsp:forward> --%>
 
 
 <jsp:forward page="/login/test"></jsp:forward> 

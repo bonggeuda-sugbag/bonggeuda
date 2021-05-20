@@ -58,5 +58,4 @@ public class AccomoSelectServlet extends HttpServlet {
 		request.getSession().setAttribute("test", accomoList);
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
 }
