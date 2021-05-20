@@ -24,11 +24,15 @@ public class RoomSelectServlet extends HttpServlet {
 		//숙소정보, 사진조회
 		BookService booksvc = new BookService();
 		int categoryType = 3;
-//		AccomoInfoDTO accomo = booksvc.selectAccomoInfo(accomoNo, categoryType);
+		AccomoInfoDTO accomo = booksvc.selectAccomoInfo(accomoNo, categoryType);
+		request.setAttribute("accomo", accomo);
+
+		//객실정보 조회
+//		ArrayList<RoomDTO> roomList = 
 		
-		//숙소 사진 조회
+		
 		 
-		
+		request.getRequestDispatcher("/WEB-INF/views/guest/accomoInfo/book.jsp").forward(request, response);;
 		
 	    
 		

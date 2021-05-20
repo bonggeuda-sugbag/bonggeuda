@@ -25,12 +25,12 @@ public class BookService {
 	 * @return 타입별 숙소리스트
 
 	 */
-	public List<AccomoInfoDTO> selectAccomoList(String type) {
+	public List<AccomoInfoDTO> selectAccomoList(String type,int category) {
 		
 		Connection con = getConnection();
 		List<AccomoInfoDTO> accomoList = null;
 		
-		accomoList = bookDao.selectAccomoList(con, type);
+		accomoList = bookDao.selectAccomoList(con, type, category);
 		close(con);
 		return accomoList;
 	}
@@ -57,11 +57,11 @@ public class BookService {
 	 * @param booksvc
 	 * @return
 	 */
-	public AccomoInfoDTO selectAccomoInfo(int accomoNo) {
+	public AccomoInfoDTO selectAccomoInfo(int accomoNo, int categoryType) {
 		Connection con = getConnection();
 		AccomoInfoDTO accomo = null;
 		
-		accomo = bookDao.selectAccomoInfo(con, accomoNo);
+		accomo = bookDao.selectAccomoInfo(con, accomoNo, categoryType);
 		close(con);
 		
 		return accomo;

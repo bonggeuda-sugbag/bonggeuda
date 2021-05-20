@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 
 public class BookDAO {
 
@@ -36,7 +37,7 @@ public class BookDAO {
 	 * @param type 숙소타입(호텔,펜션,게스트하우스)
 	 * @return 숙소리스트
 	 */
-	public List<AccomoInfoDTO> selectAccomoList(Connection con, String type) {
+	public List<AccomoInfoDTO> selectAccomoList(Connection con, String type,int category) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -47,6 +48,7 @@ public class BookDAO {
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, type);
+			pstmt.setInt(2, category);
 			
 			rset = pstmt.executeQuery();
 			
@@ -54,6 +56,8 @@ public class BookDAO {
 			
 			while(rset.next()) {
 				AccomoInfoDTO accomoInfo = new AccomoInfoDTO();
+				AttachmentDTO attachment = new AttachmentDTO();
+				
 				accomoInfo.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				accomoInfo.setOwnerNo(rset.getInt("OWNER_NO"));
 				accomoInfo.setAccomoName(rset.getString("ACCOMO_NAME"));
@@ -72,6 +76,8 @@ public class BookDAO {
 				accomoInfo.setCheckOut(rset.getString("CHECK_OUT"));
 				accomoInfo.setPeakStart(rset.getDate("PEAK_DATE_START"));
 				accomoInfo.setPeakEnd(rset.getDate("PEAK_DATE_END"));
+				attachment.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				accomoInfo.setAttachment(attachment);
 				accomoList.add(accomoInfo);
 			}
 				
@@ -199,7 +205,7 @@ public class BookDAO {
 	 * @param accomoNo 숙소번호
 	 * @return 숙소정보
 	 */
-	public AccomoInfoDTO selectAccomoInfo(Connection con, int accomoNo) {
+	public AccomoInfoDTO selectAccomoInfo(Connection con, int accomoNo, int categoryType) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -211,12 +217,15 @@ public class BookDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, categoryType);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				
 				accomo = new AccomoInfoDTO();
+				
+				AttachmentDTO attachment = new AttachmentDTO();
 				accomo.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				accomo.setOwnerNo(rset.getInt("OWNER_NO"));
 				accomo.setAccomoName(rset.getString("ACCOMO_NAME"));
@@ -235,14 +244,27 @@ public class BookDAO {
 				accomo.setCheckOut(rset.getString("CHECK_OUT"));
 				accomo.setPeakStart(rset.getDate("PEAK_DATE_START"));
 				accomo.setPeakEnd(rset.getDate("PEAK_DATE_END"));
+				attachment.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				accomo.setAttachment(attachment);
 			}
-			System.out.println(accomo);
+			
+			query = prop.getProperty("selectOneAccomoReviewScoe");
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				accomo.setReviewScore(rset.getDouble("평점"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    close(rset);
-		    close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
+		
+		System.out.println(accomo);
+		
 		return accomo;
 	}
 

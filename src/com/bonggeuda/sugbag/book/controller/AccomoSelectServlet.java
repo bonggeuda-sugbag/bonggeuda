@@ -31,7 +31,9 @@ public class AccomoSelectServlet extends HttpServlet {
 		}
 		// 타입별 숙소 리스트 검색
 		BookService booksvc = new BookService();
-		List<AccomoInfoDTO> accomoList= booksvc.selectAccomoList(type);
+		// 사진 카테고리
+		int category = 3;
+		List<AccomoInfoDTO> accomoList= booksvc.selectAccomoList(type,category);
 
 		
 		//최저가(0), 평점(1) 조회
