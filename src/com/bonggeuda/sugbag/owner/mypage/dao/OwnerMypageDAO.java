@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.dao;
+package com.bonggeuda.sugbag.owner.mypage.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
-import com.bonggeuda.sugbag.owner.dto.OwnerInfoDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 

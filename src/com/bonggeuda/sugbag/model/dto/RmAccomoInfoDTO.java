@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.accomo.model.dto;
+package com.bonggeuda.sugbag.model.dto;
 
 import java.sql.Date;
 

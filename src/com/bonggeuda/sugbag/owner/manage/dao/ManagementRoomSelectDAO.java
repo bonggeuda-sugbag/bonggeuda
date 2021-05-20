@@ -1,4 +1,4 @@
-package com.bonnggeuda.sugbag.owner.dao;
+package com.bonggeuda.sugbag.owner.manage.dao;
 
 
 
@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.bonggeuda.sugbag.accomo.model.dto.RmAccomoInfoDTO;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
 
 public class ManagementRoomSelectDAO {
 	

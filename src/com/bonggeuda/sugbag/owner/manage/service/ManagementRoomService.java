@@ -1,4 +1,4 @@
-package com.bonnggeuda.sugbag.owner.service;
+package com.bonggeuda.sugbag.owner.manage.service;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
@@ -8,9 +8,9 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
-import com.bonggeuda.sugbag.accomo.model.dto.RmAccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
-import com.bonnggeuda.sugbag.owner.dao.ManagementRoomSelectDAO;
+import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
+import com.bonggeuda.sugbag.owner.manage.dao.ManagementRoomSelectDAO;
 
 public class ManagementRoomService {
 	

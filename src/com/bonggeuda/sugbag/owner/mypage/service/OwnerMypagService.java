@@ -1,10 +1,10 @@
-package com.bonggeuda.sugbag.owner.service;
+package com.bonggeuda.sugbag.owner.mypage.service;
 
 
 import java.sql.Connection;
 
-import com.bonggeuda.sugbag.owner.dao.OwnerMypageDAO;
-import com.bonggeuda.sugbag.owner.dto.OwnerInfoDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
+import com.bonggeuda.sugbag.owner.mypage.dao.OwnerMypageDAO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;

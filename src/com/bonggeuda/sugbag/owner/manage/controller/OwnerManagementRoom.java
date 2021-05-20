@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.controller;
+package com.bonggeuda.sugbag.owner.manage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bonggeuda.sugbag.accomo.model.dto.RmAccomoInfoDTO;
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
-import com.bonnggeuda.sugbag.owner.service.ManagementRoomService;
+import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
+import com.bonggeuda.sugbag.owner.manage.service.ManagementRoomService;
 
 import static com.bonggeuda.sugbag.common.paging.PageNation.getPageInfo;
 
