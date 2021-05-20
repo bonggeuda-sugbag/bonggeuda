@@ -10,6 +10,7 @@
 
 <%-- 	 <jsp:forward page="/WEB-INF/views/guest/accomoInfo/book.jsp"></jsp:forward>
  --%>	 
+
  <%-- <jsp:forward page="/WEB-INF/vi
  ews/owner/main/main.jsp"></jsp:forward> --%>
 
@@ -39,7 +40,11 @@
 		})();
 	</script>   -->
 	<%-- 
+=======
+ 
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
  	<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
+<<<<<<< HEAD
 	<jsp:forward page="/WEB-INF/views/admin/user/addCoupon.jsp"></jsp:forward>
 	--%> 
 	
@@ -78,6 +83,7 @@
 
 
 <jsp:forward page="/login/test"></jsp:forward>
+
 
 
 
