@@ -163,7 +163,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				   	
 						<th>${ i}</th>
 						<th><c:out value="${ board.accomoName }"/></th>
- 						<th><button type="submit"> <form action="bonggeuda/owner/bookingList" method="post"><c:out value="${ board.roomName }"/></form> </button></th>
+ 						<th><form action="/bonggeuda/owner/bookingList" method="post"><button type="submit"><c:out value="${ board.roomName }"/> </button></form> </th>
 						<th><c:out value="${ board.bookUserName }"/></th>
 						<th><c:out value="${ board.bookPersonnel }"/></th> <!-- 폰넘버 DTO 추가하자 -->
 						<th>010-2222-3333</th> <!-- 폰넘버 DTO 추가하자 -->

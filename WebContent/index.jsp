@@ -11,9 +11,9 @@
 <%-- 	 <jsp:forward page="/WEB-INF/views/guest/accomoInfo/book.jsp"></jsp:forward>
  --%>	 
  
- 	<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
-
-
-
+	  	<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
+ 
+<%-- 		<jsp:forward page="/WEB-INF/views/owner/bookingList/bookingContent.jsp"></jsp:forward>
+ --%>
 </body>
 </html>
