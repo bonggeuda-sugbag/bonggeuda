@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.service.UserMypageService;
 
 /**
- * Servlet implementation class UserReportListSelect
+ * Servlet implementation class UserBookListSelect
  */
-@WebServlet("/userreportlist/select")
-public class UserReportListSelect extends HttpServlet {
+@WebServlet("/userbooklist/select")
+public class UserBookListSelect extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -25,16 +25,15 @@ public class UserReportListSelect extends HttpServlet {
 		
 		UserMypageService mypageService = new UserMypageService();
 		
-		List<ReportDTO> userreportList = new ArrayList<>();
-		userreportList = mypageService.selectReportList(userNo);
+		List<BookDTO> booklist = new ArrayList<>();
 		
+		booklist = mypageService.selectUserBookList(userNo);
 		
-		
-		String path = "/WEB-INF/views/guest/mypage/warningList.jsp";
-		request.setAttribute("userreportList", userreportList);
+		String path = "/WEB-INF/views/guest/mypage/reservation.jsp";
+		request.setAttribute("booklist", booklist);
 		
 		request.getRequestDispatcher(path).forward(request, response);
-	
+		
 	}
 
 }

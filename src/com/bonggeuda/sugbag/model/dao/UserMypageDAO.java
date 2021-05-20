@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
@@ -470,6 +472,120 @@ public class UserMypageDAO {
 		}
 		
 		return userReportContent;
+	}
+
+	public AttachmentDTO selectReportImg(Connection con, int userNo, int reportedNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		AttachmentDTO userReportImg = new AttachmentDTO();
+		
+		String query = prop.getProperty("reportImgSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, reportedNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				userReportImg.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userReportImg;
+	}
+
+	/**
+	 * 닉네임 변경시 중복체크 할 닉네임 조회
+	 * @param con
+	 * @param inputNickName
+	 * @return
+	 */
+	public int selectUserNickName(Connection con, String inputNickName) {
+
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("userNicknameSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, inputNickName);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * 예약리스트 조회
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public List<BookDTO> selectUserBookList(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<BookDTO> bookList = new ArrayList<>();
+		
+		String query = prop.getProperty("userBookListSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				BookDTO bookDTO = new BookDTO();
+				bookDTO.setBookNo(rset.getInt("BOOK_NO"));
+				bookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				bookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				bookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
+				bookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				bookDTO.setRoomName(rset.getString("ROOM_NAME"));
+				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				
+				bookList.add(bookDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bookList;
 	}
 
 }
