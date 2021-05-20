@@ -805,9 +805,6 @@ textarea {
                             </div>
                         </div>
                     </li>
-
-
-
                 </ul>
 				<hr>
 				<div class="clearfix"> </div>
@@ -828,6 +825,7 @@ textarea {
 			<!-- //리뷰 -->
 			<!-- 문의 -->
 			<div id="btn4_content" >
+			<form method="post" action="${pageContext.servletContext.contextPath}/book/question">
 				<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 style="margin: auto;">
 					<tr>
 					<td bgcolor=white align="center">
@@ -835,21 +833,23 @@ textarea {
 						<tr>
 						<td style="width: 50px;">제목</td>
 						<td >
-							<input type="text" class = "question-title">
+							<input type="text" class = "question-title" name="title">
+							<input type="hidden" name="ownerNo" value="${accomo.ownerNo }">
 						</td>
 						</tr>
 		
 						<tr>
 						<!-- <td>내용</td> -->
-						<td colspan="2"><textarea name = content cols=85 rows=15 placeholder="문의 내용을 입력해주세요"></textarea></td>
+						<td colspan="2"><textarea name = "content" cols=85 rows=15 placeholder="문의 내용을 입력해주세요"></textarea></td>
 						</tr>
 					</table>
 						<center>
-							<button class="submit_QnA" onclick="location.href='QnA.html'; notice();">작성</button>
+							<button class="submit_QnA" type="submit">작성</button>
 						</center>
 					</td>
 					</tr>
 			</table>
+			</form>
 			</div>
         </center>
 		<div id="pop01" class="overlay">
