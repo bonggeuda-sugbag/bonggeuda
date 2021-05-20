@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -143,48 +145,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    <tr>
 						<th><b>번호</b></th>
 						<th><b>숙소명</b></th>
+						<th><b>객실명</b></th>
 						<th><b>예약자</b></th>
 						<th><b>인원</b></th>
 						<th><b>전화번호</b></th>
-						<th><b>날짜</b></th>
+						<th><b>시작 날짜</b></th>
+						<th><b>종료 날짜</b></th>
 						<th><b>예약확인</b></th>
 						<th><b>이용상태</b></th>
 						<th><b>신고</b></th>
 				    </tr>
 				</thead>
 				<tbody>
+				<c:forEach var="board" items="${ requestScope.bookList }">
 				   	<tr>
-						<th>2</th>
-						<th>
-							<a href="booking_contents.html">제주 게스트하우스</a></th>
-						<th>홍길동</th>
-						<th>2</th>
-						<th>010-2222-3333</th>
-						<th>05/01 ~ 05/05</th>
-						<th>확인</th>
+				   	<c:set var="i" value="${i+1 }"/>
+				   	
+						<th>${ i}</th>
+						<th><c:out value="${ board.accomoName }"/></th>
+ 						<th><button type="submit"> <form action="bonggeuda/owner/bookingList" method="post"><c:out value="${ board.roomName }"/></form> </button></th>
+						<th><c:out value="${ board.bookUserName }"/></th>
+						<th><c:out value="${ board.bookPersonnel }"/></th> <!-- 폰넘버 DTO 추가하자 -->
+						<th>010-2222-3333</th> <!-- 폰넘버 DTO 추가하자 -->
+						<th><c:out value="${ board.bookCheckDate }"/></th>
+						<th><c:out value="${ board.bookCheckoutDate }"/></th>
+						<th><c:out value="${ board.bookApproveYn }"/></th> <!-- 스위치 문으로 예약 확인 N인 녀석들만 가져오기 -->
 						<th>결제완료</th>
 						<th>
 							<a href="report.html">
-							<img src="../img/icon/siren.png" style="width: 26px; height: 26px;">
+							<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/siren.png" style="width: 26px; height: 26px;">
 							</a>
 						</th>
+						<th style="visibility: hidden;"><c:out value="${ board.bookNo }"/></th>
 					</tr>   
-					<tr>
-						<th>1</th>
-						<th>
-							<a href="booking_contents.html">숲 속 통나무 집</a></th>
-						<th>홍길동</th>
-						<th>2</th>
-						<th>010-2222-3333</th>
-						<th>05/21 ~ 05/23</th>
-						<th>확인</th>
-						<th>승인완료</th>
-						<th>
-							<a href="report.html">
-							<img src="../img/icon/siren.png" style="width: 26px; height: 26px;">
-							</a>
-						</th>
-				 	</tr>   
+					</c:forEach>
+			
 				</tbody>
 			 </table>
 			 <div class="tab_each" style="display:block">
@@ -203,6 +198,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</div>
 </div>
+
 <!--footer-->
 <div class="footer-bottom">
 	<div class="container">

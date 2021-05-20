@@ -128,4 +128,34 @@
 		 WHERE BL.USER_NO = ?
 		   AND BL.BOOK_STATUS_YNC = 'N'
     </entry>
+    
+    <entry key="userCompleteBookListSelect">
+		SELECT BL.BOOK_NO
+		     , BL.BOOK_CHECK_DATE
+		     , BL.BOOK_CHECKOUT_DATE
+		     , BL.BOOK_APPROVE_YN
+		     , BL.BOOK_CHECK_IN
+		     , RI.ROOM_NAME
+		     , AI.ACCOMO_NAME
+		  FROM BOOK_LIST BL
+		  JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
+		  JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+		 WHERE BL.USER_NO = ?
+		   AND BL.BOOK_STATUS_YNC = 'Y'
+    </entry>
+    
+    <entry key="userCancleBookListSelect">
+		SELECT BL.BOOK_NO
+		     , BL.BOOK_CHECK_DATE
+		     , BL.BOOK_CHECKOUT_DATE
+		     , BL.BOOK_APPROVE_YN
+		     , BL.BOOK_CHECK_IN
+		     , RI.ROOM_NAME
+		     , AI.ACCOMO_NAME
+		  FROM BOOK_LIST BL
+		  JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
+		  JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+		 WHERE BL.USER_NO = ?
+		   AND BL.BOOK_STATUS_YNC = 'C'
+    </entry>
 </properties>

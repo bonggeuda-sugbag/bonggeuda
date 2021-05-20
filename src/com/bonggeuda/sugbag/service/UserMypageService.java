@@ -252,6 +252,23 @@ public class UserMypageService {
 	}
 
 
+	/**
+	 * 이용 완료된 목록 조회하기
+	 * @param userNo
+	 * @return
+	 */
+	public List<BookDTO> selectCompleteBooklist(int userNo) {
+		
+		Connection con = getConnection();
+		
+		List<BookDTO> completeBooklist = mypageDAO.completeBooklist(con, userNo);
+		
+		close(con);
+		
+		return completeBooklist;
+	}
+
+
 
 
 
