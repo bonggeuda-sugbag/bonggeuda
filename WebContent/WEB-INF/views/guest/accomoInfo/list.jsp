@@ -240,8 +240,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<%-- <div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value='+'${accomo}';" > --%>
 			<form name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
             
-			<button type="submit" name="accomoInfo" value='${accomo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;">
-				
+			<button type="submit" name="no" value='${accomo.accomoNo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;">
 				<div class="infoThumb" >
 					<h2>${accomo.accomoName }</h2>
 					<br>

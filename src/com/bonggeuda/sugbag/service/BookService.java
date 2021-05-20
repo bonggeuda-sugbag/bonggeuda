@@ -44,10 +44,27 @@ public class BookService {
 	public List<Map> selectPriceNstar(String type) {
 		
 		Connection con = getConnection();
-		List<Map> priceNrvScore = bookDao.selectPriceNScore(con,type);
+		List<Map> priceNrvScore = null;
+		
+		priceNrvScore = bookDao.selectPriceNScore(con,type);
 		close(con);
 		return priceNrvScore;
 
+	}
+
+	/**
+	 * 숙소 1개 정보 조회
+	 * @param booksvc
+	 * @return
+	 */
+	public AccomoInfoDTO selectAccomoInfo(int accomoNo) {
+		Connection con = getConnection();
+		AccomoInfoDTO accomo = null;
+		
+		accomo = bookDao.selectAccomoInfo(con, accomoNo);
+		close(con);
+		
+		return accomo;
 	}
 
 }

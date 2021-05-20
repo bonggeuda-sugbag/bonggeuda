@@ -193,6 +193,59 @@ public class BookDAO {
 		return accomoPriceNStar;
 	}
 
+	/**
+	 * 숙소 1개 정보 select
+	 * @param con
+	 * @param accomoNo 숙소번호
+	 * @return 숙소정보
+	 */
+	public AccomoInfoDTO selectAccomoInfo(Connection con, int accomoNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		AccomoInfoDTO accomo = null;
+		
+		String query = prop.getProperty("selectOneAccomo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				accomo = new AccomoInfoDTO();
+				accomo.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				accomo.setOwnerNo(rset.getInt("OWNER_NO"));
+				accomo.setAccomoName(rset.getString("ACCOMO_NAME"));
+				accomo.setCeoName(rset.getString("CEO_NAME"));
+				accomo.setType(rset.getString("ACCOMO_TYPE"));
+				accomo.setResgstrationNo(rset.getString("REGISTRATION_NO"));
+				accomo.setAddress(rset.getString("ACCOMO_ADDRESS"));
+				accomo.setEmail(rset.getString("ACCOMO_EMAIL"));
+				accomo.setHomepage(rset.getString("ACCOMO_HOMEPAGE"));
+				accomo.setFacility(rset.getString("ACCOMO_FACILITY"));
+				accomo.setPath(rset.getString("ACCOMO_PATH"));
+				accomo.setNear(rset.getString("ACCOMO_NEAR"));
+				accomo.setRule(rset.getString("ACCOMO_RULE"));
+				accomo.setParking(rset.getString("ACCOMO_PARKING"));
+				accomo.setCheckIn(rset.getString("CHECK_IN"));
+				accomo.setCheckOut(rset.getString("CHECK_OUT"));
+				accomo.setPeakStart(rset.getDate("PEAK_DATE_START"));
+				accomo.setPeakEnd(rset.getDate("PEAK_DATE_END"));
+			}
+			System.out.println(accomo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    close(rset);
+		    close(pstmt);
+		}
+		return accomo;
+	}
+
 	
 
 }
