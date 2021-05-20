@@ -80,4 +80,19 @@
 		   AND R.MEMBER_NO = ?
 		   AND R.REPORTED_TYPE = 'owner'
     </entry>
+    
+    <entry key="reportContent">
+		SELECT R.REPORT_TITLE
+		     , A.ACCOMO_NAME
+		     , R.REPORT_DATE
+		     , R.REPORT_REASON
+		     , RH.REPORT_ANSWER
+		  FROM REPORT R
+		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = R.REPORTED_NO)
+		  JOIN REPORT_HISTORY RH ON(RH.REPORT_NO = R.REPORT_NO)
+		 WHERE R.WRITER_TYPE = 'guest'
+		   AND R.MEMBER_NO = ?
+		   AND R.REPORTED_TYPE = 'owner'
+		   AND R.REPORT_NO = ?
+    </entry>
 </properties>

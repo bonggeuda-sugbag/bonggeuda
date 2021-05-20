@@ -184,6 +184,23 @@ public class UserMypageService {
 	}
 
 
+	/**
+	 * 신고 상세 내용 조회
+	 * @return
+	 */
+	public ReportDTO selectReportContent(int userNo, int reportedNo) {
+		
+		Connection con = getConnection();
+		
+		ReportDTO userReportContent = mypageDAO.selectReportContent(con, userNo, reportedNo);
+		
+		close(con);
+		
+		return userReportContent;
+	}
+
+
+
 
 
 }

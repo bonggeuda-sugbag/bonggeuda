@@ -427,4 +427,49 @@ public class UserMypageDAO {
 		return report;
 	}
 
+	/**
+	 * 신고 상세 내용 조회
+	 * @param reportedNo 
+	 * @return
+	 */
+	public ReportDTO selectReportContent(Connection con, int userNo, int reportedNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ReportDTO userReportContent = null;
+		
+		String query = prop.getProperty("reportContent");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, reportedNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				userReportContent = new ReportDTO();
+				
+				userReportContent.setReportTitle(rset.getString("REPORT_TITLE"));
+				userReportContent.setAccomoName(rset.getString("ACCOMO_NAME"));
+				userReportContent.setReportDate(rset.getDate("REPORT_DATE"));
+				userReportContent.setReportReason(rset.getString("REPORT_REASON"));
+				userReportContent.setReportAnswer(rset.getString("REPORT_ANSWER"));
+				
+			}
+			
+			System.out.println(userReportContent);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userReportContent;
+	}
+
 }
