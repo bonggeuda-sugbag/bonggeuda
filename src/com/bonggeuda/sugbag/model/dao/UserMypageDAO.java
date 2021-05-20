@@ -8,11 +8,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
@@ -470,6 +475,189 @@ public class UserMypageDAO {
 		}
 		
 		return userReportContent;
+	}
+
+	public AttachmentDTO selectReportImg(Connection con, int userNo, int reportedNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		AttachmentDTO userReportImg = new AttachmentDTO();
+		
+		String query = prop.getProperty("reportImgSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, reportedNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				userReportImg.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userReportImg;
+	}
+
+	/**
+	 * 닉네임 변경시 중복체크 할 닉네임 조회
+	 * @param con
+	 * @param inputNickName
+	 * @return
+	 */
+	public int selectUserNickName(Connection con, String inputNickName) {
+
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("userNicknameSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, inputNickName);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * 예약리스트 조회
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public List<BookDTO> selectUserBookList(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<BookDTO> bookList = new ArrayList<>();
+		
+		String query = prop.getProperty("userBookListSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				BookDTO bookDTO = new BookDTO();
+				bookDTO.setBookNo(rset.getInt("BOOK_NO"));
+				bookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				bookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				bookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
+				bookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				bookDTO.setRoomName(rset.getString("ROOM_NAME"));
+				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				
+				/* 숙박일수 구하기 */
+				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					Date startDate = dataFormat.parse(rset.getString("BOOK_CHECK_DATE"));
+					Date endDate = dataFormat.parse(rset.getString("BOOK_CHECKOUT_DATE"));
+					bookDTO.setDay((endDate.getTime() - startDate.getTime())/(24*60*60*1000));
+					
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				bookList.add(bookDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bookList;
+	}
+
+	/**
+	 * 이용 완료한 목록 조회하기
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public List<BookDTO> completeBooklist(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<BookDTO> completeBooklist = new ArrayList<>();
+		
+		String query = prop.getProperty("userCompleteBookListSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				BookDTO completebookDTO = new BookDTO();
+				completebookDTO.setBookNo(rset.getInt("BOOK_NO"));
+				completebookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				completebookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				completebookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
+				completebookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				completebookDTO.setRoomName(rset.getString("ROOM_NAME"));
+				completebookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				
+				/* 숙박일수 구하기 */
+				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					Date startDate = dataFormat.parse(rset.getString("BOOK_CHECK_DATE"));
+					Date endDate = dataFormat.parse(rset.getString("BOOK_CHECKOUT_DATE"));
+					completebookDTO.setDay((endDate.getTime() - startDate.getTime())/(24*60*60*1000));
+					
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				completeBooklist.add(completebookDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return completeBooklist;
+		
 	}
 
 }

@@ -40,8 +40,33 @@ SELECT B.*,ROWNUM RNUM FROM
      , U.USER_NICKNAME
      , U.USER_PHONE
      , P.POINT
+     , U.USER_NO
   FROM USER_INFO U
   JOIN POINT P ON (U.USER_NO = P.USER_NO)
-  WHERE U.USER_NO = 2
+  WHERE U.USER_NO = ?
+	</entry>
+	
+	<entry key="insertCoupon">
+        INSERT INTO 
+    COUPON
+(
+  COUPON_NO
+, COUPON_START
+, COUPON_END
+, COUPON_CONDITION
+, COUPON_USE_YN
+, USER_NO
+, COUPON_NAME
+)
+VALUES
+(
+  SEQ_COUPON_NO.NEXTVAL
+, ?
+, ?
+, ?
+, DEFAULT
+, ?
+, ?
+)
 	</entry>
 </properties>

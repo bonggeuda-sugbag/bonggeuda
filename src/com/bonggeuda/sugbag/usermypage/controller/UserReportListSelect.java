@@ -28,7 +28,7 @@ public class UserReportListSelect extends HttpServlet {
 		List<ReportDTO> userreportList = new ArrayList<>();
 		userreportList = mypageService.selectReportList(userNo);
 		
-
+		
 		
 		String path = "/WEB-INF/views/guest/mypage/warningList.jsp";
 		request.setAttribute("userreportList", userreportList);

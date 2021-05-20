@@ -21,8 +21,11 @@
              , CHECK_OUT
              , PEAK_DATE_START
              , PEAK_DATE_END 
-          FROM ACCOMO_INFO 
+             , THUMBNAIL_PATH
+          FROM ACCOMO_INFO AI
+          JOIN ATTACHMENT AM ON(AI.ACCOMO_NO = AM.REF_NO)
          WHERE ACCOMO_TYPE = ?
+           AND CATEGORY_NO = ?
     </entry>
     <entry key="selectMinPrice">
         SELECT
@@ -63,8 +66,34 @@
              , CHECK_IN
              , CHECK_OUT
              , PEAK_DATE_START
-             , PEAK_DATE_END 
-          FROM ACCOMO_INFO 
+             , PEAK_DATE_END
+             , AM.THUMBNAIL_PATH
+          FROM ACCOMO_INFO AI
+          JOIN ATTACHMENT AM ON(AI.ACCOMO_NO = AM.REF_NO) 
          WHERE ACCOMO_NO = ?
+           AND CATEGORY_NO = ?
+    </entry>
+    <entry key="selectOneAccomoReviewScoe">
+    SELECT 
+           AI.ACCOMO_NO
+         , ROUND(AVG(RV.STAR_POINT),1) 평점
+      FROM ACCOMO_INFO AI
+      JOIN ROOM_INFO RI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+      JOIN BOOK_LIST BL ON(RI.ROOM_NO = BL.ROOM_NO)
+      JOIN REVIEW RV ON(BL.BOOK_NO = RV.BOOK_NO)
+     WHERE AI.ACCOMO_NO = ?
+     GROUP BY AI.ACCOMO_NO
+    </entry>
+    <entry key="selectRoomList">
+    SELECT
+           ROOM_NO
+         , ACCOMO_NO
+         , ROOM_NAME
+         , ROOM_MAX
+         , ROOM_INTRO
+         , ROOM_FEE
+         , PEAK_FEE
+      FROM ROOM_INFO
+     WHERE ACCOMO_NO = ?
     </entry>
 </properties>

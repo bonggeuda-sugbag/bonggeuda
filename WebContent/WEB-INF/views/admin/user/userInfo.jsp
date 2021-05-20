@@ -169,18 +169,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </tr>
          </thead>
          <tbody>
-            <tr>
 			<c:forEach var="user" items="${ requestScope.userList }">
+			<form action="${ pageContext.servletContext.contextPath }/user/detail" method="get">
 			<tr>
 				<td><c:out value="${ user.userNo }"/></td>
 				<td><c:out value="${ user.name }"/></td>
 				<td><c:out value="${ user.email }"/></td>
 				<td><c:out value="${ user.phoneNumber }"/></td>
-				<td><button onclick="location.href='${pageContext.servletContext.contextPath }/WEB-INF/views/admin/user/userInfoDetail.jsp'">상세보기</button></td>
+				<td><button>상세보기</button></td>
+				<input type="hidden" name="hduserNo" value= "${ user.userNo }">
 			</tr>
+            </form>
 			</c:forEach>
-            </tr>   
-            
          </tbody>
       </table>
 
@@ -320,6 +320,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$tds[i].onclick = function() {
 					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠지? */
 					alert(this.parentNode.children[0].innerText);
+					location.href = "${ pageContext.servletContext.contextPath }/user/detail/";
 				}
 				
 			}

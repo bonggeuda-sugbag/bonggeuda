@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -500,16 +501,26 @@ textarea {
             <!-- 숙소사진, 이름 -->
             <div style=" width : 1100px; height : 500px; padding:10px 10px 10px 0px;display: flex; flex-direction: row;">
                 <!-- 숙소사진 -->
-                <div style=" width : 600px; height: 470px; display: block;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/ga2.jpg) no-repeat; background-size: 600px 470px;">
+                <div style=" width : 600px; height: 470px; display: block;background: url(${pageContext.servletContext.contextPath }/${accomo.attachment.thumbnailPath }); background-size: 600px 470px;">
                     
                 </div>
                 <!-- 숙소이름 -->
                 <div class="accomoInfo">
-                    <div><h2>더조은컴퓨터아카데미</h2></div>
+                    <div><h2>${accomo.accomoName }</h2></div>
                     <br>
-                    <div><h3><p>평점</p>0점 / 5점</h3></div>
+                    <c:choose>
+                        <c:when test="${accomo.reviewScore == '0.0'}">
+	                    <div><h3>등록된 평점 없음</h3></div>
+                        
+                        </c:when>
+                        <c:otherwise>
+                        <div><h3><p>평점</p>${ accomo.reviewScore }점 / 5점</h3></div>
+                        </c:otherwise>
+                    </c:choose>
                     <br>
-                    <div><h4>주소 : 강남구 강남동</h4></div>
+                    <div><h4> - 주소 : ${accomo.address }</h4></div>
+                    <br>
+                    <div><h4> - 오시는길 : ${accomo.path }</h4></div>
                     <br><br>
                     <div class="ownerComment">
                         <h4 style="text-align: left;"><b>사장님 한마디</b></h4>
@@ -644,7 +655,7 @@ textarea {
 					</div>
 					<div style="text-align: left;">
 						<p>체크인 가능시간</p>
-						<p>11:00 이후</p>
+						<p> ${accomo.checkIn} 이후</p>
 					</div>
 				<!-- //예약일자 입력 -->
 				</div>
@@ -652,33 +663,15 @@ textarea {
 				<hr>
 				<center>
 					<!-- 객실정보 -->
-					<div class="detailList" > 
-						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/pc1.jpg) no-repeat; background-size: 100%;" ></div>
-						<div class="detailInfo" >
-							<div><h3>더조은컴퓨터아카데미 강남점</h3></div>
-							<br><br>
-							<div style="display: flex;">
-								<div style="width: 40%;">가격</div>
-								<div style="margin-left: 40px; width: 50%;">10000원 / 1박</div>
-							</div>
-							<hr>
-							<div style="display: flex;"onclick="location.href='#pop01';">
-								<button class="info_btn" >객실이용안내 ></button>
-							</div>
-							<hr>
-							<div >
-								<button class="detail_btn" onclick="location.href='payment.html';">예약하기</button>
-							</div>
-						</div>
-					</div>
+					<c:forEach var="roomList" items="${ roomList }" varStatus ="st">
 					<div class="detailList" > 
 						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/pc2.jpg) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
-							<div><h3>더조은컴퓨터아카데미 강남별관</h3></div>
+							<div><h3>${roomList.roomName}</h3></div>
 							<br><br>
 							<div style="display: flex;">
 								<div style="width: 40%;">가격</div>
-								<div style="margin-left: 40px; width: 50%;">25000원 / 1박</div>
+								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
 							</div>
 							<hr>
 							<div>
@@ -690,6 +683,7 @@ textarea {
 							</div>
 						</div>
 					</div>
+					</c:forEach>
 					<!--// 객실정보 -->
 				</center>
 			</div>
@@ -701,13 +695,13 @@ textarea {
 						<label for="checkbox-1">기본정보</label>
 						<div class="content">
 							<h3>주변정보</h3>
-							<p>- 두물머리 부근</p>
+							<p>- ${ accomo.near }</p>
 							<h3>공지사항</h3>
-							<p>- 성수기 : 7월 15일 ~ 9월21일</p>
-							<p>- 전객실 금연(적발 시 퇴실조치, 환불 불가)</p>
+							<p>- 성수기 : ${accomo.peakStart } ~ ${accomo.peakEnd }</p>
+							<p>- ${accomo.rule }</p>
 							<h3>기본정보</h3>
-							<p>- 입실 : 15:00 | 퇴실 : 11:00</p>
-							<p>- 무료 Wi-Fi</p>
+							<p>- 입실가능시간 : ${accomo.checkIn } | 퇴실 : ${accomo.checkOut }</p>
+							<p>- 주차요금 : ${accomo.parking}</p>
 							<h3>객실정보</h3>
 							<p>- 흠..?</p>
 							<h3>취소 및 환불 규정</h3>
@@ -728,7 +722,7 @@ textarea {
 						<input type="checkbox" id="checkbox-2" name="checkbox-accordion" />
 						<label for="checkbox-2">편의시설 및 서비스</label>
 						<div class="content2">
-							<p>수영장 / 와이파이 / 픽업가능 / BBQ / TV / 욕실용품</p>
+							<p>${accomo.facility }</p>
 						</div>
 					</li>
 					
@@ -811,9 +805,6 @@ textarea {
                             </div>
                         </div>
                     </li>
-
-
-
                 </ul>
 				<hr>
 				<div class="clearfix"> </div>
@@ -834,6 +825,7 @@ textarea {
 			<!-- //리뷰 -->
 			<!-- 문의 -->
 			<div id="btn4_content" >
+			<form method="post" action="${pageContext.servletContext.contextPath}/book/question">
 				<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 style="margin: auto;">
 					<tr>
 					<td bgcolor=white align="center">
@@ -841,21 +833,23 @@ textarea {
 						<tr>
 						<td style="width: 50px;">제목</td>
 						<td >
-							<input type="text" class = "question-title">
+							<input type="text" class = "question-title" name="title">
+							<input type="hidden" name="ownerNo" value="${accomo.ownerNo }">
 						</td>
 						</tr>
 		
 						<tr>
 						<!-- <td>내용</td> -->
-						<td colspan="2"><textarea name = content cols=85 rows=15 placeholder="문의 내용을 입력해주세요"></textarea></td>
+						<td colspan="2"><textarea name = "content" cols=85 rows=15 placeholder="문의 내용을 입력해주세요"></textarea></td>
 						</tr>
 					</table>
 						<center>
-							<button class="submit_QnA" onclick="location.href='QnA.html'; notice();">작성</button>
+							<button class="submit_QnA" type="submit">작성</button>
 						</center>
 					</td>
 					</tr>
 			</table>
+			</form>
 			</div>
         </center>
 		<div id="pop01" class="overlay">
