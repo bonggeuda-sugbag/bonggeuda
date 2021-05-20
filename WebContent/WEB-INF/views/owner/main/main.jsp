@@ -119,7 +119,7 @@
 						
 					</div>
 					<div class=" bottom-head">
-						<a href="booking.html"> <!--예약 관리 페이지로 연결-->
+						<a href="/bonggeuda/owner/bookingList"> <!--예약 관리 페이지로 연결-->
 							<div class="buy-media">
 							<i class="pg"> </i>
 							<h6>예약 관리</h6>
