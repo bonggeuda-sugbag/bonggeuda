@@ -20,8 +20,7 @@ import com.bonggeuda.sugbag.service.BookService;
 public class RoomSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println(request.getParameter("no"));
+		System.out.println("왜 여기로 또 들어오지?");
 		int accomoNo = Integer.parseInt(request.getParameter("no"));
 		//숙소정보, 사진조회
 		BookService booksvc = new BookService();
@@ -29,7 +28,8 @@ public class RoomSelectServlet extends HttpServlet {
 		AccomoInfoDTO accomo = booksvc.selectAccomoInfo(accomoNo, categoryType);
 
 		//객실정보 조회
-		List<RoomDTO> roomList = booksvc.selectRoomList(accomoNo);
+		categoryType = 4;
+		List<RoomDTO> roomList = booksvc.selectRoomList(accomoNo,categoryType);
 		String path ="";
 		if(accomo != null && roomList!=null) {
 			path = "/WEB-INF/views/guest/accomoInfo/book.jsp";

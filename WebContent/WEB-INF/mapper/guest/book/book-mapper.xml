@@ -93,7 +93,23 @@
          , ROOM_INTRO
          , ROOM_FEE
          , PEAK_FEE
-      FROM ROOM_INFO
+         , THUMBNAIL_PATH
+      FROM ROOM_INFO RI
+      JOIN ATTACHMENT AC ON(RI.ROOM_NO = AC.REF_NO)
      WHERE ACCOMO_NO = ?
+       AND CATEGORY_NO = ?
+    </entry>
+    <entry key="insertOwnerQnA">
+        INSERT 
+          INTO OWNER_QNA
+        VALUES (
+               SQU_OWNER_QNA.NEXTVAL
+             , ?
+             , ?
+             , ?
+             , DEFAULT
+             , ?
+             , ? 
+             )    
     </entry>
 </properties>
