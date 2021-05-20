@@ -15,12 +15,13 @@ public class BookDTO {
 	private String bookStatusYNC;
 	private String roomName;
 	private String accomoName;
+	private long day;				// bookCheckoutDate - bookCheckDate
 	
 	public BookDTO() {}
 
 	public BookDTO(int bookNo, String bookUserName, int bookPersonnel, String bookCheckDate, String bookCheckoutDate,
 			String bookApproveYn, String bookCheckIn, String request, int roomNo, int userNo, String bookStatusYNC,
-			String roomName, String accomoName) {
+			String roomName, String accomoName, long day) {
 		super();
 		this.bookNo = bookNo;
 		this.bookUserName = bookUserName;
@@ -35,6 +36,7 @@ public class BookDTO {
 		this.bookStatusYNC = bookStatusYNC;
 		this.roomName = roomName;
 		this.accomoName = accomoName;
+		this.day = day;
 	}
 
 	public int getBookNo() {
@@ -142,12 +144,21 @@ public class BookDTO {
 		this.accomoName = accomoName;
 	}
 
+	public long getDay() {
+		return day;
+	}
+
+	public void setDay(long day) {
+		this.day = day;
+	}
+
 	@Override
 	public String toString() {
 		return "BookDTO [bookNo=" + bookNo + ", bookUserName=" + bookUserName + ", bookPersonnel=" + bookPersonnel
 				+ ", bookCheckDate=" + bookCheckDate + ", bookCheckoutDate=" + bookCheckoutDate + ", bookApproveYn="
 				+ bookApproveYn + ", bookCheckIn=" + bookCheckIn + ", request=" + request + ", roomNo=" + roomNo
 				+ ", userNo=" + userNo + ", bookStatusYNC=" + bookStatusYNC + ", roomName=" + roomName + ", accomoName="
-				+ accomoName + "]";
-	}	
+				+ accomoName + ", day=" + day + "]";
+	}
+
 }

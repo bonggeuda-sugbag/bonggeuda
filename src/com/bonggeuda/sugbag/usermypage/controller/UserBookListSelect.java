@@ -1,6 +1,7 @@
 package com.bonggeuda.sugbag.usermypage.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +26,26 @@ public class UserBookListSelect extends HttpServlet {
 		
 		UserMypageService mypageService = new UserMypageService();
 		
+		/* 예약한 목록 조회하기 */
 		List<BookDTO> booklist = new ArrayList<>();
-		
 		booklist = mypageService.selectUserBookList(userNo);
+		System.out.println(booklist);
+		
+		/* 이용 완료한 목록 조회하기 */
+		List<BookDTO> completeBooklist = new ArrayList<>();
+		completeBooklist = mypageService.selectCompleteBooklist(userNo);
+		System.out.println(completeBooklist);
+		
+		/* 예약 취소한 목록 조회하기 */
+		List<BookDTO> cancleBooklist = new ArrayList<>();
+		cancleBooklist = mypageService.selectCancleBooklist(userNo);
+		System.out.println(cancleBooklist);
+		
 		
 		String path = "/WEB-INF/views/guest/mypage/reservation.jsp";
 		request.setAttribute("booklist", booklist);
+		request.setAttribute("completeBooklist", completeBooklist);
+		request.setAttribute("cancleBooklist", cancleBooklist);
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		

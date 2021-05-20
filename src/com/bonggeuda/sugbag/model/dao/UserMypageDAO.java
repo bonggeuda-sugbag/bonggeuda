@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -575,6 +578,17 @@ public class UserMypageDAO {
 				bookDTO.setRoomName(rset.getString("ROOM_NAME"));
 				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
 				
+				/* 숙박일수 구하기 */
+				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					Date startDate = dataFormat.parse(rset.getString("BOOK_CHECK_DATE"));
+					Date endDate = dataFormat.parse(rset.getString("BOOK_CHECKOUT_DATE"));
+					bookDTO.setDay((endDate.getTime() - startDate.getTime())/(24*60*60*1000));
+					
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
 				bookList.add(bookDTO);
 			}
 			
@@ -586,6 +600,64 @@ public class UserMypageDAO {
 		}
 		
 		return bookList;
+	}
+
+	/**
+	 * 이용 완료한 목록 조회하기
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public List<BookDTO> completeBooklist(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<BookDTO> completeBooklist = new ArrayList<>();
+		
+		String query = prop.getProperty("userCompleteBookListSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				BookDTO completebookDTO = new BookDTO();
+				completebookDTO.setBookNo(rset.getInt("BOOK_NO"));
+				completebookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				completebookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				completebookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
+				completebookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				completebookDTO.setRoomName(rset.getString("ROOM_NAME"));
+				completebookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				
+				/* 숙박일수 구하기 */
+				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					Date startDate = dataFormat.parse(rset.getString("BOOK_CHECK_DATE"));
+					Date endDate = dataFormat.parse(rset.getString("BOOK_CHECKOUT_DATE"));
+					completebookDTO.setDay((endDate.getTime() - startDate.getTime())/(24*60*60*1000));
+					
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				completeBooklist.add(completebookDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return completeBooklist;
+		
 	}
 
 }
