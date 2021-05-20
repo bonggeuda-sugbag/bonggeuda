@@ -60,4 +60,24 @@
 		   SET USER_PWD = ?
 		 WHERE USER_NO = ?
     </entry>
+    
+    <entry key="withdrawUpdate">
+		UPDATE USER_INFO
+		   SET USER_WITHDRAW_YN = 'Y'
+		     , WITHDRAWDATE = ?
+		 WHERE USER_NO = ?
+    </entry>
+    
+    <entry key="reportListSelect">
+		SELECT R.REPORT_NO
+		     , R.REPORT_TITLE
+		     , A.ACCOMO_NAME
+		     , R.REPORT_DATE
+		     , R.REPORT_STATUS
+		  FROM REPORT R
+		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = R.REPORTED_NO)
+		 WHERE R.WRITER_TYPE = 'guest'
+		   AND R.MEMBER_NO = ?
+		   AND R.REPORTED_TYPE = 'owner'
+    </entry>
 </properties>
