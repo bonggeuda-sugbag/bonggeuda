@@ -213,15 +213,12 @@
 						</div>
 
 					</td>
-					
 				</th>
 			</tr>
 			<tr>
 				<br>
 				<th colspan="2" style="background-color: white; ">
-					<form action="${ pageContext.servletContext.contextPath }/registration2" method="post">
 						<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
-					</form>
 				</th>
 			</tr>
 		</tbody>

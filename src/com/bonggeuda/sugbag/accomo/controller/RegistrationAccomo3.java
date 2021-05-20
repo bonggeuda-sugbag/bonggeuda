@@ -19,28 +19,6 @@ import com.bonggeuda.sugbag.accomo.model.service.AccomoService;
 public class RegistrationAccomo3 extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		AccomoDTO accomoDTO = new AccomoDTO();
-		accomoDTO = (AccomoDTO) request.getAttribute("accomoDTO");
-		
-//		/*등록1단계*/
-//		String accomoName = (String) request.getAttribute("accomoName");
-//		String ceoName = (String) request.getAttribute("ceoName");
-//		String accomoType = (String) request.getAttribute("accomoType");
-//		String registNo = (String) request.getAttribute("registNo");
-//		String address = (String) request.getAttribute("address");
-//		String adrDetail = (String) request.getAttribute("adrDetail");
-//		String email = (String) request.getAttribute("email");
-//		String homepage = (String) request.getAttribute("homepage");
-//		
-//		/*등록2단계*/
-//		//숙소이미지받아오기
-//		String[] arrayFacility = request.getParameterValues("arrayFacility");
-//		String facility = "";
-//		String accomoPath = request.getParameter("accomoPath");
-//		String near = request.getParameter("near");
-//		String rule = request.getParameter("rule");
-//		String parking = request.getParameter("parking");
 
 		/*등록3단계*/
 		String checkIn = request.getParameter("checkIn");
@@ -48,29 +26,45 @@ public class RegistrationAccomo3 extends HttpServlet {
 		java.sql.Date peakStart = java.sql.Date.valueOf(request.getParameter("peakStart")); 
 		java.sql.Date peakEnd = java.sql.Date.valueOf(request.getParameter("peakEnd")); 
 		
-//		/*값 전달 확인용*/
-//		System.out.println("accomoName");
-//		System.out.println(ceoName);
-//		System.out.println(accomoType);
-//		System.out.println(registNo);
-//		System.out.println(address);
-//		System.out.println(adrDetail);
-//		System.out.println(email);
-//		System.out.println(homepage);
-//		System.out.println(facility);
-//		System.out.println(accomoPath);
-//		System.out.println(near);
-//		System.out.println(rule);
-//		System.out.println(parking);
-//		System.out.println(checkIn);
-//		System.out.println(checkOut);
-//		System.out.println(peakStart);
-//		System.out.println(peakEnd);
+		/*다시 DTO에 한번에 담아줌*/
+		AccomoDTO accomoDTO = new AccomoDTO();
 		
+		accomoDTO.setAccomoName(request.getParameter("accomoName"));
+		accomoDTO.setCeoName(request.getParameter("ceoName"));
+		accomoDTO.setAccomoType(request.getParameter("accomoType"));
+		accomoDTO.setRegistNo(request.getParameter("registNo"));
+		accomoDTO.setAddress(request.getParameter("address"));
+		accomoDTO.setAdrDetail(request.getParameter("adrDetail"));
+		accomoDTO.setEmail(request.getParameter("email"));
+		accomoDTO.setHomepage(request.getParameter("homepage"));
+		accomoDTO.setFacility(request.getParameter("facility"));
+		accomoDTO.setAccomoPath(request.getParameter("accomoPath"));
+		accomoDTO.setNear(request.getParameter("near"));
+		accomoDTO.setRule(request.getParameter("rule"));
+		accomoDTO.setParking(request.getParameter("parking"));
 		accomoDTO.setCheckIn(checkIn);
 		accomoDTO.setCheckOut(checkOut);
 		accomoDTO.setPeakStart(peakStart);
 		accomoDTO.setPeakEnd(peakEnd);
+		
+		/*1,2,3단계 값 모두 받았는지 확인*/
+		System.out.println(request.getParameter("accomoName"));
+		System.out.println(request.getParameter("ceoName"));
+		System.out.println(request.getParameter("accomoType"));
+		System.out.println(request.getParameter("registNo"));
+		System.out.println(request.getParameter("address"));
+		System.out.println(request.getParameter("adrDetail"));
+		System.out.println(request.getParameter("email"));
+		System.out.println(request.getParameter("homepage"));
+		System.out.println(request.getParameter("facility"));
+		System.out.println(request.getParameter("accomoPath"));
+		System.out.println(request.getParameter("near"));
+		System.out.println(request.getParameter("rule"));
+		System.out.println(request.getParameter("parking"));
+		System.out.println(checkIn);
+		System.out.println(checkOut);
+		System.out.println(peakStart);
+		System.out.println(peakEnd);
 		
 		/*값을 전달하기 위한 비지니스 로직 호출*/
 		AccomoService accomoService = new AccomoService();
@@ -81,7 +75,6 @@ public class RegistrationAccomo3 extends HttpServlet {
 		String path="";
 
 		path = "/WEB-INF/views/owner/registration/registration4.jsp";
-		//request.setAttribute("accomoList", accomoList);
 
 		request.getRequestDispatcher(path).forward(request, response);
 		
