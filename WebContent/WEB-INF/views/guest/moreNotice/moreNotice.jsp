@@ -1,31 +1,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<style>
 		div.mmiddle {
-		margin-left: 25%;
-		margin-right: 25%;
+			margin-left: 25%;
+			margin-right: 25%;
+		}
+		.btn:not(:disabled):not(.disabled) {
+   		 	cursor: pointer;
+		}
+		.btn-link, .btn-link:active, .btn-link.active, .btn-link[disabled], fieldset[disabled] .btn-link {
+		    background-color: transparent;
+		    -webkit-box-shadow: none;
+		    box-shadow: none;
+		}
+		.btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
+		    border-color: transparent;
+		}
+		.card {
+	    	position: relative;
+	    	display: -ms-flexbox;
+	    	display: flex;
+	    	-ms-flex-direction: column;
+	    	flex-direction: column;
+	    	min-width: 0;
+	    	word-wrap: break-word;
+	    	background-color: #fff;
+	    	background-clip: border-box;
+	    	border: 1px solid rgba(0,0,0,.125);
+	    	border-radius: .25rem;
+		}
+		.accordion .card .card-header {
+	    	background: #f9fafa;
+	    	padding-top: 7px;
+	    	padding-bottom: 7px;
+	    	margin-bottom: 0;
+	    	font-family: "Roboto", sans-serif;
+	    	border-radius: 6px 6px 0 0;
+	    	border-bottom: none;
+			text-align: left;
+		}
+		.accordion .card-header .btn {
+	    	color: black;
+	    	font-size: 1.04rem;
+	    	width: 100%;
+	    	text-align: left;
+	    	position: relative;
+	    	top: -2px;
+	    	font-weight: 500;
+		}
+		.accordion .card-header i {
+    		float: right;
+    		font-size: 1.3rem;
+    		font-weight: bold;
+    		top: 5px;
+		}
+		*, ::after, ::before {
+    		box-sizing: border-box;
+		}
+		.card-body {
+			text-align: left;
+		}
+		.material-icons {
+		    font-family: 'Material Icons';
+		    font-weight: normal;
+		    font-style: normal;
+		    font-size: 24px;
+		    line-height: 1;
+		    letter-spacing: normal;
+		    text-transform: none;
+		    display: inline-block;
+		    white-space: nowrap;
+		    word-wrap: normal;
+		    direction: ltr;
+		    -webkit-font-smoothing: antialiased;
 		}
 	</style>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<script>
+		$(document).ready(function(){
+			// Add minus icon for collapse element which is open by default
+			$(".collapse.show").each(function(){
+				$(this).siblings(".card-header").find(".btn i").html("remove");
+				$(this).prev(".card-header").addClass("highlight");
+			});
+			
+			// Toggle plus minus icon on show hide of collapse element
+			$(".collapse").on('show.bs.collapse', function(){
+				$(this).parent().find(".card-header .btn i").html("remove");
+			}).on('hide.bs.collapse', function(){
+				$(this).parent().find(".card-header .btn i").html("add");
+			});
+		});
+	</script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Open+Sans">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<title>봉그다 숙박숙박</title>
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath}/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -35,10 +122,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!--header-->
-
-
-
-
 <div class="header">
 	<div class="container">
 		<!--logo-->
@@ -95,6 +178,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 		<div id="cont_area" style="padding-top: 30px;"><!-- 본문 콘텐츠-->
 			<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 100%;">
+		<!--공지사항 토글-->
+		<div class="container-xl">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="accordion" id="accordionExample">
+					
+					<c:forEach var="arr" items="${ notice }" varStatus="st">
+						<div class="card">
+							<div class="card-header" id="headingOne">
+								<h2 class="clearfix mb-0">
+									<a class="btn btn-link" data-toggle="collapse" data-target="#collapse${arr.noticeNo}" aria-expanded="true" aria-controls="collapseOne"><c:out value="${ arr.noticeTitle }"/><i class="material-icons">add</i></a>									
+								</h2>
+							</div>
+							<div id="collapse${arr.noticeNo}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+								<div class="card-body">
+									<c:out value="${ arr.noticeContent }"/>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+						
+					</div>
+				</div>
+			</div>
+		</div>
 			</div>
 		</div>
 	</div>

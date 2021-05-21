@@ -611,28 +611,30 @@ textarea {
 				}
 			</script>
             
-            <form>
 			<br>
 			<br>
 			<!-- <객실안내/예약 탭> -->
 			<div id="btn1_content">
+			<form method = "POST" action="${pageContext.servletContext.contextPath }/book/booking">
+			
 				<div style="width: 1100px; height: 60px; padding:5px 10px 5px 10px;display: flex;justify-content: space-around; background-color: white;">
 					<!-- 예약일자 입력 -->
+
 					<div style="display: flex; ">
-						<h4 style="margin: 15px;">입실일</h4>
-						<input type="date">
+						<h4 style="margin: 15px;" >입실일</h4>
+						<input type="date" name="checkInDate">
 					</div>
 					<div style="display: flex; ">
 						<h4 style="margin: 15px;">퇴실일</h4>
-						<input type="date">
+						<input type="date" name="checkOutDate">
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin: 15px;">인원</h4>
-						<input type="number" min="1" placeholder="1" style="width: 100px; text-align: center;">
+						<input type="number" name="people" min="1" placeholder="1" style="width: 100px; text-align: center;">
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin : 15px;">체크인 </h4>
-						<select style="width: 150px;" >
+						<select style="width: 150px;" name="checkInTime">
 							<option value="11:00">11:00</option>
 							<option value="12:00">12:00</option>
 							<option value="13:00">13:00</option>
@@ -659,7 +661,7 @@ textarea {
 					</div>
 				<!-- //예약일자 입력 -->
 				</div>
-				</form>
+
 				<hr>
 				<center>
 					<!-- 객실정보 -->
@@ -672,6 +674,7 @@ textarea {
 							<div style="display: flex;">
 								<div style="width: 40%;">가격</div>
 								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
+							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
 							<hr>
 							<div>
@@ -686,13 +689,22 @@ textarea {
 							</script>
 							<hr>
 							<div>
-								<button class="detail_btn" onclick="location.href='${pageContext.servletContext.contextPath }/book/booking?no=${ roomList.roomNo}';">예약하기</button>
+								<input type="hidden" name="accomoName" value="${accomo.accomoName }">
+								<input type="hidden" name="accomoNo" value="${accomo.accomoNo }">
+								<input type="hidden" name="roomMax" value="${roomList.roomMax }">
+								<input type="hidden" name="peakFee" value="${roomList.peakFee }">
+								<input type="hidden" name="roomName" value="${roomList.roomName }">
+								<input type="hidden" name="price" value="${roomList.roomFee }">
+								<input type="hidden" name="AccomoCheckIn" value="${accomo.checkIn }">
+								
+								<button class="detail_btn" type="submit" name="roomNo" value="${roomList.roomNo }">예약하기</button>
 							</div>
 						</div>
 					</div>
 					</c:forEach>
 					<!--// 객실정보 -->
 				</center>
+				</form>
 			</div>
 			<!-- 숙소상세정보 -->
 			<div id="btn2_content"class="accordion vertical" style="display: none;">

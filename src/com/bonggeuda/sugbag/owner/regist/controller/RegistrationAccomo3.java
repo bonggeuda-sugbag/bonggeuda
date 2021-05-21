@@ -46,6 +46,8 @@ public class RegistrationAccomo3 extends HttpServlet {
 		accomoDTO.setCheckOut(checkOut);
 		accomoDTO.setPeakStart(peakStart);
 		accomoDTO.setPeakEnd(peakEnd);
+		accomoDTO.setOwnerNo(Integer.parseInt(request.getParameter("ownerNo")));
+		accomoDTO.setEnAccomoNo(Integer.parseInt(request.getParameter("enAccomoNo")));
 		
 		/*1,2,3단계 값 모두 받았는지 확인*/
 		System.out.println(request.getParameter("accomoName"));

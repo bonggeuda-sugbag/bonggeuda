@@ -250,6 +250,8 @@
 		            	<input type="hidden" name="near" value="${ requestScope.accomoDTO.near }">
 		            	<input type="hidden" name="rule" value="${ requestScope.accomoDTO.rule }">
 		            	<input type="hidden" name="parking" value="${ requestScope.accomoDTO.parking }">
+		            	<input type="hidden" name="ownerNo" value="1">
+		            	<input type="hidden" name="enAccomoNo" value="1">
 					</form>
 					
 				</th>

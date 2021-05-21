@@ -17,7 +17,9 @@ import java.util.Properties;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class BookDAO {
@@ -343,5 +345,66 @@ public class BookDAO {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public List selectCouponPoint(Connection con, int userNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List couponPoint = null;
+		PointDTO point = null;
+		CouponDTO userCoupon = null;
+		
+		String query = prop.getProperty("selectUserPoint");
+		
+		try {
+			
+			couponPoint = new ArrayList();
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				point = new PointDTO();
+				point.setPointNo(rset.getInt("POINT_NO"));
+				point.setUserNo(rset.getInt("USER_NO"));
+				point.setPoint(rset.getInt("POINT"));
+				
+				couponPoint.add(point);
+			}
+			
+			query = prop.getProperty("selectUserCoupon");
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				userCoupon = new CouponDTO();
+				userCoupon.setCouponNo(rset.getInt("COUPON_NO"));
+				userCoupon.setCouponStart(rset.getDate("COUPON_START"));
+				userCoupon.setCouponEnd(rset.getDate("COUPON_END"));
+				userCoupon.setCouponCondition(rset.getString("COUPON_CONDITION"));
+				userCoupon.setCouponUseYN(rset.getString("COUPON_USE_YN"));
+				userCoupon.setUserNo(rset.getInt("USER_NO"));
+				userCoupon.setCouponName(rset.getString("COUPON_NAME"));
+				userCoupon.setCouponDiscount(rset.getInt("COUPON_DISCOUNT"));
+				
+				couponPoint.add(userCoupon);
+				
+			}
+			
+			System.out.println(couponPoint);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return couponPoint;
 	}
 }

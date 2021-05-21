@@ -58,7 +58,9 @@ public class AccomoDAO {
 			pstmt.setString(14, accomoDTO.getCheckOut());
 			pstmt.setDate(15, accomoDTO.getPeakStart());
 			pstmt.setDate(16, accomoDTO.getPeakEnd());
-
+			pstmt.setInt(17, accomoDTO.getOwnerNo());	//업체번호
+			pstmt.setInt(18, accomoDTO.getEnAccomoNo());		//등록숙소번호
+			
 			insert = pstmt.executeUpdate();
 			
 			System.out.println(insert);
