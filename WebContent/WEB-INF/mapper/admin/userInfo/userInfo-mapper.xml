@@ -20,53 +20,81 @@ SELECT B.*,ROWNUM RNUM FROM
     </entry>
     
     <entry key="selectBookList">
-       SELECT
-         B.BOOK_NO
-       , B.BOOK_USER_NAME
-       , U.USER_ID
-       , P.PAYMENT_AMOUNT
-       , B.BOOK_PERSONNEL
-       , B.BOOK_CHECK_DATE
-       , B.BOOK_CHECKOUT_DATE
-  FROM BOOK_LIST B
-  JOIN USER_INFO U ON (B.USER_NO = U.USER_NO)
-  JOIN PAYMENT P ON ( B.BOOK_NO = P.BOOK_NO)
+        SELECT
+               B.BOOK_NO
+             , B.BOOK_USER_NAME
+       		 , U.USER_ID
+       		 , P.PAYMENT_AMOUNT
+       		 , B.BOOK_PERSONNEL
+       		 , B.BOOK_CHECK_DATE
+       		 , B.BOOK_CHECKOUT_DATE
+         FROM BOOK_LIST B
+  		 JOIN USER_INFO U ON (B.USER_NO = U.USER_NO)
+  		 JOIN PAYMENT P ON ( B.BOOK_NO = P.BOOK_NO)
 	</entry>
 	
 	<entry key="selectDetail">
-	SELECT
-       U.USER_ID
-     , U.USER_PWD
-     , U.USER_NICKNAME
-     , U.USER_PHONE
-     , P.POINT
-     , U.USER_NO
-  FROM USER_INFO U
-  JOIN POINT P ON (U.USER_NO = P.USER_NO)
-  WHERE U.USER_NO = ?
+        SELECT
+               U.USER_ID
+             , U.USER_PWD
+             , U.USER_NICKNAME
+             , U.USER_PHONE
+             , P.POINT
+             , U.USER_NO
+          FROM USER_INFO U
+          JOIN POINT P ON (U.USER_NO = P.USER_NO)
+         WHERE U.USER_NO = ?
 	</entry>
 	
 	<entry key="insertCoupon">
-        INSERT INTO 
-    COUPON
-(
-  COUPON_NO
-, COUPON_START
-, COUPON_END
-, COUPON_CONDITION
-, COUPON_USE_YN
-, USER_NO
-, COUPON_NAME
-)
-VALUES
-(
-  SEQ_COUPON_NO.NEXTVAL
-, ?
-, ?
-, ?
-, DEFAULT
-, ?
-, ?
-)
+        INSERT 
+          INTO COUPON
+        (
+          COUPON_NO
+ 		, COUPON_START
+		, COUPON_END
+		, COUPON_CONDITION
+		, COUPON_USE_YN
+		, USER_NO
+		, COUPON_NAME
+        )
+        VALUES
+        (
+         SEQ_COUPON_NO.NEXTVAL
+		, ?
+		, ?
+		, ?
+		, DEFAULT
+		, ?
+		, ?
+		)
+	</entry>
+	
+	<entry key="selectWithdrawList">
+	
+SELECT 
+       A.RNUM
+     , A.WITHDRAW_NO
+     , A.USER_ID
+     , A.WITHDRAW_REASON
+     , A.WITHDRAWDATE
+  FROM (   
+        SELECT 
+               ROWNUM RNUM 
+             , B.WITHDRAW_NO
+             , B.USER_ID
+             , B.WITHDRAW_REASON
+             , B.WITHDRAWDATE
+          FROM (    
+                SELECT
+                    C.WITHDRAW_NO
+                  , U.USER_ID
+                  , C.WITHDRAW_REASON
+                  , U.WITHDRAWDATE
+                FROM WITHDRAW_REASON C
+                JOIN USER_INFO U ON (C.MEMBER_NO = U.USER_NO)
+               ) B
+    ) A
+ WHERE A.RNUM BETWEEN ? AND ?
 	</entry>
 </properties>

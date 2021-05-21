@@ -11,18 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
-import com.bonnggeuda.sugbag.user.dto.UserInfoDTO;
+import com.bonnggeuda.sugbag.user.dto.UserleaveDTO;
 import com.bonnggeuda.sugbag.user.service.UserInfoService;
 
 /**
- * Servlet implementation class UserSelectListServlet
+ * Servlet implementation class UserSelectLeaveServlet
  */
-@WebServlet("/user/list")
-public class UserSelectListServlet extends HttpServlet {
+@WebServlet("/user/leave")
+public class UserSelectLeaveServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("호출확인");
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
@@ -52,18 +51,17 @@ public class UserSelectListServlet extends HttpServlet {
 		System.out.println(pageInfo);
 		
 		/* 조회 해온다. */
-		List<UserInfoDTO> userList = userInfoServie.selectBoardList(pageInfo);
+		List<UserleaveDTO> leaveList = userInfoServie.selectLeavelist(pageInfo);
 		
-		System.out.println("userList : " + userList);
+		System.out.println("어디 갔니 leaveList : " + leaveList);
 		
 		String path = "";
-		if(userList != null) {
-			path = "/WEB-INF/views/admin/user/userInfo.jsp";
-			request.setAttribute("userList", userList);
+		if(leaveList != null) {
+			path = "/WEB-INF/views/admin/user/userLeave.jsp";
+			request.setAttribute("leaveList", leaveList);
 			request.setAttribute("pageInfo", pageInfo);
 		} 
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
 }

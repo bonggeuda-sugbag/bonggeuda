@@ -13,6 +13,7 @@ import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonnggeuda.sugbag.user.dao.UserInfoDAO;
 import com.bonnggeuda.sugbag.user.dto.UserCouponDTO;
 import com.bonnggeuda.sugbag.user.dto.UserInfoDTO;
+import com.bonnggeuda.sugbag.user.dto.UserleaveDTO;
 
 public class UserInfoService {
 	
@@ -73,6 +74,40 @@ public class UserInfoService {
 		close(con);
 		
 		return insertCoupon ;
+	}
+
+	public List<UserleaveDTO> selectLeavelist(PageInfoDTO pageInfo) {
+
+		Connection con = getConnection();
+		
+		List<UserleaveDTO> leaveList = userInfoDAO.selectLeavelist(con, pageInfo);
+		
+		close(con);
+		
+		return leaveList;
+	}
+
+	public List<UserInfoDTO> selectSearchList(String condition, String value, PageInfoDTO pageInfo) {
+
+		Connection con = getConnection();
+		
+		List<UserInfoDTO> searchList = userInfoDAO.searchSearchList(con, pageInfo, condition, value);
+		
+		close(con);
+		
+		return searchList;
+	}
+
+	public int searchCount(String condition, String value) {
+		
+		Connection con = getConnection();
+		
+		int totalCount = userInfoDAO.searchCount(con, condition, value);
+		
+		close(con);
+		
+		return totalCount;
+		
 	}
 
 
