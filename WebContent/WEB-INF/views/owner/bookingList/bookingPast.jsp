@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -109,14 +109,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <nav>
                 <div class="col-md-3 blog-sidebar">
                     <ul>
-                        <li class="blog-list" style=" font-size: 1.3em; font-weight: 600;">
-                            <a style="color: #6eceda;">실시간 예약 현황</a>
-                        </li>
-                        <form action="/bonggeuda/owner/bookingPastList" method="get"> <!--   -->
                         <li class="blog-list">
-                            <a href="/bonggeuda/owner/bookingPastList">지난 예약</a>
+                            <a href="/bonggeuda/owner/bookingList" >실시간 예약 현황</a>
                         </li>
-                        </form>
+                        <li class="blog-list" style=" font-size: 1.3em; font-weight: 600;">
+                            <a style="color: #6eceda;">지난 예약</a>
+                        </li>
                         <li class="blog-list">
                             <a href="booking_QnA.html">고객 문의</a>
                         </li>
@@ -155,18 +153,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<th><b>종료 날짜</b></th>
 						<th><b>예약확인</b></th>
 						<th><b>이용상태</b></th>
+						<th><b>신고</b></th>
 						
 				    </tr>
 				</thead>
 				<tbody>
 				<c:forEach var="board" items="${ requestScope.bookList }">
 				   	<tr>
-				   	<c:set var="i" value="${i+1 }"/>				   	
+				   	<c:set var="i" value="${i+1 }"/>
+				   	
 				   	
 						<th>${ i}</th>
 						<th><c:out value="${ board.accomoName }"/></th>
  						<th>
- 						<form action="/bonggeuda/owner/bookingList" method="post"><button type="submit" class="sumbit-btn"><c:out value="${ board.roomName }"/> </button>
+ 						<form action="/bonggeuda/owner/bookingPastList" method="post"><button type="submit" class="sumbit-btn"><c:out value="${ board.roomName }"/> </button>
 						<input type="hidden" name="bookNo" value="${board.bookNo}"></th>
  						</form>
  						</th>
@@ -175,16 +175,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<th><c:out value="${ board.bookPersonnel }"/></th> 
 						<th><c:out value="${ board.bookCheckDate }"/></th>
 						<th><c:out value="${ board.bookCheckoutDate }"/></th>
-						<th>승인 대기</th>  
-						<th>
+						<th><c:out value="${ board.bookApproveYn }"/></th> 
+						<th>						
 						<c:choose>
 							
 							<c:when test="${ board.bookStatusYNC eq 'Y'}">
 							 결재 완료
 							</c:when>
-						
+							<c:when test="${ board.bookStatusYNC eq 'N'}">
+							 예약 거절
+							</c:when>
+							<c:when test="${ board.bookStatusYNC eq 'C'}">
+							 사용자 환불
+							</c:when>
 						</c:choose>
-						
+						</th>
+						<th>
+							<a href="index.html">
+							<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/siren.png" style="width: 26px; height: 26px;">
+							</a>
 						</th>
 						
 					</tr>   
@@ -224,4 +233,4 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <!--//footer-->
 </body>
-</html>
+</html></html>
