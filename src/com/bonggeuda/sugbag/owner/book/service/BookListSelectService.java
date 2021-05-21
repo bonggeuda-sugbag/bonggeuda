@@ -7,7 +7,7 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
-import com.bonggeuda.sugbag.owner.dao.BookingListSelectDAO;
+import com.bonggeuda.sugbag.owner.book.dao.BookingListSelectDAO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;;
