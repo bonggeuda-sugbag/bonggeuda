@@ -16,8 +16,8 @@ public class BookingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("예약서블릿 호출");
 		request.setAttribute("roomNo", request.getParameter("no"));
-		
-		request.getRequestDispatcher("/WEB-INF/views/guest/accomoInfo/payment.jsp").forward(request, response);
+
+		//request.getRequestDispatcher("/WEB-INF/views/guest/accomoInfo/payment.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
