@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.controller;
+package com.bonggeuda.sugbag.owner.book.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;

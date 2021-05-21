@@ -101,7 +101,7 @@
 			<div class="bottom-header">
 				<div class="header-bottom">
 					<div class=" bottom-head">
-						<a id="registration1" > <!--숙소 등록 페이지로 연결-->
+						<a id="/bonggeuda/owner/managementRoom" > <!--숙소 등록 페이지로 연결-->
 							<div class="buy-media">
 								<i class="buy"> </i>
 								<h6 id="registration1">숙소 등록</h6>
@@ -109,7 +109,7 @@
 						</a>
 					</div>
 					<div class=" bottom-head" id="roomManagement">
-						<a href="/bonggeuda/owner/managementRoom"> <!--숙소 등록 페이지로 연결-->
+						<a href="/bonggeuda/owner/managementRoom"> <!--숙소 관리 페이지로 연결-->
 							<div class="buy-media">
 								<i class="buy"> </i>
 								<h6 id="roomManagement">숙소 관리</h6>

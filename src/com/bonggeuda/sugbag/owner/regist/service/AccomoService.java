@@ -8,6 +8,7 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
+import com.bonggeuda.sugbag.model.dto.SelectEnNoDTO;
 import com.bonggeuda.sugbag.owner.regist.dao.AccomoDAO;
 
 public class AccomoService {
@@ -30,6 +31,17 @@ public class AccomoService {
 		close(con);
 		
 		return inserAccomo;
+	}
+
+	public int selectEnNo() {
+
+		Connection con = getConnection();
+		
+		int slectEnNo = accomoDAO.selectEnNo(con);
+		
+		close(con);
+		
+		return slectEnNo;
 	}
 
 }
