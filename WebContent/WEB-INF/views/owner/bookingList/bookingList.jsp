@@ -166,7 +166,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<th>${ i}</th>
 						<th><c:out value="${ board.accomoName }"/></th>
  						<th>
- 						<form action="/bonggeuda/owner/bookingList" method="post"><button type="submit" class="sumbit-btn"><c:out value="${ board.roomName }"/> </button>
+ 						<form action="/bonggeuda/owner/bookingList" method="post"><button type="submit" class="submit-btn"><c:out value="${ board.roomName }"/> </button>
 						<input type="hidden" name="bookNo" value="${board.bookNo}">
 						
 						</th>

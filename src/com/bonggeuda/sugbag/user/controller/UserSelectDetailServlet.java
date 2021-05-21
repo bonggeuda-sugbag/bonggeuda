@@ -15,11 +15,14 @@ public class UserSelectDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
+	/**
+	 * 사용자 관리 리스트에서 상세보기 누르면 실행되는 서블릿 
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		UserInfoService userInfoService = new UserInfoService();
 		
-		UserInfoDTO userInfo = userInfoService.selectDetail(request.getParameter("userNo"));
+		UserInfoDTO userInfo = userInfoService.selectDetail(request.getParameter("hduserNo"));
 		
 		System.out.println(userInfo);
 		
@@ -28,6 +31,7 @@ public class UserSelectDetailServlet extends HttpServlet {
 		if(userInfo != null) {
 			path = "/WEB-INF/views/admin/user/userInfoDetail.jsp";
 			request.setAttribute("userInfo", userInfo);
+			request.setAttribute("hduserNo", request.getParameter("hduserNo"));
 		} 
 		
 

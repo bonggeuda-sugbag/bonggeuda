@@ -11,8 +11,10 @@ import java.util.List;
 
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.user.dao.UserInfoDAO;
+import com.bonggeuda.sugbag.user.dto.ReservationDetailDTO;
 import com.bonggeuda.sugbag.user.dto.UserCouponDTO;
 import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
+import com.bonggeuda.sugbag.user.dto.UserReservationStatusDTO;
 import com.bonggeuda.sugbag.user.dto.UserleaveDTO;
 
 
@@ -111,6 +113,30 @@ public class UserInfoService {
 		return totalCount;
 		
 	}
+
+	public List<UserReservationStatusDTO> selectReservationList(PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<UserReservationStatusDTO> reservationList = userInfoDAO.selectReservationList(con, pageInfo);
+		
+		close(con);
+		
+		return reservationList;
+	}
+
+	public ReservationDetailDTO selectStatusDetail(String bookNo) {
+		
+		Connection con = getConnection();
+		
+		ReservationDetailDTO reservationDetailInfo = userInfoDAO.selectStatusDetail(con, bookNo);
+		
+		close(con);
+		
+		return reservationDetailInfo;
+	}
+
+
 
 
 }

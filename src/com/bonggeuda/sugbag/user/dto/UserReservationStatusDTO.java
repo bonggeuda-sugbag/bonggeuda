@@ -1,6 +1,5 @@
 package com.bonggeuda.sugbag.user.dto;
 
-import java.sql.Date;
 
 public class UserReservationStatusDTO {
     
@@ -9,15 +8,17 @@ public class UserReservationStatusDTO {
 	private String email;
     private int price;
     private int peopleCount;
-    private java.sql.Date checkDate;
-    private java.sql.Date checkOutDate;
+    private String checkDate;
+    private String checkOutDate;
+   
 	
     public UserReservationStatusDTO() {
-	
+
 	}
 
-	public UserReservationStatusDTO(int bookNo, String name, String email, int price, int peopleCount, Date checkDate,
-			Date checkOutDate) {
+
+	public UserReservationStatusDTO(int bookNo, String name, String email, int price, int peopleCount, String checkDate,
+			String checkOutDate) {
 		super();
 		this.bookNo = bookNo;
 		this.name = name;
@@ -27,68 +28,94 @@ public class UserReservationStatusDTO {
 		this.checkDate = checkDate;
 		this.checkOutDate = checkOutDate;
 	}
-	
+
+
 	public int getBookNo() {
 		return bookNo;
 	}
+
 
 	public void setBookNo(int bookNo) {
 		this.bookNo = bookNo;
 	}
 
+
 	public String getName() {
 		return name;
 	}
+
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+
 	public String getEmail() {
 		return email;
 	}
+
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+
 	public int getPrice() {
 		return price;
 	}
+
 
 	public void setPrice(int price) {
 		this.price = price;
 	}
 
+
 	public int getPeopleCount() {
 		return peopleCount;
 	}
+
 
 	public void setPeopleCount(int peopleCount) {
 		this.peopleCount = peopleCount;
 	}
 
-	public java.sql.Date getCheckDate() {
+
+	public String getCheckDate() {
 		return checkDate;
 	}
 
-	public void setCheckDate(java.sql.Date checkDate) {
+
+	public void setCheckDate(String checkDate) {
 		this.checkDate = checkDate;
 	}
 
-	public java.sql.Date getCheckOutDate() {
+
+	public String getCheckOutDate() {
 		return checkOutDate;
 	}
 
-	public void setCheckOutDate(java.sql.Date checkOutDate) {
+
+	public void setCheckOutDate(String checkOutDate) {
 		this.checkOutDate = checkOutDate;
 	}
+
 
 	@Override
 	public String toString() {
 		return "UserReservationStatusDTO [bookNo=" + bookNo + ", name=" + name + ", email=" + email + ", price=" + price
 				+ ", peopleCount=" + peopleCount + ", checkDate=" + checkDate + ", checkOutDate=" + checkOutDate + "]";
 	}
+
+	
+	
+    
+
+
+    
+	
+	
+
+	
 
 	
 }

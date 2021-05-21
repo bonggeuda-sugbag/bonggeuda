@@ -20,17 +20,40 @@ SELECT B.*,ROWNUM RNUM FROM
     </entry>
     
     <entry key="selectBookList">
-        SELECT
-               B.BOOK_NO
-             , B.BOOK_USER_NAME
-       		 , U.USER_ID
-       		 , P.PAYMENT_AMOUNT
-       		 , B.BOOK_PERSONNEL
-       		 , B.BOOK_CHECK_DATE
-       		 , B.BOOK_CHECKOUT_DATE
-         FROM BOOK_LIST B
-  		 JOIN USER_INFO U ON (B.USER_NO = U.USER_NO)
-  		 JOIN PAYMENT P ON ( B.BOOK_NO = P.BOOK_NO)
+ SELECT
+         A.RNUM 
+       , A.BOOK_NO
+       , A.BOOK_USER_NAME
+       , A.USER_ID
+       , A.PAYMENT_AMOUNT
+       , A.BOOK_PERSONNEL
+       , A.BOOK_CHECK_DATE
+       , A.BOOK_CHECKOUT_DATE
+   FROM (
+   SELECT
+          ROWNUM RNUM 
+        , B.BOOK_NO
+        , B.BOOK_USER_NAME
+        , B.USER_ID
+        , B.PAYMENT_AMOUNT
+        , B.BOOK_PERSONNEL
+        , B.BOOK_CHECK_DATE
+        , B.BOOK_CHECKOUT_DATE
+     FROM  (
+            SELECT
+                   C.BOOK_NO
+                 , C.BOOK_USER_NAME
+       		     , U.USER_ID
+       		     , P.PAYMENT_AMOUNT
+       		     , C.BOOK_PERSONNEL
+       		     , C.BOOK_CHECK_DATE
+       		     , C.BOOK_CHECKOUT_DATE
+              FROM BOOK_LIST C
+  		      JOIN USER_INFO U ON (C.USER_NO = U.USER_NO)
+  		      JOIN PAYMENT P ON ( C.BOOK_NO = P.BOOK_NO)
+              )B
+        )A
+    WHERE A.RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectDetail">
@@ -96,5 +119,44 @@ SELECT
                ) B
     ) A
  WHERE A.RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectReservationDetail">
+        SELECT  
+               U.USER_ID 
+             , U.USER_NICKNAME 
+     		 , A.ACCOMO_NAME
+     		 , R.ROOM_NAME 
+     		 , P.PAYMENT_AMOUNT 
+    		 , B.BOOK_PERSONNEL
+     		 , B.BOOK_CHECK_DATE 
+     		 , B.BOOK_CHECKOUT_DATE 
+     		 , B.BOOK_APPROVE_YN
+  		  FROM BOOK_LIST B  
+  		  JOIN USER_INFO U ON (B.USER_NO = U.USER_NO)
+  	      JOIN ROOM_INFO R ON ( B.ROOM_NO = R.ROOM_NO)
+          JOIN ACCOMO_INFO A ON ( R.ACCOMO_NO = A.ACCOMO_NO)
+  		  JOIN PAYMENT P ON ( B.BOOK_NO = P.BOOK_NO)
+         WHERE B.BOOK_NO = ?
+	</entry>
+	
+		<entry key="selectSearch">
+SELECT C.* FROM (
+SELECT B.*,ROWNUM RNUM FROM 
+(SELECT
+        A.USER_NO
+      , A.USER_NICKNAME
+      , A.USER_ID
+      , A.USER_PHONE
+  FROM USER_INFO A) B) C
+ WHERE C.RNUM BETWEEN ? AND ?
+   AND USER_ID = ?
+    </entry>
+    
+    <entry key="selectSearchCount">
+       SELECT 
+             COUNT(*)
+         FROM USER_INFO A
+        WHERE USER_ID = ?
 	</entry>
 </properties>

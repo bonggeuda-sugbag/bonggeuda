@@ -215,13 +215,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</tr>
 			</thead>
 		</table>
+		<div style="display: inline-flex;">
 		<form action="/bonggeuda/owner/bookAllow" method="get">
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick=alertAccept()>
+		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px " >
 		<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}"/>
 		예약 승인
 		</button>
 		</form>
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="location.href='#pop01'" >예약 거절</button>
+		
+		
+		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="location.href='#pop01'" >
+		예약 거절
+		</button>
+		</div>
+		
+		
 
 		<!-- 예약거절 팝업창 -->
 		<div id="pop01" class="overlay">
@@ -235,16 +243,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<br>
 						</div>
 						<!-- 거절이유 -->
+						<form action="/bonggeuda/owner/bookReject" method="get">
 						<ul class="reason-list" style="text-align: left;">
-
+							<li>
 								<div class="reason-innder-box reason-innder-box6"  style="margin-bottom: 10px;">
-									<textarea class="rejectrReasonTextarea" placeholder="고객님께 전달드릴 예약 거절 사유를 적어주세요. 수정 불가능 하오니 신중히 적어주세요." required></textarea>
+									<textarea class="rejectrReasonTextarea" placeholder="고객님께 전달드릴 예약 거절 사유를 적어주세요. 수정 불가능 하오니 신중히 적어주세요." name="rejectReson">
+									
+									</textarea>
 								</div>
 							</li>
 							</ul>
 						<div class="password-wrap" style="text-align: center;" >
-							<div class="button-wrap"><button class="submit-btn"  onclick="location.href='booking.html', alertReject()">거절하기</button></div>
+						
+							<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}"/>							
+							<div class="button-wrap"><button type="submit">거절하기</button></div>
 						</div>
+						</form>
 					</div>
 					<script>
 					$(document).ready(function(){
@@ -271,7 +285,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						alert("예약 승인 되었습니다.")
 						location.href="booking.html";
 					};
-					}
+					
 				</script>
 					
 

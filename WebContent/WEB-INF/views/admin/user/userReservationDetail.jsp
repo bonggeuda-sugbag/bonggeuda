@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    <style>
       div.tab, div.tab-content {
             margin-left: 25%;
-            margin-right: 4.8%;
+            margin-right: 5%;
       }
    </style>
 
@@ -39,6 +39,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!--header-->
 
+
+
+
 <div class="header">
    <div class="container">
       <!--logo-->
@@ -55,10 +58,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a  href="adminOnlineQuestionUser.html">문의&신고</a></li>
 				<li><a  href="adminOnlineNotice.html">공지사항</a></li>
          </ul>
+
+         
       <div class="clearfix"> </div>
          <!---pop-up-box---->
                
-            <link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+             <link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
             <script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
          <!---//pop-up-box---->
             <div id="small-dialog" class="mfp-hide">
@@ -98,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </div>
                      </div>
                 </div>
-                <script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
+                   <script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
                    <script type="text/javascript">
                       $(document).ready(function () {
                           $('#horizontalTab').easyResponsiveTabs({
@@ -135,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->   
 <div class=" banner-buying">
    <div class=" container">
-   <h3><span>사용자 관리</span></h3> 
+   <h3><span>매출관리</span></h3> 
 
    <div class="clearfix"> </div>            
    </div>
@@ -144,224 +149,106 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--blog-->
 <div class="blog">
 <div class="container">
+	<form action="${ pageContext.servletContext.contextPath }/book/detail" method="get">
    <div class="blog-list">
       <nav>
       <div class="col-md-3 blog-sidebar">
       <ul>
-         <li class="blog-list"><a href="userInfo.jsp" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">사용자 정보</a></li>
-         <li class="blog-list"><a href="adminUserManagementBlist.html">블랙리스트 회원</a></li>
-         <li class="blog-list"><a href="adminUserManagementLeave.html">탈퇴 회원</a></li>
+        <ul>
+            <li class="blog-list"><a href="adminReservationStatus.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">사용자 예약 정보</a></li>
+        </ul>
       </ul>
       </nav>
-      <table class="table" style="width: 800px;">
-
+      
+      <table class="table table-bordered" style="width: 800px;">
          <div class="tab">
-            <span class="tab_btn active" >사용자 정보</span>
+            <span class="tab_btn active" >사용자 예약 정보</span>
          </div>
-
-         <thead>
-            <tr>
-               <th>회원 번호</th>
-               <th>이름</th>
-               <th>아이디</th>
-               <th>휴대폰번호 </th>
-               <th>상세정보</th>
-            </tr>
-         </thead>
+         <thead></thead>
          <tbody>
-			<c:forEach var="user" items="${ requestScope.userList }">
-			<form action="${ pageContext.servletContext.contextPath }/user/detail" method="get">
-			<tr>
-				<td><c:out value="${ user.userNo }"/></td>
-				<td><c:out value="${ user.name }"/></td>
-				<td><c:out value="${ user.email }"/></td>
-				<td><c:out value="${ user.phoneNumber }"/></td>
-				<td><button>상세보기</button></td>
-				<input type="hidden" name="hduserNo" value= "${ user.userNo }">
-			</tr>
-            </form>
-			</c:forEach>
-         </tbody>
-      </table>
-   </div>
+            <!-- 아이디 -->
+            <tr>
+               <th style="text-align: center; width: 30%; padding-top: 14px;" >아이디</th>
+               <td><c:out value="${ userReservationInfo.email }"></c:out></td>
+               <%-- <input class="form-control normal-size" type="text" name="aname" style="width: 40%;"  disabled="disabled"> --%>
+            </tr>
+            <!--//아이디 -->
+            
+            <!-- 사용자명 -->
+            <tr>
+               <th style="text-align: center; padding-top: 14px;">사용자명</th>
+         	   <td><c:out value="${ userReservationInfo.name }"></c:out></td>
+            </tr>
+            <!--// 사용자명 -->
 
+            <!-- 업체명 -->
+            <tr id="target_host">
+               <th style="text-align: center; padding-top: 14px;" >업체명</th>
+               <td><c:out value="${ userReservationInfo.accomoName }"></c:out></td>
+            </tr>
+            <!-- //업체명 -->
+            
+            <!-- 객실명 -->
+            <tr id="target_host">
+               <th style="text-align: center; padding-top: 14px;" >객실명</th>
+               <td><c:out value="${ userReservationInfo.roomName }"></c:out></td>
+            </tr>
+            <!-- //객실명 -->
+
+            <!-- 가격 -->
+            <tr>
+               <th style="text-align: center; padding-top: 14px; ">예약가격</th>
+               <td><c:out value="${ userReservationInfo.price }"></c:out></td>
+            </tr>
+            <!--// 가격 -->
+
+            <!-- 인원 -->
+            <tr>
+               <th style="text-align: center; padding-top: 14px; ">인원</th>
+               <td><c:out value="${ userReservationInfo.peopleCount }"></c:out></td>                     
+            </tr>
+            <!--// 인원 -->
+
+            <!-- 체크인 -->
+            <tr>
+                <th style="text-align: center; padding-top: 14px; ">체크인</th>
+                <td><c:out value="${ userReservationInfo.checkDate }"></c:out></td>
+             </tr>
+             <!--// 체크인 -->
+             
+            <!-- 체크아웃 -->
+            <tr>
+                <th style="text-align: center; padding-top: 14px; ">체크아웃</th>
+                <td><c:out value="${ userReservationInfo.checkOutDate }"></c:out></td>
+             </tr>
+             <!--// 체크아웃 -->
+             
+             <!-- 업체 승인여부 -->
+            <tr>
+                <th style="text-align: center; padding-top: 14px; ">업체 승인여부</th>
+				<td><c:out value="${ userReservationInfo.reservationStatus }"></c:out></td>
+             </tr>
+             <!--// 업체 승인여부 -->
+
+            <!-- 예약정보 발송여부 -->
+            <tr>
+                <th style="text-align: center; padding-top: 14px; ">예약정보 발송여부</th>
+
+             </tr>
+             <!--// 예약정보 발송여부 -->
+
+   </tbody>
+</table>
+      <div class="submit-layer" style="display: flex;">
+         <input type='button' value='예약정보발송' style="margin-left: 575px;"/>
+      </div>
+
+   </div>
+	</form>	
 
    
-   <div class="clearfix"> 
+   <div class="clearfix"> </div>
 
-   </div>
-
-   	<%-- 페이지 처리 --%>
-		<div class="pagingArea" align="center">
-			<c:choose>
-			    <c:when test="${ empty requestScope.searchValue }">
-			    
-					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
-						<button disabled><</button>
-					</c:if>
-					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
-						<button id="prevPage"><</button>
-					</c:if>
-		
-					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
-						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
-							<button disabled><c:out value="${ p }"/></button>
-						</c:if>
-						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
-							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
-						</c:if> <!-- 이부분은 버튼의 색을 바꾸기 위해 만들어준 분기 처리이다. -->
-					</c:forEach>
-					
-					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
-						<button disabled>></button>
-					</c:if>
-					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
-						<button id="nextPage">></button>
-					</c:if>
-					
-			     </c:when>
-			    <c:otherwise>
-   			
-					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
-						<button disabled><</button>
-					</c:if>
-					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
-						<button id="searchPrevPage"><</button>
-					</c:if>
-		
-					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
-						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
-							<button disabled><c:out value="${ p }"/></button>
-						</c:if>
-						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
-							<button onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
-						</c:if>
-					</c:forEach>
-					
-					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
-						<button disabled>></button>
-					</c:if>
-					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
-						<button id="searchNextPage">></button>
-					</c:if>
-					
-			    </c:otherwise>
-			</c:choose>   
-		</div>
-		
-		<!-- 검색 폼 -->
-		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/user/search" method="get">		
-			<div class="search-area" align="center">
-				<c:choose>
-				    <c:when test="${ !empty requestScope.searchValue }">
-   					    <select id="searchCondition" name="searchCondition">
-							<option value="userId" <c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>회원번호</option>
-							<option value="writer" <c:if test="${requestScope.searchCondition eq 'writer'}">selected</c:if>>작성자</option>
-							<option value="title" <c:if test="${requestScope.searchCondition eq 'title'}">selected</c:if>>제목</option>
-							<option value="content" <c:if test="${requestScope.searchCondition eq 'content'}">selected</c:if>>내용</option>
-						</select>
-				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
-				    </c:when>
-				    <c:otherwise>
-					    <select id="searchCondition" name="searchCondition">
-							<option value="userId">아이디</option>
-							<option value="writer">작성자</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-						</select>
-				        <input type="search" id="searchValue" name="searchValue" >
-				        <input type="hidden" name="userId" value= "${ user.email }">
-				    </c:otherwise>
-				</c:choose>
-				<button type="submit">검색하기</button>
-				<%-- <c:if test="${ !empty requestScope.loginMember }">
-					<button id="writeBoard">작성하기</button>
-				</c:if> --%>
-			</div>
-		</form>
-		
-		<script>
-		const link = "${ pageContext.servletContext.contextPath }/user/list";
-		const searchLink = "${ pageContext.servletContext.contextPath }/user/search";
-			
-		if(document.getElementById("startPage")) {
-			const $startPage = document.getElementById("startPage");
-			$startPage.onclick = function() {
-				location.href = link + "?currentPage=1";
-			}
-		}
-		
-		if(document.getElementById("prevPage")) {
-			const $prevPage = document.getElementById("prevPage");
-			$prevPage.onclick = function() {
-				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
-			}
-		}
-		
-		if(document.getElementById("nextPage")) {
-			const $nextPage = document.getElementById("nextPage");
-			$nextPage.onclick = function() {
-				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
-			}
-		}
-		
-		if(document.getElementById("maxPage")) {
-			const $maxPage = document.getElementById("maxPage");
-			$maxPage.onclick = function() {
-				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
-			}
-		}
-		
-		if(document.getElementById("searchStartPage")) {
-			const $searchStartPage = document.getElementById("searchStartPage");
-			$searchStartPage.onclick = function() {
-				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-			}
-		}
-		
-		if(document.getElementById("searchPrevPage")) {
-			const $searchPrevPage = document.getElementById("searchPrevPage");
-			$searchPrevPage.onclick = function() {
-				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-			}
-		}
-		
-		if(document.getElementById("searchNextPage")) {
-			const $searchNextPage = document.getElementById("searchNextPage");
-			$searchNextPage.onclick = function() {
-				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-			}
-		}
-		
-		if(document.getElementById("searchMaxPage")) {
-			const $searchMaxPage = document.getElementById("searchMaxPage");
-			$searchMaxPage.onclick = function() {
-				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-			}
-		}
-		
-		if(document.getElementsByTagName("td")) {
-			
-			const $tds = document.getElementsByTagName("td");
-			for(let i = 0; i < $tds.length; i++) {
-				
-				$tds[i].onclick = function() {
-					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠지? */
-					alert(this.parentNode.children[0].innerText);
-					location.href = "${ pageContext.servletContext.contextPath }/user/detail/";
-				}
-				
-			}
-			
-		}
-		
-		function pageButtonAction(text) {
-			location.href = link + "?currentPage=" + text;
-		}
-		function seachPageButtonAction(text) {
-			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-		}
-	</script>
 </div>
 
 </div>
@@ -421,9 +308,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <li><a href="#"><i class="dribble"> </i></a></li>
                </ul>
          </div>
-      <div class="clearfix"> 
-
-      </div>
+      <div class="clearfix"> </div>
       </div>
    </div>
    <div class="footer-bottom">

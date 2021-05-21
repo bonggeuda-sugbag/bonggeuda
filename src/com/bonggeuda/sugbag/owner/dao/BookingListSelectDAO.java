@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.book.dao;
+package com.bonggeuda.sugbag.owner.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -39,7 +39,6 @@ public class BookingListSelectDAO {
 		BookDTO bookDTO = new BookDTO();
 		
 		String query = prop.getProperty("selectBookingList");
-		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, ownerNo);
@@ -66,7 +65,6 @@ public class BookingListSelectDAO {
 				selectBookedList.add(bookDTO);
 				
 			}
-			System.out.println(selectBookedList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -201,84 +199,6 @@ public class BookingListSelectDAO {
 		
 		return bookAllowUpdate;
 	}
-
-	public int bookHistoryInsert(Connection con, int bookNo) {
-
-		PreparedStatement pstmt = null;
-		
-		String query = prop.getProperty("insertAllowBookHistory");
-		
-		int insertAllowBookHistory = 0;
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, bookNo);
-			
-			insertAllowBookHistory = pstmt.executeUpdate();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(con);
-		}
-		
-		return insertAllowBookHistory;
-	}
-
-	public int bookRejectUpdate(Connection con, int bookNo) {
-		
-		PreparedStatement pstmt = null;
-		
-		String query = prop.getProperty("bookRejectUpadte");
-		
-		int bookRejectUpdate = 0;
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, bookNo);
-			
-			bookRejectUpdate = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}  finally {
-			close(pstmt);
-			close(con);
-		}
-
-		return bookRejectUpdate;
-	}
-	
-	
-	public int bookRejectHistoryInsert(Connection con, int bookNo, String rejecetReason) {
-
-		PreparedStatement pstmt = null;
-
-		String query = prop.getProperty("insertRejectBookHistory");
-
-		int insertRejectBookHistory = 0;
-
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1, bookNo);
-			pstmt.setString(2, rejecetReason);
-			
-			insertRejectBookHistory = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(con);
-		}
-		
-		return insertRejectBookHistory;
-	}
-
 }
 
 
