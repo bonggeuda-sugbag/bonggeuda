@@ -8,7 +8,6 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
-import com.bonggeuda.sugbag.model.dto.SelectEnNoDTO;
 import com.bonggeuda.sugbag.owner.regist.dao.AccomoDAO;
 
 public class AccomoService {

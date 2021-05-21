@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
-import com.bonggeuda.sugbag.model.dto.SelectEnNoDTO;
 import com.bonggeuda.sugbag.owner.regist.service.AccomoService;
 
 /**
