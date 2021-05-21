@@ -107,4 +107,20 @@ public class BookService {
 		return result;
 	}
 
+	/**
+	 * 이용자 1명의 쿠폰과 포인트를 조회
+	 * @param userNo 이용자번호
+	 * @return
+	 */
+	public List selectCouponPoint(int userNo) {
+		
+		Connection con = getConnection();
+		
+		List couponPoint = null;
+		
+		couponPoint = bookDao.selectCouponPoint(con, userNo);
+				
+		return couponPoint;
+	}
+
 }

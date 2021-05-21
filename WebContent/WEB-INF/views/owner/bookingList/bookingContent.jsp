@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -148,8 +150,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<nav>
 			<div class="col-md-3 blog-sidebar">
 			<ul>
-				<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="booking.html" style="color: #6eceda;">실시간 예약 현황</a></li>
-				<li class="blog-list"><a href="booking_past.html">지난 예약</a></li>
+				<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/bookingList"style="color: #6eceda;">실시간 예약 현황</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/bookingPastList">지난 예약</a></li>
 				<li class="blog-list"><a href="booking_QnA.html">고객 문의</a></li>
 				<li class="blog-list"><a href="booking_sales.html">매출 내역</a></li>
 			</ul>
@@ -165,43 +167,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<tbody>
 				<tr>
 					<th scope="row">예약번호</th>
-					<td>BS3349287</td>
+					<td><c:out value="${ requestScope.bookContentDTO.bookNo }"/></td>
 					<th scope="row">예약일시</th>
-					<td>21.05.13 14:38</td>
+					<td><c:out value="${ requestScope.bookContentDTO.bookRequestDate }"/></td>
 				</tr>
 				<tr>
 					<th scope="row">숙소명</th>
-					<td>숲 속 통나무집</td>
+					<td><c:out value="${ requestScope.bookContentDTO.accomoName }"/></td>
 					<th scope="row">객실명</th>
-					<td>통나무 1호</td>
+					<td><c:out value="${ requestScope.bookContentDTO.roomName }"/></td>
 				</tr>
 				<tr>
 					<th scope="row">예약자</th>
-					<td>홍길동</td>
+					<td><c:out value="${ requestScope.bookContentDTO.bookUserName }"/></td>
 					<th scope="row">인원</th>
-					<td>2</td>
+					<td><c:out value="${ requestScope.bookContentDTO.bookPersonnel }"/></td>
 				</tr>
 				<tr>
 					<th scope="row">연락처</th>
-					<td>010-1234-5678</td>
+					<td><c:out value="${ requestScope.bookContentDTO.userPhone }"/></td>
 					<th scope="row">이메일</th>
-					<td>-</td>
+					<td><c:out value="${ requestScope.bookContentDTO.email }"/></td>
 				</tr>
 				<tr>
 					<th scope="row">체크인</th>
-					<td>21.05.20 15:00</td>
+					<td><c:out value="${ requestScope.bookContentDTO.bookCheckDate }"/> / <c:out value="${ requestScope.bookContentDTO.bookCheckIn }"/></td>
 					<th scope="row">체크아웃</th>
-					<td>21.05.23 11:00</td>
+					<td><c:out value="${ requestScope.bookContentDTO.bookCheckoutDate }"/> / 11:00 </td>
 				</tr>
 				<tr>
 					<th scope="row">결제금액</th>
-					<td>210,000원</td>
+					<td><c:out value="${ requestScope.bookContentDTO.paymentFee }"/></td>
 					<th scope="row">결제수단</th>
-					<td>신용카드</td>
+					<td><c:out value="${ requestScope.bookContentDTO.paymentMethod }"/></td>
 				</tr>
 				<tr>
 					<th scope="row">요청사항</th>
-					<td colspan="3">이불 2개만 더 준비해 주세요!</td>
+					<td colspan="3"><c:out value="${ requestScope.bookContentDTO.request }"/></td>
 				</tr>
 			</tbody>
 		</table>
@@ -213,9 +215,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</tr>
 			</thead>
 		</table>
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick=alertAccept()>예약 승인</button>
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="location.href='#pop01'" >예약 거절</button>
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">메일 발송</button>
+		<div style="display: inline-flex;">
+		<form action="/bonggeuda/owner/bookAllow" method="get">
+		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px " >
+		<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}"/>
+		예약 승인
+		</button>
+		</form>
+		
+		
+		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="location.href='#pop01'" >
+		예약 거절
+		</button>
+		</div>
+		
+		
 
 		<!-- 예약거절 팝업창 -->
 		<div id="pop01" class="overlay">
@@ -229,16 +243,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<br>
 						</div>
 						<!-- 거절이유 -->
+						<form action="/bonggeuda/owner/bookReject" method="get">
 						<ul class="reason-list" style="text-align: left;">
-
+							<li>
 								<div class="reason-innder-box reason-innder-box6"  style="margin-bottom: 10px;">
-									<textarea class="rejectrReasonTextarea" placeholder="고객님께 전달드릴 예약 거절 사유를 적어주세요. 수정 불가능 하오니 신중히 적어주세요." required></textarea>
+									<textarea class="rejectrReasonTextarea" placeholder="고객님께 전달드릴 예약 거절 사유를 적어주세요. 수정 불가능 하오니 신중히 적어주세요." name="rejectReson">
+									
+									</textarea>
 								</div>
 							</li>
 							</ul>
 						<div class="password-wrap" style="text-align: center;" >
-							<div class="button-wrap"><button class="submit-btn"  onclick="location.href='booking.html', alertReject()">거절하기</button></div>
+						
+							<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}"/>							
+							<div class="button-wrap"><button type="submit">거절하기</button></div>
 						</div>
+						</form>
 					</div>
 					<script>
 					$(document).ready(function(){
@@ -259,11 +279,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					function alertReject(){
 						alert("예약 거절 되었습니다.");
-					}
+					};
+					
 					function alertAccept(){
 						alert("예약 승인 되었습니다.")
 						location.href="booking.html";
 					};
+					
 				</script>
 					
 

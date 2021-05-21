@@ -7,26 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
-
-
-
-	
-	<script>
-		(function(){
-			
-			location.href="${ pageContext.servletContext.contextPath}/user/list";    
-		})();
-	</script>  
- 	<%--	
- 	<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
-	<jsp:forward page="/WEB-INF/views/admin/user/userReservation.jsp"></jsp:forward>
-	--%> 
-	
-
-
+       <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
+ 
 
 
 </body>

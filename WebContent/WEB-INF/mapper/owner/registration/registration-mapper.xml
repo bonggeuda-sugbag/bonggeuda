@@ -3,11 +3,11 @@
 <properties>
 <comment/>
 	<entry key="insertAccomo">
-		INSERT INTO ACCOMO_INFO
+		INSERT INTO RM_ACCOMO_INFO
 		VALUES
 		(
-			12
-		  , 12
+			SEQ_REQUEST_NO.NEXTVAL
+		  , NULL
 		  , ?
 		  , ?
 		  , ?
@@ -24,21 +24,36 @@
 		  , ?
 		  , ?
 		  , ?
+          , DEFAULT
+          , ?
+          , 'EN'
+          , ?
 		)
 	</entry>
 
 	<entry key="insertRoom">
-		INSERT INTO ROOM_INFO
+		INSERT INTO RM_ROOM_INFO
 		VALUES
 		(
-		    17
-		  , 6
+		    SEQ_ROOM_REQUEST_NO.NEXTVAL
+		  , NULL
+          , NULL
 		  , ?
 		  , ?
 		  , ?
 		  , ?
-		  , DEFAULT
-		  , ?
+		  , 'Y'
+		  , 'EN'
+          , (SELECT MAX(EN_ACCOMO_NO) FROM RM_ACCOMO_INFO)
+          , 'N'
+          , ?
 		)
 	</entry>
+	
+	<entry key="selectEnNo">
+		SELECT 
+			   MAX(EN_ACCOMO_NO) 
+		  FROM RM_ACCOMO_INFO
+	</entry>
+	
 </properties>

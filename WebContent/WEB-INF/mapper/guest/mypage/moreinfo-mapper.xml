@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="noticeSelect">
+		SELECT NOTICE_TITLE
+		     , NOTICE_CONTENT
+		     , NOTICE_WRITE_DATE
+		     , NOTICE_NO
+		  FROM NOTICE
+	</entry>
+	
+	<entry key="eventSelect">
+		SELECT E.EVENT_TITLE
+		     , E.EVENT_NO
+             , E.EVENT_START
+             , E.EVENT_END
+             , A.THUMBNAIL_PATH
+          FROM EVENT E
+          JOIN ATTACHMENT A ON(A.REF_NO = E.EVENT_NO)
+         WHERE CATEGORY_NO = 7
+	</entry>
+	
+	<entry key="adminQnAListSelect">
+		SELECT ADMIN_QNA_NO
+		     , ADMIN_QNA_TITLE
+		     , ADMIN_QNA_DATE
+		     , ADMIN_ANSWER_YN
+		     , ADMIN_QNA_CONTENT
+		  FROM ADMIN_QNA
+		 WHERE ADMIN_QNA_WRITER = 'U'
+		   AND MEMBER_NO = ?
+		     
+	</entry>
+	<entry key="ownerQnAListSelect">
+		SELECT O.OWNER_QNA_NO
+		     , O.OWNER_QNA_TITLE
+		     , O.OWNER_QNA_CONTENT
+		     , O.OWNER_QNA_DATE
+		     , O.OWNER_ANSWER_YN
+		     , A.ACCOMO_NAME
+		  FROM OWNER_QNA O
+		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = O.ACCOMO_NO)
+		 WHERE USER_NO = ?
+	</entry>
+	
+
+</properties>

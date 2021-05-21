@@ -110,11 +110,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="col-md-3 blog-sidebar">
                     <ul>
                         <li class="blog-list" style=" font-size: 1.3em; font-weight: 600;">
-                            <a href="booking.html" style="color: #6eceda;">실시간 예약 현황</a>
+                            <a style="color: #6eceda;">실시간 예약 현황</a>
                         </li>
+                        <form action="/bonggeuda/owner/bookingPastList" method="get"> <!--   -->
                         <li class="blog-list">
-                            <a href="booking_past.html">지난 예약</a>
+                            <a href="/bonggeuda/owner/bookingPastList">지난 예약</a>
                         </li>
+                        </form>
                         <li class="blog-list">
                             <a href="booking_QnA.html">고객 문의</a>
                         </li>
@@ -147,36 +149,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<th><b>숙소명</b></th>
 						<th><b>객실명</b></th>
 						<th><b>예약자</b></th>
-						<th><b>인원</b></th>
 						<th><b>전화번호</b></th>
+						<th><b>예약 인원</b></th>
 						<th><b>시작 날짜</b></th>
 						<th><b>종료 날짜</b></th>
 						<th><b>예약확인</b></th>
 						<th><b>이용상태</b></th>
-						<th><b>신고</b></th>
+						
 				    </tr>
 				</thead>
 				<tbody>
 				<c:forEach var="board" items="${ requestScope.bookList }">
 				   	<tr>
-				   	<c:set var="i" value="${i+1 }"/>
+				   	<c:set var="i" value="${i+1 }"/>				   	
 				   	
 						<th>${ i}</th>
 						<th><c:out value="${ board.accomoName }"/></th>
- 						<th><form action="/bonggeuda/owner/bookingList" method="post"><button type="submit"><c:out value="${ board.roomName }"/> </button></form> </th>
+ 						<th>
+ 						<form action="/bonggeuda/owner/bookingList" method="post"><button type="submit" class="submit-btn"><c:out value="${ board.roomName }"/> </button>
+						<input type="hidden" name="bookNo" value="${board.bookNo}">
+						
+						</th>
+ 						</form>
+ 						</th>
 						<th><c:out value="${ board.bookUserName }"/></th>
-						<th><c:out value="${ board.bookPersonnel }"/></th> <!-- 폰넘버 DTO 추가하자 -->
-						<th>010-2222-3333</th> <!-- 폰넘버 DTO 추가하자 -->
+						<th><c:out value="${ board.userPhone }"/></th> 
+						<th><c:out value="${ board.bookPersonnel }"/></th> 
 						<th><c:out value="${ board.bookCheckDate }"/></th>
 						<th><c:out value="${ board.bookCheckoutDate }"/></th>
-						<th><c:out value="${ board.bookApproveYn }"/></th> <!-- 스위치 문으로 예약 확인 N인 녀석들만 가져오기 -->
-						<th>결제완료</th>
+						<th>승인 대기</th>  
 						<th>
-							<a href="report.html">
-							<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/siren.png" style="width: 26px; height: 26px;">
-							</a>
+						<c:choose>
+							
+							<c:when test="${ board.bookStatusYNC eq 'Y'}">
+							 결제 완료
+							</c:when>
+						
+						</c:choose>
+						
 						</th>
-						<th style="visibility: hidden;"><c:out value="${ board.bookNo }"/></th>
+						
 					</tr>   
 					</c:forEach>
 			

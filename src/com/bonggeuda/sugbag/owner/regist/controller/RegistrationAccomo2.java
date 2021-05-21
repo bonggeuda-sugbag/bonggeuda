@@ -20,14 +20,14 @@ public class RegistrationAccomo2 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/*1단계에서 값 넘어오는지 확인*/
-		System.out.println(request.getParameter("accomoName"));
-		System.out.println(request.getParameter("ceoName"));
-		System.out.println(request.getParameter("accomoType"));
-		System.out.println(request.getParameter("registNo"));
-		System.out.println(request.getParameter("address"));
-		System.out.println(request.getParameter("adrDetail"));
-		System.out.println(request.getParameter("email"));
-		System.out.println(request.getParameter("homepage"));
+//		System.out.println(request.getParameter("accomoName"));
+//		System.out.println(request.getParameter("ceoName"));
+//		System.out.println(request.getParameter("accomoType"));
+//		System.out.println(request.getParameter("registNo"));
+//		System.out.println(request.getParameter("address"));
+//		System.out.println(request.getParameter("adrDetail"));
+//		System.out.println(request.getParameter("email"));
+//		System.out.println(request.getParameter("homepage"));
 		
 		/*2단계 입력받기*/
 		//숙소이미지받아오기

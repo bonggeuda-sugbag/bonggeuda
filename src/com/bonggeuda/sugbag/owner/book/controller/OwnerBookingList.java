@@ -1,4 +1,6 @@
-package com.bonggeuda.sugbag.owner.controller;
+package com.bonggeuda.sugbag.owner.book.controller;
+
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,9 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
 
 import com.bonggeuda.sugbag.model.dto.BookDTO;
-import com.bonnggeuda.sugbag.owner.service.BookListSelectService;
+import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
 
 /**
  * Servlet implementation class OwnerBookingList
@@ -24,7 +27,7 @@ public class OwnerBookingList extends HttpServlet {
 
 		
 		 	int ownerNo = 1;
-		 	int bookNo = 0;
+		 	
 			/* 2. 예약 넘버를 저장해서 setAttribute로 넘겨주자. */
 			
 			List<BookDTO> bookList = new ArrayList<>();
@@ -34,13 +37,9 @@ public class OwnerBookingList extends HttpServlet {
 			bookList = bookService.bookListSelect(ownerNo);
 			
 			
-			
-			System.out.println(bookList);
 			request.setAttribute("bookList", bookList);
 			
-			request.setAttribute("BookNO", bookList.get(1));
-			// 북 넘버만 조회해서 int 로 받은 다음에 set arrti로 보내자!
-			
+
 			String path = "";
 			path = "/WEB-INF/views/owner/bookingList/bookingList.jsp";
 			request.getAttribute(path);
@@ -55,20 +54,23 @@ public class OwnerBookingList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* 1. BookNO 가져오기 */
-
-		request.getAttribute("bookList");
+		int bookNo = Integer.parseInt(request.getParameter("bookNo")); 
+		
+		BookingContentDTO bookContentDTO = new BookingContentDTO();
 		
 		BookListSelectService bookService = new BookListSelectService();
 
-//		bookNO = bookService.selectBookNo()
 		
+		bookContentDTO = bookService.selectBookContent(bookNo);
 		
 
+		request.setAttribute("bookContentDTO", bookContentDTO );
 		
 		String path = "";
 		path = "/WEB-INF/views/owner/bookingList/bookingContent.jsp";
 		request.getAttribute(path);
 		request.getRequestDispatcher(path).forward(request, response);
+	
 	}
-
 }
+

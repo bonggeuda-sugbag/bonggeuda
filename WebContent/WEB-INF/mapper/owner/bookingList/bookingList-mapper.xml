@@ -3,23 +3,128 @@
 <properties>
 	<entry key="selectBookingList">
 	SELECT
-       BOOK_NO,
-       BOOK_USER_NAME,
-       BOOK_PERSONNEL,
-       B.BOOK_CHECK_DATE,
-       BOOK_CHECKOUT_DATE,
-       BOOK_APPROVE_YN,
-       BOOK_CHECK_IN,
-       REQUEST,
-       R.ROOM_NO,
-       R.ROOM_NAME,
-       R.ROOM_FEE, /* 일자 계산해서 넣기 */
-       A.ACCOMO_NAME
-  FROM BOOK_LIST B
-  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
-  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
- WHERE A.OWNER_NO = ? 
+	       B.BOOK_NO,
+	       BOOK_USER_NAME,
+	       BOOK_PERSONNEL,
+	       B.BOOK_CHECK_DATE,
+	       BOOK_CHECKOUT_DATE,
+	       BOOK_APPROVE_YN,
+           BOOK_STATUS_YNC,	       
+	       BOOK_CHECK_IN,
+	       REQUEST,
+	       R.ROOM_NO,
+	       R.ROOM_NAME,
+	       R.ROOM_FEE, /* 일자 계산해서 넣기 */
+	       A.ACCOMO_NAME,
+           U.USER_PHONE
+	  FROM BOOK_LIST B
+	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
+	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
+      JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
+	 WHERE A.OWNER_NO = ?
+	   AND BOOK_APPROVE_YN = 'N'
+	   AND BOOK_STATUS_YNC = 'Y'
 
+	</entry>
+	
+	<entry key="selectBookContent">
+	SELECT
+	       B.BOOK_NO,
+	       BOOK_USER_NAME,
+	       BOOK_PERSONNEL,
+	       B.BOOK_CHECK_DATE,
+	       BOOK_CHECKOUT_DATE,
+	       BOOK_APPROVE_YN,
+	       BOOK_CHECK_IN,
+	       REQUEST,
+	       R.ROOM_NO,
+	       R.ROOM_NAME,
+	       R.ROOM_FEE, /* 일자 계산해서 넣기 */
+	       A.ACCOMO_NAME,
+           U.USER_ID,
+           U.USER_PHONE,
+           P.PAYMENT_TIME,
+           P.PAYMENT_METHOD
+	  FROM BOOK_LIST B
+	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
+	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
+      JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
+      JOIN PAYMENT P ON(B.BOOK_NO = P.BOOK_NO)
+	 WHERE B.BOOK_NO = ?
+	</entry>
+	
+	<entry key="selectPastBookingList">
+	SELECT
+	       B.BOOK_NO,
+	       BOOK_USER_NAME,
+	       BOOK_PERSONNEL,
+	       B.BOOK_CHECK_DATE,
+	       BOOK_CHECKOUT_DATE,
+	       BOOK_APPROVE_YN,
+           BOOK_STATUS_YNC,
+	       BOOK_CHECK_IN,
+	       REQUEST,
+	       R.ROOM_NO,
+	       R.ROOM_NAME,
+	       R.ROOM_FEE, 
+	       A.ACCOMO_NAME,
+           U.USER_PHONE
+	  FROM BOOK_LIST B
+	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
+	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
+      JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
+	 WHERE A.OWNER_NO = ?
+       AND BOOK_APPROVE_YN = 'Y'
+        OR BOOK_STATUS_YNC = 'N'
+        OR BOOK_STATUS_YNC = 'C'
+	
+	</entry>
+	
+	<entry key="bookAllowUpadte">
+	
+	UPDATE BOOK_LIST
+  	   SET BOOK_APPROVE_YN = 'Y'
+     WHERE BOOK_NO = ?
+	
+	</entry>
+	
+	<entry key="insertAllowBookHistory">
+
+	INSERT
+	  INTO BOOK_HISTORY
+	VALUES
+	(
+	  ?
+	, SYSDATE
+	, 'Y'
+	, null
+	, SEQ_HISTORYNO.NEXTVAL
+	) 
+	
+	</entry>
+	
+	<entry key="bookRejectUpadte">
+	
+	UPDATE BOOK_LIST
+  	   SET BOOK_STATUS_YNC = 'N'
+     WHERE BOOK_NO = ?
+	
+	</entry>
+	
+	
+	<entry key="insertRejectBookHistory">
+
+	INSERT
+	  INTO BOOK_HISTORY
+	VALUES
+	(
+	  ?
+	, SYSDATE
+	, 'N'
+	, ?
+	, SEQ_HISTORYNO.NEXTVAL
+	) 
+	
 	</entry>
 
 	
