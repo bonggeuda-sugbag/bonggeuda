@@ -35,7 +35,6 @@ public class OwnerBookingList extends HttpServlet {
 			BookListSelectService bookService = new BookListSelectService();
 			
 			bookList = bookService.bookListSelect(ownerNo);
-			System.out.println("예약 목록 : " +bookList);
 			
 			
 			request.setAttribute("bookList", bookList);
