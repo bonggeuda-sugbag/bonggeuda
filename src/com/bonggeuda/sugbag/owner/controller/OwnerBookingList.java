@@ -24,8 +24,8 @@ public class OwnerBookingList extends HttpServlet {
 
 		
 		 	int ownerNo = 1;
-			/* 먼저 . 조회할 owner_no 을 가지고 BOOK_LIST DTO 에 담아서 값 전해주자. */
-			BookDTO bookDTO = new BookDTO();
+		 	int bookNo = 0;
+			/* 2. 예약 넘버를 저장해서 setAttribute로 넘겨주자. */
 			
 			List<BookDTO> bookList = new ArrayList<>();
 			
@@ -35,8 +35,11 @@ public class OwnerBookingList extends HttpServlet {
 			
 			
 			
-		
+			System.out.println(bookList);
 			request.setAttribute("bookList", bookList);
+			
+			request.setAttribute("BookNO", bookList.get(1));
+			// 북 넘버만 조회해서 int 로 받은 다음에 set arrti로 보내자!
 			
 			String path = "";
 			path = "/WEB-INF/views/owner/bookingList/bookingList.jsp";
@@ -51,20 +54,16 @@ public class OwnerBookingList extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	 	int ownerNo = 1;
-		/* 먼저 . 조회할 owner_no 을 가지고 BOOK_LIST DTO 에 담아서 값 전해주자. */
-		BookDTO bookDTO = new BookDTO();
-		
-		List<BookDTO> bookList = new ArrayList<>();
+		/* 1. BookNO 가져오기 */
+
+		request.getAttribute("bookList");
 		
 		BookListSelectService bookService = new BookListSelectService();
+
+//		bookNO = bookService.selectBookNo()
 		
-		bookList = bookService.bookListSelect(ownerNo);
 		
-		
-		
-	
-		request.setAttribute("bookList", bookList);
+
 		
 		String path = "";
 		path = "/WEB-INF/views/owner/bookingList/bookingContent.jsp";
