@@ -611,13 +611,15 @@ textarea {
 				}
 			</script>
             
-            <form>
 			<br>
 			<br>
 			<!-- <객실안내/예약 탭> -->
 			<div id="btn1_content">
+			<form method = "post" action="${pageContext.servletContext.contextPath }/book/booking">
+			
 				<div style="width: 1100px; height: 60px; padding:5px 10px 5px 10px;display: flex;justify-content: space-around; background-color: white;">
 					<!-- 예약일자 입력 -->
+
 					<div style="display: flex; ">
 						<h4 style="margin: 15px;">입실일</h4>
 						<input type="date">
@@ -659,7 +661,7 @@ textarea {
 					</div>
 				<!-- //예약일자 입력 -->
 				</div>
-				</form>
+
 				<hr>
 				<center>
 					<!-- 객실정보 -->
@@ -686,13 +688,15 @@ textarea {
 							</script>
 							<hr>
 							<div>
-								<button class="detail_btn" onclick="location.href='${pageContext.servletContext.contextPath }/book/booking?no=${ roomList.roomNo}';">예약하기</button>
+								<button class="detail_btn" type="submit">예약하기</button>
 							</div>
+							<input type="hidden" name="roomNo" value="${roomList.roomNo }">
 						</div>
 					</div>
 					</c:forEach>
 					<!--// 객실정보 -->
 				</center>
+				</form>
 			</div>
 			<!-- 숙소상세정보 -->
 			<div id="btn2_content"class="accordion vertical" style="display: none;">
