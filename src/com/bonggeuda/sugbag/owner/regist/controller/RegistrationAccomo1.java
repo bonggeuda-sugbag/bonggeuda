@@ -20,7 +20,6 @@ public class RegistrationAccomo1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*입력 값 받아오기*/
-		
 		String accomoName = request.getParameter("accomoName");
 		String ceoName = request.getParameter("ceoName");
 		String accomoType = request.getParameter("accomoType");
@@ -30,14 +29,14 @@ public class RegistrationAccomo1 extends HttpServlet {
 		String email = request.getParameter("email");
 		String homepage = request.getParameter("homepage");
 		
-		System.out.println(accomoName);
-		System.out.println(ceoName);
-		System.out.println(accomoType);
-		System.out.println(registNo);
-		System.out.println(address);
-		System.out.println(adrDetail);
-		System.out.println(email);
-		System.out.println(homepage);
+//		System.out.println(accomoName);
+//		System.out.println(ceoName);
+//		System.out.println(accomoType);
+//		System.out.println(registNo);
+//		System.out.println(address);
+//		System.out.println(adrDetail);
+//		System.out.println(email);
+//		System.out.println(homepage);
 		
 		/*전달받은 값을 넣어줄 객체 선언*/
 		AccomoDTO accomoDTO = new AccomoDTO();
