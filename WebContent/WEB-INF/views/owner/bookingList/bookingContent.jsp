@@ -215,7 +215,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</tr>
 			</thead>
 		</table>
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick=alertAccept()>예약 승인</button>
+		<form action="/bonggeuda/owner/bookAllow" method="get">
+		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick=alertAccept()>
+		<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}"/>
+		예약 승인
+		</button>
+		</form>
 		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="location.href='#pop01'" >예약 거절</button>
 
 		<!-- 예약거절 팝업창 -->
@@ -260,11 +265,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					function alertReject(){
 						alert("예약 거절 되었습니다.");
-					}
+					};
+					
 					function alertAccept(){
 						alert("예약 승인 되었습니다.")
 						location.href="booking.html";
 					};
+					}
 				</script>
 					
 

@@ -7,15 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-       <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
- 
-
-
-<%--    <jsp:forward page="/login/test"></jsp:forward>
- --%>
-
-
-
+<script>
+window.onload = function() {
+    alert("숙소 예약 승인 되었습니다");
+    
+    location.href ="bookingList"; 
+}
+</script>
 
 </body>
 </html>

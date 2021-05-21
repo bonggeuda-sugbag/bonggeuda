@@ -1,4 +1,4 @@
-package com.bonnggeuda.sugbag.owner.dao;
+package com.bonggeuda.sugbag.owner.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -39,7 +39,6 @@ public class BookingListSelectDAO {
 		BookDTO bookDTO = new BookDTO();
 		
 		String query = prop.getProperty("selectBookingList");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -122,7 +121,6 @@ public class BookingListSelectDAO {
 				
 				
 			}
-			System.out.println(bookConDTO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -142,7 +140,6 @@ public class BookingListSelectDAO {
 		BookDTO bookDTO = new BookDTO();
 		
 		String query = prop.getProperty("selectPastBookingList");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -169,7 +166,6 @@ public class BookingListSelectDAO {
 				selectBookedList.add(bookDTO);
 				
 			}
-			System.out.println(selectBookedList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -178,6 +174,32 @@ public class BookingListSelectDAO {
 		}
 		
 		return selectBookedList;
+	}
+
+	public int bookAllowUpdate(Connection con, int bookNo) {
+
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("bookAllowUpadte");
+		
+		int bookAllowUpdate = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, bookNo);
+			
+			
+			bookAllowUpdate = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(con);
+		}
+		
+		
+		return bookAllowUpdate;
 	}
 }
 

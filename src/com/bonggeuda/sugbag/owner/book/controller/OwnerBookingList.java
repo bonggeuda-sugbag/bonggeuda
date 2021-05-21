@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.controller;
+package com.bonggeuda.sugbag.owner.book.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
-import com.bonnggeuda.sugbag.owner.service.BookListSelectService;
+import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
 
 /**
  * Servlet implementation class OwnerBookingList
@@ -33,7 +33,7 @@ public class OwnerBookingList extends HttpServlet {
 			BookListSelectService bookService = new BookListSelectService();
 			
 			bookList = bookService.bookListSelect(ownerNo);
-			
+			System.out.println("예약 목록 : " +bookList);
 			
 			
 			request.setAttribute("bookList", bookList);
@@ -53,7 +53,6 @@ public class OwnerBookingList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* 1. BookNO 가져오기 */
-		System.out.println(request.getParameter("bookNo"));
 		int bookNo = Integer.parseInt(request.getParameter("bookNo")); 
 		
 		BookingContentDTO bookContentDTO = new BookingContentDTO();
