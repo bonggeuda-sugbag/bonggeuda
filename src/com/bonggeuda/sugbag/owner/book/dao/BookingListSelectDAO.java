@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.dao;
+package com.bonggeuda.sugbag.owner.book.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
