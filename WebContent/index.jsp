@@ -17,7 +17,7 @@
 	<script>
 		(function(){
 			
-			location.href="${ pageContext.servletContext.contextPath}/user/leave";    
+			location.href="${ pageContext.servletContext.contextPath}/user/list";    
 		})();
 	</script>  
  	<%--	

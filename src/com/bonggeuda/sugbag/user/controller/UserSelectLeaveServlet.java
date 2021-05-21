@@ -1,4 +1,4 @@
-package com.bonnggeuda.sugbag.user.controller;
+package com.bonggeuda.sugbag.user.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
-import com.bonnggeuda.sugbag.user.dto.UserleaveDTO;
-import com.bonnggeuda.sugbag.user.service.UserInfoService;
+import com.bonggeuda.sugbag.user.dto.UserleaveDTO;
+import com.bonggeuda.sugbag.user.service.UserInfoService;
+
 
 /**
  * Servlet implementation class UserSelectLeaveServlet
