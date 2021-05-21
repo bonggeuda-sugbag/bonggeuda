@@ -20,6 +20,7 @@ public class RegistrationAccomo1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*입력 값 받아오기*/
+		
 		String accomoName = request.getParameter("accomoName");
 		String ceoName = request.getParameter("ceoName");
 		String accomoType = request.getParameter("accomoType");
