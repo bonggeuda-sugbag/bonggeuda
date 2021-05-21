@@ -2,6 +2,7 @@ package com.bonggeuda.sugbag.book.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
+import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
+import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 import com.bonggeuda.sugbag.service.BookService;
 
@@ -55,22 +58,44 @@ public class BookingServlet extends HttpServlet {
 		int totalPrice = roomInfo.getRoomFee() * bookDay;
 		bookInfo.setDay(checkOut.getDate() - checkIn.getDate());
 		
-		//쿠폰과 포인트를 가져와야 한다.
-//		System.out.println(accomoInfo);
-//		System.out.println(roomInfo);
-//		System.out.println(bookInfo);
-		
 		List couponPoint = new BookService().selectCouponPoint(userNo);
 		
+		PointDTO point = null;
+		List<CouponDTO> couponList = new ArrayList<>();
+
 		for(int i = 0; i < couponPoint.size(); i++) {
 			
-		}
+			if(couponPoint.get(i) != null) {
+				if(couponPoint.get(i) instanceof PointDTO)  {
+					point = (PointDTO) couponPoint.get(i);
+				} else if(couponPoint.get(i) instanceof CouponDTO) {
+					CouponDTO coupon = (CouponDTO) couponPoint.get(i);
+					Date today = new java.sql.Date(System.currentTimeMillis());
+					int condition = Integer.parseInt(coupon.getCouponCondition());
 
-		request.setAttribute("accomoInfo", accomoInfo);
-		request.setAttribute("roomInfo", roomInfo);
-		request.setAttribute("bookInfo", bookInfo);
-		request.setAttribute("totalPrice", totalPrice);
-		request.getRequestDispatcher("/WEB-INF/views/guest/accomoInfo/payment.jsp").forward(request, response);;
+					//1. 쿠폰시작일 <= 오늘날짜 <= 쿠폰종료일, 2.사용조건금액 <= 전체금액
+					if(today.getDate()-coupon.getCouponStart().getDate() >= 0 && today.getDate()-coupon.getCouponEnd().getDate() <= 0 && condition <= totalPrice) {
+						System.out.println(coupon);
+						couponList.add(coupon);
+					}
+				}
+			}
+		}
+		String path = "";
+//		point.setPoint(0);
+		if(accomoInfo != null && roomInfo != null && bookInfo != null) {
+			
+			path = "/WEB-INF/views/guest/accomoInfo/payment.jsp";
+			request.setAttribute("accomoInfo", accomoInfo);
+			request.setAttribute("roomInfo", roomInfo);
+			request.setAttribute("bookInfo", bookInfo);
+			request.setAttribute("totalPrice", totalPrice);
+			request.setAttribute("couponList", couponList);
+			request.setAttribute("point", point);
+		} else {
+			System.out.println("에러페이지 갈 예정");
+		}
+		request.getRequestDispatcher(path).forward(request, response);;
 	}
 
 }
