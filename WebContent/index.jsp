@@ -9,7 +9,8 @@
 <body>
 
 
-
+	 <jsp:forward page="/WEB-INF/views/owner/registration/registration1.jsp"></jsp:forward>
+	
 
 
 
