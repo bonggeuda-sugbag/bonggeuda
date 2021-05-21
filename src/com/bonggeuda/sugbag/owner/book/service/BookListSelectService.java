@@ -1,4 +1,4 @@
-package com.bonnggeuda.sugbag.owner.service;
+package com.bonggeuda.sugbag.owner.book.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
-import com.bonnggeuda.sugbag.owner.dao.BookingListSelectDAO;
+import com.bonggeuda.sugbag.owner.book.dao.BookingListSelectDAO;
 
 public class BookListSelectService {
 	

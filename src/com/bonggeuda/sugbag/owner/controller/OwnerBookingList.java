@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.BookDTO;
-import com.bonnggeuda.sugbag.owner.service.BookListSelectService;
+import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
 
 /**
  * Servlet implementation class OwnerBookingList
