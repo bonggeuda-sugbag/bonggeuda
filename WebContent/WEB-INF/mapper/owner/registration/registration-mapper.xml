@@ -49,4 +49,11 @@
           , ?
 		)
 	</entry>
+	
+	<entry key="selectEnNo">
+		SELECT 
+			   MAX(EN_ACCOMO_NO) 
+		  FROM RM_ACCOMO_INFO
+	</entry>
+	
 </properties>

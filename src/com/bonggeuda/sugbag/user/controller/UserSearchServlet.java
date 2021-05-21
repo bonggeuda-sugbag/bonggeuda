@@ -16,16 +16,19 @@ import com.bonggeuda.sugbag.user.service.UserInfoService;
 
 
 /**
+ * 
  * Servlet implementation class UserSearchServlet
  */
-@WebServlet("/user/serach")
+@WebServlet("/user/search")
 public class UserSearchServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String condition = request.getParameter("searchCondition");
 		String value = request.getParameter("searchValue");
-		
+
+		System.out.println("111111111111 : " + condition);
+		System.out.println("222222222222 : " + value);
 		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
 		 * */
@@ -48,7 +51,7 @@ public class UserSearchServlet extends HttpServlet {
 		UserInfoService userInfoServie = new UserInfoService();;
 		int totalCount = userInfoServie.searchCount(condition, value);
 		
-		System.out.println("totalBoardCount : " + totalCount);
+		System.out.println("totalCount : " + totalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
@@ -67,11 +70,10 @@ public class UserSearchServlet extends HttpServlet {
 		
 		String path = "";
 		if(userList != null) {
-			path = "/WEB-INF/views/board/boardList.jsp";
+			path = "/WEB-INF/views/admin/user/userInfo.jsp";
 			request.setAttribute("userList", userList);
 			request.setAttribute("pageInfo", pageInfo);
-			request.setAttribute("searchCondition", condition);
-			request.setAttribute("searchValue", value);
+			
 		} 
 		
 		request.getRequestDispatcher(path).forward(request, response);

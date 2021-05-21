@@ -266,7 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										class="form-control normal-size" type="text" name="aname"
 										style="width: 60%;" disabled="disabled">
 								</span></td>
-								<input type="hidden" name="hduserNo" value= "${ user }">
+								<input type="hidden" name="hduserNo" value= "${ hduserNo }">
 							</tr>
 							<!-- //리뷰목록 조회 -->
 							

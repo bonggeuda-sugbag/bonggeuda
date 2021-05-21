@@ -166,8 +166,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<th>${ i}</th>
 						<th><c:out value="${ board.accomoName }"/></th>
  						<th>
- 						<form action="/bonggeuda/owner/bookingList" method="post"><button type="submit" class="sumbit-btn"><c:out value="${ board.roomName }"/> </button>
-						<input type="hidden" name="bookNo" value="${board.bookNo}"></th>
+ 						<form action="/bonggeuda/owner/bookingList" method="post"><button type="submit" class="submit-btn"><c:out value="${ board.roomName }"/> </button>
+						<input type="hidden" name="bookNo" value="${board.bookNo}">
+						
+						</th>
  						</form>
  						</th>
 						<th><c:out value="${ board.bookUserName }"/></th>
@@ -180,7 +182,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<c:choose>
 							
 							<c:when test="${ board.bookStatusYNC eq 'Y'}">
-							 결재 완료
+							 결제 완료
 							</c:when>
 						
 						</c:choose>

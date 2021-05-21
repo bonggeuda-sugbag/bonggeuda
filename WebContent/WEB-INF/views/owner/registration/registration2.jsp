@@ -13,9 +13,6 @@
 </head>
 <body>
 <!--header-->
-
- ${ requestScope.accomoDTO };
- ${ accomoName };
 <div class="header">
    <div class="container">
       <!--logo-->
@@ -71,7 +68,7 @@
          <ul class="stepbox" id="ulStep">
             <li>
             <a href="/WEB-INF/views/owner/registration/registration1.jsp">                        
-               <span class="btn-todo-off"><img src="resources/owner/icon/step1.png" width="64px" height="64px"></span>
+               <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step1.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc on" style="color: rgb(226, 226, 226);">사업자정보 확인</span>
             </a>                    
@@ -89,7 +86,7 @@
             </li>
             <li>
             <a href="registration2-intro.html">                        
-               <span class="btn-todo-on"><img src="resources/owner/icon/step2.png" width="64px" height="64px"></span>
+               <span class="btn-todo-on"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step2.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: #6eceda;">소개 작성</span>
             </a>                    
@@ -107,7 +104,7 @@
             </li>
             <li>
             <a href="registration3-rule.html">                        
-               <span class="btn-todo-off"><img src="resources/owner/icon/step3.png" width="64px" height="64px"></span>
+               <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step3.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">이용규칙 관리</span>
             </a>                    
@@ -125,7 +122,7 @@
             </li>
             <li>
             <a href="registration4-room.html">                        
-               <span class="btn-todo-off"><img src="resources/owner/icon/step4.png" width="64px" height="64px"></span>
+               <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step4.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">객실 등록</span>
             </a>                    

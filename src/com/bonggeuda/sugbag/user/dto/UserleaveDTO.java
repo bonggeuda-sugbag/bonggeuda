@@ -1,17 +1,22 @@
 package com.bonggeuda.sugbag.user.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class UserleaveDTO {
+public class UserleaveDTO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6310412939527384691L;
 	private int leaveNo; // 탈퇴번호
 	private String email; // 아이디
 	private String reason; // 탈퇴이유
-	private String leaveDate; // 탈퇴날짜
+	private java.sql.Date leaveDate; // 탈퇴날짜
 	
 	public UserleaveDTO() {}
 
-	public UserleaveDTO(int leaveNo, String email, String reason, String leaveDate) {
+	public UserleaveDTO(int leaveNo, String email, String reason, Date leaveDate) {
 		super();
 		this.leaveNo = leaveNo;
 		this.email = email;
@@ -43,11 +48,11 @@ public class UserleaveDTO {
 		this.reason = reason;
 	}
 
-	public String getLeaveDate() {
+	public java.sql.Date getLeaveDate() {
 		return leaveDate;
 	}
 
-	public void setLeaveDate(String leaveDate) {
+	public void setLeaveDate(java.sql.Date leaveDate) {
 		this.leaveDate = leaveDate;
 	}
 
@@ -56,6 +61,9 @@ public class UserleaveDTO {
 		return "UserleaveDTO [leaveNo=" + leaveNo + ", email=" + email + ", reason=" + reason + ", leaveDate="
 				+ leaveDate + "]";
 	}
+
+	
+	
 
 	
 	
