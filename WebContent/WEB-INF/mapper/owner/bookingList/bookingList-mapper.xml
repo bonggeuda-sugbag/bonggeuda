@@ -79,6 +79,14 @@
        OR BOOK_STATUS_YNC = 'C'
 	
 	</entry>
+	
+	<entry key="bookAllowUpadte">
+	
+	UPDATE BOOK_LIST
+  	   SET BOOK_APPROVE_YN = 'Y'
+     WHERE BOOK_NO = ?
+	
+	</entry>
 
 	
 </properties>
