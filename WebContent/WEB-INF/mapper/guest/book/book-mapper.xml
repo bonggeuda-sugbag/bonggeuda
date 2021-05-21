@@ -26,6 +26,7 @@
           JOIN ATTACHMENT AM ON(AI.ACCOMO_NO = AM.REF_NO)
          WHERE ACCOMO_TYPE = ?
            AND CATEGORY_NO = ?
+           AND AI.VISIBLE_YN = 'Y'
     </entry>
     <entry key="selectMinPrice">
         SELECT
@@ -74,30 +75,31 @@
            AND CATEGORY_NO = ?
     </entry>
     <entry key="selectOneAccomoReviewScoe">
-    SELECT 
-           AI.ACCOMO_NO
-         , ROUND(AVG(RV.STAR_POINT),1) 평점
-      FROM ACCOMO_INFO AI
-      JOIN ROOM_INFO RI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
-      JOIN BOOK_LIST BL ON(RI.ROOM_NO = BL.ROOM_NO)
-      JOIN REVIEW RV ON(BL.BOOK_NO = RV.BOOK_NO)
-     WHERE AI.ACCOMO_NO = ?
-     GROUP BY AI.ACCOMO_NO
+        SELECT 
+               AI.ACCOMO_NO
+             , ROUND(AVG(RV.STAR_POINT),1) 평점
+          FROM ACCOMO_INFO AI
+          JOIN ROOM_INFO RI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+          JOIN BOOK_LIST BL ON(RI.ROOM_NO = BL.ROOM_NO)
+          JOIN REVIEW RV ON(BL.BOOK_NO = RV.BOOK_NO)
+         WHERE AI.ACCOMO_NO = ?
+         GROUP BY AI.ACCOMO_NO
     </entry>
     <entry key="selectRoomList">
-    SELECT
-           ROOM_NO
-         , ACCOMO_NO
-         , ROOM_NAME
-         , ROOM_MAX
-         , ROOM_INTRO
-         , ROOM_FEE
-         , PEAK_FEE
-         , THUMBNAIL_PATH
-      FROM ROOM_INFO RI
-      JOIN ATTACHMENT AC ON(RI.ROOM_NO = AC.REF_NO)
-     WHERE ACCOMO_NO = ?
-       AND CATEGORY_NO = ?
+        SELECT
+               ROOM_NO
+             , ACCOMO_NO
+             , ROOM_NAME
+             , ROOM_MAX
+             , ROOM_INTRO
+             , ROOM_FEE
+             , PEAK_FEE
+             , THUMBNAIL_PATH
+          FROM ROOM_INFO RI
+          JOIN ATTACHMENT AC ON(RI.ROOM_NO = AC.REF_NO)
+         WHERE ACCOMO_NO = ?
+           AND CATEGORY_NO = ?
+           AND ROOM_VISIBLE_YN = 'Y'
     </entry>
     <entry key="insertOwnerQnA">
         INSERT 

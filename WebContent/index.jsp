@@ -8,24 +8,18 @@
 </head>
 <body>
 
-
-
-
-
-
-	
-	<script>
+	<!-- <script>
 		(function(){
 			
 			location.href="${ pageContext.servletContext.contextPath}/user/list";    
 		})();
-	</script>  
+	</script>   -->
  	<%--	
  	<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
 	<jsp:forward page="/WEB-INF/views/admin/user/userReservation.jsp"></jsp:forward>
 	--%> 
 	
-
+	<jsp:forward page="/login/test"></jsp:forward>
 
 
 

@@ -10,14 +10,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>봉그다숙박</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
