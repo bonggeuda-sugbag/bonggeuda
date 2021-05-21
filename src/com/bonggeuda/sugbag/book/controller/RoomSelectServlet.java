@@ -20,7 +20,6 @@ import com.bonggeuda.sugbag.service.BookService;
 public class RoomSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("왜 여기로 또 들어오지?");
 		int accomoNo = Integer.parseInt(request.getParameter("no"));
 		//숙소정보, 사진조회
 		BookService booksvc = new BookService();

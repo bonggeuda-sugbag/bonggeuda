@@ -10,14 +10,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>봉그다숙박</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
@@ -338,19 +338,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<section class="accommoInfo">
 					<p>
 						<strong>숙소이름</strong><br>
-						더조은컴퓨터아카데미
+						${ accomoInfo.accomoName }
 					</p>
 					<p>
 						<strong>객실타입/기간</strong><br>
-						502호 / 1박
+						${roomInfo.roomName } / ${bookInfo.day }박
 					</p>
 					<p>
 						<strong>체크인</strong><br>
-						05.02 일 15:00
+						${bookInfo.bookCheckDate } ${bookInfo.bookCheckIn }
 					</p>
 					<p>
 						<strong>체크아웃</strong><br>
-						05.03 월 11:00
+						${bookInfo.bookCheckoutDate } 11:00
 					</p>
 					<hr>
 				</section>
@@ -360,7 +360,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<b>총 결제 금액</b>
 							(VAT포함)
 						</strong><br>
-						<span class="in_price">84,000원</span>
+						<span class="in_price">${totalPrice }</span>
 					</p>
 					<ul>
 						<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
