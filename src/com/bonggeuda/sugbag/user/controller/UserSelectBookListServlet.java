@@ -1,4 +1,4 @@
-package com.bonnggeuda.sugbag.user.controller;
+package com.bonggeuda.sugbag.user.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

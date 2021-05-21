@@ -1,4 +1,4 @@
-package com.bonnggeuda.sugbag.user.controller;
+package com.bonggeuda.sugbag.user.controller;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bonnggeuda.sugbag.user.dto.UserCouponDTO;
-import com.bonnggeuda.sugbag.user.service.UserInfoService;
+import com.bonggeuda.sugbag.user.dto.UserCouponDTO;
+import com.bonggeuda.sugbag.user.service.UserInfoService;
+
 
 /**
  * Servlet implementation class CouponInsertServlet
