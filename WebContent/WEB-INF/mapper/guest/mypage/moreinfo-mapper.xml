@@ -20,5 +20,28 @@
          WHERE CATEGORY_NO = 7
 	</entry>
 	
+	<entry key="adminQnAListSelect">
+		SELECT ADMIN_QNA_NO
+		     , ADMIN_QNA_TITLE
+		     , ADMIN_QNA_DATE
+		     , ADMIN_ANSWER_YN
+		     , ADMIN_QNA_CONTENT
+		  FROM ADMIN_QNA
+		 WHERE ADMIN_QNA_WRITER = 'U'
+		   AND MEMBER_NO = ?
+		     
+	</entry>
+	<entry key="ownerQnAListSelect">
+		SELECT O.OWNER_QNA_NO
+		     , O.OWNER_QNA_TITLE
+		     , O.OWNER_QNA_CONTENT
+		     , O.OWNER_QNA_DATE
+		     , O.OWNER_ANSWER_YN
+		     , A.ACCOMO_NAME
+		  FROM OWNER_QNA O
+		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = O.ACCOMO_NO)
+		 WHERE USER_NO = ?
+	</entry>
+	
 
 </properties>

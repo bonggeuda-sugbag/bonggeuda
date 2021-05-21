@@ -1,5 +1,7 @@
 package com.bonggeuda.sugbag.owner.book.controller;
 
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
 
 import com.bonggeuda.sugbag.model.dto.BookDTO;
-import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
 import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
 
 /**
@@ -64,10 +66,7 @@ public class OwnerBookingList extends HttpServlet {
 		
 
 		request.setAttribute("bookContentDTO", bookContentDTO );
-		String path = "";
-		path = "/WEB-INF/views/owner/bookingList/bookingContent.jsp";
-		request.getAttribute(path);
-		request.getRequestDispatcher(path).forward(request, response);
+	
 	}
-
 }
+

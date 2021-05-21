@@ -4,20 +4,22 @@ import java.sql.Date;
 
 public class OwnerQnADTO {
 	
-	private int qnaAo;
+	private int qnaNo;
 	private String title;
 	private String content;
 	private Date writeDate;
 	private String answerYN;
 	private int accomoNo;
 	private int userNo;
-	
-	public OwnerQnADTO() {}
 
-	public OwnerQnADTO(int qnaAo, String title, String content, Date writeDate, String answerYN, int accomoNo,
+	public OwnerQnADTO() {
+		super();
+	}
+
+	public OwnerQnADTO(int qnaNo, String title, String content, Date writeDate, String answerYN, int accomoNo,
 			int userNo) {
 		super();
-		this.qnaAo = qnaAo;
+		this.qnaNo = qnaNo;
 		this.title = title;
 		this.content = content;
 		this.writeDate = writeDate;
@@ -26,12 +28,12 @@ public class OwnerQnADTO {
 		this.userNo = userNo;
 	}
 
-	public int getQnaAo() {
-		return qnaAo;
+	public int getQnaNo() {
+		return qnaNo;
 	}
 
-	public void setQnaAo(int qnaAo) {
-		this.qnaAo = qnaAo;
+	public void setQnaNo(int qnaNo) {
+		this.qnaNo = qnaNo;
 	}
 
 	public String getTitle() {
@@ -84,7 +86,10 @@ public class OwnerQnADTO {
 
 	@Override
 	public String toString() {
-		return "OwnerQnADTO [qnaAo=" + qnaAo + ", title=" + title + ", content=" + content + ", writeDate=" + writeDate
+		return "OwnerQnADTO [qnaNo=" + qnaNo + ", title=" + title + ", content=" + content + ", writeDate=" + writeDate
 				+ ", answerYN=" + answerYN + ", accomoNo=" + accomoNo + ", userNo=" + userNo + "]";
 	}
+	
+	
+	
 }
