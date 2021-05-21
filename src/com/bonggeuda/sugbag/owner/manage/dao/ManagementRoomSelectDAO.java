@@ -41,13 +41,13 @@ public class ManagementRoomSelectDAO {
 		int totalCount = 0;
 		
 		String query = prop.getProperty("selectRoomCount");
-		
+		System.out.println(query);
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);			
 			
-			while(rset.next()) {
-				totalCount = rset.getInt("토탈");
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class ManagementRoomSelectDAO {
 			close(stmt);
 		}
 		
-		System.out.println("DAO 토탈 카운트 : " + totalCount);
+		System.out.println("DAO 토탈 카운트1 : " + totalCount);
 		
 		return totalCount;
 

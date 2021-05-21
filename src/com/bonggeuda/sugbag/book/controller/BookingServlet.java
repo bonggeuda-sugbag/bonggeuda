@@ -61,6 +61,10 @@ public class BookingServlet extends HttpServlet {
 //		System.out.println(bookInfo);
 		
 		List couponPoint = new BookService().selectCouponPoint(userNo);
+		
+		for(int i = 0; i < couponPoint.size(); i++) {
+			
+		}
 
 		request.setAttribute("accomoInfo", accomoInfo);
 		request.setAttribute("roomInfo", roomInfo);

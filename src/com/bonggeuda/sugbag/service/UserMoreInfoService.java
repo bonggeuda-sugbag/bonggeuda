@@ -9,6 +9,7 @@ import java.util.List;
 import com.bonggeuda.sugbag.model.dao.UserMoreInfoDAO;
 import com.bonggeuda.sugbag.model.dto.EventDTO;
 import com.bonggeuda.sugbag.model.dto.NoticeDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
 
 public class UserMoreInfoService {
 
@@ -41,6 +42,22 @@ public class UserMoreInfoService {
 		
 		close(con);
 		return event;
+	}
+
+	/**
+	 * 업체에게 문의리스트 조회
+	 * @param userNo
+	 * @return
+	 */
+	public List<OwnerQnADTO> selectOwnerQnA(int userNo) {
+
+		Connection con = getConnection();
+		
+		List<OwnerQnADTO> ownerQnA = moreinfoDAO.selectOwnerQnA(con, userNo);
+		
+		close(con);
+		
+		return ownerQnA;
 	}
 
 }
