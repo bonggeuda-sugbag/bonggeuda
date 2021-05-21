@@ -72,7 +72,7 @@
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="/WEB-INF/views/owner/main/main.jsp">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
@@ -108,7 +108,6 @@
 			</nav>
 			<table id="registTb" class="table table-bordered" style="margin-top: -50px;">
 			<tbody>
-
 				<tr class="tr1">
 					<th>
 						<p class="thName">
@@ -116,7 +115,6 @@
 						</p>
 					</th>
 					<td>
-				
 						<div class="form-layer">
 							<input type="text" class="select-nomalsize" name="ownerEmail" disabled style="background-color: lightgrey;" value="${ requestScope.selectOwner.ownerID }">
 						</div>

@@ -84,4 +84,32 @@
      WHERE AI.ACCOMO_NO = ?
      GROUP BY AI.ACCOMO_NO
     </entry>
+    <entry key="selectRoomList">
+    SELECT
+           ROOM_NO
+         , ACCOMO_NO
+         , ROOM_NAME
+         , ROOM_MAX
+         , ROOM_INTRO
+         , ROOM_FEE
+         , PEAK_FEE
+         , THUMBNAIL_PATH
+      FROM ROOM_INFO RI
+      JOIN ATTACHMENT AC ON(RI.ROOM_NO = AC.REF_NO)
+     WHERE ACCOMO_NO = ?
+       AND CATEGORY_NO = ?
+    </entry>
+    <entry key="insertOwnerQnA">
+        INSERT 
+          INTO OWNER_QNA
+        VALUES (
+               SQU_OWNER_QNA.NEXTVAL
+             , ?
+             , ?
+             , ?
+             , DEFAULT
+             , ?
+             , ? 
+             )    
+    </entry>
 </properties>

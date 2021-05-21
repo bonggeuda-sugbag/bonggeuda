@@ -115,16 +115,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>봉그다숙박</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -275,7 +275,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- Tab -->
 				<br>
 				<!-- 신고내용작성 -->
-				<div class="list_none" style="display: block; height: 670px; width: 780px; border: 1px solid lightgray;">
+				<div class="list_none" style="display: block;  width: 780px; border: 1px solid lightgray;">
 					<div class="writeNameBox">
 						<div class="writeNameBoxContent">
 							<p style="text-align: center; font-weight: bold;">제목 <input type="text" class="titleInput" placeholder="제목을 입력하세요." required> </p>
@@ -288,13 +288,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div style="border: 1px solid rgba(0,0,0,0.08); height: 30px; width: 100%;" >
 							<input class="selet-picture" type ="file" name = "report-picture">
 						</div>
+						<div style="border: 1px solid rgba(0,0,0,0.08); height: 30px; width: 100%;" >
+							<input class="selet-picture" type ="file" name = "report-picture">
+						</div>
+						<div style="border: 1px solid rgba(0,0,0,0.08); height: 30px; width: 100%;" >
+							<input class="selet-picture" type ="file" name = "report-picture">
+						</div>
 						
 					</div>
 				</div>
 				<br>
 				<div class="list_none" style="display:block; text-align: center; width: 780px;">
-					<button class="submit-btn" onclick="location.href='moteldetailBook.html';">작성 취소</button>
-					<button class="submit-btn" type="submit" onclick="location.href='moteldetailBook.html'; notice();" >작성 완료</button>
+					<button class="submit-btn" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?no=${no}';">작성 취소</button>
+					<button class="submit-btn" type="submit" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?no=${no}';" >작성 완료</button>
 				</div>
 			</div>
 			<script>

@@ -11,12 +11,12 @@ public class RoomDTO {
 	private String visibleYn; 	// 공개여부
 	private int peakFee;		// 성수기요금
 
-	public RoomDTO() {
-		super();
-	}
+	private AttachmentDTO attachment;
+
+	public RoomDTO() {}
 
 	public RoomDTO(int roomNo, int accomoNo, String roomName, int roomMax, String roomIntro, int roomFee,
-			String visibleYn, int peakFee) {
+			String visibleYn, int peakFee, AttachmentDTO attachment) {
 		super();
 		this.roomNo = roomNo;
 		this.accomoNo = accomoNo;
@@ -26,6 +26,7 @@ public class RoomDTO {
 		this.roomFee = roomFee;
 		this.visibleYn = visibleYn;
 		this.peakFee = peakFee;
+		this.attachment = attachment;
 	}
 
 	public int getRoomNo() {
@@ -92,11 +93,21 @@ public class RoomDTO {
 		this.peakFee = peakFee;
 	}
 
+	public AttachmentDTO getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(AttachmentDTO attachment) {
+		this.attachment = attachment;
+	}
+
 	@Override
 	public String toString() {
 		return "RoomDTO [roomNo=" + roomNo + ", accomoNo=" + accomoNo + ", roomName=" + roomName + ", roomMax="
 				+ roomMax + ", roomIntro=" + roomIntro + ", roomFee=" + roomFee + ", visibleYn=" + visibleYn
-				+ ", peakFee=" + peakFee + "]";
+				+ ", peakFee=" + peakFee + ", attachment=" + attachment + "]";
 	}
-
+	
+	
+	
 }

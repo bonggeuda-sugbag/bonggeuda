@@ -95,4 +95,77 @@
 		   AND R.REPORTED_TYPE = 'owner'
 		   AND R.REPORT_NO = ?
     </entry>
+    
+    <entry key="reportImgSelect">
+		SELECT THUMBNAIL_PATH
+		  FROM REPORT R
+		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = R.REPORTED_NO)
+		  JOIN ATTACHMENT AT ON(AT.REF_NO = R.REPORT_NO)
+		 WHERE R.WRITER_TYPE = 'guest'
+		   AND R.MEMBER_NO = ?
+		   AND R.REPORTED_TYPE = 'owner'
+		   AND R.REPORT_NO = ?
+		   AND AT.CATEGORY_NO = 6
+    </entry>
+    
+    <entry key="userNicknameSelect">
+		SELECT COUNT(*)
+		  FROM USER_INFO
+		 WHERE USER_NICKNAME = ?
+    </entry>
+    
+    <entry key="userBookListSelect">
+		SELECT BL.BOOK_NO
+		     , BL.BOOK_CHECK_DATE
+		     , BL.BOOK_CHECKOUT_DATE
+		     , BL.BOOK_APPROVE_YN
+		     , BL.BOOK_CHECK_IN
+		     , RI.ROOM_NAME
+		     , AI.ACCOMO_NAME
+		     , A.THUMBNAIL_PATH
+		  FROM BOOK_LIST BL
+		  JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
+		  JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+		  JOIN ATTACHMENT A ON(A.REF_NO = RI.ROOM_NO)
+		 WHERE BL.USER_NO = ?
+		   AND BL.BOOK_STATUS_YNC = 'N'
+		   AND A.CATEGORY_NO = 4
+    </entry>
+    
+    <entry key="userCompleteBookListSelect">
+		SELECT BL.BOOK_NO
+		     , BL.BOOK_CHECK_DATE
+		     , BL.BOOK_CHECKOUT_DATE
+		     , BL.BOOK_APPROVE_YN
+		     , BL.BOOK_CHECK_IN
+		     , RI.ROOM_NAME
+		     , AI.ACCOMO_NAME
+		     , A.THUMBNAIL_PATH
+		  FROM BOOK_LIST BL
+		  JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
+		  JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+		  JOIN ATTACHMENT A ON(A.REF_NO = RI.ROOM_NO)
+		 WHERE BL.USER_NO = ?
+		   AND BL.BOOK_STATUS_YNC = 'Y'
+		   AND A.CATEGORY_NO = 4
+    </entry>
+    
+    <entry key="userCancleBookListSelect">
+		SELECT BL.BOOK_NO
+		     , BL.BOOK_CHECK_DATE
+		     , BL.BOOK_CHECKOUT_DATE
+		     , BL.BOOK_APPROVE_YN
+		     , BL.BOOK_CHECK_IN
+		     , RI.ROOM_NAME
+		     , AI.ACCOMO_NAME
+		     , A.THUMBNAIL_PATH
+		  FROM BOOK_LIST BL
+		  JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
+		  JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+		  JOIN ATTACHMENT A ON(A.REF_NO = RI.ROOM_NO)
+		 WHERE BL.USER_NO = ?
+		   AND BL.BOOK_STATUS_YNC = 'C'
+		   AND A.CATEGORY_NO = 4
+    </entry>
+
 </properties>

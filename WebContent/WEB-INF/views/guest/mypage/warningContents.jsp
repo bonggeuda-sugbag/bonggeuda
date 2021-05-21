@@ -167,8 +167,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<c:out value="${ requestScope.userReportContent.reportReason }"/>
 				</p>
 				<br>
-				<img src="images/pi2.jpg" style="width: 30%">
+				<c:if test="${ requestScope.userReportImg.thumbnailPath ne null }">
+					<img src="${ pageContext.servletContext.contextPath }/${ requestScope.userReportImg.thumbnailPath }" style="width: 30%">
 				<br><br>
+				</c:if>
 				<table class="type09">
 					<thead>
 						<tr>

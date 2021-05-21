@@ -1,7 +1,9 @@
 package com.bonggeuda.sugbag.service;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.Map;
 
 import com.bonggeuda.sugbag.model.dao.BookDAO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class BookService {
 	
@@ -54,7 +58,7 @@ public class BookService {
 
 	/**
 	 * 숙소 1개 정보 조회
-	 * @param booksvc
+	 * @param accomoNo 숙소번호, categoryType 첨부파일 카테고리
 	 * @return
 	 */
 	public AccomoInfoDTO selectAccomoInfo(int accomoNo, int categoryType) {
@@ -65,6 +69,42 @@ public class BookService {
 		close(con);
 		
 		return accomo;
+	}
+
+	/**
+	 * 숙소의 객실정보 조회
+	 * @param accomoNo 숙소번호
+	 * @return
+	 */
+	public List<RoomDTO> selectRoomList(int accomoNo,int categoryType) {
+		
+		Connection con = getConnection();
+		List<RoomDTO> roomList = null;
+		
+		roomList = bookDao.selectRoomList(con, accomoNo, categoryType);
+		
+		close(con);
+		return roomList;
+	}
+
+	/**
+	 * 고객->업주 문의 등록
+	 * @param qna 문의정보
+	 * @return
+	 */
+	public int insertOwnerQnA(OwnerQnADTO qna) {
+		
+		Connection con = getConnection();
+		int result = 0;
+		
+		result = bookDao.insertOwnerQnA(con, qna);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		return result;
 	}
 
 }
