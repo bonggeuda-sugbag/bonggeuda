@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,20 +16,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			text-align: left;
 			float: left;
 			width: 100%;
-			margin-bottom: 80px;
+			margin-bottom: 50px;
 		}
 	</style>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<title>봉그다 숙박숙박</title>
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${ pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44,7 +39,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!--header-->
-
 <div class="header">
 	<div class="container">
 		<!--logo-->
@@ -63,7 +57,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 			
 		<div class="clearfix"> </div>
-
 		<div class="clearfix"> </div>
 	</div>	
 </div>
@@ -101,17 +94,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 		<div id="cont_area" style="padding-top: 30px;"><!-- 본문 콘텐츠-->
 			<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 100%;">
-
-				<div class="event_list">
-					<p><b>봄맞이 20만원 쿠폰세트</b></p>
-					<p style="color: rgb(180, 180, 180)";>기간 2021.04.30 ~ 2021.05.31</p>
-					<img src="resources/guest/images/pi2.jpg" style="width: 100%">
-				</div>
-				<div class="event_list">
-					<p><b>봄맞이 20만원 쿠폰세트</b></p>
-					<p style="color: rgb(180, 180, 180)";>기간 2021.04.30 ~ 2021.05.31</p>
-					<img src="resources/guest/images/pi2.jpg" style="width: 100%">
-				</div>
+				<c:forEach var="arr" items="${ userevent }" varStatus="st">
+					<div class="event_list">
+						<p><b><c:out value="${ arr.eventTitle }"/></b></p>
+						<p style="color: rgb(180, 180, 180);">기간 <c:out value="${ arr.eventStart }"/> ~ <c:out value="${ arr.eventEnd }"/></p>
+						<img src="${ pageContext.servletContext.contextPath }/${ arr.thumbnailPath }" style="width: 100%">
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
