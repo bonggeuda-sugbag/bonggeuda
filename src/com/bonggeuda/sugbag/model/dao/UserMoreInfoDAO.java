@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.EventDTO;
 import com.bonggeuda.sugbag.model.dto.NoticeDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
 
 public class UserMoreInfoDAO {
 	
@@ -105,6 +106,39 @@ public class UserMoreInfoDAO {
 		}
 		
 		return event;
+	}
+
+	/**
+	 * 업체에게 문의리스트 조회
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public List<OwnerQnADTO> selectOwnerQnA(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<OwnerQnADTO> ownerQnA = new ArrayList<>();
+		
+		String query = prop.getProperty("ownerQnAListSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				OwnerQnADTO ownerQnADTO = new OwnerQnADTO();
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
