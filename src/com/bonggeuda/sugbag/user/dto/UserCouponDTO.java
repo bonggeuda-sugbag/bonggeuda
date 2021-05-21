@@ -1,4 +1,4 @@
-package com.bonnggeuda.sugbag.user.dto;
+package com.bonggeuda.sugbag.user.dto;
 
 import java.sql.Date;
 
