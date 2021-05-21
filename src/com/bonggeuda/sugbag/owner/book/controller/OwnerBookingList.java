@@ -66,6 +66,11 @@ public class OwnerBookingList extends HttpServlet {
 		
 
 		request.setAttribute("bookContentDTO", bookContentDTO );
+		
+		String path = "";
+		path = "/WEB-INF/views/owner/bookingList/bookingContent.jsp";
+		request.getAttribute(path);
+		request.getRequestDispatcher(path).forward(request, response);
 	
 	}
 }

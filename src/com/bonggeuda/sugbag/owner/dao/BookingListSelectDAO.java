@@ -39,7 +39,6 @@ public class BookingListSelectDAO {
 		BookDTO bookDTO = new BookDTO();
 		
 		String query = prop.getProperty("selectBookingList");
-		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, ownerNo);
@@ -66,7 +65,6 @@ public class BookingListSelectDAO {
 				selectBookedList.add(bookDTO);
 				
 			}
-			System.out.println(selectBookedList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
