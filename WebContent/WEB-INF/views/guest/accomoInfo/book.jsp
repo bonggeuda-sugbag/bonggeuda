@@ -548,7 +548,7 @@ textarea {
 					</button>
 				</div>
 				<div style="text-align: right; display: flex; ">
-					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='report.html';">신고하기</button>
+					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='${pageContext.servletContext.contextPath }/book/report?no=${ accomo.accomoNo }';">신고하기</button>
 					<div style="margin-left:5px; width: 30px; height: 30px; background: url(${pageContext.servletContext.contextPath }/resources/guest/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
 				</div>
 			</div>
@@ -665,7 +665,7 @@ textarea {
 					<!-- 객실정보 -->
 					<c:forEach var="roomList" items="${ roomList }" varStatus ="st">
 					<div class="detailList" > 
-						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/pc2.jpg) no-repeat; background-size: 100%;" ></div>
+						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/${roomList.attachment.thumbnailPath }) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
 							<div><h3>${roomList.roomName}</h3></div>
 							<br><br>
@@ -675,11 +675,18 @@ textarea {
 							</div>
 							<hr>
 							<div>
-								<button class="info_btn" onclick="location.href='#pop01';" >객실이용안내 ></button>
+								<button class="info_btn" onclick="popUp(${roomList});" >객실이용안내 ></button>
 							</div>
+							<script>
+							    function popUp(rL){
+							    	alert("호출");
+							    	let a = rl;
+							    	location.href='#pop01';
+							    }
+							</script>
 							<hr>
 							<div>
-								<button class="detail_btn" onclick="location.href='';">예약하기</button>
+								<button class="detail_btn" onclick="location.href='${pageContext.servletContext.contextPath }/book/booking?no=${ roomList.roomNo}';">예약하기</button>
 							</div>
 						</div>
 					</div>
@@ -702,8 +709,6 @@ textarea {
 							<h3>기본정보</h3>
 							<p>- 입실가능시간 : ${accomo.checkIn } | 퇴실 : ${accomo.checkOut }</p>
 							<p>- 주차요금 : ${accomo.parking}</p>
-							<h3>객실정보</h3>
-							<p>- 흠..?</p>
 							<h3>취소 및 환불 규정</h3>
 							<p>- 숙박일 기준 10일전 : 100% 환불</p>
 							<p>- 숙박일 기준 5일전 : 50% 환불</p>
@@ -834,7 +839,8 @@ textarea {
 						<td style="width: 50px;">제목</td>
 						<td >
 							<input type="text" class = "question-title" name="title">
-							<input type="hidden" name="ownerNo" value="${accomo.ownerNo }">
+							<input type="hidden" name="accomoNo" value="${accomo.accomoNo }">
+							<input type="hidden" name="userNo" value="${sessionScope.member.userNo }">
 						</td>
 						</tr>
 		

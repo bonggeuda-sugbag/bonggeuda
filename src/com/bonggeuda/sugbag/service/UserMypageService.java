@@ -269,6 +269,23 @@ public class UserMypageService {
 	}
 
 
+	/**
+	 * 예약 취소한 목록 조회하기
+	 * @param userNo
+	 * @return
+	 */
+	public List<BookDTO> selectCancleBooklist(int userNo) {
+
+		Connection con = getConnection();
+		
+		List<BookDTO> cancleBooklist = mypageDAO.selectCancleBooklist(con, userNo);
+		
+		close(con);
+		
+		return cancleBooklist;
+	}
+
+
 
 
 

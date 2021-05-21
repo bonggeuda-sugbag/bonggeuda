@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.service.BookService;
 
 /**
  * Servlet implementation class AccomoQuestionServlet
@@ -22,20 +22,24 @@ public class AccomoQuestionServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("ownerNo"));
         
         OwnerQnADTO qna = new OwnerQnADTO();
-        MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
         
-        qna.setOwnerNo(Integer.parseInt(request.getParameter("ownerNo")));
+        qna.setAccomoNo(Integer.parseInt(request.getParameter("accomoNo")));
+        qna.setUserNo(Integer.parseInt(request.getParameter("userNo")));
         qna.setTitle(request.getParameter("title"));
         qna.setContent(request.getParameter("content"));
-        qna.setUserNo(member.getUserNo());
         qna.setWriteDate(new Date(System.currentTimeMillis()));
         
+        BookService svc = new BookService();
         
+        int result = svc.insertOwnerQnA(qna);
         
-        
+        String path = "";
+        if(result>0) {
+        	System.out.println("입력성공");
+        } else {
+        	System.out.println("입력실패!");
+        }
 	}
-
 }

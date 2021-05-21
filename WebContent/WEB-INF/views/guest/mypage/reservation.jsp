@@ -97,13 +97,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">
-								<img src="resources/guest/images/ga1.jpg" style="width: 100%; height: 100%;">
+								<img src="${pageContext.servletContext.contextPath}/${ arr.bookImg }" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
 						<tr>
 							<td height="100px">
 							<c:if test="${ arr.bookApproveYn eq 'N' }">
-								<div style="margin: auto; font-size: 10px; border: 1px solid; width: 70px; background: #d3d3d3; border-style: none; border-radius: 5px">예약 대기</div>
+								<div style="margin: auto; font-size: 10px; border: 1px solid; width: 70px; background: yellow; color: darkgray; border-style: none; border-radius: 5px">예약 대기</div>
 							</c:if>
 							<c:if test="${ arr.bookApproveYn eq 'Y' }">
 								<div style="margin: auto; font-size: 10px; border: 1px solid; width: 70px; background: #6eceda; color: white; border-radius: 5px;">예약 확정</div>
@@ -113,10 +113,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</td>
 						</tr>
 					</table>
-					<br><br><br>
+					<br>
 				</div>
 				</c:forEach>
 			</div>
+			<br>
 			<!-- 이용내역 -->
 			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">이용내역</b>
@@ -125,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">
-								<img src="resources/guest/images/ga1.jpg" style="width: 100%; height: 100%;">
+								<img src="${pageContext.servletContext.contextPath}/${ arr.bookImg }" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
 						<tr>
@@ -136,29 +137,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</td>
 						</tr>
 					</table>
-					<br><br><br>
+					<br>
 				</div>
 				</c:forEach>
 			</div>
 			<!-- 취소내역 -->
 			<div style="padding-bottom: 100px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">취소내역</b>
+				<c:forEach var="arr" items="${ cancleBooklist }" varStatus="st">
 				<div onclick="location.href='cancle_list.jsp';">
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">
-								<img src="resources/guest/images/ga1.jpg" style="width: 100%; height: 100%;">
+								<img src="${pageContext.servletContext.contextPath}/${ arr.bookImg }" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
 						<tr>
 							<td height="100px">
-								<div style="margin: auto; font-size: 10px; border: 1px solid; width: 70px; background: #d3d3d3; border-style: none; border-radius: 5px;">예약 취소</div>
-								<div>제주 호텔</div>
-								<div>체크인 15:00 수 1박</div>
+								<div style="margin: auto; font-size: 10px; border: 1px solid; width: 70px; background: red; color: white; border-style: none; border-radius: 5px;">예약 취소</div>
+								<div><c:out value="${ arr.accomoName }"/>&nbsp&nbsp<c:out value="${ arr.roomName }"/></div>
+								<div>체크인 <c:out value="${ arr.bookCheckIn }"/> <c:out value="${ arr.day }"/>박</div>
 							</td>
 						</tr>
 					</table>
+					<br>
 				</div>
+				</c:forEach>
 			</div>
 
 		</div>

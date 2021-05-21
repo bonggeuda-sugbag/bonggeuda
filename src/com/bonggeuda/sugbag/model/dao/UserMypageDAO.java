@@ -477,6 +477,13 @@ public class UserMypageDAO {
 		return userReportContent;
 	}
 
+	/**
+	 * 신고 이미지 조회하기
+	 * @param con
+	 * @param userNo
+	 * @param reportedNo
+	 * @return
+	 */
 	public AttachmentDTO selectReportImg(Connection con, int userNo, int reportedNo) {
 
 		PreparedStatement pstmt = null;
@@ -577,6 +584,7 @@ public class UserMypageDAO {
 				bookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
 				bookDTO.setRoomName(rset.getString("ROOM_NAME"));
 				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				bookDTO.setBookImg(rset.getString("THUMBNAIL_PATH"));
 				
 				/* 숙박일수 구하기 */
 				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -634,6 +642,7 @@ public class UserMypageDAO {
 				completebookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
 				completebookDTO.setRoomName(rset.getString("ROOM_NAME"));
 				completebookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				completebookDTO.setBookImg(rset.getString("THUMBNAIL_PATH"));
 				
 				/* 숙박일수 구하기 */
 				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -659,5 +668,64 @@ public class UserMypageDAO {
 		return completeBooklist;
 		
 	}
+
+	/**
+	 * 예약 취소한 목록 조회하기
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public List<BookDTO> selectCancleBooklist(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<BookDTO> cancleBooklist = new ArrayList<>();
+		
+		String query = prop.getProperty("userCancleBookListSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				BookDTO canclebookDTO = new BookDTO();
+				canclebookDTO.setBookNo(rset.getInt("BOOK_NO"));
+				canclebookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				canclebookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				canclebookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
+				canclebookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				canclebookDTO.setRoomName(rset.getString("ROOM_NAME"));
+				canclebookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				canclebookDTO.setBookImg(rset.getString("THUMBNAIL_PATH"));
+				
+				/* 숙박일수 구하기 */
+				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					Date startDate = dataFormat.parse(rset.getString("BOOK_CHECK_DATE"));
+					Date endDate = dataFormat.parse(rset.getString("BOOK_CHECKOUT_DATE"));
+					canclebookDTO.setDay((endDate.getTime() - startDate.getTime())/(24*60*60*1000));
+					
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				cancleBooklist.add(canclebookDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return cancleBooklist;
+	}
+
 
 }

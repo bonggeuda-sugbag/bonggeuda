@@ -6,7 +6,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +13,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    <style>
       div.tab, div.tab-content {
             margin-left: 25%;
-            margin-right: 4.8%;
+            margin-right: 2%;
       }
    </style>
 
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
 <script src="${pageContext.servletContext.contextPath }/resources/admin/js/scripts.js"></script>
@@ -39,6 +38,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!--header-->
 
+
+
+
 <div class="header">
    <div class="container">
       <!--logo-->
@@ -55,6 +57,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a  href="adminOnlineQuestionUser.html">문의&신고</a></li>
 				<li><a  href="adminOnlineNotice.html">공지사항</a></li>
          </ul>
+
+
       <div class="clearfix"> </div>
          <!---pop-up-box---->
                
@@ -135,7 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->   
 <div class=" banner-buying">
    <div class=" container">
-   <h3><span>사용자 관리</span></h3> 
+   <h3><span>예약현황</span></h3> 
 
    <div class="clearfix"> </div>            
    </div>
@@ -148,49 +152,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <nav>
       <div class="col-md-3 blog-sidebar">
       <ul>
-         <li class="blog-list"><a href="userInfo.jsp" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">사용자 정보</a></li>
-         <li class="blog-list"><a href="adminUserManagementBlist.html">블랙리스트 회원</a></li>
-         <li class="blog-list"><a href="adminUserManagementLeave.html">탈퇴 회원</a></li>
+         <li class="blog-list"><a href="adminReservationStatus.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">사용자 예약 정보</a></li>
       </ul>
       </nav>
-      <table class="table" style="width: 800px;">
+
+      <table class="table" style="width: 840px;">
 
          <div class="tab">
-            <span class="tab_btn active" >사용자 정보</span>
+            <span class="tab_btn active" >사용자 예약 정보</span>
          </div>
 
          <thead>
             <tr>
-               <th>회원 번호</th>
-               <th>이름</th>
+               <th>예약번호</th>
+               <th>사용자명</th>
                <th>아이디</th>
-               <th>휴대폰번호 </th>
-               <th>상세정보</th>
+               <th>가격</th>
+               <th>인원수</th>
+               <th>체크인날짜</th>
+               <th>체아웃날짜</th>
+               <th>예약 상세정보</th>
             </tr>
          </thead>
          <tbody>
-			<c:forEach var="user" items="${ requestScope.userList }">
+           <c:forEach var="user" items="${ requestScope.userList }">
 			<form action="${ pageContext.servletContext.contextPath }/user/detail" method="get">
 			<tr>
-				<td><c:out value="${ user.userNo }"/></td>
+				<td><c:out value="${ user.bookNo }"/></td>
 				<td><c:out value="${ user.name }"/></td>
 				<td><c:out value="${ user.email }"/></td>
-				<td><c:out value="${ user.phoneNumber }"/></td>
+				<td><c:out value="${ user.price}"/></td>
+				<td><c:out value="${ user.count}"/></td>
+				<td><c:out value="${ user.checkDate}"/></td>
+				<td><c:out value="${ user.outDate}"/></td>
 				<td><button>상세보기</button></td>
-				<input type="hidden" name="hduserNo" value= "${ user.userNo }">
+				<input type="hidden" name="hduserNo" value= "${ user.bookNo }">
 			</tr>
             </form>
 			</c:forEach>
+
          </tbody>
       </table>
+
+      <label style="color: #6eceda; font-size: 1.3em; font-weight: 600;">예약자 검색</label>
+      <input type="text" name="" id="" style="width: 150px;"><button><i class="glyphicon glyphicon-search"></i></button>
+   
    </div>
 
 
    
-   <div class="clearfix"> 
-
-   </div>
-
+   <div class="clearfix"> </div>
+   
    	<%-- 페이지 처리 --%>
 		<div class="pagingArea" align="center">
 			<c:choose>
@@ -420,9 +432,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <li><a href="#"><i class="dribble"> </i></a></li>
                </ul>
          </div>
-      <div class="clearfix"> 
-
-      </div>
+      <div class="clearfix"> </div>
       </div>
    </div>
    <div class="footer-bottom">
