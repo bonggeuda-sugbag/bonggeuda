@@ -150,8 +150,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<nav>
 			<div class="col-md-3 blog-sidebar">
 			<ul>
-				<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/bookingList"style="color: #6eceda;">실시간 예약 현황</a></li>
-				<li class="blog-list"><a href="/bonggeuda/owner/bookingPastList">지난 예약</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/bookingList">실시간 예약 현황</a></li>
+				<li class="blog-list"  style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/bookingPastList" style="color: #6eceda;">지난 예약</a></li>
 				<li class="blog-list"><a href="booking_QnA.html">고객 문의</a></li>
 				<li class="blog-list"><a href="booking_sales.html">매출 내역</a></li>
 			</ul>
@@ -215,62 +215,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</tr>
 			</thead>
 		</table>
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick=alertAccept()>예약 승인</button>
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="location.href='#pop01'" >예약 거절</button>
-
-		<!-- 예약거절 팝업창 -->
-		<div id="pop01" class="overlay">
-			<div class="popup">
-				<a href="#none" class="close">&times;</a>
-					<p style="font-size: 20px; color: red; padding-bottom: 10px; margin-left: 30px;">예약 거절</p>
-
-					<div class="cont-step cont-step_02" id="contStep02" style="display: block;">
-						<div class="cont-step_preface">
-							<h4 class="h4">예약 거절 사유를 적어 주세요 </h4>
-							<br>
-						</div>
-						<!-- 거절이유 -->
-						<ul class="reason-list" style="text-align: left;">
-
-								<div class="reason-innder-box reason-innder-box6"  style="margin-bottom: 10px;">
-									<textarea class="rejectrReasonTextarea" placeholder="고객님께 전달드릴 예약 거절 사유를 적어주세요. 수정 불가능 하오니 신중히 적어주세요." required></textarea>
-								</div>
-							</li>
-							</ul>
-						<div class="password-wrap" style="text-align: center;" >
-							<div class="button-wrap"><button class="submit-btn"  onclick="location.href='booking.html', alertReject()">거절하기</button></div>
-						</div>
-					</div>
-					<script>
-					$(document).ready(function(){
-
-						// 라디오버튼 클릭시 이벤트 발생
-						$("input:radio[name=radios]").click(function(){
-					 
-							if($("input[name=radios]:checked").val() == "OTHER"){
-								$("input:text[name=reason]").attr("disabled",false);
-								// radio 버튼의 value 값이 OTHER이라면 활성화
-					 
-							}else {
-								  $("input:text[name=reason]").attr("disabled",true);
-								// 그 외에는 비활성화
-							}
-						});
-					});
-
-					function alertReject(){
-						alert("예약 거절 되었습니다.");
-					}
-					function alertAccept(){
-						alert("예약 승인 되었습니다.")
-						location.href="booking.html";
-					};
-				</script>
-					
+		
 
 
-			</div>
-		</div>
 	</div>
 </div>
 <!--footer-->
