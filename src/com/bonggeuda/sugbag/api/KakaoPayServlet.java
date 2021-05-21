@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/payment/ready")
 public class KakaoPayServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void Post(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/views/guest/accomoInfo/kakaoPay.jsp").forward(request, response);;
+		String realPath = "https://kapi.kakao.com";
+		String path = "/v1/payment/ready Http/1.1";
+		request.setAttribute("KakaoAK", "6fa475e63957e2d2c064fdcad2419067");
+		request.getRequestDispatcher(realPath+path).forward(request, response);
 	}
 
 }

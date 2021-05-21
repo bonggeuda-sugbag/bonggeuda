@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bonnggeuda.sugbag.user.dto.UserCouponDTO;
+//import com.bonnggeuda.sugbag.user.dto.UserCouponDTO;
 
 /**
  * Servlet implementation class CouponInsertServlet
