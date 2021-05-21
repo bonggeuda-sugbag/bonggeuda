@@ -31,9 +31,9 @@ public class RoomDAO {
 	
 	public int InsertRoom(Connection con, ArrayList<RoomDTO> roomList) {
 		
-		System.out.println("리스트0 : " + roomList.get(0));
-		System.out.println("리스트1 : " + roomList.get(1));
-		System.out.println("리스트2 : " + roomList.get(2));
+//		System.out.println("리스트0 : " + roomList.get(0));
+//		System.out.println("리스트1 : " + roomList.get(1));
+//		System.out.println(roomList.size());
 		
 		PreparedStatement pstmt = null;
 		

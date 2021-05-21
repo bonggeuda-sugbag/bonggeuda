@@ -114,4 +114,26 @@
              , ? 
              )    
     </entry>
+    <entry key="selectUserPoint">
+        SELECT
+               POINT_NO
+             , USER_NO
+             , POINT
+          FROM POINT
+         WHERE USER_NO = ?      
+    </entry>
+    <entry key="selectUserCoupon">
+        SELECT
+               COUPON_NO
+             , COUPON_START
+             , COUPON_END
+             , COUPON_CONDITION
+             , COUPON_USE_YN
+             , USER_NO
+             , COUPON_NAME
+             , COUPON_DISCOUNT
+          FROM COUPON   
+         WHERE USER_NO = ?
+           AND COUPON_USE_YN = 'N'      
+    </entry>
 </properties>

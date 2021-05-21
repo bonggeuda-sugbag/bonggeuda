@@ -338,19 +338,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<section class="accommoInfo">
 					<p>
 						<strong>숙소이름</strong><br>
-						더조은컴퓨터아카데미
+						${ accomoInfo.accomoName }
 					</p>
 					<p>
 						<strong>객실타입/기간</strong><br>
-						502호 / 1박
+						${roomInfo.roomName } / ${bookInfo.day }박
 					</p>
 					<p>
 						<strong>체크인</strong><br>
-						05.02 일 15:00
+						${bookInfo.bookCheckDate } ${bookInfo.bookCheckIn }
 					</p>
 					<p>
 						<strong>체크아웃</strong><br>
-						05.03 월 11:00
+						${bookInfo.bookCheckoutDate } 11:00
 					</p>
 					<hr>
 				</section>
@@ -360,7 +360,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<b>총 결제 금액</b>
 							(VAT포함)
 						</strong><br>
-						<span class="in_price">84,000원</span>
+						<span class="in_price">${totalPrice }</span>
 					</p>
 					<ul>
 						<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
