@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -162,7 +163,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
          <div class="tab">
             <span class="tab_btn active" >탈퇴 회원</span>
          </div>
-		 </thead>
+		 <thead>
             <tr>
                <th>번호</th>
                <th>아이디</th>
@@ -172,13 +173,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </tr>
          </thead>
          <tbody>
-            <c:forEach var="user" items="${ requestScope.userList }">
-			<form action="${ pageContext.servletContext.contextPath }/user/leave" method="get">
+          <c:forEach var="leave" items="${ requestScope.leaveList }"> 
+ 			<form action="${ pageContext.servletContext.contextPath }/user/leave" method="get">
 			<tr>
-				<td><c:out value="${ user.leaveNo }"/></td>
-				<td><c:out value="${ user.email }"/></td>
-				<td><c:out value="${ user.reason }"/></td>
-				<td><c:out value="${ user.leaveDate }"/></td>
+				<td><c:out value="${ leave.leaveNo}"/></td>
+				<td><c:out value="${ leave.email }"/></td>
+				<td><c:out value="${ leave.reason }"/></td>
+				<td><c:out value="${ leave.leaveDate }"/></td>
 			</tr>
             </form>
 			</c:forEach>

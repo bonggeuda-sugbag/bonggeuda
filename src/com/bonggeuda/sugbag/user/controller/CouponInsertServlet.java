@@ -14,6 +14,7 @@ import com.bonggeuda.sugbag.user.service.UserInfoService;
 
 
 /**
+ * 사용자 쿠폰추가 화면에서 쿠폰추가를 누르면 insert가 되게 하는 서블릿 
  * Servlet implementation class CouponInsertServlet
  */
 @WebServlet("/coupon/insert")
@@ -55,11 +56,13 @@ public class CouponInsertServlet extends HttpServlet {
 		
 		String path="";
 		if(insertCoupon > 0 ) {
-			path="${pageContext.servletContext.contextPath}/user/list";
-		}
-		System.out.println(path);
-		System.out.println(request.getContextPath());
-		request.getRequestDispatcher(path).forward(request, response);
+			path= "/bonggeuda/user/list";
+			response.sendRedirect(path);
+		} 
+		
+//		System.out.println(path);
+//		System.out.println(request.getContextPath());
+//		request.getRequestDispatcher(path).forward(request, response);
 	}
 	
 }

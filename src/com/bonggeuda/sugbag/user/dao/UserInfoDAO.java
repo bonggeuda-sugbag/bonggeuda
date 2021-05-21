@@ -15,8 +15,10 @@ import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
+import com.bonggeuda.sugbag.user.dto.ReservationDetailDTO;
 import com.bonggeuda.sugbag.user.dto.UserCouponDTO;
 import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
+import com.bonggeuda.sugbag.user.dto.UserReservationStatusDTO;
 import com.bonggeuda.sugbag.user.dto.UserleaveDTO;
 
 
@@ -113,7 +115,7 @@ public class UserInfoDAO {
 		try {
 		
 			pstmt = con.prepareStatement(query);
-			System.out.println("userNo :" + userNo);
+//			System.out.println("userNo :" + userNo);
 			pstmt.setString(1, userNo);
 			
 			rset = pstmt.executeQuery();
@@ -191,7 +193,7 @@ public class UserInfoDAO {
 				leaveInfo.setLeaveNo(rset.getInt("WITHDRAW_NO"));
 				leaveInfo.setEmail(rset.getString("USER_ID"));
 				leaveInfo.setReason(rset.getString("WITHDRAW_REASON"));
-				leaveInfo.setLeaveDate(rset.getString("WITHDRAWDATE"));
+				leaveInfo.setLeaveDate(rset.getDate("WITHDRAWDATE"));
 
 				leaveList.add(leaveInfo);
 			}
@@ -214,19 +216,16 @@ public class UserInfoDAO {
 		String query = null;
 		List<UserInfoDTO> userList = null;
 		
-		if(condition.equals("category")) {
+		if(condition.equals("userId")) {
 			
-			query = prop.getProperty("seacrchCategoryBoard");
-		}else if(condition.equals("writer")) {
-			
-			query = prop.getProperty("writerBoard");
+			query = prop.getProperty("selectSearch");
 		}
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, value);
-			pstmt.setInt(2, pageInfo.getStartRow());
-			pstmt.setInt(3, pageInfo.getEndRow());
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			pstmt.setString(3, value);
 
 			rset = pstmt.executeQuery();
 			
@@ -260,20 +259,11 @@ public class UserInfoDAO {
 		ResultSet rset = null;
 		
 		String query = null;
-		int boardCount = 0;
+		int totalCount = 0;
 		
-		if(condition.equals("category")) {
+		if(condition.equals("userId")) {
 			
-			query = prop.getProperty("seacrchCategoryBoardCount");
-		}else if(condition.equals("writer")) {
-			
-			query = prop.getProperty("writerBoardCount");
-		}else if(condition.equals("title")) {
-			
-			query = prop.getProperty("titleBoardCount");
-		}else if(condition.equals("content")) {
-			
-			query = prop.getProperty("contentBoardCount");
+			query = prop.getProperty("selectSearchCount");
 		}
 		
 		try {
@@ -284,7 +274,7 @@ public class UserInfoDAO {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				boardCount = rset.getInt("COUNT(*)");
+				totalCount = rset.getInt("COUNT(*)");
 			}
 			
 		} catch (SQLException e) {
@@ -294,9 +284,96 @@ public class UserInfoDAO {
 			close(pstmt);
 		}
 		
-		return boardCount;
+		return totalCount;
 
 	}
 
 
+	public List<UserReservationStatusDTO> selectReservationList(Connection con, PageInfoDTO pageInfo) { //사용자 예약현황 list select
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<UserReservationStatusDTO> reservationList = null;
+		
+		String query = prop.getProperty("selectBookList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+		
+			rset = pstmt.executeQuery();
+			
+			reservationList = new ArrayList<>();
+			
+			while(rset.next()) {
+				
+				UserReservationStatusDTO reservationInfo = new UserReservationStatusDTO();
+						
+				reservationInfo.setBookNo(rset.getInt("BOOK_NO"));
+				reservationInfo.setName(rset.getString("BOOK_USER_NAME"));
+				reservationInfo.setEmail(rset.getString("USER_ID"));
+				reservationInfo.setPrice(rset.getInt("PAYMENT_AMOUNT"));
+				reservationInfo.setPeopleCount(rset.getInt("BOOK_PERSONNEL"));
+				reservationInfo.setCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				reservationInfo.setCheckOutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+
+
+				reservationList.add(reservationInfo);
+				System.out.println("어디있니잉"  + reservationInfo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reservationList;
+	}
+
+
+	public ReservationDetailDTO selectStatusDetail(Connection con, String bookNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectReservationDetail");
+		
+		ReservationDetailDTO reservationDetailInfo = new ReservationDetailDTO();
+		
+		try {
+		
+			pstmt = con.prepareStatement(query);
+			System.out.println("bookNo :" + bookNo);
+			pstmt.setString(1, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+//				System.out.println("아이디이이ㅣ이이이이이잉 : " +rset.getString("USER_ID"));		
+				reservationDetailInfo.setEmail(rset.getString("USER_ID"));
+				reservationDetailInfo.setName(rset.getString("USER_NICKNAME"));
+				reservationDetailInfo.setAccomoName(rset.getString("ACCOMO_NAME"));
+				reservationDetailInfo.setRoomName(rset.getString("ROOM_NAME"));
+				reservationDetailInfo.setPrice(rset.getInt("PAYMENT_AMOUNT"));				
+				reservationDetailInfo.setPeopleCount(rset.getInt("BOOK_PERSONNEL"));
+				reservationDetailInfo.setCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				reservationDetailInfo.setCheckOutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				reservationDetailInfo.setReservationStatus(rset.getString("BOOK_APPROVE_YN"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reservationDetailInfo;
+	}
 }
+
+
+
