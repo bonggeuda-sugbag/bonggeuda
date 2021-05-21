@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,45 +148,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="tab_btn active" data-toggle="tab" href="#home" >나의 문의 내역</span>
 				<span class="tab_btn" data-toggle="tab" href="#menu1">새 문의 작성</span>
 			</div>
-
+			<% int i=0; %>
 			<div class="tab-content">
-				<div id="home" class="tab-pane fade in active">
-			  	<br>등록된 1:1 문의가 없습니다.<br><br>
-			  	<b>봉그다 숙박숙박은 회원님들의 소중한 의견에 귀기울여 <br> 신속하고 정확하게 답변드리도록 하겠습니다.</b>
-				</div>
-				<div id="home" class="tab-pane fade in active">
-					<table class="table table-hover" style="margin-top: 20px; width: 740px;">
-						<thead>
-							<tr>
-								<th style="text-align: center;"><b>번호</b></th>
-								<th style="text-align: center;"><b>제목</b></th>
-								<th style="text-align: center;"><b>작성자</b></th>
-								<th style="text-align: center;"><b>작성일</b></th>
-								<th style="text-align: center;"><b>답변</b></th>
-							</tr>
-						</thead>
-						<tbody>
-						   	<tr>
-								<td style="text-align: center;">2</td>
-								<td>							
-									<a href="QnA_contents.jsp">예약 변경하고 싶어서 글 남깁니다.</a>
-								</td>
-								<td>홍길동</td>
-								<td>21.05.24</td>
-								<td>N</td>
-							</tr>   
-							<tr>
-								<td style="text-align: center;">1</td>
-								<td>							
-									<a href="QnA_contents.jsp">숙소 이용시 취사 가능한가요?</a>
-								</td>
-								<td>홍길동</td>
-								<td>21.05.24</td>
-								<td>N</td>
-						 	</tr>   
-						</tbody>
-				 	</table>
-				</div>
+				<c:if test="${ empty requestScope.userqna  }">
+					<div id="home" class="tab-pane fade in active">
+			  		<br>등록된 1:1 문의가 없습니다.<br><br>
+			  		<b>봉그다 숙박숙박은 회원님들의 소중한 의견에 귀기울여 <br> 신속하고 정확하게 답변드리도록 하겠습니다.</b>
+					</div>
+				</c:if>
+				<c:if test="${ !empty requestScope.userqna }">
+					<div id="home" class="tab-pane fade in active">
+						<table class="table table-hover" style="margin-top: 20px; width: 740px;">
+							<thead>
+								<tr>
+									<th style="text-align: center;"><b>번호</b></th>
+									<th style="text-align: center;"><b>제목</b></th>
+									<th style="text-align: center;"><b>문의처</b></th>
+									<th style="text-align: center;"><b>작성일</b></th>
+									<th style="text-align: center;"><b>답변</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="arr" items="${ userqna }" varStatus="st">
+								<% i++; %>
+						   		<tr>
+									<td style="text-align: center;"><%= i %></td>
+									<td>							
+										<a href="${ pageContext.servletContext.contextPath }/userqnacontent/select?qnaNo=${ arr.qnaNo }&qnaWriter=${ arr.writer }"><c:out value="${ arr.qnaTitle }"/></a>
+									</td>
+									<td><c:out value="${ arr.writer }"/></td>
+									<td><c:out value="${ arr.qnaDate }"/></td>
+									<td><c:out value="${ arr.answerYn }"/></td>
+								</tr> 
+								</c:forEach>  
+							</tbody>
+				 		</table>
+					</div>
+				</c:if> 
 
 				<div id="menu1" class="tab-pane fade">
 
