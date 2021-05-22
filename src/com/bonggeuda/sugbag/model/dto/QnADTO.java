@@ -1,8 +1,9 @@
 package com.bonggeuda.sugbag.model.dto;
 
 import java.sql.Date;
+import java.util.Comparator;
 
-public class QnADTO {
+public class QnADTO implements Comparator<QnADTO> {
 
 	private int qnaNo;
 	private String qnaTitle;
@@ -75,6 +76,11 @@ public class QnADTO {
 	public String toString() {
 		return "QnADTO [qnaNo=" + qnaNo + ", qnaTitle=" + qnaTitle + ", qnaDate=" + qnaDate + ", answerYn=" + answerYn
 				+ ", qnaContent=" + qnaContent + ", writer=" + writer + "]";
+	}
+
+	@Override
+	public int compare(QnADTO o1, QnADTO o2) {
+		return (o2.getQnaDate()).compareTo(o1.getQnaDate());
 	}
 	
 }
