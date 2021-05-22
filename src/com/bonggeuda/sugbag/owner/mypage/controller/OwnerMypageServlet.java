@@ -33,11 +33,11 @@ public class OwnerMypageServlet extends HttpServlet {
 
 			request.setAttribute("selectOwner",selectOwner);
 			path = "/WEB-INF/views/owner/mypage/mypage.jsp";
+			request.getAttribute(path);
+			
+			request.getRequestDispatcher(path).forward(request, response);
 		}
 		
-		request.getAttribute(path);
-		
-		request.getRequestDispatcher(path).forward(request, response);
 		
 		
 		

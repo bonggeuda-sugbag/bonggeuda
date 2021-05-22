@@ -72,22 +72,22 @@
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="/WEB-INF/views/owner/main/main.jsp">Bonggeuda</a></h1>
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><a href="registration.html">숙소등록</a></li>
-				<li><a href="managementYesRoom.html">숙소관리</a></li>
-				<li><a href="booking.html">예약관리</a></li>
-				<li><a href="QnA.html">공지사항</a></li>
-				<li><a  href="mypage.html">마이페이지</a></li>
+				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
+				<li><a href="/bonggeuda/owner/management">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
+				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
 			</ul>
 		</div>
 	</div>
 </div>
-<!--//-->	
+<!--header-->
 <div class=" banner-mypage"> <!--상단 메뉴바-->
 	<div class=" container">
 		<h3>마이페이지</h3> 
@@ -102,7 +102,7 @@
 			<div class="col-md-3 blog-sidebar">
 			<ul>
 				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="mypage.html"style="color: #6eceda;" >마이 페이지</a></li>
-				<li class="blog-list" ><a href="myPage_report.html" >신고 내역</a></li>
+				<li class="blog-list" ><a href="/bonggeuda/owner/mypgeReport" >신고 내역</a></li>
 				<li class="blog-list" style=><a href="mypage_taxes.html" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>

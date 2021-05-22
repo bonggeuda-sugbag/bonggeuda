@@ -66,7 +66,6 @@ public class BookingListSelectDAO {
 				selectBookedList.add(bookDTO);
 				
 			}
-			System.out.println(selectBookedList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -162,7 +161,10 @@ public class BookingListSelectDAO {
 				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
 				bookDTO.setUserPhone(rset.getString("USER_PHONE"));
 				bookDTO.setBookStatusYNC(rset.getString("BOOK_STATUS_YNC"));
-			       				
+				bookDTO.setUserNo(rset.getInt("USER_NO"));
+				bookDTO.setOwnerNo(rset.getInt("OWNER_NO"));
+				
+				
 				selectBookedList.add(bookDTO);
 				
 			}
@@ -252,6 +254,29 @@ public class BookingListSelectDAO {
 		return bookRejectUpdate;
 	}
 	
+	public int bookRejectUpdateBookConfirm(Connection con, int bookNo) {
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("bookRejectBookConfirmUpadte");
+		
+		int bookRejectUpdate = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, bookNo);
+			
+			bookRejectUpdate = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  finally {
+			close(pstmt);
+			close(con);
+		}
+
+		return bookRejectUpdate;
+	}
 	
 	public int bookRejectHistoryInsert(Connection con, int bookNo, String rejecetReason) {
 
@@ -278,6 +303,7 @@ public class BookingListSelectDAO {
 		
 		return insertRejectBookHistory;
 	}
+
 
 }
 
