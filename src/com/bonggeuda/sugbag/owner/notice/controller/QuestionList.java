@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Question
  */
-@WebServlet("/owner/question")
-public class Question extends HttpServlet {
+@WebServlet("/owner/question/list")
+public class QuestionList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*1:1 문의로 이동*/
 		String path="";
-		path = "/WEB-INF/views/owner/notice/question.jsp";
+		path = "/WEB-INF/views/owner/notice/questionList.jsp";
 		request.getRequestDispatcher(path).forward(request, response);	
 	}
 

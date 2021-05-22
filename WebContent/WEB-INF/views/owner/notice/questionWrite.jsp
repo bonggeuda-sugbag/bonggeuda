@@ -1,42 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html>
 <head>
-	<style>
-		ul.FAQ_tab {
-			font-size: 18px;
-		}
-		ul.FAQ_tab li a {
-			color: darkgray;
-		}
-		div.txt term-basic-wrap {
-			padding-left: 100px;
-			padding-right: 100px;
-		}
-		#cont_area {
-    		float: left;
-    		width: 800px;
-		}
-		div.cont_inner span, div.cont_inner div {
-			float: left;
-			text-align: left;
-		}
-		div.cont_inner div {
-			font-size: 15px;
-		}
-		div.cont_inner p {
-			margin-top: 5px;
-		}
-		ul {
-          padding: 0;
-          list-style: none;
-        }
-		.FAQ_tab{
-			margin-left: 50px;
-		}
-	</style>
-<title>봉그다 숙박숙박 :: FAQ</title>
+<style>
+div.tab {
+    margin-left: 20%;
+    margin-right: 20%;
+	width: 850px;
+}
+
+div.tab_each, div.list_none {
+	margin-left: 20%;
+    margin-right: 20%;
+}
+
+.inquiry .tab_each{display:none}
+.inquiry .tab_each:first-child{display:block}
+.inquiry .tab{display:none}
+.tab_each{clear:both;border-top:1px solid rgba(0,0,0,0.08)}
+</style>
+<title>봉그다 숙박숙박 :: 1대1문의</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="${pageContext.servletContext.contextPath}/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath}/resources/owner/js/jquery.min.js"></script>
@@ -76,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-booking"> <!--상단 메뉴바-->
 	<div class=" container">
-		<h3>자주 묻는 질문</h3> 
+		<h3>1:1 문의</h3> 
 	<div class="clearfix"> </div>
 		<!--initiate accordion-->
 		<script type="text/javascript">
@@ -99,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</script>
 	</div>
 </div>
-<!--//header-->
+<!--blog-->
 <br><br>
 <div class="blog">
 <div class="container">
@@ -108,48 +98,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-md-3 blog-sidebar">
 		<ul>
 			<li class="blog-list"><a href="/bonggeuda/owner/notice">공지사항</a></li>
-			<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/frequently" style="color: #6eceda;">자주 묻는 질문</a></li>
-			<li class="blog-list"><a href="/bonggeuda/owner/question/list">1:1 문의</a></li>
+			<li class="blog-list"><a href="/bonggeuda/owner/frequently">자주 묻는 질문</a></li>
+			<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/question/list" style="color: #6eceda;">1:1 문의</a></li>
 			<li class="blog-list"><a href="/bonggeuda/owner/policy">약관 및 정책</a></li>
 		</ul>
 		</nav>
-	<div class="FAQ_tab" data-default="term">
-		<ul class="FAQ_tab" style="display: flex;">
-			<li style="margin-right: 20px;"><a href="/bonggeuda/owner/frequently"><span class="tab_btn active">숙소관리</span></a></li>
-			<li style="margin-right: 20px;"><a href="/bonggeuda/owner/frequently2">예약관리</a></li>
-			<li style="margin-right: 20px;"><a href="/bonggeuda/owner/frequently3" style="color: #6eceda; font-weight: bold;"><span class="tab_btn active"></span>기타</a></li>
-		</ul> 
-	</div>
-	<div id="cont_area"><!-- 본문 콘텐츠-->
-		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 850px;">
-			<br><br>
-
-			<div style="font-weight: bold;">Q. 회원 가입 이후에 객실등록은 어떻게 하나요?</div><br>
-			<p style="background: #e9ebebbe;">
-				<br>
-				(1) 회원 가입은 별도의 가입비용 발생 없이 가입자의 이메일, 비밀번호만 입력하면 누구나 가입이 가능합니다.<br>
-				(2) 가입 이후 4단계 (마이페이지 작성, 소개 작성, 정책 작성, 객실 등록)을 모두 완료하시면 등록 요청이 완료 됩니다.
-				<br><br>
-			</p>
-			<br>
-			<div style="font-weight: bold;">Q. 숙소 소개 작성시 주의사항이 궁금해요.</div><br>
-			<p style="background: #e9ebebbe;">
-				<br>
-				(1) 정보 등록 항목은 필수 정보와 부가 정보로 나뉘며 부가 정보 항목은는 기입할 내용이 없으면 작성하지 않으셔도 됩니다.<br>
-				(2) 우측 끝 “?” 아이콘은 화면 뷰가 어떻게 앱에서 표시되는지 미리 볼 수 있는 화면 이미지 입니다.<br>
-				(3) 작성시 어려움이 있으실 경우, ‘예시 문구 및 화면보기’를 클릭하여 알맞은 예시를 확인할 수 있습니다.
-				<br><br>
-			</p>
-			<br>
-			<div style="font-weight: bold;">Q. 숙소 정책 설정 시 주의사항이 궁금해요.</div><br>
-			<p style="background: #e9ebebbe;">
-				<br>
-				(1) 이용시간, 예약 유형, 예약 마감 시간 설정, 성수기 설정, 연박 할인 등 주요 정책(규칙)을 설정할 수 있습니다.<br>
-				(2) 예약 유형, 예약 마감 시간 설정, 연박 할인 설정은 11/15일 등록 및 변경이 가능합니다.
-				<br><br>
-			</p>
+<div id="content" class="sub_wrap more_wrap">
+	<div class="align_rt">
+		<!-- Tab -->
+		<div class="tab">
+			<span class="tab_btn" onclick="location.href='/bonggeuda/owner/question/list'">나의 문의 내역</span>
+			<span class="tab_btn active">새 문의 작성</span>
+		</div>
+		<br>
+		<!-- 문의작성 -->
+		<div class="list_none" style="display: block; height: 604px; width: 850px; border: 1px solid lightgray;">
+			<div class="writeNameBox">
+				<div class="writeNameBoxContent" style="margin: auto;">
+					<p style="text-align: center; font-weight: bold;">제목 <input type="text" class="titleInput" placeholder="제목을 입력하세요." required> </p>
+				</div>
+			</div>
+			<textarea class="wirteContent" style="border-radius: 5px; width: 825px;" rows="22" name="" placeholder="문의 사항을 적어주세요." required="required"></textarea>
+		</div>
+		<br>
+		<div class="list_none" style="display:block; text-align: center; width: 850px;">
+			<button class="submit-btn" type="submit" onclick="location.href='ManToManRegiVer.html'; notice();" >작성 완료</button>
 		</div>
 	</div>
+	
+	<script>
+		function notice(){
+			alert("문의가 등록 되었습니다.")
+		}
+		
+	</script>
+
+</div>
+</div>
 </div>
 </div>
 <!--footer-->
