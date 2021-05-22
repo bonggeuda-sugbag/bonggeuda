@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<ul>
 			<li class="blog-list"><a href="/bonggeuda/owner/notice">공지사항</a></li>
 			<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/frequently" style="color: #6eceda;">자주 묻는 질문</a></li>
-			<li class="blog-list"><a href="/bonggeuda/owner/question">1:1 문의</a></li>
+			<li class="blog-list"><a href="/bonggeuda/owner/question/list">1:1 문의</a></li>
 			<li class="blog-list"><a href="/bonggeuda/owner/policy">약관 및 정책</a></li>
 		</ul>
 		</nav>

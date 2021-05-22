@@ -171,7 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div>
 			<button class="reset" >초기화</button>
 			<button id="seachFacility"class="accept" >적용</button>
-			<script>
+			 	<script>
 			    $("#seachFacility").click(function(){
 			    	const checkList = [];
 			    	$("input[name='facility']:checked").each(function(i){
@@ -191,15 +191,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    	data:sendData,
 				    	success:function(data, textStatus, xhr){
 				    	    	console.table(data);
+				    	    	/* $(".forRemove").empty(); */
 				    	},
 				    	error:function(xhr,status,error){
 				    		console.log(error);
 				    	}
 				    });
-			    	}
+			    }
 			    	
 			    });
 			</script>
+			
 		</div>
 		<hr>
 		<div>
@@ -248,19 +250,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<c:choose>
 			    <c:when test="${empty accomo}">
+		        	
 			        <div class="suksoList">
 			            <p>일치하는 숙소 정보가 없습니다.</p>
 			        </div>
+			 
 			    </c:when>
 		    <c:otherwise>
 
 
 			<%-- <div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value='+'${accomo}';" > --%>
-			<form name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
+			<form "name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
+            <div class="forRemove">
             
-			<button type="submit" name="no" value='${accomo.accomoNo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/${accomo.attachment.thumbnailPath }) no-repeat; background-size: 800px 250px;">
+			<button id="accomPicture"  type="submit" name="no" value='${accomo.accomoNo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/${accomo.attachment.thumbnailPath }) no-repeat; background-size: 800px 250px;">
 				<div class="infoThumb" >
-					<h2>${accomo.accomoName }</h2>
+					<h2 id="accomoName">${accomo.accomoName }</h2>
 					<br>
 					<div style="display: flex;">
 					<c:choose>
@@ -276,13 +281,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="infoPrice">등록된 최저가 없음</div>
 						</c:when>
 						<c:otherwise>
-						<div class="infoPrice">최저가 : ${accomo.minPrice}</div>
+						<div id="minPrice" class="infoPrice">최저가 : ${accomo.minPrice}</div>
 						</c:otherwise>
 					</c:choose>
 
 					</div>
 				</div>
 			</button>
+			
+			</div>
 			</form>
 			</c:otherwise>
 			</c:choose> 
@@ -359,6 +366,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		<div class="clearfix"> </div>
 	 	</div>
+	
 	</div>
 </div>
 <!--//footer-->

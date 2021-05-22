@@ -1,6 +1,7 @@
 package com.bonggeuda.sugbag.book.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,15 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.service.BookService;
+import com.google.gson.Gson;
+
 
 /**
  * Servlet implementation class AccomoSerchServlet
  */
 @WebServlet("/accomoSelect/search")
-public class AccomoSerchServlet extends HttpServlet {
+public class AccomoSerachServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
@@ -44,9 +49,26 @@ public class AccomoSerchServlet extends HttpServlet {
 		//조건에 일치하는 숙소리스트 검색
 		BookService booksvc = new BookService();
 		List<AccomoInfoDTO> accomoList = booksvc.selectAccomoFacility(search);
-	
 		
-       
+		JSONArray jsonArr = new JSONArray();
+		for(AccomoInfoDTO accomo : accomoList) {
+			JSONObject json = new JSONObject();
+			json.put("accomoNo",accomo.getAccomoNo());
+			json.put("accomoName",accomo.getAccomoName());
+			json.put("path",accomo.getPath());
+			json.put("minPrice",accomo.getMinPrice());
+			json.put("attachment",accomo.getAttachment().getThumbnailPath());
+			
+			jsonArr.add(json);
+		}
+		System.out.println(jsonArr);
+		response.setContentType("application/json; charset=UTF-8;");
+	
+        PrintWriter out = response.getWriter();
+        out.print(jsonArr);
+        
+        out.flush();
+        out.close();
 		
 	}
 }
