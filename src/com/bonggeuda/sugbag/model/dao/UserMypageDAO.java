@@ -23,6 +23,7 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.WithdrawReasonDTO;
 
 public class UserMypageDAO {
 	
@@ -357,11 +358,14 @@ public class UserMypageDAO {
 	 * 사용자 회원탈퇴로 정보 변경
 	 * @param con
 	 * @param userWithdraw
+	 * @param userWithdrawReason 
 	 * @return
 	 */
-	public int userWithdraw(Connection con, MemberDTO userWithdraw) {
+	public int userWithdraw(Connection con, MemberDTO userWithdraw, WithdrawReasonDTO userWithdrawReason) {
 
 		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
 		
 		PreparedStatement pstmt = null;
 		
@@ -374,13 +378,29 @@ public class UserMypageDAO {
 			pstmt.setDate(1, userWithdraw.getWithDrawDate());
 			pstmt.setInt(2, userWithdraw.getUserNo());
 			
-			result = pstmt.executeUpdate();
+			result1 = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		String query2 = prop.getProperty("withdrawInsert");
+		System.out.println(query2);
+		
+		try {
+			pstmt = con.prepareStatement(query2);
+			pstmt.setInt(1, userWithdrawReason.getMemberNo());
+			pstmt.setString(2, userWithdrawReason.getWithdrawReason());
+			
+			result2 = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
+		
+		result = result1 + result2;
 		
 		return result;
 	}
