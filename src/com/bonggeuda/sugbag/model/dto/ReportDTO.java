@@ -15,12 +15,13 @@ public class ReportDTO {
 	private int reportedNo;
 	private String accomoName;
 	private String reportAnswer;
+	private String approveYN; // 연준 추가
 
 	public ReportDTO() {}
 
 	public ReportDTO(int reportNo, String writerType, String reportReason, int memberNo, Date reportDate,
 			String reportTitle, String reportStatus, String reportedType, int reportedNo, String accomoName,
-			String reportAnswer) {
+			String reportAnswer, String approveYN) {
 		super();
 		this.reportNo = reportNo;
 		this.writerType = writerType;
@@ -33,6 +34,7 @@ public class ReportDTO {
 		this.reportedNo = reportedNo;
 		this.accomoName = accomoName;
 		this.reportAnswer = reportAnswer;
+		this.approveYN = approveYN;
 	}
 
 	public int getReportNo() {
@@ -123,12 +125,21 @@ public class ReportDTO {
 		this.reportAnswer = reportAnswer;
 	}
 
+	public String getApproveYN() {
+		return approveYN;
+	}
+
+	public void setApproveYN(String approveYN) {
+		this.approveYN = approveYN;
+	}
+
 	@Override
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", writerType=" + writerType + ", reportReason=" + reportReason
 				+ ", memberNo=" + memberNo + ", reportDate=" + reportDate + ", reportTitle=" + reportTitle
 				+ ", reportStatus=" + reportStatus + ", reportedType=" + reportedType + ", reportedNo=" + reportedNo
-				+ ", accomoName=" + accomoName + ", reportAnswer=" + reportAnswer + "]";
+				+ ", accomoName=" + accomoName + ", reportAnswer=" + reportAnswer + ", approveYN=" + approveYN + "]";
 	}
+
 	
 }

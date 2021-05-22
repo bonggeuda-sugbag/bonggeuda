@@ -161,7 +161,10 @@ public class BookingListSelectDAO {
 				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
 				bookDTO.setUserPhone(rset.getString("USER_PHONE"));
 				bookDTO.setBookStatusYNC(rset.getString("BOOK_STATUS_YNC"));
-			       				
+				bookDTO.setUserNo(rset.getInt("USER_NO"));
+				bookDTO.setOwnerNo(rset.getInt("OWNER_NO"));
+				
+				
 				selectBookedList.add(bookDTO);
 				
 			}

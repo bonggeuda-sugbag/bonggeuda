@@ -102,7 +102,7 @@
 			<div class="col-md-3 blog-sidebar">
 			<ul>
 				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="mypage.html"style="color: #6eceda;" >마이 페이지</a></li>
-				<li class="blog-list" ><a href="myPage_report.html" >신고 내역</a></li>
+				<li class="blog-list" ><a href="/bonggeuda/owner/mypgeReport" >신고 내역</a></li>
 				<li class="blog-list" style=><a href="mypage_taxes.html" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>

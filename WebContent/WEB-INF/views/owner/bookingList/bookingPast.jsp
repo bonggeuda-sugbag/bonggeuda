@@ -191,9 +191,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</c:choose>
 						</th>
 						<th>
-							<a href="index.html">
+							<form action="/bonggeuda/owner/reportWrite" method="post">
+							<input type="hidden" name="userNo" value="${board.userNo}">
+							<input type="hidden" name="ownerNo" value="${board.ownerNo}">
+							<button type="submit" style="background-color: white;    border: 1px;">
 							<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/siren.png" style="width: 26px; height: 26px;">
-							</a>
+							</button>
+							</form>
 						</th>
 						
 					</tr>   

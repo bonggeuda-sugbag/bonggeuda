@@ -68,7 +68,9 @@
 	       R.ROOM_NAME,
 	       R.ROOM_FEE, 
 	       A.ACCOMO_NAME,
-           U.USER_PHONE
+           U.USER_PHONE,
+           U.USER_NO,
+           A.OWNER_NO
 	  FROM BOOK_LIST B
 	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
 	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)

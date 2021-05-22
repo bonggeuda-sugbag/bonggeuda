@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertReport">
+		INSERT
+		  INTO REPORT
+		VALUES
+		(
+		  SEQ_REPORT_NO.NEXTVAL
+		, ?
+		, ?
+		, ?
+		, SYSDATE
+		, ?
+		, DEFAULT
+		, ?
+		, ?
+		)
+	</entry>
+
+	
+</properties>
