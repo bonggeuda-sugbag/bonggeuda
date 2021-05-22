@@ -48,13 +48,13 @@
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><a id="mypage">마이페이지</a>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Logout</a></li>
+				<li><a href="/bonggeuda/owner/mypage"><i class="glyphicon glyphicon-user"> </i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
