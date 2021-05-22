@@ -95,7 +95,7 @@ public class BookListSelectService {
 		close(con);
 		
 		
-		if(bookRejectUpdate > 0) {
+		if(bookRejectUpdate >0) {
 			commit(con);
 		}else {
 			rollback(con);
@@ -118,6 +118,24 @@ public class BookListSelectService {
 		
 
 		return bookHistoryInsert;
+	}
+
+	public int bookRejectBookConfirmUpdate(int bookNo) {
+		
+		Connection con = getConnection();
+		
+		int bookRejectBookConfirmUpdate = bookDAO.bookRejectUpdateBookConfirm(con, bookNo);
+		
+		close(con);
+		
+		
+		if(bookRejectBookConfirmUpdate >0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		return bookRejectBookConfirmUpdate;
 	}
 
 

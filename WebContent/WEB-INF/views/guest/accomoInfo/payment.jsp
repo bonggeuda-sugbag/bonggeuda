@@ -242,14 +242,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--header-->
 
 
-<div class="header">
+<!-- <div class="header">
 	<div class="container">
-		<!--logo-->
+		logo
 			<div class="logo">
 				<h1><a href="index.html">Bonggeuda</a></h1>
 			</div>
-		<!--//logo-->
-		<!-- 상단메뉴바 -->
+		//logo
+		상단메뉴바
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
@@ -257,15 +257,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
-			<!-- //상단메뉴바 -->
+			//상단메뉴바
 			</div>
 		<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix" > </div>
-    </div>	
+    </div>	 -->
     
     <!--//-->	
     <!-- 숙소상세정보 -->
+    <jsp:include page="../accomoInfo/headeTest.jsp"/>
     <center>
 		
         <div style="width: 1170px; margin-top: 60px; display: flex">
@@ -275,13 +276,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3><b>예약자 정보</b></h3>
                     <br><br>
                     <p>예약자 이름</p>
-                    <input style="width: 650px; height: 50px; margin-top:15px" placeholder="체크인시 필요한 정보입니다.">
+                    <input style="width: 650px; height: 50px; margin-top:15px" placeholder="체크인시 필요한 정보입니다." required="required">
                     <br>
 					<hr>
                     <p>휴대폰 번호</p>
                     <p style="font-size: 15px;">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</p>
                     <div style="width: 650px;height: 50px; display: flex; margin-top:15px">
-                        <input type="tel" style="width: 600px; ;" placeholder="체크인시 필요한 정보입니다.">
+                        <input type="tel" style="width: 600px; ;" placeholder="체크인시 필요한 정보입니다." required="required">
                         <button style="width: 150px;margin-left: 30px; border: 0; outline: 0; background: #6eceda; color: white; font-weight: bold;box-shadow: 0 3px 0 #0e8c73;border-radius: 10px;">확인</button>
                     </div>
 					<hr>

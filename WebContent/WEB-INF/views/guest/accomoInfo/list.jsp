@@ -31,6 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 .container h3{
 	display: block; 
@@ -99,7 +100,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	font-size:  20px; 
 	font-weight: bold;
 }
-
+#chekList>label{
+   margin-bottom:10px;
+}
 </style>
 </head>
 <body>
@@ -167,40 +170,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		<div>
 			<button class="reset" >초기화</button>
-			<button class="accept" >적용</button>
+			<button id="seachFacility"class="accept" >적용</button>
+			<script>
+			    $("#seachFacility").click(function(){
+			    	const checkList = [];
+			    	$("input[name='facility']:checked").each(function(i){
+			    		checkList.push($(this).val());
+			    	});
+			    	const personnal = $("input[name='personnel']").val();
+			    	const sendData = {"type":"${type}","checkList":checkList, "personnal" : personnal}
+			    	
+			    	if(checkList.length == 0 && personnal.length == 0){
+			    		alert("조건을 입력해주세요")
+			    		return;
+			    	} else{
+			    		
+			    	$.ajax({
+			    		url:"${pageContext.servletContext.contextPath}/accomoSelect/search",
+				    	type:"post",
+				    	data:sendData,
+				    	success:function(data, textStatus, xhr){
+				    	    	console.table(data);
+				    	},
+				    	error:function(xhr,status,error){
+				    		console.log(error);
+				    	}
+				    });
+			    	}
+			    	
+			    });
+			</script>
 		</div>
 		<hr>
 		<div>
 			<h3 style="margin-bottom: 15px;">인원</h3>
-			<input type="number" min="1" placeholder="1" style="width:50px;padding-left: 10px; text-align: center;">  명</input>
+			<div style = "display:flex; padding-left: 100px">
+			<input type="number" min="1" name="personnel" style="width:50px;padding-left: 10px; margin-right: 10px;text-align: center;"></input><p>  명</p>
+			</div>
+			
 		</div>
 		<hr>
 		<div  style="position :relative; width: 250px; ; display: block; padding: 0 0 0 15px;" >
-			<ul >
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" id="possible">  예약 가능</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" value=diningroom>  주방/식당</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" value= >  세탁기</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  건조기</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  탈수기</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  엘레베이터</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  객실내흡연</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  와이파이</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  욕실용품</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  에어컨</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  객실샤워실</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  반려견동반</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  드라이기</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  조식포함</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  주차장</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  욕조</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  짐보관가능</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  공용PC</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  개인사물함</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  TV</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  무료주차</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  BBQ</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  프린터사용</li>
-				<li align = "left" style="margin-bottom: 15px;"><input type="checkbox" >  개인콘센트</li>
+			<ul id="chekList" align="left">
+				<label><input type="checkbox" name="facility" value="세탁기" >  세탁기</label><br>
+				<label><input type="checkbox" name="facility" value="건조기" >  건조기</label><br>
+				<label><input type="checkbox" name="facility" value="객실내흡연" >  객실내흡연</label><br>
+				<label><input type="checkbox" name="facility" value="와이파이" >  와이파이</label><br>
+				<label><input type="checkbox" name="facility" value="욕실용품" >  욕실용품</label><br>
+				<label><input type="checkbox" name="facility" value="에어컨" >  에어컨</label><br>
+				<label><input type="checkbox" name="facility" value="냉장고" >  냉장고</label><br>
+				<label><input type="checkbox" name="facility" value="반려견동반" >  반려견동반</label><br>
+				<label><input type="checkbox" name="facility" value="조식포함" >  조식포함</label><br>
+				<label><input type="checkbox" name="facility" value="개인사물함" >  개인사물함</label><br>
+				<label><input type="checkbox" name="facility" value="TV" >  TV</label><br>
+				<label><input type="checkbox" name="facility" value="무료주차" >  무료주차</label><br>
 			</ul>
 			<hr>
 		</div>
