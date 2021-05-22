@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.service.UserMypageService;
@@ -20,7 +21,7 @@ public class UserWithdrawUpdate extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int userNo = 1;
+		int userNo = ((MemberDTO)request.getSession().getAttribute("member")).getUserNo();
 		
 		request.setCharacterEncoding("UTF-8");
 		

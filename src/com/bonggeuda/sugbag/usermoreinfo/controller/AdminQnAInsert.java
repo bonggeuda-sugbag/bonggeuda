@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
+import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.service.UserMoreInfoService;
 
 /**
@@ -19,7 +20,7 @@ public class AdminQnAInsert extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int userNo = 1;
+		int userNo = ((MemberDTO)request.getSession().getAttribute("member")).getUserNo();
 		
 		request.setCharacterEncoding("UTF-8");
 		
