@@ -15,7 +15,9 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.common.queryBuilder.QueryBuilder;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
+import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
@@ -406,5 +408,54 @@ public class BookDAO {
 		}
 		
 		return couponPoint;
+	}
+
+	/**
+	 * 숙소검색
+	 * @param con
+	 * @param search 검색조건
+	 * @return 검색결과
+	 */
+	public List<AccomoInfoDTO> selectAccomoFacility(Connection con, AccomoSearchDTO search) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<AccomoInfoDTO> searchResult = null;
+		
+		String query = new QueryBuilder().queryBuiler(search).toString();
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, search.getPersonnal());
+			pstmt.setString(2, search.getType());
+			pstmt.setInt(3, search.getCategory());
+			
+			rset = pstmt.executeQuery();
+			
+			searchResult = new ArrayList();
+			
+			while(rset.next()) {
+				AccomoInfoDTO accomoInfo = new AccomoInfoDTO();
+				AttachmentDTO attachment= new AttachmentDTO();
+				accomoInfo.setAccomoNo(rset.getInt("번호"));
+				accomoInfo.setAccomoName(rset.getString("이름"));
+				accomoInfo.setMinPrice(rset.getInt("최저가"));
+				accomoInfo.setPath(rset.getString("경로"));
+				attachment.setThumbnailPath(rset.getString("사진"));
+				accomoInfo.setAttachment(attachment);
+				
+				searchResult.add(accomoInfo);
+			}
+			System.out.println(searchResult);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return searchResult;
 	}
 }
