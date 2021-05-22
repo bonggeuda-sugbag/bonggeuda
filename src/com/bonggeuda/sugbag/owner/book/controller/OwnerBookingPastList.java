@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.controller;
+package com.bonggeuda.sugbag.owner.book.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,48 +12,43 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
-import com.bonnggeuda.sugbag.owner.service.BookListSelectService;
+import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
 
 /**
- * Servlet implementation class OwnerBookingList
+ * Servlet implementation class OwnerBookingPastList
  */
-@WebServlet("/owner/bookingList")
-public class OwnerBookingList extends HttpServlet {
-       
+@WebServlet("/owner/bookingPastList")
+public class OwnerBookingPastList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	 	int ownerNo = 1;
+	 	
+		/* 2. 예약 넘버를 저장해서 setAttribute로 넘겨주자. */
 		
-		 	int ownerNo = 1;
-		 	
-			/* 2. 예약 넘버를 저장해서 setAttribute로 넘겨주자. */
-			
-			List<BookDTO> bookList = new ArrayList<>();
-			
-			BookListSelectService bookService = new BookListSelectService();
-			
-			bookList = bookService.bookListSelect(ownerNo);
-			
-			
-			
-			request.setAttribute("bookList", bookList);
-			
+		List<BookDTO> bookList = new ArrayList<>();
+		
+		BookListSelectService bookService = new BookListSelectService();
+		
+		bookList = bookService.bookPastListSelect(ownerNo);
+		
+		
+		
+		request.setAttribute("bookList", bookList);
+		
 
-			String path = "";
-			path = "/WEB-INF/views/owner/bookingList/bookingList.jsp";
-			request.getAttribute(path);
-			request.getRequestDispatcher(path).forward(request, response);
+		String path = "";
+		path = "/WEB-INF/views/owner/bookingList/bookingPast.jsp";
+		request.getAttribute(path);
+		request.getRequestDispatcher(path).forward(request, response);
+	
 		
 	}
 
-	
-	
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* 1. BookNO 가져오기 */
-		System.out.println(request.getParameter("bookNo"));
 		int bookNo = Integer.parseInt(request.getParameter("bookNo")); 
 		
 		BookingContentDTO bookContentDTO = new BookingContentDTO();
@@ -66,7 +61,7 @@ public class OwnerBookingList extends HttpServlet {
 
 		request.setAttribute("bookContentDTO", bookContentDTO );
 		String path = "";
-		path = "/WEB-INF/views/owner/bookingList/bookingContent.jsp";
+		path = "/WEB-INF/views/owner/bookingList/bookingPastContent.jsp";
 		request.getAttribute(path);
 		request.getRequestDispatcher(path).forward(request, response);
 	}

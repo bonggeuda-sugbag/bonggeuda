@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
@@ -26,19 +28,57 @@ public class AccomoDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public int selectEnNo(Connection con) {
 
+		PreparedStatement pstmt = null;
+
+		Statement stmt = null;
+		
+		/* 반환시킬 변수 지정 */
+		ResultSet rset = null;
+		
+		int selectEnNo = 0;
+		
+		String selectQuery = prop.getProperty("selectEnNo");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(selectQuery);
+		
+		try {
+			pstmt = con.prepareStatement(selectQuery);
+
+			rset = pstmt.executeQuery();
+						
+			if(rset.next()) {		
+				
+				selectEnNo = rset.getInt("MAX(EN_ACCOMO_NO)");
+			}
+			System.out.println("???????" + selectEnNo);
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+				
+		return selectEnNo;
+	}
+	
 	public int InsertAccomo(Connection con, AccomoDTO accomoDTO) {
 
 		PreparedStatement pstmt = null;
 		
 		/* 반환시킬 변수 지정 */
 		int insert = 0;
+		ResultSet rset = null;
 		
 		String query = prop.getProperty("insertAccomo");
 
 		//잘 넘어왔는지 확인용 출력
 		System.out.println(query);
-		
+
 		try {
 			pstmt = con.prepareStatement(query);			
 			pstmt.setString(1, accomoDTO.getAccomoName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
@@ -58,8 +98,8 @@ public class AccomoDAO {
 			pstmt.setString(14, accomoDTO.getCheckOut());
 			pstmt.setDate(15, accomoDTO.getPeakStart());
 			pstmt.setDate(16, accomoDTO.getPeakEnd());
-			pstmt.setInt(17, accomoDTO.getOwnerNo());	//업체번호
-			pstmt.setInt(18, accomoDTO.getEnAccomoNo());		//등록숙소번호
+			pstmt.setInt(17, accomoDTO.getOwnerNo());		//업체번호
+			pstmt.setInt(18, accomoDTO.getEnAccomoNo());	//등록숙소번호
 			
 			insert = pstmt.executeUpdate();
 			
@@ -73,4 +113,5 @@ public class AccomoDAO {
      
 		return insert;
 	}
+
 }

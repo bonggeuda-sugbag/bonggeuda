@@ -48,13 +48,13 @@
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><a id="mypage">마이페이지</a>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Logout</a></li>
+				<li><a href="/bonggeuda/owner/mypage"><i class="glyphicon glyphicon-user"> </i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -101,22 +101,20 @@
 			<div class="bottom-header">
 				<div class="header-bottom">
 					<div class=" bottom-head">
-						<a id="registration1" > <!--숙소 등록 페이지로 연결-->
+						<a href="/bonggeuda/owner/registration" > <!--숙소 등록 페이지로 연결-->
 							<div class="buy-media">
 								<i class="buy"> </i>
-								<h6 id="registration1">숙소 등록</h6>
+								<h6>숙소 등록</h6>
 							</div>
 						</a>
 					</div>
 					<div class=" bottom-head" id="roomManagement">
-						<a href="/bonggeuda/owner/managementRoom"> <!--숙소 등록 페이지로 연결-->
+						<a href="/bonggeuda/owner/managementRoom"> <!--숙소 관리 페이지로 연결-->
 							<div class="buy-media">
 								<i class="buy"> </i>
 								<h6 id="roomManagement">숙소 관리</h6>
 							</div>
 							</a>
-
-						
 					</div>
 					<div class=" bottom-head">
 						<a href="/bonggeuda/owner/bookingList"> <!--예약 관리 페이지로 연결-->
@@ -127,7 +125,7 @@
 						</a>
 					</div>
 					<div class=" bottom-head">
-						<a href="QnA.html">
+						<a href="/bonggeuda/owner/notice"> <!-- 공지사항 페이지로 연결-->
 							<div class="buy-media">
 							<i class="sell"> </i>
 							<h6>Q & A</h6>

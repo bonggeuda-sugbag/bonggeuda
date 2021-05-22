@@ -13,27 +13,24 @@
 </head>
 <body>
 <!--header-->
-
- ${ requestScope.accomoDTO };
- ${ accomoName };
 <div class="header">
-   <div class="container">
-      <!--logo-->
-         <div class="logo">
-            <h1><a href="index.html">Bonggeuda</a></h1>
-         </div>
-      <!--//logo-->
-      <div class="top-nav">
-         <ul class="right-icons">
-            <li><a href="registration.html">숙소등록</a></li>
-            <li><a href="managementYesRoom.html">숙소관리</a></li>
-            <li><a href="booking.html">예약관리</a></li>
-            <li><a href="QnA.html">공지사항</a></li>
-            <li><a  href="mypage.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
-         </ul>
-      </div>
-   </div>
+	<div class="container">
+		<!--logo-->
+			<div class="logo">
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
+			</div>
+		<!--//logo-->
+		<div class="top-nav">
+			<ul class="right-icons">
+				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
+				<li><a href="/bonggeuda/owner/management">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
+				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+			</ul>
+		</div>
+	</div>
 </div>
 <!--header-->
 <!--//-->   
@@ -71,7 +68,7 @@
          <ul class="stepbox" id="ulStep">
             <li>
             <a href="/WEB-INF/views/owner/registration/registration1.jsp">                        
-               <span class="btn-todo-off"><img src="resources/owner/icon/step1.png" width="64px" height="64px"></span>
+               <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step1.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc on" style="color: rgb(226, 226, 226);">사업자정보 확인</span>
             </a>                    
@@ -89,7 +86,7 @@
             </li>
             <li>
             <a href="registration2-intro.html">                        
-               <span class="btn-todo-on"><img src="resources/owner/icon/step2.png" width="64px" height="64px"></span>
+               <span class="btn-todo-on"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step2.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: #6eceda;">소개 작성</span>
             </a>                    
@@ -107,7 +104,7 @@
             </li>
             <li>
             <a href="registration3-rule.html">                        
-               <span class="btn-todo-off"><img src="resources/owner/icon/step3.png" width="64px" height="64px"></span>
+               <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step3.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">이용규칙 관리</span>
             </a>                    
@@ -125,7 +122,7 @@
             </li>
             <li>
             <a href="registration4-room.html">                        
-               <span class="btn-todo-off"><img src="resources/owner/icon/step4.png" width="64px" height="64px"></span>
+               <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step4.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">객실 등록</span>
             </a>                    

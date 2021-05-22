@@ -32,4 +32,15 @@ public class AccomoService {
 		return inserAccomo;
 	}
 
+	public int selectEnNo() {
+
+		Connection con = getConnection();
+		
+		int slectEnNo = accomoDAO.selectEnNo(con);
+		
+		close(con);
+		
+		return slectEnNo;
+	}
+
 }

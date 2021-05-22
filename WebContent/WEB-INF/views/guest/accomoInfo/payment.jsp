@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -241,14 +242,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--header-->
 
 
-<div class="header">
+<!-- <div class="header">
 	<div class="container">
-		<!--logo-->
+		logo
 			<div class="logo">
 				<h1><a href="index.html">Bonggeuda</a></h1>
 			</div>
-		<!--//logo-->
-		<!-- 상단메뉴바 -->
+		//logo
+		상단메뉴바
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
@@ -256,17 +257,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a  href="mypage_point.html">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
-			<!-- //상단메뉴바 -->
+			//상단메뉴바
 			</div>
 		<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix" > </div>
-    </div>	
+    </div>	 -->
     
     <!--//-->	
     <!-- 숙소상세정보 -->
+    <jsp:include page="../accomoInfo/headeTest.jsp"/>
     <center>
-		
+		<form name="paymentForm" method="post" action="${pageContext.servletContext.contextPath}/book/payment">
         <div style="width: 1170px; margin-top: 60px; display: flex">
 			<!-- 예약자정보 -->
             <div class="left" style="width: 700px; padding:0 10px 0 10px;  display: block;" >
@@ -274,29 +276,72 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3><b>예약자 정보</b></h3>
                     <br><br>
                     <p>예약자 이름</p>
-                    <input style="width: 650px; height: 50px; margin-top:15px" placeholder="체크인시 필요한 정보입니다.">
+                    <input name="bookName"style="width: 650px; height: 50px; margin-top:15px" placeholder="체크인시 필요한 정보입니다." required="required">
                     <br>
 					<hr>
                     <p>휴대폰 번호</p>
-                    <p style="font-size: 15px;">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</p>
+                    <!-- <p style="font-size: 15px;">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</p> -->
                     <div style="width: 650px;height: 50px; display: flex; margin-top:15px">
-                        <input type="tel" style="width: 600px; ;" placeholder="체크인시 필요한 정보입니다.">
+                        <input name="phone"type="tel" style="width: 600px; ;" placeholder="체크인시 필요한 정보입니다." required="required">
                         <button style="width: 150px;margin-left: 30px; border: 0; outline: 0; background: #6eceda; color: white; font-weight: bold;box-shadow: 0 3px 0 #0e8c73;border-radius: 10px;">확인</button>
                     </div>
 					<hr>
 					<!-- 쿠폰,포인트 -->
+					<div style = "display :flex;">
 					<p>할인수단선택</p>
-					
+					<button type="button" onclick="discount()">적용하기</button>
+					<script>
+					    function discount(){
+					    	let point = document.getElementById("pointDis").value;
+					    	let couponList = document.getElementsByClassName("couponList");
+					    	let selectedCoupon = "";
+					    	let totalPrice = document.getElementById("totalPrice");
+					    	totalPrice.innerHTML = ${totalPrice} ;
+					    	for(var i = 0; i < couponList.length; i++){
+					    		if(couponList[i].selected)
+					    			selectedCoupon = couponList[i].value;
+					    	}					    	
+					    	if((point =="" ||point =="0") && selectedCoupon==0){
+					    		alert("할인수단을 다시 선택해주세요.")
+					    		return;
+					    	}  else{
+					    		let disCountPrice = Number(point) + Number(selectedCoupon);
+					    		totalPrice.innerHTML = totalPrice.innerHTML  - disCountPrice;
+					    		document.getElementById("hiddenPrice").value = totalPrice.innerHTML
+					    		alert("할인이 적용되었습니다.")
+					    	}
+					    }
+					</script>
+					</div>
 					<br>
 					<div style="width: 100%; display: flex;">
-						<p style="margin: 0 130px 0 10px; font-size: 18px;">쿠폰등록</p>
-						<select id="discount" style=" width: 65%; height: 30px;">
-							<option value="COUPON0"> 사용가능한 쿠폰이 없습니다.</option>
+						<p style="margin: 0 130px 0 10px; font-size: 18px;">쿠폰사용</p>
+						
+						<select id="discountCoupon" style=" width: 60%; height: 30px; margin-left: 50px;">
+						<c:choose>
+						  <c:when test="${empty couponList}">
+							<option class="couponList"value="0"> 사용가능한 쿠폰이 없습니다.</option>
+						  </c:when>
+						  <c:otherwise>
+							<option class="couponList" value="0"> 쿠폰을 선택하세요.</option>
+							<c:forEach var="coupon" items="${couponList}" varStatus = "st">
+							<option id="couponDis"class="couponList"value="${coupon.couponDiscount }" > ${coupon.couponName} : ${coupon.couponDiscount}원 할인(${coupon.couponCondition}원 이상 결제시)</option>
+							</c:forEach>
+						  </c:otherwise>
+						</c:choose>
 						</select>
 					</div>
 					<div style="width: 100%; display: flex; margin-top: 15px;">
-						<p style="margin: 0px 85px 0px 10px; font-size: 18px;">사용가능 포인트 : 0</p>
-						<input type="text" style="text-align: right; width: 10%; height: 30px;margin-left: 325px;"> <b style="margin: 5px 0px 0px 5px;">P</b>
+						<p style="margin: 0px 85px 0px 0px; font-size: 18px;">포인트사용<small>(100포인트단위 사용가능)</small></p>
+						<c:choose>
+						<c:when test="${empty point || point.point == 0}">
+						<input type="text" value = "0"readonly style="text-align: right; width: 10%; height: 30px;margin-left: 150px;"></input><b style="margin: 5px 0px 0px 5px;">/ 0 포인트</b>
+						</c:when>
+						<c:otherwise>
+						<!-- <p style="width:40%;margin: 0px 85px 0px 0px; font-size: 18px;">사용가능 포인트 : </p> -->
+						<input id="pointDis"type="number" step="100" min="0" max="${point.point }"style="text-align: right; width: 10%; height: 30px;margin-left: 170px; "> <b style="margin: 5px 0px 0px 5px;">/ ${point.point } 포인트</b>
+						</c:otherwise>
+						</c:choose>
 					</div>
 					<hr>
 					
@@ -304,7 +349,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<br>
 					<div style="width: 100%;">
 
-						<textarea style="width:95%; height: 80px;" placeholder="요청사항을 입력하세요"></textarea>
+						<textarea style="width:95%; height: 80px; resize:none;" placeholder="요청사항을 입력하세요" ></textarea>
 					</div>
 					<br><br>
                 </section>
@@ -315,7 +360,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
                     <h3><b>결제수단 선택</b></h3>
                     <br>
-                    <select id="paymentType" style="width: 650px; height: 50px;">
+                    <select id="paymentType" name="paymentType" style="width: 650px; height: 50px;">
                         <option data-minprice="100" value="KAKAO">
                             카카오페이
                         </option>
@@ -339,18 +384,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<p>
 						<strong>숙소이름</strong><br>
 						${ accomoInfo.accomoName }
-					</p>
+					</p> 
 					<p>
 						<strong>객실타입/기간</strong><br>
 						${roomInfo.roomName } / ${bookInfo.day }박
 					</p>
 					<p>
 						<strong>체크인</strong><br>
-						${bookInfo.bookCheckDate } ${bookInfo.bookCheckIn }
+						${bookInfo.bookCheckDate } / ${bookInfo.bookCheckIn }
 					</p>
 					<p>
 						<strong>체크아웃</strong><br>
-						${bookInfo.bookCheckoutDate } 11:00
+						${bookInfo.bookCheckoutDate } / 11:00
 					</p>
 					<hr>
 				</section>
@@ -360,7 +405,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<b>총 결제 금액</b>
 							(VAT포함)
 						</strong><br>
-						<span class="in_price">${totalPrice }</span>
+						<span id="totalPrice" class="in_price">${totalPrice }</span>
+						<input id="hiddenPrice" name="finalPrice" type="hidden" value=${totalPrice }>
+						<input type = "hidden" name="roomNo" value="${ roomInfo.roomNo}">
 					</p>
 					<ul>
 						<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
@@ -373,7 +420,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				
             </div>
-
+			
 			<!-- 예약내역확인 -->
 			<div id="pop01" class="overlay">
 				<div class="popup">
@@ -383,15 +430,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</section>
 						<hr>
 						<sectionn>
-							<p>베키니아 호텔제주</p>
-							<p>[1인 패키지] 체크인 시 배정 /1박</p>
+							<p>${ accomoInfo.accomoName }</p>
+							<p>${roomInfo.roomName } / ${bookInfo.day }박</p>
 							<div class="check" style="display: flex;">
 								<div style="text-align: left;">체크인</div>
-								<div class="date">06.23</div>
+								<div class="date">${bookInfo.bookCheckDate } / ${bookInfo.bookCheckIn }</div>
 							</div>
 							<div class="check" style="display: flex;">
 								<div style="text-align: left;">체크아웃</div>
-								<div class="date">06.24</div>
+								<div class="date">${bookInfo.bookCheckoutDate } / 11:00</div>
 							</div>
 						</section>
 						<hr>
@@ -404,12 +451,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<hr>			
 						<section>
 								<button onclick="location.href='#none';" style="border-radius: 10px;padding: 5px; box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2); border:1px solid rgba(0, 0, 0, 0.1);"></a>취소</button>
-								<button class="payAgree" onclick="location.href='#pop02'">동의 후 결제</button>
+								
+								<button type = "submit" class="payAgree" >동의 후 결제</button>
+								<!-- onclick="location.href='#pop02'" -->
 						</section>
 						
 
 				</div>
 			</div>
+        </form>
 			<!-- //예약내역확인 -->
 			<!-- 예약성공 -->
 			<div id="pop02" class="overlay">

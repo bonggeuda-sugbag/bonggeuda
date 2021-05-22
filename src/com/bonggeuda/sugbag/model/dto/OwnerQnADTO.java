@@ -11,13 +11,15 @@ public class OwnerQnADTO {
 	private String answerYN;
 	private int accomoNo;
 	private int userNo;
+	private String accomoName;
+	private String ownerAnswerContent;
 
 	public OwnerQnADTO() {
 		super();
 	}
 
 	public OwnerQnADTO(int qnaNo, String title, String content, Date writeDate, String answerYN, int accomoNo,
-			int userNo) {
+			int userNo, String accomoName, String ownerAnswerContent) {
 		super();
 		this.qnaNo = qnaNo;
 		this.title = title;
@@ -26,6 +28,8 @@ public class OwnerQnADTO {
 		this.answerYN = answerYN;
 		this.accomoNo = accomoNo;
 		this.userNo = userNo;
+		this.accomoName = accomoName;
+		this.ownerAnswerContent = ownerAnswerContent;
 	}
 
 	public int getQnaNo() {
@@ -84,12 +88,27 @@ public class OwnerQnADTO {
 		this.userNo = userNo;
 	}
 
+	public String getAccomoName() {
+		return accomoName;
+	}
+
+	public void setAccomoName(String accomoName) {
+		this.accomoName = accomoName;
+	}
+
+	public String getOwnerAnswerContent() {
+		return ownerAnswerContent;
+	}
+
+	public void setOwnerAnswerContent(String ownerAnswerContent) {
+		this.ownerAnswerContent = ownerAnswerContent;
+	}
+
 	@Override
 	public String toString() {
 		return "OwnerQnADTO [qnaNo=" + qnaNo + ", title=" + title + ", content=" + content + ", writeDate=" + writeDate
-				+ ", answerYN=" + answerYN + ", accomoNo=" + accomoNo + ", userNo=" + userNo + "]";
+				+ ", answerYN=" + answerYN + ", accomoNo=" + accomoNo + ", userNo=" + userNo + ", accomoName="
+				+ accomoName + ", ownerAnswerContent=" + ownerAnswerContent + "]";
 	}
-	
-	
-	
+
 }

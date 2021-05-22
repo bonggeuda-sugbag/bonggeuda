@@ -22,13 +22,13 @@ public class AccomoSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("서블릿요청확인");
 		// 숙소타입구분
-		String AccomoType = request.getParameter("value");
+		String accomoType = request.getParameter("value");
 		String type="";
-		switch(AccomoType) {
-		    case "'hotel'" : type = "호텔"; break;
-		    case "'pension'" : type = "펜션"; break;
-		    case "'guestHouse'" : type = "게스트하우스"; break;
-		}
+		switch(accomoType) {
+		    case "hotel" : type = "호텔"; break;
+		    case "pension" : type = "펜션"; break;
+		    case "guestHouse" : type = "게스트하우스"; break;
+		} 
 		// 타입별 숙소 리스트 검색
 		BookService booksvc = new BookService();
 		// 사진 카테고리
@@ -52,6 +52,7 @@ public class AccomoSelectServlet extends HttpServlet {
 			}
 			path = "/WEB-INF/views/guest/accomoInfo/list.jsp";
 			request.setAttribute("accomoList", accomoList);
+			request.setAttribute("type", type);
 		} else {
 			System.out.println("숙소목록 조회에 실패했습니다.!!");
 		}

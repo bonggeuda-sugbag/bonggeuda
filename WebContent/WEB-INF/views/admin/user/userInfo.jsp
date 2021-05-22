@@ -255,7 +255,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<c:choose>
 				    <c:when test="${ !empty requestScope.searchValue }">
    					    <select id="searchCondition" name="searchCondition">
-							<option value="category" <c:if test="${requestScope.searchCondition eq 'category'}">selected</c:if>>카테고리</option>
+							<option value="userId" <c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>회원번호</option>
 							<option value="writer" <c:if test="${requestScope.searchCondition eq 'writer'}">selected</c:if>>작성자</option>
 							<option value="title" <c:if test="${requestScope.searchCondition eq 'title'}">selected</c:if>>제목</option>
 							<option value="content" <c:if test="${requestScope.searchCondition eq 'content'}">selected</c:if>>내용</option>
@@ -264,24 +264,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    </c:when>
 				    <c:otherwise>
 					    <select id="searchCondition" name="searchCondition">
-							<option value="category">카테고리</option>
+							<option value="userId">아이디</option>
 							<option value="writer">작성자</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
 						</select>
 				        <input type="search" id="searchValue" name="searchValue" >
+				        <input type="hidden" name="userId" value= "${ user.email }">
 				    </c:otherwise>
 				</c:choose>
 				<button type="submit">검색하기</button>
-				<c:if test="${ !empty requestScope.loginMember }">
+				<%-- <c:if test="${ !empty requestScope.loginMember }">
 					<button id="writeBoard">작성하기</button>
-				</c:if>
+				</c:if> --%>
 			</div>
 		</form>
 		
 		<script>
 		const link = "${ pageContext.servletContext.contextPath }/user/list";
-		const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+		const searchLink = "${ pageContext.servletContext.contextPath }/user/search";
 			
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");

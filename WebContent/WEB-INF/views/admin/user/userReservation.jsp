@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -164,7 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
          <thead>
             <tr>
-               <th>예약번호</th>
+               <th>&nbsp;&nbsp;&nbsp;예약번호</th>
                <th>사용자명</th>
                <th>아이디</th>
                <th>가격</th>
@@ -175,18 +176,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </tr>
          </thead>
          <tbody>
-           <c:forEach var="user" items="${ requestScope.userList }">
-			<form action="${ pageContext.servletContext.contextPath }/user/detail" method="get">
+           <c:forEach var="reservation" items="${ requestScope.reservationList }">
+			<form action="${ pageContext.servletContext.contextPath }/book/detail" method="get">
 			<tr>
-				<td><c:out value="${ user.bookNo }"/></td>
-				<td><c:out value="${ user.name }"/></td>
-				<td><c:out value="${ user.email }"/></td>
-				<td><c:out value="${ user.price}"/></td>
-				<td><c:out value="${ user.count}"/></td>
-				<td><c:out value="${ user.checkDate}"/></td>
-				<td><c:out value="${ user.outDate}"/></td>
+				<td><c:out value="${ reservation.bookNo }"/></td>
+				<td><c:out value="${ reservation.name }"/></td>
+				<td><c:out value="${ reservation.email }"/></td>
+				<td><c:out value="${ reservation.price}"/></td>
+				<td><c:out value="${ reservation.peopleCount}"/></td>
+				<td><c:out value="${ reservation.checkDate}"/></td>
+				<td><c:out value="${ reservation.checkOutDate}"/></td>
 				<td><button>상세보기</button></td>
-				<input type="hidden" name="hduserNo" value= "${ user.bookNo }">
+				<input type="hidden" name="bookNo" value= "${ reservation.bookNo }">
 			</tr>
             </form>
 			</c:forEach>
