@@ -187,7 +187,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<th scope="row">연락처</th>
 					<td><c:out value="${ requestScope.bookContentDTO.userPhone }"/></td>
 					<th scope="row">이메일</th>
-					<td><c:out value="${ requestScope.bookContentDTO.email }"/></td>
+					<td>
+					<c:out value="${ requestScope.bookContentDTO.email }"/>
+					
+					</td>
 				</tr>
 				<tr>
 					<th scope="row">체크인</th>
@@ -218,7 +221,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div style="display: inline-flex;">
 		<form action="/bonggeuda/owner/bookAllow" method="get">
 		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px " >
-		<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}"/>
+		<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}">
+		<input type="hidden" name="email" value="${requestScope.bookContentDTO.email}">
+		<input type="hidden" name="bookRequestDate" value="${requestScope.bookContentDTO.bookCheckDate}">
+		<input type="hidden" name="bookCheckInTime" value="${requestScope.bookContentDTO.bookCheckIn}">
+		<input type="hidden" name="bookCheckoutDate" value="${requestScope.bookContentDTO.bookCheckoutDate}">
+		
+		<input type="hidden" name="accomoName" value="${ requestScope.bookContentDTO.accomoName }">
+		<input type="hidden" name="roomName" value="${ requestScope.bookContentDTO.roomName }">
+		<input type="hidden" name="bookUserName" value="${requestScope.bookContentDTO.bookUserName}">
+
 		예약 승인
 		</button>
 		</form>
@@ -255,7 +267,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</ul>
 						<div class="password-wrap" style="text-align: center;" >
 						
-							<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}"/>							
+							<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}"/>
+							<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}">
+							<input type="hidden" name="email" value="${requestScope.bookContentDTO.email}">
+							<input type="hidden" name="bookRequestDate" value="${requestScope.bookContentDTO.bookCheckDate}">
+							<input type="hidden" name="bookCheckInTime" value="${requestScope.bookContentDTO.bookCheckIn}">
+							<input type="hidden" name="bookCheckoutDate" value="${requestScope.bookContentDTO.bookCheckoutDate}">
+		
+							<input type="hidden" name="accomoName" value="${ requestScope.bookContentDTO.accomoName }">
+							<input type="hidden" name="roomName" value="${ requestScope.bookContentDTO.roomName }">
+							<input type="hidden" name="bookUserName" value="${requestScope.bookContentDTO.bookUserName}">
+														
 							<div class="button-wrap"><button type="submit">거절하기</button></div>
 						</div>
 						</form>
