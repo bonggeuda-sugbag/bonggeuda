@@ -13,9 +13,10 @@
 
 <%-- 	<jsp:forward page="/payment/ready"></jsp:forward> --%>
 
-  <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> 
+<%--   <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>  --%>
 
 
-<jsp:forward page="/payment/ready">
+<jsp:forward page="/login/test"/>
+
 </body>
 </html>
