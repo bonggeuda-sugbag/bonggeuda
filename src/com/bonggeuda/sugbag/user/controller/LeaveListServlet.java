@@ -11,18 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
-import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
+import com.bonggeuda.sugbag.user.dto.UserleaveDTO;
 import com.bonggeuda.sugbag.user.service.UserInfoService;
 
+
 /**
- * 사용자 관리 리스트 불러오는 서블릿
- * Servlet implementation class UserSelectListServlet
+ * Servlet implementation class UserSelectLeaveServlet
  */
-@WebServlet("/user/list")
-public class UserSelectListServlet extends HttpServlet {
+@WebServlet("/user/leave")
+public class LeaveListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("호출확인");
+		
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
@@ -39,7 +39,7 @@ public class UserSelectListServlet extends HttpServlet {
 		UserInfoService userInfoServie = new UserInfoService();
 		int totalCount = userInfoServie.selectTotalCount();
 		
-//		System.out.println("totalCount 체크 : " + totalCount);
+		System.out.println("totalCount 체크 : " + totalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
@@ -49,21 +49,20 @@ public class UserSelectListServlet extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
-//		System.out.println(pageInfo);
+		System.out.println(pageInfo);
 		
 		/* 조회 해온다. */
-		List<UserInfoDTO> userList = userInfoServie.selectBoardList(pageInfo);
+		List<UserleaveDTO> leaveList = userInfoServie.selectLeavelist(pageInfo);
 		
-//		System.out.println("userList : " + userList);
+		System.out.println("어디 갔니 leaveList : " + leaveList);
 		
 		String path = "";
-		if(userList != null) {
-			path = "/WEB-INF/views/admin/user/userInfo.jsp";
-			request.setAttribute("userList", userList);
+		if(leaveList != null) {
+			path = "/WEB-INF/views/admin/user/userLeave.jsp";
+			request.setAttribute("leaveList", leaveList);
 			request.setAttribute("pageInfo", pageInfo);
 		} 
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
 }

@@ -11,19 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
-import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
+import com.bonggeuda.sugbag.user.dto.UserReservationStatusDTO;
 import com.bonggeuda.sugbag.user.service.UserInfoService;
 
-
 /**
- * 
- * Servlet implementation class UserSearchServlet
+ * Servlet implementation class SearchidBooklistServlet
  */
-@WebServlet("/user/search")
-public class UserSearchServlet extends HttpServlet {
-
+@WebServlet("/searchid/booklist")
+public class BookListSearchidServlet extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		String condition = request.getParameter("searchCondition");
 		String value = request.getParameter("searchValue");
 
@@ -49,9 +47,9 @@ public class UserSearchServlet extends HttpServlet {
 		 * */
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		UserInfoService userInfoServie = new UserInfoService();;
-		int totalCount = userInfoServie.searchCount(condition, value);
+		int bookCount = userInfoServie.searchBookCount(condition, value);
 		
-		System.out.println("totalCount : " + totalCount);
+		System.out.println("bookCount : " + bookCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
@@ -59,19 +57,19 @@ public class UserSearchServlet extends HttpServlet {
 		int buttonAmount = 5;
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
+		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, bookCount, limit, buttonAmount);
 		
 		System.out.println(pageInfo);
 		
 		/* 조회해온다 */
-		List<UserInfoDTO> userList = userInfoServie.selectSearchList(condition, value, pageInfo);
+		List<UserReservationStatusDTO> reservationList = userInfoServie.selectSearchIdList(condition, value, pageInfo);
 		
-		System.out.println("userList : " + userList);
+		System.out.println("reservationList : " + reservationList);
 		
 		String path = "";
-		if(userList != null) {
-			path = "/WEB-INF/views/admin/user/userInfo.jsp";
-			request.setAttribute("userList", userList);
+		if(reservationList != null) {
+			path = "/WEB-INF/views/admin/user/userReservation.jsp";
+			request.setAttribute("reservationList", reservationList);
 			request.setAttribute("pageInfo", pageInfo);
 			
 		} 
