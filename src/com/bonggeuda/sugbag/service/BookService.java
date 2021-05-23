@@ -12,6 +12,7 @@ import java.util.Map;
 import com.bonggeuda.sugbag.model.dao.BookDAO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
+import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
@@ -140,6 +141,30 @@ public class BookService {
 		
 		close(con);
 		return seachResult;
+	}
+
+	/**
+	 * 예약정보INSERT
+	 * @param bookInfo 예약정보
+	 * @return
+	 */
+	public int insertBookInfo(BookDTO bookInfo) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = bookDao.insertBookInfo(con, bookInfo);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 }

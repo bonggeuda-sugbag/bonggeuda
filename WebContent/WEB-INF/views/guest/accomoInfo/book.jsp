@@ -630,7 +630,7 @@ textarea {
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin: 15px;">인원</h4>
-						<input type="number" name="people" min="1" placeholder="1" style="width: 100px; text-align: center;" required="required">
+						<input type="number" name="people" min="1" style="width: 100px; text-align: center;" required="required">
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin : 15px;">체크인 </h4>

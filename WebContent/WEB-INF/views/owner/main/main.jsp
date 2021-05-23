@@ -112,7 +112,7 @@
 						<a href="/bonggeuda/owner/managementRoom"> <!--숙소 관리 페이지로 연결-->
 							<div class="buy-media">
 								<i class="buy"> </i>
-								<h6 id="roomManagement">숙소 관리</h6>
+								<h6 >숙소 관리</h6>
 							</div>
 							</a>
 					</div>

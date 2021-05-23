@@ -21,7 +21,7 @@ public class OwnerMypageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int ownerNo = 2;
+		int ownerNo = 1;
 		// 로그인 됐다 친 업주 정보
 		OwnerMypagService ownerMypageService = new OwnerMypagService();
 		
@@ -33,11 +33,11 @@ public class OwnerMypageServlet extends HttpServlet {
 
 			request.setAttribute("selectOwner",selectOwner);
 			path = "/WEB-INF/views/owner/mypage/mypage.jsp";
+			request.getAttribute(path);
+			
+			request.getRequestDispatcher(path).forward(request, response);
 		}
 		
-		request.getAttribute(path);
-		
-		request.getRequestDispatcher(path).forward(request, response);
 		
 		
 		

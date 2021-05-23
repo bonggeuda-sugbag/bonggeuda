@@ -180,14 +180,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<td><c:out value="${ leave.email }"/></td>
 				<td><c:out value="${ leave.reason }"/></td>
 				<td><c:out value="${ leave.leaveDate }"/></td>
+				<input type="hidden" name="hduserNo" value= "${ user.userNo }">
 			</tr>
             </form>
 			</c:forEach>
          </tbody>
       </table>
 
-      <label style="color: #6eceda; font-size: 1.3em; font-weight: 600;">회원 검색</label>
-      <input type="text" name="" id="" style="width: 150px;"><button><i class="glyphicon glyphicon-search"></i></button>
+     <%--  <label style="color: #6eceda; font-size: 1.3em; font-weight: 600;">회원 검색</label>
+      <input type="text" name="" id="" style="width: 150px;"><button><i class="glyphicon glyphicon-search"></i></button> --%>
    </div>
    
    <div class="clearfix"> 
@@ -251,9 +252,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</c:choose>   
 		</div>
 		
+		<!-- 검색 폼 -->
+		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/leave/search" method="get">		
+			<div class="search-area" align="center">
+				<c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <select id="searchCondition" name="searchCondition">
+							<option value="userId" <c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>아이디</option>
+							<option value="writer" <c:if test="${requestScope.searchCondition eq 'writer'}">selected</c:if>>작성자</option>
+							<option value="title" <c:if test="${requestScope.searchCondition eq 'title'}">selected</c:if>>제목</option>
+							<option value="content" <c:if test="${requestScope.searchCondition eq 'content'}">selected</c:if>>내용</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
+				    </c:when>
+				    <c:otherwise>
+					    <select id="searchCondition" name="searchCondition">
+							<option value="userId">아이디</option>
+							<option value="writer">작성자</option>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" >
+				        <input type="hidden" name="userId" value= "${ user.email }">
+				    </c:otherwise>
+				</c:choose>
+				<button type="submit">검색하기</button>
+				<%-- <c:if test="${ !empty requestScope.loginMember }">
+					<button id="writeBoard">작성하기</button>
+				</c:if> --%>
+			</div>
+		</form>
+		
 		<script>
-		const link = "${ pageContext.servletContext.contextPath }/user/list";
-		const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+		const link = "${ pageContext.servletContext.contextPath }/user/leave";
+		const searchLink = "${ pageContext.servletContext.contextPath }/leave/search";
 			
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");

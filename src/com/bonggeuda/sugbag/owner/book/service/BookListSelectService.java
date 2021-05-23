@@ -11,7 +11,7 @@ import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
 import com.bonggeuda.sugbag.owner.book.dao.BookingListSelectDAO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
-import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 public class BookListSelectService {
 	
@@ -58,7 +58,6 @@ public class BookListSelectService {
 		
 		int bookAllowUpdate = bookDAO.bookAllowUpdate(con,bookNo);
 		
-		close(con);
 		
 		
 		if(bookAllowUpdate > 0) {
@@ -67,6 +66,7 @@ public class BookListSelectService {
 			rollback(con);
 		}
 	
+		close(con);
 		
 		return bookAllowUpdate;
 	}
@@ -82,6 +82,8 @@ public class BookListSelectService {
 		}else {
 			rollback(con);
 		}
+		close(con);
+
 		
 		return bookHistoryInsert;
 	}
@@ -92,7 +94,7 @@ public class BookListSelectService {
 		
 		int bookRejectUpdate = bookDAO.bookRejectUpdate(con, bookNo);
 		
-		close(con);
+		
 		
 		
 		if(bookRejectUpdate >0) {
@@ -100,6 +102,8 @@ public class BookListSelectService {
 		}else {
 			rollback(con);
 		}
+		
+		close(con);
 		
 		return bookRejectUpdate;
 	}
@@ -116,6 +120,7 @@ public class BookListSelectService {
 			rollback(con);
 		}
 		
+		close(con);
 
 		return bookHistoryInsert;
 	}
@@ -125,15 +130,15 @@ public class BookListSelectService {
 		Connection con = getConnection();
 		
 		int bookRejectBookConfirmUpdate = bookDAO.bookRejectUpdateBookConfirm(con, bookNo);
-		
-		close(con);
-		
+				
 		
 		if(bookRejectBookConfirmUpdate >0) {
 			commit(con);
 		}else {
 			rollback(con);
 		}
+		
+		close(con);
 		
 		return bookRejectBookConfirmUpdate;
 	}

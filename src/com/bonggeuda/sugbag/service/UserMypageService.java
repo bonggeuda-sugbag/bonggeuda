@@ -16,6 +16,7 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.WithdrawReasonDTO;
 
 public class UserMypageService {
 	
@@ -146,17 +147,18 @@ public class UserMypageService {
 	/**
 	 * 사용자 회원탈퇴로 정보변경
 	 * @param userWithdraw
+	 * @param userWithdrawReason 
 	 * @return
 	 */
-	public int userWithdraw(MemberDTO userWithdraw) {
+	public int userWithdraw(MemberDTO userWithdraw, WithdrawReasonDTO userWithdrawReason) {
 		
 		int result = 0;
 		
 		Connection con = getConnection();
 		
-		result = mypageDAO.userWithdraw(con, userWithdraw);
+		result = mypageDAO.userWithdraw(con, userWithdraw, userWithdrawReason);
 		
-		if(result > 0) {
+		if(result > 1) {
 			commit(con);
 		} else {
 			rollback(con);

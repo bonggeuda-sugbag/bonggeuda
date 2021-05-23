@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
+import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.service.UserMypageService;
 
 /**
@@ -22,7 +23,7 @@ public class UserBookListSelect extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int userNo = 1;
+		int userNo = ((MemberDTO)request.getSession().getAttribute("member")).getUserNo();
 		
 		UserMypageService mypageService = new UserMypageService();
 		

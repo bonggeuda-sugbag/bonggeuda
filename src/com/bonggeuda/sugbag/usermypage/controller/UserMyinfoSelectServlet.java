@@ -19,7 +19,7 @@ public class UserMyinfoSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int userNo = 1;
+		int userNo = ((MemberDTO)request.getSession().getAttribute("member")).getUserNo();
 		
 		UserMypageService mypageService = new UserMypageService();
 		

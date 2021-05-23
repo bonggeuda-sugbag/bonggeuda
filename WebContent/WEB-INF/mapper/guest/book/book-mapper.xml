@@ -136,4 +136,23 @@
          WHERE USER_NO = ?
            AND COUPON_USE_YN = 'N'      
     </entry>
+    <entry key="insertBookInfo">
+        INSERT
+          INTO BOOK_LIST
+        VALUES
+             (
+               SEQ_BOOK_NO.NEXTVAL
+             , ?
+             , ?
+             , ?
+             , ?
+             , DEFAULT
+             , ?
+             , ?
+             , ?
+             , ?
+             , DEFAULT
+             , ?
+             )
+    </entry>
 </properties>

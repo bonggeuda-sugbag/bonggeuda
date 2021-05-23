@@ -12,6 +12,7 @@ public class BookDTO {
 	private String request;			// 요청사항
 	private int roomNo;
 	private int userNo;
+	private int ownerNo;
 	private String bookStatusYNC;
 	private String roomName;
 	private String accomoName;
@@ -22,8 +23,8 @@ public class BookDTO {
 	public BookDTO() { }
 
 	public BookDTO(int bookNo, String bookUserName, int bookPersonnel, String bookCheckDate, String bookCheckoutDate,
-			String bookApproveYn, String bookCheckIn, String request, int roomNo, int userNo, String bookStatusYNC,
-			String roomName, String accomoName, long day, String bookImg, String userPhone) {
+			String bookApproveYn, String bookCheckIn, String request, int roomNo, int userNo, int ownerNo,
+			String bookStatusYNC, String roomName, String accomoName, long day, String bookImg, String userPhone) {
 		super();
 		this.bookNo = bookNo;
 		this.bookUserName = bookUserName;
@@ -35,6 +36,7 @@ public class BookDTO {
 		this.request = request;
 		this.roomNo = roomNo;
 		this.userNo = userNo;
+		this.ownerNo = ownerNo;
 		this.bookStatusYNC = bookStatusYNC;
 		this.roomName = roomName;
 		this.accomoName = accomoName;
@@ -123,6 +125,14 @@ public class BookDTO {
 		this.userNo = userNo;
 	}
 
+	public int getOwnerNo() {
+		return ownerNo;
+	}
+
+	public void setOwnerNo(int ownerNo) {
+		this.ownerNo = ownerNo;
+	}
+
 	public String getBookStatusYNC() {
 		return bookStatusYNC;
 	}
@@ -170,6 +180,19 @@ public class BookDTO {
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
+
+	@Override
+	public String toString() {
+		return "BookDTO [bookNo=" + bookNo + ", bookUserName=" + bookUserName + ", bookPersonnel=" + bookPersonnel
+				+ ", bookCheckDate=" + bookCheckDate + ", bookCheckoutDate=" + bookCheckoutDate + ", bookApproveYn="
+				+ bookApproveYn + ", bookCheckIn=" + bookCheckIn + ", request=" + request + ", roomNo=" + roomNo
+				+ ", userNo=" + userNo + ", ownerNo=" + ownerNo + ", bookStatusYNC=" + bookStatusYNC + ", roomName="
+				+ roomName + ", accomoName=" + accomoName + ", day=" + day + ", bookImg=" + bookImg + ", userPhone="
+				+ userPhone + "]";
+	}
+	
+	
+
 
 	
 	

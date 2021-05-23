@@ -1,6 +1,7 @@
 package com.bonggeuda.sugbag.model.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ReportDTO {
 
@@ -15,12 +16,17 @@ public class ReportDTO {
 	private int reportedNo;
 	private String accomoName;
 	private String reportAnswer;
+	private String approveYN; // 연준 추가
+	
+	private List<AttachmentDTO> attachmentList; //신고첨부사진
 
-	public ReportDTO() {}
+	public ReportDTO() {
+		super();
+	}
 
 	public ReportDTO(int reportNo, String writerType, String reportReason, int memberNo, Date reportDate,
 			String reportTitle, String reportStatus, String reportedType, int reportedNo, String accomoName,
-			String reportAnswer) {
+			String reportAnswer, String approveYN, List<AttachmentDTO> attachmentList) {
 		super();
 		this.reportNo = reportNo;
 		this.writerType = writerType;
@@ -33,6 +39,8 @@ public class ReportDTO {
 		this.reportedNo = reportedNo;
 		this.accomoName = accomoName;
 		this.reportAnswer = reportAnswer;
+		this.approveYN = approveYN;
+		this.attachmentList = attachmentList;
 	}
 
 	public int getReportNo() {
@@ -123,12 +131,34 @@ public class ReportDTO {
 		this.reportAnswer = reportAnswer;
 	}
 
+	public String getApproveYN() {
+		return approveYN;
+	}
+
+	public void setApproveYN(String approveYN) {
+		this.approveYN = approveYN;
+	}
+
+	public List<AttachmentDTO> getAttachmentList() {
+		return attachmentList;
+	}
+
+	public void setAttachmentList(List<AttachmentDTO> attachmentList) {
+		this.attachmentList = attachmentList;
+	}
+
 	@Override
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", writerType=" + writerType + ", reportReason=" + reportReason
 				+ ", memberNo=" + memberNo + ", reportDate=" + reportDate + ", reportTitle=" + reportTitle
 				+ ", reportStatus=" + reportStatus + ", reportedType=" + reportedType + ", reportedNo=" + reportedNo
-				+ ", accomoName=" + accomoName + ", reportAnswer=" + reportAnswer + "]";
+				+ ", accomoName=" + accomoName + ", reportAnswer=" + reportAnswer + ", approveYN=" + approveYN
+				+ ", attachmentList=" + attachmentList + "]";
 	}
+	
+	
+
+	
+
 	
 }

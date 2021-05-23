@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -264,8 +265,43 @@ public class UserMoreInfoDAO {
 			close(pstmt);
 		}
 		
+		/* 날짜로 내림차순 정렬 */
+		Collections.sort(qna, new QnADTO());
+		
 		System.out.println("gogogoog : " + qna);
 		return qna;
+	}
+
+	/**
+	 * 관리자에게 문의하기 insert
+	 * @param con
+	 * @param adminQnA 
+	 * @return
+	 */
+	public int insertAdminQnA(Connection con, AdminQnADTO adminQnA) {
+
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("adminQnAInsert");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, adminQnA.getAdminQnATitle());
+			pstmt.setString(2, adminQnA.getAdminQnAContent());
+			pstmt.setInt(3, adminQnA.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

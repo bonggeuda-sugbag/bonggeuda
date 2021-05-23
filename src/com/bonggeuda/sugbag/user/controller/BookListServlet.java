@@ -19,7 +19,7 @@ import com.bonggeuda.sugbag.user.service.UserInfoService;
  * Servlet implementation class UserSelectBookListServlet
  */
 @WebServlet("/user/booklist")
-public class UserSelectBookListServlet extends HttpServlet {
+public class BookListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

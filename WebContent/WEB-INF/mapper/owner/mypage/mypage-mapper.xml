@@ -7,6 +7,82 @@
 	      FROM OWNER_INFO
 	     WHERE OWNER_NO = ?
 	</entry>
+	
+	<entry key="selectReportList">
+		SELECT
+    		   *
+  		  FROM REPORT
+ 		 WHERE MEMBER_NO = ?
+	
+	</entry>
+	
+	<entry key="selctReportDetail">
+ 		SELECT
+      		   *
+		  FROM REPORT R
+		 WHERE R.REPORT_NO = ? 
+	</entry>
 
+	<entry key="selectRejectReason">
+	  SELECT
+        	 REPORT_ANSWER
+  		FROM REPORT_HISTORY
+ 	   WHERE REPORT_NO = ?
+	</entry>
+	
+	<entry key="ownerWithdrawUpdate">
+	 UPDATE OWNER_INFO
+ 	    SET OWNER_WITHDRAW_YN = 'Y'
+          , OWNER_WITHDATE = SYSDATE
+      WHERE OWNER_NO = ?
+	</entry>
+	
+	<entry key="selectTaxBillList">
+	SELECT
+           REQUEST_NO
+    	 , REQUEST_START
+     	 , REQUEST_END
+     	 , REQUEST_DATE
+     	 , R.ACCOMO_NO
+     	 , RESPONSE_YN
+     	 , A.ACCOMO_NAME
+  	  FROM REQUEST_TAX_BILL R
+  	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
+ 	 WHERE A.OWNER_NO = ?
+	
+	</entry>
+	
+	<entry key="selectAccomoNames">
+	    SELECT
+               *
+          FROM ACCOMO_INFO
+         WHERE OWNER_NO = ?
+	</entry>
+	
+	<entry key="selectAccomoNo">
+	
+		SELECT 
+               ACCOMO_NO
+          FROM ACCOMO_INFO
+         WHERE ACCOMO_NAME = ?
+           AND OWNER_NO = ?
+	
+	</entry>
+	
+	<entry key="insertRequestTaxBill">
+		INSERT
+  		INTO REQUEST_TAX_BILL
+		VALUES
+		(
+ 		  SEQUENCE_REQUEST_NO.NEXTVAL
+		, ?
+		, ?
+		, SYSDATE
+		, ?
+		, DEFAULT
+		)
+	
+	
+	</entry>
 	
 </properties>

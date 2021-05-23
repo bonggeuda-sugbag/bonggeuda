@@ -6,6 +6,7 @@ public class BookingContentDTO {
 	private String bookApproveYn;
 	private int roomNo;
 	private int userNo;
+	private int ownerNo;
 	private String bookStatusYNC;
 	private long day;				// bookCheckoutDate - bookCheckDate
 	private String bookImg;
@@ -27,15 +28,16 @@ public class BookingContentDTO {
 	
 	public BookingContentDTO() { }
 
-	public BookingContentDTO(String bookCheckDate, String bookApproveYn, int roomNo, int userNo, String bookStatusYNC,
-			long day, String bookImg, String bookUserName, int bookPersonnel, String accomoName, String roomName,
-			int bookNo, String bookRequestDate, String bookCheckIn, String bookCheckoutDate, String request,
-			String userPhone, String email, int paymentFee, String paymentMethod) {
+	public BookingContentDTO(String bookCheckDate, String bookApproveYn, int roomNo, int userNo, int ownerNo,
+			String bookStatusYNC, long day, String bookImg, String bookUserName, int bookPersonnel, String accomoName,
+			String roomName, int bookNo, String bookRequestDate, String bookCheckIn, String bookCheckoutDate,
+			String request, String userPhone, String email, int paymentFee, String paymentMethod) {
 		super();
 		this.bookCheckDate = bookCheckDate;
 		this.bookApproveYn = bookApproveYn;
 		this.roomNo = roomNo;
 		this.userNo = userNo;
+		this.ownerNo = ownerNo;
 		this.bookStatusYNC = bookStatusYNC;
 		this.day = day;
 		this.bookImg = bookImg;
@@ -84,6 +86,14 @@ public class BookingContentDTO {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+
+	public int getOwnerNo() {
+		return ownerNo;
+	}
+
+	public void setOwnerNo(int ownerNo) {
+		this.ownerNo = ownerNo;
 	}
 
 	public String getBookStatusYNC() {
@@ -216,14 +226,15 @@ public class BookingContentDTO {
 
 	@Override
 	public String toString() {
-		return "BookingContent [bookCheckDate=" + bookCheckDate + ", bookApproveYn=" + bookApproveYn + ", roomNo="
-				+ roomNo + ", userNo=" + userNo + ", bookStatusYNC=" + bookStatusYNC + ", day=" + day + ", bookImg="
-				+ bookImg + ", bookUserName=" + bookUserName + ", bookPersonnel=" + bookPersonnel + ", accomoName="
-				+ accomoName + ", roomName=" + roomName + ", bookNo=" + bookNo + ", bookRequestDate=" + bookRequestDate
-				+ ", bookCheckIn=" + bookCheckIn + ", bookCheckoutDate=" + bookCheckoutDate + ", request=" + request
-				+ ", userPhone=" + userPhone + ", email=" + email + ", paymentFee=" + paymentFee + ", paymentMethod="
-				+ paymentMethod + "]";
+		return "BookingContentDTO [bookCheckDate=" + bookCheckDate + ", bookApproveYn=" + bookApproveYn + ", roomNo="
+				+ roomNo + ", userNo=" + userNo + ", ownerNo=" + ownerNo + ", bookStatusYNC=" + bookStatusYNC + ", day="
+				+ day + ", bookImg=" + bookImg + ", bookUserName=" + bookUserName + ", bookPersonnel=" + bookPersonnel
+				+ ", accomoName=" + accomoName + ", roomName=" + roomName + ", bookNo=" + bookNo + ", bookRequestDate="
+				+ bookRequestDate + ", bookCheckIn=" + bookCheckIn + ", bookCheckoutDate=" + bookCheckoutDate
+				+ ", request=" + request + ", userPhone=" + userPhone + ", email=" + email + ", paymentFee="
+				+ paymentFee + ", paymentMethod=" + paymentMethod + "]";
 	}
+
 	
 	
 

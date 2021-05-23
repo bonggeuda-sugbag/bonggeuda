@@ -110,7 +110,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	width: 100%;
 	padding-top: 2px;
 }
-	</style>
+.title-img-area {
+	width:350px;
+	height:200px;
+	border:2px dashed darkgray;
+	text-align:center;
+	display:table-cell;
+	vertical-align:middle;
+}
+.title-img-area:hover, .content-img-area1:hover, 
+.content-img-area2:hover, .content-img-area3:hover {
+	cursor:pointer;
+}
+.content-img-area1, .content-img-area2, .content-img-area3 {
+	width:150px;
+	height:100px;
+	border:2px solid rgba (0,0,0,0.8);
+	text-align:center;
+	display:table-cell;
+	vertical-align:middle;
+}
+
+.thumbnail-insert-area {
+	width:500px;
+	height:450px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.thumbnail-btn-area {
+	width:150px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.thumbnail-file-area input[type=file] {
+	display:none;
+}
+</style>
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -263,6 +299,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <div id="content" class="sub_wrap more_wrap">
+	<form method="post" action="${ pageContext.servletContext.contextPath }/book/report" encType="multipart/form-data">
+	
 	<div class="align_rt">
 		<!-- Tab -->
 		<div class="tab">
@@ -278,14 +316,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="list_none" style="display: block;  width: 780px; border: 1px solid lightgray;">
 					<div class="writeNameBox">
 						<div class="writeNameBoxContent">
-							<p style="text-align: center; font-weight: bold;">제목 <input type="text" class="titleInput" placeholder="제목을 입력하세요." required> </p>
+							<p style="text-align: center; font-weight: bold;">제목 <input type="text" name="title" class="titleInput" placeholder="제목을 입력하세요." required> </p>
 							
 						</div>
 					</div>
-					<textarea class="wirteContent" style="border-radius: 5px;"  rows="22" name="" placeholder="신고내용을 적어주세요." required="required"></textarea>
+					<textarea name="body"class="wirteContent" style="border-radius: 5px;"  rows="22" name="" placeholder="신고내용을 적어주세요." required="required"></textarea>
 					<div class="input-picture">
 						<h5>이미지 첨부하기<h5>
-						<div style="border: 1px solid rgba(0,0,0,0.08); height: 30px; width: 100%;" >
+						<table>
+						<td>
+							<div class="content-img-area1" id="contentImgArea1">
+								<img id="contentImg1" width="150" height="120">
+							</div>
+						</td>
+						<td>
+							<div class="content-img-area2" id="contentImgArea2">
+								<img id="contentImg2" width="150" height="120">
+							</div>
+						</td>
+						<td>
+							<div class="content-img-area3" id="contentImgArea3">
+								<img id="contentImg3" width="150" height="120">
+							</div>
+						</td>
+						</table>
+						<div class="thumbnail-file-area">
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
+					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
+				</div>
+						<!-- <div style="border: 1px solid rgba(0,0,0,0.08); height: 30px; width: 100%;" >
 							<input class="selet-picture" type ="file" name = "report-picture">
 						</div>
 						<div style="border: 1px solid rgba(0,0,0,0.08); height: 30px; width: 100%;" >
@@ -293,13 +353,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div style="border: 1px solid rgba(0,0,0,0.08); height: 30px; width: 100%;" >
 							<input class="selet-picture" type ="file" name = "report-picture">
-						</div>
+						</div> -->
 						
 					</div>
 				</div>
 				<br>
 				<div class="list_none" style="display:block; text-align: center; width: 780px;">
-					<button class="submit-btn" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?no=${no}';">작성 취소</button>
+				    <input type="hidden" name="accomoNo" value="${no}">
+					<button class="submit-btn" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?no=${no}';">작성취소</button>
 					<button class="submit-btn" type="submit" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?no=${no}';" >작성 완료</button>
 				</div>
 			</div>
@@ -308,44 +369,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					alert("신고가 등록 되었습니다.")
 				}
 			</script>
+			<script>
+			
+			const $contentImgArea1 = document.getElementById("contentImgArea1");
+			const $contentImgArea2 = document.getElementById("contentImgArea2");
+			const $contentImgArea3 = document.getElementById("contentImgArea3");
+					
+			$contentImgArea1.onclick = function() {
+				document.getElementById("thumbnailImg1").click();
+			}
+			
+			$contentImgArea2.onclick = function() {
+				document.getElementById("thumbnailImg2").click();
+			}
+			
+			$contentImgArea3.onclick = function() {
+				document.getElementById("thumbnailImg3").click();
+			}
+			
+		
+			function loadImg(value, num) {
+				if (value.files && value.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						switch(num){
+						case 1:
+							document.getElementById("contentImg1").src = e.target.result;
+							break;
+						case 2:
+							document.getElementById("contentImg2").src = e.target.result;
+							break;
+						case 3:
+							document.getElementById("contentImg3").src = e.target.result;
+							break;
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			
+		</script>
 		</div>
-		<!-- <div class="tab-content">
-			<div id="home" class="tab-pane fade in active">
-			  <br>등록된 1:1 문의가 없습니다.<br><br>
-			  <b>봉그다 숙박숙박은 회원님들의 소중한 의견에 귀기울여 <br> 신속하고 정확하게 답변드리도록 하겠습니다.</b>
-			</div>
-			<div id="menu1" class="tab-pane fade">
-
-				<form method = "get" action = "QnA.html">
-					<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 >
-							<tr>
-							<td bgcolor=white>
-							<table class = "table2">
-								<tr>
-								<td>제목</td>
-								<td><select id="QnAType" style="width: 500px; margin-top: 10px;">
-									<option value="cancel">교환/취소/환불 문의</option>
-									<option value="shipping">배송 문의</option>
-									<option value="else">기타 문의</option>
-                           	 		</select>
-								</td>
-								</tr>
-				
-								<tr>
-								<td>내용</td>
-								<td><textarea name = content cols=85 rows=15></textarea></td>
-								</tr>
-								</table>
-				
-								<center>
-									<button class="submit_QnA">작성</button>
-								</center>
-							</td>
-							</tr>
-					</table>
-					</form>
-			</div>
-		  </div> -->
 	</div>
 
 	<script>
@@ -360,7 +424,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 		)};
 	</script>
-
+</form>
 </div>
 </div>
 

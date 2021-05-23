@@ -373,6 +373,170 @@ public class UserInfoDAO {
 		}
 		return reservationDetailInfo;
 	}
+
+
+	public List<UserleaveDTO> searchLeaveList(Connection con, PageInfoDTO pageInfo, String condition, String value) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = null;
+		List<UserleaveDTO> leaveList = null;
+		
+		if(condition.equals("userId")) {
+			
+			query = prop.getProperty("selectLeaveList");
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			pstmt.setString(3, value);
+
+			rset = pstmt.executeQuery();
+			
+			leaveList = new ArrayList<>();
+			
+			while(rset.next()) {
+				UserleaveDTO withdrawInfo = new UserleaveDTO();
+						
+				withdrawInfo.setLeaveNo(rset.getInt("WITHDRAW_NO"));
+				withdrawInfo.setEmail(rset.getString("USER_ID"));
+				withdrawInfo.setReason(rset.getString("WITHDRAW_REASON"));
+				withdrawInfo.setLeaveDate(rset.getDate("WITHDRAWDATE"));
+				
+				leaveList.add(withdrawInfo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return leaveList;
+	}
+
+
+	public int leaveCount(Connection con, String condition, String value) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = null;
+		int leaveCount = 0;
+		
+		if(condition.equals("userId")) {
+			
+			query = prop.getProperty("selectLeaveCount");
+		}
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, value);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				leaveCount = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return leaveCount;
+	}
+
+
+	public List<UserReservationStatusDTO> selectSearchIdList(Connection con, PageInfoDTO pageInfo, String condition, String value) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = null;
+		List<UserReservationStatusDTO> reservationList = null;
+		
+		if(condition.equals("userId")) {
+			
+			query = prop.getProperty("selectIdBookList");
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			pstmt.setString(3, value);
+
+			rset = pstmt.executeQuery();
+			
+			reservationList = new ArrayList<>();
+			
+			while(rset.next()) {
+				
+				UserReservationStatusDTO reservationInfo = new UserReservationStatusDTO();
+				
+				reservationInfo.setBookNo(rset.getInt("BOOK_NO"));
+				reservationInfo.setName(rset.getString("BOOK_USER_NAME"));
+				reservationInfo.setEmail(rset.getString("USER_ID"));
+				reservationInfo.setPrice(rset.getInt("PAYMENT_AMOUNT"));
+				reservationInfo.setPeopleCount(rset.getInt("BOOK_PERSONNEL"));
+				reservationInfo.setCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				reservationInfo.setCheckOutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				
+				reservationList.add(reservationInfo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reservationList;
+	}
+
+
+	public int bookCount(Connection con, String condition, String value) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = null;
+		int bookCount = 0;
+		
+		if(condition.equals("userId")) {
+			
+			query = prop.getProperty("selectBookCount");
+		}
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, value);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				bookCount = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bookCount;
+	}
 }
 
 

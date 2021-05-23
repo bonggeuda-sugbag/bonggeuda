@@ -78,8 +78,8 @@
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
-				<li><a href="/bonggeuda/owner/management">숙소관리</a></li>
-				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
@@ -101,9 +101,9 @@
 			<nav>
 			<div class="col-md-3 blog-sidebar">
 			<ul>
-				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="mypage.html"style="color: #6eceda;" >마이 페이지</a></li>
-				<li class="blog-list" ><a href="myPage_report.html" >신고 내역</a></li>
-				<li class="blog-list" style=><a href="mypage_taxes.html" >세금 계산서 발행</a></li>
+				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/mypage"style="color: #6eceda;" >마이 페이지</a></li>
+				<li class="blog-list" ><a href="/bonggeuda/owner/mypgeReport" >신고 내역</a></li>
+				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>
 			<table id="registTb" class="table table-bordered" style="margin-top: -50px;">
@@ -203,6 +203,7 @@
 								</div>
 								<br>
 								<!-- 탈퇴이유 -->
+								<form action="/bonggeuda/owner/ownerWithdraw" method="post">
 								<ul class="reason-list" style="text-align: left;">
 									<li>
 										<input id="reasonRdo0" type="radio" name="radios" value="UN_USE_FREQUENTLY">
@@ -239,11 +240,14 @@
 									<br>
 								<div class="password-wrap">
 									<div class="button-wrap" style="text-align: center;">
-										<button class="submit-btn"  style="background-color: orange; " onclick="location.href='login.html'">
+									
+										<button class="submit-btn"  style="background-color: orange;" type="submit">
+										<input type="hidden" name="ownerNo" value="${ requestScope.selectOwner.ownerNo }">
 										탈퇴하기
 										</button>
 									</div>
 								</div>
+								</form>
 							</div>
 							<script>
 							$(document).ready(function(){

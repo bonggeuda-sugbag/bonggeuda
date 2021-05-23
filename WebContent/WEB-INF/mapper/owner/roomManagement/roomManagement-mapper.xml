@@ -5,13 +5,14 @@
         SELECT 
                COUNT(*)
           FROM RM_ACCOMO_INFO A
-         WHERE A.OWNER_NO = 1
+         WHERE A.OWNER_NO = ?
 	</entry>
 	
-	<entry key="roomListSelect">
+	<entry key="selectAccomoList">
+
 	    SELECT
-	           *
-	      FROM RM_ACCOMO_INFO
+                *
+	      FROM RM_ACCOMO_INFO 
 	     WHERE OWNER_NO = ?
 
 	</entry>

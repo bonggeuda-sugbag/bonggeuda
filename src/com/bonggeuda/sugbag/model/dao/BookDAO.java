@@ -19,6 +19,7 @@ import com.bonggeuda.sugbag.common.queryBuilder.QueryBuilder;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
@@ -457,5 +458,31 @@ public class BookDAO {
 		}
 		
 		return searchResult;
+	}
+
+	public int insertBookInfo(Connection con, BookDTO bookInfo) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertBookInfo");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, bookInfo.getBookUserName());
+			pstmt.setInt(2, bookInfo.getBookPersonnel());
+			pstmt.setString(3, bookInfo.getBookCheckDate());
+			pstmt.setString(4, bookInfo.getBookCheckoutDate());
+			pstmt.setString(5, bookInfo.getBookCheckIn());
+			pstmt.setString(6, bookInfo.getRequest());
+			pstmt.setInt(7, bookInfo.getRoomNo());
+			pstmt.setInt(8, bookInfo.getUserNo());
+			pstmt.setString(9, bookInfo.getUserPhone());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }

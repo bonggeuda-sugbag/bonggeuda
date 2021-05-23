@@ -1,7 +1,9 @@
 package com.bonggeuda.sugbag.service;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -94,6 +96,28 @@ public class UserMoreInfoService {
 		close(con);
 		
 		return qna;
+	}
+
+	/**
+	 * 관리자에게 문의하기 insert
+	 * @param adminQnA 
+	 * @return
+	 */
+	public int insertAdminQnA(AdminQnADTO adminQnA) {
+
+		Connection con = getConnection();
+		
+		int result = moreinfoDAO.insertAdminQnA(con, adminQnA);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 }
