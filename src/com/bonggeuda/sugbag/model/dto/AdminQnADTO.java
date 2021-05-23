@@ -12,11 +12,12 @@ public class AdminQnADTO {
 	private String adminQnAContent;
 	private int memberNo;
 	private String answerContent;
+	private Date answerDate;
 	
 	public AdminQnADTO() {}
 
 	public AdminQnADTO(int adminQnANo, String adminQnATitle, Date adminQnADate, String adminAnswerYn,
-			String adminQnAWriter, String adminQnAContent, int memberNo, String answerContent) {
+			String adminQnAWriter, String adminQnAContent, int memberNo, String answerContent, Date answerDate) {
 		super();
 		this.adminQnANo = adminQnANo;
 		this.adminQnATitle = adminQnATitle;
@@ -26,6 +27,7 @@ public class AdminQnADTO {
 		this.adminQnAContent = adminQnAContent;
 		this.memberNo = memberNo;
 		this.answerContent = answerContent;
+		this.answerDate = answerDate;
 	}
 
 	public int getAdminQnANo() {
@@ -92,12 +94,20 @@ public class AdminQnADTO {
 		this.answerContent = answerContent;
 	}
 
+	public Date getAnswerDate() {
+		return answerDate;
+	}
+
+	public void setAnswerDate(Date answerDate) {
+		this.answerDate = answerDate;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminQnADTO [adminQnANo=" + adminQnANo + ", adminQnATitle=" + adminQnATitle + ", adminQnADate="
 				+ adminQnADate + ", adminAnswerYn=" + adminAnswerYn + ", adminQnAWriter=" + adminQnAWriter
 				+ ", adminQnAContent=" + adminQnAContent + ", memberNo=" + memberNo + ", answerContent=" + answerContent
-				+ "]";
+				+ ", answerDate=" + answerDate + "]";
 	}
 
 }

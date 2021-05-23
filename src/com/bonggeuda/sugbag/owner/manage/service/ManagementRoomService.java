@@ -8,6 +8,7 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
 import com.bonggeuda.sugbag.owner.manage.dao.ManagementRoomSelectDAO;
@@ -30,22 +31,17 @@ public class ManagementRoomService {
 	}
 
 
-	/**
-	 * 오너 넘버로 AccomoInfo 조회해오는 메소드
-	 * @param ownerNo
-	 * @return
-	 */
-	public List<RmAccomoInfoDTO> selectRoomList(int ownerNo) {
+	public List<RmAccomoInfoDTO> selectAccomoList(int ownerNo) {
 		
 		Connection con = getConnection();
-		
-		List<RmAccomoInfoDTO> roomList = roomDAO.selectRoomList(con, ownerNo);
-		
 
+		List<RmAccomoInfoDTO> accomoList = roomDAO.selectAccomoListDAO(con,ownerNo);
 		
 		close(con);
-		
-		return roomList;
+
+		return accomoList;
 	}
+
+
 
 }

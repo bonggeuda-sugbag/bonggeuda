@@ -9,11 +9,12 @@
 <body>
 <script>
 window.onload = function() {
-    alert("예약 승인 되었습니다");
+    alert("발급 신청 완료 되었습니다.");
     
     location.href ="taxbillList"; 
 }
 </script>
+
 
 </body>
 </html>

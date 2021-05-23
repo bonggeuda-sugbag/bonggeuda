@@ -10,6 +10,7 @@
 <link href="${pageContext.servletContext.contextPath}/resources/owner/css/styles.css" rel="stylesheet">
 <link href="${pageContext.servletContext.contextPath}/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <script src="${pageContext.servletContext.contextPath}/resources/owner/js/responsiveslides.min.js"></script>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
 <!--header-->
@@ -23,7 +24,7 @@
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
-				<li><a href="/bonggeuda/owner/management">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
@@ -71,11 +72,9 @@
 		<nav>
 			<ul class="stepbox" id="ulStep">
 				<li>
-				<a href="registration.html">                        
 					<span class="btn-todo-on"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step1.png" width="64px" height="64px"></span>
 					<br><br>
-					<span class="todo-desc on" style="color: #6eceda;">사업자정보 확인</span>
-				</a>                    
+					<span class="todo-desc on" style="color: #6eceda;">사업자정보 확인</span>                   
 				</li>
 				<li class="prog">
 					<span class="do">&nbsp;</span>
@@ -89,11 +88,9 @@
 					<span class="do">&nbsp;</span>
 				</li>
 				<li>
-				<a href="registration2-intro.html">                        
 					<span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step2.png" width="64px" height="64px"></span>
 					<br><br>
 					<span class="todo-desc" style="color: rgb(226, 226, 226);">소개 작성</span>
-				</a>                    
 				</li>
 				<li class="prog">
 					<span class="do">&nbsp;</span>
@@ -107,11 +104,9 @@
 					<span class="do">&nbsp;</span>
 				</li>
 				<li>
-				<a href="registration3-rule.html">                        
 					<span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step3.png" width="64px" height="64px"></span>
 					<br><br>
 					<span class="todo-desc" style="color: rgb(226, 226, 226);">이용규칙 관리</span>
-				</a>                    
 				</li>
 				<li class="prog">
 					<span class="do">&nbsp;</span>
@@ -125,11 +120,9 @@
 					<span class="do">&nbsp;</span>
 				</li>
 				<li>
-				<a href="registration4-room.html">                        
 					<span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step4.png" width="64px" height="64px"></span>
 					<br><br>
 					<span class="todo-desc" style="color: rgb(226, 226, 226);">객실 등록</span>
-				</a>                    
 				</li>
 			</ul>
 		</nav>
@@ -188,7 +181,7 @@
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>업체 주소</span>
 						<input type="text" class="select-nomalsize"  style="margin-bottom: 8px;"  name="address" placeholder="사업자 등록증상 주소를 입력하세요" value="">
-						<button class="submit-btn" type="submit" style="margin-left: 10px;" onclick="daumPostCode()"  >주소 검색</button>
+						<button class="submit-btn" type="button" style="margin-left: 10px;" onclick="openZipSearch()" >주소 검색</button>
 						<br>
 						<input type="text" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize" name="adrDetail" placeholder="나머지 주소를 입력하세요." value="">
 					</div>
@@ -224,29 +217,16 @@
 		</tbody>
 <br><br>
 </table>
-<!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    new daum.Postcode({
-        oncomplete: function(daumPostCode) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-        }
-    }).open();
-</script> -->
-
-<script>
-	function daumPostCode(){
-		alert("주소를 찾아봅시다~");
-
-	}
-	
-</script>
-<script>
-    new daum.Postcode({
-        oncomplete: function(data) {
-            
-        }
-    }).open();
+function openZipSearch() {
+	new daum.Postcode({
+		oncomplete: function(data) {
+			/* $('[name=zip]').val(data.zonecode); //우편번호 (5자리) */
+			$('[name=address]').val(data.address);
+			$('[name=adrDetail]').val(data.buildingName);
+		}
+	}).open();
+}
 </script>
 <br><br><br>
 <!--footer-->

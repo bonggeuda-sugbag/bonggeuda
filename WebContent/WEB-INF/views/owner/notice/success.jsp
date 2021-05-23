@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
-window.onload = function() {
-    alert("예약 승인 되었습니다");
-    
-    location.href ="taxbillList"; 
-}
-</script>
-
+	<script>
+	window.onload = function(){
+		
+		alert("문의가 등록 되었습니다.");
+		
+		location.href="list";
+	}
+	</script>
 </body>
 </html>

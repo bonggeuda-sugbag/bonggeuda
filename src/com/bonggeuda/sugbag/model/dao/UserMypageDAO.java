@@ -23,6 +23,7 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.UserBookContentDTO;
 import com.bonggeuda.sugbag.model.dto.WithdrawReasonDTO;
 
 public class UserMypageDAO {
@@ -745,6 +746,108 @@ public class UserMypageDAO {
 		}
 		
 		return cancleBooklist;
+	}
+
+	/**
+	 * 예약 취소 내역 조회
+	 * @param con
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectCancleContent(Connection con, int userNo, int bookNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		UserBookContentDTO userCancleContent = new UserBookContentDTO();
+		
+		String query = prop.getProperty("userCancleContentSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				userCancleContent.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				userCancleContent.setCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				userCancleContent.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				userCancleContent.setCheckOut(rset.getString("CHECK_OUT"));
+				userCancleContent.setBookNo(rset.getInt("BOOK_NO"));
+				userCancleContent.setBookUserName(rset.getString("BOOK_USER_NAME"));
+				userCancleContent.setBookPhone(rset.getString("BOOK_PHONE"));
+				userCancleContent.setCancleAmount(rset.getInt("CANCLE_AMOUNT"));
+				userCancleContent.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				userCancleContent.setAccomoName(rset.getString("ACCOMO_NAME"));
+				userCancleContent.setRoomName(rset.getString("ROOM_NAME"));
+				
+			}
+			
+			System.out.println(userCancleContent);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userCancleContent;
+	}
+
+	/**
+	 * 이용 완료 내역 조회
+	 * @param con
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectCompleteContent(Connection con, int userNo, int bookNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		UserBookContentDTO userCompleteContent = new UserBookContentDTO();
+		
+		String query = prop.getProperty("userCompleteContentSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				userCompleteContent.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				userCompleteContent.setCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				userCompleteContent.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				userCompleteContent.setCheckOut(rset.getString("CHECK_OUT"));
+				userCompleteContent.setBookNo(rset.getInt("BOOK_NO"));
+				userCompleteContent.setBookUserName(rset.getString("BOOK_USER_NAME"));
+				userCompleteContent.setBookPhone(rset.getString("BOOK_PHONE"));
+				userCompleteContent.setPaymentAmount(rset.getInt("PAYMENT_AMOUNT"));
+				userCompleteContent.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				userCompleteContent.setAccomoName(rset.getString("ACCOMO_NAME"));
+				userCompleteContent.setRoomName(rset.getString("ROOM_NAME"));
+				
+			}
+			
+			System.out.println(userCompleteContent);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userCompleteContent;
 	}
 
 

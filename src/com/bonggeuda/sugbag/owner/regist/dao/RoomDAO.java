@@ -59,6 +59,7 @@ public class RoomDAO {
 				insert = pstmt.executeUpdate();
 				System.out.println(insert);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
