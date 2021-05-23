@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -110,16 +112,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<th>숙소 설정</th>
 	</thead>
 	<tbody>
-		
+		<c:forEach var="accomoList" items="${ requestScope.RmAccmoInfoDTOList }">
 		<tr class="room1">
 			<th style="background-color: white;">
 				<img src="${pageContext.servletContext.contextPath }/resources/owner/images/de9.jpg" alt="">
 
 			</th>
 			<td class="roomList">
-				<p class="roomName">  : 숲 속 통나무집</p>
-				<p class="roomForm">게스트 하우스</p>
-				<p class="roomPrice" style="margin-bottom: 12px;">100,000원 /박</p>
+				<p class="roomName"><c:out value="${ accomoList.accomoName }"/></p>
+				<p class="roomForm"><c:out value="${ accomoList.accomoType }"/></p>
+				<br>
 		
 				<div>
 					<button  class="submit-btn" onclick="location.href='roomModification1-informationCheck.html'">숙소 수정 하기</button>
@@ -135,7 +137,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<button class="roomModifyBtn" onClick="location.href='managementToReview.html'">  리뷰 보러가기</button>
 			</td>
 			<td class="roomCondition">
-				관리자 승인 완료 <br> or <br> 숙소 검수 중<br>  or<br>  숙소 수정 검수 중<br>  or<br>  승인 대기 중
+			<c:choose>
+			
+			<c:when test="${ accomoList.approvalYN eq 'Y'}">
+			관리자 승인 완료
+			</c:when>
+			<c:when test="${ accomoList.approvalYN eq 'N'}">
+			숙소 검수 중
+			</c:when>
+			<c:when test="${ accomoList.approvalYN eq 'X'}">
+							<br>
+				<p style="color: red; font-size: 20px">숙소 등록 거절</p>
+				<br>
+				
+				<button type="submit" class="submit-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
+			</c:when>
+
+			
+			</c:choose>
 			</td>
 			<td>
 				<br>
@@ -150,8 +169,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			</td>
 		</tr>
-
+	</c:forEach>
 	</tbody>
+	
 </table>
 
 <script>

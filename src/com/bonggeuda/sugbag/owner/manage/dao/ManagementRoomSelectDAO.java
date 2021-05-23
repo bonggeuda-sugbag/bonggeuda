@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
 
 public class ManagementRoomSelectDAO {
@@ -34,8 +35,7 @@ public class ManagementRoomSelectDAO {
 
 	public int selectTotalRoom(Connection con, int ownerNo) {
 		
-//		PreparedStatement pstmt = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		int totalCount = 0;
@@ -43,8 +43,11 @@ public class ManagementRoomSelectDAO {
 		String query = prop.getProperty("selectRoomCount");
 		System.out.println(query);
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, ownerNo);		
+			
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				totalCount = rset.getInt("COUNT(*)");
@@ -53,7 +56,7 @@ public class ManagementRoomSelectDAO {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		
 		System.out.println("DAO 토탈 카운트1 : " + totalCount);
@@ -63,49 +66,45 @@ public class ManagementRoomSelectDAO {
 		
 	}
 
-	public List<RmAccomoInfoDTO> selectRoomList(Connection con, int ownerNo) {
-		
+	public List<RmAccomoInfoDTO> selectAccomoListDAO(Connection con, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
-		
 		ResultSet rset = null;
 		
-		RmAccomoInfoDTO rmAccomoDTO = null;
+		List<RmAccomoInfoDTO> selectAccomoList = new ArrayList<RmAccomoInfoDTO>();
+		RmAccomoInfoDTO accomoDTO = new RmAccomoInfoDTO();
 		
-		List<RmAccomoInfoDTO> roomList = new ArrayList<>();
+		String query = prop.getProperty("selectAccomoList");
 		
-		String query = prop.getProperty("roomListSelect");
-		
-			try {
-				pstmt = con.prepareStatement(query);
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, ownerNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				accomoDTO = new RmAccomoInfoDTO();
 				
-				pstmt.setInt(1,ownerNo );
+				accomoDTO.setAccomoName(rset.getString("RM_ACCOMO_NAME"));
+				accomoDTO.setAccomoType(rset.getString("RM_ACCOMO_TYPE"));
+				accomoDTO.setApprovalYN(rset.getString("APPROVAL_YN"));
 				
-				rset = pstmt.executeQuery();
-				
-				while(rset.next()) {
-					rmAccomoDTO = new RmAccomoInfoDTO();
-					
-					rmAccomoDTO.setRequestNo(rset.getInt("REQUEST_NO"));
-					rmAccomoDTO.setAccomoName(rset.getString("RM_ACCOMO_NAME"));
-					rmAccomoDTO.setCeoName(rset.getString("RM_CEO_NAME"));
-					rmAccomoDTO.setAccomoType(rset.getString("RM_ACCOMO_TYPE"));
-					rmAccomoDTO.setApprovalYN(rset.getString("APPROVAL_YN"));
-					
-					roomList.add(rmAccomoDTO);
-					
-					
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
+				selectAccomoList.add(accomoDTO);
 			}
 			
-			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
 		
-			
 		
-		return roomList;
+		
+		return selectAccomoList;
 	}
+
+
 
 }
