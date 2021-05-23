@@ -349,7 +349,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									로그아웃되었습니다.
 								</div>
 								<div class="password-wrap">
-									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='index.jsp'">확인</button></div>
+									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='${ pageContext.servletContext.contextPath }/usermypage/logout'">확인</button></div>
 								</div>
 							</div>
 
@@ -359,11 +359,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button type="button" onclick="location.href='#pop01'">회원탈퇴</button>
 
 				<!-- 회원탈퇴 팝업창 -->
+				<form action="${ pageContext.servletContext.contextPath }/userwithdraw/update" method="post">
 				<div id="pop01" class="overlay">
 					<div class="popup">
 						<a href="#none" class="close">&times;</a>
 							<p style="font-size: 20px; color: red; padding-bottom: 10px;">회원탈퇴</p>
-
 							<div class="cont-step cont-step_02" id="contStep02" style="display: block;">
 								<div class="cont-step_preface">
 									<h3>왜 떠나시는지 이유가 있을까요? </h3>
@@ -371,42 +371,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<!-- 탈퇴이유 -->
 								<ul class="reason-list" style="text-align: left;">
 									<li>
-										<input id="reasonRdo0" type="radio" name="radios" value="UN_USE_FREQUENTLY">
+										<input id="reasonRdo0" type="radio" name="radios" value="사용을 잘 안하게 돼요">
 										<label for="reasonRdo0">사용을 잘 안하게 돼요</label>
 									</li>
 									<li>
-										<input id="reasonRdo1" type="radio" name="radios" value="HAVE_NO_LIKED_HOTEL">
+										<input id="reasonRdo1" type="radio" name="radios" value="예약하고 싶은 숙소가 없어요">
 										<label for="reasonRdo1">예약하고 싶은 숙소가 없어요</label>
 									</li>
 									<li>
-										<input id="reasonRdo2" type="radio" name="radios" value="DIFFICULT_TO_USE">
+										<input id="reasonRdo2" type="radio" name="radios" value="예약, 취소, 혜택받기 등 사용이 어려워요">
 										<label for="reasonRdo2">예약, 취소, 혜택받기 등 사용이 어려워요</label>
 									</li>
 									<li>
-										<input id="reasonRdo3" type="radio" name="radios" value="POINT_COUPON_TOO_LITTLE">
+										<input id="reasonRdo3" type="radio" name="radios" value="혜택(쿠폰, 포인트)이 너무 적어요">
 										<label for="reasonRdo3">혜택(쿠폰, 포인트)이 너무 적어요</label>
 									</li>
 									<li>
-										<input id="reasonRdo4" type="radio" name="radios" value="INFO_TO_DELETE">
+										<input id="reasonRdo4" type="radio" name="radios" value="개인정보 보호를 위해 삭제할 정보가 있어요">
 										<label for="reasonRdo4">개인정보 보호를 위해 삭제할 정보가 있어요</label>
 									</li>
 									<li>
-										<input id="reasonRdo5" type="radio" name="radios" value="EXISTING_ID">
+										<input id="reasonRdo5" type="radio" name="radios" value="다른 계정이 있어요">
 										<label for="reasonRdo5">다른 계정이 있어요</label>
 									</li>
 									<li>
-										<input id="reasonRdo6" type="radio" name="radios" value="OTHER" checked>
+										<input id="reasonRdo6" type="radio" name="radios" value="기타" checked>
 										<label for="reasonRdo6">기타</label>
 										<div class="reason-innder-box reason-innder-box6"  style="margin-bottom: 10px;">
-											<!-- <textarea class="inner-textarea" id="reasonTextarea6" name="innerTextarea" maxlength="80" placeholder="(선택사항) 서비스 이용 중 아쉬운 점에 대해 알려주세요. 고객님의 소리에 귀 기울일게요. 80자 이내"></textarea> -->
 											<input name="reason" style="width:100%;float: left;" placeholder="사유를 입력하세요">
 										</div>
 									</li>
 									</ul>
 								<div class="password-wrap">
-								<form action="${ pageContext.servletContext.contextPath }/userwithdraw/update" method="post">
 									<div class="button-wrap"><button class="btn_submit disabled" onclick="location.href='index.jsp'">탈퇴하기</button></div>
-								</form>	
 								</div>
 							</div>
 							<script>
@@ -428,7 +425,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</script>
 					</div>
 				</div>
-
+				</form>
 			</div>
 		</div>
 	</div>

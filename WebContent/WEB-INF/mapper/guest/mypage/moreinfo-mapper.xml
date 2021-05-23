@@ -7,6 +7,7 @@
 		     , NOTICE_WRITE_DATE
 		     , NOTICE_NO
 		  FROM NOTICE
+		 WHERE WRITER = '사용자'
 	</entry>
 	
 	<entry key="eventSelect">
@@ -28,9 +29,10 @@
 		     , ADMIN_QNA_CONTENT
 		  FROM ADMIN_QNA
 		 WHERE ADMIN_QNA_WRITER = 'U'
-		   AND MEMBER_NO = ?
-		     
+		   AND MEMBER_NO = ? 
+		 ORDER BY ADMIN_QNA_DATE DESC
 	</entry>
+	
 	<entry key="ownerQnAListSelect">
 		SELECT O.OWNER_QNA_NO
 		     , O.OWNER_QNA_TITLE
@@ -44,7 +46,7 @@
 		 WHERE USER_NO = ?
 	</entry>
 	
-		<entry key="adminQnAContentSelect">
+	<entry key="adminQnAContentSelect">
 		SELECT A.ADMIN_QNA_TITLE
 		     , A.ADMIN_QNA_DATE
 		     , A.ADMIN_ANSWER_YN
@@ -55,8 +57,8 @@
 		 WHERE ADMIN_QNA_WRITER = 'U'
 		   AND A.MEMBER_NO = ?
 		   AND A.ADMIN_QNA_NO = ?
-		     
 	</entry>
+	
 	<entry key="ownerQnAContentSelect">
 		SELECT O.OWNER_QNA_TITLE
 		     , O.OWNER_QNA_CONTENT
@@ -70,6 +72,28 @@
 		  JOIN OWNER_ANSWER OA ON(OA.OWNER_QNA_NO = O.OWNER_QNA_NO)
 		 WHERE O.USER_NO = ?
 		   AND O.OWNER_QNA_NO = ?
+	</entry>
+	
+	<entry key="adminQnAInsert">
+		INSERT
+		  INTO ADMIN_QNA
+		     ( ADMIN_QNA_NO
+             , ADMIN_QNA_TITLE
+             , ADMIN_QNA_DATE
+             , ADMIN_ANSWER_YN
+             , ADMIN_QNA_WRITER
+             , ADMIN_QNA_CONTENT
+             , MEMBER_NO
+		     )
+		VALUES
+		     ( SQU_ADMIN_QNA.NEXTVAL
+		     , ?
+		     , SYSDATE
+		     , DEFAULT
+		     , 'U'
+		     , ?
+		     , ?
+		     )
 	</entry>
 	
 

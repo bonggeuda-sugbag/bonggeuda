@@ -188,29 +188,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<div id="menu1" class="tab-pane fade">
 
-					<form method = "get" action = "QnA.jsp">
+					<form method = "post" action = "${ pageContext.servletContext.contextPath }/adminqna/insert">
 						<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 >
 							<tr>
 								<td bgcolor=white>
 									<table class = "table2">
 										<tr>
 											<td style="width: 50px;">제목</td>
-											<td><select id="QnAType" style="width: 500px;">
-												<option value="cancel">교환/취소/환불 문의</option>
-												<option value="shipping">회원정보 수정 및 탈퇴 문의</option>
-												<option value="else">기타 문의</option>
+											<td><select id="QnAType" name="QnAType" style="width: 500px;">
+												<option value="교환/취소/환불 문의">교환/취소/환불 문의</option>
+												<option value="회원정보 수정 및 탈퇴 문의">회원정보 수정 및 탈퇴 문의</option>
+												<option value="기타 문의">기타 문의</option>
                            	 					</select>
 											</td>
 										</tr>
 				
 										<tr>
 										<!-- <td>내용</td> -->
-											<td colspan="2"><textarea name = content cols=85 rows=15 placeholder="관리자 문의 작성공간입니다. 문의 내용을 입력해주세요"></textarea></td>
+											<td colspan="2"><textarea id="QnAContent" name ="QnAContent" cols=85 rows=15 placeholder="관리자 문의 작성공간입니다. 문의 내용을 입력해주세요"></textarea></td>
 										</tr>
 									</table>
 				
 									<center>
-										<button class="submit_QnA" onclick="location.href='QnA.jsp'; notice();">작성</button>
+										<button class="submit_QnA" onclick="notice();">작성</button>
 									</center>
 								</td>
 							</tr>

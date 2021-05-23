@@ -68,6 +68,22 @@
 		 WHERE USER_NO = ?
     </entry>
     
+    <entry key="withdrawInsert">
+		INSERT
+		  INTO WITHDRAW_REASON
+		     ( WITHDRAW_NO
+             , MEMBER_NO
+             , WITHDRAW_REASON
+             , WRITER_TYPE
+		     )
+		VALUES
+		     ( SEQ_WITHDRAW_NO.NEXTVAL
+		     , ?
+		     , ?
+		     , 'user'
+		     )
+    </entry>
+    
     <entry key="reportListSelect">
 		SELECT R.REPORT_NO
 		     , R.REPORT_TITLE

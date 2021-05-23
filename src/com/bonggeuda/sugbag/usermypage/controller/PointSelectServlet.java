@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.service.UserMypageService;
@@ -22,7 +23,7 @@ public class PointSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int userNo = 1;
+		int userNo = ((MemberDTO)request.getSession().getAttribute("member")).getUserNo();
 		UserMypageService mypageService = new UserMypageService();
 		
 		/* 포인트 정보 조회 */		
