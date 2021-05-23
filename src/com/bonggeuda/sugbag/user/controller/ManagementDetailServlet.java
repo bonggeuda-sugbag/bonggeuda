@@ -11,7 +11,7 @@ import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
 import com.bonggeuda.sugbag.user.service.UserInfoService;
 
 @WebServlet("/user/detail")
-public class UserSelectDetailServlet extends HttpServlet {
+public class ManagementDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   

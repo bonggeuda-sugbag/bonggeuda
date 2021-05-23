@@ -136,6 +136,50 @@ public class UserInfoService {
 		return reservationDetailInfo;
 	}
 
+	public List<UserleaveDTO> searchLeaveList(String condition, String value, PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<UserleaveDTO> leaveList = userInfoDAO.searchLeaveList(con, pageInfo, condition, value);
+		
+		close(con);
+		
+		return leaveList;
+	}
+
+	public int searchLeaveCount(String condition, String value) {
+	
+		Connection con = getConnection();
+		
+		int leaveCount = userInfoDAO.leaveCount(con, condition, value);
+		
+		close(con);
+		
+		return leaveCount;
+	}
+
+	public List<UserReservationStatusDTO> selectSearchIdList(String condition, String value, PageInfoDTO pageInfo) {
+	
+		Connection con = getConnection();
+		
+		List<UserReservationStatusDTO> reservationList = userInfoDAO.selectSearchIdList(con, pageInfo, condition, value);
+		
+		close(con);
+		
+		return reservationList;
+	}
+
+	public int searchBookCount(String condition, String value) {
+		
+		Connection con = getConnection();
+		
+		int bookCount = userInfoDAO.bookCount(con, condition, value);
+		
+		close(con);
+		
+		return bookCount;
+	}
+
 
 
 
