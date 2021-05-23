@@ -19,9 +19,7 @@ import com.bonggeuda.sugbag.owner.notice.service.NoticeService;
 public class Notice extends HttpServlet {	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("겟");
-		
+				
 		NoticeService noticeService = new NoticeService();
 
 		/*결과값 반환*/

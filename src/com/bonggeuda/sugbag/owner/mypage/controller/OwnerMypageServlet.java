@@ -21,7 +21,7 @@ public class OwnerMypageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int ownerNo = 2;
+		int ownerNo = 1;
 		// 로그인 됐다 친 업주 정보
 		OwnerMypagService ownerMypageService = new OwnerMypagService();
 		
