@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,8 +56,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="/bonggeuda/owner/management">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
-				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
 			</ul>
 		</div>
 	</div>
@@ -84,8 +85,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</nav>
 		<div class="tab" style="width: 1000px;">
 			<span class="tab_btn active">나의 문의 내역</span>
-			<span class="tab_btn" onclick="location.href='/bonggeuda/owner/question/write'">새 문의 작성</a></span>
+			<span class="tab_btn" onclick="location.href='/bonggeuda/owner/question'">새 문의 작성</a></span>
 		 </div>
+		<c:if test="${ !empty selectQuestion }">
 		<table class="table table-hover" style="width: 1000px;">
 			<thead>
 				<tr>
@@ -96,13 +98,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="qlist" items="${ selectQuestion }">
 				<tr>
-					<th>1</th>
+					<th><c:out value="${ qlist.qnaNo }"/></th>
 					<th>
-						<a href="ManToMan_contents.html">급합니다. 정산이 안들어왔어요.</a></th>
-					<th>21.05.18</th>
-					<th>답변완료</th>
+						<a href="/bonggeuda/owner/question/content">
+						<%-- 	<input type="hidden" name="qnaNo" value="${ qlist.qnaNo }">
+							<input type="hidden" name="qnaNo" value="${ qlist.qnaTitle }"> --%>
+							<c:out value="${ qlist.qnaTitle }"/>
+						</a>
+					</th>
+					<th><c:out value="${ qlist.qnaDate }"/></th>
+					<th><c:out value="${ qlist.answerYn }"/></th>
 				</tr>   
+				</c:forEach>
 			</tbody>
 		 </table>
 		 <div class="tab_each" style="display:block">
@@ -118,6 +127,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			   </ul>
 			   </nav>
 		</div>
+		</c:if>
+		<c:if test="${ empty selectQuestion }">
+			<div class="list_none" style="display: block;">
+			<br>
+			<b>등록된 1 : 1 문의가 없습니다.</b>
+			<br><br>
+			<p>
+				봉그다 숙박숙박은 회원님들의 소중한 의견에 귀 기울여
+				<br>
+				신속하고 정확하게 답변 드리도록 하겠습니다.
+			</p>
+			</div>
+		</c:if>
 	</div>
 </div>
 </div>

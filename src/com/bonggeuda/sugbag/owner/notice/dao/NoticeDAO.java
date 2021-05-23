@@ -36,7 +36,7 @@ public class NoticeDAO {
 		
 		ResultSet rset = null;
 
-		/* 반환시킬 변수를 지정하자 -> 위의 결과값을 잘 ~ 생각해보면 나오지 않을까 싶네요 */
+		/* 반환시킬 변수 지정 */
 		List<NoticeDTO> selectNotice = null;
 		
 		/* --> selectedAll 가지고 xml감 */

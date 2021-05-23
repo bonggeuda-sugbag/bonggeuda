@@ -1,32 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-div.tab {
-    margin-left: 20%;
-    margin-right: 20%;
-	width: 850px;
-}
-
-div.tab_each, div.list_none {
-	margin-left: 20%;
-    margin-right: 20%;
-}
-
-.inquiry .tab_each{display:none}
-.inquiry .tab_each:first-child{display:block}
-.inquiry .tab{display:none}
-.tab_each{clear:both;border-top:1px solid rgba(0,0,0,0.08)}
-</style>
-<title>봉그다 숙박숙박 :: 1대1문의</title>
+<title>봉그다 숙박숙박 :: 예약 관리</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="${pageContext.servletContext.contextPath}/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath}/resources/owner/js/jquery.min.js"></script>
@@ -40,6 +18,25 @@ div.tab_each, div.list_none {
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<style>
+	div.tab, div.tab-content {
+		  margin-left: 20%;
+		  margin-right: 4.8%;
+	}
+	.table tbody tr th{
+		background: white;
+	}
+	table.table tr th{
+		text-align: center;
+		padding: 5px;
+		line-height: 2.5;
+		font-weight: 500;
+		width: auto;
+	}
+	th a:hover{
+		color: #6eceda !important;
+	}
+</style>
 </head>
 <body>
 <!--header-->
@@ -66,7 +63,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-booking"> <!--상단 메뉴바-->
 	<div class=" container">
-		<h3>1:1 문의</h3> 
+		<h3>예약 관리</h3> 
+	<!---->
 	<div class="clearfix"> </div>
 		<!--initiate accordion-->
 		<script type="text/javascript">
@@ -89,49 +87,68 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</script>
 	</div>
 </div>
-<!--blog-->
+<!--//header-->
 <br><br>
 <div class="blog">
-<div class="container">
-	<div class="blog-list">
-		<nav>
-		<div class="col-md-3 blog-sidebar">
-		<ul>
-			<li class="blog-list"><a href="/bonggeuda/owner/notice">공지사항</a></li>
-			<li class="blog-list"><a href="/bonggeuda/owner/frequently">자주 묻는 질문</a></li>
-			<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/question/list" style="color: #6eceda;">1:1 문의</a></li>
-			<li class="blog-list"><a href="/bonggeuda/owner/policy">약관 및 정책</a></li>
-		</ul>
-		</nav>
-	<form action="${ pageContext.servletContext.contextPath }/owner/question/write" method="post">
-	<div id="content" class="sub_wrap more_wrap">
-	<div class="align_rt">
-		<!-- Tab -->
-		<div class="tab">
-			<span class="tab_btn" onclick="location.href='/bonggeuda/owner/question/list'">나의 문의 내역</span>
-			<span class="tab_btn active">새 문의 작성</span>
+	<div class="container">
+		<div class="blog-list">
+			<nav>
+			<div class="col-md-3 blog-sidebar">
+			<ul>
+				<li class="blog-list"><a href="/bonggeuda/owner/notice">공지사항</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/frequently">자주 묻는 질문</a></li>
+				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/question/list" style="color: #6eceda;">1:1 문의</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/policy">약관 및 정책</a></li>
+			</ul>
+			</nav>
 		</div>
+		<table class="type09">
+			<thead>
+				<tr>
+					<th scope="cols"></th>
+					<th scope="cols"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">제목</th>
+					<td colspan="3"><c:out value="${ requestScope.selectContent.adminQnATitle }"/></td>
+				</tr>
+				<tr>
+					<th scope="row">작성일</th>
+					<td><c:out value="${ selectContent.adminQnADate }"/></td>
+				</tr>
+			</tbody>
+		</table>
 		<br>
-		<!-- 문의작성 -->
-		<div class="list_none" style="display: block; height: 604px; width: 850px; border: 1px solid lightgray;">
-			<div class="writeNameBox">
-				<div class="writeNameBoxContent" style="margin: auto;">
-					<p style="text-align: center; font-weight: bold;">제목&nbsp&nbsp&nbsp<input type="text" name="title" style="border-radius: revert; font-weight: normal;" class="titleInput" placeholder=" 제목을 입력하세요." required></p>
-				</div>
+		<p>
+			<br>
+			&nbsp&nbsp<c:out value="${ selectContent.adminQnAContent }"/>
+		</p>
+		<br><br>
+		<table class="type09">
+			<thead>
+				<tr>
+					<th scope="cols"></th>
+					<th scope="cols"></th>
+				</tr>
+			</thead>
+		</table>
+		<div>
+			<br>
+			<b>관리자 답변</b> 
+			<div class="form-control textarea-layer" style="width: 900px; height: 120px; margin-left: 255px; font-size: 15px;">
+				<br>
+				<c:out value="${ selectContent.answerContent }"/>
+				<br><br>
+				<c:out value="${ selectContent.answerDate }"/>
 			</div>
-			<textarea class="wirteContent" style="width: 827px; height: 512px; margin-top: 15px;" rows="22" name="content" placeholder="문의 사항을 적어주세요." required="required"></textarea>
-		</div>
-		<br>
-		<div class="list_none" style="display:block; text-align: center; width: 850px;">
-			<button class="submit-btn" type="submit">작성 완료</button>
 		</div>
 	</div>
-	</div>
-	</form>
 </div>
-</div>
-</div>
-</div>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
 <!--footer-->
 <div class="footer-bottom">
 	<div class="container">
@@ -144,5 +161,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="clearfix"> </div>
 	 </div>
 </div>
+<!--//footer-->
 </body>
 </html>
