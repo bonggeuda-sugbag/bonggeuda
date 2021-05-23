@@ -14,7 +14,7 @@
 	       REQUEST,
 	       R.ROOM_NO,
 	       R.ROOM_NAME,
-	       R.ROOM_FEE, /* 일자 계산해서 넣기 */
+	       R.ROOM_FEE,
 	       A.ACCOMO_NAME,
            U.USER_PHONE
 	  FROM BOOK_LIST B
@@ -68,7 +68,9 @@
 	       R.ROOM_NAME,
 	       R.ROOM_FEE, 
 	       A.ACCOMO_NAME,
-           U.USER_PHONE
+           U.USER_PHONE,
+           U.USER_NO,
+           A.OWNER_NO
 	  FROM BOOK_LIST B
 	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
 	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
@@ -107,6 +109,13 @@
 	
 	UPDATE BOOK_LIST
   	   SET BOOK_STATUS_YNC = 'N'
+     WHERE BOOK_NO = ?
+	
+	</entry>
+	<entry key="bookRejectBookConfirmUpadte">
+	
+	UPDATE BOOK_LIST
+  	   SET BOOK_APPROVE_YN = 'Y'
      WHERE BOOK_NO = ?
 	
 	</entry>

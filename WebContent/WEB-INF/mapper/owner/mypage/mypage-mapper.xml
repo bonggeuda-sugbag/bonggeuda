@@ -7,6 +7,27 @@
 	      FROM OWNER_INFO
 	     WHERE OWNER_NO = ?
 	</entry>
+	
+	<entry key="selectReportList">
+		SELECT
+    		   *
+  		  FROM REPORT
+ 		 WHERE MEMBER_NO = ?
+	
+	</entry>
+	
+	<entry key="selctReportDetail">
+ 		SELECT
+      		   *
+		  FROM REPORT R
+		 WHERE R.REPORT_NO = ? 
+	</entry>
 
+	<entry key="selectRejectReason">
+	  SELECT
+        	 REPORT_ANSWER
+  		FROM REPORT_HISTORY
+ 	   WHERE REPORT_NO = ?
+	</entry>
 	
 </properties>

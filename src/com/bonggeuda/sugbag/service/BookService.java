@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.bonggeuda.sugbag.model.dao.BookDAO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
+import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
@@ -121,6 +122,24 @@ public class BookService {
 		couponPoint = bookDao.selectCouponPoint(con, userNo);
 				
 		return couponPoint;
+	}
+
+	/**
+	 * 숙소 검색
+	 * @param type
+	 * @param checkList
+	 * @param category
+	 * @return
+	 */
+	public List<AccomoInfoDTO> selectAccomoFacility(AccomoSearchDTO search) {
+
+		Connection con = getConnection();
+		
+		List<AccomoInfoDTO> seachResult = null;  
+		seachResult = bookDao.selectAccomoFacility(con, search);  
+		
+		close(con);
+		return seachResult;
 	}
 
 }

@@ -9,5 +9,6 @@
 		     , NOTICE_WRITE_DATE
 		     , NOTICE_NO
 		  FROM NOTICE
+	     ORDER BY NOTICE_NO DESC
 	</entry>
 </properties>

@@ -622,19 +622,19 @@ textarea {
 
 					<div style="display: flex; ">
 						<h4 style="margin: 15px;" >입실일</h4>
-						<input type="date" name="checkInDate">
+						<input type="date" name="checkInDate" required="required">
 					</div>
 					<div style="display: flex; ">
 						<h4 style="margin: 15px;">퇴실일</h4>
-						<input type="date" name="checkOutDate">
+						<input type="date" name="checkOutDate" required="required">
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin: 15px;">인원</h4>
-						<input type="number" name="people" min="1" placeholder="1" style="width: 100px; text-align: center;">
+						<input type="number" name="people" min="1" style="width: 100px; text-align: center;" required="required">
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin : 15px;">체크인 </h4>
-						<select style="width: 150px;" name="checkInTime">
+						<select style="width: 150px;" name="checkInTime" required="required">
 							<option value="11:00">11:00</option>
 							<option value="12:00">12:00</option>
 							<option value="13:00">13:00</option>

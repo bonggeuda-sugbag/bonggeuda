@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,71 +148,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="tab_btn active" data-toggle="tab" href="#home" >나의 문의 내역</span>
 				<span class="tab_btn" data-toggle="tab" href="#menu1">새 문의 작성</span>
 			</div>
-
+			<% int i=0; %>
 			<div class="tab-content">
-				<div id="home" class="tab-pane fade in active">
-			  	<br>등록된 1:1 문의가 없습니다.<br><br>
-			  	<b>봉그다 숙박숙박은 회원님들의 소중한 의견에 귀기울여 <br> 신속하고 정확하게 답변드리도록 하겠습니다.</b>
-				</div>
-				<div id="home" class="tab-pane fade in active">
-					<table class="table table-hover" style="margin-top: 20px; width: 740px;">
-						<thead>
-							<tr>
-								<th style="text-align: center;"><b>번호</b></th>
-								<th style="text-align: center;"><b>제목</b></th>
-								<th style="text-align: center;"><b>작성자</b></th>
-								<th style="text-align: center;"><b>작성일</b></th>
-								<th style="text-align: center;"><b>답변</b></th>
-							</tr>
-						</thead>
-						<tbody>
-						   	<tr>
-								<td style="text-align: center;">2</td>
-								<td>							
-									<a href="QnA_contents.jsp">예약 변경하고 싶어서 글 남깁니다.</a>
-								</td>
-								<td>홍길동</td>
-								<td>21.05.24</td>
-								<td>N</td>
-							</tr>   
-							<tr>
-								<td style="text-align: center;">1</td>
-								<td>							
-									<a href="QnA_contents.jsp">숙소 이용시 취사 가능한가요?</a>
-								</td>
-								<td>홍길동</td>
-								<td>21.05.24</td>
-								<td>N</td>
-						 	</tr>   
-						</tbody>
-				 	</table>
-				</div>
+				<c:if test="${ empty requestScope.userqna  }">
+					<div id="home" class="tab-pane fade in active">
+			  		<br>등록된 1:1 문의가 없습니다.<br><br>
+			  		<b>봉그다 숙박숙박은 회원님들의 소중한 의견에 귀기울여 <br> 신속하고 정확하게 답변드리도록 하겠습니다.</b>
+					</div>
+				</c:if>
+				<c:if test="${ !empty requestScope.userqna }">
+					<div id="home" class="tab-pane fade in active">
+						<table class="table table-hover" style="margin-top: 20px; width: 740px;">
+							<thead>
+								<tr>
+									<th style="text-align: center;"><b>번호</b></th>
+									<th style="text-align: center;"><b>제목</b></th>
+									<th style="text-align: center;"><b>문의처</b></th>
+									<th style="text-align: center;"><b>작성일</b></th>
+									<th style="text-align: center;"><b>답변</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="arr" items="${ userqna }" varStatus="st">
+								<% i++; %>
+						   		<tr>
+									<td style="text-align: center;"><%= i %></td>
+									<td>							
+										<a href="${ pageContext.servletContext.contextPath }/userqnacontent/select?qnaNo=${ arr.qnaNo }&qnaWriter=${ arr.writer }"><c:out value="${ arr.qnaTitle }"/></a>
+									</td>
+									<td><c:out value="${ arr.writer }"/></td>
+									<td><c:out value="${ arr.qnaDate }"/></td>
+									<td><c:out value="${ arr.answerYn }"/></td>
+								</tr> 
+								</c:forEach>  
+							</tbody>
+				 		</table>
+					</div>
+				</c:if> 
 
 				<div id="menu1" class="tab-pane fade">
 
-					<form method = "get" action = "QnA.jsp">
+					<form method = "post" action = "${ pageContext.servletContext.contextPath }/adminqna/insert">
 						<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 >
 							<tr>
 								<td bgcolor=white>
 									<table class = "table2">
 										<tr>
 											<td style="width: 50px;">제목</td>
-											<td><select id="QnAType" style="width: 500px;">
-												<option value="cancel">교환/취소/환불 문의</option>
-												<option value="shipping">회원정보 수정 및 탈퇴 문의</option>
-												<option value="else">기타 문의</option>
+											<td><select id="QnAType" name="QnAType" style="width: 500px;">
+												<option value="교환/취소/환불 문의">교환/취소/환불 문의</option>
+												<option value="회원정보 수정 및 탈퇴 문의">회원정보 수정 및 탈퇴 문의</option>
+												<option value="기타 문의">기타 문의</option>
                            	 					</select>
 											</td>
 										</tr>
 				
 										<tr>
 										<!-- <td>내용</td> -->
-											<td colspan="2"><textarea name = content cols=85 rows=15 placeholder="관리자 문의 작성공간입니다. 문의 내용을 입력해주세요"></textarea></td>
+											<td colspan="2"><textarea id="QnAContent" name ="QnAContent" cols=85 rows=15 placeholder="관리자 문의 작성공간입니다. 문의 내용을 입력해주세요"></textarea></td>
 										</tr>
 									</table>
 				
 									<center>
-										<button class="submit_QnA" onclick="location.href='QnA.jsp'; notice();">작성</button>
+										<button class="submit_QnA" onclick="notice();">작성</button>
 									</center>
 								</td>
 							</tr>

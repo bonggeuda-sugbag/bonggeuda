@@ -7,6 +7,7 @@
 		     , NOTICE_WRITE_DATE
 		     , NOTICE_NO
 		  FROM NOTICE
+		 WHERE WRITER = '사용자'
 	</entry>
 	
 	<entry key="eventSelect">
@@ -28,9 +29,10 @@
 		     , ADMIN_QNA_CONTENT
 		  FROM ADMIN_QNA
 		 WHERE ADMIN_QNA_WRITER = 'U'
-		   AND MEMBER_NO = ?
-		     
+		   AND MEMBER_NO = ? 
+		 ORDER BY ADMIN_QNA_DATE DESC
 	</entry>
+	
 	<entry key="ownerQnAListSelect">
 		SELECT O.OWNER_QNA_NO
 		     , O.OWNER_QNA_TITLE
@@ -38,9 +40,60 @@
 		     , O.OWNER_QNA_DATE
 		     , O.OWNER_ANSWER_YN
 		     , A.ACCOMO_NAME
+		     , O.ACCOMO_NO
 		  FROM OWNER_QNA O
 		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = O.ACCOMO_NO)
 		 WHERE USER_NO = ?
+	</entry>
+	
+	<entry key="adminQnAContentSelect">
+		SELECT A.ADMIN_QNA_TITLE
+		     , A.ADMIN_QNA_DATE
+		     , A.ADMIN_ANSWER_YN
+		     , A.ADMIN_QNA_CONTENT
+		     , AA.ANSWER_CONTENT
+		  FROM ADMIN_QNA A
+		  JOIN ADMIN_ANSWER AA ON(AA.ADMIN_QNA_NO = A.ADMIN_QNA_NO)
+		 WHERE ADMIN_QNA_WRITER = 'U'
+		   AND A.MEMBER_NO = ?
+		   AND A.ADMIN_QNA_NO = ?
+	</entry>
+	
+	<entry key="ownerQnAContentSelect">
+		SELECT O.OWNER_QNA_TITLE
+		     , O.OWNER_QNA_CONTENT
+		     , O.OWNER_QNA_DATE
+		     , O.OWNER_ANSWER_YN
+		     , A.ACCOMO_NAME
+		     , O.ACCOMO_NO
+		     , OA.OWNER_ANSWER_CONTENT
+		  FROM OWNER_QNA O
+		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = O.ACCOMO_NO)
+		  JOIN OWNER_ANSWER OA ON(OA.OWNER_QNA_NO = O.OWNER_QNA_NO)
+		 WHERE O.USER_NO = ?
+		   AND O.OWNER_QNA_NO = ?
+	</entry>
+	
+	<entry key="adminQnAInsert">
+		INSERT
+		  INTO ADMIN_QNA
+		     ( ADMIN_QNA_NO
+             , ADMIN_QNA_TITLE
+             , ADMIN_QNA_DATE
+             , ADMIN_ANSWER_YN
+             , ADMIN_QNA_WRITER
+             , ADMIN_QNA_CONTENT
+             , MEMBER_NO
+		     )
+		VALUES
+		     ( SQU_ADMIN_QNA.NEXTVAL
+		     , ?
+		     , SYSDATE
+		     , DEFAULT
+		     , 'U'
+		     , ?
+		     , ?
+		     )
 	</entry>
 	
 
