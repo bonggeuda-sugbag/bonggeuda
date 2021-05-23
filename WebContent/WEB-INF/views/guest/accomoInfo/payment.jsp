@@ -317,7 +317,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div style="width: 100%; display: flex;">
 						<p style="margin: 0 130px 0 10px; font-size: 18px;">쿠폰사용</p>
 						
-						<select id="discountCoupon" style=" width: 60%; height: 30px; margin-left: 50px;">
+						<select name="coupon" id="discountCoupon" style=" width: 60%; height: 30px; margin-left: 50px;">
 						<c:choose>
 						  <c:when test="${empty couponList}">
 							<option class="couponList"value="0"> 사용가능한 쿠폰이 없습니다.</option>
@@ -325,7 +325,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						  <c:otherwise>
 							<option class="couponList" value="0"> 쿠폰을 선택하세요.</option>
 							<c:forEach var="coupon" items="${couponList}" varStatus = "st">
-							<option id="couponDis"class="couponList"value="${coupon.couponDiscount }" > ${coupon.couponName} : ${coupon.couponDiscount}원 할인(${coupon.couponCondition}원 이상 결제시)</option>
+							<option id="couponDis"class="couponList"value="${coupon.couponDiscount}" > ${coupon.couponName} : ${coupon.couponDiscount}원 할인(${coupon.couponCondition}원 이상 결제시)</option>
 							</c:forEach>
 						  </c:otherwise>
 						</c:choose>
@@ -339,7 +339,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</c:when>
 						<c:otherwise>
 						<!-- <p style="width:40%;margin: 0px 85px 0px 0px; font-size: 18px;">사용가능 포인트 : </p> -->
-						<input id="pointDis"type="number" step="100" min="0" max="${point.point }"style="text-align: right; width: 10%; height: 30px;margin-left: 170px; "> <b style="margin: 5px 0px 0px 5px;">/ ${point.point } 포인트</b>
+						<input  id="pointDis"name="point"type="number" step="100" min="0" max="${point.point }"style="text-align: right; width: 10%; height: 30px;margin-left: 170px; "> <b style="margin: 5px 0px 0px 5px;">/ ${point.point } 포인트</b>
 						</c:otherwise>
 						</c:choose>
 					</div>
@@ -348,8 +348,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<p>요청사항</p>
 					<br>
 					<div style="width: 100%;">
-
-						<textarea style="width:95%; height: 80px; resize:none;" placeholder="요청사항을 입력하세요" ></textarea>
+						<textarea name="request" style="width:95%; height: 80px; resize:none;" placeholder="요청사항을 입력하세요" ></textarea>
 					</div>
 					<br><br>
                 </section>
@@ -408,6 +407,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span id="totalPrice" class="in_price">${totalPrice }</span>
 						<input id="hiddenPrice" name="finalPrice" type="hidden" value=${totalPrice }>
 						<input type = "hidden" name="roomNo" value="${ roomInfo.roomNo}">
+						<input type = "hidden" name="checkInDate" value="${bookInfo.bookCheckDate}">
+						<input type = "hidden" name="checkOutDate" value="${bookInfo.bookCheckoutDate}">
+						<input type = "hidden" name="checkInTime" value="${bookInfo.bookCheckIn}">
+						<input type = "hidden" name="personnel" value="${bookInfo.bookPersonnel}">
+						
 					</p>
 					<ul>
 						<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
