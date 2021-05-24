@@ -20,19 +20,18 @@ import com.bonggeuda.sugbag.owner.notice.service.QuestionService;
 public class QuestionContent extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("????????????????????");
-//		
-//		String qnaNo = request.getParameter("qnaNo");
-//		String qnaTitle = request.getParameter("qnaTitle");
-//		System.out.println(qnaNo);
-//		System.out.println(qnaTitle);
+		
+		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
+		System.out.println(qnaNo);
 		
 		QuestionService contentService = new QuestionService();
 
 		/*결과값 반환*/
-		AdminQnADTO selectContent = contentService.selectContent();
+		AdminQnADTO selectContent = contentService.selectContent(qnaNo);
+		AdminQnADTO selectAnswer = contentService.selectAnswer(qnaNo);
 		
 		request.setAttribute("selectContent", selectContent); //jsp에 값 반환
+		request.setAttribute("selectAnswer", selectAnswer); 
 		
 		/*1:1 문의로 이동*/
 		String path="";

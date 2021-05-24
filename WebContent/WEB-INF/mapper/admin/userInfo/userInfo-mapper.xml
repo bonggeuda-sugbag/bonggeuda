@@ -8,8 +8,8 @@
 	</entry>
 	
 	<entry key="selectBoardList">
-SELECT C.* FROM (
-SELECT B.*,ROWNUM RNUM FROM 
+        SELECT C.* FROM (
+                         SELECT B.*,ROWNUM RNUM FROM 
 (SELECT
         A.USER_NO
       , A.USER_NICKNAME
@@ -94,31 +94,30 @@ SELECT B.*,ROWNUM RNUM FROM
 	</entry>
 	
 	<entry key="selectWithdrawList">
-	
-SELECT 
-       A.RNUM
-     , A.WITHDRAW_NO
-     , A.USER_ID
-     , A.WITHDRAW_REASON
-     , A.WITHDRAWDATE
-  FROM (   
         SELECT 
-               ROWNUM RNUM 
-             , B.WITHDRAW_NO
-             , B.USER_ID
-             , B.WITHDRAW_REASON
-             , B.WITHDRAWDATE
-          FROM (    
-                SELECT
-                    C.WITHDRAW_NO
-                  , U.USER_ID
-                  , C.WITHDRAW_REASON
-                  , U.WITHDRAWDATE
-                FROM WITHDRAW_REASON C
-                JOIN USER_INFO U ON (C.MEMBER_NO = U.USER_NO)
-               ) B
-    ) A
- WHERE A.RNUM BETWEEN ? AND ?
+               A.RNUM
+             , A.WITHDRAW_NO
+             , A.USER_ID
+             , A.WITHDRAW_REASON
+             , A.WITHDRAWDATE
+          FROM (   
+                SELECT 
+                       ROWNUM RNUM 
+                     , B.WITHDRAW_NO
+                     , B.USER_ID
+                     , B.WITHDRAW_REASON
+                     , B.WITHDRAWDATE
+                  FROM (    
+                        SELECT
+                               C.WITHDRAW_NO
+                             , U.USER_ID
+                             , C.WITHDRAW_REASON
+                             , U.WITHDRAWDATE
+                          FROM WITHDRAW_REASON C
+                          JOIN USER_INFO U ON (C.MEMBER_NO = U.USER_NO)
+                        ) B
+               ) A
+        WHERE A.RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectReservationDetail">
@@ -169,71 +168,69 @@ SELECT B.*,ROWNUM RNUM FROM
 	</entry>
 	
 	<entry key="selectLeaveList">
-	
-SELECT 
-       A.RNUM
-     , A.WITHDRAW_NO
-     , A.USER_ID
-     , A.WITHDRAW_REASON
-     , A.WITHDRAWDATE
-  FROM (   
         SELECT 
-               ROWNUM RNUM 
-             , B.WITHDRAW_NO
-             , B.USER_ID
-             , B.WITHDRAW_REASON
-             , B.WITHDRAWDATE
-          FROM (    
-                SELECT
-                    C.WITHDRAW_NO
-                  , U.USER_ID
-                  , C.WITHDRAW_REASON
-                  , U.WITHDRAWDATE
-                FROM WITHDRAW_REASON C
-                JOIN USER_INFO U ON (C.MEMBER_NO = U.USER_NO)
-               ) B
-    ) A
- WHERE A.RNUM BETWEEN ? AND ?
-   AND USER_ID = ?
+       		   A.RNUM
+     		 , A.WITHDRAW_NO
+     		 , A.USER_ID
+     		 , A.WITHDRAW_REASON
+     		 , A.WITHDRAWDATE
+ 		  FROM (   
+        	     SELECT 
+              		    ROWNUM RNUM 
+             		  , B.WITHDRAW_NO
+             		  , B.USER_ID
+             		  , B.WITHDRAW_REASON
+             		  , B.WITHDRAWDATE
+          	       FROM (    
+		                 SELECT
+			                    C.WITHDRAW_NO
+			                  , U.USER_ID
+			                  , C.WITHDRAW_REASON
+			                  , U.WITHDRAWDATE
+		                   FROM WITHDRAW_REASON C
+		                   JOIN USER_INFO U ON (C.MEMBER_NO = U.USER_NO)
+               			) B
+    		    ) A
+ 		  WHERE A.RNUM BETWEEN ? AND ?
+   		    AND USER_ID = ?
 	</entry>
 	
-		<entry key="selectIdBookList">
-	
-SELECT
-         A.RNUM 
-       , A.BOOK_NO
-       , A.BOOK_USER_NAME
-       , A.USER_ID
-       , A.PAYMENT_AMOUNT
-       , A.BOOK_PERSONNEL
-       , A.BOOK_CHECK_DATE
-       , A.BOOK_CHECKOUT_DATE
-   FROM (
-   SELECT
-          ROWNUM RNUM 
-        , B.BOOK_NO
-        , B.BOOK_USER_NAME
-        , B.USER_ID
-        , B.PAYMENT_AMOUNT
-        , B.BOOK_PERSONNEL
-        , B.BOOK_CHECK_DATE
-        , B.BOOK_CHECKOUT_DATE
-     FROM  (
-            SELECT
-                   C.BOOK_NO
-                 , C.BOOK_USER_NAME
-       		     , U.USER_ID
-       		     , P.PAYMENT_AMOUNT
-       		     , C.BOOK_PERSONNEL
-       		     , C.BOOK_CHECK_DATE
-       		     , C.BOOK_CHECKOUT_DATE
-              FROM BOOK_LIST C
-  		      JOIN USER_INFO U ON (C.USER_NO = U.USER_NO)
-  		      JOIN PAYMENT P ON ( C.BOOK_NO = P.BOOK_NO)
-              )B
-        )A
-    WHERE A.RNUM BETWEEN ? AND ?
-      AND USER_ID = ?
+    <entry key="selectIdBookList">	
+        SELECT
+               A.RNUM 
+             , A.BOOK_NO
+             , A.BOOK_USER_NAME
+             , A.USER_ID
+             , A.PAYMENT_AMOUNT
+             , A.BOOK_PERSONNEL
+             , A.BOOK_CHECK_DATE
+             , A.BOOK_CHECKOUT_DATE
+          	FROM(
+                SELECT
+                       ROWNUM RNUM 
+                     , B.BOOK_NO
+                     , B.BOOK_USER_NAME
+                     , B.USER_ID
+                     , B.PAYMENT_AMOUNT
+        			 , B.BOOK_PERSONNEL
+        			 , B.BOOK_CHECK_DATE
+        			 , B.BOOK_CHECKOUT_DATE
+     			  FROM  (
+            			 SELECT
+                   				C.BOOK_NO
+                			  , C.BOOK_USER_NAME
+       		     			  , U.USER_ID
+       		     			  , P.PAYMENT_AMOUNT
+       		     			  , C.BOOK_PERSONNEL
+       		    			  , C.BOOK_CHECK_DATE
+       		    		 	  , C.BOOK_CHECKOUT_DATE
+             			   FROM BOOK_LIST C
+  		      			   JOIN USER_INFO U ON (C.USER_NO = U.USER_NO)
+  		      			   JOIN PAYMENT P ON ( C.BOOK_NO = P.BOOK_NO)
+              			)B
+        	    )A
+            WHERE A.RNUM BETWEEN ? AND ?
+              AND USER_ID = ?
 	</entry>
 	
     <entry key="selectBookCount">
@@ -244,4 +241,6 @@ SELECT
          JOIN PAYMENT C ON ( A.BOOK_NO = C.BOOK_NO)
          WHERE B.USER_ID = ?
 	</entry>
+	
+
 </properties>
