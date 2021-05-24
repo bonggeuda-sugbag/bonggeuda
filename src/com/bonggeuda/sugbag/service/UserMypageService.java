@@ -326,6 +326,67 @@ public class UserMypageService {
 	}
 
 
+	/**
+	 * 예약한 내역 조회하기
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectBookContent(int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		UserBookContentDTO userBookContent = mypageDAO.selectBookContent(con, userNo, bookNo);
+		
+		close(con);
+		
+		return userBookContent;
+	}
+
+
+	/**
+	 * 예약 취소하기 페이지 내역 조회
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectBookCancle(int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		UserBookContentDTO userBookCancle = mypageDAO.selectBookCancle(con, userNo, bookNo);
+		
+		close(con);
+		
+		return userBookCancle;
+	}
+
+
+	/**
+	 * 예약 취소사유 insert & 예약내역 update
+	 * @param userCancelReason
+	 * @param bookNo 
+	 * @param userNo 
+	 * @return
+	 */
+	public int insertCancel(UserBookContentDTO userCancelReason, int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		int result = mypageDAO.insertCancel(con, userCancelReason, userNo, bookNo);
+		
+		if(result > 1) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+
 
 
 

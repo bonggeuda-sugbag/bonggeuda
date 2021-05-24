@@ -174,11 +174,11 @@ public class BookService {
 	 * @param accomoNo 숙소번호
 	 * @return
 	 */
-	public Map<Integer, ReviewDTO> selectBestReview(int accomoNo) {
+	public List<ReviewDTO> selectBestReview(int accomoNo) {
 		
 		Connection con = getConnection();
 		
-		Map<Integer, ReviewDTO> bestReview = null;
+		List<ReviewDTO> bestReview = null;
 		
 		bestReview = bookDao.selectBestReview(con, accomoNo);
 		
@@ -208,6 +208,38 @@ public class BookService {
 		upNdown.add(downCnt);
 		
 		return upNdown;
+	}
+
+	/**
+	 * 리뷰사진 조회용
+	 * @param accomoNo
+	 * @param categoryNo
+	 * @return
+	 */
+	public Map<Integer, String> selectReviewPicture(int accomoNo, int categoryNo) {
+
+		Connection con = getConnection();
+		Map<Integer, String> reviewPicture = null;
+		
+		reviewPicture = bookDao.selectAccomoReviewPicture(con, accomoNo, categoryNo); 
+		
+		close(con);
+		return reviewPicture;
+	}
+
+	/**
+	 * 숙소의 베스트리뷰를 제외한 전체 리뷰
+	 * @param bestReview 베스트리뷰 제외를 위한 매개변수
+	 * @param accomoNo 숙소번호
+	 * @return
+	 */
+	public List<ReviewDTO> selectAllReviewList(List<ReviewDTO> bestReview, int accomoNo) {
+		
+		Connection con = getConnection();
+		List<ReviewDTO> selectAllReviewList = bookDao.selectAllReview(con, accomoNo, bestReview);
+		
+		close(con);
+		return selectAllReviewList;
 	}
 
 }
