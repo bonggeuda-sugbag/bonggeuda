@@ -26,18 +26,21 @@ public class OwnerManagementRoom extends HttpServlet {
 		/* 전체 게시물 수가 필요 */
 		/* 게시물 수가 0 이상인 경우 yesRoom jsp 로 이동 / 반대는 노룸*/
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
-		ManagementRoomService houseBoardService = new ManagementRoomService();
-		int houseCount = houseBoardService.selectHasRoom(ownerNo);
+		ManagementRoomService accomoBoardService = new ManagementRoomService();
+		int houseCount = accomoBoardService.selectHasRoom(ownerNo);
 		// 카운트를 조회해 오니까 int 
 		
 		/* 조회해온 오너 넘버를 이용해서 accomo DTO 리스트로 가져오기 */
 		List<RmAccomoInfoDTO> RmAccmoInfoDTOList = new ArrayList<>();
 		
-		RmAccmoInfoDTOList = houseBoardService.selectAccomoList(ownerNo);
+		RmAccmoInfoDTOList = accomoBoardService.selectAccomoList(ownerNo);
+		System.out.println("디티오" + RmAccmoInfoDTOList);
 		
 		
+		// RM 일경우 카테고리 넘버 1인 아이의 사진경로 가져오기
+		String rmImagePathSelect = accomoBoardService.selectRmImagePath(ownerNo);
+		System.out.println("rm 이미지 경로" + rmImagePathSelect);
 		
-		System.out.println(RmAccmoInfoDTOList);
 		
 		
 		
@@ -46,6 +49,7 @@ public class OwnerManagementRoom extends HttpServlet {
 		
 		if(houseCount > 0) {
 			request.setAttribute("RmAccmoInfoDTOList", RmAccmoInfoDTOList);
+			request.setAttribute("rmImagePathSelect", rmImagePathSelect);
 			
 			path = "/WEB-INF/views/owner/roomManagement/managementYesRoom.jsp";
 			request.getAttribute(path);

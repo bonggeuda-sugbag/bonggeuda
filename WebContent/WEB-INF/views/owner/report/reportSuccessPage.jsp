@@ -9,9 +9,9 @@
 <body>
 <script>
 window.onload = function() {
-    alert("예약 승인 되었습니다");
+    alert("신고 작성 되었습니다");
     
-    location.href ="bookingList"; 
+    location.href ="mypgeReport"; 
 }
 </script>
 

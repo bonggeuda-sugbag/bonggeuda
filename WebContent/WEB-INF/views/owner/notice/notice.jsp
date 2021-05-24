@@ -142,6 +142,7 @@ th a:hover {
 						</ul>
 					</div>
 				</nav>
+			<% int i = 0;  %>
 			<!--공지사항 토글-->
 				<div class="container-xl">
 					<div class="row">
@@ -154,7 +155,7 @@ th a:hover {
 											<a class="btn btn-link" data-toggle="collapse"
 												data-target="#collapseOne" aria-expanded="true"
 												aria-controls="collapseOne">
-												<c:out value="${ board.noticeNo }."/>&nbsp&nbsp
+												<% i++; %><%= i %>.&nbsp&nbsp
 												<c:out value="${ board.noticeTitle }"/>
 												<i class="material-icons">add</i>
 											</a>

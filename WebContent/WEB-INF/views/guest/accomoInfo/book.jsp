@@ -31,6 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 .container h3{
 	display: block; 
@@ -752,6 +753,8 @@ textarea {
 			<div id="btn3_content" style="display: none;">
                 <div style="margin: 0 auto;">
                     <br>
+    
+                    
                     <h3>만족해요</h3>
                     <br>
                         <div style="display: flex; width: 180px; margin: 0 auto;">
@@ -759,8 +762,9 @@ textarea {
                             <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
                         </div>
                     <br>
+                    
                      <p>
-                        전체리뷰  :  100개??-- 수정해야함
+                        전체리뷰  :  ${totalCount} 개
                     </p>
                 </div>
                 <hr>   
@@ -788,7 +792,7 @@ textarea {
                             	<h5>${best.starPoint}</h5>
                             </div>
                             <div class="suksoName">
-                                <p>[조식 1+1 패키지] 슈페리어 트윈 객실 이용 </p><b> · ${best.nickName}</b>
+                                <p>닉네임 </p><b> · ${best.nickName}</b>
                             </div>
                             <div class=reviewContext>
                                 <p>${best.content}</p>
@@ -808,10 +812,15 @@ textarea {
                                 <div>
                                     <h4><strong>${normalReview.title}</strong></h4>
                                 </div>
-								<div class="like"></div>
+								<div class="like" id="test1" ></div>
                                 <div><p>${normalReview.upCnt }</p></div>
-                                <div class="unlike"></div>
+                                <div class="unlike" id="test2" ></div>
                                 <div><p>${normalReview.downCnt}</p></div>
+                                <script>
+                                $("#test1").click(function(){
+							        alrert("하이");                          	
+                                });
+                                </script>
                             </div>
 							<div class="reviewScore" style="display: flex;">
 								<div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
@@ -819,7 +828,7 @@ textarea {
                             	<h5>${normalReview.starPoint}</h5>
                             </div>
                             <div class="suksoName" >
-                                <p>객실타입 :슈페리어 트리플 객실 이용 </p><b> · ${normalReview.nickName }</b>
+                                <p>닉네임 </p><b> · ${normalReview.nickName }</b>
                             </div>
                             <div class=reviewContext>
                                 <p>${normalReview.content}</p>
