@@ -98,11 +98,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</tr>
 			</thead>
 			<tbody>
-				<% int i = 0; %>
 				<c:forEach var="qlist" items="${ selectQuestion }">
-				<% i++; %>
 				<tr>
-					<th><%= i %></th>
+					<th><c:out value="${ qlist.rowNum }"/></th>
 					<th>
  						<a href="${ pageContext.servletContext.contextPath }/owner/question/content?qnaNo=${ qlist.qnaNo }">
 							<c:out value="${ qlist.qnaTitle }"/>
@@ -269,26 +267,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 		}
 		
-		if(document.getElementsByTagName("th")) {
+/* 		if(document.getElementsByTagName("th")) {
 			
 			const $tds = document.getElementsByTagName("th");
 			for(let i = 0; i < $tds.length; i++) {
-				
-				$tds[i].onmouseenter = function() {
-					//this.parentNode.style.backgroundColor = "orangered";
-					this.parentNode.style.cursor = "pointer";
-				}
-				
-				$tds[i].onmouseout = function() {
-					//this.parentNode.style.backgroundColor = "black";
-				}
-				
+
 				$tds[i].onclick = function() {
-					//location.href="${pageContext.servletContext.contextPath }/owner/question/content?qnaNo="
-						//+ this.parentNode.children[0].innerText
+					//상세보기 페이지로 이동
+					location.href="${pageContext.servletContext.contextPath }/owner/question/content?qnaNo="
+						+ this.parentNode.children[0].innerText
 				}
 			}
-		}
+		} */
 		
 		function pageButtonAction(text) {
 			location.href = link + "?currentPage=" + text;
