@@ -28,11 +28,11 @@ public class QuestionService {
 		return selectQuestion;
 	}
 
-	public AdminQnADTO selectContent() {
+	public AdminQnADTO selectContent(int qnaNo) {
 		
 		Connection con = getConnection();
 		
-		AdminQnADTO selectContent = questionDAO.selectContent(con);
+		AdminQnADTO selectContent = questionDAO.selectContent(con, qnaNo);
 		
 		close(con);
 
@@ -53,6 +53,17 @@ public class QuestionService {
 		close(con);
 
 		return insertQuestion;
+	}
+
+	public AdminQnADTO selectAnswer(int qnaNo) {
+
+		Connection con = getConnection();
+		
+		AdminQnADTO selectAnswer = questionDAO.selectAnswer(con, qnaNo);
+		
+		close(con);
+
+		return selectAnswer;
 	}
 
 }

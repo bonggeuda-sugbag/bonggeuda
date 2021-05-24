@@ -13,9 +13,9 @@
 
 
 
-		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%> 
-		<jsp:forward page="/login/test"/>
-
+		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
+<%-- 		<jsp:forward page="/login/test"/>
+ --%>
 
 
 	<script>
