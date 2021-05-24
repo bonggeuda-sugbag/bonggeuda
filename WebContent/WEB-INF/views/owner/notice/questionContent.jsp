@@ -137,11 +137,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div>
 			<br>
 			<b>관리자 답변</b> 
+			
 			<div class="form-control textarea-layer" style="width: 900px; height: 120px; margin-left: 255px; font-size: 15px;">
-				<br>
-				<c:out value="${ selectContent.answerContent }"/>
-				<br><br>
-				<c:out value="${ selectContent.answerDate }"/>
+				<c:if test="${ !empty selectAnswer.answerContent }">
+					<br>
+					<c:out value="${ selectAnswer.answerContent }"/>
+					<br><br>
+					<c:out value="${ selectAnswer.answerDate }"/>			
+				</c:if>
+				<c:if test="${ empty selectAnswer.answerContent }">
+					<br>
+					<p>답변이 작성되지 않았습니다.</p>
+				</c:if>
 			</div>
 		</div>
 	</div>

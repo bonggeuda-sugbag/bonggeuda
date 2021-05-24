@@ -155,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 
 			<div>
-				<button class="review-btn" type="submit" onclick="location.href='write_review.jsp';">리뷰작성</button>
+				<button class="review-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userbookcancle/selectandinsert?bookNo=${ requestScope.userBookContent.bookNo }';">리뷰작성</button>
 			</div>
 
 		</div>

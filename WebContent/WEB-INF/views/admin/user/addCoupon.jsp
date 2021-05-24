@@ -20,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
 <script src="${pageContext.servletContext.contextPath }/resources/admin/js/scripts.js"></script>

@@ -232,5 +232,83 @@
            AND A.CATEGORY_NO = 4
            AND BL.BOOK_NO = ?
    </entry>
+   
+   <entry key="userBookContentSelect">
+    	SELECT
+               BL.BOOK_CHECK_DATE
+             , BL.BOOK_CHECKOUT_DATE
+             , BL.BOOK_CHECK_IN
+             , AI.CHECK_OUT
+             , AI.ACCOMO_NAME
+             , RI.ROOM_NAME
+             , BL.BOOK_NO
+             , BL.BOOK_USER_NAME
+             , BL.BOOK_PHONE
+             , P.PAYMENT_AMOUNT
+             , A.THUMBNAIL_PATH
+             , BL.BOOK_APPROVE_YN
+          FROM BOOK_LIST BL
+          JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
+          JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+          JOIN PAYMENT P ON(P.BOOK_NO = BL.BOOK_NO)
+          JOIN ATTACHMENT A ON(A.REF_NO = RI.ROOM_NO)
+         WHERE BL.USER_NO = ?
+           AND BL.BOOK_STATUS_YNC = 'N'
+           AND A.CATEGORY_NO = 4
+           AND BL.BOOK_NO = ?
+   </entry>
+   
+   <entry key="userBookCancleSelect">
+    	SELECT
+               BL.BOOK_CHECK_DATE
+             , BL.BOOK_CHECKOUT_DATE
+             , BL.BOOK_CHECK_IN
+             , AI.CHECK_OUT
+             , AI.ACCOMO_NAME
+             , RI.ROOM_NAME
+             , BL.BOOK_NO
+             , BL.BOOK_USER_NAME
+             , BL.BOOK_PHONE
+             , P.PAYMENT_AMOUNT
+             , A.THUMBNAIL_PATH
+             , P.PAYMENT_METHOD
+             , P.PAYMENT_NO
+          FROM BOOK_LIST BL
+          JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
+          JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
+          JOIN PAYMENT P ON(P.BOOK_NO = BL.BOOK_NO)
+          JOIN ATTACHMENT A ON(A.REF_NO = RI.ROOM_NO)
+         WHERE BL.USER_NO = ?
+           AND BL.BOOK_STATUS_YNC = 'N'
+           AND A.CATEGORY_NO = 4
+           AND BL.BOOK_NO = ?
+   </entry>
+   
+   <entry key="cancelHistoryInsert">
+   		INSERT
+   		  INTO CANCLE_HISTORY
+   		     ( REASON_CANCLE
+             , REFUND_STATUS
+             , CANCLE_NO
+             , PAYMENT_NO
+             , CANCLE_DATE
+             , CANCLE_AMOUNT
+   		     )
+   		VALUES
+   		     ( ?
+   		     , DEFAULT
+   		     , SQU_CANCLE_HISTORY.NEXTVAL
+   		     , ?
+   		     , SYSDATE
+   		     , ?
+   		     )
+   </entry>
+   
+   <entry key="cancelBookListUpdate">
+   		UPDATE BOOK_LIST
+   		   SET BOOK_STATUS_YNC = 'C'
+   		 WHERE USER_NO = ?
+   		   AND BOOK_NO = ?
+   </entry>
 
 </properties>

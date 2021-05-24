@@ -11,18 +11,12 @@
     
        <%--  <jsp:forward page="/WEB-INF/views/guest/accomoInfo/report.jsp"></jsp:forward> --%>
 
-
-
-
-		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> 
-		<%-- <jsp:forward page="/login/test"/>--%>
-
-
+		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
 
 	<script>
 		(function(){
 			
-			location.href="${ pageContext.servletContext.contextPath}/user/booklist";    
+			location.href="${ pageContext.servletContext.contextPath}/notice/list";    
 		})();
 	</script>  
 </body>

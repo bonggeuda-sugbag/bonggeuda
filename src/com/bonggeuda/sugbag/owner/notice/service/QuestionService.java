@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.QnADTO;
 import com.bonggeuda.sugbag.owner.notice.dao.QuestionDAO;
 
@@ -28,11 +29,11 @@ public class QuestionService {
 		return selectQuestion;
 	}
 
-	public AdminQnADTO selectContent() {
+	public AdminQnADTO selectContent(int qnaNo) {
 		
 		Connection con = getConnection();
 		
-		AdminQnADTO selectContent = questionDAO.selectContent(con);
+		AdminQnADTO selectContent = questionDAO.selectContent(con, qnaNo);
 		
 		close(con);
 
@@ -53,6 +54,44 @@ public class QuestionService {
 		close(con);
 
 		return insertQuestion;
+	}
+
+	public AdminQnADTO selectAnswer(int qnaNo) {
+
+		Connection con = getConnection();
+		
+		AdminQnADTO selectAnswer = questionDAO.selectAnswer(con, qnaNo);
+		
+		close(con);
+
+		return selectAnswer;
+	}
+
+	public int selectTotalCount() {
+
+		Connection con = getConnection();
+		
+		int totalCount = questionDAO.selectTotalCount(con);
+		
+		if(totalCount > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return totalCount;
+	}
+
+	public List<QnADTO> selectQuestion(PageInfoDTO pageInfo) {
+
+		Connection con = getConnection();
+		
+		List<QnADTO> selectQuestion = questionDAO.selectQuestion(con, pageInfo);
+		
+		close(con);
+
+		return selectQuestion;
 	}
 
 }
