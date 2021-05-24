@@ -20,6 +20,9 @@
 			case "insertCancel" :
 				movePath = "${ pageContext.servletContext.contextPath }/userbooklist/select";
 				break;
+			case "insertReview" :
+				movePath = "${ pageContext.servletContext.contextPath }/userbooklist/select";
+				break;
 
 		}
 		

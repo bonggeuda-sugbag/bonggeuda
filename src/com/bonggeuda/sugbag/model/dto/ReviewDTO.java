@@ -1,5 +1,7 @@
 package com.bonggeuda.sugbag.model.dto;
 
+import java.util.List;
+
 public class ReviewDTO {
 
 	//리뷰정보
@@ -17,13 +19,15 @@ public class ReviewDTO {
 	private int downCnt; //싫어요 수
     //리뷰사진
 	private AttachmentDTO attachment;
+	private List<AttachmentDTO> attachmentList; //리뷰첨부사진
 
 	public ReviewDTO() {
 		super();
 	}
 
 	public ReviewDTO(int reviewNo, String title, String content, int starPoint, int bookNo, String nickName,
-			int historyNo, String updownStatus, int userNo, int upCnt, int downCnt, AttachmentDTO attachment) {
+			int historyNo, String updownStatus, int userNo, int upCnt, int downCnt, AttachmentDTO attachment,
+			List<AttachmentDTO> attachmentList) {
 		super();
 		this.reviewNo = reviewNo;
 		this.title = title;
@@ -37,6 +41,7 @@ public class ReviewDTO {
 		this.upCnt = upCnt;
 		this.downCnt = downCnt;
 		this.attachment = attachment;
+		this.attachmentList = attachmentList;
 	}
 
 	public int getReviewNo() {
@@ -135,16 +140,21 @@ public class ReviewDTO {
 		this.attachment = attachment;
 	}
 
+	public List<AttachmentDTO> getAttachmentList() {
+		return attachmentList;
+	}
+
+	public void setAttachmentList(List<AttachmentDTO> attachmentList) {
+		this.attachmentList = attachmentList;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewDTO [reviewNo=" + reviewNo + ", title=" + title + ", content=" + content + ", starPoint="
 				+ starPoint + ", bookNo=" + bookNo + ", nickName=" + nickName + ", historyNo=" + historyNo
 				+ ", updownStatus=" + updownStatus + ", userNo=" + userNo + ", upCnt=" + upCnt + ", downCnt=" + downCnt
-				+ ", attachment=" + attachment + "]";
+				+ ", attachment=" + attachment + ", attachmentList=" + attachmentList + "]";
 	}
-	
-	
 
-	
 	
 }

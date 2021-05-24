@@ -16,6 +16,7 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.UserBookContentDTO;
 import com.bonggeuda.sugbag.model.dto.WithdrawReasonDTO;
 
@@ -384,6 +385,59 @@ public class UserMypageService {
 		close(con);
 		
 		return result;
+	}
+
+
+	/**
+	 * 리뷰 기본 정보 조회
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectreviewInfo(int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		UserBookContentDTO reviewInfo = mypageDAO.selectreviewInfo(con, userNo, bookNo);
+		
+		close(con);
+		
+		return reviewInfo;
+		
+	}
+
+
+	/**
+	 * 리뷰 insert
+	 * @param userReview
+	 * @return
+	 */
+	public int insertReview(ReviewDTO userReview) {
+
+		System.out.println("들어어와오랏");
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		int reviewResult = mypageDAO.insertReview(con, userReview);
+		
+		List<AttachmentDTO> fileList = userReview.getAttachmentList();
+		
+		int accachmentResult = 0;
+		for(int i = 0; i < fileList.size(); i++) {
+			accachmentResult += mypageDAO.insertAttachment(con, fileList.get(i));
+			System.out.println(accachmentResult);
+		}
+		if(reviewResult > 0 && accachmentResult == fileList.size()) {
+			commit(con);
+			result = 1;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		return result;
+		
 	}
 
 
