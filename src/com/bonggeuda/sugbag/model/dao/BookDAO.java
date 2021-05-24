@@ -426,7 +426,6 @@ public class BookDAO {
 		List<AccomoInfoDTO> searchResult = null;
 		
 		String query = new QueryBuilder().queryBuiler(search).toString();
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -450,7 +449,6 @@ public class BookDAO {
 				
 				searchResult.add(accomoInfo);
 			}
-			System.out.println(searchResult);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -527,7 +525,6 @@ public class BookDAO {
 				
 				bestReviewList.add(review);
 			}
-			System.out.println(bestReviewList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -650,7 +647,6 @@ public class BookDAO {
         
 		List<ReviewDTO> reviewList = null;
 		String query = new QueryBuilder().reviewSelectBuilder(bestReview).toString();
-		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, accomoNo);
