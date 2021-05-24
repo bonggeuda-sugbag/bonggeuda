@@ -756,73 +756,80 @@ textarea {
                     <br>
                         <div style="display: flex; width: 180px; margin: 0 auto;">
                             <div class="reviewStar" ></div>
-                            <div  style="margin: 0 auto; width: 50px"><h3>8.7</h3></div>
+                            <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
                         </div>
                     <br>
                      <p>
-                        전체리뷰  :  100개 | 제휴점 답변  :  99개
+                        전체리뷰  :  100개??-- 수정해야함
                     </p>
                 </div>
                 <hr>   
+                <br>
+
                 <ul class = reviewWrap>
+                	<c:forEach var="best" items="${bestReview}">
+                	
                     <li>
                         <div class="guestReview">
                             <div class="topReview" style="text-align: center;">베스트리뷰</div>
                             <div class="reviewTitle">
                                 <div>
-                                    <h4><strong>여기만한 곳은 어디에도 없을거에요.</strong></h4>
+                                    <h4><strong>${best.title }</strong></h4>
                                 </div>
                                 <div class="like"></div>
-                                <div><p>160</p></div>
+                                <div><p>${best.upCnt }</p></div>
                                 <div class="unlike"></div>
-                                <div><p>80</p></div>
+                                <div><p>${best.downCnt }</p></div>
                             </div>
 							
                             <div class="reviewScore" style="display: flex;">
 								<div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -38px;">
 								</div>
-                            	<h5>4</h5>
+                            	<h5>${best.starPoint}</h5>
                             </div>
                             <div class="suksoName">
-                                <p>[조식 1+1 패키지] 슈페리어 트윈 객실 이용 </p><b> · 햇살02</b>
+                                <p>[조식 1+1 패키지] 슈페리어 트윈 객실 이용 </p><b> · ${best.nickName}</b>
                             </div>
                             <div class=reviewContext>
-                                <p>여기 너무 좋았어요 <br>다음에 또 오고 싶어요!!<br>최고링</p>
+                                <p>${best.content}</p>
                             </div>
-                            <div class=reviewPicture>
-                                사진첨부예정
+                            <div class=reviewPicture  style=" width : 300px; height: 170px; display: block;background: url(${pageContext.servletContext.contextPath }/${best.attachment.thumbnailPath }); background-size: 300px 170px;">
                             </div>
                         </div>                      
                     </li>
-
+					</c:forEach>
 					                 
 
                     <hr>
+                    <c:forEach var="normalReview" items="${requestScope.reviewList }">
                     <li>
                         <div class="guestReview">
                             <div class="reviewTitle">
                                 <div>
-                                    <h4><strong>일반리뷰</strong></h4>
+                                    <h4><strong>${normalReview.title}</strong></h4>
                                 </div>
 								<div class="like"></div>
-                                <div><p>160</p></div>
+                                <div><p>${normalReview.upCnt }</p></div>
                                 <div class="unlike"></div>
-                                <div><p>80</p></div>
+                                <div><p>${normalReview.downCnt}</p></div>
                             </div>
 							<div class="reviewScore" style="display: flex;">
 								<div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
 								</div>
-                            	<h5>3</h5>
+                            	<h5>${normalReview.starPoint}</h5>
                             </div>
                             <div class="suksoName" >
-                                <p>객실타입 :슈페리어 트리플 객실 이용 </p><b> · 햇살03</b>
+                                <p>객실타입 :슈페리어 트리플 객실 이용 </p><b> · ${normalReview.nickName }</b>
                             </div>
                             <div class=reviewContext>
-                                <p>여기 너무 좋았어요 <br>다음에 또 오고 싶어요!!<br>최고링</p>
+                                <p>${normalReview.content}</p>
+                            </div>
+                              <div class=reviewPicture  style=" width : 300px; height: 170px; display: block;background: url(${pageContext.servletContext.contextPath }/${normalReview.attachment.thumbnailPath }); background-size: 300px 170px;">
                             </div>
                         </div>
                     </li>
-                </ul>
+                    </c:forEach>
+                </ul> 
 				<hr>
 				<div class="clearfix"> </div>
 	    <nav>
