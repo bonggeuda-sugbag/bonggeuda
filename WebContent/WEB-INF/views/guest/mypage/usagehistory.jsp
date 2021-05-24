@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 100%;">
 
 			<div style="font-size: 15px; border: 1px solid; width: 100px; background: #d3d3d3; border-style: none; border-radius: 5px;">이용 완료</div>
-			<div style="font-size: 30px; margin-bottom: 20px; text-align: left;"><c:out value="${ requestScope.userCompleteContent.accomoName }"/> <c:out value="${ requestScope.userCancleContent.roomName }"/></div>
+			<div style="font-size: 30px; margin-bottom: 20px; text-align: left;"><c:out value="${ requestScope.userCompleteContent.accomoName }"/> <c:out value="${ requestScope.userCompleteContent.roomName }"/></div>
 			<img src="${pageContext.servletContext.contextPath}/${ requestScope.userCompleteContent.thumbnailPath }" style="width: 70%; margin-bottom: 50px; width: 100%">
 
 			<div class="reservation_information">
@@ -155,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 
 			<div>
-				<button class="review-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userbookcancle/selectandinsert?bookNo=${ requestScope.userBookContent.bookNo }';">리뷰작성</button>
+				<button class="review-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userwritereview/selectAndinsert?bookNo=${ requestScope.userCompleteContent.bookNo }';">리뷰작성</button>
 			</div>
 
 		</div>

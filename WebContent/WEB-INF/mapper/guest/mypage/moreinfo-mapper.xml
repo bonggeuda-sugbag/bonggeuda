@@ -58,6 +58,16 @@
 		   AND A.MEMBER_NO = ?
 		   AND A.ADMIN_QNA_NO = ?
 	</entry>
+	<entry key="adminQnAContentSelectTwo">
+		SELECT A.ADMIN_QNA_TITLE
+		     , A.ADMIN_QNA_DATE
+		     , A.ADMIN_ANSWER_YN
+		     , A.ADMIN_QNA_CONTENT
+		  FROM ADMIN_QNA A
+		 WHERE ADMIN_QNA_WRITER = 'U'
+		   AND A.MEMBER_NO = ?
+		   AND A.ADMIN_QNA_NO = ?
+	</entry>
 	
 	<entry key="ownerQnAContentSelect">
 		SELECT O.OWNER_QNA_TITLE
@@ -70,6 +80,18 @@
 		  FROM OWNER_QNA O
 		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = O.ACCOMO_NO)
 		  JOIN OWNER_ANSWER OA ON(OA.OWNER_QNA_NO = O.OWNER_QNA_NO)
+		 WHERE O.USER_NO = ?
+		   AND O.OWNER_QNA_NO = ?
+	</entry>
+	<entry key="ownerQnAContentSelectTwo">
+		SELECT O.OWNER_QNA_TITLE
+		     , O.OWNER_QNA_CONTENT
+		     , O.OWNER_QNA_DATE
+		     , O.OWNER_ANSWER_YN
+		     , A.ACCOMO_NAME
+		     , O.ACCOMO_NO
+		  FROM OWNER_QNA O
+		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = O.ACCOMO_NO)
 		 WHERE O.USER_NO = ?
 		   AND O.OWNER_QNA_NO = ?
 	</entry>

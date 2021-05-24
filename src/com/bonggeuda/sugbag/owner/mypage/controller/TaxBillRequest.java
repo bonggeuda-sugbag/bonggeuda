@@ -36,10 +36,14 @@ public class TaxBillRequest extends HttpServlet {
 		java.sql.Date startDate = java.sql.Date.valueOf( request.getParameter("startDate"));
 		java.sql.Date endDate = java.sql.Date.valueOf(request.getParameter("endDate"));
 		
+		// 어코모 넘도 가져오기
+		
 
 				
 		
 		requestTaxBill = ownerService.insertRequestTaxBill(ownerNo ,startDate ,endDate,accomoNo);
+		
+		System.out.println(requestTaxBill);
 		String path = "";
 		if(requestTaxBill > 0) {
 			path = "/WEB-INF/views/owner/mypage/requestTaxBillSuccess.jsp";
@@ -64,6 +68,7 @@ public class TaxBillRequest extends HttpServlet {
 		
 		int  ownerNo = 1;
 		// 먼저 조회하기 오너 넘에 따른 어코모 네임들
+		// 어커모 넘도 조회해 오기
 		List<AccomoDTO> accomoNameList = new ArrayList<>();
 		
 		OwnerMypagService ownerService = new OwnerMypagService();

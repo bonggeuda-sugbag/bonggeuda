@@ -43,5 +43,18 @@ public class ManagementRoomService {
 	}
 
 
+	public String selectRmImagePath(int ownerNo) {
+		
+		Connection con = getConnection();
+
+		String selectrmImagePath = roomDAO.selectRmImagePathDAO(con, ownerNo);
+		
+		close(con);
+
+		
+		return selectrmImagePath;
+	}
+
+
 
 }

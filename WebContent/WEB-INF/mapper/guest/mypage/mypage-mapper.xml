@@ -111,6 +111,18 @@
 		   AND R.REPORTED_TYPE = 'owner'
 		   AND R.REPORT_NO = ?
     </entry>
+    <entry key="reportContentTwo">
+		SELECT R.REPORT_TITLE
+		     , A.ACCOMO_NAME
+		     , R.REPORT_DATE
+		     , R.REPORT_REASON
+		  FROM REPORT R
+		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = R.REPORTED_NO)
+		 WHERE R.WRITER_TYPE = 'guest'
+		   AND R.MEMBER_NO = ?
+		   AND R.REPORTED_TYPE = 'owner'
+		   AND R.REPORT_NO = ?
+    </entry>
     
     <entry key="reportImgSelect">
 		SELECT THUMBNAIL_PATH
@@ -310,5 +322,62 @@
    		 WHERE USER_NO = ?
    		   AND BOOK_NO = ?
    </entry>
+   
+   <entry key="reviewInfoSelect">
+   		SELECT AI.ACCOMO_NAME
+             , RI.ROOM_NAME
+             , BL.BOOK_NO
+          FROM BOOK_LIST BL
+          JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
+          JOIN ACCOMO_INFO AI ON(RI.ACCOMO_NO = AI.ACCOMO_NO)
+         WHERE USER_NO = ?
+           AND BOOK_NO = ?
+   </entry>
+   
+   <entry key="reviewInsert">
+   		INSERT
+   		  INTO REVIEW
+   		     ( REVIEW_NO
+             , REVIEW_CONTENT
+             , STAR_POINT
+             , BOOK_NO
+             , REVIEW_TITLE
+   		     )
+   		VALUES
+   		     ( SQU_REVIEW.NEXTVAL
+   		     , ?
+   		     , ?
+   		     , ?
+   		     , ?
+   		     )
+   </entry>
+   
+   <entry key="insertReviewAttachment">
+        INSERT
+          INTO ATTACHMENT
+             ( ATTACHMENT_NO
+             , CATEGORY_NO
+             , ORIGIN_NAME
+             , SAVE_NAME
+             , SAVE_PATH
+             , FILE_TYPE
+             , THUMBNAIL_PATH
+             , ATTACHMENT_STATUS
+             , REQUEST_NO_TAXBILL
+             , REF_NO
+             )
+        VALUES
+             ( SEQ_ATTACHMENT_NO.NEXTVAL
+              , ?
+              , ?
+              , ?
+              , ?
+              , ?
+              , ?
+              , 'Y'
+              , null
+              , REVIEW_NO_SEQ.CURRVAL
+              )
+    </entry>
 
 </properties>
