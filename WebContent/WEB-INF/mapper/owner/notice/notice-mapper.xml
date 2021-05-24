@@ -30,10 +30,21 @@
 		     , A.ADMIN_QNA_DATE
 		     , A.ADMIN_ANSWER_YN
 		     , A.ADMIN_QNA_CONTENT
-		     , B.ANSWER_CONTENT
-		     , B.ANSWER_DATE
+<!-- 		     , B.ANSWER_CONTENT
+		     , B.ANSWER_DATE -->
 		  FROM ADMIN_QNA A
-		  JOIN ADMIN_ANSWER B ON(B.ADMIN_QNA_NO = A.ADMIN_QNA_NO)
+<!-- 		  JOIN ADMIN_ANSWER B ON(B.ADMIN_QNA_NO = A.ADMIN_QNA_NO)
+ -->		 WHERE ADMIN_QNA_WRITER = 'O'
+		   AND A.MEMBER_NO = ?
+		   AND A.ADMIN_QNA_NO = ?     
+	</entry>
+	
+ 	<entry key="selectAnswer">
+		SELECT 
+		       B.ANSWER_CONTENT
+		     , B.ANSWER_DATE
+		  FROM ADMIN_ANSWER B
+		  JOIN ADMIN_QNA A ON(A.ADMIN_QNA_NO = B.ADMIN_QNA_NO)
 		 WHERE ADMIN_QNA_WRITER = 'O'
 		   AND A.MEMBER_NO = ?
 		   AND A.ADMIN_QNA_NO = ?     

@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -23,6 +24,7 @@ import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
+import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class BookDAO {
@@ -460,8 +462,14 @@ public class BookDAO {
 		return searchResult;
 	}
 
+	/**
+	 * 예약정보 Insert
+	 * @param con
+	 * @param bookInfo
+	 * @return
+	 */
 	public int insertBookInfo(Connection con, BookDTO bookInfo) {
-		
+	
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -484,5 +492,191 @@ public class BookDAO {
 		}
 		
 		return result;
+	}
+
+	/**
+	 * 베스트리뷰검색
+	 * @param con
+	 * @param accomoNo
+	 * @return
+	 */
+	public List<ReviewDTO> selectBestReview(Connection con, int accomoNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ReviewDTO> bestReviewList = null;
+		
+		String query = prop.getProperty("selectBestReview");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			bestReviewList = new ArrayList<>();
+			
+			while(rset.next()) {
+				ReviewDTO review = new ReviewDTO();
+				
+				review.setReviewNo(rset.getInt("리뷰번호"));
+				review.setContent(rset.getString("리뷰내용"));
+				review.setStarPoint(rset.getInt("별점"));
+				review.setBookNo(rset.getInt("예약번호"));
+				review.setTitle(rset.getString("리뷰제목"));
+				review.setUpCnt(rset.getInt("좋아요"));
+				review.setNickName(rset.getString("닉네임"));
+				
+				bestReviewList.add(review);
+			}
+			System.out.println(bestReviewList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bestReviewList;
+	}
+
+	/**
+	 * 리뷰 업 카운트
+	 * @param con
+	 * @param accomoNo
+	 * @return
+	 */
+	public Map<Integer, Integer> selectReviewUpCnt(Connection con, int accomoNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Map<Integer,Integer> upCount = null;
+		
+		String query = prop.getProperty("selectUpCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			upCount = new HashMap<>();
+			
+			while(rset.next()) {
+				upCount.put(rset.getInt("리뷰번호"), rset.getInt("좋아요"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return upCount;
+	}
+
+	/**
+	 * 리뷰다운카운트
+	 * @param con
+	 * @param accomoNo
+	 * @return
+	 */
+	public Map<Integer, Integer> selectReviewDownCnt(Connection con, int accomoNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Map<Integer,Integer> downCount = null;
+		
+		String query = prop.getProperty("selectDownCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			downCount = new HashMap<>();
+			
+			while(rset.next()) {
+				downCount.put(rset.getInt("리뷰번호"), rset.getInt("싫어요"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return downCount;
+	}
+
+	/**
+	 * 리뷰사진
+	 * @param con
+	 * @param accomoNo
+	 * @param categoryNo
+	 * @return
+	 */
+	public Map<Integer, String> selectAccomoReviewPicture(Connection con, int accomoNo, int categoryNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Map<Integer, String> reviewPictureList = null;
+		
+		String query = prop.getProperty("selectAccomoReviewPicture");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, categoryNo);
+			
+			rset = pstmt.executeQuery();
+			reviewPictureList = new HashMap<>();
+			while(rset.next()) {
+				reviewPictureList.put(rset.getInt("리뷰번호"), rset.getString("사진"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reviewPictureList;
+	}
+
+	/**
+	 * 숙소의 모든리뷰조회
+	 * @param con
+	 * @param accomoNo
+	 * @param bestReview
+	 * @return
+	 */
+	public List<ReviewDTO> selectAllReview(Connection con, int accomoNo, List<ReviewDTO> bestReview) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        
+		List<ReviewDTO> reviewList = null;
+		String query = new QueryBuilder().reviewSelectBuilder(bestReview).toString();
+		System.out.println(query);
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, 2);
+			pstmt.setInt(3, 4);
+			rset = pstmt.executeQuery();
+			
+			reviewList = new ArrayList();
+			
+			while(rset.next()) {
+				ReviewDTO review = new ReviewDTO();
+				review.setReviewNo(rset.getInt("리뷰번호"));
+				review.setContent(rset.getString("리뷰내용"));
+				review.setStarPoint(rset.getInt("별점"));
+				review.setBookNo(rset.getInt("예약번호"));
+				review.setTitle(rset.getString("리뷰제목"));
+				review.setNickName(rset.getString("작성자"));
+				
+				reviewList.add(review);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reviewList;
 	}
 }

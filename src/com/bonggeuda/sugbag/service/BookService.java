@@ -6,6 +6,7 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class BookService {
@@ -165,6 +167,79 @@ public class BookService {
 		close(con);
 		
 		return result;
+	}
+
+	/**
+	 * 숙소의 베스트리뷰조회
+	 * @param accomoNo 숙소번호
+	 * @return
+	 */
+	public List<ReviewDTO> selectBestReview(int accomoNo) {
+		
+		Connection con = getConnection();
+		
+		List<ReviewDTO> bestReview = null;
+		
+		bestReview = bookDao.selectBestReview(con, accomoNo);
+		
+		close(con);
+		
+		return bestReview;
+	}
+
+	/**
+	 * 리뷰 업다운 갯수 카운트
+	 * @param accomoNo
+	 * @return
+	 */
+	public List<Map<Integer, Integer>> selectUpDownCnt(int accomoNo) {
+
+		Connection con = getConnection();
+		
+		List<Map<Integer,Integer>> upNdown = null;
+		
+		Map<Integer,Integer> upCnt = null;
+		Map<Integer,Integer> downCnt = null;
+		
+		upNdown = new ArrayList<>();
+		upCnt = bookDao.selectReviewUpCnt(con, accomoNo);
+		downCnt = bookDao.selectReviewDownCnt(con, accomoNo);
+		upNdown.add(upCnt);
+		upNdown.add(downCnt);
+		
+		return upNdown;
+	}
+
+	/**
+	 * 리뷰사진 조회용
+	 * @param accomoNo
+	 * @param categoryNo
+	 * @return
+	 */
+	public Map<Integer, String> selectReviewPicture(int accomoNo, int categoryNo) {
+
+		Connection con = getConnection();
+		Map<Integer, String> reviewPicture = null;
+		
+		reviewPicture = bookDao.selectAccomoReviewPicture(con, accomoNo, categoryNo); 
+		
+		close(con);
+		return reviewPicture;
+	}
+
+	/**
+	 * 숙소의 베스트리뷰를 제외한 전체 리뷰
+	 * @param bestReview 베스트리뷰 제외를 위한 매개변수
+	 * @param accomoNo 숙소번호
+	 * @return
+	 */
+	public List<ReviewDTO> selectAllReviewList(List<ReviewDTO> bestReview, int accomoNo) {
+		
+		Connection con = getConnection();
+		List<ReviewDTO> selectAllReviewList = bookDao.selectAllReview(con, accomoNo, bestReview);
+		
+		close(con);
+		return selectAllReviewList;
 	}
 
 }

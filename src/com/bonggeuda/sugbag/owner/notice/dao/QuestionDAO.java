@@ -77,7 +77,7 @@ public class QuestionDAO {
 		return selectQuestion;
 	}
 
-	public AdminQnADTO selectContent(Connection con) {
+	public AdminQnADTO selectContent(Connection con, int qnaNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -91,11 +91,13 @@ public class QuestionDAO {
 		/*쿼리문 잘 실행되는지 출력*/
 		System.out.println(query);
 
+		System.out.println(qnaNo);
+		
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); //업체번호 받아오기
-			pstmt.setInt(2, 1); //문의번호 받아오기
+			pstmt.setInt(1, 1); 	//업체번호 받아오기
+			pstmt.setInt(2, qnaNo); //문의번호 받아오기
 			
 			rset = pstmt.executeQuery();
 			
@@ -106,8 +108,6 @@ public class QuestionDAO {
 				selectContent.setAdminAnswerYn(rset.getString("ADMIN_ANSWER_YN"));
 				selectContent.setAdminQnAWriter("관리자");
 				selectContent.setAdminQnAContent(rset.getString("ADMIN_QNA_CONTENT"));
-				selectContent.setAnswerContent(rset.getString("ANSWER_CONTENT"));
-				selectContent.setAnswerDate(rset.getDate("ANSWER_DATE"));
 			}
 			
 			System.out.println(selectContent);
@@ -152,6 +152,48 @@ public class QuestionDAO {
 		}
      
 		return insert;
+	}
+
+	public AdminQnADTO selectAnswer(Connection con, int qnaNo) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+
+	    AdminQnADTO selectAnswer = new AdminQnADTO(); //모든 행을 다 받아서 최종 리스트를 만듬
+		
+		/* --> selectQuestion 가지고 xml감 */
+		String query = prop.getProperty("selectAnswer");
+		
+		/*쿼리문 잘 실행되는지 출력*/
+		System.out.println(query);
+
+		System.out.println(qnaNo);
+		
+		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1); 	//업체번호 받아오기
+			pstmt.setInt(2, qnaNo); //문의번호 받아오기
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+								
+				selectAnswer.setAnswerContent(rset.getString("ANSWER_CONTENT"));
+				selectAnswer.setAnswerDate(rset.getDate("ANSWER_DATE"));
+			}
+			
+			System.out.println(selectAnswer);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return selectAnswer;
 	}
 
 }
