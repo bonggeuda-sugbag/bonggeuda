@@ -9,15 +9,15 @@
 <body>
 
 
-		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
-<%-- 		<jsp:forward page="/login/test"/>
- --%>
+<%-- 		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%>
+		<jsp:forward page="/login/test"/>
 
-	<script>
+
+<!-- 	<script>
 		(function(){
 			
 			location.href="${ pageContext.servletContext.contextPath}/notice/list";    
 		})();
-	</script>  
+	</script>   -->
 </body>
 </html>

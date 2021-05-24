@@ -75,7 +75,6 @@ public class BookingServlet extends HttpServlet {
 
 					//1. 쿠폰시작일 <= 오늘날짜 <= 쿠폰종료일, 2.사용조건금액 <= 전체금액
 					if(today.getDate()-coupon.getCouponStart().getDate() >= 0 && today.getDate()-coupon.getCouponEnd().getDate() <= 0 && condition <= totalPrice) {
-						System.out.println(coupon);
 						couponList.add(coupon);
 					}
 				}

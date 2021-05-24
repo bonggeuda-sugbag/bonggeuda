@@ -325,6 +325,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						  <c:otherwise>
 							<option class="couponList" value="0"> 쿠폰을 선택하세요.</option>
 							<c:forEach var="coupon" items="${couponList}" varStatus = "st">
+							<option type="hidden" name="couponNo" value="${coupon.couponNo }" style="display:none;">
 							<option id="couponDis"class="couponList"value="${coupon.couponDiscount}" > ${coupon.couponName} : ${coupon.couponDiscount}원 할인(${coupon.couponCondition}원 이상 결제시)</option>
 							</c:forEach>
 						  </c:otherwise>
@@ -411,6 +412,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type = "hidden" name="checkOutDate" value="${bookInfo.bookCheckoutDate}">
 						<input type = "hidden" name="checkInTime" value="${bookInfo.bookCheckIn}">
 						<input type = "hidden" name="personnel" value="${bookInfo.bookPersonnel}">
+						<input type = "hidden" name="pointNo" value="${point.pointNo }">
 						
 					</p>
 					<ul>

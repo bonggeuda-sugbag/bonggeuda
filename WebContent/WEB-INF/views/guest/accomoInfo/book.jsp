@@ -679,15 +679,37 @@ textarea {
 							</div>
 							<hr>
 							<div>
-								<button class="info_btn" onclick="popUp(${roomList});" >객실이용안내 ></button>
+								<button type="button" class="info_btn" onclick="location.href='#pop01';" >객실이용안내 ></button>
 							</div>
-							<script>
-							    function popUp(rL){
-							    	alert("호출");
-							    	let a = rl;
-							    	location.href='#pop01';
-							    }
-							</script>
+							<div id="pop01" class="overlay">
+							<div class="popup">
+							<a href="#none" class="close">&times;</a>
+							<strong style="text-align: center;">객실 이용 안내</strong>
+					<br>
+				<section>
+					<p>기본정보</p>
+					<ul>
+						<li>${roomList.roomMax }인 기준 최대 ${roomList.roomMax }인</li>
+					</ul>
+				</section>
+				<hr>
+				<section>
+					<p>편의시설</p>
+					<ul>
+						<li>${accomo.facility}</li>
+					</ul>
+				</section>
+				<hr>
+				<section>
+					<p>성수기날짜 및 요금</p>
+					<ul>
+						<li>${accomo.peakStart } ~ ${accomo.peakEnd }</li>
+						<li>${roomList.peakFee}</li>
+					</ul>
+				</section>
+				
+			</div>
+		</div>
 							<hr>
 							<div>
 								<input type="hidden" name="accomoName" value="${accomo.accomoName }">
@@ -886,7 +908,7 @@ textarea {
 			</form>
 			</div>
         </center>
-		<div id="pop01" class="overlay">
+		<!-- <div id="pop01" class="overlay">
 			<div class="popup">
 				<a href="#none" class="close">&times;</a>
 				<strong style="text-align: center;">객실 이용 안내</strong>
@@ -914,8 +936,8 @@ textarea {
 				</section>
 				
 			</div>
-		</div>
-    </div>
+		</div> -->
+
 <!--footer-->
 <div class="footer">
 	<div class="container">
