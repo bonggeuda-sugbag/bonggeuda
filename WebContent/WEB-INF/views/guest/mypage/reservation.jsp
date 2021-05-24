@@ -9,6 +9,9 @@
     margin-left: 25%;
     margin-right: 25%;
 	}
+	.pointcursor{
+		cursor: pointer;
+	}
 	</style>
 <title>봉그다 숙박숙박</title>
 <link href="${pageContext.servletContext.contextPath}/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -93,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">예약내역</b>
 				<c:forEach var="arr" items="${ booklist }" varStatus="st">
-				<div onclick="location.href='reservationList.jsp';">
+				<div class="pointcursor" onclick="location.href='reservationList.jsp';">
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">
@@ -122,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">이용내역</b>
 				<c:forEach var="arr" items="${ completeBooklist }" varStatus="st">
-				<div onclick="location.href='usagehistory.jsp';">
+				<div class="pointcursor" onclick="location.href='${ pageContext.servletContext.contextPath }/usercompletecontent/select?bookNo=${ arr.bookNo }';">
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">
@@ -145,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div style="padding-bottom: 100px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">취소내역</b>
 				<c:forEach var="arr" items="${ cancleBooklist }" varStatus="st">
-				<div onclick="location.href='cancle_list.jsp';">
+				<div class="pointcursor" onclick="location.href='${ pageContext.servletContext.contextPath }/usercanclecontent/select?bookNo=${ arr.bookNo }';">
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">

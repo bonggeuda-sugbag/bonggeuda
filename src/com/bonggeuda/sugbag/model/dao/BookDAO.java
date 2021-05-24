@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -23,6 +24,7 @@ import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
+import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class BookDAO {
@@ -484,5 +486,101 @@ public class BookDAO {
 		}
 		
 		return result;
+	}
+
+	public Map<Integer, ReviewDTO> selectBestReview(Connection con, int accomoNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Map<Integer, ReviewDTO> bestReviewList = null;
+		
+		String query = prop.getProperty("selectBestReview");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			bestReviewList = new LinkedHashMap<>();
+			
+			while(rset.next()) {
+				int key = 0;
+				ReviewDTO review = new ReviewDTO();
+				
+				key = rset.getInt("리뷰번호");
+				review.setReviewNo(rset.getInt("리뷰번호"));
+				review.setContent(rset.getString("리뷰내용"));
+				review.setStarPoint(rset.getInt("별점"));
+				review.setBookNo(rset.getInt("예약번호"));
+				review.setTitle(rset.getString("리뷰제목"));
+				review.setUpCnt(rset.getInt("좋아요"));
+				review.setNickName(rset.getString("닉네임"));
+				AttachmentDTO attachment = new AttachmentDTO();
+				attachment.setThumbnailPath(rset.getString("사진경로"));
+				review.setAttachment(attachment);
+				
+				bestReviewList.put(key, review);
+			}
+			System.out.println(bestReviewList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bestReviewList;
+	}
+
+	public Map<Integer, Integer> selectReviewUpCnt(Connection con, int accomoNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Map<Integer,Integer> upCount = null;
+		
+		String query = prop.getProperty("selectUpCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			upCount = new HashMap<>();
+			
+			while(rset.next()) {
+				upCount.put(rset.getInt("리뷰번호"), rset.getInt("좋아요"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return upCount;
+	}
+
+	public Map<Integer, Integer> selectReviewDownCnt(Connection con, int accomoNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Map<Integer,Integer> downCount = null;
+		
+		String query = prop.getProperty("selectDownCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			downCount = new HashMap<>();
+			
+			while(rset.next()) {
+				downCount.put(rset.getInt("리뷰번호"), rset.getInt("싫어요"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return downCount;
 	}
 }

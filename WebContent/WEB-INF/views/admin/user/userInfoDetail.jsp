@@ -81,9 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 				<!---pop-up-box---->
 
-				<link
-					href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css"
-					rel="stylesheet" type="text/css" media="all" />
+				<link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 				<script
 					src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js"
 					type="text/javascript"></script>
@@ -286,7 +284,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 			<div class="clearfix"></div>
-			<script>
+	<script>
 	const link = "${ pageContext.servletContext.contextPath }/user/detail";
 	</script>
 		</div>
