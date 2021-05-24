@@ -321,7 +321,7 @@ public class UserMoreInfoDAO {
 		}
 		
 		/* 날짜로 내림차순 정렬 */
-		Collections.sort(qna, new QnADTO());
+//		Collections.sort(qna, new QnADTO());
 		
 		System.out.println("gogogoog : " + qna);
 		return qna;
