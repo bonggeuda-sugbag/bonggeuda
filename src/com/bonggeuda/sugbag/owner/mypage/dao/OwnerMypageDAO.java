@@ -3,6 +3,7 @@ package com.bonggeuda.sugbag.owner.mypage.dao;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,8 +12,10 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.RequestTaxBillDTO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 
@@ -54,7 +57,8 @@ public class OwnerMypageDAO {
 				ownerInfoDTO.setOwnerID(rset.getString("OWNER_ID"));
 				ownerInfoDTO.setOwnerPwd(rset.getString("OWNER_PWD"));
 				ownerInfoDTO.setOwnerPhone(rset.getString("OWNER_PHONE"));
-
+				ownerInfoDTO.setOwnerNo(rset.getInt("OWNER_NO"));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,12 +191,192 @@ public class OwnerMypageDAO {
 
 			
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(con);
+			close(rset);
 		}
 
 
 		
 		
 		return rejectReason;
+	}
+
+
+	public int ownerWithdrawUpdateDAO(Connection con, int ownerNo) {
+		
+		PreparedStatement pstmt = null;
+
+		String query = prop.getProperty("ownerWithdrawUpdate");
+		
+		int ownerWithdrawUpdate = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, ownerNo);
+			
+			ownerWithdrawUpdate = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(con);
+		}
+
+		return ownerWithdrawUpdate;
+	}
+
+
+	public List<RequestTaxBillDTO> selectTaxBillListDAO(Connection con, int ownerNo) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		List<RequestTaxBillDTO> selectTaxBillList = new ArrayList<RequestTaxBillDTO>();
+		RequestTaxBillDTO requestTaxBillDTO = new RequestTaxBillDTO();
+		
+		String query = prop.getProperty("selectTaxBillList");
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1,ownerNo );
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				
+				requestTaxBillDTO = new RequestTaxBillDTO();
+				
+				requestTaxBillDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				requestTaxBillDTO.setRequestDate(rset.getString("REQUEST_DATE"));
+				requestTaxBillDTO.setRequestStartDate(rset.getString("REQUEST_START"));
+				requestTaxBillDTO.setRequestEndDate(rset.getString("REQUEST_END"));
+				requestTaxBillDTO.setRequestNo(rset.getInt("REQUEST_NO"));
+				requestTaxBillDTO.setResponseYn(rset.getString("RESPONSE_YN"));
+				requestTaxBillDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				
+				selectTaxBillList.add(requestTaxBillDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(con);
+			close(rset);
+		}
+
+		
+		return selectTaxBillList;
+	}
+
+
+	
+	public int insertRequestTaxBillDAO(Connection con, int ownerNo, Date startDate, Date endDate, int accomoNo) {
+		
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+		
+		int insertRequestTaxBill = 0;
+		
+		RequestTaxBillDTO taxBillDTO = new RequestTaxBillDTO();
+		
+		String query = prop.getProperty("insertRequestTaxBill");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setDate(1, startDate);
+			pstmt.setDate(2, endDate);
+			pstmt.setInt(3, accomoNo);
+			
+			insertRequestTaxBill = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		
+		
+		return insertRequestTaxBill;
+	}
+
+
+	public List<AccomoDTO> selectAccomoNamesDAO(int ownerNo, Connection con) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		AccomoDTO accomoDTO = new AccomoDTO();
+		
+		List<AccomoDTO> selectAccomoNames = new ArrayList<AccomoDTO>();
+		
+		String query = prop.getProperty("selectAccomoNames");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, ownerNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				accomoDTO = new AccomoDTO();
+				
+				accomoDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				accomoDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				
+				selectAccomoNames.add(accomoDTO);
+			}
+			
+			rset = pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return selectAccomoNames;
+	}
+
+
+	public int selectAccomoNoDAO(Connection con, String accomoName, int ownerNo) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		int accomoNo = 0;
+		
+		String query = prop.getProperty("selectAccomoNo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, accomoName);
+			pstmt.setInt(2, ownerNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				accomoNo = rset.getInt("ACCOMO_NO");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+
+		return accomoNo;
 	}
 
 }

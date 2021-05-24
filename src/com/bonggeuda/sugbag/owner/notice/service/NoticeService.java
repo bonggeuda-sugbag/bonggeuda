@@ -9,15 +9,12 @@ import java.util.List;
 import com.bonggeuda.sugbag.model.dto.NoticeDTO;
 import com.bonggeuda.sugbag.owner.notice.dao.NoticeDAO;
 
-
 public class NoticeService {
 	
 	/*NoticeDTO와 연결할 필드 변수*/
 	NoticeDAO noticeDAO = new NoticeDAO();
 
 	public List<NoticeDTO> selectNotice() {
-
-		System.out.println("서비스");
 
 		Connection con = getConnection();
 		

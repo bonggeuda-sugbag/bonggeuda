@@ -16,6 +16,7 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.UserBookContentDTO;
 import com.bonggeuda.sugbag.model.dto.WithdrawReasonDTO;
 
 public class UserMypageService {
@@ -285,6 +286,43 @@ public class UserMypageService {
 		close(con);
 		
 		return cancleBooklist;
+	}
+
+
+	/**
+	 * 예약 취소 내역 조회하기
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectCancleContent(int userNo, int bookNo) {
+		
+		Connection con = getConnection();
+		
+		UserBookContentDTO userCancleContent = mypageDAO.selectCancleContent(con, userNo, bookNo);
+		
+		close(con);
+		
+		return userCancleContent;
+		
+	}
+
+
+	/**
+	 * 이용 완료 내역 조회하기
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectCompleteContent(int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		UserBookContentDTO userCompleteContent = mypageDAO.selectCompleteContent(con, userNo, bookNo);
+		
+		close(con);
+		
+		return userCompleteContent;
 	}
 
 

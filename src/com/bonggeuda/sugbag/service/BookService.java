@@ -6,13 +6,16 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.bonggeuda.sugbag.model.dao.BookDAO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
+import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class BookService {
@@ -140,6 +143,71 @@ public class BookService {
 		
 		close(con);
 		return seachResult;
+	}
+
+	/**
+	 * 예약정보INSERT
+	 * @param bookInfo 예약정보
+	 * @return
+	 */
+	public int insertBookInfo(BookDTO bookInfo) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = bookDao.insertBookInfo(con, bookInfo);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	/**
+	 * 숙소의 베스트리뷰조회
+	 * @param accomoNo 숙소번호
+	 * @return
+	 */
+	public Map<Integer, ReviewDTO> selectBestReview(int accomoNo) {
+		
+		Connection con = getConnection();
+		
+		Map<Integer, ReviewDTO> bestReview = null;
+		
+		bestReview = bookDao.selectBestReview(con, accomoNo);
+		
+		close(con);
+		
+		return bestReview;
+	}
+
+	/**
+	 * 리뷰 업다운 갯수 카운트
+	 * @param accomoNo
+	 * @return
+	 */
+	public List<Map<Integer, Integer>> selectUpDownCnt(int accomoNo) {
+
+		Connection con = getConnection();
+		
+		List<Map<Integer,Integer>> upNdown = null;
+		
+		Map<Integer,Integer> upCnt = null;
+		Map<Integer,Integer> downCnt = null;
+		
+		upNdown = new ArrayList<>();
+		upCnt = bookDao.selectReviewUpCnt(con, accomoNo);
+		downCnt = bookDao.selectReviewDownCnt(con, accomoNo);
+		upNdown.add(upCnt);
+		upNdown.add(downCnt);
+		
+		return upNdown;
 	}
 
 }

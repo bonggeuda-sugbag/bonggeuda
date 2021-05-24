@@ -136,4 +136,81 @@
          WHERE USER_NO = ?
            AND COUPON_USE_YN = 'N'      
     </entry>
+    <entry key="insertBookInfo">
+        INSERT
+          INTO BOOK_LIST
+        VALUES
+             (
+               SEQ_BOOK_NO.NEXTVAL
+             , ?
+             , ?
+             , ?
+             , ?
+             , DEFAULT
+             , ?
+             , ?
+             , ?
+             , ?
+             , DEFAULT
+             , ?
+             )
+    </entry>
+    	<entry key="selectBestReview">
+        SELECT 
+               ROWNUM
+             , V.리뷰번호
+             , V.리뷰내용
+             , V.별점
+             , V.예약번호
+             , V.리뷰제목
+             , V.좋아요
+             , V.닉네임
+             , V.사진경로
+          FROM (SELECT
+                       RV.REVIEW_NO 리뷰번호
+                     , RV.REVIEW_CONTENT 리뷰내용
+                     , RV.STAR_POINT 별점
+                     , RV.BOOK_NO 예약번호
+                     , RV.REVIEW_TITLE 리뷰제목
+                     , COUNT(UPDOWN_STATUS) 좋아요
+                     , UI.USER_NICKNAME 닉네임
+                     , AT.THUMBNAIL_PATH 사진경로
+                  FROM REVIEW RV   
+                  JOIN REVIEW_HISTORY RVH ON(RV.REVIEW_NO = RVH.REVIEW_NO)
+                  JOIN BOOK_LIST BL ON(RV.BOOK_NO = BL.BOOK_NO)
+                  JOIN ROOM_INFO RI ON(BL.ROOM_NO = RI.ROOM_NO)
+                  JOIN USER_INFO UI ON(BL.USER_NO = UI.USER_NO)
+                  JOIN ATTACHMENT AT ON(RV.REVIEW_NO = AT.REF_NO)
+                 WHERE UPDOWN_STATUS = 'U'
+                   AND AT.CATEGORY_NO = 5
+                   AND RI.ACCOMO_NO = ?
+                 GROUP BY RV.REVIEW_NO,RV.REVIEW_CONTENT, RV.STAR_POINT, RV.BOOK_NO, RV.REVIEW_TITLE,UI.USER_NICKNAME,AT.THUMBNAIL_PATH
+                 ORDER BY 좋아요 DESC
+               ) V
+         WHERE ROWNUM &lt;=3
+    </entry>
+    <entry key="selectUpCount">
+        SELECT
+               RVH.REVIEW_NO 리뷰번호
+             , COUNT(UPDOWN_STATUS) 좋아요
+          FROM REVIEW_HISTORY RVH
+          JOIN REVIEW RV ON (RVH.REVIEW_NO = RV.REVIEW_NO)
+          JOIN BOOK_LIST BL ON (RV.BOOK_NO = BL.BOOK_NO)
+          JOIN ROOM_INFO RI ON (BL.ROOM_NO = RI.ROOM_NO)
+         WHERE UPDOWN_STATUS = 'U'
+           AND ACCOMO_NO = ?
+         GROUP BY RVH.REVIEW_NO
+    </entry>
+    <entry key="selectDownCount">
+        SELECT
+               RVH.REVIEW_NO 리뷰번호
+             , COUNT(UPDOWN_STATUS) 싫어요
+          FROM REVIEW_HISTORY RVH
+          JOIN REVIEW RV ON (RVH.REVIEW_NO = RV.REVIEW_NO)
+          JOIN BOOK_LIST BL ON (RV.BOOK_NO = BL.BOOK_NO)
+          JOIN ROOM_INFO RI ON (BL.ROOM_NO = RI.ROOM_NO)
+         WHERE UPDOWN_STATUS = 'D'
+           AND ACCOMO_NO = ?
+         GROUP BY RVH.REVIEW_NO
+    </entry>
 </properties>

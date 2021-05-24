@@ -31,7 +31,8 @@ public class RoomSelectServlet extends HttpServlet {
 		List<RoomDTO> roomList = booksvc.selectRoomList(accomoNo,categoryType);
 		String path ="";
 		if(accomo != null && roomList!=null) {
-			path = "/WEB-INF/views/guest/accomoInfo/book.jsp";
+//			path = "/WEB-INF/views/guest/accomoInfo/book.jsp";
+			path = "review";
 			request.setAttribute("accomo", accomo);
 			request.setAttribute("roomList", roomList);
 		} else {

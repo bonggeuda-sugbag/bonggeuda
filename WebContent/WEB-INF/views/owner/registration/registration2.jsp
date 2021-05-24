@@ -23,7 +23,7 @@
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
-				<li><a href="/bonggeuda/owner/management">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
@@ -67,11 +67,9 @@
       <nav>
          <ul class="stepbox" id="ulStep">
             <li>
-            <a href="/WEB-INF/views/owner/registration/registration1.jsp">                        
                <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step1.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc on" style="color: rgb(226, 226, 226);">사업자정보 확인</span>
-            </a>                    
             </li>
             <li class="prog">
                <span class="do">&nbsp;</span>
@@ -85,11 +83,9 @@
                <span class="do">&nbsp;</span>
             </li>
             <li>
-            <a href="registration2-intro.html">                        
                <span class="btn-todo-on"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step2.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: #6eceda;">소개 작성</span>
-            </a>                    
             </li>
             <li class="prog">
                <span class="do">&nbsp;</span>
@@ -103,11 +99,9 @@
                <span class="do">&nbsp;</span>
             </li>
             <li>
-            <a href="registration3-rule.html">                        
                <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step3.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">이용규칙 관리</span>
-            </a>                    
             </li>
             <li class="prog">
                <span class="do">&nbsp;</span>
@@ -121,11 +115,9 @@
                <span class="do">&nbsp;</span>
             </li>
             <li>
-            <a href="registration4-room.html">                        
                <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step4.png" width="64px" height="64px"></span>
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">객실 등록</span>
-            </a>                    
             </li>
          </ul>
       </nav>
@@ -263,7 +255,7 @@
          </tr>
       </tbody>
 </table>
-<br><br>
+<br><br><br>
 <!--footer-->
 <div class="footer-bottom">
    <div class="container">

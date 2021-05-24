@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
-				<li><a href="/bonggeuda/owner/management">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
@@ -103,7 +103,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<li class="blog-list"><a href="/bonggeuda/owner/policy">약관 및 정책</a></li>
 		</ul>
 		</nav>
-<div id="content" class="sub_wrap more_wrap">
+	<form action="${ pageContext.servletContext.contextPath }/owner/question/write" method="post">
+	<div id="content" class="sub_wrap more_wrap">
 	<div class="align_rt">
 		<!-- Tab -->
 		<div class="tab">
@@ -115,24 +116,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="list_none" style="display: block; height: 604px; width: 850px; border: 1px solid lightgray;">
 			<div class="writeNameBox">
 				<div class="writeNameBoxContent" style="margin: auto;">
-					<p style="text-align: center; font-weight: bold;">제목 <input type="text" class="titleInput" placeholder="제목을 입력하세요." required> </p>
+					<p style="text-align: center; font-weight: bold;">제목&nbsp&nbsp&nbsp<input type="text" name="title" style="border-radius: revert; font-weight: normal;" class="titleInput" placeholder=" 제목을 입력하세요." required></p>
 				</div>
 			</div>
-			<textarea class="wirteContent" style="border-radius: 5px; width: 825px;" rows="22" name="" placeholder="문의 사항을 적어주세요." required="required"></textarea>
+			<textarea class="wirteContent" style="width: 827px; height: 512px; margin-top: 15px;" rows="22" name="content" placeholder="문의 사항을 적어주세요." required="required"></textarea>
 		</div>
 		<br>
 		<div class="list_none" style="display:block; text-align: center; width: 850px;">
-			<button class="submit-btn" type="submit" onclick="location.href='ManToManRegiVer.html'; notice();" >작성 완료</button>
+			<button class="submit-btn" type="submit">작성 완료</button>
 		</div>
 	</div>
-	
-	<script>
-		function notice(){
-			alert("문의가 등록 되었습니다.")
-		}
-		
-	</script>
-
+	</div>
+	</form>
 </div>
 </div>
 </div>
