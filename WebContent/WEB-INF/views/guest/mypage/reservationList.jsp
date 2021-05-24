@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<style>
 	div.mmiddle {
-    margin-left: 25%;
-    margin-right: 25%;
+    	margin-left: 25%;
+    	margin-right: 25%;
 	}
 	td {
 		font-size: 20px;
@@ -28,11 +28,11 @@
 		height: 35px;
 	}
 	.reservation-cancle-btn:hover {
-	background-color: #4aa9b6;
-	box-shadow: 0 3px 0 #23a188;
+		background-color: #4aa9b6;
+		box-shadow: 0 3px 0 #23a188;
 	}
 	.reservation-cancle-btn:active {
-	box-shadow: none;
+		box-shadow: none;
 	}
 	</style>
 <title>봉그다 숙박숙박</title>
@@ -111,31 +111,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div id="cont_area" style="padding-top: 30px;"><!-- 본문 콘텐츠-->
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 100%;">
 
+			<c:if test="${ requestScope.userBookContent.bookApproveYN eq 'N' }">
+			<div style="font-size: 15px; border: 1px solid; width: 100px; background: yellow; color: darkgray; border-style: none; border-radius: 5px;">예약 대기</div>
+			</c:if>
+			<c:if test="${ requestScope.userBookContent.bookApproveYN eq 'Y' }">
 			<div style="font-size: 15px; border: 1px solid; width: 100px; background: #6eceda; color: white; border-radius: 5px;">예약 확정</div>
-			<div style="font-size: 30px; margin-bottom: 20px; text-align: left;">제주 호텔</div>
-			<img src="resources/guest/images/ga1.jpg" style="width: 70%; margin-bottom: 50px;">
+			</c:if>
+			<div style="font-size: 30px; margin-bottom: 20px; text-align: left;"><c:out value="${ requestScope.userBookContent.accomoName }"/> <c:out value="${ requestScope.userBookContent.roomName }"/></div>
+			<img src="${pageContext.servletContext.contextPath}/${ requestScope.userBookContent.thumbnailPath }" style="width: 70%; margin-bottom: 50px; width: 100%">
 
 			<div class="reservation_information">
-				<table style="margin-bottom: 30px;">
+				<table style="margin-bottom: 30px; width: 90%;">
 					<tr>
 						<td>체크인</td>
-						<td>2021.05.02 일 15:00</td>
+						<td><c:out value="${ requestScope.userBookContent.bookCheckDate }"/> &nbsp <c:out value="${ requestScope.userBookContent.bookCheckIn }"/></td>
 					</tr>
 					<tr>
 						<td>체크아웃</td>
-						<td>2021.05.03 월 11:00</td>
+						<td><c:out value="${ requestScope.userBookContent.checkoutDate }"/> &nbsp <c:out value="${ requestScope.userBookContent.checkOut }"/></td>
 					</tr>
 					<tr>
 						<td>예약번호</td>
-						<td>234568543</td>
+						<td><c:out value="${ requestScope.userBookContent.bookNo }"/></td>
 					</tr>
 					<tr>
 						<td>예약자 이름</td>
-						<td>홍길동</td>
+						<td><c:out value="${ requestScope.userBookContent.bookUserName }"/></td>
 					</tr>
 					<tr>
 						<td>전화번호</td>
-						<td>010-1111-1111</td>
+						<td><c:out value="${ requestScope.userBookContent.bookPhone }"/></td>
 					</tr>
 				</table>
 			</div>
@@ -143,19 +148,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<hr>
 
 			<div style="text-align: left; float: left; font-size: 20px; margin-bottom: 30px; width: 100%;">
-				<table>
+				<table style="width: 90%;">
 					<tr>
 						<td colspan="2">결제 정보</td>
 					</tr>
 					<tr>
 						<td>총 결제금액</td>
-						<td style="color: #6eceda;">50,000원</td>
+						<td style="color: #6eceda;"><c:out value="${ requestScope.userBookContent.paymentAmount }"/>원</td>
 					</tr>
 				</table>
 			</div>
 
 			<div>
-				<button class="reservation-cancle-btn" type="submit" onclick="location.href='reservation_cancel.jsp';">예약취소</button>
+				<button class="reservation-cancle-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userwritereview/selectAndinsert?bookNo=${ requestScope.userBookContent.bookNo }';">예약취소</button>
 			</div>
 
 		</div>

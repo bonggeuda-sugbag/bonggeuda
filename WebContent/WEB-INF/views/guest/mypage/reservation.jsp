@@ -96,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
 				<b style="font-size: 20px;">예약내역</b>
 				<c:forEach var="arr" items="${ booklist }" varStatus="st">
-				<div class="pointcursor" onclick="location.href='reservationList.jsp';">
+				<div class="pointcursor" onclick="location.href='${ pageContext.servletContext.contextPath }/userbookcontent/select?bookNo=${ arr.bookNo }';">
 					<table border="1px" width="70%">
 						<tr>
 							<td height="200px">

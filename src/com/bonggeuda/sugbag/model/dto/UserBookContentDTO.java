@@ -14,12 +14,19 @@ public class UserBookContentDTO {
 	private String accomoName;
 	private String roomName;
 	private int paymentAmount;
+	private String paymentMethod;
+	private int refundAmount;
+	private int cancleFee;
+	private String reasonCancle;
+	private int paymentNo;
+	private String bookApproveYN;
 	
 	public UserBookContentDTO() {}
 
 	public UserBookContentDTO(String bookCheckDate, String checkoutDate, String bookCheckIn, String checkOut,
 			int bookNo, String bookUserName, String bookPhone, int cancleAmount, String thumbnailPath,
-			String accomoName, String roomName, int paymentAmount) {
+			String accomoName, String roomName, int paymentAmount, String paymentMethod, int refundAmount,
+			int cancleFee, String reasonCancle, int paymentNo, String bookApproveYN) {
 		super();
 		this.bookCheckDate = bookCheckDate;
 		this.checkoutDate = checkoutDate;
@@ -33,6 +40,12 @@ public class UserBookContentDTO {
 		this.accomoName = accomoName;
 		this.roomName = roomName;
 		this.paymentAmount = paymentAmount;
+		this.paymentMethod = paymentMethod;
+		this.refundAmount = refundAmount;
+		this.cancleFee = cancleFee;
+		this.reasonCancle = reasonCancle;
+		this.paymentNo = paymentNo;
+		this.bookApproveYN = bookApproveYN;
 	}
 
 	public String getBookCheckDate() {
@@ -131,13 +144,63 @@ public class UserBookContentDTO {
 		this.paymentAmount = paymentAmount;
 	}
 
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	public int getRefundAmount() {
+		return refundAmount;
+	}
+
+	public void setRefundAmount(int refundAmount) {
+		this.refundAmount = refundAmount;
+	}
+
+	public int getCancleFee() {
+		return cancleFee;
+	}
+
+	public void setCancleFee(int cancleFee) {
+		this.cancleFee = cancleFee;
+	}
+
+	public String getReasonCancle() {
+		return reasonCancle;
+	}
+
+	public void setReasonCancle(String reasonCancle) {
+		this.reasonCancle = reasonCancle;
+	}
+
+	public int getPaymentNo() {
+		return paymentNo;
+	}
+
+	public void setPaymentNo(int paymentNo) {
+		this.paymentNo = paymentNo;
+	}
+
+	public String getBookApproveYN() {
+		return bookApproveYN;
+	}
+
+	public void setBookApproveYN(String bookApproveYN) {
+		this.bookApproveYN = bookApproveYN;
+	}
+
 	@Override
 	public String toString() {
 		return "UserBookContentDTO [bookCheckDate=" + bookCheckDate + ", checkoutDate=" + checkoutDate
 				+ ", bookCheckIn=" + bookCheckIn + ", checkOut=" + checkOut + ", bookNo=" + bookNo + ", bookUserName="
 				+ bookUserName + ", bookPhone=" + bookPhone + ", cancleAmount=" + cancleAmount + ", thumbnailPath="
 				+ thumbnailPath + ", accomoName=" + accomoName + ", roomName=" + roomName + ", paymentAmount="
-				+ paymentAmount + "]";
+				+ paymentAmount + ", paymentMethod=" + paymentMethod + ", refundAmount=" + refundAmount + ", cancleFee="
+				+ cancleFee + ", reasonCancle=" + reasonCancle + ", paymentNo=" + paymentNo + ", bookApproveYN="
+				+ bookApproveYN + "]";
 	}
 
 }

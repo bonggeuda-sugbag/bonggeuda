@@ -850,5 +850,189 @@ public class UserMypageDAO {
 		return userCompleteContent;
 	}
 
+	/**
+	 * 예약한 내역 조회하기
+	 * @param con
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectBookContent(Connection con, int userNo, int bookNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		UserBookContentDTO userBookContent = new UserBookContentDTO();
+		
+		String query = prop.getProperty("userBookContentSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {				
+				
+				userBookContent.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				userBookContent.setCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				userBookContent.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				userBookContent.setCheckOut(rset.getString("CHECK_OUT"));
+				userBookContent.setBookNo(rset.getInt("BOOK_NO"));
+				userBookContent.setBookUserName(rset.getString("BOOK_USER_NAME"));
+				userBookContent.setBookPhone(rset.getString("BOOK_PHONE"));
+				userBookContent.setPaymentAmount(rset.getInt("PAYMENT_AMOUNT"));
+				userBookContent.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				userBookContent.setAccomoName(rset.getString("ACCOMO_NAME"));
+				userBookContent.setRoomName(rset.getString("ROOM_NAME"));
+				userBookContent.setBookApproveYN(rset.getString("BOOK_APPROVE_YN"));
+				
+			}			
+			
+			System.out.println(userBookContent);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userBookContent;
+	}
+
+	/**
+	 * 예약 취소하기 페이지 내역 조회
+	 * @param con
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectBookCancle(Connection con, int userNo, int bookNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		UserBookContentDTO userBookCancle = new UserBookContentDTO();
+		
+		String query = prop.getProperty("userBookCancleSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				/* 취소 수수료 구하기 */
+				SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+				
+					Date checkInDate;
+					try {
+						checkInDate = dataFormat.parse(rset.getString("BOOK_CHECK_DATE"));
+						String date = dataFormat.format(new Date());
+						Date sysDate = dataFormat.parse(date);
+						long dateInterval = ((checkInDate.getTime() - sysDate.getTime())/(24*60*60*1000));
+						
+						if(dateInterval > 2) {
+							userBookCancle.setCancleFee((int)(rset.getInt("PAYMENT_AMOUNT") * 0));
+						} else if(dateInterval > 1) {
+							userBookCancle.setCancleFee((int)(rset.getInt("PAYMENT_AMOUNT") * 0.1));
+						} else {
+							userBookCancle.setCancleFee((int)(rset.getInt("PAYMENT_AMOUNT") * 0.2));
+						}
+						
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				
+				userBookCancle.setBookCheckDate(rset.getString("BOOK_CHECK_DATE"));
+				userBookCancle.setCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
+				userBookCancle.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				userBookCancle.setCheckOut(rset.getString("CHECK_OUT"));
+				userBookCancle.setBookNo(rset.getInt("BOOK_NO"));
+				userBookCancle.setBookUserName(rset.getString("BOOK_USER_NAME"));
+				userBookCancle.setBookPhone(rset.getString("BOOK_PHONE"));
+				userBookCancle.setPaymentAmount(rset.getInt("PAYMENT_AMOUNT"));
+				userBookCancle.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				userBookCancle.setAccomoName(rset.getString("ACCOMO_NAME"));
+				userBookCancle.setRoomName(rset.getString("ROOM_NAME"));
+				userBookCancle.setPaymentMethod(rset.getString("PAYMENT_METHOD"));
+				userBookCancle.setPaymentNo(rset.getInt("PAYMENT_NO"));
+				userBookCancle.setRefundAmount((rset.getInt("PAYMENT_AMOUNT")-userBookCancle.getCancleFee()));
+				
+			}
+			System.out.println(userBookCancle.getRefundAmount());
+			System.out.println(userBookCancle);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userBookCancle;
+		
+	}
+
+	/**
+	 * 예약 취소사유 insert & 예약내역 update
+	 * @param con
+	 * @param userCancelReason
+	 * @param bookNo 
+	 * @param userNo 
+	 * @return
+	 */
+	public int insertCancel(Connection con, UserBookContentDTO userCancelReason, int userNo, int bookNo) {
+
+		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		/* 예약 취소사유 insert */
+		String query = prop.getProperty("cancelHistoryInsert");
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userCancelReason.getReasonCancle());
+			pstmt.setInt(2, userCancelReason.getPaymentNo());
+			pstmt.setInt(3, userCancelReason.getRefundAmount());
+			
+			result1 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		/* 예약내역 update */
+		String query2 = prop.getProperty("cancelBookListUpdate");
+		System.out.println(query2);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query2);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, bookNo);
+			
+			result2 = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		result = result1 + result2;
+		
+		return result;
+	}
+
 
 }
