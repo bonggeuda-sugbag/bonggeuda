@@ -5,26 +5,29 @@ public class BookDTO {
 	private int bookNo;
 	private String bookUserName;
 	private int bookPersonnel;
-	private String bookCheckDate;	// 체크인날짜
+	private String bookCheckDate; // 체크인날짜
 	private String bookCheckoutDate;
 	private String bookApproveYn;
-	private String bookCheckIn;		// 체크인시간
-	private String request;			// 요청사항
+	private String bookCheckIn; // 체크인시간
+	private String request; // 요청사항
 	private int roomNo;
 	private int userNo;
 	private int ownerNo;
 	private String bookStatusYNC;
 	private String roomName;
 	private String accomoName;
-	private long day;				// bookCheckoutDate - bookCheckDate
+	private long day; // bookCheckoutDate - bookCheckDate
 	private String bookImg;
-	private String userPhone;       // userPhone 추가
-	
-	public BookDTO() { }
+	private String userPhone; // userPhone 추가
+	private int rowNum;
+
+	public BookDTO() {
+	}
 
 	public BookDTO(int bookNo, String bookUserName, int bookPersonnel, String bookCheckDate, String bookCheckoutDate,
 			String bookApproveYn, String bookCheckIn, String request, int roomNo, int userNo, int ownerNo,
-			String bookStatusYNC, String roomName, String accomoName, long day, String bookImg, String userPhone) {
+			String bookStatusYNC, String roomName, String accomoName, long day, String bookImg, String userPhone,
+			int rowNum) {
 		super();
 		this.bookNo = bookNo;
 		this.bookUserName = bookUserName;
@@ -43,6 +46,7 @@ public class BookDTO {
 		this.day = day;
 		this.bookImg = bookImg;
 		this.userPhone = userPhone;
+		this.rowNum = rowNum;
 	}
 
 	public int getBookNo() {
@@ -181,6 +185,14 @@ public class BookDTO {
 		this.userPhone = userPhone;
 	}
 
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+
 	@Override
 	public String toString() {
 		return "BookDTO [bookNo=" + bookNo + ", bookUserName=" + bookUserName + ", bookPersonnel=" + bookPersonnel
@@ -188,14 +200,7 @@ public class BookDTO {
 				+ bookApproveYn + ", bookCheckIn=" + bookCheckIn + ", request=" + request + ", roomNo=" + roomNo
 				+ ", userNo=" + userNo + ", ownerNo=" + ownerNo + ", bookStatusYNC=" + bookStatusYNC + ", roomName="
 				+ roomName + ", accomoName=" + accomoName + ", day=" + day + ", bookImg=" + bookImg + ", userPhone="
-				+ userPhone + "]";
+				+ userPhone + ", rowNum=" + rowNum + "]";
 	}
-	
-	
-
-
-	
-	
-
 
 }

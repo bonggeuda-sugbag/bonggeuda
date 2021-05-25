@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
-
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
+import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
+import com.bonggeuda.sugbag.owner.notice.service.QuestionService;
 
 /**
  * Servlet implementation class OwnerBookingList
@@ -24,31 +26,48 @@ public class OwnerBookingList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String currentPage = request.getParameter("currentPage");
+		int pageNo = 1;
 		
-		 	int ownerNo = 1;
-		 	
-			/* 2. 예약 넘버를 저장해서 setAttribute로 넘겨주자. */
-			
-			List<BookDTO> bookList = new ArrayList<>();
-			
-			BookListSelectService bookService = new BookListSelectService();
-			
-			bookList = bookService.bookListSelect(ownerNo);
-			
-			
-			request.setAttribute("bookList", bookList);
-			
+		if(currentPage != null && !"".equals(currentPage)) {
+			pageNo = Integer.parseInt(currentPage);
+		}
+		
+		if(pageNo <= 0) {
+			pageNo = 1;
+		}
+		
+		/* 전체 게시물 수가 필요 */
+		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
+		BookListSelectService BookListService = new BookListSelectService();
+		
+		int totalCount = BookListService.selectTotalCount();
+		
+		System.out.println("totalCount 체크 : " + totalCount);
+		
+		/* 한 페이지에 보여 줄 게시물 수 */
+		int limit = 10;
+		
+		/* 한 번에 보여질 페이징 버튼의 수*/
+		int buttonAmount = 5;
+		
+		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
+		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 
-			String path = "";
-			path = "/WEB-INF/views/owner/bookingList/bookingList.jsp";
-			request.getAttribute(path);
-			request.getRequestDispatcher(path).forward(request, response);
+		System.out.println(pageInfo);
+		
+		List<BookDTO> bookList = BookListService.bookListSelect(pageInfo);
+		
+		System.out.println("전체내역조회 : " + bookList);
+			
+		String path = "";
+		path = "/WEB-INF/views/owner/bookingList/bookingList.jsp";
+		request.setAttribute("bookList", bookList);
+		request.setAttribute("pageInfo", pageInfo);
+		
+		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
-
-	
-	
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

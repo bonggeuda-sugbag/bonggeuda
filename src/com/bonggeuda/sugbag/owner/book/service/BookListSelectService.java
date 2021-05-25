@@ -8,6 +8,7 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.BookHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.owner.book.dao.BookingListSelectDAO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
@@ -17,11 +18,11 @@ public class BookListSelectService {
 	
 	private BookingListSelectDAO bookDAO = new BookingListSelectDAO();
 
-	public List<BookDTO> bookListSelect(int ownerNo) {
+	public List<BookDTO> bookListSelect(PageInfoDTO pageInfo) {
 		
 		Connection con = getConnection();
 		
-		List<BookDTO> bookListSelect = bookDAO.selectBookList(con, ownerNo);
+		List<BookDTO> bookListSelect = bookDAO.selectBookList(con, pageInfo);
 		
 		close(con);
 		
@@ -37,19 +38,6 @@ public class BookListSelectService {
 		close(con);
 		
 		return bookConDTO;
-	}
-
-	public List<BookDTO> bookPastListSelect(int ownerNo) {
-		
-		Connection con = getConnection();
-		
-		List<BookDTO> bookListSelect = bookDAO.selectBookPastList(con, ownerNo);
-		
-		close(con);
-		
-		return bookListSelect;
-		
-		
 	}
 
 	public int bookAllowUpdate(int bookNo) {
@@ -93,9 +81,6 @@ public class BookListSelectService {
 		Connection con = getConnection();
 		
 		int bookRejectUpdate = bookDAO.bookRejectUpdate(con, bookNo);
-		
-		
-		
 		
 		if(bookRejectUpdate >0) {
 			commit(con);
@@ -143,7 +128,31 @@ public class BookListSelectService {
 		return bookRejectBookConfirmUpdate;
 	}
 
+	public int selectTotalCount() {
 
+		Connection con = getConnection();
+		
+		int totalCount = bookDAO.selectTotalCount(con);
+		
+		if(totalCount > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
 
+		return totalCount;
+	}
+
+	public List<BookDTO> bookPastListSelect(PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<BookDTO> bookListSelect = bookDAO.selectBookPastList(con, pageInfo);
+		
+		close(con);
+		
+		return bookListSelect;
+	}
 
 }

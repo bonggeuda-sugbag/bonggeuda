@@ -2,7 +2,38 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="selectBookingList">
-	SELECT
+	SELECT     
+		   E.RNUM,
+	       E.BOOK_NO,
+	       E.BOOK_USER_NAME,
+	       E.BOOK_PERSONNEL,
+	       E.BOOK_CHECK_DATE,
+	       E.BOOK_CHECKOUT_DATE,
+	       E.BOOK_APPROVE_YN,
+           E.BOOK_STATUS_YNC,	       
+	       E.BOOK_CHECK_IN,
+	       E.REQUEST,
+	       E.ROOM_NO,
+	       E.ROOM_NAME,
+	       E.ROOM_FEE,
+	       E.ACCOMO_NAME,
+           E.USER_PHONE
+	  FROM (SELECT ROWNUM RNUM,
+	       D.BOOK_NO,
+	       D.BOOK_USER_NAME,
+	       D.BOOK_PERSONNEL,
+	       D.BOOK_CHECK_DATE,
+	       D.BOOK_CHECKOUT_DATE,
+	       D.BOOK_APPROVE_YN,
+           D.BOOK_STATUS_YNC,	       
+	       D.BOOK_CHECK_IN,
+	       D.REQUEST,
+	       D.ROOM_NO,
+	       D.ROOM_NAME,
+	       D.ROOM_FEE,
+	       D.ACCOMO_NAME,
+           D.USER_PHONE
+      FROM (SELECT
 	       B.BOOK_NO,
 	       BOOK_USER_NAME,
 	       BOOK_PERSONNEL,
@@ -23,8 +54,8 @@
       JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
 	 WHERE A.OWNER_NO = ?
 	   AND BOOK_APPROVE_YN = 'N'
-	   AND BOOK_STATUS_YNC = 'Y'
-
+	   AND BOOK_STATUS_YNC = 'Y') D) E
+	 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectBookContent">
@@ -54,7 +85,41 @@
 	</entry>
 	
 	<entry key="selectPastBookingList">
-	SELECT
+	SELECT Y.RNUM,
+	       Y.BOOK_NO,
+	       Y.BOOK_USER_NAME,
+	       Y.BOOK_PERSONNEL,
+	       Y.BOOK_CHECK_DATE,
+	       Y.BOOK_CHECKOUT_DATE,
+	       Y.BOOK_APPROVE_YN,
+           Y.BOOK_STATUS_YNC,
+	       Y.BOOK_CHECK_IN,
+	       Y.REQUEST,
+	       Y.ROOM_NO,
+	       Y.ROOM_NAME,
+	       Y.ROOM_FEE, 
+	       Y.ACCOMO_NAME,
+           Y.USER_PHONE,
+           Y.USER_NO,
+           Y.OWNER_NO
+     FROM (SELECT ROWNUM RNUM,
+	       X.BOOK_NO,
+	       X.BOOK_USER_NAME,
+	       X.BOOK_PERSONNEL,
+	       X.BOOK_CHECK_DATE,
+	       X.BOOK_CHECKOUT_DATE,
+	       X.BOOK_APPROVE_YN,
+           X.BOOK_STATUS_YNC,
+	       X.BOOK_CHECK_IN,
+	       X.REQUEST,
+	       X.ROOM_NO,
+	       X.ROOM_NAME,
+	       X.ROOM_FEE, 
+	       X.ACCOMO_NAME,
+           X.USER_PHONE,
+           X.USER_NO,
+           X.OWNER_NO
+     FROM (SELECT
 	       B.BOOK_NO,
 	       BOOK_USER_NAME,
 	       BOOK_PERSONNEL,
@@ -78,7 +143,9 @@
 	 WHERE A.OWNER_NO = ?
        AND BOOK_APPROVE_YN = 'Y'
         OR BOOK_STATUS_YNC = 'N'
-        OR BOOK_STATUS_YNC = 'C'
+        OR BOOK_STATUS_YNC = 'C')X)Y 
+     WHERE RNUM BETWEEN ? AND ?
+        
 	</entry>
 	
 	<entry key="bookAllowUpadte">
@@ -203,6 +270,18 @@
 	  FROM OWNER_ANSWER A, OWNER_QNA B
 	 WHERE B.OWNER_QNA_NO = ?
 	   AND A.OWNER_QNA_NO = ?
+	</entry>
+	
+	<entry key="bookingTotalCount">
+    SELECT
+	       COUNT(*)
+	  FROM BOOK_LIST B
+	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
+	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
+      JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
+	 WHERE A.OWNER_NO = ?
+	   AND BOOK_APPROVE_YN = 'N'
+	   AND BOOK_STATUS_YNC = 'Y'
 	</entry>
 	
 </properties>
