@@ -50,7 +50,6 @@ public class ReviewSelectServlet extends HttpServlet {
 				AttachmentDTO attach = new AttachmentDTO();
 				attach.setThumbnailPath(reviewPicture.get(no));
 				bestReview.get(i).setAttachment(attach);
-				System.out.println("베스트리뷰 : " +bestReview.get(i).getAttachment());
 			}
 		}
 		//4.베스트리뷰를 제외한 전체 리뷰 조회
@@ -71,7 +70,6 @@ public class ReviewSelectServlet extends HttpServlet {
 				AttachmentDTO attach = new AttachmentDTO();
 				attach.setThumbnailPath(reviewPicture.get(no));
 				reviewList.get(i).setAttachment(attach);
-				System.out.println("일반리뷰 : " +reviewList.get(i).getAttachment());
 			}
 		}
 		//5.페이징처리
@@ -83,7 +81,7 @@ public class ReviewSelectServlet extends HttpServlet {
 			pageNo = Integer.parseInt(currentPage);
 		}
 		
-		int totalCount = reviewList.size();
+		int totalCount = reviewList.size()+bestReview.size();
 		
 		int limit = 10;
 		int buttonAmount = 5;
@@ -99,6 +97,8 @@ public class ReviewSelectServlet extends HttpServlet {
 			request.setAttribute("bestReview", bestReview);
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("pageInfo", pageInfo);
+			request.setAttribute("totalCount", totalCount);
+			
 		} else {
 			System.out.println("응 돌아가");
 		}

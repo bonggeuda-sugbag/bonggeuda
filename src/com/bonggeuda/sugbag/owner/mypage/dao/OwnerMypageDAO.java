@@ -364,7 +364,6 @@ public class OwnerMypageDAO {
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setString(1, accomoName);
-			pstmt.setInt(2, ownerNo);
 			
 			rset = pstmt.executeQuery();
 			

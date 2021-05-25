@@ -39,12 +39,12 @@ public class ReportWrite extends HttpServlet {
 		
 		int reportInsert = reportInsertService.reportInsertService(writerType,reportedType,userNo,ownerNo,reportTitle,reportContent);
 		
-		
+		System.out.println(reportInsert + "reportInsert");
 		
 		if(reportInsert > 0) {
 			
 			String path = "";
-			path = "/WEB-INF/views/owner/mypage/mypageReportDetail.jsp";
+			path = "/WEB-INF/views/owner/report/reportSuccessPage.jsp";
 			request.getAttribute(path);
 			request.getRequestDispatcher(path).forward(request, response);
 			

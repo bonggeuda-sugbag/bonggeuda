@@ -23,6 +23,7 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.UserBookContentDTO;
 import com.bonggeuda.sugbag.model.dto.WithdrawReasonDTO;
 
@@ -490,9 +491,39 @@ public class UserMypageDAO {
 			System.out.println(userReportContent);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
+		}
+		
+		if(userReportContent == null) {
+			
+			String query2 = prop.getProperty("reportContentTwo");
+			System.out.println(query2);
+			
+			try {
+				pstmt = con.prepareStatement(query2);
+				pstmt.setInt(1, userNo);
+				pstmt.setInt(2, reportedNo);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					userReportContent = new ReportDTO();
+					
+					userReportContent.setReportTitle(rset.getString("REPORT_TITLE"));
+					userReportContent.setAccomoName(rset.getString("ACCOMO_NAME"));
+					userReportContent.setReportDate(rset.getDate("REPORT_DATE"));
+					userReportContent.setReportReason(rset.getString("REPORT_REASON"));
+					userReportContent.setReportAnswer(rset.getString("REPORT_ANSWER"));
+					
+				}
+				
+				System.out.println(userReportContent);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
 		}
 		
 		return userReportContent;
@@ -1032,6 +1063,113 @@ public class UserMypageDAO {
 		result = result1 + result2;
 		
 		return result;
+	}
+
+	/**
+	 * 리뷰 기본정보 조회하기
+	 * @param con
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectreviewInfo(Connection con, int userNo, int bookNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		UserBookContentDTO reviewInfo = new UserBookContentDTO();
+		
+		String query = prop.getProperty("reviewInfoSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				reviewInfo.setAccomoName(rset.getString("ACCOMO_NAME"));
+				reviewInfo.setRoomName(rset.getString("ROOM_NAME"));
+				reviewInfo.setBookNo(bookNo);
+			}
+			
+			System.out.println(reviewInfo);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reviewInfo;
+	}
+
+	/**
+	 * 리뷰 insert
+	 * @param con
+	 * @param userReview
+	 * @return
+	 */
+	public int insertReview(Connection con, ReviewDTO userReview) {
+
+		System.out.println("dao들어와라ㅏㅅ");
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("reviewInsert");
+		
+		try {
+			pstmt= con.prepareStatement(query);
+			pstmt.setString(1, userReview.getContent());
+			pstmt.setInt(2, userReview.getStarPoint());
+			pstmt.setInt(3, userReview.getBookNo());
+			pstmt.setString(4, userReview.getTitle());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/**
+	 * 리뷰 사진 insert
+	 * @param con
+	 * @param attachmentDTO
+	 * @return
+	 */
+	public int insertAttachment(Connection con, AttachmentDTO attachmentDTO) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertReviewAttachment");
+		try {
+			System.out.println(query);
+			pstmt = con.prepareStatement(query);
+			System.out.println(attachmentDTO);
+			pstmt.setInt(1, attachmentDTO.getCategoryNo());
+			pstmt.setString(2, attachmentDTO.getOriginName());
+			pstmt.setString(3, attachmentDTO.getSavedName());
+			pstmt.setString(4, attachmentDTO.getSavePath());
+			pstmt.setString(5, attachmentDTO.getFileType());
+			pstmt.setString(6, attachmentDTO.getThumbnailPath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
 	}
 
 

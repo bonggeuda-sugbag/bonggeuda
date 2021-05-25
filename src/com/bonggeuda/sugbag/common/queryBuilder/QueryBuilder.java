@@ -27,7 +27,7 @@ public class QueryBuilder {
 				+ "   AND ACCOMO_TYPE = ?\r\n"
 				+ "   AND CATEGORY_NO = ?\r\n";
 		qr.append(select);
-		if(search.getFacility().length > 0) {
+		if(search.getFacility() != null) {
 			String searchCondition = LikeBuilder(search.getFacility()).toString();
 		}
 		String group = "GROUP BY AI.ACCOMO_NO, AI.ACCOMO_NAME, ACCOMO_PATH, AT.THUMBNAIL_PATH";
