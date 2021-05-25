@@ -12,6 +12,7 @@ import java.util.List;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.user.dao.UserInfoDAO;
 import com.bonggeuda.sugbag.user.dto.ReservationDetailDTO;
+import com.bonggeuda.sugbag.user.dto.UserBlistDTO;
 import com.bonggeuda.sugbag.user.dto.UserCouponDTO;
 import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
 import com.bonggeuda.sugbag.user.dto.UserReservationStatusDTO;
@@ -179,6 +180,52 @@ public class UserInfoService {
 		
 		return bookCount;
 	}
+
+	public List<UserBlistDTO> selectBlackList(PageInfoDTO pageInfo) {
+
+		Connection con = getConnection();
+		
+		List<UserBlistDTO> blackList = userInfoDAO.selectBlackList(con, pageInfo);
+		
+		close(con);
+		
+		return blackList;
+	}
+
+	public int selectblackCount() {
+
+		Connection con = getConnection();
+		
+		int blackCount = userInfoDAO.selectblackCount(con);
+		
+		close(con);
+		
+		return blackCount;
+	}
+
+	public List<UserBlistDTO> selectBlistMemberNo(String condition, String value, PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<UserBlistDTO> blackNoList = userInfoDAO.selectBlistMemberNo(con, pageInfo, condition, value);
+		
+		close(con);
+		
+		return blackNoList;
+	}
+
+	public int searchMemberNoCount(String condition, String value) {
+		
+		Connection con = getConnection();
+		
+		int blackNoCount = userInfoDAO.blackNoCount(con, condition, value);
+		
+		close(con);
+		
+		return blackNoCount;
+	}
+
+
 
 
 

@@ -39,7 +39,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 		
 		System.out.println("확인 : " + noticeInfo);
 		
-		int updateNoitce = updateNotice.updateNoitce(noticeInfo,Integer.parseInt(request.getParameter("noticeNo")));
+		int update = updateNotice.updateNoitce(noticeInfo,Integer.parseInt(request.getParameter("noticeNo")));
 		
 		Map<String,String[]> requestMap = request.getParameterMap();
 	      Set<String> keySet = requestMap.keySet();
@@ -54,7 +54,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 	         }
 	      }
 		String path="";
-		if(updateNoitce > 0 ) {
+		if(update > 0 ) {
 			path= "/bonggeuda/notice/list";
 			response.sendRedirect(path);
 		} 

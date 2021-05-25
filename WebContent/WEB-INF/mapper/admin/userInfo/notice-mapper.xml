@@ -76,4 +76,9 @@
          WHERE N.NOTICE_NO = ?
 	</entry>
 	
+	<entry key="deleteNotice">
+        DELETE 
+          FROM NOTICE  
+         WHERE NOTICE_NO = ?
+	</entry>
 	</properties>

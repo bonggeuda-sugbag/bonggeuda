@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -76,7 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 		<div class="clearfix"> </div>
 			<!---pop-up-box---->
-				   
+			
 			<link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
             <script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
 			<!---//pop-up-box---->
@@ -117,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							    </div>
 					      </div>
 					 </div>
-					 <script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
+					<script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
 				    	<script type="text/javascript">
 						    $(document).ready(function () {
 						        $('#horizontalTab').easyResponsiveTabs({
@@ -155,25 +154,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class=" banner-buying">
 	<div class=" container">
 	<h3><span>공지사항</span></h3> 
+
 	<div class="clearfix"> </div>      		
 	</div>
 </div>
 <!--//header-->
 <!--blog-->
 	<div class="blog">
+	<form action="${ pageContext.servletContext.contextPath }/notice/insert" method="post">
 		<div class="container">
-		<form action="${ pageContext.servletContext.contextPath }/notice/update" method="get">
-		
 			<div class="blog-list">
 				<nav>
 				<div class="col-md-3 blog-sidebar">
 				<ul>
-					<li class="blog-list"><a href="adminOnlineNotice.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">공지사항</a></li>
+					<li class="blog-list"><a href="adminOnlineNotice.html" ">공지사항</a></li>
+					<li class="blog-list"><a href="adminEvent.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">이벤트</a></li>
 				</ul>
 				</nav>
                
 				<div class="tab">
-				   <span class="tab_btn active">공지사항</span> 
+				   <span class="tab_btn active">이벤트</span> 
 				</div>
                 <table class="type09" border="1px">
                     <thead>
@@ -184,36 +184,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">제목</th>
-                            <td colspan="3" style="width: 650px;" >
-                            <input name="title" value="${ noticeInfo.title }" style="width: 650px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            
-                            </input>
-                            </td>
+                            <th scope="row">이벤트번호</th>
+                            <td><input style="width: 300px; height: 20px; border: 0; resize: none;" name="writer"></input></td>
+                            <th scope="row" style="text-align: center;">제목</th>
+                            <td><input style="width: 300px; height: 20px; border: 0; resize: none;" name="writer"></input></td>
                         </tr>
                         <tr>
-                            <th scope="row">구분</th>
-                            <td>
-                            <input name="writer" value="${ noticeInfo.writer }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            
-                            </input>
-                            </td>
-                            <th scope="row" style="text-align: center;">작성일</th>
-                            <td>
-                            <input name="writeDate" value="${ noticeInfo.writeDate }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            
-                            </input>
-                            </td>
+                            <th scope="row">시작일</th>
+                            <td><input type="date" style="width: 300px; height: 20px; border: 0; resize: none;" name="writeDate"></input></td>
+                            <th scope="row" style="text-align: center;">종료일</th>
+                            <td><input type="date" style="width: 300px; height: 20px; border: 0; resize: none;" name="writeDate"></input></td>
                         </tr>
                     </tbody>
                 </table>
-				<p>
-				<input name="content" value="${ noticeInfo.title }" class="form-control textarea-layer" style="width: 700px; height: 400px; margin-left: 285px; resize: none;">
-				
-				</input>
-				<input type="hidden" name="noticeNo" value= "${ noticeNo }">
-				</p>
-                <br>
                 <table class="type09">
                     <thead>
                         <tr>
@@ -222,11 +205,110 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </tr>
                     </thead>
                 </table>
-                <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">공지사항 수정</button>
-            </div>
+        <div class="outer outer-thumbnail-insert">
+		<form action="${ pageContext.servletContext.contextPath }/thumbnail/insert" method="post" encType="multipart/form-data">
+			<div class="thumbnail-insert-area">
+				<table align="center">
+					<tr>
+						<td width="100px">제목</td>
+						<td colspan="3"><input type="text" size="45" name="title"></td>
+					</tr>
+					<tr>
+						<td>대표 이미지</td>
+						<td colspan="3">
+							<div class="title-img-area" id="titleImgArea">
+								<img id="titleImg" width="350" height="200">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>내용 사진</td>
+						<td>
+							<div class="content-img-area1" id="contentImgArea1">
+								<img id="contentImg1" width="120" height="100">
+							</div>
+						</td>
+						<td>
+							<div class="content-img-area2" id="contentImgArea2">
+								<img id="contentImg2" width="120" height="100">
+							</div>
+						</td>
+						<td>
+							<div class="content-img-area3" id="contentImgArea3">
+								<img id="contentImg3" width="120" height="100">
+							</div>
+						</td>
+						
+					</tr>
+
+				</table>
+				<div class="thumbnail-file-area">
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
+					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
+					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
+				</div>
+			</div>
+			<br>
+			<div class="thumbnail-btn-area">
+				<button>취소하기</button>
+				<button type="submit">작성완료</button>
+			</div>
+		</form>
+			
+		<script>
+			
+			const $titleImgArea = document.getElementById("titleImgArea");
+			const $contentImgArea1 = document.getElementById("contentImgArea1");
+			const $contentImgArea2 = document.getElementById("contentImgArea2");
+			const $contentImgArea3 = document.getElementById("contentImgArea3");
+			
+			$titleImgArea.onclick = function() { 
+				document.getElementById("thumbnailImg1").click(); 
+			}
+			
+			$contentImgArea1.onclick = function() {
+				document.getElementById("thumbnailImg2").click();
+			}
+			
+			$contentImgArea2.onclick = function() {
+				document.getElementById("thumbnailImg3").click();
+			}
+			
+			$contentImgArea3.onclick = function() {
+				document.getElementById("thumbnailImg4").click();
+			}
+			
+			function loadImg(value, num) {
+				if (value.files && value.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						switch(num){
+						case 1:
+							document.getElementById("titleImg").src = e.target.result;
+							break;
+						case 2:
+							document.getElementById("contentImg1").src = e.target.result;
+							break;
+						case 3:
+							document.getElementById("contentImg2").src = e.target.result;
+							break;
+						case 4:
+							document.getElementById("contentImg3").src = e.target.result;
+							break;
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			
+		</script>
+		
+	</div>
+      <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">이벤트 등록</button>
+    	</div>
         </div>
         </form>
-                <button onclick="location.href='${ pageContext.servletContext.contextPath }/notice/delete?noticeNo=${ noticeNo }'"; type="submit" style="margin-top: 10px; margin-bottom: 10px;">삭제</button>
         <br><br><br><br><br>
         <br><br><br><br><br>
         <br><br><br><br><br>
