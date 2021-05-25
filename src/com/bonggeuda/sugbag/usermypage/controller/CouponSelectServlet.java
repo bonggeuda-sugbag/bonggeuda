@@ -30,13 +30,7 @@ public class CouponSelectServlet extends HttpServlet {
 		
 		/* 보유 쿠폰 개수 조회 */
 		int result = mypageService.couponCount(userNo);
-		System.out.println(result);
-		
-		/* 보유 쿠폰 조회 */
-		List<CouponDTO> coupon = new ArrayList<>();
-		coupon = mypageService.couponSelect(userNo);
-		
-		
+		System.out.println(result);		
 		
 		
 		/* 페이징처리 */
@@ -65,13 +59,20 @@ public class CouponSelectServlet extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
-		System.out.println(pageInfo);		
+		System.out.println(pageInfo);	
+		
+		
+		/* 보유 쿠폰 조회 */
+		List<CouponDTO> coupon = new ArrayList<>();
+		coupon = mypageService.couponSelect(userNo, pageInfo);
 		
 
 		
 		String path = "/WEB-INF/views/guest/mypage/coupon.jsp";
 		request.setAttribute("couponCount", result);
 		request.setAttribute("coupon", coupon);
+		request.setAttribute("totalCount", totalCount);
+		request.setAttribute("pageInfo", pageInfo);
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
