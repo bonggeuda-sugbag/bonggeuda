@@ -82,7 +82,7 @@ public class QueryBuilder {
 				+ "                  JOIN BOOK_LIST BL ON(RV.BOOK_NO = BL.BOOK_NO)\r\n"
 				+ "                  JOIN ROOM_INFO RI ON(BL.ROOM_NO = RI.ROOM_NO)\r\n"
 				+ "                  JOIN USER_INFO UI ON(BL.USER_NO = UI.USER_NO)\r\n"
-				+ "                 WHERE RI.ACCOMO_NO = ?";
+				+ "                 WHERE RI.ACCOMO_NO = ? ";
 		qr.append(select);
 		if(bestReview.size()>0) {
 			String searchCondtion = NotInBuilder(bestReview).toString();

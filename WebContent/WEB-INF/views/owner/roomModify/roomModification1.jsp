@@ -104,22 +104,7 @@
                <br><br>
                <span class="todo-desc" style="color: rgb(226, 226, 226);">이용규칙 관리</span>
             </li>
-            <li class="prog">
-               <span class="do">&nbsp;</span>
-               <span>&nbsp;</span>
-               <span class="do">&nbsp;</span>
-               <span>&nbsp;</span>
-               <span class="do">&nbsp;</span>
-               <span>&nbsp;</span>
-               <span class="do">&nbsp;</span>
-               <span>&nbsp;</span>
-               <span class="do">&nbsp;</span>
-            </li>
-            <li>
-               <span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step4.png" width="64px" height="64px"></span>
-               <br><br>
-               <span class="todo-desc" style="color: rgb(226, 226, 226);">객실 등록</span>
-            </li>
+
          </ul>
       </nav>
    </div>
@@ -149,50 +134,7 @@
             </td>   
             
          </tr>
-         <th>
-            편의시설<br>서비스 시설안내 
-         </th>
-         <td>
-            <label for="theme1" class="checkbox-inline icon-label" style="margin-right: 25px;">
-               <input type="checkbox" id="theme1" name="facility"  value="세탁기">세탁기
-            </label>
-            <label for="theme2" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme2" name="facility"  value="건조기">건조기
-            </label>
-            <label for="theme5" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme5" name="facility"  value="객실내흡연">객실내흡연
-            </label>
-            <label for="theme6" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme6" name="facility"  value="와이파이" >와이파이
-            </label>
-            <br>
-            <label for="theme7" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme7" name="facility"  value="욕실용품">욕실용품
-            </label>
-            <label for="theme8" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme8" name="facility"  value="에어컨">에어컨
-            </label>
-            <label for="theme9" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme9" name="facility"  value="냉장고">냉장고
-            </label>
-            <label for="theme11" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme11" name="facility"  value="반려견동반">반려견동반
-            </label>
-            <br>
-            <label for="theme13" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme13" name="facility"  value="조식포함">조식포함
-            </label>
-            <label for="theme18" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme18" name="facility"  value="개인사물함">개인사물함
-            </label>
-            <label for="theme19" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme19" name="facility"  value="TV">TV
-            </label>
-            <label for="theme20" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme20" name="facility"  value="무료주차">무료주차
-            </label>
-         </td>
-         <tr>
+         
             <th>
                오시는길
             </th>

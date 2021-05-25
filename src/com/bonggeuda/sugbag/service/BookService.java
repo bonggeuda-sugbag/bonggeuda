@@ -290,4 +290,29 @@ public class BookService {
 		
 	}
 
+	public RoomDTO selectRoomInfo(int roomNo) {
+		
+		Connection con = getConnection();
+		
+		RoomDTO roomInfo = null;
+		
+		roomInfo = bookDao.selectRoomInfo(con, roomNo);
+		
+		System.out.println("서비스에서 호출 : " + roomInfo );
+		close(con);
+		return roomInfo;
+	}
+
+	public int selectDiscountAmount(int couponNo) {
+		
+		Connection con = getConnection();
+		
+		int discount = 0;
+		
+		discount = bookDao.selectCouponAmount(con, couponNo);
+		
+		close(con);
+		return discount;
+	}
+
 }

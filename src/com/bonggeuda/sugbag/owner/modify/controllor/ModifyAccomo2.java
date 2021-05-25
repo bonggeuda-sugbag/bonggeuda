@@ -44,6 +44,8 @@ public class ModifyAccomo2 extends HttpServlet {
 		/* commons fileupload는 내부에서 commons io 라이브러리와 의존관계에 있기 때문에 둘 다 받아야 한다. 
 		 * 여기서는 input file 태그가 한 개이든 여러 개이든, 혹은 multiple 속성이 있든 상관없이 다 처리 가능하도록 작성해볼 것이다.
 		 * */
+
+		
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			String rootLocation = getServletContext().getRealPath("/");
@@ -166,7 +168,8 @@ public class ModifyAccomo2 extends HttpServlet {
 						 * */
 //						parameter.put(item.getFieldName(), item.getString());
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
-						//parameterValue.put(item.getFieldName(),new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+						//parameterValue.put("facility",new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+						
 						
 					}
 				}
@@ -205,8 +208,8 @@ public class ModifyAccomo2 extends HttpServlet {
 				result = accomoService.insertModifyAccomoThumbnail(tempFileInfo);
 				System.out.println("리젙트는?????????? " + result);
 				// 값 받기
-				System.out.println("편의시설 : "+parameter.get("facility"));
 				
+				rmAcoomoDTO.setAccomoNo(Integer.parseInt(parameter.get("rmAccomoNo")));
 				rmAcoomoDTO.setAccomoName(parameter.get("accomoName"));
 				System.out.println("########" + parameter.get("accomoName"));
 				rmAcoomoDTO.setCeoName(parameter.get("ceoName"));
@@ -230,9 +233,9 @@ public class ModifyAccomo2 extends HttpServlet {
 
 
 				
+				request.setAttribute("rmAcoomoDTO", rmAcoomoDTO);
 				
 				String path = "";
-				request.setAttribute("rmAcoomoDTO", rmAcoomoDTO);
 				
 				path = "/WEB-INF/views/owner/roomModify/roomModification2.jsp";
 				request.getAttribute(path);
@@ -240,7 +243,7 @@ public class ModifyAccomo2 extends HttpServlet {
 				//request.setAttribute("successCode", "insertThumbnail");
 				
 				request.getRequestDispatcher(path).forward(request, response);
-				System.out.println("넘겨진 DTO의 값 : " + rmAcoomoDTO);
+				
 				
 			} catch (Exception e) {
 				//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.

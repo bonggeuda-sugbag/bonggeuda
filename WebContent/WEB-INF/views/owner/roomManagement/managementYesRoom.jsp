@@ -145,6 +145,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
                 숙소 수정
             </form>
+            <form action="/bonggeuda/owner/roomModify" method="post">
+               <button  class="submit-btn" type="submit">
+               <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+                객실 수정
+            </form>
          </c:when>
          <c:when test="${ accomoList.approvalYN eq 'Y' && accomoList.approvalStatus eq 'N'}"> 
        <!-- rm 히스토리의 approveStatus가 Y인 애들은 등록 됐다는 거지 -->

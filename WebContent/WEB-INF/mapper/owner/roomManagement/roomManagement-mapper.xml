@@ -105,5 +105,35 @@
 	
 	</entry>
 
+<entry key="insertRmAccomo">
+	INSERT
+	INTO RM_ACCOMO_INFO
+	VALUES
+	(
+	SEQ_REQUEST_NO.NEXTVAL
+	, 1 /* 패런트키 낫파운드 */
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, DEFAULT
+	, ?
+	, 'RM'
+	, null
+	)
+</entry>
+
 	
 </properties>
