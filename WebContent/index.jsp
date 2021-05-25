@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<<<<<<< HEAD
+
 
        <%--  <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
 		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> 
@@ -33,9 +33,9 @@
 		})();
 
 	</script>
-=======
+
 		<jsp:forward page="/WEB-INF/views/guest/main/main.jsp"/>
->>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
+
 
 </body>
 </html>
