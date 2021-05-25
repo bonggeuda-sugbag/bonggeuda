@@ -170,9 +170,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		<div>
 			<button class="reset" >초기화</button>
-			<button id="seachFacility"class="accept" >적용</button>
+			<button id="searchFacility"class="accept" >적용</button>
  			 	<script>
-		 	    $("#seachFacility").click(function(){
+		 	    $("#searchFacility").click(function(){
 			    	const checkList = [];
 			    	$("input[name='facility']:checked").each(function(i){
 			    		checkList.push($(this).val());

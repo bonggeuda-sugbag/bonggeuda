@@ -675,6 +675,7 @@ textarea {
 							<div style="display: flex;">
 								<div style="width: 40%;">가격</div>
 								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
+								<input type="hidden" name="price" value="${roomList.roomFee }">
 							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
 							<hr>
@@ -717,7 +718,7 @@ textarea {
 								<input type="hidden" name="roomMax" value="${roomList.roomMax }">
 								<input type="hidden" name="peakFee" value="${roomList.peakFee }">
 								<input type="hidden" name="roomName" value="${roomList.roomName }">
-								<input type="hidden" name="price" value="${roomList.roomFee }">
+								
 								<input type="hidden" name="AccomoCheckIn" value="${accomo.checkIn }">
 								
 								<button class="detail_btn" type="submit" name="roomNo" value="${roomList.roomNo }">예약하기</button>

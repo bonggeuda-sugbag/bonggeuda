@@ -652,10 +652,11 @@ public class BookDAO {
         
 		List<ReviewDTO> reviewList = null;
 		String query = new QueryBuilder().reviewSelectBuilder(bestReview).toString();
+		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, accomoNo);
-			pstmt.setInt(2, 2);
+			pstmt.setInt(2, 1);
 			pstmt.setInt(3, 4);
 			rset = pstmt.executeQuery();
 			
@@ -681,6 +682,12 @@ public class BookDAO {
 		return reviewList;
 	}
 
+	/**
+	 * 결제정보 INSERT
+	 * @param con
+	 * @param payment
+	 * @return
+	 */
 	public int insertPaymentInfo(Connection con, PaymentDTO payment) {
 		
 		PreparedStatement pstmt = null;
@@ -707,6 +714,12 @@ public class BookDAO {
 		return result;
 	}
 
+	/**
+	 * 포인트적립
+	 * @param con
+	 * @param pointGet
+	 * @return
+	 */
 	public int insertPointGet(Connection con, PointHistoryDTO pointGet) {
 		
 		PreparedStatement pstmt = null;
@@ -732,6 +745,12 @@ public class BookDAO {
 		return result;
 	}
 
+	/**
+	 * 쿠폰사용이력INSERT
+	 * @param con
+	 * @param couponUse
+	 * @return
+	 */
 	public int insertCouponUse(Connection con, CouponHistoryDTO couponUse) {
 		
 		PreparedStatement pstmt = null;
@@ -755,6 +774,12 @@ public class BookDAO {
 		return result;
 	}
 
+	/**
+	 * 포인트사용이력 INSERT
+	 * @param con
+	 * @param pointUse
+	 * @return
+	 */
 	public int insertPointUse(Connection con, PointHistoryDTO pointUse) {
 		
 		PreparedStatement pstmt = null;
@@ -780,6 +805,11 @@ public class BookDAO {
 		return result;
 	}
 
+	/**
+	 * 예약번호 시퀀스 조회
+	 * @param con
+	 * @return
+	 */
 	public int selectBookSeq(Connection con) {
 		
 		Statement stmt = null;
@@ -807,6 +837,11 @@ public class BookDAO {
 		return lastBookNo;
 	}
 
+	/**
+	 * 결제번호 시퀀스 조회
+	 * @param con
+	 * @return
+	 */
 	public int selectPaymentSeq(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -831,5 +866,84 @@ public class BookDAO {
 		}
 		
 		return lastPaymentNo;
+	}
+
+	/**
+	 * 객실 1개 정보 조회
+	 * @param con
+	 * @param roomNo
+	 * @return
+	 */
+	public RoomDTO selectRoomInfo(Connection con, int roomNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		RoomDTO roomInfo = null;
+		
+		String query = prop.getProperty("selectRoomInfo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, roomNo);
+			
+			rset = pstmt.executeQuery();
+			
+			roomInfo = new RoomDTO();
+			if(rset.next()) {
+				roomInfo.setRoomNo(rset.getInt("ROOM_NO"));
+				roomInfo.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				roomInfo.setRoomName(rset.getString("ROOM_NAME"));
+				roomInfo.setRoomMax(rset.getInt("ROOM_MAX"));
+				roomInfo.setRoomIntro(rset.getString("ROOM_INTRO"));
+				roomInfo.setRoomFee(rset.getInt("ROOM_FEE"));
+				roomInfo.setPeakFee(rset.getInt("PEAK_FEE"));
+				
+				System.out.println("DAO 에서 호출한 값 : " + roomInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return roomInfo;
+	}
+
+	/**
+	 * 쿠폰할인금액 조회
+	 * @param con
+	 * @param couponNo
+	 * @return
+	 */
+	public int selectCouponAmount(Connection con, int couponNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int discount = 0;
+		
+		String query = prop.getProperty("selectCouponDiscount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, couponNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				discount = rset.getInt("할인금액");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return discount;
 	}
 }

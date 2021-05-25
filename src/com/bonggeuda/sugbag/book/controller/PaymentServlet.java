@@ -1,6 +1,7 @@
 package com.bonggeuda.sugbag.book.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Iterator;
 import java.util.Map;
@@ -24,21 +25,20 @@ import com.bonggeuda.sugbag.service.BookService;
  */
 @WebServlet("/book/payment")
 public class PaymentServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int couponNo = Integer.parseInt(request.getParameter("coupon"));
+		
+		int discount = new BookService().selectDiscountAmount(couponNo);
+		
+		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		out.print(discount);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//key value 확인
-		Map<String,String[]> requestMap = request.getParameterMap();
-		Set<String> keySet = requestMap.keySet();
-		Iterator<String> keyIter = keySet.iterator();
-		while(keyIter.hasNext()) {
-			String key = keyIter.next();
-			String[] value = requestMap.get(key);
-			
-			System.out.println("key : " + key);
-			for(int i = 0; i < value.length; i++) {
-				System.out.println("value[" + i + "] : " +value[i]);
-			}
-		}
 		
 		//예약자번호
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
@@ -66,8 +66,8 @@ public class PaymentServlet extends HttpServlet {
 			
 		}
 		int coupon=0;//쿠폰사용금액
-		if(request.getParameter("coupon").length()>0){
-			coupon = Integer.parseInt(request.getParameter("coupon")); 
+		if(request.getParameter("couponDiscount").length()>0){
+			coupon = Integer.parseInt(request.getParameter("couponDiscount")); 
 		}
 		
 		PaymentDTO payment = new PaymentDTO();
@@ -88,7 +88,6 @@ public class PaymentServlet extends HttpServlet {
 			discount += coupon;
 		}
 		payment.setDiscount(discount);
-		System.out.println("할인금액 : " + discount);
 		
 		
 		int pointNo = 1;
@@ -109,8 +108,7 @@ public class PaymentServlet extends HttpServlet {
 		//쿠폰 사용시 쿠폰이력 생성
 		CouponHistoryDTO couponUse = new CouponHistoryDTO();
 		if(payment.getCouponYN().equals("Y")) {
-//			int couponNo = Integer.parseInt(request.getParameter("couponNo"));
-			int couponNo = 15;
+			int couponNo = Integer.parseInt(request.getParameter("couponNo"));
 			couponUse.setCouponNo(couponNo);
 			couponUse.setUseDate(payment.getPaymentTime());
 		}
@@ -128,7 +126,6 @@ public class PaymentServlet extends HttpServlet {
 		
 		int result = bsvc.insertBookNpay(bookInfo, payment, pointGet, couponUse, pointUse);
 		
-		System.out.println(result);
 		
 	}
 }
