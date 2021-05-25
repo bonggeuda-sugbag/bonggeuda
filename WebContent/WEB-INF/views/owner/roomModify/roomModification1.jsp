@@ -124,7 +124,7 @@
       </nav>
    </div>
 </div>
-<form action="${ pageContext.servletContext.contextPath }/owner/modifyAccomo2" method="post">
+<form action="${ pageContext.servletContext.contextPath }/owner/modifyAccomo2" method="post" encType="multipart/form-data">
 <table id="registTb" class="table table-bordered">
    <thead>
    </thead>

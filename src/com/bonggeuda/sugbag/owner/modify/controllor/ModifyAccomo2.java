@@ -199,8 +199,9 @@ public class ModifyAccomo2 extends HttpServlet {
 				String path = "";
 				
 				path = "/WEB-INF/views/owner/roomModify/roomModification2.jsp";
-				request.setAttribute("successCode", "insertThumbnail");
-				
+				request.getAttribute(path);
+
+				//request.setAttribute("successCode", "insertThumbnail");
 				
 				request.getRequestDispatcher(path).forward(request, response);
 				
@@ -227,12 +228,6 @@ public class ModifyAccomo2 extends HttpServlet {
 			} 
 
 		}
-		String path = "";
-		
-		path = "/WEB-INF/views/owner/roomModify/roomModification2.jsp";
-		
-		request.getAttribute(path);
-		request.getRequestDispatcher(path).forward(request, response);
 
 	}
 
