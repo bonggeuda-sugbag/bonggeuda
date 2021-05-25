@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.modify.controllor;
+package com.bonggeuda.sugbag.owner.regist.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,53 +19,35 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
-import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
-import com.bonggeuda.sugbag.owner.modify.service.ModifyAccomoService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
 /**
- * Servlet implementation class ModifyAccomo2
+ * Servlet implementation class AccomoImage
  */
-@WebServlet("/owner/modifyAccomo2")
-public class ModifyAccomo2 extends HttpServlet {
-
-
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
+@WebServlet("/accomo/image")
+public class AccomoImage extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/* commons fileupload는 내부에서 commons io 라이브러리와 의존관계에 있기 때문에 둘 다 받아야 한다. 
 		 * 여기서는 input file 태그가 한 개이든 여러 개이든, 혹은 multiple 속성이 있든 상관없이 다 처리 가능하도록 작성해볼 것이다.
 		 * */
-		System.out.println("++++++++++++++++++++++++++++++++++");
 		if(ServletFileUpload.isMultipartContent(request)) {
-			System.out.println("@@@@@@@@@@@@@@@@@@@");
-			// 여기로 안들어와...
 			
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
-			
-			System.out.println("파일 저장 ROOT 경로 : " + rootLocation);
-			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
-			System.out.println("인코딩 방식 : " + encodingType);
-			
 			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
+			System.out.println(rootLocation);
 			
 			File directory = new File(fileUploadDirectory);
 			File directory2 = new File(thumbnailDirectory);
 			
-			/* 파일 저장경로가 존재하지 않는 경우 디렉토리를 생성한다. */
 			if(!directory.exists() || !directory2.exists()) {
-				/* 폴더를 한 개만 생성할거면 mkdir, 상위 폴더도 존재하지 않으면 한 번에 생성하란 의미로 mkdirs를 이용한다. */
-				System.out.println("폴더 생성 : " + directory.mkdirs());
-				System.out.println("폴더 생성 : " + directory2.mkdirs());
+				directory.mkdirs();
+				directory2.mkdirs();
 			}
 			
 			/* 이게 최종적으로 request를 parsing하고 파일을 저장한 뒤 필요한 내용을 담을 리스트와 맵이다.
@@ -81,7 +63,6 @@ public class ModifyAccomo2 extends HttpServlet {
 	        
 	        /* 서블릿에서 기본 제공하는거 말고 꼭 commons fileupload 라이브러이에 있는 클래스로 임포트 해야 한다. */
 	        ServletFileUpload fileUpload = new ServletFileUpload(fileItemFactory);
-//	        fileUpload.setHeaderEncoding(encodingType);		//별 의미 없는 듯 하다. 기본값은 null인데 파일명은 자동으로 UTF-8로 인코딩한 거 같다.
 	        
 	        try {
 	        	/* request를 파싱하여 데이터 하나 하나를 FileItem 인스턴로 반환한다. */
@@ -125,13 +106,13 @@ public class ModifyAccomo2 extends HttpServlet {
 							fileMap.put("savedFileName", randomFileName);
 							fileMap.put("savePath", fileUploadDirectory);
 							
-							/* 제목 사진과 나머지 사진을 구분하고 썸네일도 생성한다. */
+				/*			 제목 사진과 나머지 사진을 구분하고 썸네일도 생성한다. 
 							int width = 0;
 							int height = 0;
 							if("thumbnailImg1".equals(filedName)) {
 								fileMap.put("fileType", "TITLE");
 								
-								/* 썸네일로 변환 할 사이즈를 지정한다. */
+								 썸네일로 변환 할 사이즈를 지정한다. 
 								width = 350;
 								height = 200;
 							} else {
@@ -141,10 +122,10 @@ public class ModifyAccomo2 extends HttpServlet {
 								height = 100;
 							}
 							
-							/* 썸네일로 변환 후 저장한다. */
+							 썸네일로 변환 후 저장한다. 
 							Thumbnails.of(fileUploadDirectory + randomFileName)
 									.size(width, height)
-									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);
+									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);*/
 							
 							/* 나중에 웹서버에서 접근 가능한 경로 형태로 썸네일의 저장 경로도 함께 저장한다. */
 							fileMap.put("thumbnailPath", "/resources/upload/thumbnail/thumbnail_" + randomFileName);
@@ -165,43 +146,44 @@ public class ModifyAccomo2 extends HttpServlet {
 					}
 				}
 				
-				
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
-				RmAccomoInfoDTO thumbnail = new RmAccomoInfoDTO();
-
-				//List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
+				BoardDTO thumbnail = new BoardDTO();
+				thumbnail.setTitle(parameter.get("title"));
+				thumbnail.setBody(parameter.get("body"));
+				thumbnail.setWriterMemberNo(((MemberDTO) request.getSession().getAttribute("loginMember")).getNo());
 				
-				AttachmentDTO tempFileInfo = new AttachmentDTO();
+				thumbnail.setAttachmentList(new ArrayList<AttachmentDTO>());
+				List<AttachmentDTO> list = thumbnail.getAttachmentList();
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
-					tempFileInfo = new AttachmentDTO();
 					
-					tempFileInfo.setOriginName(file.get("originFileName"));
+					AttachmentDTO tempFileInfo = new AttachmentDTO();
+					tempFileInfo.setOriginalName(file.get("originFileName"));
 					tempFileInfo.setSavedName(file.get("savedFileName"));
 					tempFileInfo.setSavePath(file.get("savePath"));
 					tempFileInfo.setFileType(file.get("fileType"));
 					tempFileInfo.setThumbnailPath(file.get("thumbnailPath"));
 					
-					//list.add(tempFileInfo);
+					list.add(tempFileInfo);
 				}
 				
 				System.out.println("thumbnail board : " + thumbnail);
 				
 				/* 서비스 메소드를 요청한다. */
-				ModifyAccomoService  accomoService = new ModifyAccomoService();
-				int result = 0;
-				result = accomoService.insertModifyAccomoThumbnail(tempFileInfo);
-				System.out.println("리젙트는??????????" + result);
+				int result = new BoardService().insertThumbnail(thumbnail);
+				
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				String path = "";
-				
-				path = "/WEB-INF/views/owner/roomModify/roomModification2.jsp";
-				request.getAttribute(path);
-
-				//request.setAttribute("successCode", "insertThumbnail");
+				if(result > 0) {
+					path = "/WEB-INF/views/common/success.jsp";
+					request.setAttribute("successCode", "insertThumbnail");
+				} else {
+					path = "/WEB-INF/views/common/failed.jsp";
+					request.setAttribute("message", "썸네일 게시판 등록 실패!");
+				}
 				
 				request.getRequestDispatcher(path).forward(request, response);
 				
@@ -228,7 +210,8 @@ public class ModifyAccomo2 extends HttpServlet {
 			} 
 
 		}
-
 	}
+
+}
 
 }

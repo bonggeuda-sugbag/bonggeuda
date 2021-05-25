@@ -126,7 +126,7 @@
 		</nav>
 	</div>
 </div>
-<form action="${ pageContext.servletContext.contextPath }/registration3" method="post">
+<form action="${ pageContext.servletContext.contextPath }/registration3" method="post" >
 <table id="registTb" class="table table-bordered">
 	<thead>
 

@@ -173,5 +173,4 @@ public class AccomoReportServlet extends HttpServlet {
 			}
 		}
 	}
-
 }
