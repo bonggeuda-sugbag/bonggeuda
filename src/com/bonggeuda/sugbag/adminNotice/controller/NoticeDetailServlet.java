@@ -23,7 +23,7 @@ public class NoticeDetailServlet extends HttpServlet {
 		
 		AdminNoticeDTO noticeInfo = adminNoticeService.selectNoticeDetail(request.getParameter("noticeNo"));
 		
-		System.out.println("어디에있지"+ noticeInfo);
+		System.out.println("rrrr"+ request.getParameter("noticeNo"));
 		
 		String path = "";
 		

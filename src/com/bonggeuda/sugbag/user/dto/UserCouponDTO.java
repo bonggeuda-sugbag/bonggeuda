@@ -8,15 +8,17 @@ public class UserCouponDTO {
 	private java.sql.Date startDate;
 	private java.sql.Date endDate;
 	private int condition;
+	private int discount;
 	
 	public UserCouponDTO() {}
 
-	public UserCouponDTO(String couponName, Date startDate, Date endDate, int condition) {
+	public UserCouponDTO(String couponName, Date startDate, Date endDate, int condition, int discount) {
 		super();
 		this.couponName = couponName;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.condition = condition;
+		this.discount = discount;
 	}
 
 	public String getCouponName() {
@@ -51,11 +53,21 @@ public class UserCouponDTO {
 		this.condition = condition;
 	}
 
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+
 	@Override
 	public String toString() {
 		return "UserCouponDTO [couponName=" + couponName + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", condition=" + condition + "]";
+				+ ", condition=" + condition + ", discount=" + discount + "]";
 	}
+
+	
 
 	
 	

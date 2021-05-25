@@ -212,12 +212,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <span class="form-body">
                      <div style="display: flex;">
                      <input class="form-control normal-size" type="number" name="condition" style="width: 60%;">
-                     <input type="hidden" name="hduserNo" value= "${ user }">
                      </div>
                   </span>
                </td>
             </tr>
             <!-- //상태조건 -->
+            
+            <!-- 할인금액 -->
+            <tr>
+               <th style="text-align: center; padding-top: 14px; ">할인금액</th>
+               <td class="bd_r_none">
+                  <span class="form-body">
+                     <div style="display: flex;">
+                     <input class="form-control normal-size" type="number" name="discount" style="width: 60%;">
+                     <input type="hidden" name="hduserNo" value= "${ user }">
+                     </div>
+                  </span>
+               </td>
+            </tr>
+            <!-- //할인금액 -->
    </tbody>
 </table>
       <div class="submit-layer" style="display: flex;">

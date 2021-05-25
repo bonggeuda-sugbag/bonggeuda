@@ -9,6 +9,8 @@ public class UserleaveDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 6310412939527384691L;
+	
+	private int rnum;
 	private int leaveNo; // 탈퇴번호
 	private String email; // 아이디
 	private String reason; // 탈퇴이유
@@ -16,12 +18,21 @@ public class UserleaveDTO implements Serializable{
 	
 	public UserleaveDTO() {}
 
-	public UserleaveDTO(int leaveNo, String email, String reason, Date leaveDate) {
+	public UserleaveDTO(int rnum, int leaveNo, String email, String reason, Date leaveDate) {
 		super();
+		this.rnum = rnum;
 		this.leaveNo = leaveNo;
 		this.email = email;
 		this.reason = reason;
 		this.leaveDate = leaveDate;
+	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public int getLeaveNo() {
@@ -56,13 +67,17 @@ public class UserleaveDTO implements Serializable{
 		this.leaveDate = leaveDate;
 	}
 
-	@Override
-	public String toString() {
-		return "UserleaveDTO [leaveNo=" + leaveNo + ", email=" + email + ", reason=" + reason + ", leaveDate="
-				+ leaveDate + "]";
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "UserleaveDTO [rnum=" + rnum + ", leaveNo=" + leaveNo + ", email=" + email + ", reason=" + reason
+				+ ", leaveDate=" + leaveDate + "]";
+	}
+
+
 	
 
 	

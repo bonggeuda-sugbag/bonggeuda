@@ -11,21 +11,23 @@
        <%--  <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
 		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> 
  --%>
+	<jsp:forward page="/WEB-INF/views/admin/event/eventWrite.jsp"></jsp:forward> 
 
 
-
-
-		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%> 
+		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>   
 		<jsp:forward page="/login/test"/>
-
-
-
-
-	<script>
+		
+			<script>
 		(function(){
 			
-			location.href="${ pageContext.servletContext.contextPath}/notice/list";    
+			location.href="${ pageContext.servletContext.contextPath}/event/list";    
+			
 		})();
-	</script>  
+	</script>
+--%> 
+
+
+
+
 </body>
 </html>

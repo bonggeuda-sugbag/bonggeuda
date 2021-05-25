@@ -176,7 +176,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <c:forEach var="leave" items="${ requestScope.leaveList }"> 
  			<form action="${ pageContext.servletContext.contextPath }/user/leave" method="get">
 			<tr>
-				<td><c:out value="${ leave.leaveNo}"/></td>
+				<td><c:out value="${ leave.rnum}"/></td>
 				<td><c:out value="${ leave.email }"/></td>
 				<td><c:out value="${ leave.reason }"/></td>
 				<td><c:out value="${ leave.leaveDate }"/></td>

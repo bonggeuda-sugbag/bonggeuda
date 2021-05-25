@@ -92,4 +92,21 @@ public class AdminNoticeService {
 		return noticeInfo ;
 	}
 
+	public int deleteNotice(AdminNoticeDTO noticeInfo, int noticeNo) {
+
+		Connection con = getConnection();
+		
+		int deleteInfo = AdminNoticeDAO.deleteNoitce (con, noticeInfo, noticeNo);
+		
+		if(deleteInfo  > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return deleteInfo ;
+	}
+
 }

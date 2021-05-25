@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -154,7 +154,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
-	<h3><span>공지사항</span></h3> 
+	<h3><span>문의&신고</span></h3> 
+
 	<div class="clearfix"> </div>      		
 	</div>
 </div>
@@ -162,18 +163,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--blog-->
 	<div class="blog">
 		<div class="container">
-		<form action="${ pageContext.servletContext.contextPath }/notice/update" method="get">
-		
 			<div class="blog-list">
+				<form action="${ pageContext.servletContext.contextPath }/qna/insert" method="get"> 
 				<nav>
 				<div class="col-md-3 blog-sidebar">
 				<ul>
-					<li class="blog-list"><a href="adminOnlineNotice.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">공지사항</a></li>
+					<li class="blog-list"><a href="adminOnlineQuestionUser.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">문의 내역</a></li>
+					<li class="blog-list"><a href="adminOnlineReport.html" >신고 내역</a></li>
 				</ul>
 				</nav>
                
 				<div class="tab">
-				   <span class="tab_btn active">공지사항</span> 
+				   <span class="tab_btn active">문의 내역</span> 
 				</div>
                 <table class="type09" border="1px">
                     <thead>
@@ -186,32 +187,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <tr>
                             <th scope="row">제목</th>
                             <td colspan="3" style="width: 650px;" >
-                            <input name="title" value="${ noticeInfo.title }" style="width: 650px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            <input name="title" value="${ qnaInfo.title }" style="width: 650px; height: 20px; border: 0; resize: none; overflow:hidden;" disabled>
                             
                             </input>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">구분</th>
+                            <th scope="row">작성자</th>
                             <td>
-                            <input name="writer" value="${ noticeInfo.writer }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            <input name="writer" value="${ qnaInfo.writer }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;" disabled> 
                             
                             </input>
                             </td>
                             <th scope="row" style="text-align: center;">작성일</th>
                             <td>
-                            <input name="writeDate" value="${ noticeInfo.writeDate }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            <input name="writeDate" value="${ qnaInfo.writeDate }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;" disabled>
                             
                             </input>
                             </td>
-                        </tr>
                     </tbody>
                 </table>
 				<p>
-				<input name="content" value="${ noticeInfo.title }" class="form-control textarea-layer" style="width: 700px; height: 400px; margin-left: 285px; resize: none;">
-				
-				</input>
-				<input type="hidden" name="noticeNo" value= "${ noticeNo }">
+				<input class="form-control textarea-layer" value="${ qnaInfo.content}" style="width: 700px; height: 120px; margin-left: 285px;" disabled></input>
 				</p>
                 <br>
                 <table class="type09">
@@ -222,11 +219,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </tr>
                     </thead>
                 </table>
-                <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">공지사항 수정</button>
+                
+                 <table class="type09" border="1px" style="margin-left: 285px;">
+                    <thead>
+                        <tr>
+                            <th scope="cols"></th>
+                            <th scope="cols"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">작성일자</th>
+                            <td>
+                            <input style="width: 260px; height: 20px; border: 0; resize: none; overflow:hidden;"> 
+                            
+                            </input>
+                            </td>
+                            <th scope="row" style="text-align: center;">문의 번호</th>
+                            <td>
+                            <input name="qnaNo" value="${ qnaInfo.qnaNo }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            <input type="hidden" name="qnaNo" value= "${ qnaInfo.qnaNo }">	
+                            </input>
+                            </td>
+                    </tbody>
+                </table>
+				<input name="content" class="form-control textarea-layer" style="width: 700px; height: 120px; margin-left: 285px;"></input>
+                <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">등록</button>
+                </form>
             </div>
         </div>
-        </form>
-                <button onclick="location.href='${ pageContext.servletContext.contextPath }/notice/delete?noticeNo=${ noticeNo }'"; type="submit" style="margin-top: 10px; margin-bottom: 10px;">삭제</button>
         <br><br><br><br><br>
         <br><br><br><br><br>
         <br><br><br><br><br>

@@ -16,6 +16,7 @@ import java.util.Properties;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.user.dto.ReservationDetailDTO;
+import com.bonggeuda.sugbag.user.dto.UserBlistDTO;
 import com.bonggeuda.sugbag.user.dto.UserCouponDTO;
 import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
 import com.bonggeuda.sugbag.user.dto.UserReservationStatusDTO;
@@ -85,7 +86,7 @@ public class UserInfoDAO {
 			while(rset.next()) {
 				UserInfoDTO userInfo = new UserInfoDTO();
 						
-				userInfo.setUserNo(rset.getInt("USER_NO"));
+				userInfo.setRnum(rset.getInt("RNUM"));
 				userInfo.setName(rset.getString("USER_NICKNAME"));
 				userInfo.setEmail(rset.getString("USER_ID"));
 				userInfo.setPhoneNumber(rset.getString("USER_PHONE"));
@@ -155,6 +156,7 @@ public class UserInfoDAO {
 			pstmt.setInt(3, dto.getCondition());
 			pstmt.setInt(4, hduserNo); //히든으로 숨겨서 가져온 회원번호
 			pstmt.setString(5, dto.getCouponName());
+			pstmt.setInt(6,dto.getDiscount());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -190,7 +192,7 @@ public class UserInfoDAO {
 			while(rset.next()) {
 				UserleaveDTO leaveInfo = new UserleaveDTO();
 						
-				leaveInfo.setLeaveNo(rset.getInt("WITHDRAW_NO"));
+				leaveInfo.setRnum(rset.getInt("RNUM"));
 				leaveInfo.setEmail(rset.getString("USER_ID"));
 				leaveInfo.setReason(rset.getString("WITHDRAW_REASON"));
 				leaveInfo.setLeaveDate(rset.getDate("WITHDRAWDATE"));
@@ -234,7 +236,7 @@ public class UserInfoDAO {
 			while(rset.next()) {
 				UserInfoDTO userInfo = new UserInfoDTO();
 						
-				userInfo.setUserNo(rset.getInt("USER_NO"));
+				userInfo.setRnum(rset.getInt("RNUM"));
 				userInfo.setName(rset.getString("USER_NICKNAME"));
 				userInfo.setEmail(rset.getString("USER_ID"));
 				userInfo.setPhoneNumber(rset.getString("USER_PHONE"));
@@ -401,7 +403,7 @@ public class UserInfoDAO {
 			while(rset.next()) {
 				UserleaveDTO withdrawInfo = new UserleaveDTO();
 						
-				withdrawInfo.setLeaveNo(rset.getInt("WITHDRAW_NO"));
+				withdrawInfo.setRnum(rset.getInt("RNUM"));
 				withdrawInfo.setEmail(rset.getString("USER_ID"));
 				withdrawInfo.setReason(rset.getString("WITHDRAW_REASON"));
 				withdrawInfo.setLeaveDate(rset.getDate("WITHDRAWDATE"));
@@ -536,6 +538,159 @@ public class UserInfoDAO {
 		}
 		
 		return bookCount;
+	}
+
+
+	public List<UserBlistDTO> selectBlackList(Connection con, PageInfoDTO pageInfo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<UserBlistDTO> blackList = null;
+		
+		String query = prop.getProperty("selectBlackList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+		
+			rset = pstmt.executeQuery();
+			
+			blackList = new ArrayList<>();
+			
+			while(rset.next()) {
+				
+				UserBlistDTO blackInfo = new UserBlistDTO();
+
+						
+				blackInfo.setRnum(rset.getInt("RNUM"));
+				blackInfo.setReason(rset.getString("BLIST_REASON"));
+				blackInfo.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				blackInfo.setMemberNo(rset.getInt("MEMBER_NO"));
+				blackInfo.setWriterType(rset.getString("WRITER_TYPE"));
+				
+				blackList.add(blackInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return blackList;
+	}
+
+
+	public int selectblackCount(Connection con) {
+
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int blackCount = 0;
+		
+		String query = prop.getProperty("selectBlackCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				blackCount = rset.getInt("COUNT(*)");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+
+		return blackCount;
+	}
+
+
+	public List<UserBlistDTO> selectBlistMemberNo(Connection con, PageInfoDTO pageInfo, String condition,
+			String value) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = null;
+		List<UserBlistDTO> blackNoList = null;
+		
+		if(condition.equals("userNo")) {
+			
+			query = prop.getProperty("selectBlackListMemberNo");
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			pstmt.setString(3, value);
+
+			rset = pstmt.executeQuery();
+			
+			blackNoList = new ArrayList<>();
+			
+			while(rset.next()) {
+				
+				UserBlistDTO blackInfo = new UserBlistDTO();
+				
+				blackInfo.setRnum(rset.getInt("RNUM"));
+				blackInfo.setReason(rset.getString("BLIST_REASON"));
+				blackInfo.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				blackInfo.setMemberNo(rset.getInt("MEMBER_NO"));
+				blackInfo.setWriterType(rset.getString("WRITER_TYPE"));
+				
+				blackNoList.add(blackInfo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return blackNoList;
+	}
+
+
+	public int blackNoCount(Connection con, String condition, String value) {
+	
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = null;
+		int blackNoCount = 0;
+		
+		if(condition.equals("userNo")) {
+			
+			query = prop.getProperty("selectBlackNoCount");
+		}
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, value);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				blackNoCount = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return blackNoCount;
 	}
 }
 

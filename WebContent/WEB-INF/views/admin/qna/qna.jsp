@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
@@ -10,7 +10,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<style>
 		div.tab, div.tab-content {
 			  margin-left: 25%;
@@ -47,7 +46,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
 </head>
 <body>
 <!--header-->
@@ -153,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
-	<h3><span>공지사항</span></h3> 
+	<h3><span>문의&신고</span></h3> 
 
 	<div class="clearfix"> </div>      		
 	</div>
@@ -163,58 +161,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="blog">
 		<div class="container">
 			<div class="blog-list">
-			 <form action="${ pageContext.servletContext.contextPath }/notice/insert" method="get">
 				<nav>
 				<div class="col-md-3 blog-sidebar">
 				<ul>
-					<li class="blog-list"><a href="adminOnlineNotice.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">공지사항</a></li>
+					<li class="blog-list"><a href="adminOnlineQuestionUser.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;" >문의 내역</a></li>
+                    <li class="blog-list"><a href="adminOnlineReport.html">신고 내역</a></li>
 				</ul>
 				</nav>
-				<div class="tab" style="display: flex;">
-				   <span class="tab_btn active">공지사항</span> 
-				   <!-- <select>
+				<div class="tab">
+				   <span class="tab_btn active">문의 내역</span> 
+				   <select>
 					   <option selected=""></option>
-					   <option value="1">N</option>
-				   </select> -->
-				   <p><button style="margin-left: 610px;">작성하기</button></p>
-				   </form>
-				   
+					   <option value="1">사용자</option>
+					   <option value="2">업체</option>
+				   </select>
 				</div>
 				<table class="table table-hover" style="width: 800px;">
 					<thead>
 						<tr>
-							<th><b>번호</b></th>
-							<th><b>제목</b></th>
-							<th><b>작성날짜</b></th>
-							<th><b>구분</b></th>
-							<th><b>상세정보</b></th>
+							<th><b>문의 번호</b></th>
+							<th><b>문의 제목</b></th>
+                            <th><b>작성자 구분</b></th>
+							<th><b>회원 번호</b></th>
+							<th><b>작성 날짜</b></th>
+							<th><b>상세보기</b></th>
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="notice" items="${ requestScope.noitceList }">
-					<form action="${ pageContext.servletContext.contextPath }/notice/detail" method="get"> 
+   		            <c:forEach var="answer" items="${ requestScope.qnaList }">
+					<form action="${ pageContext.servletContext.contextPath }/qna/detail" method="get"> 
 						<tr>
-							<td><c:out value="${ notice.rnum }"/></td>
-							<td><c:out value="${ notice.title }"/></td>
-							<td><c:out value="${ notice.writeDate }"/></td>
-							<td><c:out value="${ notice.writer }"/></td>
+							<td><c:out value="${ answer.rnum }"/></td>
+							<td><c:out value="${ answer.title }"/></td>
+							<td><c:out value="${ answer.writer }"/></td>
+							<td><c:out value="${ answer.memberNo }"/></td>
+							<td><c:out value="${ answer.writeDate }"/></td>
 							<td><button id="detail">상세보기</button></td>
-							<input type="hidden" name="noticeNo" value= "${ notice.noticeNo }">				
+							<input type="hidden" name="qnaNo" value= "${ answer.qnaNo }">				
 						</tr>
             		</form>
 					</c:forEach>
 					</tbody>
 				 </table>
-
-
 				 
 			</div>
 		</div>
 	</div>
-	
 	<div class="clearfix"> </div>
-	
-		<%-- 페이지 처리 --%>
+	<%-- 페이지 처리 --%>
 		<div class="pagingArea" align="center">
 			<c:choose>
 			    <c:when test="${ empty requestScope.searchValue }">
@@ -273,12 +267,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 		<!-- 검색 폼 -->
-		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/user/search" method="get">		
+		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/qna/writerSearch" method="get">		
 			<div class="search-area" align="center">
 				<c:choose>
 				    <c:when test="${ !empty requestScope.searchValue }">
    					    <select id="searchCondition" name="searchCondition">
-							<option value="userId" <c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>회원번호</option>
 							<option value="writer" <c:if test="${requestScope.searchCondition eq 'writer'}">selected</c:if>>작성자</option>
 							<option value="title" <c:if test="${requestScope.searchCondition eq 'title'}">selected</c:if>>제목</option>
 							<option value="content" <c:if test="${requestScope.searchCondition eq 'content'}">selected</c:if>>내용</option>
@@ -287,7 +280,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    </c:when>
 				    <c:otherwise>
 					    <select id="searchCondition" name="searchCondition">
-							<option value="userId">아이디</option>
 							<option value="writer">작성자</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
@@ -304,8 +296,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</form>
 		
 		<script>
-		const link = "${ pageContext.servletContext.contextPath }/notice/list";
-		const searchLink = "${ pageContext.servletContext.contextPath }/user/search";
+		const link = "${ pageContext.servletContext.contextPath }/qna/list";
+		const searchLink = "${ pageContext.servletContext.contextPath }/qna/writerSearch";
 			
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");
@@ -386,7 +378,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
 		}
 	</script>
-	<%-- <nav style="margin-left: 850px;">
+	<%--   <nav>
 		<ul class="pagination">
 		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
@@ -396,8 +388,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  <li><a href="#">5</a></li>
 		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 	   </ul>
-	</nav>
-	--%>
+	   </nav>
+	   --%>
 </div>
 
 </div>
@@ -458,8 +450,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 			</div>
 		<div class="clearfix"> </div>
-		
-		
 		</div>
 	</div>
 	<div class="footer-bottom">

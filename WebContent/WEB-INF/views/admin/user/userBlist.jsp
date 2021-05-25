@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -167,54 +168,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
          <thead>
             <tr>
-               <th>아이디</th>
+               <th>블랙리스트 신고번호</th>
                <th>블랙리스트 사유</th>
-               <th>경고 누적 횟수</th>
-               <th>블랙리스트 등록일</th>
+               <th>작성자 구분</th>
+               <th>회원번호</th>
+               <th>등록일</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
-               <th>원석</th>
-               <th>객실내 흡연</th>
-               <th>7</th>
-               <th>2021 00 00</th>
-            </tr>   
-            <tr>
-               <th>원석</th>
-               <th>객실내 흡연</th>
-               <th>7</th>
-               <th>2021 00 00</th>
-            </tr>   
-            <tr>
-               <th>원석</th>
-               <th>객실내 흡연</th>
-               <th>7</th>
-               <th>2021 00 00</th>
-            </tr>   
-            <tr>
-               <th>원석</th>
-               <th>객실내 흡연</th>
-               <th>7</th>
-               <th>2021 00 00</th>
-            </tr>   
-            <tr>
-               <th>원석</th>
-               <th>객실내 흡연</th>
-               <th>7</th>
-               <th>2021 00 00</th>
-            </tr>   
-            <tr>
-               <th>원석</th>
-               <th>객실내 흡연</th>
-               <th>7</th>
-               <th>2021 00 00</th>
-            </tr>   
+			<c:forEach var="bList" items="${ requestScope.blackList }">
+			<form action="${ pageContext.servletContext.contextPath }/black/list" method="get">
+			<tr>
+				<td><c:out value="${ bList.rnum }"/></td>
+				<td><c:out value="${ bList.reason}"/></td>
+				<td><c:out value="${ bList.writerType}"/></td>
+				<td><c:out value="${ bList.memberNo }"/></td>
+				<td><c:out value="${ bList.enrollDate }"/></td>
+				
+			</tr>
+            </form>
+			</c:forEach> 
          </tbody>
       </table>
 
-      <label style="color: #6eceda; font-size: 1.3em; font-weight: 600;">회원 검색</label>
+      <%--<label style="color: #6eceda; font-size: 1.3em; font-weight: 600;">회원 검색</label>
       <input type="text" name="" id="" style="width: 150px;"><button><i class="glyphicon glyphicon-search"></i></button>
+       --%>
    </div>
 
 
@@ -281,8 +260,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 		<script>
-		const link = "${ pageContext.servletContext.contextPath }/user/list";
-		const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+		const link = "${ pageContext.servletContext.contextPath }/black/list";
+		const searchLink = "${ pageContext.servletContext.contextPath }/blackList/searchMemberNo";
 			
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");
@@ -361,6 +340,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
 		}
 		</script>
+		
+		<!-- 검색 폼 -->
+		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/blackList/searchMemberNo" method="get">		
+			<div class="search-area" align="center">
+				<c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <select id="searchCondition" name="searchCondition">
+							<option value="userNo" <c:if test="${requestScope.searchCondition eq 'userNo'}">selected</c:if>>회원번호</option>
+							<option value="writer" <c:if test="${requestScope.searchCondition eq 'writer'}">selected</c:if>>작성자</option>
+							<option value="title" <c:if test="${requestScope.searchCondition eq 'title'}">selected</c:if>>제목</option>
+							<option value="content" <c:if test="${requestScope.searchCondition eq 'content'}">selected</c:if>>내용</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
+				    </c:when>
+				    <c:otherwise>
+					    <select id="searchCondition" name="searchCondition">
+							<option value="userNo">회원번호</option>
+							<option value="writer">작성자</option>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" >
+				        <input type="hidden" name="memberNo" value= "${ bList.memberNo  }">
+				    </c:otherwise>
+				</c:choose>
+				<button type="submit">검색하기</button>
+				<%-- <c:if test="${ !empty requestScope.loginMember }">
+					<button id="writeBoard">작성하기</button>
+				</c:if> --%>
+			</div>
+		</form>
 </div>
 
 </div>

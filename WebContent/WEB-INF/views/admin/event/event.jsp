@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -10,28 +10,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        div.tab, div.tab-content {
-              margin-left: 25%;
-              margin-right: 14%;
-        }
-        .table tbody tr th{
-            background: white;
-        }
-        table.table tr th{
-            text-align: center;
-            padding: 5px;
-            line-height: 2.5;
-            font-weight: 500;
-            width: auto;
-        }
-        th a:hover{
-            color: #6eceda !important;
-        }
-        
-		
-
-     </style>
+	<style>
+		div.tab, div.tab-content {
+			  margin-left: 25%;
+			  margin-right: 6%;
+		}
+		.table tbody tr th{
+			background: white;
+		}
+		table.table tr th{
+			text-align: center;
+			padding: 5px;
+			line-height: 2.5;
+			font-weight: 500;
+			width: auto;
+		}
+		th a:hover{
+			color: #6eceda !important;
+		}
+	 </style>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -42,7 +39,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="${pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />   
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -77,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 			<!---pop-up-box---->
 				   
-			<link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+				<link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
             <script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
 			<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
@@ -155,6 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class=" banner-buying">
 	<div class=" container">
 	<h3><span>공지사항</span></h3> 
+
 	<div class="clearfix"> </div>      		
 	</div>
 </div>
@@ -162,74 +160,66 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--blog-->
 	<div class="blog">
 		<div class="container">
-		<form action="${ pageContext.servletContext.contextPath }/notice/update" method="get">
-		
 			<div class="blog-list">
 				<nav>
 				<div class="col-md-3 blog-sidebar">
 				<ul>
-					<li class="blog-list"><a href="adminOnlineNotice.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">공지사항</a></li>
+					<li class="blog-list"><a href="adminOnlineNotice.html" ">공지사항</a></li>
+					<li class="blog-list"><a href="adminEvent.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">이벤트</a></li>
 				</ul>
 				</nav>
-               
-				<div class="tab">
-				   <span class="tab_btn active">공지사항</span> 
+				<div class="tab" style="display: flex;">
+				   <span class="tab_btn active">이벤트</span> 
+				   <!-- <select>
+					   <option selected=""></option>
+					   <option value="1">N</option>
+				   </select> -->
+				   <p><button type="button" onclick="location.href='adminOnlineNoticeWrite.html'" style="margin-left: 610px;">작성하기</button></p>
 				</div>
-                <table class="type09" border="1px">
-                    <thead>
-                        <tr>
-                            <th scope="cols"></th>
-                            <th scope="cols"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">제목</th>
-                            <td colspan="3" style="width: 650px;" >
-                            <input name="title" value="${ noticeInfo.title }" style="width: 650px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            
-                            </input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">구분</th>
-                            <td>
-                            <input name="writer" value="${ noticeInfo.writer }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            
-                            </input>
-                            </td>
-                            <th scope="row" style="text-align: center;">작성일</th>
-                            <td>
-                            <input name="writeDate" value="${ noticeInfo.writeDate }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            
-                            </input>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-				<p>
-				<input name="content" value="${ noticeInfo.title }" class="form-control textarea-layer" style="width: 700px; height: 400px; margin-left: 285px; resize: none;">
-				
-				</input>
-				<input type="hidden" name="noticeNo" value= "${ noticeNo }">
-				</p>
-                <br>
-                <table class="type09">
-                    <thead>
-                        <tr>
-                            <th scope="cols"></th>
-                            <th scope="cols"></th>
-                        </tr>
-                    </thead>
-                </table>
-                <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">공지사항 수정</button>
-            </div>
-        </div>
-        </form>
-                <button onclick="location.href='${ pageContext.servletContext.contextPath }/notice/delete?noticeNo=${ noticeNo }'"; type="submit" style="margin-top: 10px; margin-bottom: 10px;">삭제</button>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
+				<table class="table table-hover" style="width: 800px;">
+					<thead>
+						<tr>
+							<th><b>이벤트 번호</b></th>
+							<th><b>제목</b></th>
+							<th><b>시작일</b></th>
+							<th><b>끝나는일</b></th>
+							<th><b>상세정보</b></th>
+						</tr>
+					</thead>
+					<tbody>
+   		            <c:forEach var="event" items="${ requestScope.eventList }">
+					<form action="${ pageContext.servletContext.contextPath }/qna/detail" method="get"> 
+						<tr>
+							<td><c:out value="${event.rnum }"/></td>
+							<td><c:out value="${event.title }"/></td>
+							<td><c:out value="${event.startDate }"/></td>
+							<td><c:out value="${event.endDate }"/></td>
+							<td><button id="detail">상세보기</button></td>
+						<%-- <input type="hidden" name="eventNo" value= "${ event.number }">	 --%>				
+						</tr>
+            		</form>
+					</c:forEach>
+					</tbody>
+				 </table>
+				 
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"> </div>
+	<nav style="margin-left: 850px;">
+		<ul class="pagination">
+		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+		  <li><a href="#">2</a></li>
+		  <li><a href="#">3</a></li>
+		  <li><a href="#">4</a></li>
+		  <li><a href="#">5</a></li>
+		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+	   </ul>
+	</nav>
+</div>
+
+</div>
 <!--//blog-->
 <!--footer-->
 <div class="footer">
