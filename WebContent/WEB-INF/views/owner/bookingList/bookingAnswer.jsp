@@ -1,36 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
 <title>봉그다 숙박숙박 :: 예약 관리</title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
-
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
-
-
-	<meta charset="UTF-8" />
-
-	<link rel="shortcut icon" href="../favicon.ico"> 
-	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
-	<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<meta charset="UTF-8" />
+<link rel="shortcut icon" href="../favicon.ico"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <style>
 	div.tab, div.tab-content {
@@ -50,45 +36,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	th a:hover{
 		color: #6eceda !important;
 	}
-
-	.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  transition: opacity 500ms;
-  visibility: hidden;
-  opacity: 0;
-  z-index: 900;
-}
-
-.overlay:target {
-  visibility: visible;
-  opacity: 1;
-}
-
-.popup {
-  position: fixed;
-  width: 60%;
-  padding: 10px;
-  max-width: 500px;
-  border-radius: 10px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, .9);
-  /* "delay" the visibility transition */
-  -webkit-transition: opacity .5s, visibility 0s linear .5s;
-  transition: opacity .5s, visibility 0s linear .5s;
-  z-index: 1;
-}
-
-.h4{
-	text-align: center;
-	font-size: 2em;
-}
+	body {
+    	color: black;
+    }
  </style>
 </head>
 <body>
@@ -102,7 +52,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
-			<ul class="right-icons">
+		<ul class="right-icons">
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
@@ -149,64 +99,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="blog-list">
 			<nav>
 			<div class="col-md-3 blog-sidebar">
-			<ul>
-				<li class="blog-list"><a href="/bonggeuda/owner/bookingList">실시간 예약 현황</a></li>
-				<li class="blog-list"  style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/bookingPastList" style="color: #6eceda;">지난 예약</a></li>
-				<li class="blog-list"><a href="/bonggeuda/owner/book/question">고객 문의</a></li>
-				<li class="blog-list"><a href="/bonggeuda/owner/sales">매출 내역</a></li>
-			</ul>
+				 <ul>
+					<li class="blog-list"><a href="/bonggeuda/owner/bookingList">실시간 예약 현황</a></li>
+					<li class="blog-list"><a href="/bonggeuda/owner/bookingPastList">지난 예약</a></li>
+					<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/book/question" style="color: #6eceda;">고객 문의</a></li>
+					<li class="blog-list"><a href="/bonggeuda/owner/sales">매출 내역</a></li>
+				</ul>
+			</div>
 			</nav>
-
 		</div>
 		<table class="type09">
 			<thead>
 				<tr>
-					<th scope="cols" colspan="4"></th>
+					<th scope="cols"></th>
+					<th scope="cols"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="row">예약번호</th>
-					<td><c:out value="${ requestScope.bookContentDTO.bookNo }"/></td>
-					<th scope="row">예약일시</th>
-					<td><c:out value="${ requestScope.bookContentDTO.bookRequestDate }"/></td>
+					<th scope="row">제목</th>
+					<td colspan="3"><c:out value="${ requestScope.selectContent.adminQnATitle }"/></td>
 				</tr>
 				<tr>
-					<th scope="row">숙소명</th>
-					<td><c:out value="${ requestScope.bookContentDTO.accomoName }"/></td>
-					<th scope="row">객실명</th>
-					<td><c:out value="${ requestScope.bookContentDTO.roomName }"/></td>
-				</tr>
-				<tr>
-					<th scope="row">예약자</th>
-					<td><c:out value="${ requestScope.bookContentDTO.bookUserName }"/></td>
-					<th scope="row">인원</th>
-					<td><c:out value="${ requestScope.bookContentDTO.bookPersonnel }"/></td>
-				</tr>
-				<tr>
-					<th scope="row">연락처</th>
-					<td><c:out value="${ requestScope.bookContentDTO.userPhone }"/></td>
-					<th scope="row">이메일</th>
-					<td><c:out value="${ requestScope.bookContentDTO.email }"/></td>
-				</tr>
-				<tr>
-					<th scope="row">체크인</th>
-					<td><c:out value="${ requestScope.bookContentDTO.bookCheckDate }"/> / <c:out value="${ requestScope.bookContentDTO.bookCheckIn }"/></td>
-					<th scope="row">체크아웃</th>
-					<td><c:out value="${ requestScope.bookContentDTO.bookCheckoutDate }"/> / 11:00 </td>
-				</tr>
-				<tr>
-					<th scope="row">결제금액</th>
-					<td><c:out value="${ requestScope.bookContentDTO.paymentFee }"/></td>
-					<th scope="row">결제수단</th>
-					<td><c:out value="${ requestScope.bookContentDTO.paymentMethod }"/></td>
-				</tr>
-				<tr>
-					<th scope="row">요청사항</th>
-					<td colspan="3"><c:out value="${ requestScope.bookContentDTO.request }"/></td>
+					<th scope="row">작성자</th>
+					<td><c:out value="${ selectContent.adminQnAWriter }"/></td>
+					<th scope="row">작성일</th>
+					<td><c:out value="${ selectContent.adminQnADate }"/></td>
 				</tr>
 			</tbody>
 		</table>
+		<br>
+		<p>
+			<br>
+			&nbsp&nbsp<c:out value="${ selectContent.adminQnAContent }"/>
+		</p>
+		<br><br>
 		<table class="type09">
 			<thead>
 				<tr>
@@ -216,10 +143,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</thead>
 		</table>
 		
-
-
+		<c:if test="${ empty selectAnswer.answerContent }">
+			<form action="${ pageContext.servletContext.contextPath }/owner/book/answer" method="post">
+			<input type="hidden" name="qnaNo" value="${ selectContent.adminQnANo }">
+			<div>
+				<br>
+				<b>관리자 답변</b> 
+				<textarea class="form-control textarea-layer" name="content" style="width: 800px; height: 120px; margin-left: 255px; font-size: 15px;" placeholder="답변을 작성해 주세요."></textarea>
+				<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">등록</button>
+			</div>
+			</form>
+		</c:if>
+		
+		<c:if test="${ !empty selectAnswer.answerContent }">
+			<div>
+				<br>
+				<b>관리자 답변</b> 
+				<div class="form-control textarea-layer" style="width: 900px; height: 120px; margin-left: 255px; font-size: 15px;">
+					<br> 
+					&nbsp&nbsp<c:out value="${ selectAnswer.answerContent }"/>
+				</div>
+			</div>
+		</c:if>
 	</div>
 </div>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
 <!--footer-->
 <div class="footer-bottom">
 	<div class="container">

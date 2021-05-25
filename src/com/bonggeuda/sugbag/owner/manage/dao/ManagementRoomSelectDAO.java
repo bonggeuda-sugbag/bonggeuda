@@ -133,11 +133,55 @@ public class ManagementRoomSelectDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}  finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		
 		
 		return selectRmImagePathDAO;
+	}
+
+	public int insertRmAccomoDAO(Connection con, RmAccomoInfoDTO rmAccomoInfoDTO) {
+		
+		PreparedStatement pstmt = null;
+
+		String query = prop.getProperty("insertRmAccomo");
+		
+		int insertResult = 0;
+		try {
+			pstmt = con.prepareStatement(query);
+		//	pstmt.setInt(1, rmAccomoInfoDTO.getRmAccomoNo());
+			pstmt.setString(1, rmAccomoInfoDTO.getAccomoName());
+			pstmt.setString(2, rmAccomoInfoDTO.getCeoName());
+			pstmt.setString(3, rmAccomoInfoDTO.getAccomoType());
+			pstmt.setString(4, rmAccomoInfoDTO.getRegistNo());
+			pstmt.setString(5, rmAccomoInfoDTO.getAddress());
+			pstmt.setString(6, rmAccomoInfoDTO.getEmail());
+			pstmt.setString(7, rmAccomoInfoDTO.getHomepage());
+			pstmt.setString(8, rmAccomoInfoDTO.getFacility());
+			pstmt.setString(9, rmAccomoInfoDTO.getAccomoPath());
+			pstmt.setString(10, rmAccomoInfoDTO.getNear());
+			pstmt.setString(11, rmAccomoInfoDTO.getRule());
+			pstmt.setString(12, rmAccomoInfoDTO.getParking());
+			pstmt.setString(13, rmAccomoInfoDTO.getCheckIn());
+			pstmt.setString(14, rmAccomoInfoDTO.getCheckOut());
+			pstmt.setDate(15, rmAccomoInfoDTO.getPeakStart());
+			pstmt.setDate(16, rmAccomoInfoDTO.getPeakEnd());
+			pstmt.setInt(17, rmAccomoInfoDTO.getOwnerNo());
+			
+			insertResult = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  finally {
+			close(pstmt);
+		}
+		
+		return insertResult;
 	}
 
 

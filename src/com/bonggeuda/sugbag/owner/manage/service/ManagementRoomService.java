@@ -56,5 +56,22 @@ public class ManagementRoomService {
 	}
 
 
+	public int insertRmAccomo(RmAccomoInfoDTO rmAcoomoDTO) {
+		Connection con = getConnection();
+		
+		int insertResult =  0;
+		
+		insertResult = roomDAO.insertRmAccomoDAO(con,rmAcoomoDTO);
+
+		if(insertResult > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		return insertResult;
+	}
+
+
 
 }

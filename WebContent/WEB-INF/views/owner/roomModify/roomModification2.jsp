@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,33 +108,63 @@
 					<br><br>
 					<span class="todo-desc" style="color: #6eceda;">이용규칙 관리</span>
 				</li>
-				<li class="prog">
-					<span class="do">&nbsp;</span>
-					<span>&nbsp;</span>
-					<span class="do">&nbsp;</span>
-					<span>&nbsp;</span>
-					<span class="do">&nbsp;</span>
-					<span>&nbsp;</span>
-					<span class="do">&nbsp;</span>
-					<span>&nbsp;</span>
-					<span class="do">&nbsp;</span>
-				</li>
-				<li>
-					<span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step4.png" width="64px" height="64px"></span>
-					<br><br>
-					<span class="todo-desc" style="color: rgb(226, 226, 226);">객실 등록</span>
-				</li>
+
+
 			</ul>
 		</nav>
 	</div>
 </div>
-<form action="${ pageContext.servletContext.contextPath }/registration3" method="post" >
+<form action="${ pageContext.servletContext.contextPath }/owner/modifyAccomo3" method="post" >
 <table id="registTb" class="table table-bordered">
 	<thead>
 
 	</thead>
 		<tbody>
 			<br><br><br>
+			<th>
+            편의시설<br>서비스 시설안내 
+         </th>
+         <td>
+            <label for="theme1" class="checkbox-inline icon-label" style="margin-right: 25px;">
+               <input type="checkbox" id="theme1" name="facility"  value="세탁기">세탁기
+            </label>
+            <label for="theme2" class="checkbox-inline icon-label">
+               <input type="checkbox" id="theme2" name="facility"  value="건조기">건조기
+            </label>
+            <label for="theme5" class="checkbox-inline icon-label">
+               <input type="checkbox" id="theme5" name="facility"  value="객실내흡연">객실내흡연
+            </label>
+            <label for="theme6" class="checkbox-inline icon-label" >
+               <input type="checkbox" id="theme6" name="facility"  value="와이파이" >와이파이
+            </label>
+            <br>
+            <label for="theme7" class="checkbox-inline icon-label" >
+               <input type="checkbox" id="theme7" name="facility"  value="욕실용품">욕실용품
+            </label>
+            <label for="theme8" class="checkbox-inline icon-label" >
+               <input type="checkbox" id="theme8" name="facility"  value="에어컨">에어컨
+            </label>
+            <label for="theme9" class="checkbox-inline icon-label">
+               <input type="checkbox" id="theme9" name="facility"  value="냉장고">냉장고
+            </label>
+            <label for="theme11" class="checkbox-inline icon-label">
+               <input type="checkbox" id="theme11" name="facility"  value="반려견동반">반려견동반
+            </label>
+            <br>
+            <label for="theme13" class="checkbox-inline icon-label">
+               <input type="checkbox" id="theme13" name="facility"  value="조식포함">조식포함
+            </label>
+            <label for="theme18" class="checkbox-inline icon-label">
+               <input type="checkbox" id="theme18" name="facility"  value="개인사물함">개인사물함
+            </label>
+            <label for="theme19" class="checkbox-inline icon-label" >
+               <input type="checkbox" id="theme19" name="facility"  value="TV">TV
+            </label>
+            <label for="theme20" class="checkbox-inline icon-label" >
+               <input type="checkbox" id="theme20" name="facility"  value="무료주차">무료주차
+            </label>
+         </td>
+         <tr>
 			<tr class="tr1">
 				<th>
 					이용시간
@@ -147,7 +179,7 @@
 						</p>
 					</div>
 					<div class="basic">
-						<span class="form-title" style="display:inline-block";>체크인 시간</span>
+						<span class="form-title" style="display:inline-block;">체크인 시간</span>
 						<span>
 							<select name=checkIn class="select-time">
 								<option value="00:00">0:00</option>
@@ -179,34 +211,12 @@
 						</span>
 					</div>
 					<div class="basic">
-						<span class="form-title" style="display:inline-block";>체크아웃 시간</span>
+						<span class="form-title" style="display:inline-block;">체크아웃 시간</span>
 						<span>
 							<select name="checkOut" class="select-time">
-								<option value="00:00">00:00</option>
-								<option value="1:00">1:00</option>
-								<option value="2:00">2:00</option>
-								<option value="3:00">3:00</option>
-								<option value="4:00">4:00</option>
-								<option value="5:00">5:00</option>
-								<option value="6:00">6:00</option>
-								<option value="7:00">7:00</option>
-								<option value="8:00">8:00</option>
-								<option value="9:00">9:00</option>
-								<option value="10:00">10:00</option>
+
 								<option value="11:00" selected>11:00</option>
-								<option value="12:00">12:00</option>
-								<option value="13:00">13:00</option>
-								<option value="14:00">14:00</option>
-								<option value="15:00">15:00</option>
-								<option value="16:00">16:00</option>
-								<option value="17:00">17:00</option>
-								<option value="18:00">18:00</option>
-								<option value="19:00">19:00</option>
-								<option value="20:00">20:00</option>
-								<option value="21:00">21:00</option>
-								<option value="22:00">22:00</option>
-								<option value="23:00">23:00</option>
-								<option value="24:00">24:00</option>
+			
 							</select>
 						</span>
 					</div>
@@ -218,8 +228,8 @@
 				</th>
 				<td>
 					<div class="basic">
-						<span class="form-title" style="display:inline-block";>기간 선택</span>
-						<label><input type="date" name="peakStart" value="21/05/18"></label>
+						<span class="form-title" style="display:inline-block;">기간 선택</span>
+						<label><input type="date" name="peakStart" value="21-05-18"></label>
 						<span>~</span>
 						<label><input type="date" name="peakEnd"></label>
 					</div>
@@ -229,7 +239,7 @@
 				<br>
 				<th colspan="2" style="background-color: white; ">
 				
-				  <input type="hidden" name="rmAccomoNo" value="<c:out value="${ requestScope.rmAcoomoDTO.rmAccomoNo }"/>">
+           		  <input type="hidden" name="rmAccomoNo" value="<c:out value="${ requestScope.rmAcoomoDTO.rmAccomoNo }"/>">
            		  <input type="hidden" name="accomoName" value="<c:out value="${ requestScope.rmAcoomoDTO.accomoName }"/>">
                   <input type="hidden" name="ceoName" value="<c:out value="${ requestScope.rmAcoomoDTO.ceoName }"/>">
             	  <input type="hidden" name="accomoType" value="<c:out value="${ requestScope.rmAcoomoDTO.accomoType }"/>">
@@ -237,15 +247,26 @@
             	  <input type="hidden" name="address" value="<c:out value="${ requestScope.rmAcoomoDTO.address }"/>">
             	  <input type="hidden" name="adrDetail" value="<c:out value="${ requestScope.rmAcoomoDTO.adrDetail }"/>">
             	  <input type="hidden" name="email" value="<c:out value="${ requestScope.rmAcoomoDTO.email }"/>">
-            	  <input type="hidden" name="homepage" value="<c:out value="${ requestScope.rmAcoomoDTO.homepage }"/>">
-				<button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
+            	  <input type="hidden" name="facility" value="<c:out value="${ requestScope.rmAcoomoDTO.facility }"/>">
+            	  <input type="hidden" name="accomoPath" value="<c:out value="${ requestScope.rmAcoomoDTO.accomoPath }"/>">
+            	  <input type="hidden" name="rule" value="<c:out value="${ requestScope.rmAcoomoDTO.rule }"/>">
+            	  <input type="hidden" name="near" value="<c:out value="${ requestScope.rmAcoomoDTO.near }"/>">
+            	  <input type="hidden" name="parking" value="<c:out value="${ requestScope.rmAcoomoDTO.parking }"/>">
+            	  <input type="hidden" name="checkIn" value="<c:out value="${ requestScope.rmAcoomoDTO.checkIn }"/>">
+            	  <input type="hidden" name="checkOut" value="<c:out value="${ requestScope.rmAcoomoDTO.checkOut }"/>">
+            	  <input type="hidden" name="peakStart" value="<c:out value="${ requestScope.rmAcoomoDTO.peakStart }"/>">
+            	  <input type="hidden" name="peakEnd" value="<c:out value="${ requestScope.rmAcoomoDTO.peakEnd }"/>">
+            	  
+            	  
+            	  
+				<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">숙소 수정 완료</button>
 
 					
 				</th>
 			</tr>
 		</tbody>
 	</table>
-					</form>
+</form>
 <br><br><br>
 <br><br><br>
 <!--footer-->

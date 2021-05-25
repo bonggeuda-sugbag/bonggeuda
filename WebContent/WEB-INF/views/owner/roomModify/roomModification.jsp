@@ -93,7 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<nav>
 			<ul class="stepbox" id="ulStep">
 				<li>
-				<a href="registration.html">                        
+				<a >                        
 					<span class="btn-todo-on"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step1.png" width="64px" height="64px"></span>
 					<br><br>
 					<span class="todo-desc on">사업자정보 확인</span>
@@ -111,7 +111,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<span class="do">&nbsp;</span>
 				</li>
 				<li>
-				<a href="registration2-intro.html">                        
+				<a >                        
 					<span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step2.png" width="64px" height="64px"></span>
 					<br><br>
 					<span class="todo-desc">소개 작성</span>
@@ -129,30 +129,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<span class="do">&nbsp;</span>
 				</li>
 				<li>
-				<a href="registration3-rule.html">                        
+				<a >                        
 					<span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step3.png" width="64px" height="64px"></span>
 					<br><br>
 					<span class="todo-desc">이용규칙 관리</span>
 				</a>                    
 				</li>
-				<li class="prog">
-					<span class="do">&nbsp;</span>
-					<span>&nbsp;</span>
-					<span class="do">&nbsp;</span>
-					<span>&nbsp;</span>
-					<span class="do">&nbsp;</span>
-					<span>&nbsp;</span>
-					<span class="do">&nbsp;</span>
-					<span>&nbsp;</span>
-					<span class="do">&nbsp;</span>
-				</li>
-				<li>
-				<a href="registration4-room.html">                        
-					<span class="btn-todo-off"><img src="${pageContext.servletContext.contextPath}/resources/owner/icon/step4.png" width="64px" height="64px"></span>
-					<br><br>
-					<span class="todo-desc">객실 등록</span>
-				</a>                    
-				</li>
+
 			</ul>
 		</nav>
 	</div>
