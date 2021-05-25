@@ -30,19 +30,6 @@ public class BookingServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		Map<String,String[]> requestMap = request.getParameterMap();
-		Set<String> keySet = requestMap.keySet();
-		Iterator<String> keyIter = keySet.iterator();
-		while(keyIter.hasNext()) {
-			String key = keyIter.next();
-			String[] value = requestMap.get(key);
-			
-			System.out.println("key : " + key);
-			for(int i = 0; i < value.length; i++) {
-				System.out.println("value[" + i + "] : " +value[i]);
-			}
-		}
-		
 		//회원번호
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
 		int userNo = member.getUserNo();
@@ -51,7 +38,8 @@ public class BookingServlet extends HttpServlet {
 		AccomoInfoDTO accomoInfo = new AccomoInfoDTO();
 		accomoInfo.setAccomoNo(Integer.parseInt(request.getParameter("accomoNo")));
 		accomoInfo.setAccomoName(request.getParameter("accomoName"));
-		accomoInfo.setCheckIn(request.getParameter("AccomoCheckIn"));
+		String checkInStandard = request.getParameter("AccomoCheckIn");
+		accomoInfo.setCheckIn(checkInStandard);
 		
 		//기존 객실정보
 		
@@ -61,15 +49,21 @@ public class BookingServlet extends HttpServlet {
 		
 		// 예약정보
 		BookDTO bookInfo = new BookDTO();
-		String checkIN = request.getParameter("checkInTime");
+		String userCheckIN = request.getParameter("checkInTime");
 		bookInfo.setUserNo(userNo);
 		bookInfo.setBookPersonnel(Integer.parseInt(request.getParameter("people")));
 		bookInfo.setBookCheckDate(request.getParameter("checkInDate"));
 		bookInfo.setBookCheckoutDate(request.getParameter("checkOutDate"));
-		bookInfo.setBookCheckIn(checkIN);
+		bookInfo.setBookCheckIn(userCheckIN);
 		Date checkOut = java.sql.Date.valueOf(request.getParameter("checkOutDate"));
 		Date checkIn = java.sql.Date.valueOf(request.getParameter("checkInDate"));
 		long bookDay = ((checkOut.getTime() - checkIn.getTime())/(24*60*60*1000));
+		// 결제금액 계산
+		// 유저가 선택한 체크인시간~체크아웃 시간/(업체가 정한 체크인시간 ~ 체크아웃시간 )
+		// 1박 미만시
+		
+		// 1박시
+		
 		int totalPrice = roomInfo.getRoomFee() * (int)bookDay;
 		bookInfo.setDay(bookDay);
 		
