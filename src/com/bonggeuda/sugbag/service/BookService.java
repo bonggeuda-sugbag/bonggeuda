@@ -14,7 +14,10 @@ import com.bonggeuda.sugbag.model.dao.BookDAO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
+import com.bonggeuda.sugbag.model.dto.CouponHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PaymentDTO;
+import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
@@ -164,8 +167,6 @@ public class BookService {
 			rollback(con);
 		}
 		
-		close(con);
-		
 		return result;
 	}
 
@@ -240,6 +241,91 @@ public class BookService {
 		
 		close(con);
 		return selectAllReviewList;
+	}
+
+	/**
+	 * 결제정보 insert
+	 * @param 
+	 * @return
+	 */
+	public int insertPaymentInfo(PaymentDTO payment) {
+		
+		Connection con = getConnection();
+		int result = 0;
+		
+		result = bookDao.insertPaymentInfo(con, payment);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * 포인트 획득 insert
+	 * @param pointGet
+	 * @return
+	 */
+	public int insertPointGet(PointHistoryDTO pointGet) {
+
+		Connection con = getConnection();
+		int result = 0;
+		
+		result = bookDao.insertPointGet(con, pointGet);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		return result;
+	}
+
+	/**
+	 * 쿠폰사용시 이력 INSERT
+	 * @param couponUse
+	 * @return
+	 */
+	public int insertCouponUse(CouponHistoryDTO couponUse) {
+		
+		Connection con = getConnection();
+		int result = 0;
+		
+		result = bookDao.insertCouponUse(con, couponUse);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * 포인트사용시 이력INSERT
+	 * @param pointUse
+	 * @return
+	 */
+	public int insertPointUse(PointHistoryDTO pointUse) {
+		
+		Connection con = getConnection();
+		int result = 0;
+		
+		result = bookDao.insertPointUse(con, pointUse);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		return result;
 	}
 
 }

@@ -49,7 +49,6 @@ public class AccomoReportServlet extends HttpServlet {
 			String encodingType = "UTF-8";
 			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
-			System.out.println(rootLocation);
 			
 			File directory = new File(fileUploadDirectory);
 			File directory2 = new File(thumbnailDirectory);
@@ -124,19 +123,6 @@ public class AccomoReportServlet extends HttpServlet {
 				report.setReportedNo(Integer.parseInt(parameter.get("accomoNo")));
 				report.setReportDate(new Date(System.currentTimeMillis()));
 				
-				Map<String,String[]> requestMap = request.getParameterMap();
-				Set<String> keySet = requestMap.keySet();
-				Iterator<String> keyIter = keySet.iterator();
-				while(keyIter.hasNext()) {
-					String key = keyIter.next();
-					String[] value = requestMap.get(key);
-					
-					System.out.println("key : " + key);
-					for(int i = 0; i < value.length; i++) {
-						System.out.println("value[" + i + "] : " +value[i]);
-					}
-				}
-				
 				//첨부파일
 				report.setAttachmentList(new ArrayList<AttachmentDTO>());
 				List<AttachmentDTO> list = report.getAttachmentList();
@@ -187,5 +173,4 @@ public class AccomoReportServlet extends HttpServlet {
 			}
 		}
 	}
-
 }

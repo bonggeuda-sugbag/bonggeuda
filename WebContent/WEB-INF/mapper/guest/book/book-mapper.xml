@@ -220,4 +220,54 @@
          WHERE ACCOMO_NO = ?
            AND AT.CATEGORY_NO = ?
     </entry>
+    <entry key="insertPaymentInfo">
+        INSERT
+          INTO PAYMENT
+        VALUES(
+               SEQ_PAYMENT_NO.NEXTVAL
+              , ?
+              , ?
+              , ?
+              , SEQ_BOOK_NO.CURRVAL
+              , ?
+              , ?
+              , ?
+              )
+    </entry>
+    <entry key="insertGetPoint">
+        INSERT 
+          INTO POINT_HISTORY
+        VALUES(
+               SEQ_PAYMENT_NO.CURRVAL
+             , SQU_POINT_HISTORY.NEXTVAL
+             , ?
+             , ?
+             , ?
+             , ?
+             , ?
+             )
+    </entry>
+    <entry key="couponUseInsert">
+        INSERT
+          INTO COUPON_USE_HISTORY
+        VALUES(
+               SQU_COUPON_USE_HISTORY.NEXTVAL
+             , ?
+             , ?
+             , SEQ_PAYMENT_NO.CURRVAL
+             )
+    </entry>
+    <entry key="insertPointUse">
+        INSERT 
+          INTO POINT_HISTORY
+        VALUES(
+               SEQ_PAYMENT_NO.CURRVAL
+             , SQU_POINT_HISTORY.NEXTVAL
+             , ?
+             , ?
+             , ?
+             , ?
+             , ?
+             )
+    </entry>
 </properties>

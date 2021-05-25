@@ -22,8 +22,11 @@ import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
+import com.bonggeuda.sugbag.model.dto.CouponHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PaymentDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
+import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
@@ -487,6 +490,8 @@ public class BookDAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return result;
@@ -674,5 +679,100 @@ public class BookDAO {
 			close(pstmt);
 		}
 		return reviewList;
+	}
+
+	public int insertPaymentInfo(Connection con, PaymentDTO payment) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertPaymentInfo");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, payment.getMethod());
+			pstmt.setInt(2, payment.getAmount());
+			pstmt.setDate(3, payment.getPaymentTime());
+			pstmt.setString(4, payment.getCouponYN());
+			pstmt.setString(5, payment.getPointYN());
+			pstmt.setInt(6, payment.getDiscount());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertPointGet(Connection con, PointHistoryDTO pointGet) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertGetPoint");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, pointGet.getGetuseType());
+			pstmt.setInt(2, pointGet.getPoint());
+			pstmt.setString(3, pointGet.getPointPath());
+			pstmt.setDate(4, pointGet.getGuDate());
+			pstmt.setInt(5, pointGet.getPointNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertCouponUse(Connection con, CouponHistoryDTO couponUse) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("couponUseInsert");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, couponUse.getCouponNo());
+			pstmt.setDate(2, couponUse.getUseDate());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public int insertPointUse(Connection con, PointHistoryDTO pointUse) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertPointUse");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, pointUse.getGetuseType());
+			pstmt.setInt(2, pointUse.getPoint());
+			pstmt.setString(3, pointUse.getPointPath());
+			pstmt.setDate(4, pointUse.getGuDate());
+			pstmt.setInt(5, pointUse.getPointNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+	
+		return result;
 	}
 }

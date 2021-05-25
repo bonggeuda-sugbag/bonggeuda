@@ -57,7 +57,7 @@ public class RoomDAO {
 				pstmt.setInt(5, roomList.get(i).getPeakFee());
 
 				insert = pstmt.executeUpdate();
-				System.out.println(insert);
+				System.out.println("등록한 객실 수 : " + insert);
 			}
 			
 		} catch (SQLException e) {
