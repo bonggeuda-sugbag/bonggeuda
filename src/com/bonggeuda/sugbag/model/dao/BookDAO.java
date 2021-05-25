@@ -429,7 +429,9 @@ public class BookDAO {
 		List<AccomoInfoDTO> searchResult = null;
 		
 		String query = new QueryBuilder().queryBuiler(search).toString();
-		
+		System.out.println("검색조건 쿼리문");
+		System.out.println(search);
+		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, search.getPersonnal());
