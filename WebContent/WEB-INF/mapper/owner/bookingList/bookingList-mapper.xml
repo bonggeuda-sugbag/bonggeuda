@@ -79,19 +79,15 @@
        AND BOOK_APPROVE_YN = 'Y'
         OR BOOK_STATUS_YNC = 'N'
         OR BOOK_STATUS_YNC = 'C'
-	
 	</entry>
 	
 	<entry key="bookAllowUpadte">
-	
 	UPDATE BOOK_LIST
   	   SET BOOK_APPROVE_YN = 'Y'
      WHERE BOOK_NO = ?
-	
 	</entry>
 	
 	<entry key="insertAllowBookHistory">
-
 	INSERT
 	  INTO BOOK_HISTORY
 	VALUES
@@ -102,27 +98,22 @@
 	, null
 	, SEQ_HISTORYNO.NEXTVAL
 	) 
-	
 	</entry>
 	
 	<entry key="bookRejectUpadte">
-	
 	UPDATE BOOK_LIST
   	   SET BOOK_STATUS_YNC = 'N'
      WHERE BOOK_NO = ?
-	
 	</entry>
-	<entry key="bookRejectBookConfirmUpadte">
 	
+	<entry key="bookRejectBookConfirmUpadte">
 	UPDATE BOOK_LIST
   	   SET BOOK_APPROVE_YN = 'Y'
      WHERE BOOK_NO = ?
-	
 	</entry>
 	
 	
 	<entry key="insertRejectBookHistory">
-
 	INSERT
 	  INTO BOOK_HISTORY
 	VALUES
@@ -133,8 +124,42 @@
 	, ?
 	, SEQ_HISTORYNO.NEXTVAL
 	) 
-	
 	</entry>
-
+	
+	<entry key="selectQuestion">
+       SELECT  A.RNUM
+             , A.ADMIN_QNA_NO
+		     , A.ADMIN_QNA_TITLE
+		     , A.ADMIN_QNA_DATE
+		     , A.ADMIN_ANSWER_YN
+		     , A.ADMIN_QNA_WRITER
+		     , A.ADMIN_QNA_CONTENT       
+          FROM (SELECT ROWNUM RNUM
+             , B.ADMIN_QNA_NO
+		     , B.ADMIN_QNA_TITLE
+		     , B.ADMIN_QNA_DATE
+		     , B.ADMIN_ANSWER_YN
+		     , B.ADMIN_QNA_WRITER
+		     , B.ADMIN_QNA_CONTENT
+          FROM (SELECT ADMIN_QNA_NO
+		     , ADMIN_QNA_TITLE
+		     , ADMIN_QNA_DATE
+		     , ADMIN_ANSWER_YN
+		     , ADMIN_QNA_WRITER
+		     , ADMIN_QNA_CONTENT
+          FROM ADMIN_QNA
+		 WHERE ADMIN_QNA_WRITER = 'O'
+		   AND MEMBER_NO = ?
+		 ORDER BY ADMIN_QNA_NO DESC) B) A
+    WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectTotalCount">
+        SELECT 
+               COUNT(*) 
+          FROM OWNER_QNA
+         WHERE 
+           AND MEMBER_NO = ?
+	</entry>
 	
 </properties>

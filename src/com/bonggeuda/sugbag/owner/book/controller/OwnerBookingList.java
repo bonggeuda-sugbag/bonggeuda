@@ -21,7 +21,6 @@ import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
  */
 @WebServlet("/owner/bookingList")
 public class OwnerBookingList extends HttpServlet {
-       
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
