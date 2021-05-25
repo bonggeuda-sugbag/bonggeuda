@@ -324,8 +324,74 @@ public class BookService {
 		} else {
 			rollback(con);
 		}
-		
 		return result;
+	}
+	
+	public int insertBookNpay(BookDTO bookInfo, PaymentDTO payment, PointHistoryDTO pointGet,CouponHistoryDTO couponUse,PointHistoryDTO pointUse) {
+		
+		Connection con = getConnection();
+		
+		int insertAllResult = 0;
+		int standard = 3;
+		
+		//예약정보insert
+		int bookInsertResult = 0;
+		System.out.println("DAO에서 호출한 예약정보 : " +bookInfo);
+		bookInsertResult = bookDao.insertBookInfo(con, bookInfo);
+		commit(con);
+		if(bookInsertResult > 0) {
+			insertAllResult++;
+		}
+		//결제정보insert
+		int bookSEQ = bookDao.selectBookSeq(con);
+		System.out.println("현재예약번호 : "+bookSEQ);
+		payment.setBookNo(bookSEQ);
+		System.out.println("DAO에서 호출한 결제정보 : " +payment);
+		int paymentInsertResult = 0;
+		paymentInsertResult = bookDao.insertPaymentInfo(con, payment);
+		if(paymentInsertResult > 0) {
+			insertAllResult++;
+		}
+		//포인트적립insert
+		int paymentNo = bookDao.selectPaymentSeq(con);
+		int pointGetResult = 0;
+		pointGet.setPaymentNo(paymentNo);
+		System.out.println("DAO에서 호출한 포인트적립정보 : " +pointGet);
+		pointGetResult = bookDao.insertPointGet(con, pointGet);
+		if (pointGetResult > 0) {
+			insertAllResult++;
+		}
+		//쿠폰 사용시 쿠폰이력 insert
+		if(payment.getCouponYN().equals("Y")) {
+			standard++;
+			couponUse.setPaymentNo(paymentNo);
+			System.out.println("DAO에서 호출한 쿠폰사용정보 : " +couponUse);
+			int couponUseResult = bookDao.insertCouponUse(con, couponUse);
+			if(couponUseResult>0) {
+				insertAllResult++;
+			}
+		}
+		
+		//포인트 사용시 포인트이력 insert
+		if(payment.getCouponYN().equals("Y")) {
+			standard++;
+			pointUse.setPaymentNo(paymentNo);
+			System.out.println("DAO에서 호출한 포인트사용정보 : " +pointUse);
+			int pointUseResult = bookDao.insertPointUse(con, pointUse);
+			if(pointUseResult>0) {
+				insertAllResult++;
+			}
+		}
+		System.out.println("목표 insert 수 : " + standard);
+		System.out.println("실행 insdert 수 : " + insertAllResult);
+		if(standard == insertAllResult) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		return insertAllResult;
+		
 	}
 
 }
