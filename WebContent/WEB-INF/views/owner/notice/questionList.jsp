@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul class="right-icons">
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
-				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
 				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
@@ -189,8 +189,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</c:choose>   
 		</div>
 		<%-- 페이지 처리 --%>
-		
-		
 		</c:if>
 		<c:if test="${ empty selectQuestion }">
 			<div class="list_none" style="display: block;">

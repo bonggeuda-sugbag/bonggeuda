@@ -12,6 +12,20 @@
 	.pointcursor{
 		cursor: pointer;
 	}
+  .scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  .scroll::-webkit-scrollbar-thumb {
+    background-color: #6eceda;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+  }
+  .scroll::-webkit-scrollbar-track {
+    background-color: lightgrey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 	</style>
 <title>봉그다 숙박숙박</title>
 <link href="${pageContext.servletContext.contextPath}/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -33,30 +47,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!--header-->
-<div class="header">
-	<div class="container">
-		<!--logo-->
-		<div class="logo">
-			<h1><a href="index.jsp">Bonggeuda</a></h1>
-		</div>
-		<!--//logo-->
-		<div class="top-nav">
-			<ul class="right-icons">
+<jsp:include page="../../common/guestheader.jsp"/>
 
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
-            	<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
-			</ul>
-		</div>
-			
-		<div class="clearfix"> </div>
-		<div class="clearfix"> </div>
-	</div>	
-</div>
-<!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
 	<h3><span>마이페이지</span></h3> 
@@ -93,13 +85,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 100%;">
 
 			<!-- 예약내역 -->
-			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
-				<b style="font-size: 20px;">예약내역</b>
+				<div style="font-size: 20px;font-weight: bold;text-align: left;">예약내역</div>
+			<div class="scroll" style="margin-bottom: 50px; text-align: left; float: left; width: 100%; overflow:auto; height: 600px;">
 				<c:forEach var="arr" items="${ booklist }" varStatus="st">
-				<div class="pointcursor" onclick="location.href='${ pageContext.servletContext.contextPath }/userbookcontent/select?bookNo=${ arr.bookNo }';">
-					<table border="1px" width="70%">
+				<div class="pointcursor" style="width: 275px; display: flex; float:left; margin-right: 5px; margin-bottom: 5px;" onclick="location.href='${ pageContext.servletContext.contextPath }/userbookcontent/select?bookNo=${ arr.bookNo }';">
+					<table border="1px" width="100%">
 						<tr>
-							<td height="200px">
+							<td height="190px">
 								<img src="${pageContext.servletContext.contextPath}/${ arr.bookImg }" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
@@ -122,13 +114,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<br>
 			<!-- 이용내역 -->
-			<div style="padding-bottom: 50px; text-align: left; float: left; width: 100%;">
-				<b style="font-size: 20px;">이용내역</b>
+				<div style="font-size: 20px;font-weight: bold;text-align: left;">이용내역</div>
+			<div class="scroll" style="margin-bottom: 50px; text-align: left; float: left; width: 100%; overflow:auto; height: 600px;">
 				<c:forEach var="arr" items="${ completeBooklist }" varStatus="st">
-				<div class="pointcursor" onclick="location.href='${ pageContext.servletContext.contextPath }/usercompletecontent/select?bookNo=${ arr.bookNo }';">
-					<table border="1px" width="70%">
+				<div class="pointcursor" style="width: 275px; display: flex; float:left; margin-right: 5px; margin-bottom: 5px;" onclick="location.href='${ pageContext.servletContext.contextPath }/usercompletecontent/select?bookNo=${ arr.bookNo }';">
+					<table border="1px" width="100%">
 						<tr>
-							<td height="200px">
+							<td height="190px">
 								<img src="${pageContext.servletContext.contextPath}/${ arr.bookImg }" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
@@ -144,14 +136,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				</c:forEach>
 			</div>
+			<br>
 			<!-- 취소내역 -->
-			<div style="padding-bottom: 100px; text-align: left; float: left; width: 100%;">
-				<b style="font-size: 20px;">취소내역</b>
+				<div style="font-size: 20px;font-weight: bold;text-align: left;">취소내역</div>
+			<div class="scroll" style="margin-bottom: 50px; text-align: left; float: left; width: 100%; overflow:auto; height: 600px;">
 				<c:forEach var="arr" items="${ cancleBooklist }" varStatus="st">
-				<div class="pointcursor" onclick="location.href='${ pageContext.servletContext.contextPath }/usercanclecontent/select?bookNo=${ arr.bookNo }';">
-					<table border="1px" width="70%">
+				<div class="pointcursor" style="width: 275px; display: flex; float:left; margin-right: 5px; margin-bottom: 5px;" onclick="location.href='${ pageContext.servletContext.contextPath }/usercanclecontent/select?bookNo=${ arr.bookNo }';">
+					<table border="1px" width="100%">
 						<tr>
-							<td height="200px">
+							<td height="190px">
 								<img src="${pageContext.servletContext.contextPath}/${ arr.bookImg }" style="width: 100%; height: 100%;">
 							</td>
 						</tr>
@@ -172,6 +165,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 
 	<div class="clearfix"> </div>
+	
+	
 	<br><br><br>
 </div>
 

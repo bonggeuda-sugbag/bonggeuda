@@ -13,6 +13,7 @@ import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
@@ -41,10 +42,10 @@ public class UserMypageService {
 		return pointDTO;
 	}
 
-
 	/**
 	 * 포인트 이력 정보 조회
 	 * @param userNo 
+	 * @param pageInfo 
 	 * @return
 	 */
 	public List<PointHistoryDTO> pointHistorySelect(int userNo) {
@@ -54,6 +55,25 @@ public class UserMypageService {
 		Connection con = getConnection();
 		
 		List<PointHistoryDTO> pointHistory = mypageDAO.pointHistorySelect(con,userNo);
+		
+		close(con);
+		
+		return pointHistory;
+	}
+
+	/**
+	 * 포인트 이력 정보 조회
+	 * @param userNo 
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<PointHistoryDTO> pointHistorySelect(int userNo, PageInfoDTO pageInfo) {
+		
+		System.out.println("서블릿요청22222");
+		
+		Connection con = getConnection();
+		
+		List<PointHistoryDTO> pointHistory = mypageDAO.pointHistorySelect(con,userNo, pageInfo);
 		
 		close(con);
 		
@@ -81,13 +101,14 @@ public class UserMypageService {
 	/**
 	 * 보유 쿠폰 정보 조회
 	 * @param userNo
+	 * @param pageInfo 
 	 * @return
 	 */
-	public List<CouponDTO> couponSelect(int userNo) {
+	public List<CouponDTO> couponSelect(int userNo, PageInfoDTO pageInfo) {
 
 		Connection con = getConnection();
 		
-		List<CouponDTO> coupon = mypageDAO.couponSelect(con, userNo);
+		List<CouponDTO> coupon = mypageDAO.couponSelect(con, userNo, pageInfo);
 		
 		close(con);
 		
@@ -171,10 +192,10 @@ public class UserMypageService {
 		return result;
 	}
 
-
 	/**
 	 * 신고한 리스트 조회
 	 * @param userNo
+	 * @param pageInfo 
 	 * @return
 	 */
 	public List<ReportDTO> selectReportList(int userNo) {
@@ -182,6 +203,23 @@ public class UserMypageService {
 		Connection con = getConnection();
 		
 		List<ReportDTO> report = mypageDAO.selectReportList(con, userNo);
+		
+		close(con);
+		
+		return report;
+	}
+	
+	/**
+	 * 신고한 리스트 조회
+	 * @param userNo
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<ReportDTO> selectReportList(int userNo, PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<ReportDTO> report = mypageDAO.selectReportList(con, userNo, pageInfo);
 		
 		close(con);
 		

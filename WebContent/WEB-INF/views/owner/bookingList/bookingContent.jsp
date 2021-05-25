@@ -14,23 +14,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>봉그다 숙박숙박 :: 예약 관리</title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
-
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
-
-
-	<meta charset="UTF-8" />
-
-	<link rel="shortcut icon" href="../favicon.ico"> 
-	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
-	<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<meta charset="UTF-8" />
+<link rel="shortcut icon" href="../favicon.ico"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <style>
 	div.tab, div.tab-content {
@@ -103,12 +96,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><a href="registration.html">숙소등록</a></li>
+				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
-				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
 			</ul>
 		</div>
 	</div>
@@ -150,10 +143,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<nav>
 			<div class="col-md-3 blog-sidebar">
 			<ul>
-				<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/bookingList"style="color: #6eceda;">실시간 예약 현황</a></li>
+				<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/bookingList" style="color: #6eceda;">실시간 예약 현황</a></li>
 				<li class="blog-list"><a href="/bonggeuda/owner/bookingPastList">지난 예약</a></li>
-				<li class="blog-list"><a href="booking_QnA.html">고객 문의</a></li>
-				<li class="blog-list"><a href="booking_sales.html">매출 내역</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/book/question">고객 문의</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/sales">매출 내역</a></li>
 			</ul>
 			</nav>
 

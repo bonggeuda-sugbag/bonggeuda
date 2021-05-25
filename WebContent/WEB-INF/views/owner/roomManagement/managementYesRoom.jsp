@@ -49,27 +49,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
 <!--header-->
 <div class="header">
-   <div class="container">
-      <!--logo-->
-         <div class="logo">
-            <h1><a href="index.html">Bonggeuda</a></h1>
-         </div>
-      <!--//logo-->
-      <div class="top-nav">
-         <ul class="right-icons">
-            <li><a href="registration.html">숙소등록</a></li>
-            <li><a href="managementYesRoom.html">숙소관리</a></li>
-            <li><a href="booking.html">예약관리</a></li>
-            <li><a href="QnA.html">공지사항</a></li>
-            <li><a  href="mypage.html">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
-            
-            
-         </ul>
-
-      
-      </div>
-   </div>
+	<div class="container">
+		<!--logo-->
+			<div class="logo">
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
+			</div>
+		<!--//logo-->
+		<div class="top-nav">
+			<ul class="right-icons">
+				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+			</ul>
+		</div>
+	</div>
 </div>
 <!--header-->
 <div class=" banner-buying">
@@ -148,6 +144,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                <button  class="submit-btn" type="submit">
                <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
                 숙소 수정
+            </form>
+            <form action="/bonggeuda/owner/roomModify" method="post">
+               <button  class="submit-btn" type="submit">
+               <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+                객실 수정
             </form>
          </c:when>
          <c:when test="${ accomoList.approvalYN eq 'Y' && accomoList.approvalStatus eq 'N'}"> 

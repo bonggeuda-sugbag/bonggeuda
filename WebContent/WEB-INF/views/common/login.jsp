@@ -10,16 +10,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Login :: w3layouts</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="js/scripts.js"></script>
-<link href="css/styles.css" rel="stylesheet">
+<script src="${pageContext.servletContext.contextPath }/resources/admin/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -72,8 +72,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		<div class="clearfix"> </div>
 			<!---pop-up-box---->    
-				<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-				<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+				<link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+				<script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
 			<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
 					    <!----- tabs-box ---->
@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							    </div>
 					      </div>
 					 </div>
-					 <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+					 <script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
 				    	<script type="text/javascript">
 						    $(document).ready(function () {
 						        $('#horizontalTab').easyResponsiveTabs({
@@ -199,14 +199,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<br>
 					<br>
 					<br>
-					<li style="width: 22.5%;"><a href="#" class="twit"><i class="twitter"></i><span>사용자 로그인</span></a></li>
-					<li style="width: 22.5%;"><a href="#" class="in"><i class="linkedin"></i><span>업체 로그인</span></a></li>
+					<li style="width: 22.5%;"><a href="${pageContext.servletContext.contextPath }/login/guest" class="twit"><i class="twitter"></i><span>사용자 로그인</span></a></li>
+					<li style="width: 22.5%;"><a href="${pageContext.servletContext.contextPath }/login/owner" class="in"><i class="linkedin"></i><span>업체 로그인</span></a></li>
 					<br>
 					<div class="clearfix"> </div>
 				</ul>
 			
 			<div class="create" style="padding-right: 80px;">
-				<h7>관리자 모드</h7>
+				<h7 ><a href="${pageContext.servletContext.contextPath }/login/admin">관리자 모드</a></h7>
 				<a class="hvr-sweep-to-right" href="register.html">Create an Account</a>
 				<div class="clearfix"> </div>
 			</div>

@@ -280,4 +280,22 @@
              , ?
              )
     </entry>
+    <entry key="selectRoomInfo">
+        SELECT
+               ROOM_NO
+             , ACCOMO_NO
+             , ROOM_NAME
+             , ROOM_MAX
+             , ROOM_INTRO
+             , ROOM_FEE
+             , PEAK_FEE
+          FROM ROOM_INFO
+         WHERE ROOM_NO = ?    
+    </entry>
+    <entry key="selectCouponDiscount">
+        SELECT
+               COUPON_DISCOUNT 할인금액
+          FROM COUPON
+         WHERE COUPON_NO = ?      
+    </entry>
 </properties>

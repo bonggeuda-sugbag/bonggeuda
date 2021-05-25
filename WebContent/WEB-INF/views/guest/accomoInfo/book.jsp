@@ -467,32 +467,7 @@ textarea {
 <!--header-->
 
 
-<div class="header">
-	<div class="container">
-		<!--logo-->
-			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
-			</div>
-		<!--//logo-->
-		<!-- 상단메뉴바 -->
-		<div class="top-nav">
-			<ul class="right-icons" >
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-			</ul>
-			<!-- //상단메뉴바 -->
-				
-			</div>
-				
-				
-		<div class="clearfix"> </div>
-			
-				
-		</div>
-		<div class="clearfix" > </div>
-    </div>	
+<jsp:include page="../../common/guestheader.jsp"/>
     
     <!--//-->	
     <!-- 숙소상세정보 -->
@@ -675,6 +650,7 @@ textarea {
 							<div style="display: flex;">
 								<div style="width: 40%;">가격</div>
 								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
+								<input type="hidden" name="price" value="${roomList.roomFee }">
 							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
 							<hr>
@@ -717,7 +693,7 @@ textarea {
 								<input type="hidden" name="roomMax" value="${roomList.roomMax }">
 								<input type="hidden" name="peakFee" value="${roomList.peakFee }">
 								<input type="hidden" name="roomName" value="${roomList.roomName }">
-								<input type="hidden" name="price" value="${roomList.roomFee }">
+								
 								<input type="hidden" name="AccomoCheckIn" value="${accomo.checkIn }">
 								
 								<button class="detail_btn" type="submit" name="roomNo" value="${roomList.roomNo }">예약하기</button>

@@ -7,14 +7,42 @@
 		 WHERE USER_NO = ?
     </entry>
     
+    <entry key="pointHistory2">
+    	SELECT A.POINT_PATH
+     	     , A.GU_DATE
+             , A.POINT
+             , A.GETUSE_TYPE_GU
+  	      FROM POINT_HISTORY A
+  		  JOIN POINT P ON(P.POINT_NO = A.POINT_NO)
+          WHERE P.USER_NO = ?
+          ORDER BY A.GU_DATE DESC
+    </entry>
+    
     <entry key="pointHistory">
-		SELECT PH.POINT_PATH
-     	     , PH.GU_DATE
-             , PH.POINT
-             , ph.GETUSE_TYPE_GU
-  	      FROM POINT_HISTORY PH
-  		  JOIN POINT P ON(P.POINT_NO = PH.POINT_NO)
-         WHERE P.USER_NO = ?
+		SELECT
+      	       C.RNUM
+    	     , C.POINT_PATH
+             , C.GU_DATE
+    		 , C.POINT
+    	     , C.GETUSE_TYPE_GU
+		 FROM (
+                SELECT ROWNUM RNUM
+                     , B.POINT_PATH
+                     , B.GU_DATE
+                     , B.POINT
+                     , B.GETUSE_TYPE_GU
+                 FROM (
+		                SELECT A.POINT_PATH
+     	                     , A.GU_DATE
+                             , A.POINT
+                             , A.GETUSE_TYPE_GU
+  	                      FROM POINT_HISTORY A
+  		                  JOIN POINT P ON(P.POINT_NO = A.POINT_NO)
+                         WHERE P.USER_NO = ?
+                         ORDER BY A.GU_DATE DESC
+                       ) B
+               ) C
+         WHERE C.RNUM  BETWEEN ? AND ?     
     </entry>
     
     <entry key="couponCount">
@@ -25,14 +53,31 @@
     </entry>
     
     <entry key="couponList">
-		SELECT COUPON_NAME
-		     , COUPON_DISCOUNT
-		     , COUPON_CONDITION
-		     , COUPON_START
-		     , COUPON_END
-		  FROM COUPON
-		 WHERE COUPON_USE_YN = 'N'
-		   AND USER_NO = ?
+		SELECT  B.RNUM
+             , B.COUPON_NAME
+             , B.COUPON_DISCOUNT
+	         , B.COUPON_CONDITION
+	         , B.COUPON_START
+	         , B.COUPON_END	
+          FROM (
+                SELECT ROWNUM RNUM
+                     , A.COUPON_NAME
+		            , A.COUPON_DISCOUNT
+		            , A.COUPON_CONDITION
+		            , A.COUPON_START
+		            , A.COUPON_END
+                 FROM (
+                        SELECT COUPON_NAME
+		                     , COUPON_DISCOUNT
+		                     , COUPON_CONDITION
+                             , COUPON_START
+                             , COUPON_END
+		                  FROM COUPON
+		                 WHERE COUPON_USE_YN = 'N'
+		                   AND USER_NO = ?
+                       ) A
+               ) B
+         WHERE B.RNUM BETWEEN ? AND ?
     </entry>
 
     <entry key="myinfoSelect">
@@ -84,17 +129,48 @@
 		     )
     </entry>
     
+    <entry key="reportListSelect2">
+    	SELECT R.REPORT_NO
+        	 , R.REPORT_TITLE
+        	 , A.ACCOMO_NAME
+        	 , R.REPORT_DATE
+        	 , R.REPORT_STATUS
+          FROM REPORT R
+          JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = R.REPORTED_NO)
+         WHERE R.WRITER_TYPE = 'guest'
+           AND R.MEMBER_NO = ?
+           AND R.REPORTED_TYPE = 'owner'
+         ORDER BY R.REPORT_DATE DESC
+    </entry>
     <entry key="reportListSelect">
-		SELECT R.REPORT_NO
-		     , R.REPORT_TITLE
-		     , A.ACCOMO_NAME
-		     , R.REPORT_DATE
-		     , R.REPORT_STATUS
-		  FROM REPORT R
-		  JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = R.REPORTED_NO)
-		 WHERE R.WRITER_TYPE = 'guest'
-		   AND R.MEMBER_NO = ?
-		   AND R.REPORTED_TYPE = 'owner'
+		SELECT C.RNUM
+             , C.REPORT_NO
+        	 , C.REPORT_TITLE
+        	 , C.ACCOMO_NAME
+        	 , C.REPORT_DATE
+        	 , C.REPORT_STATUS
+          FROM (
+                 SELECT ROWNUM RNUM
+                      , B.REPORT_NO
+        		      , B.REPORT_TITLE
+        		      , B.ACCOMO_NAME
+        		      , B.REPORT_DATE
+        		      , B.REPORT_STATUS
+                   FROM (
+                          SELECT R.REPORT_NO
+        		               , R.REPORT_TITLE
+        		               , A.ACCOMO_NAME
+        		               , R.REPORT_DATE
+        		               , R.REPORT_STATUS
+                            FROM REPORT R
+                            JOIN ACCOMO_INFO A ON(A.ACCOMO_NO = R.REPORTED_NO)
+                           WHERE R.WRITER_TYPE = 'guest'
+        		             AND R.MEMBER_NO = ?
+        		             AND R.REPORTED_TYPE = 'owner'
+        		           ORDER BY R.REPORT_DATE DESC
+                         ) B
+               ) C
+         WHERE C.RNUM BETWEEN ? AND ?
     </entry>
     
     <entry key="reportContent">
@@ -376,7 +452,7 @@
               , ?
               , 'Y'
               , null
-              , REVIEW_NO_SEQ.CURRVAL
+              , SQU_REVIEW.CURRVAL
               )
     </entry>
 

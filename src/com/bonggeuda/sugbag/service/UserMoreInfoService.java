@@ -13,6 +13,7 @@ import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
 import com.bonggeuda.sugbag.model.dto.EventDTO;
 import com.bonggeuda.sugbag.model.dto.NoticeDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.QnADTO;
 
 public class UserMoreInfoService {
@@ -21,6 +22,7 @@ public class UserMoreInfoService {
 	
 	/**
 	 * 공지사항 조회
+	 * @param pageInfo 
 	 * @return
 	 */
 	public List<NoticeDTO> selectNotice() {
@@ -33,9 +35,26 @@ public class UserMoreInfoService {
 				
 		return notice;
 	}
+	
+	/**
+	 * 공지사항 조회
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<NoticeDTO> selectNotice(PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<NoticeDTO> notice = moreinfoDAO.selectNotice(con, pageInfo);
+		
+		close(con);
+				
+		return notice;
+	}
 
 	/**
 	 * 이벤트 조회
+	 * @param pageInfo 
 	 * @return
 	 */
 	public List<EventDTO> selectEvent() {
@@ -43,6 +62,21 @@ public class UserMoreInfoService {
 		Connection con = getConnection();
 		
 		List<EventDTO> event = moreinfoDAO.selectEvent(con);
+		
+		close(con);
+		return event;
+	}
+	
+	/**
+	 * 이벤트 조회
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<EventDTO> selectEvent(PageInfoDTO pageInfo) {
+
+		Connection con = getConnection();
+		
+		List<EventDTO> event = moreinfoDAO.selectEvent(con, pageInfo);
 		
 		close(con);
 		return event;
@@ -85,6 +119,7 @@ public class UserMoreInfoService {
 	/**
 	 * 관리자에게 + 업체에게 문의리스트 조회
 	 * @param userNo
+	 * @param pageInfo 
 	 * @return
 	 */
 	public List<QnADTO> selectQnA(int userNo) {
@@ -92,6 +127,23 @@ public class UserMoreInfoService {
 		Connection con = getConnection();
 		
 		List<QnADTO> qna = moreinfoDAO.selectQnA(con, userNo);
+		
+		close(con);
+		
+		return qna;
+	}
+	
+	/**
+	 * 관리자에게 + 업체에게 문의리스트 조회
+	 * @param userNo
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<QnADTO> selectQnA(int userNo, PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<QnADTO> qna = moreinfoDAO.selectQnA(con, userNo, pageInfo);
 		
 		close(con);
 		
