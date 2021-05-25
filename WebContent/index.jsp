@@ -8,7 +8,8 @@
 </head>
 <body>
 
-		<jsp:forward page="/WEB-INF/views/guest/main/main.jsp"/>
+		<%-- <jsp:forward page="/WEB-INF/views/guest/main/main.jsp"/> --%>
+		<jsp:forward page="/corona"/>
 
 </body>
 </html>
