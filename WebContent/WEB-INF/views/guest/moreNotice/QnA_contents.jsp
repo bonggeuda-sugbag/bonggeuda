@@ -100,9 +100,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
-				<li><a  href="more_notice.jsp">더보기</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
 			<!-- 	<li><a  href="blog.jsp">내주변</a></li> -->
-				<li><a  href="mypage_point.jsp">마이페이지</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
             	<li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 		</div>
@@ -128,11 +128,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="more_notice.jsp">공지사항</a></li>
-			<li class="blog-list"><a href="event.jsp">이벤트</a></li>
-			<li class="blog-list"><a href="FAQ1.jsp">자주 묻는 질문</a></li>
-			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="QnA.jsp" style="color: #6eceda;">1:1 문의</a></li>
-			<li class="blog-list"><a href="policy1.jsp">약관 및 정책</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/usernotice/select">공지사항</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/userevent/select">이벤트</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/userfaq/select">자주 묻는 질문</a></li>
+			<li class="blog-list active" style="font-size: 1.3em; font-weight: 600;"><a href="${ pageContext.servletContext.contextPath }/userqnalist/select" style="color: #6eceda;">1:1 문의</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/userpolicy/select">약관 및 정책</a></li>
 		</ul>
 		</div>
 		</nav>

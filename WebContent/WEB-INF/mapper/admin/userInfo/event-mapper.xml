@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectEventTotalCount">
+       SELECT 
+             COUNT(*)
+         FROM EVENT E
+	</entry>
+	
+	<entry key="selectEventList">
+        SELECT
+               C.RNUM
+    		 , C.EVENT_NO
+    		 , C.EVENT_TITLE
+   			 , C.EVENT_START
+    		 , C.EVENT_END
+    		 , C.USER_NO
+		 FROM(
+			   SELECT
+ 				      ROWNUM RNUM   
+  				    , B.EVENT_NO
+   				    , B.EVENT_TITLE
+   				    , B.EVENT_START
+  			        , B.EVENT_END
+    				, B.USER_NO
+ 				 FROM(       
+        			  SELECT
+               				 A.EVENT_NO
+              			   , A.EVENT_TITLE
+              			   , A.EVENT_START
+              			   , A.EVENT_END
+              			   , A.USER_NO
+                        FROM EVENT A
+       				 )B
+		 	)C
+      WHERE C.RNUM BETWEEN ? AND ?
+</entry>
+</properties>

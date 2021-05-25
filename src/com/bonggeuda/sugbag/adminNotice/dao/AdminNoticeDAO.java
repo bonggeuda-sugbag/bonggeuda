@@ -55,7 +55,7 @@ public class AdminNoticeDAO {
 			while(rset.next()) {
 				AdminNoticeDTO noticeInfo = new AdminNoticeDTO();
 						
-				noticeInfo.setNoticeNo(rset.getInt("NOTICE_NO"));
+				noticeInfo.setRnum(rset.getInt("RNUM"));
 				noticeInfo.setTitle(rset.getString("NOTICE_TITLE"));
 				noticeInfo.setWriteDate(rset.getDate("NOTICE_WRITE_DATE"));
 				noticeInfo.setWriter(rset.getString("WRITER"));
@@ -162,7 +162,7 @@ public class AdminNoticeDAO {
 
 	public static int updateNoitce(Connection con, AdminNoticeDTO updateDTO, int noticeNo) {
 		
-		System.out.println(noticeNo);
+		System.out.println("DAO" + noticeNo);
 		PreparedStatement pstmt = null;
 		
 		int result = 0;
@@ -177,6 +177,32 @@ public class AdminNoticeDAO {
 			pstmt.setString(3, updateDTO.getContent());
 //			pstmt.setDate(2, updateDTO.getWriteDate()); 
 			pstmt.setInt(4,noticeNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(con);
+		}
+		
+		return result;
+	}
+
+	public static int deleteNoitce(Connection con, AdminNoticeDTO noticeInfo, int noticeNo) {
+	
+		System.out.println("딜리트 :" + noticeNo);
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("deleteNotice");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1,noticeNo);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

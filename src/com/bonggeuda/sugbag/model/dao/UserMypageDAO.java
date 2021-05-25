@@ -536,12 +536,12 @@ public class UserMypageDAO {
 	 * @param reportedNo
 	 * @return
 	 */
-	public AttachmentDTO selectReportImg(Connection con, int userNo, int reportedNo) {
+	public List<AttachmentDTO> selectReportImg(Connection con, int userNo, int reportedNo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		AttachmentDTO userReportImg = new AttachmentDTO();
+		List<AttachmentDTO> userReportImg = new ArrayList<>();
 		
 		String query = prop.getProperty("reportImgSelect");
 		System.out.println(query);
@@ -553,10 +553,16 @@ public class UserMypageDAO {
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
+			while(rset.next()) {
 				
-				userReportImg.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
-			}
+				AttachmentDTO reportImg = new AttachmentDTO();
+				
+				reportImg.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				
+				userReportImg.add(reportImg);
+			} 
+			
+			System.out.println(userReportImg);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

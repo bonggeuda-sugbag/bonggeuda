@@ -172,12 +172,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<c:forEach var="user" items="${ requestScope.userList }">
 			<form action="${ pageContext.servletContext.contextPath }/user/detail" method="get">
 			<tr>
-				<td><c:out value="${ user.userNo }"/></td>
+				<td><c:out value="${ user.rnum }"/></td>
 				<td><c:out value="${ user.name }"/></td>
 				<td><c:out value="${ user.email }"/></td>
 				<td><c:out value="${ user.phoneNumber }"/></td>
 				<td><button>상세보기</button></td>
-				<input type="hidden" name="hduserNo" value= "${ user.userNo }">
+				<input type="hidden" name="hduserNo" value= "${ user.rnum }">
 			</tr>
             </form>
 			</c:forEach>

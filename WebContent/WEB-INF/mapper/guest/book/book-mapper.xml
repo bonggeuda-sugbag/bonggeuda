@@ -155,7 +155,12 @@
              , ?
              )
     </entry>
-    	<entry key="selectBestReview">
+    <entry key="selectBookNoSequence">
+		SELECT 
+		       SEQ_BOOK_NO.CURRVAL
+		  FROM DUAL
+	</entry>
+    <entry key="selectBestReview">
         SELECT 
                ROWNUM
              , V.리뷰번호
@@ -228,17 +233,22 @@
               , ?
               , ?
               , ?
-              , SEQ_BOOK_NO.CURRVAL
+              , ?
               , ?
               , ?
               , ?
               )
     </entry>
+    <entry key="selectPaymentNoSequence">
+		SELECT 
+		       SEQ_PAYMENT_NO.CURRVAL
+		  FROM DUAL
+	</entry>
     <entry key="insertGetPoint">
         INSERT 
           INTO POINT_HISTORY
         VALUES(
-               SEQ_PAYMENT_NO.CURRVAL
+               ?
              , SQU_POINT_HISTORY.NEXTVAL
              , ?
              , ?
@@ -254,14 +264,14 @@
                SQU_COUPON_USE_HISTORY.NEXTVAL
              , ?
              , ?
-             , SEQ_PAYMENT_NO.CURRVAL
+             , ?
              )
     </entry>
     <entry key="insertPointUse">
         INSERT 
           INTO POINT_HISTORY
         VALUES(
-               SEQ_PAYMENT_NO.CURRVAL
+               ?
              , SQU_POINT_HISTORY.NEXTVAL
              , ?
              , ?

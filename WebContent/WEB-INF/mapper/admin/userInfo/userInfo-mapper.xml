@@ -8,15 +8,31 @@
 	</entry>
 	
 	<entry key="selectBoardList">
-        SELECT C.* FROM (
-                         SELECT B.*,ROWNUM RNUM FROM 
-(SELECT
-        A.USER_NO
-      , A.USER_NICKNAME
-      , A.USER_ID
-      , A.USER_PHONE
-  FROM USER_INFO A) B) C
- WHERE C.RNUM BETWEEN ? AND ?
+SELECT
+      C.RNUM
+    , C.USER_NO
+    , C.USER_NICKNAME
+    , C.USER_ID
+    , C.USER_PHONE
+  FROM (
+        SELECT
+               ROWNUM RNUM
+             , B.USER_NO
+             , B.USER_NICKNAME
+             , B.USER_ID
+             , B.USER_PHONE
+           FROM(
+                SELECT
+                      A.USER_NO
+                    , A.USER_NICKNAME
+                    , A.USER_ID
+                    , A.USER_PHONE
+                 FROM USER_INFO A
+                WHERE A.USER_NO NOT IN 0
+                )B
+        )C
+WHERE C.RNUM BETWEEN ? AND ?
+  
     </entry>
     
     <entry key="selectBookList">
@@ -80,6 +96,7 @@
 		, COUPON_USE_YN
 		, USER_NO
 		, COUPON_NAME
+        , COUPON_DISCOUNT
         )
         VALUES
         (
@@ -88,6 +105,7 @@
 		, ?
 		, ?
 		, DEFAULT
+		, ?
 		, ?
 		, ?
 		)
@@ -140,16 +158,31 @@
 	</entry>
 	
 		<entry key="selectSearch">
-SELECT C.* FROM (
-SELECT B.*,ROWNUM RNUM FROM 
-(SELECT
-        A.USER_NO
-      , A.USER_NICKNAME
-      , A.USER_ID
-      , A.USER_PHONE
-  FROM USER_INFO A) B) C
- WHERE C.RNUM BETWEEN ? AND ?
-   AND USER_ID = ?
+SELECT
+      C.RNUM
+    , C.USER_NO
+    , C.USER_NICKNAME
+    , C.USER_ID
+    , C.USER_PHONE
+  FROM (
+        SELECT
+               ROWNUM RNUM
+             , B.USER_NO
+             , B.USER_NICKNAME
+             , B.USER_ID
+             , B.USER_PHONE
+           FROM(
+                SELECT
+                      A.USER_NO
+                    , A.USER_NICKNAME
+                    , A.USER_ID
+                    , A.USER_PHONE
+                 FROM USER_INFO A
+                WHERE A.USER_NO NOT IN 0
+                )B
+        )C
+WHERE C.RNUM BETWEEN ? AND ?
+         AND USER_ID = ?
     </entry>
     
     <entry key="selectSearchCount">
@@ -240,6 +273,82 @@ SELECT B.*,ROWNUM RNUM FROM
          JOIN USER_INFO B ON (A.USER_NO = B.USER_NO)
          JOIN PAYMENT C ON ( A.BOOK_NO = C.BOOK_NO)
          WHERE B.USER_ID = ?
+	</entry>
+	
+	<entry key="selectBlackList">
+        SELECT
+               C.RNUM
+             , C.BLIST_NO
+             , C.MEMBER_NO
+   			 , C.BLIST_REASON
+   			 , C.WRITER_TYPE
+   			 , C.ENROLL_DATE
+          FROM(
+       		   SELECT
+             		  ROWNUM RNUM
+            		, B.BLIST_NO
+            		, B.MEMBER_NO
+            		, B.BLIST_REASON
+            		, B.WRITER_TYPE
+            		,B.ENROLL_DATE
+                FROM(
+                      SELECT
+                    		 A.BLIST_NO
+                   		   , A.MEMBER_NO
+                  		   , A.BLIST_REASON
+                   		   , A.WRITER_TYPE
+                 		   , A.ENROLL_DATE
+              		    FROM BLIST A
+              		    JOIN OWNER_INFO O ON (A.MEMBER_NO = O.OWNER_NO)
+                        JOIN USER_INFO U ON (A.MEMBER_NO = U.USER_NO)
+              		)B
+        	  )C
+        	WHERE C.RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectBlackCount">
+        SELECT 
+               COUNT(*)
+         FROM BLIST 
+	</entry>
+	
+	<entry key="selectBlackListMemberNo">
+	       SELECT
+               C.RNUM
+             , C.BLIST_NO
+             , C.MEMBER_NO
+   			 , C.BLIST_REASON
+   			 , C.WRITER_TYPE
+   			 , C.ENROLL_DATE
+          FROM(
+       		   SELECT
+             		  ROWNUM RNUM
+            		, B.BLIST_NO
+            		, B.MEMBER_NO
+            		, B.BLIST_REASON
+            		, B.WRITER_TYPE
+            		,B.ENROLL_DATE
+                FROM(
+                      SELECT
+                    		 A.BLIST_NO
+                   		   , A.MEMBER_NO
+                  		   , A.BLIST_REASON
+                   		   , A.WRITER_TYPE
+                 		   , A.ENROLL_DATE
+              		    FROM BLIST A
+              		    JOIN OWNER_INFO O ON (A.MEMBER_NO = O.OWNER_NO)
+                        JOIN USER_INFO U ON (A.MEMBER_NO = U.USER_NO)
+              		)B
+        	  )C
+        	WHERE C.RNUM BETWEEN ? AND ?
+              AND C.MEMBER_NO = ?
+	</entry>
+	
+		<entry key="selectBlackNoCount">
+        SELECT 
+               COUNT(*)
+         FROM BLIST 
+        WHERE MEMBER_NO = ?
 	</entry>
 	
 
