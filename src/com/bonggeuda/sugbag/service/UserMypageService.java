@@ -211,10 +211,11 @@ public class UserMypageService {
 	 * @param reportedNo
 	 * @return
 	 */
-	public AttachmentDTO selectReportImg(int userNo, int reportedNo) {
+	public List<AttachmentDTO> selectReportImg(int userNo, int reportedNo) {
 		Connection con = getConnection();
 		
-		AttachmentDTO userReportImg = mypageDAO.selectReportImg(con, userNo, reportedNo);
+//		AttachmentDTO userReportImg = mypageDAO.selectReportImg(con, userNo, reportedNo);
+		List<AttachmentDTO> userReportImg = mypageDAO.selectReportImg(con, userNo, reportedNo);
 		
 		close(con);
 		

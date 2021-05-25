@@ -1,6 +1,8 @@
 package com.bonggeuda.sugbag.usermypage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,12 +30,16 @@ public class UserReportContentSelect extends HttpServlet {
 		UserMypageService mypageService = new UserMypageService();
 		
 		ReportDTO userReportContent = mypageService.selectReportContent(userNo, reportedNo);
-		AttachmentDTO userReportImg = mypageService.selectReportImg(userNo, reportedNo);
+//		AttachmentDTO userReportImg = mypageService.selectReportImg(userNo, reportedNo);
+		List<AttachmentDTO> userReportImg = new ArrayList<>();
+		userReportImg = mypageService.selectReportImg(userNo, reportedNo);
 		
 		String path = "/WEB-INF/views/guest/mypage/warningContents.jsp";
 		request.setAttribute("userReportContent", userReportContent);
 		request.setAttribute("userReportImg", userReportImg);
-		System.out.println("이이지경로 : " + userReportImg.getThumbnailPath());
+		for(int i = 0; i < userReportImg.size(); i++) {
+			System.out.println("이이지경로 : " + userReportImg.get(i).getThumbnailPath());
+		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	
