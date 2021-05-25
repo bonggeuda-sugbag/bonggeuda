@@ -285,7 +285,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    	    	$("#couponDiscount")[0].value = 0;
 					    		return;
 					    	}
-					    	alert(couponNo);
 					    	$.ajax({
 					    		url:"${pageContext.servletContext.contextPath}/book/payment",
 					    		type:"get",
@@ -302,7 +301,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					    	    	$("#totalPrice")[0].value = afterPrice;
 					    	    	$("#totalPrice")[0].innerHTML = afterPrice;
 					    	    	$("#couponDiscount")[0].value = couponAmount;
-
+									alert("할인이 적용되었습니다.");
 					    	    },
 					    	});
 					    });
@@ -367,10 +366,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                <!-- 결제동의 -->
                 <section class="agree" >
                     <p class="all_check" ><label><input type="checkbox" name="checkAll" class="inp_chk_02"> <span>전체 동의</span></label></p> 
-                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02"><span><u>숙소이용규칙 및 취소/환불규정 동의</u><b>(필수)</b></span></label></p> 
-                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02"><span><u>개인정보 수집 및 이용 동의</u><b>(필수)</b></span></label></label></p> 
-                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02"><span><u>개인정보 제 3자 제공 동의</u><b>(필수)</b></span></label></p>
-                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02"><span><u>만 14세 이상 확인</u><b>(필수)</b></label></span></p>
+                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required"><span><u>숙소이용규칙 및 취소/환불규정 동의</u><b>(필수)</b></span></label></p> 
+                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required"><span><u>개인정보 수집 및 이용 동의</u><b>(필수)</b></span></label></label></p> 
+                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required"><span><u>개인정보 제 3자 제공 동의</u><b>(필수)</b></span></label></p>
+                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required"><span><u>만 14세 이상 확인</u><b>(필수)</b></label></span></p>
                 </section>
 				
             </div>

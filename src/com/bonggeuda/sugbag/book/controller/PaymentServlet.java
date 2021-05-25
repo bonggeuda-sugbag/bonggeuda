@@ -126,6 +126,12 @@ public class PaymentServlet extends HttpServlet {
 		
 		int result = bsvc.insertBookNpay(bookInfo, payment, pointGet, couponUse, pointUse);
 		
+		String path ="";
+		if(result > 0) {
+			path = "/userbooklist/select";
+		}
+		
+		response.sendRedirect(request.getContextPath() + path);
 		
 	}
 }

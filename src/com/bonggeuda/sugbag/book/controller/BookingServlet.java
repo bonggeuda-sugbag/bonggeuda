@@ -69,9 +69,9 @@ public class BookingServlet extends HttpServlet {
 		bookInfo.setBookCheckIn(checkIN);
 		Date checkOut = java.sql.Date.valueOf(request.getParameter("checkOutDate"));
 		Date checkIn = java.sql.Date.valueOf(request.getParameter("checkInDate"));
-		int bookDay = checkOut.getDate() - checkIn.getDate();
-		int totalPrice = roomInfo.getRoomFee() * bookDay;
-		bookInfo.setDay(checkOut.getDate() - checkIn.getDate());
+		long bookDay = ((checkOut.getTime() - checkIn.getTime())/(24*60*60*1000));
+		int totalPrice = roomInfo.getRoomFee() * (int)bookDay;
+		bookInfo.setDay(bookDay);
 		
 		List couponPoint = new BookService().selectCouponPoint(userNo);
 		
