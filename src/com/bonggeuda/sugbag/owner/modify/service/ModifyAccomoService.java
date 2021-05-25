@@ -40,6 +40,17 @@ public class ModifyAccomoService {
 		
 	}
 
+	public RmAccomoInfoDTO selecAccomoInfoThree(int rmAccomoNo) {
+		
+		Connection con = getConnection();
+		
+		RmAccomoInfoDTO rmAccomoInfo= modifyDAO.selectRmAccomoInfoDAOThree(con, rmAccomoNo);
+		
+		close(con);
+		
+		return rmAccomoInfo;
+	}
+	
 	public int insertModifyAccomoThumbnail(AttachmentDTO tempFileInfo) {
 		/* Connection 생성 */
 		Connection con = getConnection();
@@ -58,6 +69,8 @@ public class ModifyAccomoService {
 		
 		return result;
 	}
+
+
 
 
 }
