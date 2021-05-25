@@ -127,39 +127,82 @@
 	</entry>
 	
 	<entry key="selectQuestion">
-       SELECT  A.RNUM
-             , A.ADMIN_QNA_NO
-		     , A.ADMIN_QNA_TITLE
-		     , A.ADMIN_QNA_DATE
-		     , A.ADMIN_ANSWER_YN
-		     , A.ADMIN_QNA_WRITER
-		     , A.ADMIN_QNA_CONTENT       
-          FROM (SELECT ROWNUM RNUM
-             , B.ADMIN_QNA_NO
-		     , B.ADMIN_QNA_TITLE
-		     , B.ADMIN_QNA_DATE
-		     , B.ADMIN_ANSWER_YN
-		     , B.ADMIN_QNA_WRITER
-		     , B.ADMIN_QNA_CONTENT
-          FROM (SELECT ADMIN_QNA_NO
-		     , ADMIN_QNA_TITLE
-		     , ADMIN_QNA_DATE
-		     , ADMIN_ANSWER_YN
-		     , ADMIN_QNA_WRITER
-		     , ADMIN_QNA_CONTENT
-          FROM ADMIN_QNA
-		 WHERE ADMIN_QNA_WRITER = 'O'
-		   AND MEMBER_NO = ?
-		 ORDER BY ADMIN_QNA_NO DESC) B) A
-    WHERE RNUM BETWEEN ? AND ?
+		SELECT E.RNUM 
+             , E.OWNER_QNA_NO
+		     , E.OWNER_QNA_TITLE
+		     , E.OWNER_QNA_CONTENT
+		     , E.OWNER_QNA_DATE
+		     , E.OWNER_ANSWER_YN
+		     , E.ACCOMO_NO
+             , E.USER_NICKNAME
+        FROM(SELECT ROWNUM RNUM 
+             , D.OWNER_QNA_NO
+		     , D.OWNER_QNA_TITLE
+		     , D.OWNER_QNA_CONTENT
+		     , D.OWNER_QNA_DATE
+		     , D.OWNER_ANSWER_YN
+		     , D.ACCOMO_NO
+             , D.USER_NICKNAME
+        FROM(SELECT A.OWNER_QNA_NO
+		     , A.OWNER_QNA_TITLE
+		     , A.OWNER_QNA_CONTENT
+		     , A.OWNER_QNA_DATE
+		     , A.OWNER_ANSWER_YN
+		     , A.ACCOMO_NO
+             , B.USER_NICKNAME
+          FROM OWNER_QNA A, USER_INFO B, ACCOMO_INFO C
+		 WHERE A.USER_NO = B.USER_NO
+           AND C.ACCOMO_NO = A.ACCOMO_NO
+           AND C.OWNER_NO = ?
+		 ORDER BY OWNER_QNA_NO DESC)D )E
+   		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectTotalCount">
         SELECT 
-               COUNT(*) 
-          FROM OWNER_QNA
-         WHERE 
-           AND MEMBER_NO = ?
+               COUNT(*)
+          FROM OWNER_QNA A, USER_INFO B, ACCOMO_INFO C
+		 WHERE A.USER_NO = B.USER_NO
+           AND C.ACCOMO_NO = A.ACCOMO_NO
+           AND C.OWNER_NO = ?
+		 ORDER BY OWNER_QNA_NO DESC
+	</entry>
+	
+	<entry key="selectContent">
+		SELECT A.OWNER_QNA_TITLE
+		     , A.OWNER_QNA_DATE
+             , B.USER_NICKNAME
+		     , A.OWNER_QNA_CONTENT
+		  FROM OWNER_QNA A, USER_INFO B
+         WHERE A.USER_NO = B.USER_NO
+		   AND A.OWNER_QNA_NO = ?
+	</entry>
+	
+	<entry key="insertAnswer">
+	INSERT 
+	  INTO OWNER_ANSWER
+	(
+ 	  OWNER_ANSWER_NO
+	, OWNER_ANSWER_CONTENT
+	, OWNER_ANSWER_DATE
+	, OWNER_QNA_NO
+	)
+	VALUES
+	(
+      SEQ_OWNER_ANSWER_NO.NEXTVAL
+ 	, ?
+  	, SYSDATE
+ 	, ?
+	)
+	</entry>
+	
+	<entry key="selectAnswer">
+	SELECT 
+	       A.OWNER_ANSWER_CONTENT
+	     , A.OWNER_ANSWER_DATE
+	  FROM OWNER_ANSWER A, OWNER_QNA B
+	 WHERE B.OWNER_QNA_NO = ?
+	   AND A.OWNER_QNA_NO = ?
 	</entry>
 	
 </properties>

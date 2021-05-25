@@ -36,6 +36,9 @@
 	th a:hover{
 		color: #6eceda !important;
 	}
+	body {
+    	color: black;
+    }
  </style>
 </head>
 <body>
@@ -49,13 +52,13 @@
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
-			<ul class="right-icons">
-				<li><a href="registration.html">숙소등록</a></li>
-				<li><a href="managementYesRoom.html">숙소관리</a></li>
-				<li><a href="booking.html">예약관리</a></li>
-				<li><a href="QnA.html">공지사항</a></li>
-				<li><a  href="mypage.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+		<ul class="right-icons">
+				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
 			</ul>
 		</div>
 	</div>
@@ -96,14 +99,14 @@
 		<div class="blog-list">
 			<nav>
 			<div class="col-md-3 blog-sidebar">
-			<ul>
-				<li class="blog-list"><a href="booking.html">실시간 예약 현황</a></li>
-				<li class="blog-list"><a href="booking_past.html">지난 예약</a></li>
-				<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="booking_QnA.html" style="color: #6eceda;">고객 문의</a></li>
-				<li class="blog-list"><a href="booking_sales.html">매출 내역</a></li>
-			</ul>
+				 <ul>
+					<li class="blog-list"><a href="/bonggeuda/owner/bookingList">실시간 예약 현황</a></li>
+					<li class="blog-list"><a href="/bonggeuda/owner/bookingPastList">지난 예약</a></li>
+					<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/book/question" style="color: #6eceda;">고객 문의</a></li>
+					<li class="blog-list"><a href="/bonggeuda/owner/sales">매출 내역</a></li>
+				</ul>
+			</div>
 			</nav>
-
 		</div>
 		<table class="type09">
 			<thead>
@@ -115,25 +118,22 @@
 			<tbody>
 				<tr>
 					<th scope="row">제목</th>
-					<td colspan="3">숙소 이용시 취사 가능한가요?</td>
+					<td colspan="3"><c:out value="${ requestScope.selectContent.adminQnATitle }"/></td>
 				</tr>
 				<tr>
 					<th scope="row">작성자</th>
-					<td>홍길동</td>
+					<td><c:out value="${ selectContent.adminQnAWriter }"/></td>
 					<th scope="row">작성일</th>
-					<td>21.04.29</td>
+					<td><c:out value="${ selectContent.adminQnADate }"/></td>
 				</tr>
 			</tbody>
 		</table>
 		<br>
 		<p>
-			내용내용내용내용내용내용내용내용내용내용내용내용<br>
-			내용내용내용내용내용내용내용내용내용내용내용내용<br>
-			내용내용내용내용내용내용내용내용내용내용내용내용<br>
-			내용내용내용내용내용내용내용내용내용내용내용내용<br>
-			내용내용내용내용내용내용내용내용내용내용내용내용<br>
+			<br>
+			&nbsp&nbsp<c:out value="${ selectContent.adminQnAContent }"/>
 		</p>
-		<br>
+		<br><br>
 		<table class="type09">
 			<thead>
 				<tr>
@@ -142,11 +142,29 @@
 				</tr>
 			</thead>
 		</table>
-		<div>
-
-			<textarea class="form-control textarea-layer" style="width: 700px; height: 120px;">답변작성</textarea>
-			<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">등록</button>
-		</div>
+		
+		<c:if test="${ empty selectAnswer.answerContent }">
+			<form action="${ pageContext.servletContext.contextPath }/owner/book/answer" method="post">
+			<input type="hidden" name="qnaNo" value="${ selectContent.adminQnANo }">
+			<div>
+				<br>
+				<b>관리자 답변</b> 
+				<textarea class="form-control textarea-layer" name="content" style="width: 800px; height: 120px; margin-left: 255px; font-size: 15px;" placeholder="답변을 작성해 주세요."></textarea>
+				<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">등록</button>
+			</div>
+			</form>
+		</c:if>
+		
+		<c:if test="${ !empty selectAnswer.answerContent }">
+			<div>
+				<br>
+				<b>관리자 답변</b> 
+				<div class="form-control textarea-layer" style="width: 900px; height: 120px; margin-left: 255px; font-size: 15px;">
+					<br> 
+					&nbsp&nbsp<c:out value="${ selectAnswer.answerContent }"/>
+				</div>
+			</div>
+		</c:if>
 	</div>
 </div>
 <br><br><br><br><br>

@@ -56,7 +56,7 @@ public class BookingQuestion extends HttpServlet {
 		/*결과값 반환*/
 		List<QnADTO> selectQuestion = qnaService.selectQuestion(pageInfo);
 		
-		System.out.println("전체문의조회 : " + selectQuestion);
+		System.out.println("전체 문의 조회 : " + selectQuestion);
 
 		request.setAttribute("selectQuestion", selectQuestion); //jsp에 값 반환
 		

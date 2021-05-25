@@ -136,29 +136,11 @@ th a:hover {
 								<c:out value="${ qlist.qnaTitle }"/>
 							</a>
 						</th>
-						<th><c:out value="${ qlist.qnaWriter }"/></th>
+						<th><c:out value="${ qlist.writer }"/></th>
 						<th><c:out value="${ qlist.qnaDate }"/></th>
 						<th><c:out value="${ qlist.answerYn }"/></th>
 					</tr>   
 					</c:forEach>
-				   	<tr>
-						<th>2</th>
-						<th>							
-							<a href="booking_QnA_contents.html">예약 변경하고 싶어서 글 남깁니다.</a>
-						</th>
-						<th>홍길동</th>
-						<th>21.05.24</th>
-						<th>N</th>
-					</tr>   
-					<tr>
-						<th>1</th>
-						<th>							
-							<a href="booking_QnA_contents.html">숙소 이용시 취사 가능한가요?</a>
-						</th>
-						<th>홍길동</th>
-						<th>21.05.24</th>
-						<th>N</th>
-				 	</tr>   
 				</tbody>
 			 </table>
 			 <div class="tab_each" style="display:block">
@@ -276,6 +258,86 @@ th a:hover {
     </div>
 </div>
 </div>
+<script>
+		const link = "${ pageContext.servletContext.contextPath }/owner/book/question";
+		//const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		if(document.getElementById("searchStartPage")) {
+			const $searchStartPage = document.getElementById("searchStartPage");
+			$searchStartPage.onclick = function() {
+				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchPrevPage")) {
+			const $searchPrevPage = document.getElementById("searchPrevPage");
+			$searchPrevPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchNextPage")) {
+			const $searchNextPage = document.getElementById("searchNextPage");
+			$searchNextPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchMaxPage")) {
+			const $searchMaxPage = document.getElementById("searchMaxPage");
+			$searchMaxPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+/* 		if(document.getElementsByTagName("th")) {
+			
+			const $tds = document.getElementsByTagName("th");
+			for(let i = 0; i < $tds.length; i++) {
+
+				$tds[i].onclick = function() {
+					//상세보기 페이지로 이동
+					location.href="${pageContext.servletContext.contextPath }/owner/question/content?qnaNo="
+						+ this.parentNode.children[0].innerText
+				}
+			}
+		} */
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+	</script>
 <!--//footer-->
 </body>
 </html>
