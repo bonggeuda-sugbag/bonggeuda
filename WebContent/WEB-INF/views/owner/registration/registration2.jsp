@@ -131,7 +131,7 @@
          <br><br>
          <tr class="tr1">
             <th>
-               업체 이미지<br>(최대 5장) 
+               업체 이미지<br>(1장 선택) 
             </th>
             <td>
                <div class="basic">
@@ -139,8 +139,7 @@
                   <p class="description" style="margin-bottom: 3px;">* 이미지 교체를 원하시면 "변경"을 선택하시고 삭제를 원하시면 우측 "삭제"를 선택하시기 바랍니다.</p>
                   <p class="description"  style="margin-bottom: 3px;">* 이미지 장소는 짧게 기입해주시기 바랍니다. 예시) 전경, 로비, 주차장 등</p>
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
-                  <span class="form-title" style="display:inline-block";>    </span>
-                  <br>
+                  <span class="form-title" style="display:inline-block";></span>
                   <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
                </div>
             </td>   
@@ -238,7 +237,7 @@
                </div>
             </td>
          </tr>
-         </form>
+
          <tr>
             <br>
             <th colspan="2" style="background-color: white; ">
@@ -254,6 +253,52 @@
          </tr>
       </tbody>
 </table>
+<script>
+	const $titleImgArea = document.getElementById("titleImgArea");
+	const $contentImgArea1 = document.getElementById("contentImgArea1");
+	const $contentImgArea2 = document.getElementById("contentImgArea2");
+	const $contentImgArea3 = document.getElementById("contentImgArea3");
+	
+	$titleImgArea.onclick = function() { 
+		document.getElementById("thumbnailImg1").click(); 
+	}
+	
+	$contentImgArea1.onclick = function() {
+		document.getElementById("thumbnailImg2").click();
+	}
+	
+	$contentImgArea2.onclick = function() {
+		document.getElementById("thumbnailImg3").click();
+	}
+	
+	$contentImgArea3.onclick = function() {
+		document.getElementById("thumbnailImg4").click();
+	}
+	
+	function loadImg(value, num) {
+		if (value.files && value.files[0]) {
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				switch(num){
+				case 1:
+					document.getElementById("titleImg").src = e.target.result;
+					break;
+				case 2:
+					document.getElementById("contentImg1").src = e.target.result;
+					break;
+				case 3:
+					document.getElementById("contentImg2").src = e.target.result;
+					break;
+				case 4:
+					document.getElementById("contentImg3").src = e.target.result;
+					break;
+				}
+			}
+			reader.readAsDataURL(value.files[0]);
+		}
+	}	
+</script>
+</form>
 <br><br><br>
 <!--footer-->
 <div class="footer-bottom">
