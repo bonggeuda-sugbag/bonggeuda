@@ -49,30 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!--header-->
-<div class="header">
-	<div class="container">
-		<!--logo-->
-		<div class="logo">
-			<h1><a href="index.jsp">Bonggeuda</a></h1>
-		</div>
-		<!--//logo-->
-		<div class="top-nav">
-			<ul class="right-icons">
+<jsp:include page="../../common/guestheader.jsp"/>
 
-            <li><span ><a  href="index.html">메인페이지</a></span></li>
-            <li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
-            <!-- <li><a  href="blog.html">내주변</a></li> -->
-            <li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
-            <li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
-			</ul>
-		</div>
-			
-		<div class="clearfix"> </div>
-		<div class="clearfix"> </div>
-	</div>	
-</div>
-<!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
 	<h3><span>마이페이지</span></h3> 
@@ -141,8 +119,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	   	
 	   	
 	   	
-	   	
 	   	<div class="pagingArea" align="center">
+	   	<nav>
+			<ul class="pagination">
+	   	
 			<c:choose>
 			    <c:when test="${ empty requestScope.searchValue }">
 				    <button id="startPage"><<</button>
@@ -200,12 +180,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<button id="searchMaxPage">>></button> 
 			    </c:otherwise>
-			</c:choose>   
+			</c:choose> 
+			</ul>
+	   	</nav>  
 		</div>
 		
 		<script>
-		const link = "${ pageContext.servletContext.contextPath }/board/list";
-		const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+		const link = "${ pageContext.servletContext.contextPath }/point/select";
 			
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");
@@ -233,57 +214,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$maxPage.onclick = function() {
 				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
 			}
-		}
-		
-		if(document.getElementById("searchStartPage")) {
-			const $searchStartPage = document.getElementById("searchStartPage");
-			$searchStartPage.onclick = function() {
-				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-			}
-		}
-		
-		if(document.getElementById("searchPrevPage")) {
-			const $searchPrevPage = document.getElementById("searchPrevPage");
-			$searchPrevPage.onclick = function() {
-				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-			}
-		}
-		
-		if(document.getElementById("searchNextPage")) {
-			const $searchNextPage = document.getElementById("searchNextPage");
-			$searchNextPage.onclick = function() {
-				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-			}
-		}
-		
-		if(document.getElementById("searchMaxPage")) {
-			const $searchMaxPage = document.getElementById("searchMaxPage");
-			$searchMaxPage.onclick = function() {
-				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
-			}
-		}
-		
-		if(document.getElementsByTagName("td")) {
-			
-			const $tds = document.getElementsByTagName("td");
-			for(let i = 0; i < $tds.length; i++) {
-				
-				$tds[i].onmouseenter = function() {
-					this.parentNode.style.backgroundColor = "orangered";
-					this.parentNode.style.cursor = "pointer";
-				}
-				
-				$tds[i].onmouseout = function() {
-					this.parentNode.style.backgroundColor = "black";
-				}
-				
-				$tds[i].onclick = function() {
-					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠지? */
-					alert(this.parentNode.children[0].innerText);
-				}
-				
-			}
-			
 		}
 		
 		function pageButtonAction(text) {

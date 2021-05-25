@@ -20,6 +20,7 @@ import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
@@ -80,14 +81,71 @@ public class UserMypageDAO {
 		
 		return point;
 	}
+	
+	/**
+	 * 포인트 이력 정보 조회
+	 * @param con
+	 * @param userNo 
+	 * @param pageInfo 
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<PointHistoryDTO> pointHistorySelect(Connection con, int userNo) {
+
+		System.out.println("서블릿요청3333");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<PointHistoryDTO> pointHistory = null;
+		PageInfoDTO pafeInfo = new PageInfoDTO();
+		
+		String query = prop.getProperty("pointHistory2");
+		
+		System.out.println(query);
+		
+		pointHistory = new ArrayList<>();
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				PointHistoryDTO pointHistoryDTO = new PointHistoryDTO();
+				
+				pointHistoryDTO.setPointPath(rset.getString("POINT_PATH"));
+				pointHistoryDTO.setGetuseType(rset.getString("GETUSE_TYPE_GU"));
+				pointHistoryDTO.setGuDate(rset.getDate("GU_DATE"));
+				pointHistoryDTO.setPoint(rset.getInt("POINT"));
+				
+				pointHistory.add(pointHistoryDTO);
+				
+			}
+			
+			System.out.println(pointHistory);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return pointHistory;
+	}
 
 	/**
 	 * 포인트 이력 정보 조회
 	 * @param con
 	 * @param userNo 
+	 * @param pageInfo 
+	 * @param pageInfo 
 	 * @return
 	 */
-	public List<PointHistoryDTO> pointHistorySelect(Connection con, int userNo) {
+	public List<PointHistoryDTO> pointHistorySelect(Connection con, int userNo, PageInfoDTO pageInfo) {
 
 		System.out.println("서블릿요청3333");
 		
@@ -105,6 +163,8 @@ public class UserMypageDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -175,9 +235,10 @@ public class UserMypageDAO {
 	 * 보유 쿠폰 정보 조회
 	 * @param con
 	 * @param userNo
+	 * @param pageInfo 
 	 * @return
 	 */
-	public List<CouponDTO> couponSelect(Connection con, int userNo) {
+	public List<CouponDTO> couponSelect(Connection con, int userNo, PageInfoDTO pageInfo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -190,6 +251,8 @@ public class UserMypageDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -201,6 +264,7 @@ public class UserMypageDAO {
 				coupon.setCouponCondition(rset.getString("COUPON_CONDITION"));
 				coupon.setCouponStart(rset.getDate("COUPON_START"));
 				coupon.setCouponEnd(rset.getDate("COUPON_END"));
+				
 				
 				couponList.add(coupon);
 			}
@@ -407,13 +471,63 @@ public class UserMypageDAO {
 		return result;
 	}
 
+	
 	/**
 	 * 신고한 리스트 조회
 	 * @param con
 	 * @param userNo
+	 * @param pageInfo 
 	 * @return
 	 */
 	public List<ReportDTO> selectReportList(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<ReportDTO> report = new ArrayList<>();
+		
+		String query = prop.getProperty("reportListSelect2");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				ReportDTO reportDTO = new ReportDTO();
+				
+				reportDTO.setReportNo(rset.getInt("REPORT_NO"));
+				reportDTO.setReportTitle(rset.getString("REPORT_TITLE"));
+				reportDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				reportDTO.setReportDate(rset.getDate("REPORT_DATE"));
+				reportDTO.setReportStatus(rset.getString("REPORT_STATUS"));
+				
+				report.add(reportDTO);
+			}
+			
+			System.out.println(report);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return report;
+	}
+	
+	/**
+	 * 신고한 리스트 조회
+	 * @param con
+	 * @param userNo
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<ReportDTO> selectReportList(Connection con, int userNo, PageInfoDTO pageInfo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -426,6 +540,8 @@ public class UserMypageDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			

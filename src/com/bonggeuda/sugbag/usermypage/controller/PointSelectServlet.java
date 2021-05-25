@@ -31,14 +31,10 @@ public class PointSelectServlet extends HttpServlet {
 		/* 포인트 정보 조회 */		
 		PointDTO pointDTO = mypageService.pointSelect(userNo);
 		int point = pointDTO.getPoint();
-
 		
 		/* 포인트이력 정보 조회 */
-		List<PointHistoryDTO> pointHistory = new ArrayList<>();
-		pointHistory = mypageService.pointHistorySelect(userNo);
-		
-		
-		
+		List<PointHistoryDTO> pointHistory2 = new ArrayList<>();
+		pointHistory2 = mypageService.pointHistorySelect(userNo);
 		
 		
 		
@@ -56,7 +52,7 @@ public class PointSelectServlet extends HttpServlet {
 		
 		/* 전체 게시물 수가 필요 */
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
-		int totalCount = pointHistory.size();
+		int totalCount = pointHistory2.size();
 		
 		System.out.println("totalCount 체크 : " + totalCount);
 		
@@ -73,6 +69,9 @@ public class PointSelectServlet extends HttpServlet {
 		
 		
 		
+		/* 포인트이력 정보 조회 */
+		List<PointHistoryDTO> pointHistory = mypageService.pointHistorySelect(userNo, pageInfo);
+
 		
 		String path = "";
 		
@@ -80,6 +79,9 @@ public class PointSelectServlet extends HttpServlet {
 			path = "/WEB-INF/views/guest/mypage/point.jsp";
 			request.setAttribute("point", point);
 			request.setAttribute("pointHistory", pointHistory);
+			request.setAttribute("totalCount", totalCount);
+			request.setAttribute("pageInfo", pageInfo);
+			
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

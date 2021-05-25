@@ -37,8 +37,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><span ><a  href="${ pageContext.servletContext.contextPath }">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<li><a  href="mypage_point.html">마이페이지</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
 				<li><a  href="${pageContext.servletContext.contextPath }/login/test"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 			<!-- //상단메뉴바 -->

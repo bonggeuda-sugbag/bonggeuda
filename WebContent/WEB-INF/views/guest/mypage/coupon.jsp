@@ -50,28 +50,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!--header-->
-<div class="header">
-	<div class="container">
-		<!--logo-->
-		<div class="logo">
-			<h1><a href="index.jsp">Bonggeuda</a></h1>
-		</div>
-		<!--//logo-->
-		<div class="top-nav">
-			<ul class="right-icons">
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
-            	<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-			</ul>
-			</div>
-			
-		<div class="clearfix"> </div>
-		<div class="clearfix"> </div>
-	</div>	
-</div>
-<!--//-->	
+<jsp:include page="../../common/guestheader.jsp"/>
+
 <div class=" banner-buying">
 	<div class=" container">
 	<h3><span>마이페이지</span></h3> 
@@ -153,6 +133,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	   
 	   
 	   <div class="pagingArea" align="center">
+	   <nav>
+		<ul class="pagination">
 			<c:choose>
 			    <c:when test="${ empty requestScope.searchValue }">
 				    <button id="startPage"><<</button>
@@ -210,19 +192,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<button id="searchMaxPage">>></button> 
 			    </c:otherwise>
-			</c:choose>   
+			</c:choose>  
+			</ul>
+	   </nav> 
 		</div>
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
+		
+		<script>
+		const link = "${ pageContext.servletContext.contextPath }/coupon/select";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+		</script>
+
 	   
 </div>
 
