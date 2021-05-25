@@ -219,7 +219,7 @@
 				<td>
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>기간 선택</span>
-						<label><input type="date" name="peakStart"></label>
+						<label><input type="date" name="peakStart" value="21/05/18"></label>
 						<span>~</span>
 						<label><input type="date" name="peakEnd"></label>
 					</div>
@@ -228,27 +228,24 @@
 			<tr>
 				<br>
 				<th colspan="2" style="background-color: white; ">
-					<form action="${ pageContext.servletContext.contextPath }/registration3" method="post">
-						<button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
-		            	<input type="hidden" name="ceoName" value="${ requestScope.accomoDTO.ceoName }">
-		            	<input type="hidden" name="accomoType" value="${ requestScope.accomoDTO.accomoType }">
-		            	<input type="hidden" name="registNo" value="${ requestScope.accomoDTO.registNo }">
-		            	<input type="hidden" name="address" value="${ requestScope.accomoDTO.address }">
-		            	<input type="hidden" name="adrDetail" value="${ requestScope.accomoDTO.adrDetail }">
-		            	<input type="hidden" name="email" value="${ requestScope.accomoDTO.email }">
-		            	<input type="hidden" name="homepage" value="${ requestScope.accomoDTO.homepage }">
-		            	<input type="hidden" name="facility" value="${ requestScope.accomoDTO.facility }">
-		            	<input type="hidden" name="accomoPath" value="${ requestScope.accomoDTO.accomoPath }">
-		            	<input type="hidden" name="near" value="${ requestScope.accomoDTO.near }">
-		            	<input type="hidden" name="rule" value="${ requestScope.accomoDTO.rule }">
-		            	<input type="hidden" name="parking" value="${ requestScope.accomoDTO.parking }">
-		            	<input type="hidden" name="ownerNo" value="1">
-					</form>
+				
+				  <input type="hidden" name="rmAccomoNo" value="<c:out value="${ requestScope.rmAcoomoDTO.rmAccomoNo }"/>">
+           		  <input type="hidden" name="accomoName" value="<c:out value="${ requestScope.rmAcoomoDTO.accomoName }"/>">
+                  <input type="hidden" name="ceoName" value="<c:out value="${ requestScope.rmAcoomoDTO.ceoName }"/>">
+            	  <input type="hidden" name="accomoType" value="<c:out value="${ requestScope.rmAcoomoDTO.accomoType }"/>">
+            	  <input type="hidden" name="registNo" value="<c:out value="${ requestScope.rmAcoomoDTO.registNo }"/>">
+            	  <input type="hidden" name="address" value="<c:out value="${ requestScope.rmAcoomoDTO.address }"/>">
+            	  <input type="hidden" name="adrDetail" value="<c:out value="${ requestScope.rmAcoomoDTO.adrDetail }"/>">
+            	  <input type="hidden" name="email" value="<c:out value="${ requestScope.rmAcoomoDTO.email }"/>">
+            	  <input type="hidden" name="homepage" value="<c:out value="${ requestScope.rmAcoomoDTO.homepage }"/>">
+				<button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
+
 					
 				</th>
 			</tr>
 		</tbody>
 	</table>
+					</form>
 <br><br><br>
 <br><br><br>
 <!--footer-->

@@ -154,42 +154,42 @@
          </th>
          <td>
             <label for="theme1" class="checkbox-inline icon-label" style="margin-right: 25px;">
-               <input type="checkbox" id="theme1" name="arrayFacility"  value="세탁기">세탁기
+               <input type="checkbox" id="theme1" name="facility"  value="세탁기">세탁기
             </label>
             <label for="theme2" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme2" name="arrayFacility"  value="건조기">건조기
+               <input type="checkbox" id="theme2" name="facility"  value="건조기">건조기
             </label>
             <label for="theme5" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme5" name="arrayFacility"  value="객실내흡연">객실내흡연
+               <input type="checkbox" id="theme5" name="facility"  value="객실내흡연">객실내흡연
             </label>
             <label for="theme6" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme6" name="arrayFacility"  value="와이파이" >와이파이
+               <input type="checkbox" id="theme6" name="facility"  value="와이파이" >와이파이
             </label>
             <br>
             <label for="theme7" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme7" name="arrayFacility"  value="욕실용품">욕실용품
+               <input type="checkbox" id="theme7" name="facility"  value="욕실용품">욕실용품
             </label>
             <label for="theme8" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme8" name="arrayFacility"  value="에어컨">에어컨
+               <input type="checkbox" id="theme8" name="facility"  value="에어컨">에어컨
             </label>
             <label for="theme9" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme9" name="arrayFacility"  value="냉장고">냉장고
+               <input type="checkbox" id="theme9" name="facility"  value="냉장고">냉장고
             </label>
             <label for="theme11" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme11" name="arrayFacility"  value="반려견동반">반려견동반
+               <input type="checkbox" id="theme11" name="facility"  value="반려견동반">반려견동반
             </label>
             <br>
             <label for="theme13" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme13" name="arrayFacility"  value="조식포함">조식포함
+               <input type="checkbox" id="theme13" name="facility"  value="조식포함">조식포함
             </label>
             <label for="theme18" class="checkbox-inline icon-label">
-               <input type="checkbox" id="theme18" name="arrayFacility"  value="개인사물함">개인사물함
+               <input type="checkbox" id="theme18" name="facility"  value="개인사물함">개인사물함
             </label>
             <label for="theme19" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme19" name="arrayFacility"  value="TV">TV
+               <input type="checkbox" id="theme19" name="facility"  value="TV">TV
             </label>
             <label for="theme20" class="checkbox-inline icon-label" >
-               <input type="checkbox" id="theme20" name="arrayFacility"  value="무료주차">무료주차
+               <input type="checkbox" id="theme20" name="facility"  value="무료주차">무료주차
             </label>
          </td>
          <tr>
@@ -238,29 +238,31 @@
             <td>
                <div class="form-layer">
                   <textarea class="form-control textarea-layer" rows="7" name="parking" placeholder="주차장 유/무료 정보 및 시간당 요금을 기재해주세요.">${ requestScope.rmAcoomoDTO.parking }</textarea>
+                  
                   <div remain-traffic_info" class="maxText">(최대 500자)</div>
                </div>
             </td>
          </tr>
-         </form>
          <tr>
             <br>
             <th colspan="2" style="background-color: white; ">
-           		  <input type="hidden" name="ceoName" value="${ requestScope.rmAcoomoDTO.rmAccomoNo }">
-           		  <input type="hidden" name="ceoName" value="${ requestScope.rmAcoomoDTO.accomoName }">
-                  <input type="hidden" name="ceoName" value="${ requestScope.rmAcoomoDTO.ceoName }">
-            	  <input type="hidden" name="accomoType" value="${ requestScope.rmAcoomoDTO.accomoType }">
-            	  <input type="hidden" name="registNo" value="${ requestScope.rmAcoomoDTO.registNo }">
-            	  <input type="hidden" name="address" value="${ requestScope.rmAcoomoDTO.address }">
-            	  <input type="hidden" name="adrDetail" value="${ requestScope.rmAcoomoDTO.adrDetail }">
-            	  <input type="hidden" name="email" value="${ requestScope.rmAcoomoDTO.email }">
-            	  <input type="hidden" name="homepage" value="${ requestScope.rmAcoomoDTO.homepage }">
+           		  <input type="hidden" name="rmAccomoNo" value="<c:out value="${ requestScope.rmAcoomoDTO.rmAccomoNo }"/>">
+           		  <input type="hidden" name="accomoName" value="<c:out value="${ requestScope.rmAcoomoDTO.accomoName }"/>">
+                  <input type="hidden" name="ceoName" value="<c:out value="${ requestScope.rmAcoomoDTO.ceoName }"/>">
+            	  <input type="hidden" name="accomoType" value="<c:out value="${ requestScope.rmAcoomoDTO.accomoType }"/>">
+            	  <input type="hidden" name="registNo" value="<c:out value="${ requestScope.rmAcoomoDTO.registNo }"/>">
+            	  <input type="hidden" name="address" value="<c:out value="${ requestScope.rmAcoomoDTO.address }"/>">
+            	  <input type="hidden" name="adrDetail" value="<c:out value="${ requestScope.rmAcoomoDTO.adrDetail }"/>">
+            	  <input type="hidden" name="email" value="<c:out value="${ requestScope.rmAcoomoDTO.email }"/>">
+            	  <input type="hidden" name="homepage" value="<c:out value="${ requestScope.rmAcoomoDTO.homepage }"/>">
+            	  ${ requestScope.rmAcoomoDTO.rmAccomoNo }
                   <button name="" value="" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
 
             </th>
          </tr>
       </tbody>
 </table>
+</form>
 <br><br><br>
 <!--footer-->
 <div class="footer-bottom">
