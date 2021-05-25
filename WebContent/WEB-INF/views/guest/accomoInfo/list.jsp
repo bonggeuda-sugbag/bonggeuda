@@ -109,32 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--header-->
 
 
-<div class="header">
-	<div class="container">
-		<!--logo-->
-			<div class="logo">
-				<h1><a href="index.jsp">Bonggeuda</a></h1>
-			</div>
-		<!--//logo-->
-		<!-- 상단메뉴바 -->
-		<div class="top-nav">
-			<ul class="right-icons">
-
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
-			</ul>
-			<!-- //상단메뉴바 -->
-				
-			</div>
-		<div class="clearfix"> </div>
-		</div>
-		<div class="clearfix"> </div>
-		</div>	
-</div>
+<jsp:include page="../../common/guestheader.jsp"/>
 <!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
@@ -170,9 +145,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		<div>
 			<button class="reset" >초기화</button>
-			<button id="seachFacility"class="accept" >적용</button>
+			<button id="searchFacility"class="accept" >적용</button>
  			 	<script>
-		 	    $("#seachFacility").click(function(){
+		 	    $("#searchFacility").click(function(){
 			    	const checkList = [];
 			    	$("input[name='facility']:checked").each(function(i){
 			    		checkList.push($(this).val());

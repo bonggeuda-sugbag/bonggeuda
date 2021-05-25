@@ -69,6 +69,20 @@
 	
 	
 	</entry>
+	
+	<entry key="selectModifyAccomoThree">
+	
+	SELECT
+      	   *
+ 	  FROM ACCOMO_INFO C
+ 	  JOIN ATTACHMENT A ON(C.ACCOMO_NO = A.REF_NO)
+ 	 WHERE ACCOMO_NO = ?
+  	   AND CATEGORY_NO = 3
+	
+	
+	</entry>
+	
+	
 
 	
 	<entry key="insertModifyAccomoAttachment">
@@ -90,6 +104,36 @@
 	
 	
 	</entry>
+
+<entry key="insertRmAccomo">
+	INSERT
+	INTO RM_ACCOMO_INFO
+	VALUES
+	(
+	SEQ_REQUEST_NO.NEXTVAL
+	, 1 /* 패런트키 낫파운드 */
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, ?
+	, DEFAULT
+	, ?
+	, 'RM'
+	, null
+	)
+</entry>
 
 	
 </properties>

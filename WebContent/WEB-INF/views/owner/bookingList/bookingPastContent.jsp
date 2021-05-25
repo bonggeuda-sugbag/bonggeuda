@@ -103,12 +103,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><a href="registration.html">숙소등록</a></li>
-				<li><a href="managementYesRoom.html">숙소관리</a></li>
-				<li><a href="booking.html">예약관리</a></li>
-				<li><a href="QnA.html">공지사항</a></li>
-				<li><a  href="mypage.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
 			</ul>
 		</div>
 	</div>
@@ -152,8 +152,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<ul>
 				<li class="blog-list"><a href="/bonggeuda/owner/bookingList">실시간 예약 현황</a></li>
 				<li class="blog-list"  style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/bookingPastList" style="color: #6eceda;">지난 예약</a></li>
-				<li class="blog-list"><a href="booking_QnA.html">고객 문의</a></li>
-				<li class="blog-list"><a href="booking_sales.html">매출 내역</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/book/question">고객 문의</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/sales">매출 내역</a></li>
 			</ul>
 			</nav>
 

@@ -246,8 +246,8 @@ public class QuestionDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, 1); //업체번호 받아오기
-			pstmt.setInt(2, pageInfo.getStartRow()); //업체번호 받아오기
-			pstmt.setInt(3, pageInfo.getEndRow()); //업체번호 받아오기
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			

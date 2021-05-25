@@ -26,6 +26,7 @@ public class RegistrationAccomo1 extends HttpServlet {
 		String registNo = request.getParameter("registNo");
 		String address = request.getParameter("address");
 		String adrDetail = request.getParameter("adrDetail");
+		String sumAddress = address + " " + adrDetail;
 		String email = request.getParameter("email");
 		String homepage = request.getParameter("homepage");
 		
@@ -45,7 +46,7 @@ public class RegistrationAccomo1 extends HttpServlet {
 		accomoDTO.setCeoName(ceoName);
 		accomoDTO.setAccomoType(accomoType);
 		accomoDTO.setRegistNo(registNo);
-		accomoDTO.setAddress(address);
+		accomoDTO.setAddress(sumAddress);
 		accomoDTO.setAdrDetail(adrDetail);
 		accomoDTO.setEmail(email);
 		accomoDTO.setHomepage(homepage);

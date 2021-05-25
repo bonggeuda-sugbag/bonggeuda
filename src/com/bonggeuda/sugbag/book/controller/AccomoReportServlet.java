@@ -106,9 +106,9 @@ public class AccomoReportServlet extends HttpServlet {
 						}
 					} else {
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+						
 					}
 				}
-				
 				//신고내용담기
 				ReportDTO report = new ReportDTO();
 				report.setReportTitle(parameter.get("title"));
@@ -147,11 +147,11 @@ public class AccomoReportServlet extends HttpServlet {
 				
 				String path ="";
 				if(result > 0) {
-					//성공경로
-					System.out.println("성공!");
+					path = "/userreportlist/select";
 				} else {
 					//실패경로
 				}
+				response.sendRedirect(request.getContextPath() + path);
 			} catch (Exception e) {
 				int cnt = 0;
 				for(int i = 0; i < fileList.size(); i++) {

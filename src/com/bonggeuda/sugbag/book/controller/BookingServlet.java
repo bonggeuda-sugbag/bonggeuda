@@ -3,7 +3,10 @@ package com.bonggeuda.sugbag.book.controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +30,19 @@ public class BookingServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		Map<String,String[]> requestMap = request.getParameterMap();
+		Set<String> keySet = requestMap.keySet();
+		Iterator<String> keyIter = keySet.iterator();
+		while(keyIter.hasNext()) {
+			String key = keyIter.next();
+			String[] value = requestMap.get(key);
+			
+			System.out.println("key : " + key);
+			for(int i = 0; i < value.length; i++) {
+				System.out.println("value[" + i + "] : " +value[i]);
+			}
+		}
+		
 		//회원번호
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
 		int userNo = member.getUserNo();
@@ -38,25 +54,24 @@ public class BookingServlet extends HttpServlet {
 		accomoInfo.setCheckIn(request.getParameter("AccomoCheckIn"));
 		
 		//기존 객실정보
+		
 		RoomDTO roomInfo = new RoomDTO();
-		roomInfo.setRoomNo(Integer.parseInt(request.getParameter("roomNo")));
-		roomInfo.setRoomName(request.getParameter("roomName"));
-		roomInfo.setRoomFee(Integer.parseInt(request.getParameter("price")));
-		roomInfo.setPeakFee(Integer.parseInt(request.getParameter("peakFee")));
-		roomInfo.setRoomMax(Integer.parseInt(request.getParameter("roomMax")));
-		roomInfo.setPeakFee(Integer.parseInt(request.getParameter("peakFee")));
+		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
+		roomInfo = new BookService().selectRoomInfo(roomNo);
+		
 		// 예약정보
 		BookDTO bookInfo = new BookDTO();
+		String checkIN = request.getParameter("checkInTime");
 		bookInfo.setUserNo(userNo);
 		bookInfo.setBookPersonnel(Integer.parseInt(request.getParameter("people")));
 		bookInfo.setBookCheckDate(request.getParameter("checkInDate"));
 		bookInfo.setBookCheckoutDate(request.getParameter("checkOutDate"));
-		bookInfo.setBookCheckIn(request.getParameter("checkInTime"));
+		bookInfo.setBookCheckIn(checkIN);
 		Date checkOut = java.sql.Date.valueOf(request.getParameter("checkOutDate"));
 		Date checkIn = java.sql.Date.valueOf(request.getParameter("checkInDate"));
-		int bookDay = checkOut.getDate() - checkIn.getDate();
-		int totalPrice = roomInfo.getRoomFee() * bookDay;
-		bookInfo.setDay(checkOut.getDate() - checkIn.getDate());
+		long bookDay = ((checkOut.getTime() - checkIn.getTime())/(24*60*60*1000));
+		int totalPrice = roomInfo.getRoomFee() * (int)bookDay;
+		bookInfo.setDay(bookDay);
 		
 		List couponPoint = new BookService().selectCouponPoint(userNo);
 		

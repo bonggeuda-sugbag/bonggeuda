@@ -89,10 +89,10 @@ th a:hover {
 			<ul class="right-icons">
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
-				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
-				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
 			</ul>
 		</div>
 	</div>
@@ -135,7 +135,7 @@ th a:hover {
 					<div class="col-md-3 blog-sidebar">
 						<ul>
 							<li class="blog-list" style="font-size: 1.3em; font-weight: 600;">
-								<a href="QnA.html" style="color: #6eceda;">공지사항</a></li>
+								<a href="/bonggeuda/owner/notice" style="color: #6eceda;">공지사항</a></li>
 							<li class="blog-list"><a href="/bonggeuda/owner/frequently" >자주 묻는 질문</a></li>
 							<li class="blog-list"><a href="/bonggeuda/owner/question/list" >1:1 문의</a></li>
 							<li class="blog-list"><a href="/bonggeuda/owner/policy" >약관 및 정책</a></li>
@@ -148,25 +148,22 @@ th a:hover {
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="accordion" id="accordionExample">
-								<c:forEach var="board" items="${ requestScope.selectNotice }">
+							
+								<c:forEach var="notice" items="${ requestScope.selectNotice }">
 								<div class="card">
 									<div class="card-header" id="headingOne">
 										<h2 class="clearfix mb-0">
-											<a class="btn btn-link" data-toggle="collapse"
-												data-target="#collapseOne" aria-expanded="true"
-												aria-controls="collapseOne">
-												<% i++; %><%= i %>.&nbsp&nbsp
-												<c:out value="${ board.noticeTitle }"/>
+											<a class="btn btn-link" data-toggle="collapse" data-target="#collapse${ notice.noticeNo }" aria-expanded="true" aria-controls="collapseOne">
+												<% i++; %><%= i %>.&nbsp&nbsp<c:out value="${ notice.noticeTitle }"/>
 												<i class="material-icons">add</i>
 											</a>
 										</h2>
 									</div>
-									<div id="collapseOne" class="collapse show"
-										aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div id="collapse${ notice.noticeNo }" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 										<div class="card-body">
-											<c:out value="${ board.noticeContent }"/>
+											<c:out value="${ notice.noticeContent }"/>
 											<br><br><br>
-											<div style="color: lightslategray;">작성자 : 관리자&nbsp&nbsp&nbsp&nbsp작성일 : <c:out value="${ board.noticeWriteDate }"/></div>
+											<div style="color: lightslategray;">작성자 : 관리자&nbsp&nbsp&nbsp&nbsp작성일 : <c:out value="${ notice.noticeWriteDate }"/></div>
 										</div>
 									</div>
 								</div>
