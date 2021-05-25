@@ -94,9 +94,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="top-nav">
 			<ul class="right-icons">
             <li><span ><a  href="index.jsp">메인페이지</a></span></li>
-            <li><a  href="more_notice.jsp">더보기</a></li>
+            <li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
             <!-- <li><a  href="blog.jsp">내주변</a></li> -->
-            <li><a  href="mypage_point.jsp">마이페이지</a></li>
+            <li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
             <li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 			</ul>
 
@@ -123,11 +123,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="point.jsp">포인트</a></li>
-			<li class="blog-list"><a href="coupon.jsp">쿠폰함</a></li>
-			<li class="blog-list"><a href="reservation.jsp">예약 내역</a></li>
-			<li class="blog-list"><a href="myInformation.jsp">내 정보 관리</a></li>
-			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="warningList.jsp" style="color: #6eceda;">신고내역</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/point/select">포인트</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/coupon/select">쿠폰함</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/userbooklist/select">예약 내역</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/usermyinfo/select">내 정보 관리</a></li>
+			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="${ pageContext.servletContext.contextPath }/userreportlist/select" style="color: #6eceda;">신고내역</a></li>
 		</ul>
 		</div>
 		</nav>
