@@ -39,13 +39,12 @@ public class ModifyAccomo2 extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
+//		rmAcoomoDTO.setFacility(facility);
 		/* commons fileupload는 내부에서 commons io 라이브러리와 의존관계에 있기 때문에 둘 다 받아야 한다. 
 		 * 여기서는 input file 태그가 한 개이든 여러 개이든, 혹은 multiple 속성이 있든 상관없이 다 처리 가능하도록 작성해볼 것이다.
 		 * */
-		System.out.println("++++++++++++++++++++++++++++++++++");
 		if(ServletFileUpload.isMultipartContent(request)) {
-			System.out.println("@@@@@@@@@@@@@@@@@@@");
-			// 여기로 안들어와...
 			
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;
@@ -55,7 +54,7 @@ public class ModifyAccomo2 extends HttpServlet {
 			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
 			System.out.println("인코딩 방식 : " + encodingType);
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
+			String fileUploadDirectory = rootLocation + "/esources/upload/original/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
 			
 			File directory = new File(fileUploadDirectory);
@@ -72,6 +71,11 @@ public class ModifyAccomo2 extends HttpServlet {
 			 * 파일에 대한 정보는 리스트에, 다른 파라미터의 정보는 모두 맵에 담을 것이다.
 			 * */
 			Map<String, String> parameter = new HashMap<>();
+			System.out.println("파라파라미터 " +parameter);
+			
+			Map<String[], String[]> parameterValue = new HashMap<>();
+			// 체크박스용
+			
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
 			/* 파일을 업로드할 시 최대 크기나 임시 저장할 폴더의 경로 등을 포함하기 위한 인스턴스이다. */
@@ -113,7 +117,7 @@ public class ModifyAccomo2 extends HttpServlet {
 							String randomFileName = UUID.randomUUID().toString().replace("-", "") + ext;
 							
 							/* 저장할 파일 정보를 담은 인스턴스를 생성하고 */
-							File storeFile = new File(fileUploadDirectory + "/" + randomFileName);
+							File storeFile = new File(fileUploadDirectory  +"/"+ randomFileName);
 							
 							/* 저장한다 */
 							item.write(storeFile);
@@ -129,16 +133,17 @@ public class ModifyAccomo2 extends HttpServlet {
 							int width = 0;
 							int height = 0;
 							if("thumbnailImg1".equals(filedName)) {
-								fileMap.put("fileType", "TITLE");
+								fileMap.put("fileType", "BODY"); // 타이틀에서 보디로 변경
 								
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
 							} else {
-								fileMap.put("fileType", "BODY");
-								
-								width = 120;
-								height = 100;
+								fileMap.put("fileType", "BODY"); // 타이틀에서 보디로 변경
+								System.out.println("엘스로 왔나요");
+								/* 썸네일로 변환 할 사이즈를 지정한다. */
+								width = 350;
+								height = 200;
 							}
 							
 							/* 썸네일로 변환 후 저장한다. */
@@ -147,7 +152,7 @@ public class ModifyAccomo2 extends HttpServlet {
 									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);
 							
 							/* 나중에 웹서버에서 접근 가능한 경로 형태로 썸네일의 저장 경로도 함께 저장한다. */
-							fileMap.put("thumbnailPath", "/resources/upload/thumbnail/thumbnail_" + randomFileName);
+							fileMap.put("thumbnailPath", "resources/upload/thumbnail/thumbnail_" + randomFileName);
 							
 							fileList.add(fileMap);
 							
@@ -161,12 +166,14 @@ public class ModifyAccomo2 extends HttpServlet {
 						 * */
 //						parameter.put(item.getFieldName(), item.getString());
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+						//parameterValue.put(item.getFieldName(),new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 						
 					}
 				}
-				
+							
 				
 				System.out.println("parameter : " + parameter);
+				//parameter.get(key)
 				System.out.println("fileList : " + fileList);
 				
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
@@ -192,21 +199,52 @@ public class ModifyAccomo2 extends HttpServlet {
 				
 				/* 서비스 메소드를 요청한다. */
 				ModifyAccomoService  accomoService = new ModifyAccomoService();
+				RmAccomoInfoDTO rmAcoomoDTO = new RmAccomoInfoDTO();
+
 				int result = 0;
 				result = accomoService.insertModifyAccomoThumbnail(tempFileInfo);
-				System.out.println("리젙트는??????????" + result);
-				/* 성공 실패 페이지를 구분하여 연결한다. */
+				System.out.println("리젙트는?????????? " + result);
+				// 값 받기
+				System.out.println("편의시설 : "+parameter.get("facility"));
+				
+				rmAcoomoDTO.setAccomoName(parameter.get("accomoName"));
+				System.out.println("########" + parameter.get("accomoName"));
+				rmAcoomoDTO.setCeoName(parameter.get("ceoName"));
+				rmAcoomoDTO.setAccomoType(parameter.get("accomoType"));
+				rmAcoomoDTO.setRegistNo(parameter.get("registNo"));
+				rmAcoomoDTO.setAddress(parameter.get("address"));
+				rmAcoomoDTO.setAdrDetail(parameter.get("adrDetail"));
+				rmAcoomoDTO.setEmail(parameter.get("email"));
+				rmAcoomoDTO.setHomepage(parameter.get("homepage"));
+				rmAcoomoDTO.setParking(parameter.get("parking"));
+				rmAcoomoDTO.setNear(parameter.get("near"));
+				rmAcoomoDTO.setRule(parameter.get("rule"));
+				rmAcoomoDTO.setAccomoPath(parameter.get("accomoPath"));
+				
+//				String[] arrayFacility = parameterValue.get("arrayFacility");
+//				System.out.println("편의시설 : " + arrayFacility);
+
+				
+				
+				
+
+
+				
+				
 				String path = "";
+				request.setAttribute("rmAcoomoDTO", rmAcoomoDTO);
 				
 				path = "/WEB-INF/views/owner/roomModify/roomModification2.jsp";
 				request.getAttribute(path);
-
+				
 				//request.setAttribute("successCode", "insertThumbnail");
 				
 				request.getRequestDispatcher(path).forward(request, response);
+				System.out.println("넘겨진 DTO의 값 : " + rmAcoomoDTO);
 				
 			} catch (Exception e) {
 				//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.
+				e.printStackTrace();
 				int cnt = 0;
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);

@@ -146,12 +146,39 @@ public class ModifyAccomoDAO {
 			close(rset);
 		}
 		
+		return rmAccomoDTO;
+	}
+
+
+	
+	public RmAccomoInfoDTO selectRmAccomoInfoDAOThree(Connection con, int rmAccomoNo) {
 		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		RmAccomoInfoDTO rmAccomoDTO = new RmAccomoInfoDTO();
+		
+		String query = prop.getProperty("selectModifyAccomoThree");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1,rmAccomoNo);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+//				rmAccomoDTO.set
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		
 		
 		return rmAccomoDTO;
 	}
-
 
 
 }

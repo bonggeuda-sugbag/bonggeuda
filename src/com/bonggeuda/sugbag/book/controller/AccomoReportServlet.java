@@ -106,9 +106,9 @@ public class AccomoReportServlet extends HttpServlet {
 						}
 					} else {
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+						
 					}
 				}
-				
 				//신고내용담기
 				ReportDTO report = new ReportDTO();
 				report.setReportTitle(parameter.get("title"));
