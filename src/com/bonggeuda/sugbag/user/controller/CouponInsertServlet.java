@@ -46,13 +46,17 @@ public class CouponInsertServlet extends HttpServlet {
 		Date.valueOf(request.getParameter("startDate")); 
 		Date.valueOf(request.getParameter("endDate")); 
 		int condition = Integer.parseInt(request.getParameter("condition")); //상태여부 얼먀넘어면 사용가능
-      
+		int discount = Integer.parseInt(request.getParameter("discount"));
+		
 		dto.setCouponName(couponName);
 		dto.setStartDate(Date.valueOf(request.getParameter("startDate")));
 		dto.setEndDate(Date.valueOf(request.getParameter("endDate")));
 		dto.setCondition(condition);
+		dto.setDiscount(discount);
 
 		int insertCoupon = userInfoService.insertCoupon(dto,Integer.parseInt(request.getParameter("hduserNo")));
+		
+		System.out.println("값값값값: " + insertCoupon);
 		
 		String path="";
 		if(insertCoupon > 0 ) {

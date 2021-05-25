@@ -8,9 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -692,9 +692,10 @@ public class BookDAO {
 			pstmt.setString(1, payment.getMethod());
 			pstmt.setInt(2, payment.getAmount());
 			pstmt.setDate(3, payment.getPaymentTime());
-			pstmt.setString(4, payment.getCouponYN());
-			pstmt.setString(5, payment.getPointYN());
-			pstmt.setInt(6, payment.getDiscount());
+			pstmt.setInt(4, payment.getBookNo());
+			pstmt.setString(5, payment.getCouponYN());
+			pstmt.setString(6, payment.getPointYN());
+			pstmt.setInt(7, payment.getDiscount());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -714,11 +715,12 @@ public class BookDAO {
 		String query = prop.getProperty("insertGetPoint");
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, pointGet.getGetuseType());
-			pstmt.setInt(2, pointGet.getPoint());
-			pstmt.setString(3, pointGet.getPointPath());
-			pstmt.setDate(4, pointGet.getGuDate());
-			pstmt.setInt(5, pointGet.getPointNo());
+			pstmt.setInt(1, pointGet.getPaymentNo());
+			pstmt.setString(2, pointGet.getGetuseType());
+			pstmt.setInt(3, pointGet.getPoint());
+			pstmt.setString(4, pointGet.getPointPath());
+			pstmt.setDate(5, pointGet.getGuDate());
+			pstmt.setInt(6, pointGet.getPointNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -740,6 +742,7 @@ public class BookDAO {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, couponUse.getCouponNo());
 			pstmt.setDate(2, couponUse.getUseDate());
+			pstmt.setInt(3, couponUse.getPaymentNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -760,11 +763,12 @@ public class BookDAO {
 		String query = prop.getProperty("insertPointUse");
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, pointUse.getGetuseType());
-			pstmt.setInt(2, pointUse.getPoint());
-			pstmt.setString(3, pointUse.getPointPath());
-			pstmt.setDate(4, pointUse.getGuDate());
-			pstmt.setInt(5, pointUse.getPointNo());
+			pstmt.setInt(1, pointUse.getPaymentNo());
+			pstmt.setString(2, pointUse.getGetuseType());
+			pstmt.setInt(3, pointUse.getPoint());
+			pstmt.setString(4, pointUse.getPointPath());
+			pstmt.setDate(5, pointUse.getGuDate());
+			pstmt.setInt(6, pointUse.getPointNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -774,5 +778,58 @@ public class BookDAO {
 		}
 	
 		return result;
+	}
+
+	public int selectBookSeq(Connection con) {
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int lastBookNo = 0;
+		
+		String query = prop.getProperty("selectBookNoSequence");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				lastBookNo = rset.getInt("CURRVAL");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return lastBookNo;
+	}
+
+	public int selectPaymentSeq(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int lastPaymentNo = 0;
+		
+		String query = prop.getProperty("selectPaymentNoSequence");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				lastPaymentNo = rset.getInt("CURRVAL");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return lastPaymentNo;
 	}
 }

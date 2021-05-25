@@ -35,7 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
 <script src="${pageContext.servletContext.contextPath }/resources/admin/js/scripts.js"></script>
@@ -186,31 +186,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <tr>
                             <th scope="row">제목</th>
                             <td colspan="3" style="width: 650px;" >
-                            <textarea style="width: 650px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            <c:out value="${ noticeInfo.title }"/>
-                            </textarea>
+                            <input name="title" value="${ noticeInfo.title }" style="width: 650px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            
+                            </input>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">구분</th>
                             <td>
-                            <textarea style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            <c:out value="${ noticeInfo.writer }"/>
-                            </textarea>
+                            <input name="writer" value="${ noticeInfo.writer }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            
+                            </input>
                             </td>
                             <th scope="row" style="text-align: center;">작성일</th>
                             <td>
-                            <textarea style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
-                            <c:out value="${ noticeInfo.writeDate }"/>
-                            </textarea>
+                            <input name="writeDate" value="${ noticeInfo.writeDate }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            
+                            </input>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 				<p>
-				<textarea class="form-control textarea-layer" style="width: 700px; height: 400px; margin-left: 285px; resize: none;">
-				<c:out value="${ noticeInfo.title }"/>	
-				</textarea>
+				<input name="content" value="${ noticeInfo.title }" class="form-control textarea-layer" style="width: 700px; height: 400px; margin-left: 285px; resize: none;">
+				
+				</input>
 				<input type="hidden" name="noticeNo" value= "${ noticeNo }">
 				</p>
                 <br>
@@ -226,6 +226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
         </form>
+                <button onclick="location.href='${ pageContext.servletContext.contextPath }/notice/delete?noticeNo=${ noticeNo }'"; type="submit" style="margin-top: 10px; margin-bottom: 10px;">삭제</button>
         <br><br><br><br><br>
         <br><br><br><br><br>
         <br><br><br><br><br>

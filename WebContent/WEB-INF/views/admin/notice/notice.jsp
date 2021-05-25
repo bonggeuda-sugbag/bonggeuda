@@ -10,6 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<style>
 		div.tab, div.tab-content {
 			  margin-left: 25%;
@@ -32,7 +33,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
 <script src="${pageContext.servletContext.contextPath }/resources/admin/js/scripts.js"></script>
@@ -46,6 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
 </head>
 <body>
 <!--header-->
@@ -186,25 +188,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th><b>작성날짜</b></th>
 							<th><b>구분</b></th>
 							<th><b>상세정보</b></th>
-							<th><b>삭제</b></th>
 						</tr>
 					</thead>
 					<tbody>
 					<c:forEach var="notice" items="${ requestScope.noitceList }">
-					<form action="${ pageContext.servletContext.contextPath }/notice/detail" method="get">
+					<form action="${ pageContext.servletContext.contextPath }/notice/detail" method="get"> 
 						<tr>
-							<td><c:out value="${ notice.noticeNo }"/></td>
+							<td><c:out value="${ notice.rnum }"/></td>
 							<td><c:out value="${ notice.title }"/></td>
 							<td><c:out value="${ notice.writeDate }"/></td>
 							<td><c:out value="${ notice.writer }"/></td>
-							<td><button>상세보기</button></td>
-							<td><button>삭제</button></td>
-							<input type="hidden" name="noticeNo" value= "${ notice.noticeNo }">
+							<td><button id="detail">상세보기</button></td>
+							<input type="hidden" name="noticeNo" value= "${ notice.noticeNo }">				
 						</tr>
             		</form>
 					</c:forEach>
 					</tbody>
 				 </table>
+
+
 				 
 			</div>
 		</div>
@@ -369,12 +371,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$tds[i].onclick = function() {
 					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠지? */
 					alert(this.parentNode.children[0].innerText);
-					location.href = "${ pageContext.servletContext.contextPath }/user/detail/";
+					location.href = "${ pageContext.servletContext.contextPath }/notice/detail/";
 				}
 				
 			}
-			
+		
 		}
+		
 		
 		function pageButtonAction(text) {
 			location.href = link + "?currentPage=" + text;

@@ -103,29 +103,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body >
 
 
-<div class="header">
-	<div class="container">
-		<!--logo-->
-			<div class="logo">
-				<h1><a href="index.jsp">Bonggeuda</a></h1>
-			</div>
-		<!--//logo-->
-		<div class="top-nav">
-			<ul class="right-icons">
-				${ sessionScope.member.userId }
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="mypage_point.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+<jsp:include page="../../common/guestheader.jsp"/>
 
-			</ul>
-
-			</div>
-		<div class="clearfix"> </div>
-		
-		<div class="clearfix"> </div>		</div>	
-</div>
 
 <!--//-->	
 <div class=" header-right">
@@ -244,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<br><br><br>
 				<div class="col-md-4 box_2">
 			     	 <a href="more_notice.jsp" class="mask">
-			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc4.jpg" alt="">
+			     	   	<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/resources/guest/images/pc4.jpg" alt="">
 			     	 </a>
 			     	   <div class="most-1">
 
@@ -254,7 +233,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 </div>
 			  <div class="col-md-4 box_2">
 		     	 <a href="event.jsp" class="mask">
-			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc5.jpg" alt="">
+			     	   	<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/resources/guest/images/pc5.jpg" alt="">
 			     	 </a>
 		     	   <div class="most-1">
 

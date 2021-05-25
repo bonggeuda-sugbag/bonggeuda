@@ -149,28 +149,6 @@ public class BookService {
 	}
 
 	/**
-	 * 예약정보INSERT
-	 * @param bookInfo 예약정보
-	 * @return
-	 */
-	public int insertBookInfo(BookDTO bookInfo) {
-		
-		Connection con = getConnection();
-		
-		int result = 0;
-		
-		result = bookDao.insertBookInfo(con, bookInfo);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
-	}
-
-	/**
 	 * 숙소의 베스트리뷰조회
 	 * @param accomoNo 숙소번호
 	 * @return
@@ -243,89 +221,73 @@ public class BookService {
 		return selectAllReviewList;
 	}
 
+	
 	/**
-	 * 결제정보 insert
-	 * @param 
+	 * 예약,결제,포인트적립,사용,쿠폰사용 INSERT
+	 * @param bookInfo 예약정보
+	 * @param payment 결제정보
+	 * @param pointGet 포인트적립
+	 * @param couponUse 쿠폰사용
+	 * @param pointUse 포인트사용
 	 * @return
 	 */
-	public int insertPaymentInfo(PaymentDTO payment) {
+	public int insertBookNpay(BookDTO bookInfo, PaymentDTO payment, PointHistoryDTO pointGet,CouponHistoryDTO couponUse,PointHistoryDTO pointUse) {
 		
 		Connection con = getConnection();
-		int result = 0;
 		
-		result = bookDao.insertPaymentInfo(con, payment);
+		int insertAllResult = 0;
+		int standard = 3;
 		
-		if(result > 0) {
+		//예약정보insert
+		int bookInsertResult = 0;
+		bookInsertResult = bookDao.insertBookInfo(con, bookInfo);
+		if(bookInsertResult > 0) {
+			insertAllResult++;
+		}
+		//결제정보insert
+		int bookSEQ = bookDao.selectBookSeq(con);
+		payment.setBookNo(bookSEQ);
+		int paymentInsertResult = 0;
+		paymentInsertResult = bookDao.insertPaymentInfo(con, payment);
+		if(paymentInsertResult > 0) {
+			insertAllResult++;
+		}
+		//포인트적립insert
+		int paymentNo = bookDao.selectPaymentSeq(con);
+		int pointGetResult = 0;
+		pointGet.setPaymentNo(paymentNo);
+		pointGetResult = bookDao.insertPointGet(con, pointGet);
+		if (pointGetResult > 0) {
+			insertAllResult++;
+		}
+		//쿠폰 사용시 쿠폰이력 insert
+		if(payment.getCouponYN().equals("Y")) {
+			standard++;
+			couponUse.setPaymentNo(paymentNo);
+			int couponUseResult = bookDao.insertCouponUse(con, couponUse);
+			if(couponUseResult>0) {
+				insertAllResult++;
+			}
+		}
+		
+		//포인트 사용시 포인트이력 insert
+		if(payment.getPointYN().equals("Y")) {
+			standard++;
+			pointUse.setPaymentNo(paymentNo);
+			int pointUseResult = bookDao.insertPointUse(con, pointUse);
+			if(pointUseResult>0) {
+				insertAllResult++;
+			}
+		}
+
+		if(standard == insertAllResult) {
 			commit(con);
 		} else {
 			rollback(con);
 		}
 		
-		return result;
-	}
-
-	/**
-	 * 포인트 획득 insert
-	 * @param pointGet
-	 * @return
-	 */
-	public int insertPointGet(PointHistoryDTO pointGet) {
-
-		Connection con = getConnection();
-		int result = 0;
+		return insertAllResult;
 		
-		result = bookDao.insertPointGet(con, pointGet);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		close(con);
-		return result;
-	}
-
-	/**
-	 * 쿠폰사용시 이력 INSERT
-	 * @param couponUse
-	 * @return
-	 */
-	public int insertCouponUse(CouponHistoryDTO couponUse) {
-		
-		Connection con = getConnection();
-		int result = 0;
-		
-		result = bookDao.insertCouponUse(con, couponUse);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
-	}
-
-	/**
-	 * 포인트사용시 이력INSERT
-	 * @param pointUse
-	 * @return
-	 */
-	public int insertPointUse(PointHistoryDTO pointUse) {
-		
-		Connection con = getConnection();
-		int result = 0;
-		
-		result = bookDao.insertPointUse(con, pointUse);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
 	}
 
 }

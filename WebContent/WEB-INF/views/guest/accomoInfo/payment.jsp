@@ -266,7 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     
     <!--//-->	
     <!-- 숙소상세정보 -->
-    <jsp:include page="../accomoInfo/headeTest.jsp"/>
+    <jsp:include page="../../common/guestheader.jsp"/>
     <center>
 		<form name="paymentForm" method="post" action="${pageContext.servletContext.contextPath}/book/payment">
         <div style="width: 1170px; margin-top: 60px; display: flex">
