@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.adminQnA.controller;
+package com.bonggeuda.sugbag.adminQnAReport.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import com.bonggeuda.sugbag.adminQnA.dto.QnADTO;
-import com.bonggeuda.sugbag.adminQnA.service.AdminQnAService;
+import com.bonggeuda.sugbag.adminQnAReport.dto.QnADTO;
+import com.bonggeuda.sugbag.adminQnAReport.service.AdminQnAService;
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 

@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.adminQnA.dto;
+package com.bonggeuda.sugbag.adminQnAReport.dto;
 
 import java.sql.Date;
 
