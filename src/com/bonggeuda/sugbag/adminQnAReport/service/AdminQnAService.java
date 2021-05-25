@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.adminQnA.service;
+package com.bonggeuda.sugbag.adminQnAReport.service;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
@@ -10,8 +10,8 @@ import java.util.List;
 
 import com.bonggeuda.sugbag.adminNotice.dao.AdminNoticeDAO;
 import com.bonggeuda.sugbag.adminNotice.dto.AdminNoticeDTO;
-import com.bonggeuda.sugbag.adminQnA.dao.AdminQnADAO;
-import com.bonggeuda.sugbag.adminQnA.dto.QnADTO;
+import com.bonggeuda.sugbag.adminQnAReport.dao.AdminQnADAO;
+import com.bonggeuda.sugbag.adminQnAReport.dto.QnADTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 
 public class AdminQnAService {

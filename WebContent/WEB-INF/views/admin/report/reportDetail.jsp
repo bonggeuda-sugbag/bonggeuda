@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -42,7 +42,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="${pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />   
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />  
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -154,7 +154,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
-	<h3><span>공지사항</span></h3> 
+	<h3><span>문의&신고</span></h3> 
+
 	<div class="clearfix"> </div>      		
 	</div>
 </div>
@@ -162,18 +163,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--blog-->
 	<div class="blog">
 		<div class="container">
-		<form action="${ pageContext.servletContext.contextPath }/notice/update" method="get">
+		<form action="${ pageContext.servletContext.contextPath }/report/insert" method="get">
 		
 			<div class="blog-list">
 				<nav>
 				<div class="col-md-3 blog-sidebar">
-				<ul>
-					<li class="blog-list"><a href="adminOnlineNotice.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">공지사항</a></li>
-				</ul>
+                    <ul>
+                        <li class="blog-list"><a href="adminOnlineQuestionUser.html" >사용자 문의 내역</a></li>
+                        <li class="blog-list"><a href="adminOnlineQuestionCompany.html" >업체 문의 내역</a></li>
+                        <li class="blog-list"><a href="adminOnlineReport.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;" >신고 내역</a></li>
+                    </ul>
 				</nav>
                
 				<div class="tab">
-				   <span class="tab_btn active">공지사항</span> 
+				   <span class="tab_btn active">신고답변</span> 
 				</div>
                 <table class="type09" border="1px">
                     <thead>
@@ -183,24 +186,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                       <tr>
                             <th scope="row">제목</th>
-                            <td colspan="3" style="width: 650px;" >
-                            <input name="title" value="${ noticeInfo.title }" style="width: 650px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            <td colspan="3" style="width: 580px;" >
+                            <input name="title" value="${ reportInfo.title }" style="width: 580px; height: 20px; border: 0; resize: none; overflow:hidden;">
                             
                             </input>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">구분</th>
+                            <th scope="row">신고받은 구분자</th>
                             <td>
-                            <input name="writer" value="${ noticeInfo.writer }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            <input name="writer" value="${ reportInfo.wirterType }" style="width: 225px; height: 20px; border: 0; resize: none; overflow:hidden;">
                             
                             </input>
                             </td>
-                            <th scope="row" style="text-align: center;">작성일</th>
+                            <th scope="row" style="text-align: center;">신고당한사람번호</th>
                             <td>
-                            <input name="writeDate" value="${ noticeInfo.writeDate }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            <input name="reportedNo" value="${ reportInfo.reportedNo }" style="width: 225px; height: 20px; border: 0; resize: none; overflow:hidden;">
                             
                             </input>
                             </td>
@@ -208,25 +211,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </tbody>
                 </table>
 				<p>
-				<input name="content" value="${ noticeInfo.title }" class="form-control textarea-layer" style="width: 700px; height: 400px; margin-left: 285px; resize: none;">
-				
-				</input>
-				<input type="hidden" name="noticeNo" value= "${ noticeNo }">
+				<input class="form-control textarea-layer" value="${ reportThumnailInfo.thumnailPath }" style="width: 700px; height: 120px; margin-left: 285px;" disabled></input>
 				</p>
                 <br>
-                <table class="type09">
+                <table class="type09" border="1px"  style="margin-left: 285px;">
                     <thead>
                         <tr>
                             <th scope="cols"></th>
                             <th scope="cols"></th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">작성일자</th>
+                            <td>
+                            <input style="width: 260px; height: 20px; border: 0; resize: none; overflow:hidden;"> 
+                            
+                            </input>
+                            </td>
+                            <th scope="row" style="text-align: center;">신고 번호</th>
+                            <td>
+                            <input name="reportNo"  value="${ reportNo }" style="width: 300px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            
+                            </input>
+                            </td>
+                    </tbody>
                 </table>
-                <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">공지사항 수정</button>
+                <input name="content" class="form-control textarea-layer" style="width: 700px; height: 120px; margin-left: 285px;"></input>
+                <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">처리완료</button>
             </div>
         </div>
         </form>
-        <button onclick="location.href='${ pageContext.servletContext.contextPath }/notice/delete?noticeNo=${ noticeNo }'"; type="submit" style="margin-top: 10px; margin-bottom: 10px;">삭제</button>
         <br><br><br><br><br>
         <br><br><br><br><br>
         <br><br><br><br><br>

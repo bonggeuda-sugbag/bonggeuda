@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.adminQnA.controller;
+package com.bonggeuda.sugbag.adminQnAReport.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,19 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bonggeuda.sugbag.adminQnA.dto.QnADTO;
-import com.bonggeuda.sugbag.adminQnA.service.AdminQnAService;
+import com.bonggeuda.sugbag.adminQnAReport.dto.ReportDTO;
+import com.bonggeuda.sugbag.adminQnAReport.service.AdminReportService;
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 
-
-
 /**
- * Servlet implementation class QnAWriterSearchServlet
+ * Servlet implementation class ReportWriterServlet
  */
-@WebServlet("/qna/writerSearch")
-public class QnAWriterSearchServlet extends HttpServlet {
-
+@WebServlet("/report/writerSearch")
+public class ReportWriterServlet extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String condition = request.getParameter("searchCondition");
@@ -48,10 +46,10 @@ public class QnAWriterSearchServlet extends HttpServlet {
 		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
 		 * */
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
-		AdminQnAService adminQnAService = new AdminQnAService();
-		int writerCount = adminQnAService.searchWriterCount(condition, value);
+		AdminReportService adminReportservie = new AdminReportService();
+		int reportWriterCount = adminReportservie.searchReportWriterCount(condition, value);
 		
-		System.out.println("writerCount : " + writerCount);
+		System.out.println("reportWriterCount : " + reportWriterCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
@@ -59,26 +57,24 @@ public class QnAWriterSearchServlet extends HttpServlet {
 		int buttonAmount = 5;
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, writerCount, limit, buttonAmount);
+		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, reportWriterCount, limit, buttonAmount);
 		
 		System.out.println(pageInfo);
 		
 		/* 조회해온다 */
-		List<QnADTO> qnaList = adminQnAService.selectSearchWriterList(condition, value, pageInfo);
+		List<ReportDTO> reportList = adminReportservie.selectSearchReportWriterList(condition, value, pageInfo);
 		
-		System.out.println("작성자구분qnaList : " + qnaList);
+		System.out.println("작성자구분reportList : " + reportList);
 		
 		String path = "";
-		if(qnaList != null) {
-			path = "/WEB-INF/views/admin/qna/qna.jsp";
-			request.setAttribute("qnaList", qnaList);
+		if(reportList != null) {
+			path = "/WEB-INF/views/admin/report/report.jsp";
+			request.setAttribute("reportList", reportList);
 			request.setAttribute("pageInfo", pageInfo);
 			
 		} 
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
-
 
 }

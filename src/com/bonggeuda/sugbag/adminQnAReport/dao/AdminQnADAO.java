@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.adminQnA.dao;
+package com.bonggeuda.sugbag.adminQnAReport.dao;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.adminNotice.dto.AdminNoticeDTO;
-import com.bonggeuda.sugbag.adminQnA.dto.QnADTO;
+import com.bonggeuda.sugbag.adminQnAReport.dto.QnADTO;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.user.dto.UserReservationStatusDTO;
@@ -167,6 +167,7 @@ public class AdminQnADAO {
 	}
 
 	public static int searchWriterCount(Connection con, String condition, String value) {
+	
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -214,9 +215,9 @@ public class AdminQnADAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-//			pstmt.setInt(1, pageInfo.getStartRow());
-//			pstmt.setInt(2, pageInfo.getEndRow());
-			pstmt.setString(1, value);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			pstmt.setString(3, value);
 
 			rset = pstmt.executeQuery();
 			

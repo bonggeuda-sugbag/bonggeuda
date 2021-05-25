@@ -81,4 +81,6 @@
           FROM NOTICE  
          WHERE NOTICE_NO = ?
 	</entry>
+	
+
 	</properties>
