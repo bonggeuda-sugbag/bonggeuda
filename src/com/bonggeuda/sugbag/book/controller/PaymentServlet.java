@@ -40,7 +40,6 @@ public class PaymentServlet extends HttpServlet {
 			}
 		}
 		
-		
 		//예약자번호
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
 		int userNo = member.getUserNo();
@@ -56,18 +55,20 @@ public class PaymentServlet extends HttpServlet {
 		bookInfo.setUserPhone(request.getParameter("phone"));
 		bookInfo.setRoomNo(Integer.parseInt(request.getParameter("roomNo")));
 		bookInfo.setRequest(request.getParameter("request"));
-		//예약정보INSERT
+		
 		BookService bsvc = new BookService();
-		int result = bsvc.insertBookInfo(bookInfo);
-		if(result > 0) {
-			System.out.println("예약INSERT성공");
-		} else {
-			System.out.println("예약INSERT실패");
-		}
+		
 		//결제정보
 		int amount = Integer.parseInt(request.getParameter("finalPrice")); //결제금액
-		int point = Integer.parseInt(request.getParameter("point"));  //포인트 사용금액
-		int coupon = Integer.parseInt(request.getParameter("coupon")); //쿠폰사용금액
+		int point = 0; //포인트 사용금액
+		if(request.getParameter("point").length() > 0) {
+			point = Integer.parseInt(request.getParameter("point")); 
+			
+		}
+		int coupon=0;//쿠폰사용금액
+		if(request.getParameter("coupon").length()>0){
+			coupon = Integer.parseInt(request.getParameter("coupon")); 
+		}
 		
 		PaymentDTO payment = new PaymentDTO();
 		payment.setMethod(request.getParameter("paymentType"));
@@ -88,48 +89,10 @@ public class PaymentServlet extends HttpServlet {
 		}
 		payment.setDiscount(discount);
 		System.out.println("할인금액 : " + discount);
-		//결제 insert 
-		int paymentInsertResult = bsvc.insertPaymentInfo(payment);
-		if(paymentInsertResult>0) {
-			System.out.println("결제성공!");
-		} else {
-			System.out.println("결제실패!");
-		}
-		//쿠폰 사용시 쿠폰이력 insert
-		if(payment.getCouponYN().equals("Y")) {
-		    //쿠폰이력 insert
-			CouponHistoryDTO couponUse = new CouponHistoryDTO();
-//			int couponNo = Integer.parseInt(request.getParameter("couponNo"));
-			int couponNo = 1;
-			couponUse.setCouponNo(couponNo);
-			couponUse.setUseDate(payment.getPaymentTime());
-			
-			int couponUseResult = bsvc.insertCouponUse(couponUse);
-			if(couponUseResult > 0) {
-				System.out.println("쿠폰사용 성공!");
-			} else {
-				System.out.println("쿠폰사용 실패!");
-			}
-		}
-//		int pointNo = Integer.parseInt(request.getParameter("pointNo"));
-		int pointNo = 1;
-		//포인트 사용시 포인트이력 insert
-		if(payment.getCouponYN().equals("Y")) {
-			PointHistoryDTO pointUse = new PointHistoryDTO();
-			pointUse.setGetuseType("U");
-			pointUse.setPoint(point);
-			pointUse.setGuDate(payment.getPaymentTime());
-			pointUse.setPointNo(pointNo);
-			
-			int pointUseResult = bsvc.insertPointUse(pointUse);
-			if(pointUseResult > 0) {
-				System.out.println("포인트사용 성공!");
-			} else {
-				System.out.println("포인트사용 실패!");
-			}
-		}
 		
-		//포인트적립 insert
+		
+		int pointNo = 1;
+		
 		PointHistoryDTO pointGet = new PointHistoryDTO();
 		pointGet.setGetuseType("G");
 		
@@ -139,14 +102,33 @@ public class PaymentServlet extends HttpServlet {
 		pointGet.setPointPath("숙소결제완료");
 		pointGet.setGuDate(payment.getPaymentTime());
 		pointGet.setPointNo(pointNo);
-		int pointGetResult = bsvc.insertPointGet(pointGet);
-		if(pointGetResult > 0) {
-			System.out.println("포인트적립성공");
-		} else {
-			System.out.println("포인트적립실패");
+		
+		
+		//예약정보INSERT
+		
+		//쿠폰 사용시 쿠폰이력 생성
+		CouponHistoryDTO couponUse = new CouponHistoryDTO();
+		if(payment.getCouponYN().equals("Y")) {
+//			int couponNo = Integer.parseInt(request.getParameter("couponNo"));
+			int couponNo = 15;
+			couponUse.setCouponNo(couponNo);
+			couponUse.setUseDate(payment.getPaymentTime());
+		}
+//		int pointNo = Integer.parseInt(request.getParameter("pointNo"));
+		//포인트 사용시 포인트이력생성
+		PointHistoryDTO pointUse = new PointHistoryDTO();
+		if(payment.getPointYN().equals("Y")) {
+			pointUse.setGetuseType("U");
+			pointUse.setPoint(point);
+			pointUse.setGuDate(payment.getPaymentTime());
+			pointUse.setPointPath("포인트로결제");
+			pointUse.setPointNo(pointNo);
+			
 		}
 		
+		int result = bsvc.insertBookNpay(bookInfo, payment, pointGet, couponUse, pointUse);
+		
+		System.out.println(result);
 		
 	}
-
 }

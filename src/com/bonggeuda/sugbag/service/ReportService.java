@@ -37,9 +37,7 @@ public class ReportService {
 		
 		int accachmentResult = 0;
 		for(int i = 0; i < fileList.size(); i++) {
-			System.out.println(i + "첨부파일 insert 문여기가 문제인가??");
 			accachmentResult += reportDAO.insertAttachment(con, fileList.get(i));
-			System.out.println(accachmentResult);
 		}
 		if(reportResult > 0 && accachmentResult == fileList.size()) {
 			commit(con);
