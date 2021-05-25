@@ -89,6 +89,13 @@ public class ManagementRoomSelectDAO {
 				accomoDTO.setAccomoName(rset.getString("RM_ACCOMO_NAME"));
 				accomoDTO.setAccomoType(rset.getString("RM_ACCOMO_TYPE"));
 				accomoDTO.setApprovalYN(rset.getString("APPROVAL_YN"));
+				accomoDTO.setRmType(rset.getString("RM_TYPE"));
+				accomoDTO.setEnAccomoNO(rset.getInt("EN_ACCOMO_NO"));
+				accomoDTO.setRmAccomoNo(rset.getInt("RM_ACCOMO_NO"));
+				accomoDTO.setThumbNailPath(rset.getString("THUMBNAIL_PATH"));
+				accomoDTO.setApprovalStatus(rset.getString("APPROVE_STATUS"));
+
+				accomoDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				
 				selectAccomoList.add(accomoDTO);
 			}
@@ -103,6 +110,34 @@ public class ManagementRoomSelectDAO {
 		
 		
 		return selectAccomoList;
+	}
+
+	public String selectRmImagePathDAO(Connection con, int ownerNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectRmAccomoImagePath");
+		
+		String selectRmImagePathDAO = "";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1,ownerNo );
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				selectRmImagePathDAO = rset.getString("THUMBNAIL_PATH");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return selectRmImagePathDAO;
 	}
 
 

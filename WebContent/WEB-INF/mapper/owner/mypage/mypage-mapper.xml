@@ -63,9 +63,9 @@
 	
 		SELECT 
                ACCOMO_NO
+             , ACCOMO_NAME
           FROM ACCOMO_INFO
          WHERE ACCOMO_NAME = ?
-           AND OWNER_NO = ?
 	
 	</entry>
 	

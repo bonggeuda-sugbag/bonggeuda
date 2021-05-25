@@ -20,7 +20,7 @@
         INSERT
           INTO ATTACHMENT
         VALUES(
-               SEQ_ATTACHMENT_NO.NEXTVAL
+                SEQ_ATTACHMENT_NO.NEXTVAL
               , ?
               , ?
               , ?

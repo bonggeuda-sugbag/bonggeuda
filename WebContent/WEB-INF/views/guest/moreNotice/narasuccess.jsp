@@ -17,6 +17,12 @@
 			case "insertAdminQnA" :
 				movePath = "${ pageContext.servletContext.contextPath }/userqnalist/select";
 				break;
+			case "insertCancel" :
+				movePath = "${ pageContext.servletContext.contextPath }/userbooklist/select";
+				break;
+			case "insertReview" :
+				movePath = "${ pageContext.servletContext.contextPath }/userbooklist/select";
+				break;
 
 		}
 		

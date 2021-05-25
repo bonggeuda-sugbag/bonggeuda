@@ -171,8 +171,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div>
 			<button class="reset" >초기화</button>
 			<button id="seachFacility"class="accept" >적용</button>
-			 	<script>
-			    $("#seachFacility").click(function(){
+ 			 	<script>
+		 	    $("#seachFacility").click(function(){
 			    	const checkList = [];
 			    	$("input[name='facility']:checked").each(function(i){
 			    		checkList.push($(this).val());
@@ -191,15 +191,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    	data:sendData,
 				    	success:function(data, textStatus, xhr){
 				    	    	console.table(data);
-				    	    	/* $(".forRemove").empty(); */
+				    	    	$("#forRemove").remove();
+				    	    	$("#forRemove").append("<h3>안녕</h3>");
 				    	},
 				    	error:function(xhr,status,error){
 				    		console.log(error);
 				    	}
 				    });
 			    }
-			    	
-			    });
+		    });
 			</script>
 			
 		</div>
@@ -261,8 +261,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<%-- <div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value='+'${accomo}';" > --%>
 			<form "name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
-            <div class="forRemove">
-            
+            <div id="forRemove" class="remove">
 			<button id="accomPicture"  type="submit" name="no" value='${accomo.accomoNo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/${accomo.attachment.thumbnailPath }) no-repeat; background-size: 800px 250px;">
 				<div class="infoThumb" >
 					<h2 id="accomoName">${accomo.accomoName }</h2>

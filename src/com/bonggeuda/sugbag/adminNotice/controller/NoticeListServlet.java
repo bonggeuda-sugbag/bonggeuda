@@ -39,7 +39,6 @@ public class NoticeListServlet extends HttpServlet {
 		AdminNoticeService adminNoticeservie = new AdminNoticeService();
 		int totalCount = adminNoticeservie.selectNoticeTotalCount();
 		
-//		System.out.println("totalCount 체크 : " + totalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
@@ -54,7 +53,6 @@ public class NoticeListServlet extends HttpServlet {
 		/* 조회 해온다. */
 		List<AdminNoticeDTO> noitceList = AdminNoticeService.selectNoticeList(pageInfo);
 		
-		System.out.println("noitceList : " + noitceList);
 		
 		String path = "";
 		if(noitceList != null) {

@@ -66,9 +66,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul class="right-icons">
 
 				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="more_notice.html">더보기</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
 				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="mypage_point.html">마이페이지</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
             	<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 
 			</ul>
@@ -95,11 +95,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 		<ul style="padding-top: 70px;">
-			<li class="blog-list"><a href="mypage_point.jsp">포인트</a></li>
-			<li class="blog-list"><a href="mypage_coupon.jsp">쿠폰함</a></li>
-			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="mypage_reservation.jsp" style="color: #6eceda;">예약 내역</a></li>
-			<li class="blog-list"><a href="mypage_myinformation.jsp">내 정보 관리</a></li>
-			<li class="blog-list"><a href="warningList.jsp">신고내역</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/point/select">포인트</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/coupon/select">쿠폰함</a></li>
+			<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="${ pageContext.servletContext.contextPath }/userbooklist/select" style="color: #6eceda;">예약 내역</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/usermyinfo/select">내 정보 관리</a></li>
+			<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/userreportlist/select">신고내역</a></li>
 		</ul>
 		</div>
 		</nav>
@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 100%;">
 
 			<div style="font-size: 15px; border: 1px solid; width: 100px; background: #d3d3d3; border-style: none; border-radius: 5px;">이용 완료</div>
-			<div style="font-size: 30px; margin-bottom: 20px; text-align: left;"><c:out value="${ requestScope.userCompleteContent.accomoName }"/> <c:out value="${ requestScope.userCancleContent.roomName }"/></div>
+			<div style="font-size: 30px; margin-bottom: 20px; text-align: left;"><c:out value="${ requestScope.userCompleteContent.accomoName }"/> <c:out value="${ requestScope.userCompleteContent.roomName }"/></div>
 			<img src="${pageContext.servletContext.contextPath}/${ requestScope.userCompleteContent.thumbnailPath }" style="width: 70%; margin-bottom: 50px; width: 100%">
 
 			<div class="reservation_information">
@@ -155,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 
 			<div>
-				<button class="review-btn" type="submit" onclick="location.href='write_review.jsp';">리뷰작성</button>
+				<button class="review-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userwritereview/selectAndinsert?bookNo=${ requestScope.userCompleteContent.bookNo }';">리뷰작성</button>
 			</div>
 
 		</div>

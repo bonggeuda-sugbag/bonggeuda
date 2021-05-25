@@ -5,13 +5,13 @@ import java.sql.Date;
 public class RmAccomoInfoDTO {
 	
 	private int requestNo;      // 요청번호
-	private int accomoNo; 		// 숙소번호
+	private int rmAccomoNo; 		// 숙소번호
 	private String accomoName;	// 숙소명(상호명)
 	private String ceoName; 	// 대표명
 	private String accomoType;  // 업종
 	private String registNo; 	// 사업자번호
 	private String address; 	// 숙소주소
-//	private String adrDetail; 	// 숙소 상세주소
+	private String adrDetail; 	// 숙소 상세주소
 	private String email; 		// 세금계산서이메일
 	private String homepage; 	// 홈페이지 주소
 	private String facility; 	// 편의시설
@@ -28,23 +28,29 @@ public class RmAccomoInfoDTO {
 	private String rmType;      // 등록 수정 구분
 	private int enAccomoNO;     // 등록숙소 요청 번호
 	
-	public RmAccomoInfoDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private String thumbNailPath;
+	// RM_History Dto 추가
+	private String approvalStatus;
+	private String insPectionComment;
+	// 어코모 디티오 어코모 넘 추가
+	private int accomoNo;
+	
+	public RmAccomoInfoDTO() { }
 
-	public RmAccomoInfoDTO(int requestNo, int accomoNo, String accomoName, String ceoName, String accomoType,
-			String registNo, String address, String email, String homepage, String facility, String accomoPath,
-			String near, String rule, String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd,
-			int ownerNo, String approvalYN, String rmType, int enAccomoNO) {
+	public RmAccomoInfoDTO(int requestNo, int rmAccomoNo, String accomoName, String ceoName, String accomoType,
+			String registNo, String address, String adrDetail, String email, String homepage, String facility,
+			String accomoPath, String near, String rule, String parking, String checkIn, String checkOut,
+			Date peakStart, Date peakEnd, int ownerNo, String approvalYN, String rmType, int enAccomoNO,
+			String thumbNailPath, String approvalStatus, String insPectionComment, int accomoNo) {
 		super();
 		this.requestNo = requestNo;
-		this.accomoNo = accomoNo;
+		this.rmAccomoNo = rmAccomoNo;
 		this.accomoName = accomoName;
 		this.ceoName = ceoName;
 		this.accomoType = accomoType;
 		this.registNo = registNo;
 		this.address = address;
+		this.adrDetail = adrDetail;
 		this.email = email;
 		this.homepage = homepage;
 		this.facility = facility;
@@ -60,6 +66,10 @@ public class RmAccomoInfoDTO {
 		this.approvalYN = approvalYN;
 		this.rmType = rmType;
 		this.enAccomoNO = enAccomoNO;
+		this.thumbNailPath = thumbNailPath;
+		this.approvalStatus = approvalStatus;
+		this.insPectionComment = insPectionComment;
+		this.accomoNo = accomoNo;
 	}
 
 	public int getRequestNo() {
@@ -70,12 +80,12 @@ public class RmAccomoInfoDTO {
 		this.requestNo = requestNo;
 	}
 
-	public int getAccomoNo() {
-		return accomoNo;
+	public int getRmAccomoNo() {
+		return rmAccomoNo;
 	}
 
-	public void setAccomoNo(int accomoNo) {
-		this.accomoNo = accomoNo;
+	public void setRmAccomoNo(int rmAccomoNo) {
+		this.rmAccomoNo = rmAccomoNo;
 	}
 
 	public String getAccomoName() {
@@ -116,6 +126,14 @@ public class RmAccomoInfoDTO {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getAdrDetail() {
+		return adrDetail;
+	}
+
+	public void setAdrDetail(String adrDetail) {
+		this.adrDetail = adrDetail;
 	}
 
 	public String getEmail() {
@@ -238,15 +256,54 @@ public class RmAccomoInfoDTO {
 		this.enAccomoNO = enAccomoNO;
 	}
 
+	public String getThumbNailPath() {
+		return thumbNailPath;
+	}
+
+	public void setThumbNailPath(String thumbNailPath) {
+		this.thumbNailPath = thumbNailPath;
+	}
+
+	public String getApprovalStatus() {
+		return approvalStatus;
+	}
+
+	public void setApprovalStatus(String approvalStatus) {
+		this.approvalStatus = approvalStatus;
+	}
+
+	public String getInsPectionComment() {
+		return insPectionComment;
+	}
+
+	public void setInsPectionComment(String insPectionComment) {
+		this.insPectionComment = insPectionComment;
+	}
+
+	public int getAccomoNo() {
+		return accomoNo;
+	}
+
+	public void setAccomoNo(int accomoNo) {
+		this.accomoNo = accomoNo;
+	}
+
 	@Override
 	public String toString() {
-		return "RmAccomoInfoDTO [requestNo=" + requestNo + ", accomoNo=" + accomoNo + ", accomoName=" + accomoName
+		return "RmAccomoInfoDTO [requestNo=" + requestNo + ", rmAccomoNo=" + rmAccomoNo + ", accomoName=" + accomoName
 				+ ", ceoName=" + ceoName + ", accomoType=" + accomoType + ", registNo=" + registNo + ", address="
-				+ address + ", email=" + email + ", homepage=" + homepage + ", facility=" + facility + ", accomoPath="
-				+ accomoPath + ", near=" + near + ", rule=" + rule + ", parking=" + parking + ", checkIn=" + checkIn
-				+ ", checkOut=" + checkOut + ", peakStart=" + peakStart + ", peakEnd=" + peakEnd + ", ownerNo="
-				+ ownerNo + ", approvalYN=" + approvalYN + ", rmType=" + rmType + ", enAccomoNO=" + enAccomoNO + "]";
+				+ address + ", adrDetail=" + adrDetail + ", email=" + email + ", homepage=" + homepage + ", facility="
+				+ facility + ", accomoPath=" + accomoPath + ", near=" + near + ", rule=" + rule + ", parking=" + parking
+				+ ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", peakStart=" + peakStart + ", peakEnd="
+				+ peakEnd + ", ownerNo=" + ownerNo + ", approvalYN=" + approvalYN + ", rmType=" + rmType
+				+ ", enAccomoNO=" + enAccomoNO + ", thumbNailPath=" + thumbNailPath + ", approvalStatus="
+				+ approvalStatus + ", insPectionComment=" + insPectionComment + ", accomoNo=" + accomoNo + "]";
 	}
+
+	
+
+	
+
 	
 	
 	

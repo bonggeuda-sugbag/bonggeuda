@@ -54,7 +54,7 @@ public class AccomoDAO {
 				
 				selectEnNo = rset.getInt("MAX(EN_ACCOMO_NO)");
 			}
-			System.out.println("???????" + selectEnNo);
+			System.out.println("등록숙소번호 : " + selectEnNo);
 					
 		} catch (SQLException e) {
 			e.printStackTrace();

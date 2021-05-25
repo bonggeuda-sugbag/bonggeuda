@@ -14,7 +14,10 @@ import com.bonggeuda.sugbag.model.dao.BookDAO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
+import com.bonggeuda.sugbag.model.dto.CouponHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PaymentDTO;
+import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
@@ -146,39 +149,15 @@ public class BookService {
 	}
 
 	/**
-	 * 예약정보INSERT
-	 * @param bookInfo 예약정보
-	 * @return
-	 */
-	public int insertBookInfo(BookDTO bookInfo) {
-		
-		Connection con = getConnection();
-		
-		int result = 0;
-		
-		result = bookDao.insertBookInfo(con, bookInfo);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		close(con);
-		
-		return result;
-	}
-
-	/**
 	 * 숙소의 베스트리뷰조회
 	 * @param accomoNo 숙소번호
 	 * @return
 	 */
-	public Map<Integer, ReviewDTO> selectBestReview(int accomoNo) {
+	public List<ReviewDTO> selectBestReview(int accomoNo) {
 		
 		Connection con = getConnection();
 		
-		Map<Integer, ReviewDTO> bestReview = null;
+		List<ReviewDTO> bestReview = null;
 		
 		bestReview = bookDao.selectBestReview(con, accomoNo);
 		
@@ -208,6 +187,107 @@ public class BookService {
 		upNdown.add(downCnt);
 		
 		return upNdown;
+	}
+
+	/**
+	 * 리뷰사진 조회용
+	 * @param accomoNo
+	 * @param categoryNo
+	 * @return
+	 */
+	public Map<Integer, String> selectReviewPicture(int accomoNo, int categoryNo) {
+
+		Connection con = getConnection();
+		Map<Integer, String> reviewPicture = null;
+		
+		reviewPicture = bookDao.selectAccomoReviewPicture(con, accomoNo, categoryNo); 
+		
+		close(con);
+		return reviewPicture;
+	}
+
+	/**
+	 * 숙소의 베스트리뷰를 제외한 전체 리뷰
+	 * @param bestReview 베스트리뷰 제외를 위한 매개변수
+	 * @param accomoNo 숙소번호
+	 * @return
+	 */
+	public List<ReviewDTO> selectAllReviewList(List<ReviewDTO> bestReview, int accomoNo) {
+		
+		Connection con = getConnection();
+		List<ReviewDTO> selectAllReviewList = bookDao.selectAllReview(con, accomoNo, bestReview);
+		
+		close(con);
+		return selectAllReviewList;
+	}
+
+	
+	/**
+	 * 예약,결제,포인트적립,사용,쿠폰사용 INSERT
+	 * @param bookInfo 예약정보
+	 * @param payment 결제정보
+	 * @param pointGet 포인트적립
+	 * @param couponUse 쿠폰사용
+	 * @param pointUse 포인트사용
+	 * @return
+	 */
+	public int insertBookNpay(BookDTO bookInfo, PaymentDTO payment, PointHistoryDTO pointGet,CouponHistoryDTO couponUse,PointHistoryDTO pointUse) {
+		
+		Connection con = getConnection();
+		
+		int insertAllResult = 0;
+		int standard = 3;
+		
+		//예약정보insert
+		int bookInsertResult = 0;
+		bookInsertResult = bookDao.insertBookInfo(con, bookInfo);
+		if(bookInsertResult > 0) {
+			insertAllResult++;
+		}
+		//결제정보insert
+		int bookSEQ = bookDao.selectBookSeq(con);
+		payment.setBookNo(bookSEQ);
+		int paymentInsertResult = 0;
+		paymentInsertResult = bookDao.insertPaymentInfo(con, payment);
+		if(paymentInsertResult > 0) {
+			insertAllResult++;
+		}
+		//포인트적립insert
+		int paymentNo = bookDao.selectPaymentSeq(con);
+		int pointGetResult = 0;
+		pointGet.setPaymentNo(paymentNo);
+		pointGetResult = bookDao.insertPointGet(con, pointGet);
+		if (pointGetResult > 0) {
+			insertAllResult++;
+		}
+		//쿠폰 사용시 쿠폰이력 insert
+		if(payment.getCouponYN().equals("Y")) {
+			standard++;
+			couponUse.setPaymentNo(paymentNo);
+			int couponUseResult = bookDao.insertCouponUse(con, couponUse);
+			if(couponUseResult>0) {
+				insertAllResult++;
+			}
+		}
+		
+		//포인트 사용시 포인트이력 insert
+		if(payment.getPointYN().equals("Y")) {
+			standard++;
+			pointUse.setPaymentNo(paymentNo);
+			int pointUseResult = bookDao.insertPointUse(con, pointUse);
+			if(pointUseResult>0) {
+				insertAllResult++;
+			}
+		}
+
+		if(standard == insertAllResult) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		return insertAllResult;
+		
 	}
 
 }

@@ -16,6 +16,7 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.UserBookContentDTO;
 import com.bonggeuda.sugbag.model.dto.WithdrawReasonDTO;
 
@@ -210,10 +211,11 @@ public class UserMypageService {
 	 * @param reportedNo
 	 * @return
 	 */
-	public AttachmentDTO selectReportImg(int userNo, int reportedNo) {
+	public List<AttachmentDTO> selectReportImg(int userNo, int reportedNo) {
 		Connection con = getConnection();
 		
-		AttachmentDTO userReportImg = mypageDAO.selectReportImg(con, userNo, reportedNo);
+//		AttachmentDTO userReportImg = mypageDAO.selectReportImg(con, userNo, reportedNo);
+		List<AttachmentDTO> userReportImg = mypageDAO.selectReportImg(con, userNo, reportedNo);
 		
 		close(con);
 		
@@ -323,6 +325,120 @@ public class UserMypageService {
 		close(con);
 		
 		return userCompleteContent;
+	}
+
+
+	/**
+	 * 예약한 내역 조회하기
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectBookContent(int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		UserBookContentDTO userBookContent = mypageDAO.selectBookContent(con, userNo, bookNo);
+		
+		close(con);
+		
+		return userBookContent;
+	}
+
+
+	/**
+	 * 예약 취소하기 페이지 내역 조회
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectBookCancle(int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		UserBookContentDTO userBookCancle = mypageDAO.selectBookCancle(con, userNo, bookNo);
+		
+		close(con);
+		
+		return userBookCancle;
+	}
+
+
+	/**
+	 * 예약 취소사유 insert & 예약내역 update
+	 * @param userCancelReason
+	 * @param bookNo 
+	 * @param userNo 
+	 * @return
+	 */
+	public int insertCancel(UserBookContentDTO userCancelReason, int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		int result = mypageDAO.insertCancel(con, userCancelReason, userNo, bookNo);
+		
+		if(result > 1) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	/**
+	 * 리뷰 기본 정보 조회
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public UserBookContentDTO selectreviewInfo(int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		UserBookContentDTO reviewInfo = mypageDAO.selectreviewInfo(con, userNo, bookNo);
+		
+		close(con);
+		
+		return reviewInfo;
+		
+	}
+
+
+	/**
+	 * 리뷰 insert
+	 * @param userReview
+	 * @return
+	 */
+	public int insertReview(ReviewDTO userReview) {
+
+		System.out.println("들어어와오랏");
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		int reviewResult = mypageDAO.insertReview(con, userReview);
+		
+		List<AttachmentDTO> fileList = userReview.getAttachmentList();
+		
+		int accachmentResult = 0;
+		for(int i = 0; i < fileList.size(); i++) {
+			accachmentResult += mypageDAO.insertAttachment(con, fileList.get(i));
+			System.out.println(accachmentResult);
+		}
+		if(reviewResult > 0 && accachmentResult == fileList.size()) {
+			commit(con);
+			result = 1;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		return result;
+		
 	}
 
 

@@ -10,11 +10,85 @@
 	
 	<entry key="selectAccomoList">
 
+         SELECT
+                r.request_no
+              , r.rm_accomo_name
+              , r.rm_ceo_name
+              , r.rm_accomo_type
+              , r.approval_yn
+              , r.owner_no
+              , r.rm_accomo_no
+              , r.rm_type
+              , r.EN_ACCOMO_NO
+              , a.attachment_no
+              , a.category_no
+              , a.thumbnail_path
+              , a.attachment_status
+              , a.ref_no
+              , h.approve_status
+              , h.request_no_rm
+              , I.ACCOMO_NO
+	      FROM RM_ACCOMO_INFO R
+          JOIN ATTACHMENT A ON(R.REQUEST_NO = A.REF_NO)
+          JOIN RM_HISTORY H ON(R.REQUEST_NO = h.request_no_rm)
+          JOIN ACCOMO_INFO I ON(R.EN_ACCOMO_NO = I.ACCOMO_NO)
+	     WHERE R.OWNER_NO = ?
+           AND ( CATEGORY_NO = 3)
+
+	</entry>
+	
+	<entry key="selectRmAccomoImagePath">
+	
 	    SELECT
                 *
-	      FROM RM_ACCOMO_INFO 
-	     WHERE OWNER_NO = ?
+	      FROM RM_ACCOMO_INFO R
+          JOIN ATTACHMENT A ON(R.REQUEST_NO = A.REF_NO)
+	     WHERE R.OWNER_NO = ?
+           AND ( CATEGORY_NO = 1)
+	
+	</entry>
+	
+	<entry key="selectModifyAccomo">
+	
+	SELECT
+      	   *
+ 	  FROM ACCOMO_INFO C
+ 	  JOIN ATTACHMENT A ON(C.ACCOMO_NO = A.REF_NO)
+ 	 WHERE ACCOMO_NO = ?
+  	   AND CATEGORY_NO = 3
+  	 </entry>
+  	   
+	<entry key="selectModifyAccomoTwo">
+	
+	SELECT
+      	   *
+ 	  FROM ACCOMO_INFO C
+ 	  JOIN ATTACHMENT A ON(C.ACCOMO_NO = A.REF_NO)
+ 	 WHERE ACCOMO_NO = ?
+  	   AND CATEGORY_NO = 3
+	
+	
+	</entry>
 
+	
+	<entry key="insertModifyAccomoAttachment">
+	        INSERT
+            INTO ATTACHMENT
+            VALUES
+            (
+             SEQ_ATTACHMENT_NO.NEXTVAL
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , ?
+            , 'Y'
+            , null
+            , SEQ_REQUEST_NO.NEXTVAL
+            )
+	
+	
 	</entry>
 
 	

@@ -8,9 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -22,8 +22,11 @@ import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
+import com.bonggeuda.sugbag.model.dto.CouponHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PaymentDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
+import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
@@ -426,7 +429,6 @@ public class BookDAO {
 		List<AccomoInfoDTO> searchResult = null;
 		
 		String query = new QueryBuilder().queryBuiler(search).toString();
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -450,7 +452,6 @@ public class BookDAO {
 				
 				searchResult.add(accomoInfo);
 			}
-			System.out.println(searchResult);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -462,8 +463,14 @@ public class BookDAO {
 		return searchResult;
 	}
 
+	/**
+	 * 예약정보 Insert
+	 * @param con
+	 * @param bookInfo
+	 * @return
+	 */
 	public int insertBookInfo(Connection con, BookDTO bookInfo) {
-		
+	
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -483,15 +490,23 @@ public class BookDAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return result;
 	}
 
-	public Map<Integer, ReviewDTO> selectBestReview(Connection con, int accomoNo) {
+	/**
+	 * 베스트리뷰검색
+	 * @param con
+	 * @param accomoNo
+	 * @return
+	 */
+	public List<ReviewDTO> selectBestReview(Connection con, int accomoNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		Map<Integer, ReviewDTO> bestReviewList = null;
+		List<ReviewDTO> bestReviewList = null;
 		
 		String query = prop.getProperty("selectBestReview");
 		try {
@@ -500,13 +515,11 @@ public class BookDAO {
 			
 			rset = pstmt.executeQuery();
 			
-			bestReviewList = new LinkedHashMap<>();
+			bestReviewList = new ArrayList<>();
 			
 			while(rset.next()) {
-				int key = 0;
 				ReviewDTO review = new ReviewDTO();
 				
-				key = rset.getInt("리뷰번호");
 				review.setReviewNo(rset.getInt("리뷰번호"));
 				review.setContent(rset.getString("리뷰내용"));
 				review.setStarPoint(rset.getInt("별점"));
@@ -514,13 +527,9 @@ public class BookDAO {
 				review.setTitle(rset.getString("리뷰제목"));
 				review.setUpCnt(rset.getInt("좋아요"));
 				review.setNickName(rset.getString("닉네임"));
-				AttachmentDTO attachment = new AttachmentDTO();
-				attachment.setThumbnailPath(rset.getString("사진경로"));
-				review.setAttachment(attachment);
 				
-				bestReviewList.put(key, review);
+				bestReviewList.add(review);
 			}
-			System.out.println(bestReviewList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -531,6 +540,12 @@ public class BookDAO {
 		return bestReviewList;
 	}
 
+	/**
+	 * 리뷰 업 카운트
+	 * @param con
+	 * @param accomoNo
+	 * @return
+	 */
 	public Map<Integer, Integer> selectReviewUpCnt(Connection con, int accomoNo) {
 
 		PreparedStatement pstmt = null;
@@ -558,6 +573,12 @@ public class BookDAO {
 		return upCount;
 	}
 
+	/**
+	 * 리뷰다운카운트
+	 * @param con
+	 * @param accomoNo
+	 * @return
+	 */
 	public Map<Integer, Integer> selectReviewDownCnt(Connection con, int accomoNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -582,5 +603,233 @@ public class BookDAO {
 		}
 				
 		return downCount;
+	}
+
+	/**
+	 * 리뷰사진
+	 * @param con
+	 * @param accomoNo
+	 * @param categoryNo
+	 * @return
+	 */
+	public Map<Integer, String> selectAccomoReviewPicture(Connection con, int accomoNo, int categoryNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Map<Integer, String> reviewPictureList = null;
+		
+		String query = prop.getProperty("selectAccomoReviewPicture");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, categoryNo);
+			
+			rset = pstmt.executeQuery();
+			reviewPictureList = new HashMap<>();
+			while(rset.next()) {
+				reviewPictureList.put(rset.getInt("리뷰번호"), rset.getString("사진"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reviewPictureList;
+	}
+
+	/**
+	 * 숙소의 모든리뷰조회
+	 * @param con
+	 * @param accomoNo
+	 * @param bestReview
+	 * @return
+	 */
+	public List<ReviewDTO> selectAllReview(Connection con, int accomoNo, List<ReviewDTO> bestReview) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        
+		List<ReviewDTO> reviewList = null;
+		String query = new QueryBuilder().reviewSelectBuilder(bestReview).toString();
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, 2);
+			pstmt.setInt(3, 4);
+			rset = pstmt.executeQuery();
+			
+			reviewList = new ArrayList();
+			
+			while(rset.next()) {
+				ReviewDTO review = new ReviewDTO();
+				review.setReviewNo(rset.getInt("리뷰번호"));
+				review.setContent(rset.getString("리뷰내용"));
+				review.setStarPoint(rset.getInt("별점"));
+				review.setBookNo(rset.getInt("예약번호"));
+				review.setTitle(rset.getString("리뷰제목"));
+				review.setNickName(rset.getString("작성자"));
+				
+				reviewList.add(review);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reviewList;
+	}
+
+	public int insertPaymentInfo(Connection con, PaymentDTO payment) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertPaymentInfo");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, payment.getMethod());
+			pstmt.setInt(2, payment.getAmount());
+			pstmt.setDate(3, payment.getPaymentTime());
+			pstmt.setInt(4, payment.getBookNo());
+			pstmt.setString(5, payment.getCouponYN());
+			pstmt.setString(6, payment.getPointYN());
+			pstmt.setInt(7, payment.getDiscount());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertPointGet(Connection con, PointHistoryDTO pointGet) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertGetPoint");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pointGet.getPaymentNo());
+			pstmt.setString(2, pointGet.getGetuseType());
+			pstmt.setInt(3, pointGet.getPoint());
+			pstmt.setString(4, pointGet.getPointPath());
+			pstmt.setDate(5, pointGet.getGuDate());
+			pstmt.setInt(6, pointGet.getPointNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertCouponUse(Connection con, CouponHistoryDTO couponUse) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("couponUseInsert");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, couponUse.getCouponNo());
+			pstmt.setDate(2, couponUse.getUseDate());
+			pstmt.setInt(3, couponUse.getPaymentNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public int insertPointUse(Connection con, PointHistoryDTO pointUse) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertPointUse");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pointUse.getPaymentNo());
+			pstmt.setString(2, pointUse.getGetuseType());
+			pstmt.setInt(3, pointUse.getPoint());
+			pstmt.setString(4, pointUse.getPointPath());
+			pstmt.setDate(5, pointUse.getGuDate());
+			pstmt.setInt(6, pointUse.getPointNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+	
+		return result;
+	}
+
+	public int selectBookSeq(Connection con) {
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int lastBookNo = 0;
+		
+		String query = prop.getProperty("selectBookNoSequence");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				lastBookNo = rset.getInt("CURRVAL");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return lastBookNo;
+	}
+
+	public int selectPaymentSeq(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int lastPaymentNo = 0;
+		
+		String query = prop.getProperty("selectPaymentNoSequence");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				lastPaymentNo = rset.getInt("CURRVAL");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return lastPaymentNo;
 	}
 }

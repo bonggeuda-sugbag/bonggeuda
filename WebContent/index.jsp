@@ -8,26 +8,37 @@
 </head>
 <body>
 
+
        <%--  <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
 		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> 
  --%>
 	<jsp:forward page="/WEB-INF/views/admin/event/eventWrite.jsp"></jsp:forward> 
 
+    
+       <%--  <jsp:forward page="/WEB-INF/views/guest/accomoInfo/report.jsp"></jsp:forward> --%>
 
 		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>   
-		<jsp:forward page="/login/test"/>
-		
-			<script>
+=======
+		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%>
+
+
+
+<!-- 	<script>
+
 		(function(){
 			
 			location.href="${ pageContext.servletContext.contextPath}/event/list";    
 			
 		})();
+
 	</script>
 --%> 
 
 
 
+
+=======
+	</script>   -->
 
 </body>
 </html>

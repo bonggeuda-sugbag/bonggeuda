@@ -11,7 +11,7 @@
 window.onload = function() {
     alert("예약 승인 되었습니다");
     
-    location.href ="taxbillList"; 
+    location.href ="bookingList"; 
 }
 </script>
 

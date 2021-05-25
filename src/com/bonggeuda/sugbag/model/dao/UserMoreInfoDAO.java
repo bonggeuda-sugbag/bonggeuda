@@ -135,7 +135,7 @@ public class UserMoreInfoDAO {
 			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
+			if(rset.next()) {
 				
 				ownerQnA.setTitle(rset.getString("OWNER_QNA_TITLE"));
 				ownerQnA.setContent(rset.getString("OWNER_QNA_CONTENT"));
@@ -149,9 +149,38 @@ public class UserMoreInfoDAO {
 			System.out.println(ownerQnA);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
+		}
+		
+		if(ownerQnA.getOwnerAnswerContent() == null) {
+			
+			String query2 = prop.getProperty("ownerQnAContentSelectTwo");
+			System.out.println(query2);
+			
+			try {
+				pstmt = con.prepareStatement(query2);
+				pstmt.setInt(1, userNo);
+				pstmt.setInt(2, qnaNo);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					ownerQnA.setTitle(rset.getString("OWNER_QNA_TITLE"));
+					ownerQnA.setContent(rset.getString("OWNER_QNA_CONTENT"));
+					ownerQnA.setWriteDate(rset.getDate("OWNER_QNA_DATE"));
+					ownerQnA.setAnswerYN(rset.getString("OWNER_ANSWER_YN"));
+					ownerQnA.setAccomoNo(rset.getInt("ACCOMO_NO"));
+					ownerQnA.setAccomoName(rset.getString("ACCOMO_NAME"));
+					ownerQnA.setOwnerAnswerContent(rset.getString("OWNER_ANSWER_CONTENT"));
+					
+				}
+				System.out.println(ownerQnA);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
 		}
 		return ownerQnA;
 	}
@@ -180,7 +209,7 @@ public class UserMoreInfoDAO {
 			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
+			if(rset.next()) {
 				
 				adminQnA.setAdminQnATitle(rset.getString("ADMIN_QNA_TITLE"));
 				adminQnA.setAdminQnADate(rset.getDate("ADMIN_QNA_DATE"));
@@ -188,14 +217,40 @@ public class UserMoreInfoDAO {
 				adminQnA.setAdminQnAContent(rset.getString("ADMIN_QNA_CONTENT"));
 				adminQnA.setAnswerContent(rset.getString("ANSWER_CONTENT"));
 				
-			}
+			}			
 			System.out.println(adminQnA);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
 		}
+		
+		if(adminQnA.getAdminQnAContent() == null) {
+			String query2 = prop.getProperty("adminQnAContentSelectTwo");
+			System.out.println(query2);
+			try {
+				pstmt = con.prepareStatement(query2);
+				pstmt.setInt(1, userNo);
+				pstmt.setInt(2, qnaNo);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					
+					adminQnA.setAdminQnATitle(rset.getString("ADMIN_QNA_TITLE"));
+					adminQnA.setAdminQnADate(rset.getDate("ADMIN_QNA_DATE"));
+					adminQnA.setAdminAnswerYn(rset.getString("ADMIN_ANSWER_YN"));
+					adminQnA.setAdminQnAContent(rset.getString("ADMIN_QNA_CONTENT"));
+					adminQnA.setAnswerContent(rset.getString("ANSWER_CONTENT"));
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+		}
+		
 		return adminQnA;
 	}
 

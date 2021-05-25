@@ -1,6 +1,7 @@
 package com.bonggeuda.sugbag.book.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.BookDTO;
+import com.bonggeuda.sugbag.model.dto.CouponHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
+import com.bonggeuda.sugbag.model.dto.PaymentDTO;
+import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.service.BookService;
 
 /**
@@ -22,7 +26,6 @@ import com.bonggeuda.sugbag.service.BookService;
 public class PaymentServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		//key value 확인
 		Map<String,String[]> requestMap = request.getParameterMap();
 		Set<String> keySet = requestMap.keySet();
@@ -52,21 +55,80 @@ public class PaymentServlet extends HttpServlet {
 		bookInfo.setUserPhone(request.getParameter("phone"));
 		bookInfo.setRoomNo(Integer.parseInt(request.getParameter("roomNo")));
 		bookInfo.setRequest(request.getParameter("request"));
-		//예약정보INSERT
+		
 		BookService bsvc = new BookService();
-		int result = bsvc.insertBookInfo(bookInfo);
-		if(result > 0) {
-			System.out.println("예약INSERT성공");
-		} else {
-			System.out.println("예약INSERT실패");
-		}
+		
 		//결제정보
-		String c = request.getParameter("paymentType"); //결제수단
-		String d = request.getParameter("finalPrice"); //결제금액
-		String k = request.getParameter("point");  //포인트
+		int amount = Integer.parseInt(request.getParameter("finalPrice")); //결제금액
+		int point = 0; //포인트 사용금액
+		if(request.getParameter("point").length() > 0) {
+			point = Integer.parseInt(request.getParameter("point")); 
+			
+		}
+		int coupon=0;//쿠폰사용금액
+		if(request.getParameter("coupon").length()>0){
+			coupon = Integer.parseInt(request.getParameter("coupon")); 
+		}
+		
+		PaymentDTO payment = new PaymentDTO();
+		payment.setMethod(request.getParameter("paymentType"));
+		payment.setAmount(Integer.parseInt(request.getParameter("finalPrice")));
+		payment.setCouponYN("N");
+		payment.setPointYN("N");
+		payment.setPaymentTime(new Date(System.currentTimeMillis()));
+		int discount = 0;
+		
+		if(point>0) {
+			payment.setPointYN("Y");
+			discount += point;
+		}
+		
+		if(coupon>0) {
+			payment.setCouponYN("Y");
+			discount += coupon;
+		}
+		payment.setDiscount(discount);
+		System.out.println("할인금액 : " + discount);
 		
 		
-
+		int pointNo = 1;
+		
+		PointHistoryDTO pointGet = new PointHistoryDTO();
+		pointGet.setGetuseType("G");
+		
+		int getPoint = (int)(amount * 0.03);//결제금액의 3% 적립
+		getPoint = ((int) Math.ceil(getPoint*0.1)) * 10; 
+		pointGet.setPoint(getPoint);
+		pointGet.setPointPath("숙소결제완료");
+		pointGet.setGuDate(payment.getPaymentTime());
+		pointGet.setPointNo(pointNo);
+		
+		
+		//예약정보INSERT
+		
+		//쿠폰 사용시 쿠폰이력 생성
+		CouponHistoryDTO couponUse = new CouponHistoryDTO();
+		if(payment.getCouponYN().equals("Y")) {
+//			int couponNo = Integer.parseInt(request.getParameter("couponNo"));
+			int couponNo = 15;
+			couponUse.setCouponNo(couponNo);
+			couponUse.setUseDate(payment.getPaymentTime());
+		}
+//		int pointNo = Integer.parseInt(request.getParameter("pointNo"));
+		//포인트 사용시 포인트이력생성
+		PointHistoryDTO pointUse = new PointHistoryDTO();
+		if(payment.getPointYN().equals("Y")) {
+			pointUse.setGetuseType("U");
+			pointUse.setPoint(point);
+			pointUse.setGuDate(payment.getPaymentTime());
+			pointUse.setPointPath("포인트로결제");
+			pointUse.setPointNo(pointNo);
+			
+		}
+		
+		int result = bsvc.insertBookNpay(bookInfo, payment, pointGet, couponUse, pointUse);
+		
+		System.out.println(result);
+		
 	}
-
 }
