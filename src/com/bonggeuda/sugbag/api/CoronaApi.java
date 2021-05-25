@@ -99,7 +99,8 @@ public class CoronaApi extends HttpServlet {
 					}
 				}
 			}
-			request.setAttribute("coronaInfo", coronaInfo);
+			HttpSession session = request.getSession();
+			session.setAttribute("coronaInfo", coronaInfo);
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
