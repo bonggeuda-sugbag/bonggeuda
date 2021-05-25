@@ -60,8 +60,15 @@ public class PaymentServlet extends HttpServlet {
 		
 		//결제정보
 		int amount = Integer.parseInt(request.getParameter("finalPrice")); //결제금액
-		int point = Integer.parseInt(request.getParameter("point"));  //포인트 사용금액
-		int coupon = Integer.parseInt(request.getParameter("coupon")); //쿠폰사용금액
+		int point = 0; //포인트 사용금액
+		if(request.getParameter("point").length() > 0) {
+			point = Integer.parseInt(request.getParameter("point")); 
+			
+		}
+		int coupon=0;//쿠폰사용금액
+		if(request.getParameter("coupon").length()>0){
+			coupon = Integer.parseInt(request.getParameter("coupon")); 
+		}
 		
 		PaymentDTO payment = new PaymentDTO();
 		payment.setMethod(request.getParameter("paymentType"));
@@ -98,35 +105,25 @@ public class PaymentServlet extends HttpServlet {
 		
 		
 		//예약정보INSERT
-//		int result = bsvc.insertBookInfo(bookInfo);
-		//결제 insert 
-		int paymentInsertResult = bsvc.insertPaymentInfo(payment);
-		//포인트적립 insert
-		int pointGetResult = bsvc.insertPointGet(pointGet);
 		
-		//쿠폰 사용시 쿠폰이력 insert
+		//쿠폰 사용시 쿠폰이력 생성
 		CouponHistoryDTO couponUse = new CouponHistoryDTO();
 		if(payment.getCouponYN().equals("Y")) {
-		    //쿠폰이력 insert
 //			int couponNo = Integer.parseInt(request.getParameter("couponNo"));
 			int couponNo = 15;
 			couponUse.setCouponNo(couponNo);
 			couponUse.setUseDate(payment.getPaymentTime());
-			
-			int couponUseResult = bsvc.insertCouponUse(couponUse);
-
 		}
 //		int pointNo = Integer.parseInt(request.getParameter("pointNo"));
-		//포인트 사용시 포인트이력 insert
+		//포인트 사용시 포인트이력생성
 		PointHistoryDTO pointUse = new PointHistoryDTO();
-		if(payment.getCouponYN().equals("Y")) {
+		if(payment.getPointYN().equals("Y")) {
 			pointUse.setGetuseType("U");
 			pointUse.setPoint(point);
 			pointUse.setGuDate(payment.getPaymentTime());
 			pointUse.setPointPath("포인트로결제");
 			pointUse.setPointNo(pointNo);
 			
-			int pointUseResult = bsvc.insertPointUse(pointUse);
 		}
 		
 		int result = bsvc.insertBookNpay(bookInfo, payment, pointGet, couponUse, pointUse);

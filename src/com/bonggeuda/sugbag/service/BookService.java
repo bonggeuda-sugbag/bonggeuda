@@ -149,28 +149,6 @@ public class BookService {
 	}
 
 	/**
-	 * 예약정보INSERT
-	 * @param bookInfo 예약정보
-	 * @return
-	 */
-	public int insertBookInfo(BookDTO bookInfo) {
-		
-		Connection con = getConnection();
-		
-		int result = 0;
-		
-		result = bookDao.insertBookInfo(con, bookInfo);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
-	}
-
-	/**
 	 * 숙소의 베스트리뷰조회
 	 * @param accomoNo 숙소번호
 	 * @return
@@ -243,90 +221,16 @@ public class BookService {
 		return selectAllReviewList;
 	}
 
-	/**
-	 * 결제정보 insert
-	 * @param 
-	 * @return
-	 */
-	public int insertPaymentInfo(PaymentDTO payment) {
-		
-		Connection con = getConnection();
-		int result = 0;
-		
-		result = bookDao.insertPaymentInfo(con, payment);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
-	}
-
-	/**
-	 * 포인트 획득 insert
-	 * @param pointGet
-	 * @return
-	 */
-	public int insertPointGet(PointHistoryDTO pointGet) {
-
-		Connection con = getConnection();
-		int result = 0;
-		
-		result = bookDao.insertPointGet(con, pointGet);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		close(con);
-		return result;
-	}
-
-	/**
-	 * 쿠폰사용시 이력 INSERT
-	 * @param couponUse
-	 * @return
-	 */
-	public int insertCouponUse(CouponHistoryDTO couponUse) {
-		
-		Connection con = getConnection();
-		int result = 0;
-		
-		result = bookDao.insertCouponUse(con, couponUse);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
-	}
-
-	/**
-	 * 포인트사용시 이력INSERT
-	 * @param pointUse
-	 * @return
-	 */
-	public int insertPointUse(PointHistoryDTO pointUse) {
-		
-		Connection con = getConnection();
-		int result = 0;
-		
-		result = bookDao.insertPointUse(con, pointUse);
-		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		return result;
-	}
 	
+	/**
+	 * 예약,결제,포인트적립,사용,쿠폰사용 INSERT
+	 * @param bookInfo 예약정보
+	 * @param payment 결제정보
+	 * @param pointGet 포인트적립
+	 * @param couponUse 쿠폰사용
+	 * @param pointUse 포인트사용
+	 * @return
+	 */
 	public int insertBookNpay(BookDTO bookInfo, PaymentDTO payment, PointHistoryDTO pointGet,CouponHistoryDTO couponUse,PointHistoryDTO pointUse) {
 		
 		Connection con = getConnection();
@@ -336,17 +240,13 @@ public class BookService {
 		
 		//예약정보insert
 		int bookInsertResult = 0;
-		System.out.println("DAO에서 호출한 예약정보 : " +bookInfo);
 		bookInsertResult = bookDao.insertBookInfo(con, bookInfo);
-		commit(con);
 		if(bookInsertResult > 0) {
 			insertAllResult++;
 		}
 		//결제정보insert
 		int bookSEQ = bookDao.selectBookSeq(con);
-		System.out.println("현재예약번호 : "+bookSEQ);
 		payment.setBookNo(bookSEQ);
-		System.out.println("DAO에서 호출한 결제정보 : " +payment);
 		int paymentInsertResult = 0;
 		paymentInsertResult = bookDao.insertPaymentInfo(con, payment);
 		if(paymentInsertResult > 0) {
@@ -356,7 +256,6 @@ public class BookService {
 		int paymentNo = bookDao.selectPaymentSeq(con);
 		int pointGetResult = 0;
 		pointGet.setPaymentNo(paymentNo);
-		System.out.println("DAO에서 호출한 포인트적립정보 : " +pointGet);
 		pointGetResult = bookDao.insertPointGet(con, pointGet);
 		if (pointGetResult > 0) {
 			insertAllResult++;
@@ -365,7 +264,6 @@ public class BookService {
 		if(payment.getCouponYN().equals("Y")) {
 			standard++;
 			couponUse.setPaymentNo(paymentNo);
-			System.out.println("DAO에서 호출한 쿠폰사용정보 : " +couponUse);
 			int couponUseResult = bookDao.insertCouponUse(con, couponUse);
 			if(couponUseResult>0) {
 				insertAllResult++;
@@ -373,17 +271,15 @@ public class BookService {
 		}
 		
 		//포인트 사용시 포인트이력 insert
-		if(payment.getCouponYN().equals("Y")) {
+		if(payment.getPointYN().equals("Y")) {
 			standard++;
 			pointUse.setPaymentNo(paymentNo);
-			System.out.println("DAO에서 호출한 포인트사용정보 : " +pointUse);
 			int pointUseResult = bookDao.insertPointUse(con, pointUse);
 			if(pointUseResult>0) {
 				insertAllResult++;
 			}
 		}
-		System.out.println("목표 insert 수 : " + standard);
-		System.out.println("실행 insdert 수 : " + insertAllResult);
+
 		if(standard == insertAllResult) {
 			commit(con);
 		} else {
