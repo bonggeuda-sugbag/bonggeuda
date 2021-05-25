@@ -223,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<br><br><br>
 				<div class="col-md-4 box_2">
 			     	 <a href="more_notice.jsp" class="mask">
-			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc4.jpg" alt="">
+			     	   	<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/resources/guest/images/pc4.jpg" alt="">
 			     	 </a>
 			     	   <div class="most-1">
 
@@ -233,7 +233,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 </div>
 			  <div class="col-md-4 box_2">
 		     	 <a href="event.jsp" class="mask">
-			     	   	<img class="img-responsive zoom-img" src="resources/guest/images/pc5.jpg" alt="">
+			     	   	<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/resources/guest/images/pc5.jpg" alt="">
 			     	 </a>
 		     	   <div class="most-1">
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class UserInfoDTO {
 
+	private int rnum; 
 	private int userNo; //회원번호
 	private String name; //닉네임
 	private String email; // 아이디 
@@ -14,9 +15,10 @@ public class UserInfoDTO {
 	
 	public UserInfoDTO() {}
 
-	public UserInfoDTO(int userNo, String name, String email, String password, String phoneNumber, int point,
+	public UserInfoDTO(int rnum, int userNo, String name, String email, String password, String phoneNumber, int point,
 			String detail) {
 		super();
+		this.rnum = rnum;
 		this.userNo = userNo;
 		this.name = name;
 		this.email = email;
@@ -24,6 +26,14 @@ public class UserInfoDTO {
 		this.phoneNumber = phoneNumber;
 		this.point = point;
 		this.detail = detail;
+	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public int getUserNo() {
@@ -84,10 +94,12 @@ public class UserInfoDTO {
 
 	@Override
 	public String toString() {
-		return "UserInfoDTO [userNo=" + userNo + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", phoneNumber=" + phoneNumber + ", point=" + point + ", detail=" + detail + "]";
+		return "UserInfoDTO [rnum=" + rnum + ", userNo=" + userNo + ", name=" + name + ", email=" + email
+				+ ", password=" + password + ", phoneNumber=" + phoneNumber + ", point=" + point + ", detail=" + detail
+				+ "]";
 	}
 
+	
 	
 
 	

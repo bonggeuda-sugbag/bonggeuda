@@ -1,9 +1,9 @@
-window.onload = function(){
+/*window.onload = function(){
 
     if(document.getElementById("login")) {
 		const $login = document.getElementById("login");
 		$regist.onclick = function() {
-			location.href = "/jsp/member/regist";
+			location.href = "/WEB-INF/views/common/login.jsp";
 		}
 	}
-}
+}*/

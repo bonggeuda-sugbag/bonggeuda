@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,17 +32,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
-<link href="resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<title>봉그다 숙박숙박</title>
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/guest/js/jquery.min.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="resources/guest/js/scripts.js"></script>
-<link href="resources/guest/css/styles.css" rel="stylesheet">
+<script src="${ pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${ pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -68,9 +62,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><span ><a  href="index.jsp">메인페이지</a></span></li>
-				<li><a  href="moreNotice.jsp">더보기</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
 				<!-- <li><a  href="blog.jsp">내주변</a></li> -->
-				<li><a  href="point.jsp">마이페이지</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
             	<li><a  href="login.jsp"><i class="glyphicon glyph   icon-user"> </i>로그인</a></li>
 			</ul>
 		</div>
@@ -97,11 +91,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav>
 		<div class="col-md-3 blog-sidebar">
 			<ul style="padding-top: 70px;">
-				<li class="blog-list"><a href="moreNotice.jsp">공지사항</a></li>
-				<li class="blog-list"><a href="event.jsp">이벤트</a></li>
-				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="FAQ.jsp" style="color: #6eceda;">자주 묻는 질문</a></li>
-				<li class="blog-list"><a href="QnA.jsp">1:1 문의</a></li>
-				<li class="blog-list"><a href="policy.jsp">약관 및 정책</a></li>
+				<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/usernotice/select">공지사항</a></li>
+				<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/userevent/select">이벤트</a></li>
+				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="${ pageContext.servletContext.contextPath }/userfaq/select" style="color: #6eceda;">자주 묻는 질문</a></li>
+				<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/userqnalist/select">1:1 문의</a></li>
+				<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/userpolicy/select">약관 및 정책</a></li>
 			</ul>
 		</div>
 		</nav>
