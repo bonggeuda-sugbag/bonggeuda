@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <jsp:include page="../../common/guestheader.jsp"/>
-<!--//-->	
+<!--//-->
 <div class=" banner-buying">
 	<div class=" container">
 	<h3 style="color: #fff; font-weight: 500; font-size: 3em;"><span style="border-bottom: 7px solid #6eceda;">숙소예약</span></h3> 
@@ -143,42 +143,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</section>
 		<hr>
 		<h3 style="margin-bottom: 15px;">상세조건</h3>
-		<form method="post" action = "${pageContext.servletContext.contextPath}/accomoSelect/search">
+		<form method="post" action = "${pageContext.servletContext.contextPath}/accomoSelect/search"> 
 		
 		<div>
 			<button class="reset" >초기화</button>
 			<button id="searchFacility"class="accept" >적용</button>
- 			 	<!-- <script>
-		 	    $("#searchFacility").click(function(){
-			    	const checkList = [];
-			    	$("input[name='facility']:checked").each(function(i){
-			    		checkList.push($(this).val());
-			    	});
-			    	const personnal = $("input[name='personnel']").val();
-			    	const sendData = {"type":"${type}","checkList":checkList, "personnal" : personnal}
-			    	
-			    	if(checkList.length == 0 && personnal.length == 0){
-			    		alert("조건을 입력해주세요")
-			    		return;
-			    	} else{
-			    		
-			    	$.ajax({
-			    		url:"${pageContext.servletContext.contextPath}/accomoSelect/search",
-				    	type:"post",
-				    	data:sendData,
-				    	success:function(data, textStatus, xhr){
-				    	    	console.table(data);
-				    	    	$("#forRemove").remove();
-				    	    	$("#forRemove").append("<h3>안녕</h3>");
-				    	},
-				    	error:function(xhr,status,error){
-				    		console.log(error);
-				    	}
-				    });
-			    }
-		    });
-			</script> -->
-			
 		</div>
 		<hr>
 		<div>
@@ -223,55 +192,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    }
 		</script>
 		</div>
+		
 		<div style="width: 900px; padding: 10px; display: flex; flex-direction: column;">
 
 			<div class=list_wrap style="width:900px; height:30px; margin: 30px 0 0 10px; display: flex; margin-bottom: 50px;">
-				<button type="button" data-sort="HIT" onclick="sorting(this);" value = "hit">
+				<button "type="button" data-sort="HIT" onclick="doSort(this);" value="highScore">
 					<span>평점 순</span>
 				</button>
-				<button type="button" data-sort="DISTANCE">
+<!-- 				<button type="button" data-sort="DISTANCE">
 					<span>거리 순</span>
-				</button>
-				<button type="button" data-sort="LOWPRICE" onclick="sorting(this);" value = "low">
+				</button> -->
+				<button type="button" data-sort="LOWPRICE" onclick="doSort(this);" value="lowPrice">
 					<span>낮은 가격 순</span>
 				</button>
-				<button type="button" data-sort="HIGHPRICE"onclick="sorting(this);" value = "high">
+				<button type="button" data-sort="HIGHPRICE" onclick="doSort(this);" value="highPrice">
 					<span>높은 가격 순</span>
 				</button>
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
-		
+		   
 			
-			<!-- <script>
-			    function sorting(p){
-			    	alert("좀 ㅡㅡ");
-			    	console.log(p.value);
-			    	/* var list = ${accomoList}; */
-			    	var sortType = p.value;
-			    	var arr =[];
-			    	/* console.log(list.length); */
+			<script>
+			    function doSort(p){
+			    	alert("ㅂ")
+					var sortType="";
+			    	var personnel = document.getElementsByName("personnel")[0].value;
+					switch(p.value){
+					    case "highScore" : sortType="highPrice"; break;
+					    case "lowPrice" : sortType="lowPrice"; break;
+					    case "highPrice" : sortType="highPrice"; break;
+					}
+					console.log(sortType)
+			    	var arr = "";
+			    	var search = document.getElementsByName("facility");
 			    	
-			    	$.ajax({
-			    		
-			    		url:"${pageContext.servletContext.contextPath}/book/payment",
-			    		type:"post",
-			    		dataType:'json',
-			    		data :{
-			    			  accomoList : list,
-			    			  type : sortType
-			    			  },
-			    		success:function(data, textStatus, xhr){
-
-					      	console.table(data)
-
-					      	
-						    alert("정렬성공!");
-					      },	  
-			    			  
-			    		
-			    	})
+			    	for(var i = 0; i < search.length; i++){
+			    		if(search[i].checked){
+			    			if( i < search.length - 1 ){
+ 			    	    	arr+=search[i].value +","
+			    			} else{
+ 			    	    	arr+=search[i].value;
+			    			}
+			    		}
+			    	}
+			    	
+			    	console.log(arr);
+			    	location.href="${pageContext.servletContext.contextPath}/accomo/sorting?sortType=sortType&facility=arr&type=${type}&personnel=personnel";
 			    }
-			</script> -->
+			</script>
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<c:choose>
 			    <c:when test="${empty accomo}">
