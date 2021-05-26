@@ -13,7 +13,7 @@
 
 
 
-	<script>
+<!-- 	<script>
 
 		(function(){
 			
@@ -21,7 +21,7 @@
 			
 		})();
 
-	</script>
+	</script> -->
 
 
 
