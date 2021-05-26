@@ -234,6 +234,7 @@
 		 WHERE BL.USER_NO = ?
 		   AND BL.BOOK_STATUS_YNC = 'N'
 		   AND A.CATEGORY_NO = 4
+		 ORDER BY BL.BOOK_NO DESC
     </entry>
     
     <entry key="userCompleteBookListSelect">
@@ -252,6 +253,7 @@
 		 WHERE BL.USER_NO = ?
 		   AND BL.BOOK_STATUS_YNC = 'Y'
 		   AND A.CATEGORY_NO = 4
+		 ORDER BY BL.BOOK_NO DESC
     </entry>
     
     <entry key="userCancleBookListSelect">
@@ -270,6 +272,7 @@
 		 WHERE BL.USER_NO = ?
 		   AND BL.BOOK_STATUS_YNC = 'C'
 		   AND A.CATEGORY_NO = 4
+		 ORDER BY BL.BOOK_NO DESC
     </entry>
     
     <entry key="userCancleContentSelect">
@@ -439,7 +442,6 @@
              , FILE_TYPE
              , THUMBNAIL_PATH
              , ATTACHMENT_STATUS
-             , REQUEST_NO_TAXBILL
              , REF_NO
              )
         VALUES
@@ -451,7 +453,6 @@
               , ?
               , ?
               , 'Y'
-              , null
               , SQU_REVIEW.CURRVAL
               )
     </entry>

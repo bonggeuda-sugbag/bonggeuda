@@ -554,6 +554,7 @@ public class UserMypageDAO {
 				reportDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
 				reportDTO.setReportDate(rset.getDate("REPORT_DATE"));
 				reportDTO.setReportStatus(rset.getString("REPORT_STATUS"));
+				reportDTO.setRowNum(rset.getInt("RNUM"));
 				
 				report.add(reportDTO);
 			}
