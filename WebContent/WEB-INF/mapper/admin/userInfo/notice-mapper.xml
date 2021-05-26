@@ -82,5 +82,39 @@
          WHERE NOTICE_NO = ?
 	</entry>
 	
+	<entry key="selectSearchWriter">
+        SELECT 
+		       C.RNUM
+		     , C.NOTICE_NO
+		     , C.NOTICE_TITLE
+		     , C.NOTICE_WRITE_DATE
+		     , C.WRITER
+         FROM(
+		  	   SELECT
+      				  ROWNUM RNUM
+     			    , B.NOTICE_NO
+			        , B.NOTICE_TITLE
+			        , B.NOTICE_WRITE_DATE
+			        , B.WRITER
+				FROM(
+					 SELECT 
+                            A.NOTICE_NO
+						  , A.NOTICE_TITLE
+						  , A.NOTICE_WRITE_DATE
+						  , A.WRITER
+                       FROM NOTICE A
+                    )B
+              
+              )C
+         WHERE C.RNUM BETWEEN ? AND ?
+           AND C.WRITER = ?
+	</entry>
+	
+	<entry key="searchNoticeCount">
+       SELECT 
+             COUNT(*)
+         FROM NOTICE A
+        WHERE WRITER = ?
+	</entry>
 
 	</properties>

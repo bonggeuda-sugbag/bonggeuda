@@ -127,7 +127,7 @@
          WHERE REPORT_NO = ?
 	</entry>
 
-	<entry key="selectNoiceThumnail">
+	<entry key="selectReportThumnail">
         SELECT 
                THUMBNAIL_PATH
   		  FROM ATTACHMENT A

@@ -211,7 +211,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </tbody>
                 </table>
 				<p>
-				<input class="form-control textarea-layer" value="${ reportThumnailInfo.thumnailPath }" style="width: 700px; height: 120px; margin-left: 285px;" disabled></input>
+				<c:forEach var="thumnail" items="${ requestScope.reportThumnailInfo }">
+				<input class="form-control textarea-layer" style="width: 700px; height: 120px; margin-left: 285px;" disabled>
+				<c:if test="${ thumnail.thumnailPath ne null }">
+				<img src="${ pageContext.servletContext.contextPath }/${ thumnail.thumnailPath }" style="width: 30%">
+				</c:if>
+				</input>
+				 </c:forEach>
 				</p>
                 <br>
                 <table class="type09" border="1px"  style="margin-left: 285px;">
