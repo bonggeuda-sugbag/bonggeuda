@@ -39,7 +39,7 @@ public class PaymentServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("결제 서블릿 호출");
 		//예약자번호
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
 		int userNo = member.getUserNo();
@@ -131,7 +131,7 @@ public class PaymentServlet extends HttpServlet {
 			path = "/userbooklist/select";
 		}
 		
-		response.sendRedirect(request.getContextPath() + path);
+//		response.sendRedirect(request.getContextPath() + path);
 		
 	}
 }
