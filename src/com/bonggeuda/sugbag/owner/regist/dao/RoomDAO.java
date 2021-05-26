@@ -6,12 +6,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class RoomDAO {
@@ -29,7 +31,7 @@ public class RoomDAO {
 		}
 	}
 	
-	public int InsertRoom(Connection con, ArrayList<RoomDTO> roomList) {
+	public int InsertRoom(Connection con, ArrayList<RoomDTO> roomList, int enAccoMoNoMax) {
 		
 //		System.out.println("리스트0 : " + roomList.get(0));
 //		System.out.println("리스트1 : " + roomList.get(1));
@@ -67,6 +69,56 @@ public class RoomDAO {
 		}
      
 		return insert;
+	}
+
+	public int insertAttachment(Connection con, AttachmentDTO attachmentDTO) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertRoomAttachment");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, attachmentDTO.getOriginName());
+			pstmt.setString(2, attachmentDTO.getSavedName());
+			pstmt.setString(3, attachmentDTO.getSavePath());
+			pstmt.setString(4, attachmentDTO.getFileType());
+			pstmt.setString(5, attachmentDTO.getThumbnailPath());
+			
+			result = pstmt.executeUpdate();
+			System.out.println("어테치먼트 리절트.. " + result);  // 리절트가 1이 나와주는데 왜 인서트 실패 라는거지?
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int selectEnAccomoNoMax(Connection con) {
+		
+		PreparedStatement pstmt = null;
+		int selectEnAccomoNoMax = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectEnNo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				selectEnAccomoNoMax = rset.getInt("MAX(EN_ACCOMO_NO)");
+			}
+		} catch (SQLException e) {
+			
+			
+			e.printStackTrace();
+		}
+
+		return 0;
 	}
 
 }

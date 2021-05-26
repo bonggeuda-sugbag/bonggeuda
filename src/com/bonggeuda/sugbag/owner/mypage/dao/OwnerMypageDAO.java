@@ -26,7 +26,7 @@ public class OwnerMypageDAO {
 	public OwnerMypageDAO() {
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"/owner/mypage/mypage-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner/mypage/mypage-mapper.xml"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}

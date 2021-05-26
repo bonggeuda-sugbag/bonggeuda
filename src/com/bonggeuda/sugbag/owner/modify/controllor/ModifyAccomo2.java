@@ -21,6 +21,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
 import com.bonggeuda.sugbag.owner.modify.service.ModifyAccomoService;
+import com.bonggeuda.sugbag.owner.regist.service.AccomoService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -184,6 +185,12 @@ public class ModifyAccomo2 extends HttpServlet {
 
 				//List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
 				
+				AccomoService accomoService = new AccomoService();
+				int selectReqNoMax = 0;
+				selectReqNoMax = accomoService.selectCurrval();
+				System.out.println("조회해온 리퀘스트 넘 최댓값 : " + selectReqNoMax);
+				selectReqNoMax += 1;
+				
 				AttachmentDTO tempFileInfo = new AttachmentDTO();
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
@@ -200,18 +207,19 @@ public class ModifyAccomo2 extends HttpServlet {
 				
 				System.out.println("thumbnail board : " + thumbnail);
 				
+				
+				
 				/* 서비스 메소드를 요청한다. */
-				ModifyAccomoService  accomoService = new ModifyAccomoService();
+				ModifyAccomoService   MoAccomoService = new ModifyAccomoService();
 				RmAccomoInfoDTO rmAcoomoDTO = new RmAccomoInfoDTO();
 
 				int result = 0;
-				result = accomoService.insertModifyAccomoThumbnail(tempFileInfo);
+				result = MoAccomoService.insertModifyAccomoThumbnail(tempFileInfo,selectReqNoMax);
 				System.out.println("리젙트는?????????? " + result);
 				// 값 받기
 				
 				rmAcoomoDTO.setAccomoNo(Integer.parseInt(parameter.get("rmAccomoNo")));
 				rmAcoomoDTO.setAccomoName(parameter.get("accomoName"));
-				System.out.println("########" + parameter.get("accomoName"));
 				rmAcoomoDTO.setCeoName(parameter.get("ceoName"));
 				rmAcoomoDTO.setAccomoType(parameter.get("accomoType"));
 				rmAcoomoDTO.setRegistNo(parameter.get("registNo"));

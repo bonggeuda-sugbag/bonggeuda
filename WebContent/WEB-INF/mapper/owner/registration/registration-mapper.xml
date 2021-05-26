@@ -36,8 +36,8 @@
 		VALUES
 		(
 		    SEQ_ROOM_REQUEST_NO.NEXTVAL
-		  , NULL
-          , NULL
+		  , null
+          , null
 		  , ?
 		  , ?
 		  , ?
@@ -55,5 +55,31 @@
 			   MAX(EN_ACCOMO_NO) 
 		  FROM RM_ACCOMO_INFO
 	</entry>
+	
+	<entry key="seqReqSelectCurrval">
+    SELECT
+	       MAX(REQUEST_NO)
+	  FROM RM_ACCOMO_INFO
+	</entry>
+	
+	<entry key="insertRoomAttachment">
+	        INSERT
+            INTO ATTACHMENT
+            VALUES
+            (
+              SEQ_ATTACHMENT_NO.NEXTVAL
+            , 2
+            , ? /*오리진*/
+            , ? /*세이브 네임*/
+            , ? /* 세이브 패스*/
+            , ? /* 파일 타입*/
+            , ? /* 떰브네일패스*/
+            , 'Y'
+            , null
+            , SEQ_ROOM_REQUEST_NO.NEXTVAL /*알이에프 넘*/
+            )
+	</entry>
+	
+
 	
 </properties>
