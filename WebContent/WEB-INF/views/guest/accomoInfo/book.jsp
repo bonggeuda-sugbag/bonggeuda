@@ -453,12 +453,27 @@ popup>li{
     background-size: 20px 20px;
     
 }
+.likeClick{
+    width: 30px;
+    height: 20px;
+    margin-left: 13px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeClicked.png) 0 0 no-repeat;
+    background-size: 20px 20px;
+    
+}
 
 .unlike{
     width: 30px;
     height: 20px;
     margin-left: 13px;
     background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeun.png) 0 0 no-repeat;
+    background-size: 20px 20px;
+}
+.unlikeClick{
+    width: 30px;
+    height: 20px;
+    margin-left: 13px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeunclicked.png) 0 0 no-repeat;
     background-size: 20px 20px;
 }
 
@@ -955,10 +970,26 @@ textarea {
                                 <div>
                                     <h4><strong>${best.title }</strong></h4>
                                 </div>
-                                <div class="like"></div>
-                                <div><p>${best.upCnt }</p></div>
-                                <div class="unlike"></div>
-                                <div><p>${best.downCnt }</p></div>
+                                <c:choose>
+                                    <c:when test="${best.updownStatus eq 'U' }">
+                                        <div class="likeClick" value = '1'></div>
+                                        <div><p>${best.upCnt }</p></div>
+                                        <div class="unlike" value = '0'></div>
+                                        <div><p>${best.downCnt }</p></div>
+                                    </c:when>
+                                     <c:when test="${best.updownStatus eq 'D' }">
+                                        <div class="like" value = '0'></div>
+                                        <div><p>${best.upCnt }</p></div>
+                                        <div class="unlikeClick" value = '1'></div>
+                                        <div><p>${best.downCnt }</p></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="like" value = '0'></div>
+                                        <div><p>${best.upCnt }</p></div>
+                                        <div class="unlike" value = '0'></div>
+                                        <div><p>${best.downCnt }</p></div>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
 							
                             <div class="reviewScore" style="display: flex;">
@@ -1007,14 +1038,35 @@ textarea {
                                 <div>
                                     <h4><strong>${normalReview.title}</strong></h4>
                                 </div>
-								<div class="like" id="test1" ></div>
-                                <div><p>${normalReview.upCnt }</p></div>
-                                <div class="unlike" id="test2" ></div>
-                                <div><p>${normalReview.downCnt}</p></div>
+								<c:choose>
+                                    <c:when test="${normalReview.updownStatus eq 'U' }">
+                                        <div class="likeClick" id="a${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this.name)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
+                                        <div class="unlike" id="b${noarmalReview.reviewNo }"name="review${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
+                                    </c:when>
+                                     <c:when test="${normalReview.updownStatus eq 'D' }">
+                                        <div class="like"id="a${normalReview.reviewNo}" name="review${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
+                                        <div class="unlikeClick"id="b${normalReview.reviewNo}" name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="like" id="a${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
+                                        <div class="unlike" id="b${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
+                                    </c:otherwise>
+                                </c:choose>
                                 <script>
-                                $("#test1").click(function(){
-							        alrert("하이");                          	
-                                });
+                                function likeHate(p){
+                                	
+                                	console.log(p);
+                                	
+                                }
+								/* $(".like").on("click",function(){
+									alert($(this))
+								}) */
                                 </script>
                             </div>
 							<div class="reviewScore" style="display: flex;">
@@ -1102,36 +1154,7 @@ textarea {
 			</form>
 			</div>
         </center>
-		<!-- <div id="pop01" class="overlay">
-			<div class="popup">
-				<a href="#none" class="close">&times;</a>
-				<strong style="text-align: center;">객실 이용 안내</strong>
-				<br>
-				<section>
-					<p>기본정보</p>
-					<ul>
-						<li>2인 기준 최대 2인</li>
-						<li>객실 + 욕실 / 7.56평</li>
-					</ul>
-				</section>
-				<hr>
-				<section>
-					<p>편의시설</p>
-					<ul>
-						<li>TV,개인금고,냉장고,미니바,욕실용품</li>
-					</ul>
-				</section>
-				<hr>
-				<section>
-					<p>선택날짜</p>
-					<ul>
-						<li>05월 07일 ~ 05월 08일</li>
-					</ul>
-				</section>
-				
-			</div>
-		</div> -->
-
+	
 <!--footer-->
 <div class="footer">
 	<div class="container">

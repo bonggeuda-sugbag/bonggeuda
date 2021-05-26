@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.service.BookService;
@@ -34,7 +35,13 @@ public class ReviewSelectServlet extends HttpServlet {
 		int categoryNo = 5;
 		Map<Integer,String> reviewPicture = bsvc.selectReviewPicture(accomoNo,categoryNo);
 		
-		//베스트리뷰에 좋아요 싫어요 추가
+		//4.리뷰업다운상태
+//		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
+//		int userNo = member.getUserNo();
+		int userNo = 3;
+		Map<Integer, String> upDownStatus = bsvc.selectReviewUpDownStatus(userNo);
+		
+		//베스트리뷰에 좋아요 싫어요 업다운상태 사진 추가
 		for(int i = 0; i < bestReview.size(); i++) {
 			int no = bestReview.get(i).getReviewNo();
 			//좋아요추가
@@ -51,8 +58,13 @@ public class ReviewSelectServlet extends HttpServlet {
 				attach.setThumbnailPath(reviewPicture.get(no));
 				bestReview.get(i).setAttachment(attach);
 			}
+			
+			//업다운상태 추가
+			if(upDownStatus.get(no) != null) {
+				bestReview.get(i).setUpdownStatus(upDownStatus.get(no));
+			}
 		}
-		//4.베스트리뷰를 제외한 전체 리뷰 조회
+		//5.베스트리뷰를 제외한 전체 리뷰 조회
 		List<ReviewDTO> reviewList = bsvc.selectAllReviewList(bestReview, accomoNo);
 		
 		for(int i = 0; i < reviewList.size(); i++) {
@@ -71,8 +83,13 @@ public class ReviewSelectServlet extends HttpServlet {
 				attach.setThumbnailPath(reviewPicture.get(no));
 				reviewList.get(i).setAttachment(attach);
 			}
+			
+			//업다운상태추가
+			if(upDownStatus.get(no) != null) {
+				reviewList.get(i).setUpdownStatus(upDownStatus.get(no));
+			}
 		}
-		//5.페이징처리
+		//6.페이징처리
 		String currentPage = request.getParameter("currentPage");
         
 		int pageNo = 1;
@@ -90,7 +107,8 @@ public class ReviewSelectServlet extends HttpServlet {
 		
 		String path="";
 		
-		
+		System.out.println(reviewList);
+		System.out.println(bestReview);
 		//리뷰리스트, 베스트리뷰,
 		if(bestReview !=null || reviewList!=null) {
 			path="/WEB-INF/views/guest/accomoInfo/book.jsp";

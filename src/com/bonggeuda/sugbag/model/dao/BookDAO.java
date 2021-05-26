@@ -405,7 +405,6 @@ public class BookDAO {
 				
 			}
 			
-			System.out.println(couponPoint);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -429,9 +428,6 @@ public class BookDAO {
 		List<AccomoInfoDTO> searchResult = null;
 		
 		String query = new QueryBuilder().queryBuiler(search).toString();
-		System.out.println("검색조건 쿼리문");
-		System.out.println(search);
-		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, search.getPersonnal());
@@ -654,7 +650,6 @@ public class BookDAO {
         
 		List<ReviewDTO> reviewList = null;
 		String query = new QueryBuilder().reviewSelectBuilder(bestReview).toString();
-		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, accomoNo);
@@ -902,7 +897,6 @@ public class BookDAO {
 				roomInfo.setRoomFee(rset.getInt("ROOM_FEE"));
 				roomInfo.setPeakFee(rset.getInt("PEAK_FEE"));
 				
-				System.out.println("DAO 에서 호출한 값 : " + roomInfo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -947,5 +941,36 @@ public class BookDAO {
 		}
 		
 		return discount;
+	}
+
+	public Map<Integer, String> selectUpDownStatus(Connection con, int userNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Map<Integer, String> reviewStaus = null;
+		
+		String query = prop.getProperty("selectRivewStatus");
+		System.out.println(userNo);
+		try {
+			pstmt = con.prepareStatement(query);
+			System.out.println(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			reviewStaus = new HashMap<>();
+			
+			while(rset.next()) {
+				reviewStaus.put(rset.getInt("리뷰번호"), rset.getString("상태"));
+			}
+			System.out.println(reviewStaus);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reviewStaus;
 	}
 }
