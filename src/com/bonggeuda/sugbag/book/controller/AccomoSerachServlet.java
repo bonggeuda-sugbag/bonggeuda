@@ -29,18 +29,6 @@ public class AccomoSerachServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		Map<String,String[]> requestMap = request.getParameterMap();
-		Set<String> keySet = requestMap.keySet();
-		Iterator<String> keyIter = keySet.iterator();
-		while(keyIter.hasNext()) {
-			String key = keyIter.next();
-			String[] value = requestMap.get(key);
-			
-			System.out.println("key : " + key);
-			for(int i = 0; i < value.length; i++) {
-				System.out.println("value[" + i + "] : " +value[i]);
-			}
-		}
 		//숙소타입
 		String type = request.getParameter("type");
 		//검색할 편의시설
@@ -56,6 +44,13 @@ public class AccomoSerachServlet extends HttpServlet {
 		search.setCategory(3);
 		if(personnel.length() > 0) {
 			search.setPersonnal(Integer.parseInt(personnel));
+		}
+		String searchCondition = "";
+		
+		if(checkList != null) {
+			for(int i = 0; i < checkList.length; i++) {
+				searchCondition += checkList[i] + " ";
+			}
 		}
 		//조건에 일치하는 숙소리스트 검색
 		BookService booksvc = new BookService();
@@ -79,6 +74,7 @@ public class AccomoSerachServlet extends HttpServlet {
 			request.setAttribute("checkList", checkList);
 			request.setAttribute("accomoList", accomoList);
 			request.setAttribute("type", type);
+			request.setAttribute("seacrh", searchCondition);
 		} else {
 			System.out.println("숙소목록 조회에 실패했습니다.!!");
 		}

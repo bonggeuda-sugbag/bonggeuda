@@ -126,9 +126,8 @@
                   <p class="description" style="margin-bottom: 3px;">* 이미지 교체를 원하시면 "변경"을 선택하시고 삭제를 원하시면 우측 "삭제"를 선택하시기 바랍니다.</p>
                   <p class="description"  style="margin-bottom: 3px;">* 이미지 장소는 짧게 기입해주시기 바랍니다. 예시) 전경, 로비, 주차장 등</p>
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
-                  <span class="form-title" style="display:inline-block";>    </span>
+                  <span class="form-title" style="display:inline-block;">    </span>
                   <br>
-                  <button type="button" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">+ 이미지 추가</button>
 					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
                </div>
             </td>   

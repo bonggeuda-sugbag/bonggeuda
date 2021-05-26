@@ -1,5 +1,8 @@
 package com.bonggeuda.sugbag.model.dto;
 
+import java.util.List;
+
+
 public class RoomDTO {
 
 	private int roomNo; 		// 객실번호
@@ -13,10 +16,12 @@ public class RoomDTO {
 
 	private AttachmentDTO attachment;
 
+	private List<AttachmentDTO> attachmentList;
+	
 	public RoomDTO() {}
 
 	public RoomDTO(int roomNo, int accomoNo, String roomName, int roomMax, String roomIntro, int roomFee,
-			String visibleYn, int peakFee, AttachmentDTO attachment) {
+			String visibleYn, int peakFee, AttachmentDTO attachment, List<AttachmentDTO> attachmentList) {
 		super();
 		this.roomNo = roomNo;
 		this.accomoNo = accomoNo;
@@ -27,6 +32,7 @@ public class RoomDTO {
 		this.visibleYn = visibleYn;
 		this.peakFee = peakFee;
 		this.attachment = attachment;
+		this.attachmentList = attachmentList;
 	}
 
 	public int getRoomNo() {
@@ -101,13 +107,21 @@ public class RoomDTO {
 		this.attachment = attachment;
 	}
 
+	public List<AttachmentDTO> getAttachmentList() {
+		return attachmentList;
+	}
+
+	public void setAttachmentList(List<AttachmentDTO> attachmentList) {
+		this.attachmentList = attachmentList;
+	}
+
 	@Override
 	public String toString() {
 		return "RoomDTO [roomNo=" + roomNo + ", accomoNo=" + accomoNo + ", roomName=" + roomName + ", roomMax="
 				+ roomMax + ", roomIntro=" + roomIntro + ", roomFee=" + roomFee + ", visibleYn=" + visibleYn
-				+ ", peakFee=" + peakFee + ", attachment=" + attachment + "]";
+				+ ", peakFee=" + peakFee + ", attachment=" + attachment + ", attachmentList=" + attachmentList + "]";
 	}
-	
+
 	
 	
 }

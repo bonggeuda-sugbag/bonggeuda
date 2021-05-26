@@ -62,7 +62,6 @@ public class ModifyAccomo3 extends HttpServlet {
 		System.out.println("arrayFacility"  + arrayFacility);
 		
 		rmAcoomoDTO.setAccomoName(accomoName);
-		System.out.println("어코모네임@@@@@@@@@@@@@@@@@@ "+accomoName);
 		rmAcoomoDTO.setAccomoNo(accomoNo);
 		rmAcoomoDTO.setAccomoPath(accomoPath);
 		rmAcoomoDTO.setAccomoType(accomoType);

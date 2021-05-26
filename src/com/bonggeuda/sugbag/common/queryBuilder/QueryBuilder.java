@@ -28,7 +28,6 @@ public class QueryBuilder {
 				+ "   AND CATEGORY_NO = ?\r\n";
 		qr.append(select);
 		if(search.getFacility() != null) {
-			System.out.println("여기를 자꾸 거너뛴다 너?");
 			String searchCondition = LikeBuilder(search.getFacility()).toString();
 			qr.append(searchCondition);
 		}

@@ -43,4 +43,16 @@ public class AccomoService {
 		return slectEnNo;
 	}
 
+	public int selectCurrval() {
+
+		Connection con = getConnection();
+
+		int selectCurrval = accomoDAO.selectSeqCurrval(con);
+		
+		close(con);
+
+		
+		return selectCurrval;
+	}
+
 }

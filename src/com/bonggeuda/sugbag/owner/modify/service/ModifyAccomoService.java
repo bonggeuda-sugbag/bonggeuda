@@ -51,14 +51,34 @@ public class ModifyAccomoService {
 		return rmAccomoInfo;
 	}
 	
-	public int insertModifyAccomoThumbnail(AttachmentDTO tempFileInfo) {
+	public int insertModifyAccomoThumbnail(AttachmentDTO tempFileInfo, int selectReqNoMax) {
 		/* Connection 생성 */
 		Connection con = getConnection();
 		
 		/* 최종적으로 반환할 result 선언 */
 		int result = 0;
 		
-		result = modifyDAO.insertModifyAttachment(con,tempFileInfo);
+		result = modifyDAO.insertModifyAttachment(con,tempFileInfo,selectReqNoMax);
+		
+		if(result > 0) {
+			commit(con);
+			
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+
+	public int insertAccomoThumbnail(AttachmentDTO tempFileInfo, int seqCurrvalSelect) {
+		/* Connection 생성 */
+		Connection con = getConnection();
+		
+		/* 최종적으로 반환할 result 선언 */
+		int result = 0;
+		
+		result = modifyDAO.insertAccomoAttachment(con,tempFileInfo,seqCurrvalSelect);
 		
 		if(result > 0) {
 			commit(con);

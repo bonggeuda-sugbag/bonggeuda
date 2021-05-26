@@ -174,15 +174,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
          </thead>
          <tbody>
           <c:forEach var="leave" items="${ requestScope.leaveList }"> 
- 			<form action="${ pageContext.servletContext.contextPath }/user/leave" method="get">
+ 			
 			<tr>
 				<td><c:out value="${ leave.rnum}"/></td>
 				<td><c:out value="${ leave.email }"/></td>
 				<td><c:out value="${ leave.reason }"/></td>
 				<td><c:out value="${ leave.leaveDate }"/></td>
+				<td><c:out value="${ leave.leaveDate }"/></td>
 				<input type="hidden" name="hduserNo" value= "${ user.userNo }">
 			</tr>
-            </form>
+            
 			</c:forEach>
          </tbody>
       </table>
@@ -343,20 +344,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 		}
 		
-		if(document.getElementsByTagName("td")) {
+/* 		if(document.getElementsByTagName("td")) {
 			
 			const $tds = document.getElementsByTagName("td");
 			for(let i = 0; i < $tds.length; i++) {
 				
 				$tds[i].onclick = function() {
-					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠지? */
-					alert(this.parentNode.children[0].innerText);
+			
+				/* 	alert(this.parentNode.children[0].innerText);
 					location.href = "${ pageContext.servletContext.contextPath }/user/detail/";
-				}
+				}  
 				
 			}
 			
-		}
+		} */
 		
 		function pageButtonAction(text) {
 			location.href = link + "?currentPage=" + text;

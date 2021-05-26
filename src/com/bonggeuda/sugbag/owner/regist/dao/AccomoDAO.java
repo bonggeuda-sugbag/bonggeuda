@@ -77,10 +77,9 @@ public class AccomoDAO {
 		String query = prop.getProperty("insertAccomo");
 
 		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
 
 		try {
-			pstmt = con.prepareStatement(query);			
+			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, accomoDTO.getAccomoName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
 			pstmt.setString(2, accomoDTO.getCeoName());
 			pstmt.setString(3, accomoDTO.getAccomoType());
@@ -112,6 +111,33 @@ public class AccomoDAO {
 		}
      
 		return insert;
+	}
+
+	public int selectSeqCurrval(Connection con) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int SeqReqSelectCurrval = 0;
+		
+		String query = prop.getProperty("seqReqSelectCurrval");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				SeqReqSelectCurrval = rset.getInt("MAX(REQUEST_NO)");
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("SeqReqSelectCurrval : " + SeqReqSelectCurrval);
+		
+		return SeqReqSelectCurrval;
 	}
 
 }

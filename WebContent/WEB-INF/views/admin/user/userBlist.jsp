@@ -318,20 +318,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
 			}
 		}
-		
+/* 		
 		if(document.getElementsByTagName("td")) {
 			
 			const $tds = document.getElementsByTagName("td");
 			for(let i = 0; i < $tds.length; i++) {
 				
 				$tds[i].onclick = function() {
-					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠지? */
+				
 					alert(this.parentNode.children[0].innerText);
 				}
 				
 			}
 			
-		}
+		} */
 		
 		function pageButtonAction(text) {
 			location.href = link + "?currentPage=" + text;

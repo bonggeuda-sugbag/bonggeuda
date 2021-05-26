@@ -1,6 +1,9 @@
 package com.bonggeuda.sugbag.adminQnAReport.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.adminQnAReport.dto.ReportDTO;
 import com.bonggeuda.sugbag.adminQnAReport.service.AdminReportService;
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 
 
 /**
@@ -22,8 +26,9 @@ public class ReportDetailServlet extends HttpServlet {
 		AdminReportService adminReportService = new AdminReportService();
 		
 		ReportDTO reportInfo = adminReportService.selectReportDetail(Integer.parseInt(request.getParameter("reportNo")));
-		ReportDTO reportThumnailInfo = adminReportService.selectReportThumnail(Integer.parseInt(request.getParameter("reportNo"))); //썸네일 가져오는 코드
-		
+		 //썸네일 가져오는 코드
+		List<ReportDTO> reportThumnailInfo = new ArrayList<>();
+		reportThumnailInfo = adminReportService.selectReportThumnail(Integer.parseInt(request.getParameter("reportNo")));
 
 		System.out.println("신고접수번호~~~~~"+ request.getParameter("reportNo"));
 

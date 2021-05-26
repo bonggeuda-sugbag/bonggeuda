@@ -123,7 +123,7 @@
       </nav>
    </div>
 </div>
-<form action="${ pageContext.servletContext.contextPath }/registration2" method="post">
+<form action="${ pageContext.servletContext.contextPath }/registration2" method="post" encType="multipart/form-data">
 <table id="registTb" class="table table-bordered">
    <thead>
    </thead>
@@ -139,8 +139,8 @@
                   <p class="description" style="margin-bottom: 3px;">* 이미지 교체를 원하시면 "변경"을 선택하시고 삭제를 원하시면 우측 "삭제"를 선택하시기 바랍니다.</p>
                   <p class="description"  style="margin-bottom: 3px;">* 이미지 장소는 짧게 기입해주시기 바랍니다. 예시) 전경, 로비, 주차장 등</p>
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
-                  <span class="form-title" style="display:inline-block";></span>
-                  <input type="file" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">
+                  <span class="form-title" style="display:inline-block;"></span>
+                  <input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
                </div>
             </td>   
          </tr>
@@ -190,7 +190,7 @@
             </th>
             <td>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="7" name="parking" placeholder="주차장 유/무료 정보 및 시간당 요금을 기재해주세요."></textarea>
+                  <textarea class="form-control textarea-layer" rows="7" name="parking" placeholder="주차장 유/무료 정보 및 시간당 요금을 기재해주세요." ></textarea>
                   <div remain-traffic_info" class="maxText">(최대 500자)</div>
                </div>
             </td>
@@ -199,7 +199,6 @@
          <tr>
             <br>
             <th colspan="2" style="background-color: white; ">
-                  <button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
             	  <input type="hidden" name="ceoName" value="${ requestScope.accomoDTO.ceoName }">
             	  <input type="hidden" name="accomoType" value="${ requestScope.accomoDTO.accomoType }">
             	  <input type="hidden" name="registNo" value="${ requestScope.accomoDTO.registNo }">
@@ -207,56 +206,14 @@
             	  <input type="hidden" name="adrDetail" value="${ requestScope.accomoDTO.adrDetail }">
             	  <input type="hidden" name="email" value="${ requestScope.accomoDTO.email }">
             	  <input type="hidden" name="homepage" value="${ requestScope.accomoDTO.homepage }">
+                  <button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
             </th>
          </tr>
       </tbody>
+      
 </table>
-<script>
-	const $titleImgArea = document.getElementById("titleImgArea");
-	const $contentImgArea1 = document.getElementById("contentImgArea1");
-	const $contentImgArea2 = document.getElementById("contentImgArea2");
-	const $contentImgArea3 = document.getElementById("contentImgArea3");
-	
-	$titleImgArea.onclick = function() { 
-		document.getElementById("thumbnailImg1").click(); 
-	}
-	
-	$contentImgArea1.onclick = function() {
-		document.getElementById("thumbnailImg2").click();
-	}
-	
-	$contentImgArea2.onclick = function() {
-		document.getElementById("thumbnailImg3").click();
-	}
-	
-	$contentImgArea3.onclick = function() {
-		document.getElementById("thumbnailImg4").click();
-	}
-	
-	function loadImg(value, num) {
-		if (value.files && value.files[0]) {
-			const reader = new FileReader();
-			reader.onload = function(e) {
-				switch(num){
-				case 1:
-					document.getElementById("titleImg").src = e.target.result;
-					break;
-				case 2:
-					document.getElementById("contentImg1").src = e.target.result;
-					break;
-				case 3:
-					document.getElementById("contentImg2").src = e.target.result;
-					break;
-				case 4:
-					document.getElementById("contentImg3").src = e.target.result;
-					break;
-				}
-			}
-			reader.readAsDataURL(value.files[0]);
-		}
-	}	
-</script>
 </form>
+
 <br><br><br>
 <!--footer-->
 <div class="footer-bottom">

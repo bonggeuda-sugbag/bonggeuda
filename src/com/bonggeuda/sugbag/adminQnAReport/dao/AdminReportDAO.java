@@ -249,14 +249,15 @@ public class AdminReportDAO {
 		
 	}
 
-	public ReportDTO selectReportThumnail(Connection con, int reportNo) {
+	public List<ReportDTO> selectReportThumnail(Connection con, int reportNo) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("selectNoiceThumnail");
+		String query = prop.getProperty("selectReportThumnail");
 		
-		ReportDTO reportThumnailInfo = new ReportDTO();
+		List<ReportDTO> reportThumnailInfo = null;
+	
 		
 		try {
 		
@@ -264,11 +265,15 @@ public class AdminReportDAO {
 			pstmt.setInt(1, reportNo);
 			
 			rset = pstmt.executeQuery();
+			reportThumnailInfo = new ArrayList<>();
 			
-			if(rset.next()) {
+			while(rset.next()) {
 
-				reportThumnailInfo.setThumnailPath(rset.getString("THUMBNAIL_PATH"));
+				ReportDTO thumnailInfo = new ReportDTO();
 				
+				thumnailInfo.setThumnailPath(rset.getString("THUMBNAIL_PATH"));
+				
+				reportThumnailInfo.add(thumnailInfo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -277,6 +282,7 @@ public class AdminReportDAO {
 			close(pstmt);
 		}
 		
+		System.out.println("DAO : "  + reportThumnailInfo);
 		return reportThumnailInfo;
 	}
 
