@@ -42,9 +42,8 @@ public class ReviewSelectServlet extends HttpServlet {
 		Map<Integer,String> reviewPicture = bsvc.selectReviewPicture(accomoNo,categoryNo);
 		
 		//4.리뷰업다운상태
-//		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-//		int userNo = member.getUserNo();
-		int userNo = 3;
+		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
+		int userNo = member.getUserNo();
 		Map<Integer, String> upDownStatus = bsvc.selectReviewUpDownStatus(userNo);
 		
 		//베스트리뷰에 좋아요 싫어요 업다운상태 사진 추가
@@ -113,8 +112,6 @@ public class ReviewSelectServlet extends HttpServlet {
 		
 		String path="";
 		
-		System.out.println(reviewList);
-		System.out.println(bestReview);
 		//리뷰리스트, 베스트리뷰,
 		if(bestReview !=null || reviewList!=null) {
 			path="/WEB-INF/views/guest/accomoInfo/book.jsp";
@@ -135,8 +132,7 @@ public class ReviewSelectServlet extends HttpServlet {
 		request.getParameter("status");
 		request.getParameter("reviewNo");
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-//		int userNo = member.getUserNo();
-		int userNo = 3;
+		int userNo = member.getUserNo();
 		
 		ReviewDTO review = new ReviewDTO();
 		review.setUserNo(userNo);

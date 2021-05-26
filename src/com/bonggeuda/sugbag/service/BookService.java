@@ -303,7 +303,6 @@ public class BookService {
 		
 		roomInfo = bookDao.selectRoomInfo(con, roomNo);
 		
-		System.out.println("서비스에서 호출 : " + roomInfo );
 		close(con);
 		return roomInfo;
 	}
@@ -369,6 +368,11 @@ public class BookService {
 		
 		insertResult = bookDao.insertReviewHistory(con, review);
 		
+		if(insertResult>0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
 		close(con);
 		return insertResult;
 	}
@@ -386,6 +390,13 @@ public class BookService {
 	    
 	    updateResult = bookDao.updateReviewHistory(con, review);
 	    
+	    close(con);
+	    
+	    if(updateResult>0) {
+	    	commit(con);
+	    } else {
+	    	rollback(con);
+	    }
 	    close(con);
 		return updateResult;
 	}

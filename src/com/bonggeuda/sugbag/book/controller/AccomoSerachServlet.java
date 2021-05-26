@@ -46,6 +46,7 @@ public class AccomoSerachServlet extends HttpServlet {
 		search.setCategory(3);
 		if(personnel.length() > 0) {
 			search.setPersonnal(Integer.parseInt(personnel));
+			request.setAttribute("personnel", personnel);
 		}
 		String searchCondition = "";
 		

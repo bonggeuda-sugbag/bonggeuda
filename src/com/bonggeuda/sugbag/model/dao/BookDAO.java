@@ -957,10 +957,8 @@ public class BookDAO {
 		Map<Integer, String> reviewStaus = null;
 		
 		String query = prop.getProperty("selectRivewStatus");
-		System.out.println(userNo);
 		try {
 			pstmt = con.prepareStatement(query);
-			System.out.println(query);
 			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
@@ -970,7 +968,6 @@ public class BookDAO {
 			while(rset.next()) {
 				reviewStaus.put(rset.getInt("리뷰번호"), rset.getString("상태"));
 			}
-			System.out.println(reviewStaus);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -28,7 +28,6 @@
               , ?
               , ?
               , 'Y'
-              , null
               , REPORT_NO_SEQ.CURRVAL
               )
     </entry>

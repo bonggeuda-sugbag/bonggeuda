@@ -189,6 +189,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     	facility[i].checked = true;
                     }		    		
 		    	}
+		    	var person = "${personnel}";
+		    	
+		    	if(person != null){
+		    		document.getElementsByName("personnel")[0].value = person;
+		    	}
+		    	
 		    }
 		</script>
 		</div>
@@ -197,11 +203,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class=list_wrap style="width:900px; height:30px; margin: 30px 0 0 10px; display: flex; margin-bottom: 50px;">
 				<button "type="button" data-sort="HIT" onclick="doSort(this);" value="highScore">
-					<span>평점 순</span>
+					<span>높은평점 순</span>
 				</button>
-<!-- 				<button type="button" data-sort="DISTANCE">
-					<span>거리 순</span>
-				</button> -->
+ 				<button type="button" data-sort="DISTANCE" onclick="doSort(this);" value="lowScore">
+					<span>낮은 평점 순</span>
+				</button>
 				<button type="button" data-sort="LOWPRICE" onclick="doSort(this);" value="lowPrice">
 					<span>낮은 가격 순</span>
 				</button>
@@ -214,7 +220,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<script>
 			    function doSort(p){
-			    	alert("ㅂ")
 					var sortType="";
 			    	var personnel = document.getElementsByName("personnel")[0].value;
 					switch(p.value){
@@ -237,7 +242,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			    	}
 			    	
 			    	console.log(arr);
-			    	location.href="${pageContext.servletContext.contextPath}/accomo/sorting?sortType=sortType&facility=arr&type=${type}&personnel=personnel";
+			    	location.href="${pageContext.servletContext.contextPath}/accomo/sorting?sortType="+sortType+"&facility="+arr+"&type=${type}&personnel="+personnel;
 			    }
 			</script>
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">

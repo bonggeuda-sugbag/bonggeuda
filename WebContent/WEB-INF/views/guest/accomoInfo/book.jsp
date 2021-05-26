@@ -1073,28 +1073,24 @@ textarea {
                                 		anotherId = "unlike" + reviewNo;
                                 		document.getElementById(anotherId).className = "unlike"; 
                                 		status = "U";
-                                		alert("좋아요!");
                                 		break;
                                 	case "likeClick" :
                                 		document.getElementById(p.id).className = "like";
                                 		anotherId = "unlike" + reviewNo;
                                 		document.getElementById(anotherId).className = "unlike";
                                 		status = "N";
-                                		alert("좋아요취소!");
                                 		break;
                                 	case "unlike" :
                                 		document.getElementById(p.id).className = "unlikeClick";
                                 		anotherId = "like" + reviewNo;
                                 		document.getElementById(anotherId).className = "like";
                                 		status = "D";
-                                	    alert("싫어요!");
                                 		break;
                                 	case "unlikeClick" :
                                 		document.getElementById(p.id).className = "unlike";
                                 		anotherId = "like" + reviewNo;
                                 		document.getElementById(anotherId).className = "like";
                                 		status = "N";
-                                		alert("싫어요취소!");
                                 		break;
                                 	}
                                 	
