@@ -384,7 +384,7 @@ public class OwnerMypageDAO {
 		ResultSet rset = null;
 
 		/* 반환시킬 변수 지정 */
-		List<SettlementDTO> selectStl = null;
+		List<SettlementDTO> selectStl = new ArrayList<>(); //모든 행을 다 받아서 최종 리스트를 만듬
 		
 		/* --> selectedAll 가지고 xml감 */
 		String query = prop.getProperty("selectStl");
@@ -399,9 +399,8 @@ public class OwnerMypageDAO {
 			pstmt.setInt(2, 1); //업체번호
 
 			rset = pstmt.executeQuery();
-			selectStl = new ArrayList<>(); //모든 행을 다 받아서 최종 리스트를 만듬
 			
-			if(rset.next()) {
+			while(rset.next()) {
 				
 				SettlementDTO stl = new SettlementDTO();
 
@@ -445,7 +444,7 @@ public class OwnerMypageDAO {
 			if(rset.next()) {
 				AccomoDTO accomoName = new AccomoDTO();
 				accomoName.setAccomoName(rset.getString("ACCOMO_NAME"));
-				
+				accomoName.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				selectAccomo.add(accomoName);
 			}
 		} catch (SQLException e) {
@@ -454,6 +453,36 @@ public class OwnerMypageDAO {
 		
 
 		return selectAccomo;
+	}
+
+	public int insertStl(Connection con, int accomoNo) {
+
+		PreparedStatement pstmt = null;
+		
+		/* 반환시킬 변수 지정 */
+		int insert = 0;
+		
+		String query = prop.getProperty("insertStl");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, accomoNo);
+			
+			insert = pstmt.executeUpdate();
+			System.out.println(insert);
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+     
+		return insert;
 	}
 
 }

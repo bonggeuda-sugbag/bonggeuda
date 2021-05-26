@@ -97,7 +97,20 @@
 	<entry key="selectAccomo">
 		SELECT
 		       ACCOMO_NAME
+		     , ACCOMO_NO
 		  FROM ACCOMO_INFO
 		 WHERE OWNER_NO = ?
 	</entry>
+	
+	<entry key="insertStl">
+		 INSERT INTO REQUEST_STL
+ 		 VALUES
+ 		 (
+  		   SEQ_REQUEST_STL_NO.NEXTVAL
+ 		 , ?
+ 		 , SYSDATE
+ 		 , 'N'
+ 		 )
+	</entry>
+	
 </properties>

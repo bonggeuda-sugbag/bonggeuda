@@ -87,17 +87,19 @@
 				<br>숙소 선택&nbsp&nbsp
 				<select name="accmoName" class="select-time">
 					<c:forEach var="accmoNames" items="${ requestScope.selectAccomo }">						
-						<option  value="${ accmoNames.accomoName }">
+						<option value="${ accmoNames.accomoName }">
 							<c:out value="${ accmoNames.accomoName }"/>							
+							<input type="hidden" name="accomoNo" value="${ accmoNames.accomoNo }">
 						</option>
 					</c:forEach>
 				</select>
-				&nbsp&nbsp&nbsp&nbsp<button class="submit-btn" type="submit">정산 신청</button>
-			   	<input type="hidden" value="${ stl.reqStlNo }">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="submit-btn" type="submit">
+					정산 신청
+				</button>
 			</form>
 			<br><br><br><br>
 			
-			<c:forEach var="stl" items="${ requestScope.selectStl }"> 
 			<div class="tab">
 			    <span class="tab_btn active">신청 내역</span>
 			 </div>
@@ -111,6 +113,7 @@
 				    </tr>
 				</thead>
 				<tbody>
+				<c:forEach var="stl" items="${ requestScope.selectStl }"> 
 				   	<tr>
 						<th><c:out value="${ stl.reqStlNo }"/></th>
 						<th><c:out value="${ stl.accomoName }"/></th>
@@ -118,17 +121,17 @@
 						<th>
 						<c:choose>
 							<c:when test="${ stl.stlYn eq 'Y'}">
-							정산완료
+								정산완료
 							</c:when>
 							<c:when test="${ stl.stlYn eq 'N'}">
-							대기중
+								대기중
 							</c:when>
 						</c:choose>
 						</th>
 					</tr>   
+				</c:forEach>
 				</tbody>
 			 </table>
-			</c:forEach>
 			 <div class="tab_each" style="display:block">
 				<nav>
 					<ul class="pagination">

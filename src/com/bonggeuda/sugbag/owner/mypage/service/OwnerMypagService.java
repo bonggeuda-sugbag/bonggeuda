@@ -164,4 +164,20 @@ public class OwnerMypagService {
 		return selectAccomo;
 	}
 
+	public int insertStl(int accomoNo) {
+		
+		Connection con = getConnection();
+		
+		int insertStl = ownerDAO.insertStl(con, accomoNo);
+		
+		if(insertStl > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return insertStl;
+	}
+
 }
