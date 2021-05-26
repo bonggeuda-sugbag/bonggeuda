@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.bonggeuda.sugbag.model.dto.AccomoInfoDTO" %>
 <!--A Design by W3layouts 
 Author: W3layout
@@ -110,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <jsp:include page="../../common/guestheader.jsp"/>
-<!--//-->	
+<!--//-->
 <div class=" banner-buying">
 	<div class=" container">
 	<h3 style="color: #fff; font-weight: 500; font-size: 3em;"><span style="border-bottom: 7px solid #6eceda;">숙소예약</span></h3> 
@@ -142,41 +143,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</section>
 		<hr>
 		<h3 style="margin-bottom: 15px;">상세조건</h3>
-
+		<form method="post" action = "${pageContext.servletContext.contextPath}/accomoSelect/search"> 
+		
 		<div>
 			<button class="reset" >초기화</button>
 			<button id="searchFacility"class="accept" >적용</button>
- 			 	<script>
-		 	    $("#searchFacility").click(function(){
-			    	const checkList = [];
-			    	$("input[name='facility']:checked").each(function(i){
-			    		checkList.push($(this).val());
-			    	});
-			    	const personnal = $("input[name='personnel']").val();
-			    	const sendData = {"type":"${type}","checkList":checkList, "personnal" : personnal}
-			    	
-			    	if(checkList.length == 0 && personnal.length == 0){
-			    		alert("조건을 입력해주세요")
-			    		return;
-			    	} else{
-			    		
-			    	$.ajax({
-			    		url:"${pageContext.servletContext.contextPath}/accomoSelect/search",
-				    	type:"post",
-				    	data:sendData,
-				    	success:function(data, textStatus, xhr){
-				    	    	console.table(data);
-				    	    	$("#forRemove").remove();
-				    	    	$("#forRemove").append("<h3>안녕</h3>");
-				    	},
-				    	error:function(xhr,status,error){
-				    		console.log(error);
-				    	}
-				    });
-			    }
-		    });
-			</script>
-			
 		</div>
 		<hr>
 		<div>
@@ -201,27 +172,74 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<label><input type="checkbox" name="facility" value="개인사물함" >  개인사물함</label><br>
 				<label><input type="checkbox" name="facility" value="TV" >  TV</label><br>
 				<label><input type="checkbox" name="facility" value="무료주차" >  무료주차</label><br>
+				<label><input type="checkbox" name="facility" value="인덕션" >  인덕션</label><br>
+				<input type="hidden" name="type" value="${type}">
 			</ul>
 			<hr>
 		</div>
+		</form>
+		<!-- 체크박스유지작업 -->
+ 		<script>
+		    window.onload = function(){
+		    	var condition = "${seacrh}";
+		    	var facility = document.getElementsByName("facility");
+		    	
+		    	for(var i = 0; i <facility.length; i++ ){
+                    if(condition.indexOf(facility[i].value) >= 0){
+                    	facility[i].checked = true;
+                    }		    		
+		    	}
+		    }
+		</script>
 		</div>
+		
 		<div style="width: 900px; padding: 10px; display: flex; flex-direction: column;">
 
 			<div class=list_wrap style="width:900px; height:30px; margin: 30px 0 0 10px; display: flex; margin-bottom: 50px;">
-				<button type="button" data-sort="HIT">
-					<span>추천 순</span>
+				<button "type="button" data-sort="HIT" onclick="doSort(this);" value="highScore">
+					<span>평점 순</span>
 				</button>
-				<button type="button" data-sort="DISTANCE">
+<!-- 				<button type="button" data-sort="DISTANCE">
 					<span>거리 순</span>
-				</button>
-				<button type="button" data-sort="LOWPRICE">
+				</button> -->
+				<button type="button" data-sort="LOWPRICE" onclick="doSort(this);" value="lowPrice">
 					<span>낮은 가격 순</span>
 				</button>
-				<button type="button" data-sort="HIGHPRICE">
+				<button type="button" data-sort="HIGHPRICE" onclick="doSort(this);" value="highPrice">
 					<span>높은 가격 순</span>
 				</button>
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
+		   
+			
+			<script>
+			    function doSort(p){
+			    	alert("ㅂ")
+					var sortType="";
+			    	var personnel = document.getElementsByName("personnel")[0].value;
+					switch(p.value){
+					    case "highScore" : sortType="highPrice"; break;
+					    case "lowPrice" : sortType="lowPrice"; break;
+					    case "highPrice" : sortType="highPrice"; break;
+					}
+					console.log(sortType)
+			    	var arr = "";
+			    	var search = document.getElementsByName("facility");
+			    	
+			    	for(var i = 0; i < search.length; i++){
+			    		if(search[i].checked){
+			    			if( i < search.length - 1 ){
+ 			    	    	arr+=search[i].value +","
+			    			} else{
+ 			    	    	arr+=search[i].value;
+			    			}
+			    		}
+			    	}
+			    	
+			    	console.log(arr);
+			    	location.href="${pageContext.servletContext.contextPath}/accomo/sorting?sortType=sortType&facility=arr&type=${type}&personnel=personnel";
+			    }
+			</script>
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<c:choose>
 			    <c:when test="${empty accomo}">

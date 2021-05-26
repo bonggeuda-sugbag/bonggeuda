@@ -29,10 +29,10 @@ public class QueryBuilder {
 		qr.append(select);
 		if(search.getFacility() != null) {
 			String searchCondition = LikeBuilder(search.getFacility()).toString();
+			qr.append(searchCondition);
 		}
 		String group = "GROUP BY AI.ACCOMO_NO, AI.ACCOMO_NAME, ACCOMO_PATH, AT.THUMBNAIL_PATH";
 		qr.append(group);
-		System.out.println(qr);
 		return qr;
 	}
 	

@@ -138,20 +138,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          <c:when test="${ accomoList.approvalYN eq 'N'}">
               	 숙소 등록 승인 대기중 
          </c:when>
-         <c:when test="${ accomoList.approvalYN eq 'Y' && accomoList.approvalStatus eq 'Y'}"> 
+         <c:when test="${ accomoList.approvalYN eq 'Y'}"> 
        <!-- rm 히스토리의 approveStatus가 Y인 애들은 등록 됐다는 거지 -->
             <form action="/bonggeuda/owner/accomoModify" method="post">
                <button  class="submit-btn" type="submit">
-               <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+               <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.enAccomoNO }"/>">
                 숙소 수정
             </form>
             <form action="/bonggeuda/owner/roomModify" method="post">
                <button  class="submit-btn" type="submit">
-               <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+               <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ accomoList.rmAccomoNo }"/>">
                 객실 수정
             </form>
          </c:when>
-         <c:when test="${ accomoList.approvalYN eq 'Y' && accomoList.approvalStatus eq 'N'}"> 
+         <c:when test="${ accomoList.approvalStatus eq 'C'}"> 
        <!-- rm 히스토리의 approveStatus가 Y인 애들은 등록 됐다는 거지 -->
    				숙소 승인 거절됨
             </form>
@@ -173,13 +173,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          <td class="roomCondition">
          <c:choose>
          
-         <c:when test="${ accomoList.approvalStatus eq 'Y'}">
+         <c:when test="${ accomoList.approvalYN eq 'Y'}">
         	 관리자 승인 완료
          </c:when>
          <c:when test="${ accomoList.approvalYN eq 'N'}">
          	숙소 검수 중
          </c:when>
-         <c:when test="${ accomoList.approvalStatus eq 'N'}">
+         <c:when test="${ accomoList.approvalYN eq 'C'}">
                      <br>
             <p style="color: red; font-size: 20px">숙소 등록 거절</p>
             <br>

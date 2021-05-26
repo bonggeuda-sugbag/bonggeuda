@@ -20,7 +20,7 @@ public class ModifyAccomoDAO {
 	public ModifyAccomoDAO() {
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"/owner/roomManagement/roomManagement-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner/roomManagement/roomManagement-mapper.xml"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +83,7 @@ public class ModifyAccomoDAO {
 	}
 
 
-	public int insertModifyAttachment(Connection con, AttachmentDTO tempFileInfo) {
+	public int insertModifyAttachment(Connection con, AttachmentDTO tempFileInfo, int selectReqNoMax) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -101,6 +101,7 @@ public class ModifyAccomoDAO {
 			pstmt.setString(4, tempFileInfo.getSavePath());
 			pstmt.setString(5, tempFileInfo.getFileType());
 			pstmt.setString(6, tempFileInfo.getThumbnailPath());
+			pstmt.setInt(7,selectReqNoMax );
 			
 			result = pstmt.executeUpdate();
 			
@@ -181,7 +182,43 @@ public class ModifyAccomoDAO {
 	}
 
 
+	public int insertAccomoAttachment(Connection con, AttachmentDTO tempFileInfo, int seqCurrvalSelect) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertAccomoAttachment");
+		
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, 1);
+			pstmt.setString(2, tempFileInfo.getOriginName());
+			pstmt.setString(3, tempFileInfo.getSavedName());
+			pstmt.setString(4, tempFileInfo.getSavePath());
+			pstmt.setString(5, tempFileInfo.getFileType());
+			pstmt.setString(6, tempFileInfo.getThumbnailPath());
+			pstmt.setInt(7, seqCurrvalSelect);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		
+		return result;
+	}
+
 }
+
+
 
 
 

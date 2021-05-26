@@ -60,7 +60,7 @@ public class OwnerBookingPastList extends HttpServlet {
 		System.out.println("전체내역조회 : " + bookList);
 		
 		String path = "";
-		path = "/WEB-INF/views/owner/bookingList/bookingList.jsp";
+		path = "/WEB-INF/views/owner/bookingList/bookingPast.jsp";
 		request.setAttribute("bookList", bookList);
 		request.setAttribute("pageInfo", pageInfo);
 		

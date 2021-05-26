@@ -27,7 +27,7 @@ public class ManagementRoomSelectDAO {
 	public ManagementRoomSelectDAO() {
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"/owner/roomManagement/roomManagement-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner/roomManagement/roomManagement-mapper.xml"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -93,9 +93,7 @@ public class ManagementRoomSelectDAO {
 				accomoDTO.setEnAccomoNO(rset.getInt("EN_ACCOMO_NO"));
 				accomoDTO.setRmAccomoNo(rset.getInt("RM_ACCOMO_NO"));
 				accomoDTO.setThumbNailPath(rset.getString("THUMBNAIL_PATH"));
-				accomoDTO.setApprovalStatus(rset.getString("APPROVE_STATUS"));
 
-				accomoDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				
 				selectAccomoList.add(accomoDTO);
 			}

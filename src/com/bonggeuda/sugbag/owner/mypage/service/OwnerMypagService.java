@@ -1,15 +1,15 @@
 package com.bonggeuda.sugbag.owner.mypage.service;
 
-
 import java.sql.Connection;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
+import com.bonggeuda.sugbag.model.dto.NoticeDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
 import com.bonggeuda.sugbag.model.dto.RequestTaxBillDTO;
+import com.bonggeuda.sugbag.model.dto.SettlementDTO;
 import com.bonggeuda.sugbag.owner.mypage.dao.OwnerMypageDAO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
@@ -21,8 +21,6 @@ public class OwnerMypagService {
 	
 	private OwnerMypageDAO ownerDAO = new OwnerMypageDAO();
 	
-	
-
 	public OwnerInfoDTO selectOwnerInfo(int ownerNo) {
 
 		/* Connection 생성 */
@@ -38,8 +36,6 @@ public class OwnerMypagService {
 		return selectOwner;
 	}
 
-
-
 	public List<ReportDTO> seletReportList(int ownerNo) {
 
 		Connection con = getConnection();
@@ -52,8 +48,6 @@ public class OwnerMypagService {
 		return selectReportList;
 	}
 
-
-
 	public ReportDTO selectReportDetail(int reportNo) {
 
 		Connection con = getConnection();
@@ -65,8 +59,6 @@ public class OwnerMypagService {
 		return reportDTO;
 	}
 
-
-
 	public String selectRejectReason(int reportNo) {
 		Connection con = getConnection();
 		
@@ -76,8 +68,6 @@ public class OwnerMypagService {
 		
 		return selectRejectReason;
 	}
-
-
 
 	public int ownerWithdrawUpdateService(int ownerNo) {
 		
@@ -99,8 +89,6 @@ public class OwnerMypagService {
 		return ownerWithdrawUpdate;
 	}
 
-
-
 	public List<RequestTaxBillDTO> selectTaxBillList(int ownerNo) {
 		
 		Connection con = getConnection();
@@ -114,8 +102,6 @@ public class OwnerMypagService {
 		
 		return selectTaxBillList;
 	}
-
-
 
 	public int insertRequestTaxBill(int ownerNo, Date startDate ,Date endDate,int accomoNo) {
 		
@@ -134,8 +120,6 @@ public class OwnerMypagService {
 		return insertRequestTaxBill;
 	}
 
-
-
 	public List<AccomoDTO> selectAccomoNames(int ownerNo) {
 		
 		Connection con = getConnection();
@@ -148,8 +132,6 @@ public class OwnerMypagService {
 		return selectAccomoNames;
 	}
 
-
-
 	public int selectAccomoNo(String accomoName, int ownerNo) {
 
 		Connection con = getConnection();
@@ -161,10 +143,16 @@ public class OwnerMypagService {
 		return selectAccomoNo;
 	}
 
+	public List<SettlementDTO> selectStl() {
+		
+	
+		Connection con = getConnection();
+		
+		List<SettlementDTO> selectStl = ownerDAO.selectStl(con);
+		
+		close(con);
 
-
-
-
-
+		return selectStl;
+	}
 
 }

@@ -23,6 +23,9 @@
 			case "insertReview" :
 				movePath = "${ pageContext.servletContext.contextPath }/userbooklist/select";
 				break;
+			case "infoUpdate" :
+				movePath = "${ pageContext.servletContext.contextPath }/usermyinfo/select";
+				break;
 
 		}
 		
