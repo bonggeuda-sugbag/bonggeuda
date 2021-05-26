@@ -3,7 +3,10 @@ package com.bonggeuda.sugbag.book.controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,28 +38,34 @@ public class BookingServlet extends HttpServlet {
 		AccomoInfoDTO accomoInfo = new AccomoInfoDTO();
 		accomoInfo.setAccomoNo(Integer.parseInt(request.getParameter("accomoNo")));
 		accomoInfo.setAccomoName(request.getParameter("accomoName"));
-		accomoInfo.setCheckIn(request.getParameter("AccomoCheckIn"));
+		String checkInStandard = request.getParameter("AccomoCheckIn");
+		accomoInfo.setCheckIn(checkInStandard);
 		
 		//기존 객실정보
+		
 		RoomDTO roomInfo = new RoomDTO();
-		roomInfo.setRoomNo(Integer.parseInt(request.getParameter("roomNo")));
-		roomInfo.setRoomName(request.getParameter("roomName"));
-		roomInfo.setRoomFee(Integer.parseInt(request.getParameter("price")));
-		roomInfo.setPeakFee(Integer.parseInt(request.getParameter("peakFee")));
-		roomInfo.setRoomMax(Integer.parseInt(request.getParameter("roomMax")));
-		roomInfo.setPeakFee(Integer.parseInt(request.getParameter("peakFee")));
+		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
+		roomInfo = new BookService().selectRoomInfo(roomNo);
+		
 		// 예약정보
 		BookDTO bookInfo = new BookDTO();
+		String userCheckIN = request.getParameter("checkInTime");
 		bookInfo.setUserNo(userNo);
 		bookInfo.setBookPersonnel(Integer.parseInt(request.getParameter("people")));
 		bookInfo.setBookCheckDate(request.getParameter("checkInDate"));
 		bookInfo.setBookCheckoutDate(request.getParameter("checkOutDate"));
-		bookInfo.setBookCheckIn(request.getParameter("checkInTime"));
+		bookInfo.setBookCheckIn(userCheckIN);
 		Date checkOut = java.sql.Date.valueOf(request.getParameter("checkOutDate"));
 		Date checkIn = java.sql.Date.valueOf(request.getParameter("checkInDate"));
-		int bookDay = checkOut.getDate() - checkIn.getDate();
-		int totalPrice = roomInfo.getRoomFee() * bookDay;
-		bookInfo.setDay(checkOut.getDate() - checkIn.getDate());
+		long bookDay = ((checkOut.getTime() - checkIn.getTime())/(24*60*60*1000));
+		// 결제금액 계산
+		// 유저가 선택한 체크인시간~체크아웃 시간/(업체가 정한 체크인시간 ~ 체크아웃시간 )
+		// 1박 미만시
+		
+		// 1박시
+		
+		int totalPrice = roomInfo.getRoomFee() * (int)bookDay;
+		bookInfo.setDay(bookDay);
 		
 		List couponPoint = new BookService().selectCouponPoint(userNo);
 		

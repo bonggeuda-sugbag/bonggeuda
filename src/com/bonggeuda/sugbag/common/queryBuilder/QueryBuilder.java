@@ -28,11 +28,12 @@ public class QueryBuilder {
 				+ "   AND CATEGORY_NO = ?\r\n";
 		qr.append(select);
 		if(search.getFacility() != null) {
+			System.out.println("여기를 자꾸 거너뛴다 너?");
 			String searchCondition = LikeBuilder(search.getFacility()).toString();
+			qr.append(searchCondition);
 		}
 		String group = "GROUP BY AI.ACCOMO_NO, AI.ACCOMO_NAME, ACCOMO_PATH, AT.THUMBNAIL_PATH";
 		qr.append(group);
-		System.out.println(qr);
 		return qr;
 	}
 	
@@ -82,7 +83,7 @@ public class QueryBuilder {
 				+ "                  JOIN BOOK_LIST BL ON(RV.BOOK_NO = BL.BOOK_NO)\r\n"
 				+ "                  JOIN ROOM_INFO RI ON(BL.ROOM_NO = RI.ROOM_NO)\r\n"
 				+ "                  JOIN USER_INFO UI ON(BL.USER_NO = UI.USER_NO)\r\n"
-				+ "                 WHERE RI.ACCOMO_NO = ?";
+				+ "                 WHERE RI.ACCOMO_NO = ? ";
 		qr.append(select);
 		if(bestReview.size()>0) {
 			String searchCondtion = NotInBuilder(bestReview).toString();

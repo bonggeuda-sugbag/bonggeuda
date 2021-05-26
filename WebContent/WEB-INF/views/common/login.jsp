@@ -9,7 +9,70 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Login :: w3layouts</title>
+<style>
+	.login-icons button {
+		border-radius: 10px;
+		margin-top: 5px;
+		background: #6eceda;
+		color: white;
+		border-style: none;
+		box-shadow: 0 3px 0 #0e8c73;
+		height: 35px;
+	}
+	.login-icons button:hover {
+		background-color: #4aa9b6;
+		box-shadow: 0 3px 0 #23a188;
+	}
+	.login-icons button:active {
+		box-shadow: none;
+	}
+	.adminlogin-icons button {
+		border-radius: 10px;
+		margin-top: 5px;
+		background: #c9c9c9;
+		color: white;
+		border-style: none;
+		box-shadow: 0 3px 0 #999999;
+		height: 35px;
+	}
+	.adminlogin-icons button:hover {
+		background-color: #999999;
+		box-shadow: 0 3px 0 #999999;
+	}
+	.adminlogin-icons button:active {
+		box-shadow: none;
+	}
+	.space_or {
+    	position: relative;
+    	height: 40px;
+    	margin-bottom: 8px;
+	}
+	.space_or:after {
+	    content: '';
+	    position: absolute;
+	    top: 50%;
+	    left: 0;
+	    width: 100%;
+	    height: 1px;
+	    background: rgba(0,0,0,0.08);
+	}
+	.space_or span {
+	    display: inline-block;
+	    position: absolute;
+	    top: 0;
+	    left: 50%;
+	    z-index: 10;
+	    width: 50px;
+	    /* height: 40px; */
+	    margin: 0 0 0 -25px;
+	    background: #fff;
+	    font-size: 14px;
+	    line-height: 40px;
+	    color: rgba(0,0,0,0.38);
+	    text-align: center;
+	}
+</style>
+<title>봉그다 숙박숙박</title>
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.min.js"></script>
@@ -26,8 +89,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
-<body>
+<body style="background: white;">
 <!--header-->
 	<!-- <div class="navigation">
 			<div class="container-fluid">
@@ -48,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bongda Sukbak</a></h1>
+				<h1><a href="index.html">BONGGUEDA</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
@@ -62,87 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 				
 			</ul>
-			<div class="nav-icon">
-				<div class="hero fa-navicon fa-2x nav_slide_button" id="hero">
-						<a href="#"><i class="glyphicon glyphicon-menu-hamburger"></i> </a>
-					</div>	
-				<!---
-				<a href="#" class="right_bt" id="activator"><i class="glyphicon glyphicon-menu-hamburger"></i>  </a>
-			--->
-			</div>
 		<div class="clearfix"> </div>
-			<!---pop-up-box---->    
-				<link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-				<script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
-			<!---//pop-up-box---->
-				<div id="small-dialog" class="mfp-hide">
-					    <!----- tabs-box ---->
-				<div class="sap_tabs">	
-				     <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-						  <ul class="resp-tabs-list">
-						  	  <li class="resp-tab-item " aria-controls="tab_item-0" role="tab"><span>All Homes</span></li>
-							  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>For Sale</span></li>
-							  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>For Rent</span></li>
-							  <div class="clearfix"></div>
-						  </ul>				  	 
-						  <div class="resp-tabs-container">
-						  		<h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>All Homes</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
-								 	<div class="facts">
-									  	<div class="login">
-											<input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">		
-									 		<input type="submit" value="">
-									 	</div>        
-							        </div>
-						  		</div>
-							     <h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span>For Sale</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-									<div class="facts">									
-										<div class="login">
-											<input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">		
-									 		<input type="submit" value="">
-									 	</div> 
-							        </div>	
-								 </div>									
-							      <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span>For Rent</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-									 <div class="facts">
-										<div class="login">
-											<input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">		
-									 		<input type="submit" value="">
-									 	</div> 
-							         </div>	
-							    </div>
-					      </div>
-					 </div>
-					 <script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
-				    	<script type="text/javascript">
-						    $(document).ready(function () {
-						        $('#horizontalTab').easyResponsiveTabs({
-						            type: 'default', //Types: default, vertical, accordion           
-						            width: 'auto', //auto or any width like 600px
-						            fit: true   // 100% fit in a container
-						        });
-						    });
-			  			 </script>	
-				</div>
-				</div>
-				 <script>
-						$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
-																						
-						});
-				</script>
-					
-	
-		</div>
 		<div class="clearfix"> </div>
 		</div>	
 </div>
@@ -176,40 +160,119 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="login-right">
 	<div class="container">
 		<h3>Login</h3>
-		<div class="login-top" style="padding-left: 160px";>
+		<div class="login-icons" style= "width: 100%;">
+					<a id="custom-login-btn" href="javascript:loginWithKakao()">
+  						<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/>
+  					</a>
+  		</div>
+  		<br>
+  		<br>
+  		<p class="space_or" style="width:50%; margin: 0 auto;"><span>또는</span></p>
+		<div class="login-top">
+				<form action="${ pageContext.servletContext.contextPath }/login/check" method="post" onsubmit="return loginconfirm()">
 				<div class="form-info">
-					<form>
-						<input type="text" class="text" placeholder="Email Adress" required=""  style="width: 70%;">
-						<input type="password"  placeholder="Password" required=""  style="width: 70%;">
+						<input type="text" name="loginEmail" class="text" placeholder="Email Adress" style="width: 70%;">
+						<input type="password" name="loginPassword" placeholder="Password" style="width: 70%;">
 						<br>
 						<!-- <label class="hvr-sweep-to-right">
 							<input type="submit" value="Submit">
 						</label> -->
-					</form>
+				</div>
+				
+				<!-- 사용자,업체 로그인 -->
+				<div class="login-icons" style= "width: 100%;">
+  						<!-- <button class="api-btn" onclick="kakaoLogout()">로그아웃</button> -->
+					<br>
+					<button style="margin-right: 30px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/guest'">사용자 로그인</button>
+					<button style=" width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/owner'">업체 로그인</button>
+
+					<br>
+					<div class="clearfix"> </div>
+				</div>
+				
+				<!-- 회원가입 -->
+				<div class="create" style="padding-right: 80px;">
+					<a class="hvr-sweep-to-right" href="register.html">Create an Account</a>
+					<div class="clearfix"> </div>
 				</div>
 				<br>
 				
-				<ul class="login-icons" style= "width: 145%;">
-					<li><a href="#" ><i class="facebook"> </i><span>Kakaotalk</span></a></li>
-					<br>
-					<li ><a href="#" class="go"><i class="google"></i><span>google</span></a></li>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<li style="width: 22.5%;"><a href="${pageContext.servletContext.contextPath }/login/guest" class="twit"><i class="twitter"></i><span>사용자 로그인</span></a></li>
-					<li style="width: 22.5%;"><a href="${pageContext.servletContext.contextPath }/login/owner" class="in"><i class="linkedin"></i><span>업체 로그인</span></a></li>
-					<br>
-					<div class="clearfix"> </div>
-				</ul>
+				<!-- 관리자 로그인 -->
+					<div class="adminlogin-icons" style= "width: 100%;">
+						<button style="width: 120px; height: 40px; float:right" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/admin'">관리자 모드</button>
+					</div>
+				</form>
+				    
+    
+<script type="text/javascript">
+	Kakao.init('ef9dad5f79ec8fd8bd957ac3e023cbdd');
+
+	/* 로그인 */
+  	function loginWithKakao() {
+    	Kakao.Auth.login({
+      	success: function(authObj) {
+        	alert(JSON.stringify(authObj))
+      	},
+     	 	fail: function(err) {
+        	alert(JSON.stringify(err))
+      	},
+    	})
+  	}
+  
+  
+	/* 사용자 정보 가져오기 */
+	Kakao.Auth.createLoginButton({
+		container: '#kakao-login-btn',
+		success: function(authObj) {
+			Kakao.API.request({
+		    url: '/v2/user/me',
+		    success: function(res) {
+		    	alert(JSON.stringify(res))
+		    },
+		    fail: function(error) {
+		        alert(
+		        'login success, but failed to request user information: ' +
+		        JSON.stringify(error)
+		        )
+		    },
+		    })
+		},
+		fail: function(err) {
+		    alert('failed to login: ' + JSON.stringify(err))
+		},
+	})
+		  
+	/* 로그아웃 */
+	function kakaoLogout() {
+	    if (!Kakao.Auth.getAccessToken()) {
+	      alert('Not logged in.')
+	      return
+	    }
+	    Kakao.Auth.logout(function() {
+	      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
+	    })
+	}
+	
+	/* 로그인 정보 체크 */
+	function loginconfirm() {
+		/* var nickName = document.getElementById("userNickName").value;
+		
+		if(nickName!='') {
+			if(nickNameCnt != 0) {
+				alert("닉네임이 변경되었습니다.");
+           	 	return true;
+        	} else {
+            	alert("중복확인을 해주세요.");
+            	return false;
+        	}
+		} else {
+			alert("닉네임을 입력해주세요.");
+			return false;
+		} */
+	}
+</script>
+
 			
-			<div class="create" style="padding-right: 80px;">
-				<h7 ><a href="${pageContext.servletContext.contextPath }/login/admin">관리자 모드</a></h7>
-				<a class="hvr-sweep-to-right" href="register.html">Create an Account</a>
-				<div class="clearfix"> </div>
-			</div>
 	</div>
 </div>
 </div>

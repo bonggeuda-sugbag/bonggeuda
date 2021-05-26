@@ -189,8 +189,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</c:choose>   
 		</div>
 		<%-- 페이지 처리 --%>
-		
-		
 		</c:if>
 		<c:if test="${ empty selectQuestion }">
 			<div class="list_none" style="display: block;">

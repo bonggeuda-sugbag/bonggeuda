@@ -20,12 +20,14 @@ public class UserMyinfoUpdate extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int userNo = ((MemberDTO)request.getSession().getAttribute("member")).getUserNo();
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		UserMypageService mypageService = new UserMypageService();
 		MemberDTO userMyinfo = new MemberDTO();
 		
-		userMyinfo.setUserNo(1);
+		userMyinfo.setUserNo(userNo);
 		userMyinfo.setNickName(request.getParameter("userNickName"));
 		userMyinfo.setUserPhone(request.getParameter("userPhone"));
 		userMyinfo.setUserPwd(request.getParameter("userPwd"));
@@ -33,6 +35,14 @@ public class UserMyinfoUpdate extends HttpServlet {
 		int result = mypageService.updateUserinfo(userMyinfo);
 		
 		System.out.println(result);
+		
+		if(result > 0) {
+			
+			String page = "/WEB-INF/views/guest/moreNotice/narasuccess.jsp";
+			request.setAttribute("successCode", "infoUpdate");
+			request.getRequestDispatcher(page).forward(request, response);
+			
+		}
 		
 	}
 

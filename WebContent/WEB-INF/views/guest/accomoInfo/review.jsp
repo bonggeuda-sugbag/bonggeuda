@@ -106,31 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--header-->
 
 
-<div class="header">
-	<div class="container">
-		<!--logo-->
-			<div class="logo">
-				<h1><a href="index.jsp">Bonggeuda</a></h1>
-			</div>
-		<!--//logo-->
-		<!-- 상단메뉴바 -->
-		<div class="top-nav">
-			<ul class="right-icons">
-                <li><span ><a  href="index.jsp">메인페이지</a></span></li>
-                <li><a  href="more_notice.jsp">더보기</a></li>
-                <!-- <li><a  href="blog.jsp">내주변</a></li> -->
-                <li><a  href="mypage_point.jsp">마이페이지</a></li>
-				<li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-			</ul>
-			<!-- //상단메뉴바 -->
-				
-			</div>
-				
-				
-		<div class="clearfix"> </div>			
-		</div>
-		<div class="clearfix" > </div>
-    </div>	
+<jsp:include page="../../common/guestheader.jsp"/>
     
     <!--//-->	
     <!-- 숙소상세정보 -->

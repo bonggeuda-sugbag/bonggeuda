@@ -135,11 +135,7 @@ public class UserWriteReviewSelectAndInsert extends HttpServlet {
 						System.out.println("value[" + i + "] : " +value[i]);
 					}
 				}
-				System.out.println("1");
-//				System.out.println(Integer.parseInt(request.getParameter("bookNo")));
-				System.out.println(request.getParameter("reviewContent"));
-//				System.out.println(Integer.parseInt(request.getParameter("rating_1")));
-				System.out.println(request.getParameter("reviewTitle"));
+
 				
 				int userNo = ((MemberDTO)request.getSession().getAttribute("member")).getUserNo();
 				
@@ -148,10 +144,10 @@ public class UserWriteReviewSelectAndInsert extends HttpServlet {
 				/* 리뷰 insert */
 				ReviewDTO userReview = new ReviewDTO();
 				
-				userReview.setBookNo(Integer.parseInt(request.getParameter("bookNo")));
-				userReview.setContent(request.getParameter("reviewContent"));
-				userReview.setStarPoint(Integer.parseInt(request.getParameter("rating")));
-				userReview.setTitle(request.getParameter("reviewTitle"));
+				userReview.setBookNo(Integer.parseInt(parameter.get("bookNo")));
+				userReview.setContent(parameter.get("reviewContent"));
+				userReview.setStarPoint(Integer.parseInt(parameter.get("rating_1")));
+				userReview.setTitle(parameter.get("reviewTitle"));
 				
 				
 

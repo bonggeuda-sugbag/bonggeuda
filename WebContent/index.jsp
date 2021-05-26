@@ -8,7 +8,24 @@
 </head>
 <body>
 
+
+		<jsp:forward page="/corona"/>
+
+
+
+	<script>
+
+		(function(){
+			
+			location.href="${ pageContext.servletContext.contextPath}/report/list";    
+			
+		})();
+
+	</script>
+
 		<jsp:forward page="/WEB-INF/views/guest/main/main.jsp"/>
+
+
 
 </body>
 </html>

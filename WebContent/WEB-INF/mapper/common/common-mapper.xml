@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="userLoginCheck">
+		SELECT *
+		  FROM USER_INFO
+		 WHERE USER_ID = ?
+		   AND USER_PWD =?
+	</entry>
+	<entry key="ownerLoginCheck">
+		SELECT *
+		  FROM OWNER_INFO
+		 WHERE OWNER_ID = ?
+		   AND OWNER_PWD =?
+	</entry>
+</properties>

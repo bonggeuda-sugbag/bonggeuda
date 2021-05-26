@@ -13,6 +13,7 @@ import java.util.Properties;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 
@@ -29,7 +30,7 @@ public class BookingListSelectDAO {
 		}
 	}
 
-	public List<BookDTO> selectBookList(Connection con, int ownerNo) {
+	public List<BookDTO> selectBookList(Connection con, PageInfoDTO pageInfo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -42,7 +43,9 @@ public class BookingListSelectDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, ownerNo);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -61,8 +64,8 @@ public class BookingListSelectDAO {
 				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
 				bookDTO.setUserPhone(rset.getString("USER_PHONE"));
 				bookDTO.setBookStatusYNC(rset.getString("BOOK_STATUS_YNC"));
+				bookDTO.setRowNum(rset.getInt("RNUM"));
 
-			       				
 				selectBookedList.add(bookDTO);
 				
 			}
@@ -76,7 +79,6 @@ public class BookingListSelectDAO {
 		return selectBookedList;
 	}
 
-	
 	
 	/**
 	 * 예약 상세내용 보는 메소드
@@ -124,58 +126,7 @@ public class BookingListSelectDAO {
 			e.printStackTrace();
 		}
 		
-		
-		
 		return bookConDTO;
-	}
-
-	public List<BookDTO> selectBookPastList(Connection con, int ownerNo) {
-
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		List<BookDTO> selectBookedList = new ArrayList<>();
-		/* 반환 시킬 변수를 지정하자*/
-		BookDTO bookDTO = new BookDTO();
-		
-		String query = prop.getProperty("selectPastBookingList");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, ownerNo);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				bookDTO = new BookDTO();
-				
-				bookDTO.setBookNo(rset.getInt("BOOK_NO"));
-				bookDTO.setBookUserName(rset.getString("BOOK_USER_NAME"));
-				bookDTO.setBookPersonnel(rset.getInt("BOOK_PERSONNEL"));
-				bookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE")); // 디비에서도 문자열 값임.
-				bookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECK_DATE"));
-				bookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
-				bookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
-				bookDTO.setRequest(rset.getString("REQUEST"));
-				bookDTO.setRoomName(rset.getString("ROOM_NAME"));
-				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
-				bookDTO.setUserPhone(rset.getString("USER_PHONE"));
-				bookDTO.setBookStatusYNC(rset.getString("BOOK_STATUS_YNC"));
-				bookDTO.setUserNo(rset.getInt("USER_NO"));
-				bookDTO.setOwnerNo(rset.getInt("OWNER_NO"));
-				
-				
-				selectBookedList.add(bookDTO);
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return selectBookedList;
 	}
 
 	public int bookAllowUpdate(Connection con, int bookNo) {
@@ -304,7 +255,89 @@ public class BookingListSelectDAO {
 		return insertRejectBookHistory;
 	}
 
+	public int selectTotalCount(Connection con) {
 
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		/* 반환시킬 변수 지정 */
+		int totalCount = 0;
+		
+		String query = prop.getProperty("bookingTotalCount");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+     
+		return totalCount;
+	}
+
+	public List<BookDTO> selectBookPastList(Connection con, PageInfoDTO pageInfo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<BookDTO> selectBookedList = new ArrayList<>();
+		/* 반환 시킬 변수를 지정하자*/
+		BookDTO bookDTO = new BookDTO();
+		
+		String query = prop.getProperty("selectPastBookingList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				bookDTO = new BookDTO();
+				
+				bookDTO.setBookNo(rset.getInt("BOOK_NO"));
+				bookDTO.setBookUserName(rset.getString("BOOK_USER_NAME"));
+				bookDTO.setBookPersonnel(rset.getInt("BOOK_PERSONNEL"));
+				bookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE")); // 디비에서도 문자열 값임.
+				bookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECK_DATE"));
+				bookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
+				bookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
+				bookDTO.setRequest(rset.getString("REQUEST"));
+				bookDTO.setRoomName(rset.getString("ROOM_NAME"));
+				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				bookDTO.setUserPhone(rset.getString("USER_PHONE"));
+				bookDTO.setBookStatusYNC(rset.getString("BOOK_STATUS_YNC"));
+				bookDTO.setRowNum(rset.getInt("RNUM"));
+
+				selectBookedList.add(bookDTO);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return selectBookedList;
+	}
 }
 
 
