@@ -8,7 +8,38 @@
 </head>
 <body>
 
+
+		<%-- <jsp:forward page="/WEB-INF/views/guest/main/main.jsp"/> --%>
+		<jsp:forward page="/corona"/>
+
+
+       <%--  <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
+		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> 
+ --%>
+	
+
+    
+       <%--  <jsp:forward page="/WEB-INF/views/guest/accomoInfo/report.jsp"></jsp:forward> --%>
+
+		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>   
+=======
+		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%>
+
+
+
+	<script>
+
+		(function(){
+			
+			location.href="${ pageContext.servletContext.contextPath}/report/list";    
+			
+		})();
+
+	</script>
+
 		<jsp:forward page="/WEB-INF/views/guest/main/main.jsp"/>
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
+
 
 </body>
 </html>

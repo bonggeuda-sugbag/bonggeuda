@@ -59,7 +59,7 @@ public class AdminNoticeDAO {
 				noticeInfo.setTitle(rset.getString("NOTICE_TITLE"));
 				noticeInfo.setWriteDate(rset.getDate("NOTICE_WRITE_DATE"));
 				noticeInfo.setWriter(rset.getString("WRITER"));
-				
+				noticeInfo.setNoticeNo(rset.getInt("NOTICE_NO"));
 				noitceList.add(noticeInfo);
 			}
 		} catch (SQLException e) {

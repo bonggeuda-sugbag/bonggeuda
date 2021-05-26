@@ -28,6 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 .container h3{
@@ -252,13 +253,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3><b>예약자 정보</b></h3>
                     <br><br>
                     <p>예약자 이름</p>
-                    <input name="bookName"style="width: 650px; height: 50px; margin-top:15px" placeholder="체크인시 필요한 정보입니다." required="required">
+                    <input id="bookName"name="bookName"style="width: 650px; height: 50px; margin-top:15px" placeholder="체크인시 필요한 정보입니다." required="required">
                     <br>
 					<hr>
                     <p>휴대폰 번호</p>
                     <!-- <p style="font-size: 15px;">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</p> -->
                     <div style="width: 650px;height: 50px; display: flex; margin-top:15px">
-                        <input name="phone"type="tel" style="width: 600px; ;" placeholder="체크인시 필요한 정보입니다." required="required">
+                        <input id= "phone" name="phone"type="tel" style="width: 600px; ;" placeholder="체크인시 필요한 정보입니다." required="required">
                         <button style="width: 150px;margin-left: 30px; border: 0; outline: 0; background: #6eceda; color: white; font-weight: bold;box-shadow: 0 3px 0 #0e8c73;border-radius: 10px;">확인</button>
                     </div>
 					<hr>
@@ -291,7 +292,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					    		data:{coupon : couponNo},
 					    		success:function(data, textStatus, xhr){
 
-					    			console.table(data);
 					    	    	let couponAmount = Number(data);
 					    	    	let pointAmount = Number(point);
 					    	    	let beforePrice = ${totalPrice};
@@ -358,9 +358,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <option data-minprice="100" value="KAKAO">
                             카카오페이
                         </option>
-                        <option data-minprice="100" value="CARD">
+<!--                         <option data-minprice="100" value="CARD">
                             신용/체크카드
-                        </option>
+                        </option> -->
                     </select>
                 </section>
                <!-- 결제동의 -->
@@ -403,10 +403,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input id="hiddenPrice" name="finalPrice" type="hidden" value=${totalPrice }>
 						<input type = "hidden" name="roomNo" value="${ roomInfo.roomNo}">
 						<input type = "hidden" name="checkInDate" value="${bookInfo.bookCheckDate}">
-						<input type = "hidden" name="checkOutDate" value="${bookInfo.bookCheckoutDate}">
-						<input type = "hidden" name="checkInTime" value="${bookInfo.bookCheckIn}">
-						<input type = "hidden" name="personnel" value="${bookInfo.bookPersonnel}">
-						<input type = "hidden" name="pointNo" value="${point.pointNo }">
+						<input type = "hidden" id="checkOutDate"name="checkOutDate" value="${bookInfo.bookCheckoutDate}">
+						<input type = "hidden" id="checkInTime"name="checkInTime" value="${bookInfo.bookCheckIn}">
+						<input type = "hidden" id="personnel" name="personnel" value="${bookInfo.bookPersonnel}">
+						<input type = "hidden" id="pointNo" name="pointNo" value="${point.pointNo }">
 						<input id="couponDiscount" type = "hidden" name="couponDiscount" value=0>
 						
 					</p>
@@ -453,7 +453,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<section>
 								<button onclick="location.href='#none';" style="border-radius: 10px;padding: 5px; box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2); border:1px solid rgba(0, 0, 0, 0.1);"></a>취소</button>
 								
-								<button type = "submit" class="payAgree">동의 후 결제</button>
+								<button id = "doPay"type = "button" class="payAgree">동의 후 결제</button>
 								<!-- onclick="location.href='#pop02'" -->
 						</section>
 						
@@ -483,6 +483,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- 예약실패 -->
         </div>
     </center>
+    
 
 
 <!--footer-->
@@ -555,6 +556,104 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 	</div>
 	</div>
 </div>
+<script>
+    $("#doPay").click(function(){
+        var IMP = window.IMP; // 생략가능
+        
+        IMP.init('imp61135991'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+        //전달해야하는 변수
+        var msg;
+        const bookName = document.getElementsByName("bookName")[0].value;
+        const personnel = document.getElementsByName("personnel")[0].value; 
+        const checkInDate = document.getElementsByName("checkInDate")[0].value; 
+        const checkOutDate = document.getElementsByName("checkOutDate")[0].value; 
+        const checkInTime = document.getElementsByName("checkInTime")[0].value;
+        const phone = document.getElementsByName("phone")[0].value; 
+        const roomNo = document.getElementsByName("roomNo")[0].value; 
+        const request = document.getElementsByName("request")[0].value;
+        const finalPrice = document.getElementsByName("finalPrice")[0].value; 
+        const point = document.getElementsByName("point")[0].value; 
+        const couponDiscount = document.getElementsByName("couponDiscount")[0].value; 
+        const paymentType = document.getElementsByName("paymentType")[0].value; 
+        const couponNo = document.getElementsByName("couponNo")[0].value;
+        alert(finalPrice);
+        IMP.request_pay({
+            pg : 'kakaopay',
+            pay_method : 'card',
+            merchant_uid : 'merchant_' + new Date().getTime(),
+            name : 'BONGGEUDA 숙박 결제',
+            amount : finalPrice,
+            buyer_email : 'test@tj.com',
+            buyer_name : bookName,
+            buyer_tel : phone,
+            buyer_addr : '서울시 강남구 상섬동',
+            buyer_postcode : '123-456'
+            //m_redirect_url : 'http://www.naver.com'
+        }, function(rsp) {
+            if ( rsp.success ) {
+                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+                jQuery.ajax({
+                    url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                    	imp_uid : rsp.imp_uid,
+                    }
+                }).done(function(data) {
+                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                    if ( everythings_fine ) {
+                        msg = '결제가 완료되었습니다.';
+                        msg += '\n고유ID : ' + rsp.imp_uid;
+                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                        msg += '\결제 금액 : ' + rsp.paid_amount;
+                        msg += '카드 승인번호 : ' + rsp.apply_num;
+                        
+                        alert(msg);
+                        
+                    } else {
+                        //[3] 아직 제대로 결제가 되지 않았습니다.
+                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                    }
+                });
+                //성공시 이동할 페이지
+                $.ajax({
+    			    		url:"${pageContext.servletContext.contextPath}/book/payment",
+    				    	type:"post",
+    				    	data:{
+    				    		bookName : bookName,
+    	                    	personnel : personnel,
+    	                    	checkInDate : checkInDate,
+    	                    	checkOutDate : checkOutDate,
+    	                    	checkInTime : checkInTime,
+    	                    	phone : phone,
+    	                    	roomNo : roomNo,
+    	                    	request : request,
+    	                    	finalPrice : finalPrice,
+    	                    	point : point,
+    	                    	couponDiscount : couponDiscount,
+    	                    	paymentType : paymentType,
+    	                    	couponNo : couponNo
+    				    	},
+    				    	success:function(data, textStatus, xhr){
+    				    		alert("서블릿 요청성공!");
+    				    		location.replace("${pageContext.servletContext.contextPath}/userbooklist/select")
+    				    	},
+    				    	error:function(xhr,status,error){
+    				    		console.log(error);
+    				    	}
+    				    });
+                
+                alert("결제성공!");
+            } else {
+                msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+                //실패시 이동할 페이지
+                alert("결제실패!")
+            }
+        });
+        
+    });
+    </script>
 <!--//footer-->
 </body>
 </html>

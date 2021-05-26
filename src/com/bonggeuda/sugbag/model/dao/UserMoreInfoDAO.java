@@ -18,6 +18,7 @@ import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
 import com.bonggeuda.sugbag.model.dto.EventDTO;
 import com.bonggeuda.sugbag.model.dto.NoticeDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.QnADTO;
 
 public class UserMoreInfoDAO {
@@ -35,6 +36,7 @@ public class UserMoreInfoDAO {
 	/**
 	 * 공지사항 조회
 	 * @param con
+	 * @param pageInfo 
 	 * @return
 	 */
 	public List<NoticeDTO> selectNotice(Connection con) {
@@ -44,11 +46,12 @@ public class UserMoreInfoDAO {
 		
 		List<NoticeDTO> notice = new ArrayList<>();
 		
-		String query = prop.getProperty("noticeSelect");
+		String query = prop.getProperty("noticeSelect2");
 		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -70,8 +73,103 @@ public class UserMoreInfoDAO {
 		}
 		return notice;
 	}
-
+	
+	/**
+	 * 공지사항 조회
+	 * @param con
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<NoticeDTO> selectNotice(Connection con, PageInfoDTO pageInfo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<NoticeDTO> notice = new ArrayList<>();
+		
+		String query = prop.getProperty("noticeSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				NoticeDTO noticeDTO = new NoticeDTO();
+				
+				noticeDTO.setNoticeNo(rset.getInt("NOTICE_NO"));
+				noticeDTO.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				noticeDTO.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				noticeDTO.setNoticeWriteDate(rset.getDate("NOTICE_WRITE_DATE"));
+				
+				notice.add(noticeDTO);
+			}
+			System.out.println(notice);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return notice;
+	}
+	
+	/**
+	 * 이벤트 리스트 조회
+	 * @param con
+	 * @param pageInfo 
+	 * @return
+	 */
 	public List<EventDTO> selectEvent(Connection con) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<EventDTO> event = new ArrayList<>();
+		
+		String query = prop.getProperty("eventSelect2");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				EventDTO eventDTO = new EventDTO();
+				
+				eventDTO.setEvnetNo(rset.getInt("EVENT_NO"));
+				eventDTO.setEventTitle(rset.getString("EVENT_TITLE"));
+				eventDTO.setEventStart(rset.getDate("EVENT_START"));
+				eventDTO.setEventEnd(rset.getDate("EVENT_END"));
+				eventDTO.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				
+				event.add(eventDTO);
+			}
+			
+			System.out.println(event);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return event;
+	}
+
+	/**
+	 * 이벤트 리스트 조회
+	 * @param con
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<EventDTO> selectEvent(Connection con, PageInfoDTO pageInfo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -83,6 +181,8 @@ public class UserMoreInfoDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -253,14 +353,89 @@ public class UserMoreInfoDAO {
 		
 		return adminQnA;
 	}
+	
+	/**
+	 * 관리자에게 + 업체에게 문의리스트 조회
+	 * @param con
+	 * @param userNo
+	 * @param pageInfo 
+	 * @return
+	 */
+	public List<QnADTO> selectQnA(Connection con, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<QnADTO> qna = new ArrayList<>();
+		
+		String query = prop.getProperty("adminQnAListSelect2");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				QnADTO qnaDTO = new QnADTO();
+				qnaDTO.setQnaNo(rset.getInt("ADMIN_QNA_NO"));
+				qnaDTO.setQnaTitle(rset.getString("ADMIN_QNA_TITLE"));
+				qnaDTO.setQnaDate(rset.getDate("ADMIN_QNA_DATE"));
+				qnaDTO.setAnswerYn(rset.getString("ADMIN_ANSWER_YN"));
+				qnaDTO.setQnaContent(rset.getString("ADMIN_QNA_CONTENT"));
+				qnaDTO.setWriter("관리자");
+				
+				qna.add(qnaDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+			
+		String query2 = prop.getProperty("ownerQnAListSelect2");
+		System.out.println(query2);
+			
+		try {
+			pstmt = con.prepareStatement(query2);
+			pstmt.setInt(1, userNo);
+				
+			rset = pstmt.executeQuery();
+				
+			while(rset.next()) {
+					
+				QnADTO qnaDTO = new QnADTO();
+				qnaDTO.setQnaNo(rset.getInt("OWNER_QNA_NO"));
+				qnaDTO.setQnaTitle(rset.getString("OWNER_QNA_TITLE"));
+				qnaDTO.setQnaDate(rset.getDate("OWNER_QNA_DATE"));
+				qnaDTO.setAnswerYn(rset.getString("OWNER_ANSWER_YN"));
+				qnaDTO.setQnaContent(rset.getString("OWNER_QNA_CONTENT"));
+				qnaDTO.setWriter(rset.getString("ACCOMO_NAME"));
+					
+				qna.add(qnaDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		/* 날짜로 내림차순 정렬 */
+		Collections.sort(qna, new QnADTO());
+		
+		System.out.println("gogogoog : " + qna);
+		return qna;
+	}
 
 	/**
 	 * 관리자에게 + 업체에게 문의리스트 조회
 	 * @param con
 	 * @param userNo
+	 * @param pageInfo 
 	 * @return
 	 */
-	public List<QnADTO> selectQnA(Connection con, int userNo) {
+	public List<QnADTO> selectQnA(Connection con, int userNo, PageInfoDTO pageInfo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -272,6 +447,8 @@ public class UserMoreInfoDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -298,6 +475,8 @@ public class UserMoreInfoDAO {
 		try {
 			pstmt = con.prepareStatement(query2);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 				
 			rset = pstmt.executeQuery();
 				

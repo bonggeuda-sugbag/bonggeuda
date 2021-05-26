@@ -191,11 +191,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="coronaTitle">
 			<h3>제주도 코로나 현황</h3>
 		</div>
-		<p>기준일 : 2021.05.09 </p>
+		<p>기준일 : ${coronaInfo.date } </p>
 		<table class="corona19" >
 			<thead>
 				<tr>
-					<th>확진자수</th>
+					<th>누적확진자</th>
 					<th>격리중</th>
 					<th>격리해제</th>
 					<th>전일대비 증감</th>
@@ -203,10 +203,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</thead>
 			<tbody>
 				<tr>
-					<td>10</td>
-					<td>500</td>
-					<td>500</td>
-					<td>5</td>
+					<td>${coronaInfo.defCnt }</td>
+					<td>${coronaInfo.isolIngCnt }</td>
+					<td>${coronaInfo.isolClearCnt }</td>
+					<td>${coronaInfo.incDec }</td>
 	
 				</tr>
 			</tbody>

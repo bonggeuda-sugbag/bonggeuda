@@ -130,31 +130,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!--header-->
-<div class="header">
-	<div class="container">
-		<!--logo-->
-			<div class="logo">
-				<h1><a href="index.jsp">Bonggeuda</a></h1>
-			</div>
-		<!--//logo-->
-		<div class="top-nav">
-			<ul class="right-icons">
+<jsp:include page="../../common/guestheader.jsp"/>
 
-				<li><span ><a  href="index.html">메인페이지</a></span></li>
-				<li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
-				<!-- <li><a  href="blog.html">내주변</a></li> -->
-				<li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
-            	<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
-
-			</ul>
-
-		</div>
-			
-		<div class="clearfix"> </div>
-		<div class="clearfix"> </div>
-	</div>	
-</div>
-<!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
 	<h3><span>마이페이지</span></h3> 
@@ -221,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<table>
 						<td>
 							<div class="content-img-area1" id="contentImgArea1">
-								<img id="contentImg1" width="200" height="150">
+								<img id="contentImg1" width="150" height="130">
 							</div>
 						</td>
 <!-- 						<td>

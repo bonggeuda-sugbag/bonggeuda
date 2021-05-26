@@ -59,7 +59,7 @@ public class NoticeListServlet extends HttpServlet {
 			path = "/WEB-INF/views/admin/notice/notice.jsp";
 			request.setAttribute("noitceList", noitceList);
 			request.setAttribute("pageInfo", pageInfo);
-			
+			System.out.println("0아어디갔니~~~ : " + noitceList  );
 		} 
 		
 		request.getRequestDispatcher(path).forward(request, response);

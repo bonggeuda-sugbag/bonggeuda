@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.bonggeuda.sugbag.model.dto.AccomoInfoDTO" %>
 <!--A Design by W3layouts 
 Author: W3layout
@@ -142,11 +143,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</section>
 		<hr>
 		<h3 style="margin-bottom: 15px;">상세조건</h3>
-
+		<form method="post" action = "${pageContext.servletContext.contextPath}/accomoSelect/search">
+		
 		<div>
 			<button class="reset" >초기화</button>
 			<button id="searchFacility"class="accept" >적용</button>
- 			 	<script>
+ 			 	<!-- <script>
 		 	    $("#searchFacility").click(function(){
 			    	const checkList = [];
 			    	$("input[name='facility']:checked").each(function(i){
@@ -175,7 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    });
 			    }
 		    });
-			</script>
+			</script> -->
 			
 		</div>
 		<hr>
@@ -201,27 +203,75 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<label><input type="checkbox" name="facility" value="개인사물함" >  개인사물함</label><br>
 				<label><input type="checkbox" name="facility" value="TV" >  TV</label><br>
 				<label><input type="checkbox" name="facility" value="무료주차" >  무료주차</label><br>
+				<label><input type="checkbox" name="facility" value="인덕션" >  인덕션</label><br>
+				<input type="hidden" name="type" value="${type}">
 			</ul>
 			<hr>
 		</div>
+		</form>
+		<!-- 체크박스유지작업 -->
+<!-- 		<script>
+		    window.onload = function(){
+		    	document.getElementsByName("facility").forEach(function(){
+		    		console.log("${checkList}");
+		    	});
+		    }
+		</script> -->
 		</div>
 		<div style="width: 900px; padding: 10px; display: flex; flex-direction: column;">
 
 			<div class=list_wrap style="width:900px; height:30px; margin: 30px 0 0 10px; display: flex; margin-bottom: 50px;">
-				<button type="button" data-sort="HIT">
-					<span>추천 순</span>
+				<button type="button" data-sort="HIT" onclick="sorting(this);" value = "hit">
+					<span>평점 순</span>
 				</button>
 				<button type="button" data-sort="DISTANCE">
 					<span>거리 순</span>
 				</button>
-				<button type="button" data-sort="LOWPRICE">
+				<button type="button" data-sort="LOWPRICE" onclick="sorting(this);" value = "low">
 					<span>낮은 가격 순</span>
 				</button>
-				<button type="button" data-sort="HIGHPRICE">
+				<button type="button" data-sort="HIGHPRICE"onclick="sorting(this);" value = "high">
 					<span>높은 가격 순</span>
 				</button>
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
+			<c:set var="list" value="${accomoList}"/>
+			<c:set var="arr" value ="${fn:split(list,'AccomoInfoDTO')}"/>
+			<c:forEach items="${arr}" varStatus ="st">
+			    <c:out value="${st.count} : ${arr[st.index]}"></c:out>
+			</c:forEach>
+			
+			
+			<!-- <script>
+			    function sorting(p){
+			    	alert("좀 ㅡㅡ");
+			    	console.log(p.value);
+			    	/* var list = ${accomoList}; */
+			    	var sortType = p.value;
+			    	var arr =[];
+			    	/* console.log(list.length); */
+			    	
+			    	$.ajax({
+			    		
+			    		url:"${pageContext.servletContext.contextPath}/book/payment",
+			    		type:"post",
+			    		dataType:'json',
+			    		data :{
+			    			  accomoList : list,
+			    			  type : sortType
+			    			  },
+			    		success:function(data, textStatus, xhr){
+
+					      	console.table(data)
+
+					      	
+						    alert("정렬성공!");
+					      },	  
+			    			  
+			    		
+			    	})
+			    }
+			</script> -->
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<c:choose>
 			    <c:when test="${empty accomo}">

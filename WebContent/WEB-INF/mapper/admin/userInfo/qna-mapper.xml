@@ -91,7 +91,8 @@
        					  FROM ADMIN_QNA A
        				  ) B
                )C
-            WHERE C.ADMIN_QNA_WRITER = ?
+            WHERE C.RNUM BETWEEN ? AND ?
+              AND C.ADMIN_QNA_WRITER = ?
 	</entry>
 	
 	<entry key="selectWriterTotalCount">
