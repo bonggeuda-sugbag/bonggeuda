@@ -24,7 +24,7 @@ public class BookingListSelectDAO {
 	public BookingListSelectDAO() {
 	
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"/owner/bookingList/bookingList-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner/bookingList/bookingList-mapper.xml"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}

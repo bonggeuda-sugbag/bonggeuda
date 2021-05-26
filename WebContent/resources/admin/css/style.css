@@ -2919,7 +2919,7 @@ ul.login-icons li {
 }
 ul.login-icons li a {
 	display: block;
-  	background: #3b5a99;
+  	/* background: #3b5a99; */
   	text-decoration: none;
   	padding: 0em;
   	color: #fff;
@@ -2927,9 +2927,9 @@ ul.login-icons li a {
   	  font-size: 0.95em;
 }
 ul.login-icons li a:hover {
-  	background: #0A3284;
+  	/* background: #0A3284; */
 }
-ul.login-icons li a.twit {
+/* ul.login-icons li a.twit {
   	background: #54abee;
 }
 ul.login-icons li a.twit:hover {
@@ -2964,7 +2964,7 @@ ul.login-icons li a.go i {
 }
 ul.login-icons li a.in i {
   	background: url(../images/img-sprite.png)no-repeat -215px -135px #238FC3;
-}
+} */
 ul.login-icons li a span{
 	padding: 0 0 0 5%;
 	display:inline-block;

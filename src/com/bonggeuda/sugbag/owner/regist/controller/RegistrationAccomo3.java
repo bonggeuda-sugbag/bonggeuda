@@ -20,6 +20,7 @@ public class RegistrationAccomo3 extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("여기는 오는가?");
 		/*등록3단계*/
 		String checkIn = request.getParameter("checkIn");
 		String checkOut = request.getParameter("checkOut"); 
@@ -43,7 +44,6 @@ public class RegistrationAccomo3 extends HttpServlet {
 		accomoDTO.setAdrDetail(request.getParameter("adrDetail"));
 		accomoDTO.setEmail(request.getParameter("email"));
 		accomoDTO.setHomepage(request.getParameter("homepage"));
-		accomoDTO.setFacility(request.getParameter("facility"));
 		accomoDTO.setAccomoPath(request.getParameter("accomoPath"));
 		accomoDTO.setNear(request.getParameter("near"));
 		accomoDTO.setRule(request.getParameter("rule"));
@@ -55,26 +55,24 @@ public class RegistrationAccomo3 extends HttpServlet {
 		accomoDTO.setOwnerNo(Integer.parseInt(request.getParameter("ownerNo")));
 		accomoDTO.setEnAccomoNo(selectEnNo + 1); //현재 등록된 번호보다 1 증가한 값을 담아줌
 		
-		/*1,2,3단계 값 모두 받았는지 확인*/
-//		System.out.println(request.getParameter("accomoName"));
-//		System.out.println(request.getParameter("ceoName"));
-//		System.out.println(request.getParameter("accomoType"));
-//		System.out.println(request.getParameter("registNo"));
-//		System.out.println(request.getParameter("address"));
-//		System.out.println(request.getParameter("adrDetail"));
-//		System.out.println(request.getParameter("email"));
-//		System.out.println(request.getParameter("homepage"));
-//		System.out.println(request.getParameter("facility"));
-//		System.out.println(request.getParameter("accomoPath"));
-//		System.out.println(request.getParameter("near"));
-//		System.out.println(request.getParameter("rule"));
-//		System.out.println(request.getParameter("parking"));
-//		System.out.println(checkIn);
-//		System.out.println(checkOut);
-//		System.out.println(peakStart);
-//		System.out.println(peakEnd);
+		String[] arrayFacility = request.getParameterValues("facility");
+		String facility = "";
+		for(int i=0; i < arrayFacility.length; i++) {
+			
+			facility += arrayFacility[i];
+			
+			if(i < arrayFacility.length - 1) {
+				facility += ", ";
+			}
+		}
+		accomoDTO.setFacility(facility);
+		System.out.println("arrayFacility"  + arrayFacility[1]);
+		
+
+		
 				
-		int insertAccomo = accomoService.InsertAccomoServlet(accomoDTO); //값을 int형으로 반환받아야 함
+		int insertAccomo = accomoService.InsertAccomoServlet(accomoDTO ); //값을 int형으로 반환받아야 함
+		System.out.println(insertAccomo);
 		
 		String path="";
 

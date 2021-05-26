@@ -7,15 +7,18 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
+import com.bonggeuda.sugbag.model.dto.NoticeDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
 import com.bonggeuda.sugbag.model.dto.RequestTaxBillDTO;
+import com.bonggeuda.sugbag.model.dto.SettlementDTO;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 
@@ -26,12 +29,11 @@ public class OwnerMypageDAO {
 	public OwnerMypageDAO() {
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"/owner/mypage/mypage-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner/mypage/mypage-mapper.xml"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
-
 
 	public OwnerInfoDTO selectOwner(Connection con, int ownerNo) {
 		
@@ -117,7 +119,6 @@ public class OwnerMypageDAO {
 		
 		return selectReprotList;
 	}
-
 
 	public ReportDTO selectReportDetail(Connection con, int reportNo) {
 		
@@ -229,7 +230,6 @@ public class OwnerMypageDAO {
 		return ownerWithdrawUpdate;
 	}
 
-
 	public List<RequestTaxBillDTO> selectTaxBillListDAO(Connection con, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
@@ -275,8 +275,6 @@ public class OwnerMypageDAO {
 		return selectTaxBillList;
 	}
 
-
-	
 	public int insertRequestTaxBillDAO(Connection con, int ownerNo, Date startDate, Date endDate, int accomoNo) {
 		
 		PreparedStatement pstmt = null;
@@ -309,7 +307,6 @@ public class OwnerMypageDAO {
 		
 		return insertRequestTaxBill;
 	}
-
 
 	public List<AccomoDTO> selectAccomoNamesDAO(int ownerNo, Connection con) {
 		
@@ -349,7 +346,6 @@ public class OwnerMypageDAO {
 		return selectAccomoNames;
 	}
 
-
 	public int selectAccomoNoDAO(Connection con, String accomoName, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
@@ -376,6 +372,54 @@ public class OwnerMypageDAO {
 		
 
 		return accomoNo;
+	}
+
+	public List<SettlementDTO> selectStl(Connection con) {
+		
+		System.out.println("들어왔나");
+		
+		Statement stmt = null;
+		
+		ResultSet rset = null;
+
+		/* 반환시킬 변수 지정 */
+		List<SettlementDTO> selectStl = null;
+		
+		/* --> selectedAll 가지고 xml감 */
+		String query = prop.getProperty("selectStl");
+		
+		/*쿼리문 잘 실행되는지 출력*/
+		System.out.println(query);
+
+		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
+		try {
+			stmt = con.prepareStatement(query);
+			
+			rset = stmt.executeQuery(query);
+			selectStl = new ArrayList<>(); //모든 행을 다 받아서 최종 리스트를 만듬
+			
+			while(rset.next()) {
+				
+				SettlementDTO stl = new SettlementDTO();
+
+				stl.setReqStlNo(rset.getInt("REQUEST_STL_NO"));
+				stl.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				stl.setReqDate(rset.getDate("REQUEST_DATE"));
+				stl.setStlYn(rset.getString("STL_YN"));
+				
+				selectStl.add(stl); //한 행씩 저장됨
+			}
+			
+			System.out.println(selectStl);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return selectStl;
 	}
 
 }

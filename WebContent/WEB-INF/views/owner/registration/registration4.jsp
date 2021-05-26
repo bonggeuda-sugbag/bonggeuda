@@ -230,7 +230,7 @@
       }
    </script>
    
-   <form action="${ pageContext.servletContext.contextPath }/registration4" method="post">
+   <form action="${ pageContext.servletContext.contextPath }/registration4" method="post" encType="multipart/form-data">
    <table class="table table-bordered" id="registTb"> 
    <tbody id="registTb1">
       <tr class="tr1">
@@ -276,7 +276,7 @@
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
                   <span class="form-title" style="display:inline-block";>    </span>
                   <br>
-                  <button type="button" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">+ 이미지 추가</button>
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
                </div>
             </td>   
          </tr>
@@ -364,7 +364,7 @@
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
                   <span class="form-title" style="display:inline-block";>    </span>
                   <br>
-                  <button type="button" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">+ 이미지 추가</button>
+					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
                </div>
             </td>   
          </tr>
@@ -400,9 +400,7 @@
          <tr>
             <br>
             <th colspan="2" style="background-color: white; ">
-               <form action="index.html">
                   <button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="roomRegiFinish()">숙소 등록 완료</button>
-               </form>
             </th>
          </tr>
       </tbody>
@@ -454,7 +452,7 @@
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
                   <span class="form-title" style="display:inline-block";>    </span>
                   <br>
-                  <button type="button" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">+ 이미지 추가</button>
+					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
                </div>
             </td>   
          </tr>
@@ -491,10 +489,8 @@
          <tr>
             <br>
             <th colspan="2" style="background-color: white; ">
-               <form action="index.html">
                   <button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="roomRegiFinish()">숙소 등록 완료</button>
-               </form>
-
+             
             </th>
             
          </tr>
@@ -548,7 +544,7 @@
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
                   <span class="form-title" style="display:inline-block";>    </span>
                   <br>
-                  <button type="button" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">+ 이미지 추가</button>
+					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
                </div>
             </td>   
          </tr>
@@ -585,9 +581,7 @@
          <tr>
             <br>
             <th colspan="2" style="background-color: white; ">
-               <form action="index.html">
                   <button button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="roomRegiFinish()">숙소 등록 완료</button>
-               </form>
             </th>
          </tr>
       </tbody>
@@ -640,7 +634,7 @@
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
                   <span class="form-title" style="display:inline-block";>    </span>
                   <br>
-                  <button type="button" class="btn btn-default btn_add" data-role="img-uploader" data-ano="2826" data-armno="0" data-type="8">+ 이미지 추가</button>
+					<input type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this,5)">
                </div>
             </td>   
          </tr>

@@ -268,7 +268,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<%-- 페이지 처리 --%>
 		</c:if>
-		<c:if test="${ empty selectQuestion }">
+		
+		<c:if test="${ empty requestScope.bookList }">
 			<div class="list_none" style="display: block;">
 			<br>
 			<b>예약 내역이 없습니다.</b>
@@ -278,8 +279,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</div>
 </div>
+
 <script>
-		const link = "${ pageContext.servletContext.contextPath }/owner/bokkingPastList";
+		const link = "${ pageContext.servletContext.contextPath }/owner/bookingPastList";
 		//const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
 			
 		if(document.getElementById("startPage")) {
