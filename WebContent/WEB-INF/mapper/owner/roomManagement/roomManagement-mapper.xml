@@ -4,38 +4,58 @@
 	<entry key="selectRoomCount">
         SELECT 
                COUNT(*)
-          FROM RM_ACCOMO_INFO A
+          FROM ACCOMO_INFO A
          WHERE A.OWNER_NO = ?
 	</entry>
 	
-	<entry key="selectAccomoList">
+	<entry key="selectApproveAccomoList">
 
-             SELECT
-                r.request_no
-              , r.rm_accomo_name
-              , r.rm_ceo_name
-              , r.rm_accomo_type
-              , r.approval_yn
-              , r.owner_no
-              , r.rm_accomo_no
-              , r.rm_type
-              , r.EN_ACCOMO_NO
-              , a.attachment_no
-              , a.category_no
-              , a.thumbnail_path
-              , a.attachment_status
-              , a.ref_no
+      SELECT
+             *
+        FROM ACCOMO_INFO A
+        JOIN ATTACHMENT A ON (A.ACCOMO_NO = A.REF_NO)
+       WHERE A.OWNER_NO = ?
+         AND A.CATEGORY_NO = 3
 
-	      FROM RM_ACCOMO_INFO R
-          JOIN ATTACHMENT A ON(R.REQUEST_NO = A.REF_NO)
+    </entry>
+	<entry key="selectApplyEnrollAccomoList">
 
-	     WHERE R.OWNER_NO = ?
-           AND ( CATEGORY_NO = 3
-            OR CATEGORY_NO = 1) /* 수정된 이미지가 채택될 수도 있으므로 */
-           AND (RM_TYPE = 'EN'
-            OR (RM_TYPE = 'RM' AND APPROVAL_YN = 'Y'))
+         SELECT
+             *
+           FROM RM_ACCOMO_INFO R
+        JOIN ATTACHMENT A ON (R.REQUEST_NO = A.REF_NO)
+       WHERE R.OWNER_NO = ?
+         AND R.APPROVAL_YN ='N' 
+         AND A.CATEGORY_NO = 1
+           AND R.RM_TYPE = 'EN'
+           
+   
+   	</entry>
+   	
+   	<entry key="selectApplyRejectAccomoList">
+   	
+SELECT 
+       R.REQUEST_NO
+     , R.RM_ACCOMO_NAME
+     , R.RM_ACCOMO_TYPE
+     , R.APPROVAL_YN
+     , R.RM_TYPE
+     , R.EN_ACCOMO_NO
+     , A.THUMBNAIL_PATH
+     , H.INSPECTION_COMMENT
+     , H.APPROVE_STATUS
+     , H.REQUEST_NO_RM
+  FROM RM_ACCOMO_INFO R
+  JOIN ATTACHMENT A ON (R.REQUEST_NO = A.REF_NO) 
+  JOIN RM_HISTORY H ON (R.REQUEST_NO = H.REQUEST_NO_RM)
+ WHERE H.APPROVE_STATUS = 'N'
+   AND A.CATEGORY_NO = 1
+   AND R.OWNER_NO = ?
 
-	</entry>
+   	</entry>
+    
+    
+
 	
 	<entry key="selectRmAccomoImagePath">
 	
@@ -91,14 +111,13 @@
             VALUES
             (
               SEQ_ATTACHMENT_NO.NEXTVAL
-            , ?
+            , 1
             , ?
             , ?
             , ?
             , ?
             , ?
             , 'Y'
-            , null
             , ?
             )
 	
@@ -111,49 +130,48 @@
             VALUES
             (
               SEQ_ATTACHMENT_NO.NEXTVAL
-            , ?
+            , 1
             , ?
             , ?
             , ?
             , ?
             , ?
             , 'Y'
-            , null
             , ?
             )
 	
 	
 	</entry>
 
-<entry key="insertRmAccomo">
-	INSERT
-	INTO RM_ACCOMO_INFO
-	VALUES
-	(
-	SEQ_REQUEST_NO.NEXTVAL
-	, 1 /* 패런트키 낫파운드 */
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, DEFAULT
-	, ?
-	, 'RM'
-	, null
-	)
-</entry>
+	<entry key="insertRmAccomo">
+		INSERT
+		INTO RM_ACCOMO_INFO
+		VALUES
+		(
+		SEQ_REQUEST_NO.NEXTVAL
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, DEFAULT
+		, ?
+		, 'RM'
+		, null
+		)
+	</entry>
 
 <entry key="selectcurrval">
 SELECT

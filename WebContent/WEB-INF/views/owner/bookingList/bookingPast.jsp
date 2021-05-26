@@ -179,7 +179,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</c:choose>
 						</th>
 						<th>
-							<form action="/bonggeuda/owner/reportWrite" method="post">
+							<form action="/bonggeuda/owner/reportWrite" method="get">
 							<input type="hidden" name="userNo" value="${board.userNo}">
 							<input type="hidden" name="ownerNo" value="${board.ownerNo}">
 							<button type="submit" style="background-color: white;    border: 1px;">

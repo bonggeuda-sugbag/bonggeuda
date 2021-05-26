@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.regist.controller;
+package com.bonggeuda.sugbag.owner.modify.controllor;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,12 +25,13 @@ import com.bonggeuda.sugbag.owner.regist.service.RoomService;
 import net.coobird.thumbnailator.Thumbnails;
 
 /**
- * Servlet implementation class RegistrationAccomo4
+ * Servlet implementation class ModifyRoom
  */
-@WebServlet("/registration4")
-public class RegistrationAccomo4 extends HttpServlet {
+@WebServlet("/owner/roomModify")
+public class ModifyRoom extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			String rootLocation = getServletContext().getRealPath("/");
@@ -343,5 +344,8 @@ public class RegistrationAccomo4 extends HttpServlet {
 		}
 
 	}
-
+	
+	
 }
+
+

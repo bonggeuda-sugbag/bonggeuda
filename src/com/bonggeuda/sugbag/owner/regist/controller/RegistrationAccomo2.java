@@ -216,7 +216,7 @@ public class RegistrationAccomo2 extends HttpServlet {
 				AccomoDTO accomoDTO = new AccomoDTO();
 				
 				accomoDTO.setAccomoName(parameter.get("accomoName"));
-				accomoDTO.setCeoName(parameter.get("accomoName"));
+				accomoDTO.setCeoName(parameter.get("ceoName"));
 				accomoDTO.setAccomoType(parameter.get("accomoType"));
 				accomoDTO.setRegistNo(parameter.get("registNo"));
 				accomoDTO.setAddress(parameter.get("address"));

@@ -150,24 +150,24 @@ public class ManagementRoomSelectDAO {
 		int insertResult = 0;
 		try {
 			pstmt = con.prepareStatement(query);
-		//	pstmt.setInt(1, rmAccomoInfoDTO.getRmAccomoNo());
-			pstmt.setString(1, rmAccomoInfoDTO.getAccomoName());
-			pstmt.setString(2, rmAccomoInfoDTO.getCeoName());
-			pstmt.setString(3, rmAccomoInfoDTO.getAccomoType());
-			pstmt.setString(4, rmAccomoInfoDTO.getRegistNo());
-			pstmt.setString(5, rmAccomoInfoDTO.getAddress());
-			pstmt.setString(6, rmAccomoInfoDTO.getEmail());
-			pstmt.setString(7, rmAccomoInfoDTO.getHomepage());
-			pstmt.setString(8, rmAccomoInfoDTO.getFacility());
-			pstmt.setString(9, rmAccomoInfoDTO.getAccomoPath());
-			pstmt.setString(10, rmAccomoInfoDTO.getNear());
-			pstmt.setString(11, rmAccomoInfoDTO.getRule());
-			pstmt.setString(12, rmAccomoInfoDTO.getParking());
-			pstmt.setString(13, rmAccomoInfoDTO.getCheckIn());
-			pstmt.setString(14, rmAccomoInfoDTO.getCheckOut());
-			pstmt.setDate(15, rmAccomoInfoDTO.getPeakStart());
-			pstmt.setDate(16, rmAccomoInfoDTO.getPeakEnd());
-			pstmt.setInt(17, rmAccomoInfoDTO.getOwnerNo());
+			pstmt.setInt(1, rmAccomoInfoDTO.getRmAccomoNo());
+			pstmt.setString(2, rmAccomoInfoDTO.getAccomoName());
+			pstmt.setString(3, rmAccomoInfoDTO.getCeoName());
+			pstmt.setString(4, rmAccomoInfoDTO.getAccomoType());
+			pstmt.setString(5, rmAccomoInfoDTO.getRegistNo());
+			pstmt.setString(6, rmAccomoInfoDTO.getAddress());
+			pstmt.setString(7, rmAccomoInfoDTO.getEmail());
+			pstmt.setString(8, rmAccomoInfoDTO.getHomepage());
+			pstmt.setString(9, rmAccomoInfoDTO.getFacility());
+			pstmt.setString(10, rmAccomoInfoDTO.getAccomoPath());
+			pstmt.setString(11, rmAccomoInfoDTO.getNear());
+			pstmt.setString(12, rmAccomoInfoDTO.getRule());
+			pstmt.setString(13, rmAccomoInfoDTO.getParking());
+			pstmt.setString(14, rmAccomoInfoDTO.getCheckIn());
+			pstmt.setString(15, rmAccomoInfoDTO.getCheckOut());
+			pstmt.setDate(16, rmAccomoInfoDTO.getPeakStart());
+			pstmt.setDate(17, rmAccomoInfoDTO.getPeakEnd());
+			pstmt.setInt(18, rmAccomoInfoDTO.getOwnerNo());
 			
 			insertResult = pstmt.executeUpdate();
 			
@@ -182,6 +182,132 @@ public class ManagementRoomSelectDAO {
 		return insertResult;
 	}
 
+	   public List<AccomoDTO> selectApproveAccomoDAO(int ownerNo, Connection con) {
+
+		      PreparedStatement pstmt = null;
+		      ResultSet rset = null;
+		      
+		      List<AccomoDTO> accomoList = new ArrayList<AccomoDTO>();
+		      AccomoDTO accomoDTO = new AccomoDTO();
+		      
+		      String query = prop.getProperty("selectApproveAccomoList");
+		      
+		      try {
+		         pstmt = con.prepareStatement(query);
+		         
+		         pstmt.setInt(1, ownerNo);
+		         
+		         rset = pstmt.executeQuery();
+		         
+		         while(rset.next()) {
+		            accomoDTO = new AccomoDTO();
+		            
+		            accomoDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+		            accomoDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
+		            accomoDTO.setCeoName(rset.getString("CEO_NAME"));
+		            accomoDTO.setAccomoType(rset.getString("ACCOMO_TYPE"));
+		            accomoDTO.setImagePath(rset.getString("THUMBNAIL_PATH"));
+		            
+		            accomoList.add(accomoDTO);
+		            
+		         }
+		         
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }  finally {
+		         close(pstmt);
+		         close(rset);
+		      }
+		      
+		      return accomoList;
+		   }
+
+	   public List<RmAccomoInfoDTO> selectApplyEnrollAccomoListDAO(int ownerNo, Connection con) {
+		      
+		      
+		      PreparedStatement pstmt = null;
+		      ResultSet rset = null;
+		      
+		      List<RmAccomoInfoDTO> accomoList = new ArrayList<RmAccomoInfoDTO>();
+		      RmAccomoInfoDTO rmAccomoDTO = new RmAccomoInfoDTO();
+		      
+		      String query = prop.getProperty("selectApplyEnrollAccomoList");
+		      
+		      try {
+		         pstmt = con.prepareStatement(query);
+		         
+		         pstmt.setInt(1, ownerNo);
+		         
+		         rset = pstmt.executeQuery();
+		         
+		         while(rset.next()) {
+		            rmAccomoDTO = new RmAccomoInfoDTO();
+		            
+		            rmAccomoDTO.setAccomoName(rset.getString("RM_ACCOMO_NAME"));
+		            
+		            rmAccomoDTO.setEnAccomoNO(rset.getInt("EN_ACCOMO_NO"));
+		            rmAccomoDTO.setCeoName(rset.getString("RM_CEO_NAME"));
+		            rmAccomoDTO.setAccomoType(rset.getString("RM_ACCOMO_TYPE"));
+		            rmAccomoDTO.setThumbNailPath(rset.getString("THUMBNAIL_PATH"));
+		            
+		            accomoList.add(rmAccomoDTO);
+		            
+		         }
+		         
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }  finally {
+		         close(pstmt);
+		         close(rset);
+		      }
+		      
+		      return accomoList;   
+		      
+		   }
+
+	public List<RmAccomoInfoDTO> selectApplyRejectAccomoListDAO(int ownerNo, Connection con) {
+
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      List<RmAccomoInfoDTO> accomoList = new ArrayList<RmAccomoInfoDTO>();
+	      RmAccomoInfoDTO rmAccomoDTO = new RmAccomoInfoDTO();
+	      
+	      String query = prop.getProperty("selectApplyRejectAccomoList");
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         
+	         pstmt.setInt(1, ownerNo);
+	         
+	         rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) {
+	            rmAccomoDTO = new RmAccomoInfoDTO();
+	            
+	            rmAccomoDTO.setAccomoName(rset.getString("RM_ACCOMO_NAME"));
+	            
+	            rmAccomoDTO.setEnAccomoNO(rset.getInt("EN_ACCOMO_NO"));
+	            rmAccomoDTO.setAccomoType(rset.getString("RM_ACCOMO_TYPE"));
+	            rmAccomoDTO.setThumbNailPath(rset.getString("THUMBNAIL_PATH"));
+	            rmAccomoDTO.setRequestNo(rset.getInt("REQUEST_NO"));
+	            
+	            rmAccomoDTO.setInsPectionComment(rset.getString("INSPECTION_COMMENT"));
+
+	            accomoList.add(rmAccomoDTO);
+	            
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }  finally {
+	         close(pstmt);
+	         close(rset);
+	      }
+	      
+	      return accomoList;   
+	   
+	}
 
 
 }

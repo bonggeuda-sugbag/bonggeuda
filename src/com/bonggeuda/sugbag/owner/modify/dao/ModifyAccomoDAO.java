@@ -95,13 +95,12 @@ public class ModifyAccomoDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 		
-			pstmt.setInt(1, 1);
-			pstmt.setString(2, tempFileInfo.getOriginName());
-			pstmt.setString(3, tempFileInfo.getSavedName());
-			pstmt.setString(4, tempFileInfo.getSavePath());
-			pstmt.setString(5, tempFileInfo.getFileType());
-			pstmt.setString(6, tempFileInfo.getThumbnailPath());
-			pstmt.setInt(7,selectReqNoMax );
+			pstmt.setString(1, tempFileInfo.getOriginName());
+			pstmt.setString(2, tempFileInfo.getSavedName());
+			pstmt.setString(3, tempFileInfo.getSavePath());
+			pstmt.setString(4, tempFileInfo.getFileType());
+			pstmt.setString(5, tempFileInfo.getThumbnailPath());
+			pstmt.setInt(6, selectReqNoMax );
 			
 			result = pstmt.executeUpdate();
 			
@@ -194,13 +193,12 @@ public class ModifyAccomoDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 		
-			pstmt.setInt(1, 1);
-			pstmt.setString(2, tempFileInfo.getOriginName());
-			pstmt.setString(3, tempFileInfo.getSavedName());
-			pstmt.setString(4, tempFileInfo.getSavePath());
-			pstmt.setString(5, tempFileInfo.getFileType());
-			pstmt.setString(6, tempFileInfo.getThumbnailPath());
-			pstmt.setInt(7, seqCurrvalSelect);
+			pstmt.setString(1, tempFileInfo.getOriginName());
+			pstmt.setString(2, tempFileInfo.getSavedName());
+			pstmt.setString(3, tempFileInfo.getSavePath());
+			pstmt.setString(4, tempFileInfo.getFileType());
+			pstmt.setString(5, tempFileInfo.getThumbnailPath());
+			pstmt.setInt(6, seqCurrvalSelect);
 			
 			result = pstmt.executeUpdate();
 			

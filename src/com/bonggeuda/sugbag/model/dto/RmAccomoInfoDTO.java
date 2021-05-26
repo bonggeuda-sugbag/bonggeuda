@@ -28,12 +28,16 @@ public class RmAccomoInfoDTO {
 	private String rmType;      // 등록 수정 구분
 	private int enAccomoNO;     // 등록숙소 요청 번호
 	
+	
+	
 	private String thumbNailPath;
 	// RM_History Dto 추가
 	private String approvalStatus;
 	private String insPectionComment;
 	// 어코모 디티오 어코모 넘 추가
 	private int accomoNo;
+	
+	
 	
 	public RmAccomoInfoDTO() { }
 

@@ -62,7 +62,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <br><br>
 <!-- 문의작성 -->
-<form action="/bonggeuda/owner/reportWrite" method="get">
+<form action="/bonggeuda/owner/reportWrite" method="post" encType="multipart/form-data">
 <input type="hidden" name="userNo" value="${ requestScope.forReort.userNo}">
 <input type="hidden" name="ownerNo" value="${ requestScope.forReort.ownerNo}">
 <div class="box">
@@ -70,9 +70,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="writeNameBox">
 			<div class="writeNameBoxContent">
 				<p style="text-align: center; font-weight: bold;">제목 
-					<input type="text" class="titleInput" placeholder="제목을 입력하세요." name="reportTitle" required>
+					<input type="text" class="titleInput" placeholder="제목을 입력하세요." name="reportTitle" required="required">
 					
-					<button type="file" onclick="notice();" >사진 첨부</button>
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)"   style=" display: inline-flex;">
 				</p>
 			</div>
 		</div>
