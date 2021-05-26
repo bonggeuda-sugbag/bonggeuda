@@ -1,8 +1,11 @@
 package com.bonggeuda.sugbag.book.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.service.BookService;
+import com.google.gson.JsonObject;
 
 /**
  * Servlet implementation class ReviewServlet
@@ -36,9 +42,8 @@ public class ReviewSelectServlet extends HttpServlet {
 		Map<Integer,String> reviewPicture = bsvc.selectReviewPicture(accomoNo,categoryNo);
 		
 		//4.리뷰업다운상태
-//		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-//		int userNo = member.getUserNo();
-		int userNo = 3;
+		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
+		int userNo = member.getUserNo();
 		Map<Integer, String> upDownStatus = bsvc.selectReviewUpDownStatus(userNo);
 		
 		//베스트리뷰에 좋아요 싫어요 업다운상태 사진 추가
@@ -107,8 +112,6 @@ public class ReviewSelectServlet extends HttpServlet {
 		
 		String path="";
 		
-		System.out.println(reviewList);
-		System.out.println(bestReview);
 		//리뷰리스트, 베스트리뷰,
 		if(bestReview !=null || reviewList!=null) {
 			path="/WEB-INF/views/guest/accomoInfo/book.jsp";
@@ -125,5 +128,42 @@ public class ReviewSelectServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getParameter("status");
+		request.getParameter("reviewNo");
+		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
+		int userNo = member.getUserNo();
+		
+		ReviewDTO review = new ReviewDTO();
+		review.setUserNo(userNo);
+		review.setUpdownStatus(request.getParameter("status"));
+		review.setReviewNo(Integer.parseInt(request.getParameter("reviewNo")));
+		//기존이력번호
+		BookService bsvc = new BookService();
+		int historyNo = bsvc.selectExistingReview(review);
+		
+		int result = 0;
+		if(historyNo > 0) {
+			review.setHistoryNo(historyNo);
+			result = bsvc.updateReviewHistory(review);
+		} else {
+			result = bsvc.insertReviewHistory(review);
+		}
+		
+		//리뷰업다운 값 조회
+		int[] upDown = new int[2];
+		upDown = bsvc.selectChangeUpDown(review);
+		
+		JSONObject json = new JSONObject();
+		json.put("up", upDown[0]);
+		json.put("down", upDown[1]);
+		
+		response.setContentType("application/json; charset=UTF-8;");
+		
+		PrintWriter out = response.getWriter();
+        out.print(json);
+        
+        out.flush();
+        out.close();
 	}
 }

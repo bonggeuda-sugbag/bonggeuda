@@ -303,7 +303,6 @@ public class BookService {
 		
 		roomInfo = bookDao.selectRoomInfo(con, roomNo);
 		
-		System.out.println("서비스에서 호출 : " + roomInfo );
 		close(con);
 		return roomInfo;
 	}
@@ -337,6 +336,90 @@ public class BookService {
 		Map<Integer, String> reviewUDstatus = bookDao.selectUpDownStatus(con, userNo);
 		
 		return reviewUDstatus;
+	}
+
+	/**
+	 * 리뷰에 업다운 누른 이력이 있는지 확인
+	 * @param review
+	 * @return 리뷰 이력번호
+	 */
+	public int selectExistingReview(ReviewDTO review) {
+
+		Connection con = getConnection();
+		
+		int reviewHistory = 0;
+		
+		reviewHistory = bookDao.selectExistingReview(con, review);
+		
+		close(con);
+		return reviewHistory;
+	}
+
+	/**
+	 * 리뷰이력 INSERT
+	 * @param review
+	 * @return
+	 */
+	public int insertReviewHistory(ReviewDTO review) {
+		
+		Connection con = getConnection();
+		
+		int insertResult = 0;
+		
+		insertResult = bookDao.insertReviewHistory(con, review);
+		
+		if(insertResult>0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		return insertResult;
+	}
+
+	/**
+	 * 리뷰이력 UPDATE
+	 * @param review
+	 * @return
+	 */
+	public int updateReviewHistory(ReviewDTO review) {
+		
+	    Connection con = getConnection();
+	    
+	    int updateResult = 0;
+	    
+	    updateResult = bookDao.updateReviewHistory(con, review);
+	    
+	    close(con);
+	    
+	    if(updateResult>0) {
+	    	commit(con);
+	    } else {
+	    	rollback(con);
+	    }
+	    close(con);
+		return updateResult;
+	}
+
+	/**
+	 * updown 수 체크
+	 * @param review
+	 * @return
+	 */
+	public int[] selectChangeUpDown(ReviewDTO review) {
+		
+		Connection con = getConnection();
+		
+		int upCnt = 0;
+		upCnt = bookDao.selectUpCnt(con, review);
+		
+		int downCnt =0;
+		downCnt = bookDao.selectUpDownCnt(con, review);
+		
+		int[] upDown = {upCnt,downCnt};
+		
+		close(con);
+		return upDown;
 	}
 
 }
