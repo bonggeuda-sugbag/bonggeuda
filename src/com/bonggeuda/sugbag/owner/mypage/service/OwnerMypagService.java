@@ -128,7 +128,6 @@ public class OwnerMypagService {
 		
 		close(con);
 		
-		
 		return selectAccomoNames;
 	}
 
@@ -144,7 +143,6 @@ public class OwnerMypagService {
 	}
 
 	public List<SettlementDTO> selectStl() {
-		
 	
 		Connection con = getConnection();
 		
@@ -153,6 +151,17 @@ public class OwnerMypagService {
 		close(con);
 
 		return selectStl;
+	}
+
+	public List<AccomoDTO> selectAccomo() {
+
+		Connection con = getConnection();
+		
+		List<AccomoDTO> selectAccomo = ownerDAO.selectAccomo(con);
+		
+		close(con);
+		
+		return selectAccomo;
 	}
 
 }

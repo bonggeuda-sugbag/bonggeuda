@@ -326,6 +326,7 @@ public class OwnerMypageDAO {
 			pstmt.setInt(1, ownerNo);
 			
 			rset = pstmt.executeQuery();
+			
 			while(rset.next()){
 				accomoDTO = new AccomoDTO();
 				
@@ -378,7 +379,7 @@ public class OwnerMypageDAO {
 		
 		System.out.println("들어왔나");
 		
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		
 		ResultSet rset = null;
 
@@ -393,12 +394,14 @@ public class OwnerMypageDAO {
 
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
-			stmt = con.prepareStatement(query);
-			
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1); //숙소번호
+			pstmt.setInt(2, 1); //업체번호
+
+			rset = pstmt.executeQuery();
 			selectStl = new ArrayList<>(); //모든 행을 다 받아서 최종 리스트를 만듬
 			
-			while(rset.next()) {
+			if(rset.next()) {
 				
 				SettlementDTO stl = new SettlementDTO();
 
@@ -406,6 +409,7 @@ public class OwnerMypageDAO {
 				stl.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				stl.setReqDate(rset.getDate("REQUEST_DATE"));
 				stl.setStlYn(rset.getString("STL_YN"));
+				stl.setAccomoName(rset.getString("ACCOMO_NAME"));
 				
 				selectStl.add(stl); //한 행씩 저장됨
 			}
@@ -416,10 +420,40 @@ public class OwnerMypageDAO {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 
 		return selectStl;
+	}
+
+	public List<AccomoDTO> selectAccomo(Connection con) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		List<AccomoDTO> selectAccomo = new ArrayList<AccomoDTO>();
+		
+		String query = prop.getProperty("selectAccomo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1); //업체번호
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				AccomoDTO accomoName = new AccomoDTO();
+				accomoName.setAccomoName(rset.getString("ACCOMO_NAME"));
+				
+				selectAccomo.add(accomoName);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+
+		return selectAccomo;
 	}
 
 }

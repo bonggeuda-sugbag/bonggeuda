@@ -79,13 +79,27 @@
 				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>
+			
+			<form action="/bonggeuda/owner/settlement" method="post"> 
+				<div class="tab">
+				   	<span class="tab_btn active">신청하기</span>
+				</div>
+				<br>숙소 선택&nbsp&nbsp
+				<select name="accmoName" class="select-time">
+					<c:forEach var="accmoNames" items="${ requestScope.selectAccomo }">						
+						<option  value="${ accmoNames.accomoName }">
+							<c:out value="${ accmoNames.accomoName }"/>							
+						</option>
+					</c:forEach>
+				</select>
+				&nbsp&nbsp&nbsp&nbsp<button class="submit-btn" type="submit">정산 신청</button>
+			   	<input type="hidden" value="${ stl.reqStlNo }">
+			</form>
+			<br><br><br><br>
+			
 			<c:forEach var="stl" items="${ requestScope.selectStl }"> 
 			<div class="tab">
-			    <form action="/bonggeuda/owner/settlement" method="post"> 
 			    <span class="tab_btn active">신청 내역</span>
-			    <button class="submit-btn" type="submit" style="margin-left:800px;">정산 신청</button>
-			    <input type="hidden" value="${ stl.reqStlNo }">
-			    </form>
 			 </div>
 			<table class="table table-hover" style="width: 1000px;">
 				<thead>

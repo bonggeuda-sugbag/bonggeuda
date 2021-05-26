@@ -60,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
@@ -89,10 +89,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<nav>
 			<div class="col-md-3 blog-sidebar">
 			<ul>
-				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/mypage"style="color: #6eceda;" >마이 페이지</a></li>
+				<li class="blog-list" ><a href="/bonggeuda/owner/mypage">마이 페이지</a></li>
 				<li class="blog-list" ><a href="/bonggeuda/owner/mypgeReport" >신고 내역</a></li>
 				<li class="blog-list" style=><a href="/bonggeuda/owner/settlement" >정산 신청</a></li>
-				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
+				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/taxbillList" style="color: #6eceda;" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>
 			<div class="tab">

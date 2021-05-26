@@ -82,10 +82,22 @@
 	</entry>
 	
 	<entry key="selectStl">
-		SELECT 
-               ACCOMO_NO
-             , ACCOMO_NAME
-          FROM ACCOMO_INFO
-         WHERE ACCOMO_NAME = ?
+		SELECT
+		       A.REQUEST_STL_NO
+		     , A.ACCOMO_NO
+		     , A.REQUEST_DATE
+		     , A.STL_YN
+		     , B.ACCOMO_NAME
+		  FROM REQUEST_STL A, ACCOMO_INFO B
+		 WHERE A.ACCOMO_NO = B.ACCOMO_NO
+		   AND B.ACCOMO_NO = ?
+		   AND B.OWNER_NO = ?
+	</entry>
+	
+	<entry key="selectAccomo">
+		SELECT
+		       ACCOMO_NAME
+		  FROM ACCOMO_INFO
+		 WHERE OWNER_NO = ?
 	</entry>
 </properties>
