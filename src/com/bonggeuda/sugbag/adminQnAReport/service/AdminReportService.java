@@ -99,16 +99,19 @@ public class AdminReportService {
 		close(con);
 		
 		return reportInfo;
+		
 	}
 
 
-	public ReportDTO selectReportThumnail(int reportNo) {
+	public List<ReportDTO> selectReportThumnail(int reportNo) {
 		
 		Connection con = getConnection();
 		
-		ReportDTO reportThumnailInfo = adminReportDAO.selectReportThumnail(con, reportNo);
+		List<ReportDTO> reportThumnailInfo = adminReportDAO.selectReportThumnail(con, reportNo);
 		
 		close(con);
+		
+		System.out.println("service:" + reportThumnailInfo);
 		
 		return reportThumnailInfo;
 	}

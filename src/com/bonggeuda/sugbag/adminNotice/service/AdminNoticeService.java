@@ -11,6 +11,7 @@ import java.util.List;
 import com.bonggeuda.sugbag.adminNotice.dao.AdminNoticeDAO;
 import com.bonggeuda.sugbag.adminNotice.dto.AdminNoticeDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
+import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
 
 
 
@@ -107,6 +108,28 @@ public class AdminNoticeService {
 		close(con);
 		
 		return deleteInfo ;
+	}
+
+	public int searchNoticeCount(String condition, String value) {
+		
+		Connection con = getConnection();
+		
+		int noticeWriterCount = AdminNoticeDAO.searchNoticeCount(con, condition, value);
+		
+		close(con);
+		
+		return noticeWriterCount;
+	}
+
+	public List<AdminNoticeDTO> selectSearchWriterList(String condition, String value, PageInfoDTO pageInfo) {
+	
+		Connection con = getConnection();
+		
+		List<AdminNoticeDTO> noitceList = AdminNoticeDAO.selectSearchWriterList(con, pageInfo, condition, value);
+		
+		close(con);
+		
+		return noitceList;
 	}
 
 }

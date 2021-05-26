@@ -19,6 +19,7 @@ import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 
 
 
+
 public class AdminNoticeDAO {
 	
 	private static Properties prop;
@@ -214,6 +215,86 @@ public class AdminNoticeDAO {
 		}
 		
 		return result;
+	}
+
+	public static int searchNoticeCount(Connection con, String condition, String value) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = null;
+		int noticeWriterCount = 0;
+		
+		if(condition.equals("writer")) {
+			
+			query = prop.getProperty("searchNoticeCount");
+		}
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, value);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				noticeWriterCount = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return noticeWriterCount;
+	}
+
+	public static List<AdminNoticeDTO> selectSearchWriterList(Connection con, PageInfoDTO pageInfo, String condition,
+			String value) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = null;
+		List<AdminNoticeDTO> noitceList = null;
+		
+		if(condition.equals("writer")) {
+			
+			query = prop.getProperty("selectSearchWriter");
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			pstmt.setString(3, value);
+
+			rset = pstmt.executeQuery();
+			
+			noitceList = new ArrayList<>();
+			
+			while(rset.next()) {
+		
+				AdminNoticeDTO noticeInfo = new AdminNoticeDTO();
+				
+				noticeInfo.setRnum(rset.getInt("RNUM"));
+				noticeInfo.setTitle(rset.getString("NOTICE_TITLE"));
+				noticeInfo.setWriteDate(rset.getDate("NOTICE_WRITE_DATE"));
+				noticeInfo.setWriter(rset.getString("WRITER"));
+				noticeInfo.setNoticeNo(rset.getInt("NOTICE_NO"));
+				noitceList.add(noticeInfo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return noitceList;
 	}
 	
 

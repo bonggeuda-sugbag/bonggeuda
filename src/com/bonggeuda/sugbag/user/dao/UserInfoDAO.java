@@ -178,6 +178,7 @@ public class UserInfoDAO {
 		
 		List<UserleaveDTO> leaveList = null;
 		
+		
 		String query = prop.getProperty("selectWithdrawList");
 		
 		try {
@@ -196,7 +197,8 @@ public class UserInfoDAO {
 				leaveInfo.setEmail(rset.getString("USER_ID"));
 				leaveInfo.setReason(rset.getString("WITHDRAW_REASON"));
 				leaveInfo.setLeaveDate(rset.getDate("WITHDRAWDATE"));
-
+				leaveInfo.setLeaveDate(rset.getDate("WITHDRAWDATE"));
+				
 				leaveList.add(leaveInfo);
 			}
 		} catch (SQLException e) {

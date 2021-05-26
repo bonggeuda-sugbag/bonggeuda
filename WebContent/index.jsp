@@ -17,13 +17,13 @@
 
 		(function(){
 			
-			location.href="${ pageContext.servletContext.contextPath}/report/list";    
+			location.href="${ pageContext.servletContext.contextPath}/notice/list";    
 			
 		})();
 
 	</script>
 
-		<jsp:forward page="/WEB-INF/views/guest/main/main.jsp"/>
+
 
 
 
