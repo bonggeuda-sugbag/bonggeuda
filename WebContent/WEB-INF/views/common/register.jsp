@@ -3,6 +3,71 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	.signUp button {
+		border-radius: 10px;
+		margin-top: 5px;
+		background: #6eceda;
+		color: white;
+		border-style: none;
+		box-shadow: 0 3px 0 #0e8c73;
+		height: 35px;
+	}
+	.signUp button:hover {
+		background-color: #4aa9b6;
+		box-shadow: 0 3px 0 #23a188;
+	}
+	.signUp button:active {
+		box-shadow: none;
+	}
+	.space_or {
+    	position: relative;
+    	height: 40px;
+    	margin-bottom: 8px;
+	}
+	.space_or:after {
+	    content: '';
+	    position: absolute;
+	    top: 50%;
+	    left: 0;
+	    width: 100%;
+	    height: 1px;
+	    background: rgba(0,0,0,0.08);
+	}
+	.space_or span {
+	    display: inline-block;
+	    position: absolute;
+	    top: 0;
+	    left: 50%;
+	    z-index: 10;
+	    width: 50px;
+	    /* height: 40px; */
+	    margin: 0 0 0 -25px;
+	    background: #fff;
+	    font-size: 14px;
+	    line-height: 40px;
+	    color: rgba(0,0,0,0.38);
+	    text-align: center;
+	}
+	.form-info span {
+		width:105px;
+		text-align:left;
+	}
+	.signup td {
+	padding-right:15px;
+	}
+	.loginin {
+		color:gray;
+		margin-top: 40px;
+	}
+	.loginin a {
+		color:black;
+	}
+	.loginin a:hover {
+		color:#6eceda;
+		text-decoration-line: none;
+	}
+</style>
 <title>봉그다 숙박숙박</title>
 <link href="${ pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -21,7 +86,7 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-<body>
+<body style="background: white;">
 <!--header-->
 	<!-- <div class="navigation">
 			<div class="container-fluid">
@@ -57,11 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 				
 			</ul>
-			<div class="nav-icon">
-				<div class="hero fa-navicon fa-2x nav_slide_button" id="hero">
-						<a href="#"><i class="glyphicon glyphicon-menu-hamburger"></i> </a>
-					</div>	
-			</div>
+
 		<div class="clearfix"> </div>
 		<div class="clearfix"> </div>
 		</div>	
@@ -70,26 +131,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class=" container">
 
 	<div class="clearfix"> </div>
-		<!--initiate accordion-->
-		<script type="text/javascript">
-			$(function() {
-			    var menu_ul = $('.menu > li > ul'),
-			           menu_a  = $('.menu > li > a');
-			    menu_ul.hide();
-			    menu_a.click(function(e) {
-			        e.preventDefault();
-			        if(!$(this).hasClass('active')) {
-			            menu_a.removeClass('active');
-			            menu_ul.filter(':visible').slideUp('normal');
-			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-			        } else {
-			            $(this).removeClass('active');
-			            $(this).next().stop(true,true).slideUp('normal');
-			        }
-			    });
-			
-			});
-		</script>
       		
 	</div>
 </div>
@@ -97,31 +138,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--contact-->
 <div class="login-right">
 	<div class="container">
-		<h3>Register</h3>
-		<div class="login-top" style="padding-left: 170px";>
+		<p class="space_or" style="width:50%; margin: 0 auto;"><span style="font-size: 40px; width:160px; left: 45%; background:#fff">Register</span></p><br>
+		<div class="login-top" style="padding-left: 170px;">
 				<div class="form-info">
 					<form>
-						<h5>이메일 아이디</h5>
-						<br>
+						<table class="signup" style="text-align:left;">
+							<tr>
+								<td style="padding-bottom: 15px;">이메일 아이디</td>
+								<td><input name="email" type="text" placeholder="이메일 주소를 입력해주세요." style="width: 250px;" ></td>
+							</tr>
+							<tr>
+								<td style="padding-bottom: 15px;">비밀번호</td>
+								<td><input name="password" type="password" placeholder="비밀번호를 입력해주세요." style="width: 250px;"></td>
+							</tr>
+							<tr>
+								<td style="padding-bottom: 15px;">비밀번호 확인</td>
+								<td><input name="passwordCheck" type="password" placeholder="비밀번호를 입력해주세요." style="width: 250px;"></td>
+							</tr>
+							<tr>
+								<td style="padding-bottom: 15px;">닉네임</td>
+								<td><input name="nickName" type="text" placeholder="닉네임을 입력해주세요." style="width: 250px;"></td>
+							</tr>
+							<tr>
+								<td style="padding-bottom: 15px;">전화번호</td>
+								<td><input name="phone" type="text" placeholder="전화번호를 입력해주세요." style="width: 250px;"></td>
+							</tr>
+							<tr>
+								<td colspan="2" style="padding-bottom: 15px; font-size:12px; color:lightgray;">*전화번호는 010-xxxx-xxxx 형식으로 입력해주세요.</td>
+							</tr>
+						</table>
+						<!-- <span style="width:105px;">이메일 아이디</span>
 						<input type="text"   placeholder="이메일 주소를 입력해주세요." required="" style="width: 70%;" >
 						<br>
-						<h5>비밀번호</h5>
-						<br>
+						<span style="width:105px;">비밀번호</span>
 						<input type="password"  placeholder="비밀번호를 입력해주세요." required="" style="width: 70%;">
 						<br>
-						<h5>비밀번호 확인</h5>
-						<br>
+						<span style="width:105px;">비밀번호 확인</span>
 						<input type="password"  placeholder="비밀번호를 입력해주세요." required=""  style="width: 70%;">
 						<br>
-						<h5>닉네임</h5>
-						<br>
+						<span style="width:105px;">닉네임</span>
 						<input type="text"   placeholder="" required="" style="width: 70%;">
+						<br> -->
 						<br>
-						 <label class="hvr-sweep-to-right">
-				           	<input type="submit" value="Sign Up">
-				           </label>
+						<div class="signUp" style="padding-right:100px;">
+						<button style="width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="submit">회원가입하기</button>
+						</div>
+
 					</form>
-					<p style="padding-right: 120px;">Already have a Real Home account? <a href="login.html">Login</a></p>
+					<div class="loginin" style="padding-right: 120px;">Already have a Real Home account? <a href="${ pageContext.servletContext.contextPath }/login/test">Login</a></div>
 				</div>
 			
 	</div>

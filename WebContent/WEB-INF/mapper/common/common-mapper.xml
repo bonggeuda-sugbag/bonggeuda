@@ -6,11 +6,14 @@
 		  FROM USER_INFO
 		 WHERE USER_ID = ?
 		   AND USER_PWD =?
+		   AND USER_WITHDRAW_YN = 'N'
+		   
 	</entry>
 	<entry key="ownerLoginCheck">
 		SELECT *
 		  FROM OWNER_INFO
 		 WHERE OWNER_ID = ?
 		   AND OWNER_PWD =?
+		   AND OWNER_WITHDRAW_YN = 'N'
 	</entry>
 </properties>

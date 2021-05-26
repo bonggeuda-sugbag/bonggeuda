@@ -165,5 +165,5 @@ public class ReportDTO {
 				+ ", accomoName=" + accomoName + ", reportAnswer=" + reportAnswer + ", approveYN=" + approveYN
 				+ ", rowNum=" + rowNum + ", attachmentList=" + attachmentList + "]";
 	}
-
+	
 }

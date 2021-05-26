@@ -106,11 +106,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</tr>
 				</thead>
 				<tbody>
-					<% int i=0; %>
 					<c:forEach var="arr" items="${ userreportList }" varStatus="st">
-					<% i++; %>
 						<tr>
-							<td style="text-align: center;"><%= i %></td>
+							<td style="text-align: center;"><c:out value="${ arr.rowNum }"/></td>
 							<td>							
 								<a href="${ pageContext.servletContext.contextPath }/userreportcontent/select?reportedNo=${ arr.reportNo }"><c:out value="${ arr.reportTitle }"/></a>
 							</td>
@@ -118,7 +116,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td><c:out value="${ arr.reportDate }"/></td>
 							<td><c:out value="${ arr.reportStatus }"/></td>
 						</tr> 
-				
 					</c:forEach>  
 				</tbody>
 			 </table>
