@@ -97,6 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="tab">
 			    <span class="tab_btn active">신고 내역</span>
 			 </div>
+			<c:if test="${ !empty requestScope.reportList }">
 			<table class="table table-hover" style="width: 1000px;">
 				<thead>
 				    <tr>
@@ -107,10 +108,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    </tr>
 				</thead>
 				<tbody>
-				<c:forEach var="reportBoard" items="${ requestScope.reportList }"> 
-				<c:set var="i" value="${ i+1 }"/>
+					<c:forEach var="reportBoard" items="${ requestScope.reportList }"> 
 				   	<tr>
-						<th>${ i }</th>
+						<th>${ reportBoard.rowNum }</th>
 						<th>
 						<form action="/bonggeuda/owner/reportDetail" method="post">
 						<input type="hidden" name="reportNo" value="${reportBoard.reportNo}">
@@ -136,9 +136,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</c:when>
 						
 						</c:choose>
-							</th>
-					</tr>   
-				</c:forEach>
+					</c:forEach>
 				</tbody>
 			 </table>
 			 <div class="tab_each" style="display:block">
@@ -152,11 +150,164 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					  <li><a href="#">5</a></li>
 					  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 				   </ul>
-				   </nav>
+				</nav>
 			</div>
+			
+			<%-- 페이지 처리 --%>
+		<div class="pagingArea" align="center">
+			<c:choose>
+			    <c:when test="${ empty requestScope.searchValue }">
+				    <button id="startPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="prevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="nextPage">></button>
+					</c:if>
+					
+					<button id="maxPage">>></button> 
+			     </c:when>
+			    <c:otherwise>
+   				    <button id="searchStartPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="searchPrevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="searchNextPage">></button>
+					</c:if>
+					
+					<button id="searchMaxPage">>></button> 
+			    </c:otherwise>
+			</c:choose>   
+		</div>
+		<%-- 페이지 처리 --%>
+		</c:if>
+		
+		<c:if test="${ empty requestScope.reportList }">
+			<div class="list_none" style="display: block;">
+			<br>
+			<b>신고 내역이 없습니다.</b>
+			<br><br>
+			</div>
+		</c:if>
+		
 		</div>
 	</div>
 </div>
+<script>
+		const link = "${ pageContext.servletContext.contextPath }/owner/mypgeReport";
+		//const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		if(document.getElementById("searchStartPage")) {
+			const $searchStartPage = document.getElementById("searchStartPage");
+			$searchStartPage.onclick = function() {
+				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchPrevPage")) {
+			const $searchPrevPage = document.getElementById("searchPrevPage");
+			$searchPrevPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchNextPage")) {
+			const $searchNextPage = document.getElementById("searchNextPage");
+			$searchNextPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchMaxPage")) {
+			const $searchMaxPage = document.getElementById("searchMaxPage");
+			$searchMaxPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+/* 		if(document.getElementsByTagName("th")) {
+			
+			const $tds = document.getElementsByTagName("th");
+			for(let i = 0; i < $tds.length; i++) {
+
+				$tds[i].onclick = function() {
+					//상세보기 페이지로 이동
+					location.href="${pageContext.servletContext.contextPath }/owner/question/content?qnaNo="
+						+ this.parentNode.children[0].innerText
+				}
+			}
+		} */
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+	</script>
 <!--footer-->
 <div class="footer-bottom">
 	<div class="container">

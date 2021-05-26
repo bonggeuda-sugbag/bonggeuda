@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.RequestTaxBillDTO;
 import com.bonggeuda.sugbag.owner.mypage.service.OwnerMypagService;
 
@@ -20,45 +22,48 @@ import com.bonggeuda.sugbag.owner.mypage.service.OwnerMypagService;
 @WebServlet("/owner/taxbillList")
 public class MypageTaxBillList extends HttpServlet {
 
-	/**
-	 * 세금 계산서 목록 조회
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-
-		
-		
-		
-
-	}
-
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 리스트에 담기
-		int  ownerNo = 1;
-
+		String currentPage = request.getParameter("currentPage");
+		int pageNo = 1;
 		
-		List<RequestTaxBillDTO> taxBillList = new ArrayList<>(); // 
+		if(currentPage != null && !"".equals(currentPage)) {
+			pageNo = Integer.parseInt(currentPage);
+		}
 		
+		if(pageNo <= 0) {
+			pageNo = 1;
+		}
+		
+		/* 전체 게시물 수가 필요 */
+		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		OwnerMypagService ownerService = new OwnerMypagService();
 		
-		taxBillList = ownerService.selectTaxBillList(ownerNo);
+		int taxTotalCount = ownerService.taxTotalCount();
 		
+		System.out.println("totalCount 체크 : " + taxTotalCount);
 		
-		request.setAttribute("taxBillList", taxBillList);
+		/* 한 페이지에 보여 줄 게시물 수 */
+		int limit = 10;
 		
-		if(taxBillList != null) {
-			
-			String path = "";
-			path = "/WEB-INF/views/owner/mypage/mypageTaxbillList.jsp";
-			request.getAttribute(path);
-			request.getRequestDispatcher(path).forward(request, response);
-			
-			
-		}
+		/* 한 번에 보여질 페이징 버튼의 수*/
+		int buttonAmount = 5;
+		
+		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
+		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, taxTotalCount, limit, buttonAmount);
 
+		System.out.println(pageInfo);
+
+		List<RequestTaxBillDTO> taxBillList = new ArrayList<>();
 		
+		taxBillList = ownerService.selectTaxBillList(pageInfo);
+		
+		String path = "";
+		path = "/WEB-INF/views/owner/mypage/mypageTaxbillList.jsp";
+		request.setAttribute("taxBillList", taxBillList);
+		request.setAttribute("pageInfo", pageInfo);
+		request.getRequestDispatcher(path).forward(request, response);
+
 	}
 
 }

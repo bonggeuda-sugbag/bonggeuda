@@ -54,7 +54,8 @@
       JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
 	 WHERE A.OWNER_NO = ?
 	   AND BOOK_APPROVE_YN = 'N'
-	   AND BOOK_STATUS_YNC = 'Y') D) E
+	   AND BOOK_STATUS_YNC = 'Y'
+	 ORDER BY B.BOOK_NO DESC) D) E
 	 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
@@ -143,7 +144,8 @@
 	 WHERE A.OWNER_NO = ?
        AND BOOK_APPROVE_YN = 'Y'
         OR BOOK_STATUS_YNC = 'N'
-        OR BOOK_STATUS_YNC = 'C')X)Y 
+        OR BOOK_STATUS_YNC = 'C'
+     ORDER BY B.BOOK_NO DESC)X)Y 
      WHERE RNUM BETWEEN ? AND ?
         
 	</entry>

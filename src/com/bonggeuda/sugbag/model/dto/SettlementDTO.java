@@ -9,18 +9,20 @@ public class SettlementDTO {
 	private Date reqDate;
 	private String stlYn;
 	private String accomoName;
+	private int rowNum;
 
 	public SettlementDTO() {
 		super();
 	}
 
-	public SettlementDTO(int reqStlNo, int accomoNo, Date reqDate, String stlYn, String accomoName) {
+	public SettlementDTO(int reqStlNo, int accomoNo, Date reqDate, String stlYn, String accomoName, int rowNum) {
 		super();
 		this.reqStlNo = reqStlNo;
 		this.accomoNo = accomoNo;
 		this.reqDate = reqDate;
 		this.stlYn = stlYn;
 		this.accomoName = accomoName;
+		this.rowNum = rowNum;
 	}
 
 	public int getReqStlNo() {
@@ -63,10 +65,18 @@ public class SettlementDTO {
 		this.accomoName = accomoName;
 	}
 
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+
 	@Override
 	public String toString() {
 		return "SettlementDTO [reqStlNo=" + reqStlNo + ", accomoNo=" + accomoNo + ", reqDate=" + reqDate + ", stlYn="
-				+ stlYn + ", accomoName=" + accomoName + "]";
+				+ stlYn + ", accomoName=" + accomoName + ", rowNum=" + rowNum + "]";
 	}
 
 }

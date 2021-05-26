@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bonggeuda.sugbag.common.paging.PageNation;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
+import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
 import com.bonggeuda.sugbag.owner.mypage.service.OwnerMypagService;
 
 /**
@@ -24,34 +27,48 @@ public class MypageReportList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int ownerNo = 1;
-		/* 조회해온거 리스트에 담고 테이블로 뿌려주자 */
+		String currentPage = request.getParameter("currentPage");
+		int pageNo = 1;
 		
+		if(currentPage != null && !"".equals(currentPage)) {
+			pageNo = Integer.parseInt(currentPage);
+		}
 		
-		List<ReportDTO> reportList = new ArrayList<>();
+		if(pageNo <= 0) {
+			pageNo = 1;
+		}
 		
+		/* 전체 게시물 수가 필요 */
+		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		OwnerMypagService reportListService = new OwnerMypagService();
 		
-		reportList = reportListService.seletReportList(ownerNo);
+		int totalCount = reportListService.selectTotalCount();
 		
+		System.out.println("totalCount 체크 : " + totalCount);
+		
+		/* 한 페이지에 보여 줄 게시물 수 */
+		int limit = 10;
+		
+		/* 한 번에 보여질 페이징 버튼의 수*/
+		int buttonAmount = 5;
+		
+		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
+		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
+
+		System.out.println(pageInfo);
+		
+		List<ReportDTO> reportList = reportListService.selectReportList(pageInfo);
 		
 		request.setAttribute("reportList", reportList);
 		
+		System.out.println("전체내역조회 : " + reportList);
+		
 		String path = "";
 		path = "/WEB-INF/views/owner/mypage/mypageReportList.jsp";
-		request.getAttribute(path);
+		request.setAttribute("bookList", reportList);
+		request.setAttribute("pageInfo", pageInfo);
 		request.getRequestDispatcher(path).forward(request, response);
 		
-		
-		
-		
-		
-
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
 }
