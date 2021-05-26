@@ -298,4 +298,11 @@
           FROM COUPON
          WHERE COUPON_NO = ?      
     </entry>
+    <entry key="selectRivewStatus">
+        SELECT 
+               REVIEW_NO 리뷰번호
+             , UPDOWN_STATUS 상태
+          FROM REVIEW_HISTORY
+         WHERE USER_NO=?     
+    </entry>
 </properties>

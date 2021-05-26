@@ -290,6 +290,11 @@ public class BookService {
 		
 	}
 
+	/**
+	 * 객실정보조회
+	 * @param roomNo
+	 * @return
+	 */
 	public RoomDTO selectRoomInfo(int roomNo) {
 		
 		Connection con = getConnection();
@@ -303,6 +308,11 @@ public class BookService {
 		return roomInfo;
 	}
 
+	/**
+	 * 쿠폰 할인금액 조회
+	 * @param couponNo
+	 * @return
+	 */
 	public int selectDiscountAmount(int couponNo) {
 		
 		Connection con = getConnection();
@@ -313,6 +323,20 @@ public class BookService {
 		
 		close(con);
 		return discount;
+	}
+
+	/**
+	 * 유저가 리뷰에 누른 업다운 상태값 조회
+	 * @param userNo
+	 * @return
+	 */
+	public Map<Integer, String> selectReviewUpDownStatus(int userNo) {
+		
+		Connection con = getConnection();
+		
+		Map<Integer, String> reviewUDstatus = bookDao.selectUpDownStatus(con, userNo);
+		
+		return reviewUDstatus;
 	}
 
 }

@@ -346,17 +346,101 @@ popup>li{
     padding: 10px 10px 10px 10px;
 }
 
-.reviewStar{
+.reviewStar00{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -240px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+    
+}
+.reviewStar05{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -216px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+    
+}
+.reviewStar11{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -192px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+    
+}
+.reviewStar15{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -168px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+    
+}
+.reviewStar20{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -144px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+    
+}
+.reviewStar25{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -120px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+    
+}
+.reviewStar30{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -96px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+}
+.reviewStar35{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -72px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+}
+.reviewStar40{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -48px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+}
+.reviewStar45{
+    clear: both;
+    width: 120px;
+    height: 24px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 -24px no-repeat;
+    background-size: 120px auto;
+    text-align: right;
+}
+.reviewStar50{
     clear: both;
     width: 120px;
     height: 24px;
     background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat;
     background-size: 120px auto;
-    background-position: 0 -24px;
+    background-position: 0 0;
     text-align: right;
-    
 }
-
 .reviewTitle{
     display: flex;
 }
@@ -369,12 +453,27 @@ popup>li{
     background-size: 20px 20px;
     
 }
+.likeClick{
+    width: 30px;
+    height: 20px;
+    margin-left: 13px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeClicked.png) 0 0 no-repeat;
+    background-size: 20px 20px;
+    
+}
 
 .unlike{
     width: 30px;
     height: 20px;
     margin-left: 13px;
     background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeun.png) 0 0 no-repeat;
+    background-size: 20px 20px;
+}
+.unlikeClick{
+    width: 30px;
+    height: 20px;
+    margin-left: 13px;
+    background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeunclicked.png) 0 0 no-repeat;
     background-size: 20px 20px;
 }
 
@@ -752,14 +851,107 @@ textarea {
                 <div style="margin: 0 auto;">
                     <br>
     
+                    <c:choose>
+                        <c:when test="${ accomo.reviewScore eq 0}">
+                            <h3>등록된 리뷰가 없어요</h3>
+                            <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar00" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore lt 1}">
+                            <h3>1보다작아요</h3>
+                            <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar05" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore ge 1 &&  accomo.reviewScore lt 1.5}">
+                            <h3>1점이상1.5미만이에요</h3>
+                            <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar10" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore ge 1.5 && accomo.reviewScore lt 2}">
+                        <h3>1.5이상와2미만에요</h3>
+                            <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar15" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore ge 2 && accomo.reviewScore lt 2.5}">
+                        <h3>2이상 2.5미만</h3>
+                        <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar20" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore le 2 && accomo.reviewScore lt 3}">
+                        <h3>2.5이상점과 3점미만</h3>
+                        <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar25" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore ge 3 && accomo.reviewScore lt 3.5}">
+                        <h3>3과 3.5 사이이에요</h3>
+                        <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar30" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore ge 3.5 && accomo.reviewScore lt 4}">
+                        <h3>3.5와 4 사이에요</h3>
+                        <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar35" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br></c:when>
+                        <c:when test="${ accomo.reviewScore ge 4 && accomo.reviewScore lt 4.5}">
+                        <h3>4점이에요</h3>
+                        <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar40" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore ge 4.5 && accomo.reviewScore lt 5}">
+                        <h3>4와 5사이에요</h3>
+                        <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar45" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                        <c:when test="${ accomo.reviewScore eq 5}">
+                        <h3>5점이에요</h3>
+                        <br>
+                            <div style="display: flex; width: 180px; margin: 0 auto;">
+                                <div class="reviewStar50" ></div>
+                                <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
+                            </div>
+                            <br>
+                        </c:when>
+                    </c:choose>
                     
-                    <h3>만족해요</h3>
-                    <br>
-                        <div style="display: flex; width: 180px; margin: 0 auto;">
-                            <div class="reviewStar" ></div>
-                            <div  style="margin: 0 auto; width: 50px"><h3>${ accomo.reviewScore }</h3></div>
-                        </div>
-                    <br>
                     
                      <p>
                         전체리뷰  :  ${totalCount} 개
@@ -778,15 +970,51 @@ textarea {
                                 <div>
                                     <h4><strong>${best.title }</strong></h4>
                                 </div>
-                                <div class="like"></div>
-                                <div><p>${best.upCnt }</p></div>
-                                <div class="unlike"></div>
-                                <div><p>${best.downCnt }</p></div>
+                                <c:choose>
+                                    <c:when test="${best.updownStatus eq 'U' }">
+                                        <div class="likeClick" value = '1'></div>
+                                        <div><p>${best.upCnt }</p></div>
+                                        <div class="unlike" value = '0'></div>
+                                        <div><p>${best.downCnt }</p></div>
+                                    </c:when>
+                                     <c:when test="${best.updownStatus eq 'D' }">
+                                        <div class="like" value = '0'></div>
+                                        <div><p>${best.upCnt }</p></div>
+                                        <div class="unlikeClick" value = '1'></div>
+                                        <div><p>${best.downCnt }</p></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="like" value = '0'></div>
+                                        <div><p>${best.upCnt }</p></div>
+                                        <div class="unlike" value = '0'></div>
+                                        <div><p>${best.downCnt }</p></div>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
 							
                             <div class="reviewScore" style="display: flex;">
-								<div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -38px;">
+								<c:choose>
+                            <c:when test="${ best.starPoint eq 1}">
+                               <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -147px;">
 								</div>
+                        </c:when>
+                        <c:when test="${ best.starPoint eq 2}">
+                            <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -110px;">
+							</div>
+                        </c:when>
+                        <c:when test="${ best.starPoint eq 3}">
+                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
+								</div>
+                        </c:when>
+                        <c:when test="${ best.starPoint eq 4}">
+                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -35px;">
+						</div>
+                        </c:when>
+                        <c:when test="${ best.starPoint eq 5}">
+                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 0;">
+								</div>
+                        </c:when>
+                        </c:choose>
                             	<h5>${best.starPoint}</h5>
                             </div>
                             <div class="suksoName">
@@ -810,19 +1038,61 @@ textarea {
                                 <div>
                                     <h4><strong>${normalReview.title}</strong></h4>
                                 </div>
-								<div class="like" id="test1" ></div>
-                                <div><p>${normalReview.upCnt }</p></div>
-                                <div class="unlike" id="test2" ></div>
-                                <div><p>${normalReview.downCnt}</p></div>
+								<c:choose>
+                                    <c:when test="${normalReview.updownStatus eq 'U' }">
+                                        <div class="likeClick" id="a${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this.name)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
+                                        <div class="unlike" id="b${noarmalReview.reviewNo }"name="review${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
+                                    </c:when>
+                                     <c:when test="${normalReview.updownStatus eq 'D' }">
+                                        <div class="like"id="a${normalReview.reviewNo}" name="review${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
+                                        <div class="unlikeClick"id="b${normalReview.reviewNo}" name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="like" id="a${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
+                                        <div class="unlike" id="b${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
+                                    </c:otherwise>
+                                </c:choose>
                                 <script>
-                                $("#test1").click(function(){
-							        alrert("하이");                          	
-                                });
+                                function likeHate(p){
+                                	
+                                	console.log(p);
+                                	
+                                }
+								/* $(".like").on("click",function(){
+									alert($(this))
+								}) */
                                 </script>
                             </div>
 							<div class="reviewScore" style="display: flex;">
-								<div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
+							<c:choose>
+                            <c:when test="${ normalReview.starPoint eq 1}">
+                               <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -147px;">
 								</div>
+                        </c:when>
+                        <c:when test="${ normalReview.starPoint eq 2}">
+                            <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -110px;">
+							</div>
+                        </c:when>
+                        <c:when test="${ normalReview.starPoint eq 3}">
+                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
+								</div>
+                        </c:when>
+                        <c:when test="${ normalReview.starPoint eq 4}">
+                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -35px;">
+						</div>
+                        </c:when>
+                        <c:when test="${ normalReview.starPoint eq 5}">
+                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 0;">
+								</div>
+                        </c:when>
+                        </c:choose>
+								
                             	<h5>${normalReview.starPoint}</h5>
                             </div>
                             <div class="suksoName" >
@@ -884,36 +1154,7 @@ textarea {
 			</form>
 			</div>
         </center>
-		<!-- <div id="pop01" class="overlay">
-			<div class="popup">
-				<a href="#none" class="close">&times;</a>
-				<strong style="text-align: center;">객실 이용 안내</strong>
-				<br>
-				<section>
-					<p>기본정보</p>
-					<ul>
-						<li>2인 기준 최대 2인</li>
-						<li>객실 + 욕실 / 7.56평</li>
-					</ul>
-				</section>
-				<hr>
-				<section>
-					<p>편의시설</p>
-					<ul>
-						<li>TV,개인금고,냉장고,미니바,욕실용품</li>
-					</ul>
-				</section>
-				<hr>
-				<section>
-					<p>선택날짜</p>
-					<ul>
-						<li>05월 07일 ~ 05월 08일</li>
-					</ul>
-				</section>
-				
-			</div>
-		</div> -->
-
+	
 <!--footer-->
 <div class="footer">
 	<div class="container">
