@@ -111,7 +111,7 @@
              , ?
              , DEFAULT
              , ?
-             , ? 
+             , ?
              )    
     </entry>
     <entry key="selectUserPoint">
@@ -297,5 +297,50 @@
                COUPON_DISCOUNT 할인금액
           FROM COUPON
          WHERE COUPON_NO = ?      
+    </entry>
+    <entry key="selectRivewStatus">
+        SELECT 
+               REVIEW_NO 리뷰번호
+             , UPDOWN_STATUS 상태
+          FROM REVIEW_HISTORY
+         WHERE USER_NO=?     
+    </entry>
+    <entry key="selectReviewHistory">
+        SELECT
+               REVIEW_HISTORY_NO  이력번호
+          FROM REVIEW_HISTORY
+         WHERE USER_NO = ? 
+           AND REVIEW_NO = ?       
+    </entry>
+    <entry key="insertReviewHistory">
+        INSERT
+          INTO REVIEW_HISTORY
+        VALUES(
+               SEQ_RVW_HIS.NEXTVAL
+             , ?
+             , ?
+             , ?
+              )
+    </entry>
+    <entry key="updateReviewHistory">
+        UPDATE REVIEW_HISTORY
+           SET UPDOWN_STATUS = ?
+         WHERE REVIEW_HISTORY_NO = ?
+    </entry>
+    <entry key="selectOneRvUpCnt">
+        SELECT
+               COUNT(UPDOWN_STATUS) 업
+          FROM REVIEW_HISTORY
+         WHERE UPDOWN_STATUS = 'U' 
+           AND REVIEW_NO = ?
+         GROUP BY REVIEW_NO
+    </entry>
+    <entry key="selectOneRvDwnCnt">
+        SELECT
+               COUNT(UPDOWN_STATUS) 다운
+          FROM REVIEW_HISTORY
+         WHERE UPDOWN_STATUS = 'D' 
+           AND REVIEW_NO = ?
+         GROUP BY REVIEW_NO
     </entry>
 </properties>

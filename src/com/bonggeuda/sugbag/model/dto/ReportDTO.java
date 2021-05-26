@@ -17,6 +17,7 @@ public class ReportDTO {
 	private String accomoName;
 	private String reportAnswer;
 	private String approveYN; // 연준 추가
+	private int rowNum;
 	
 	private List<AttachmentDTO> attachmentList; //신고첨부사진
 
@@ -26,7 +27,7 @@ public class ReportDTO {
 
 	public ReportDTO(int reportNo, String writerType, String reportReason, int memberNo, Date reportDate,
 			String reportTitle, String reportStatus, String reportedType, int reportedNo, String accomoName,
-			String reportAnswer, String approveYN, List<AttachmentDTO> attachmentList) {
+			String reportAnswer, String approveYN, int rowNum, List<AttachmentDTO> attachmentList) {
 		super();
 		this.reportNo = reportNo;
 		this.writerType = writerType;
@@ -40,6 +41,7 @@ public class ReportDTO {
 		this.accomoName = accomoName;
 		this.reportAnswer = reportAnswer;
 		this.approveYN = approveYN;
+		this.rowNum = rowNum;
 		this.attachmentList = attachmentList;
 	}
 
@@ -139,6 +141,14 @@ public class ReportDTO {
 		this.approveYN = approveYN;
 	}
 
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+
 	public List<AttachmentDTO> getAttachmentList() {
 		return attachmentList;
 	}
@@ -153,12 +163,9 @@ public class ReportDTO {
 				+ ", memberNo=" + memberNo + ", reportDate=" + reportDate + ", reportTitle=" + reportTitle
 				+ ", reportStatus=" + reportStatus + ", reportedType=" + reportedType + ", reportedNo=" + reportedNo
 				+ ", accomoName=" + accomoName + ", reportAnswer=" + reportAnswer + ", approveYN=" + approveYN
-				+ ", attachmentList=" + attachmentList + "]";
+				+ ", rowNum=" + rowNum + ", attachmentList=" + attachmentList + "]";
 	}
-	
-	
 
 	
-
 	
 }
