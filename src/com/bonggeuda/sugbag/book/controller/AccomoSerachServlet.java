@@ -57,6 +57,13 @@ public class AccomoSerachServlet extends HttpServlet {
 		if(personnel.length() > 0) {
 			search.setPersonnal(Integer.parseInt(personnel));
 		}
+		String searchCondition = "";
+		
+		if(checkList != null) {
+			for(int i = 0; i < checkList.length; i++) {
+				searchCondition += checkList[i] + " ";
+			}
+		}
 		//조건에 일치하는 숙소리스트 검색
 		BookService booksvc = new BookService();
 		List<AccomoInfoDTO> accomoList = booksvc.selectAccomoFacility(search);
@@ -79,6 +86,7 @@ public class AccomoSerachServlet extends HttpServlet {
 			request.setAttribute("checkList", checkList);
 			request.setAttribute("accomoList", accomoList);
 			request.setAttribute("type", type);
+			request.setAttribute("seacrh", searchCondition);
 		} else {
 			System.out.println("숙소목록 조회에 실패했습니다.!!");
 		}

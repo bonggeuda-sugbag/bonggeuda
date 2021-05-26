@@ -210,13 +210,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		</form>
 		<!-- 체크박스유지작업 -->
-<!-- 		<script>
+ 		<script>
 		    window.onload = function(){
-		    	document.getElementsByName("facility").forEach(function(){
-		    		console.log("${checkList}");
-		    	});
+		    	var condition = "${seacrh}";
+		    	var facility = document.getElementsByName("facility");
+		    	
+		    	for(var i = 0; i <facility.length; i++ ){
+                    if(condition.indexOf(facility[i].value) >= 0){
+                    	facility[i].checked = true;
+                    }		    		
+		    	}
 		    }
-		</script> -->
+		</script>
 		</div>
 		<div style="width: 900px; padding: 10px; display: flex; flex-direction: column;">
 
@@ -235,12 +240,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</button>
 				<button style="margin-left: 14px;width:60px; height: 30px;">지도</button>
 			</div>
-			<c:set var="list" value="${accomoList}"/>
-			<c:set var="arr" value ="${fn:split(list,'AccomoInfoDTO')}"/>
-			<c:forEach items="${arr}" varStatus ="st">
-			    <c:out value="${st.count} : ${arr[st.index]}"></c:out>
-			</c:forEach>
-			
+		
 			
 			<!-- <script>
 			    function sorting(p){
