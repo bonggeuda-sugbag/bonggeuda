@@ -1,16 +1,18 @@
 package com.bonggeuda.sugbag.book.controller;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
@@ -95,7 +97,7 @@ public class AccomoSerachServlet extends HttpServlet {
 //	
 //        PrintWriter out = response.getWriter();
 //        out.print(jsonArr);
-        
+//        
 //        out.flush();
 //        out.close();
 		

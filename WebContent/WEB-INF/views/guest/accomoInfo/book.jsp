@@ -972,50 +972,50 @@ textarea {
                                 </div>
                                 <c:choose>
                                     <c:when test="${best.updownStatus eq 'U' }">
-                                        <div class="likeClick" value = '1'></div>
-                                        <div><p>${best.upCnt }</p></div>
-                                        <div class="unlike" value = '0'></div>
-                                        <div><p>${best.downCnt }</p></div>
+                                        <div class="likeClick" id="like${best.reviewNo}"value = '${best.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
+                                        <div class="unlike" id="unlike${best.reviewNo }"value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
                                     </c:when>
                                      <c:when test="${best.updownStatus eq 'D' }">
-                                        <div class="like" value = '0'></div>
-                                        <div><p>${best.upCnt }</p></div>
-                                        <div class="unlikeClick" value = '1'></div>
-                                        <div><p>${best.downCnt }</p></div>
+                                        <div class="like"id="like${best.reviewNo}" value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
+                                        <div class="unlikeClick"id="unlike${best.reviewNo}" value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
                                     </c:when>
                                     <c:otherwise>
-                                        <div class="like" value = '0'></div>
-                                        <div><p>${best.upCnt }</p></div>
-                                        <div class="unlike" value = '0'></div>
-                                        <div><p>${best.downCnt }</p></div>
+                                        <div class="like" id="like${best.reviewNo}"value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
+                                        <div class="unlike" id="unlike${best.reviewNo}"value = '${best.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
 							
                             <div class="reviewScore" style="display: flex;">
-								<c:choose>
-                            <c:when test="${ best.starPoint eq 1}">
-                               <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -147px;">
-								</div>
-                        </c:when>
-                        <c:when test="${ best.starPoint eq 2}">
-                            <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -110px;">
-							</div>
-                        </c:when>
-                        <c:when test="${ best.starPoint eq 3}">
-                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
-								</div>
-                        </c:when>
-                        <c:when test="${ best.starPoint eq 4}">
-                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -35px;">
-						</div>
-                        </c:when>
-                        <c:when test="${ best.starPoint eq 5}">
-                        <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 0;">
-								</div>
-                        </c:when>
-                        </c:choose>
-                            	<h5>${best.starPoint}</h5>
+			    				<c:choose>
+                                <c:when test="${ best.starPoint eq 1}">
+                                   <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -147px;">
+			    					</div>
+                                </c:when>
+                                <c:when test="${ best.starPoint eq 2}">
+                                    <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -110px;">
+	     	    					</div>
+                                </c:when>
+                                <c:when test="${ best.starPoint eq 3}">
+                                    <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -73px;">
+	  		    					</div>
+                                </c:when>
+                                <c:when test="${ best.starPoint eq 4}">
+                                    <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 -35px;">
+		            				</div>
+                                </c:when>
+                                <c:when test="${ best.starPoint eq 5}">
+                                    <div  style="display:flex;width: 90px; height:18px;background: url(${pageContext.servletContext.contextPath }/resources/guest/images/reviewStar.png) 0 0 no-repeat; background-size: 90px auto; background-position: 0 0;">
+			    					</div>
+                                </c:when>
+                            </c:choose>
+                             	<h5>${best.starPoint}</h5>
                             </div>
                             <div class="suksoName">
                                 <p>닉네임 </p><b> · ${best.nickName}</b>
@@ -1040,33 +1040,86 @@ textarea {
                                 </div>
 								<c:choose>
                                     <c:when test="${normalReview.updownStatus eq 'U' }">
-                                        <div class="likeClick" id="a${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this.name)"></div>
+                                        <div class="likeClick" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this.name)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlike" id="b${noarmalReview.reviewNo }"name="review${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${noarmalReview.reviewNo }"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
                                     </c:when>
                                      <c:when test="${normalReview.updownStatus eq 'D' }">
-                                        <div class="like"id="a${normalReview.reviewNo}" name="review${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="like"id="like${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlikeClick"id="b${normalReview.reviewNo}" name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlikeClick"id="unlike${noarmalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
                                     </c:when>
                                     <c:otherwise>
-                                        <div class="like" id="a${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="like" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlike" id="b${normalReview.reviewNo}"name="review${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
                                     </c:otherwise>
                                 </c:choose>
                                 <script>
                                 function likeHate(p){
                                 	
-                                	console.log(p);
+                                	var reviewNo = document.getElementById(p.id).attributes.value.value;
+									var className = document.getElementById(p.id).className;
+                                	var reviewName = "review" + reviewNo;
+                                	var anotherId = "";
+                                	var status = "";
+
+                                	switch(className){
+                                	case "like" : 
+                                		document.getElementById(p.id).className = "likeClick";
+                                		anotherId = "unlike" + reviewNo;
+                                		document.getElementById(anotherId).className = "unlike"; 
+                                		status = "U";
+                                		alert("좋아요!");
+                                		break;
+                                	case "likeClick" :
+                                		document.getElementById(p.id).className = "like";
+                                		anotherId = "unlike" + reviewNo;
+                                		document.getElementById(anotherId).className = "unlike";
+                                		status = "N";
+                                		alert("좋아요취소!");
+                                		break;
+                                	case "unlike" :
+                                		document.getElementById(p.id).className = "unlikeClick";
+                                		anotherId = "like" + reviewNo;
+                                		document.getElementById(anotherId).className = "like";
+                                		status = "D";
+                                	    alert("싫어요!");
+                                		break;
+                                	case "unlikeClick" :
+                                		document.getElementById(p.id).className = "unlike";
+                                		anotherId = "like" + reviewNo;
+                                		document.getElementById(anotherId).className = "like";
+                                		status = "N";
+                                		alert("싫어요취소!");
+                                		break;
+                                	}
                                 	
+                                	$.ajax({
+                                		
+                                		url:"${pageContext.servletContext.contextPath}/accomoSelect/review",
+                                		type:"post",
+                                		data:{
+                                			status : status,
+                                			reviewNo : reviewNo
+                                		},
+                                		success:function(data, textStatus, xhr){
+                                			console.table(data);
+                                			console.log(data);
+                                			document.getElementsByName(reviewName)[0].innerHTML = data.up;
+                                			document.getElementsByName(reviewName)[1].innerHTML = data.down;
+                                			
+                                		}
+                                		
+                                		
+                                		
+                                	});
+
                                 }
-								/* $(".like").on("click",function(){
-									alert($(this))
-								}) */
+
                                 </script>
                             </div>
 							<div class="reviewScore" style="display: flex;">
