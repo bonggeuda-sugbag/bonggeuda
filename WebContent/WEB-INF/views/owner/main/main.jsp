@@ -17,7 +17,7 @@
 
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
 
-   <script>
+<script>
     $(function () {
       $("#slider").responsiveSlides({
       	auto: true,
@@ -32,7 +32,8 @@
 	<link rel="shortcut icon" href="../favicon.ico"> 
 	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
-	<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
+	<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js">
+</script>
 <style>
 	.col-md-3 {
 		width: 25%;
@@ -54,7 +55,7 @@
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><a id="mypage">마이페이지</a>
-				<li><a href="/bonggeuda/owner/mypage"><i class="glyphicon glyphicon-user"> </i>Logout</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -130,9 +131,6 @@
 							<i class="sell"> </i>
 							<h6>Q & A</h6>
 							</div>
-						</a>
-					
-						</a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
@@ -140,10 +138,7 @@
 		</div>
 	</div>
 </div>
-<!--//-->		
-<!--//header-bottom-->
 <!--//header-->
-<!--content-->
 <div class="content">
 	<div class="content-grid">
 		<div class="container">
@@ -157,12 +152,6 @@
 			 	   	<h5><a href="single.html">숲 속 통나무집</a></h5>
 			 	    	<p>게스트 하우스</p>
 			 	</div>
-			</div>
-			<aside>
-					<div class="hi-icon-wrap hi-icon-effect-3 hi-icon-effect-3b" style="margin-top: -160px; margin-left: 800px;">
-						<a href="registration.html" class="hi-icon hi-icon-pencil">Edit</a>
-					</div>
-			</aside>
 			</div>
 		</div>
 	</div>

@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다 숙박숙박 :: 마이 페이지</title>
+<title>봉그다 숙박숙박 :: 세금계산서 신청</title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
 
@@ -70,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -122,9 +122,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<c:when test="${ taxBillList.responseYn eq 'Y'}">
 								<th>발급 완료</th>
 								<th>
-									<button type="submit" style="background-color: white; border: 1px;">
-										<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/pdf.png" style="width: 28px; height: 28px;"></th>
-									</button>
+									<form action="/bonggeuda/owner/#" method="post">
+										<button type="submit" style="background-color: white; border: 1px;">
+											<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/pdf.png" style="width: 28px; height: 28px;">
+										</button>
+									</form>
+								</th>
 							</c:when>
 							<c:when test="${ taxBillList.responseYn eq 'N'}">
 								<th>처리중</th>

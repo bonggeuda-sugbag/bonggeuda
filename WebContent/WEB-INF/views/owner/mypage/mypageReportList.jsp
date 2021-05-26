@@ -49,6 +49,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	th a:hover{
 		color: #6eceda !important;
 	}
+	.list-btn{
+		background:white;
+		border:0;
+		outline:0;
+	}
  </style>
 </style>
 </head>
@@ -68,7 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -108,34 +113,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    </tr>
 				</thead>
 				<tbody>
-					<c:forEach var="reportBoard" items="${ requestScope.reportList }"> 
+					<c:forEach var="reportBoard" items="${ requestScope.reportList }">
+					<form action="/bonggeuda/owner/reportDetail" method="post">
+					<input type="hidden" name="reportNo" value="${reportBoard.reportNo}">
 				   	<tr>
-						<th>${ reportBoard.rowNum }</th>
+						<th><button class="list-btn" type="submit" style="color: black">${ reportBoard.rowNum }</button></th>
+						<th><button class="list-btn" type="submit" style="color: black"><c:out value="${ reportBoard.reportTitle }"/></button></th>
+						<th><button class="list-btn" type="submit" style="color: black"><c:out value="${ reportBoard.reportDate }"/></button></th>
 						<th>
-						<form action="/bonggeuda/owner/reportDetail" method="post">
-						<input type="hidden" name="reportNo" value="${reportBoard.reportNo}">
-						<button class="submit-btn" type="submit" style="color: black">
-						<c:out value="${ reportBoard.reportTitle }"/>
-						</button>
-						</form>
+							<c:choose>
+								<c:when test="${ reportBoard.reportStatus eq 'Y'}">
+								<button class="list-btn" type="submit" style="color: black">처리완료</button>
+								</c:when>
+								<c:when test="${ reportBoard.reportStatus eq 'N'}">
+								<button class="list-btn" type="submit" style="color: black">처리중</button>
+								</c:when>
+								<c:when test="${ reportBoard.reportStatus eq 'C'}">
+								<button class="list-btn" type="submit" style="color: black">신고 거절</button>
+								</c:when>
+							</c:choose>
 						</th>
-						<th>
-						<c:out value="${ reportBoard.reportDate }"/>
-						</th>
-						<th>
-						<c:choose>
-							
-						<c:when test="${ reportBoard.reportStatus eq 'Y'}">
-						처리완료
-						</c:when>
-						<c:when test="${ reportBoard.reportStatus eq 'N'}">
-						처리중
-						</c:when>
-						<c:when test="${ reportBoard.reportStatus eq 'C'}">
-						신고 거절
-						</c:when>
-						
-						</c:choose>
+					</tr>
+					</form>
 					</c:forEach>
 				</tbody>
 			 </table>

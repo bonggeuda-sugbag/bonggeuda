@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다 숙박숙박 :: 예약 관리</title>
+<title>봉그다 숙박숙박 :: 1:1 문의</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="${pageContext.servletContext.contextPath}/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath}/resources/owner/js/jquery.min.js"></script>
@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>

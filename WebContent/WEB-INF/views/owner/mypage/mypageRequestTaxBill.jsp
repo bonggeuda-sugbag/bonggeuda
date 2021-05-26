@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다 숙박숙박 :: 세금 계산서 신청</title>
+<title>봉그다 숙박숙박 :: 세금계산서 신청</title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
 
@@ -54,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
       </div>
    </div>
@@ -75,19 +75,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<ul>
 				<li class="blog-list"><a href="/bonggeuda/owner/mypage">마이 페이지</a></li>
 				<li class="blog-list"><a href="/bonggeuda/owner/mypgeReport" >신고 내역</a></li>
-				<li class="blog-list" style=><a href="/bonggeuda/owner/settlement" >정산 신청</a></li>
-				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" style="font-size: 1.3em; font-weight: 600;" style="color: #6eceda;">세금 계산서 발행</a></li>
+				<li class="blog-list"><a href="/bonggeuda/owner/settlement" >정산 신청</a></li>
+				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/taxbillList" style="color: #6eceda;">세금 계산서 발행</a></li>
 			</ul>
 			</nav>
 		</div>
 		<form action="/bonggeuda/owner/requestTaxBill" method="get"><!-- 여기서 클릭 하면 인서트가 되고 내역 페이지로 넘어간다. -->
-		<table id="registTb" class="table table-bordered">
+		<table id="registTb" class="table table-bordered" style="margin: initial;">
 			<tbody>
 			<div class="basic">
 				<tr>
 					<th> 숙소 선택</th>
 					<td>
-					<select name="accmoName" class="select-time">
+					<select name="accmoName" class="select-time" style="font-size: 15px;">
 					<c:forEach var="accmoNames" items="${ requestScope.accomoNameList }">						
 						<option  value="${ accmoNames.accomoName }">
 							<c:out value="${ accmoNames.accomoName }"/>							
