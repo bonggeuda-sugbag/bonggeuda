@@ -8,20 +8,7 @@
 </head>
 <body>
 
-
-
-       <%--  <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>
-		<jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> 
- --%>
-	
-
-    
-       <%--  <jsp:forward page="/WEB-INF/views/guest/accomoInfo/report.jsp"></jsp:forward> --%>
-
-		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward>   
-=======
-		<%-- <jsp:forward page="/WEB-INF/views/owner/main/main.jsp"></jsp:forward> --%>
-
+		<jsp:forward page="/corona"/>
 
 
 	<script>
@@ -35,6 +22,7 @@
 	</script>
 
 		<jsp:forward page="/WEB-INF/views/guest/main/main.jsp"/>
+
 
 
 </body>
