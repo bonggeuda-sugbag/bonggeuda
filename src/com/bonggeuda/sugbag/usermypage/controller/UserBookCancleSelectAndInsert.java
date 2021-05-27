@@ -1,6 +1,8 @@
 package com.bonggeuda.sugbag.usermypage.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,19 +47,26 @@ public class UserBookCancleSelectAndInsert extends HttpServlet {
 		
 		UserMypageService mypageService = new UserMypageService();
 		
-		/* 예약 취소 사유 insert & 예약내역 update */
+		/* 예약 취소 사유 insert & 예약내역 update & 판매내역 insert */
 		UserBookContentDTO userCancelReason = new UserBookContentDTO();
 		
 		userCancelReason.setReasonCancle(request.getParameter("cancelReason") + " : " + request.getParameter("cancelReasonTwo"));
 		userCancelReason.setPaymentNo(Integer.parseInt(request.getParameter("paymentNo")));
 		userCancelReason.setRefundAmount(Integer.parseInt(request.getParameter("refundAmount")));
+		userCancelReason.setPaymentAmount(Integer.parseInt(request.getParameter("paymentAmount")));
+		userCancelReason.setAccomoNo(Integer.parseInt(request.getParameter("accomoNo")));
+		userCancelReason.setRoomNo(Integer.parseInt(request.getParameter("roomNo")));
+		userCancelReason.setPaymentTime(Date.valueOf(request.getParameter("paymentTime")));
+		userCancelReason.setCancleFee(Integer.parseInt(request.getParameter("cancleFee")));
+		
+		System.out.println("확인 : " + userCancelReason);
 		
 		int result = mypageService.insertCancel(userCancelReason, userNo, bookNo);
 		
 		System.out.println(result);
 		
 		
-		if(result > 1) {
+		if(result > 2) {
 			
 			String page = "/WEB-INF/views/guest/moreNotice/narasuccess.jsp";
 			request.setAttribute("successCode", "insertCancel");

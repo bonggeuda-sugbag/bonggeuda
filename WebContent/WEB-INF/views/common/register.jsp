@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<p class="space_or" style="width:50%; margin: 0 auto;"><span style="font-size: 40px; width:160px; left: 45%; background:#fff">Register</span></p><br>
 		<div class="login-top" style="padding-left: 170px;">
 				<div class="form-info">
-					<form>
+					<form action="${ pageContext.servletContext.contextPath }/login/check/regist" method="post">
 						<table class="signup" style="text-align:left;">
 							<tr>
 								<td style="padding-bottom: 15px;">이메일 아이디</td>
@@ -167,18 +167,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td colspan="2" style="padding-bottom: 15px; font-size:12px; color:lightgray;">*전화번호는 010-xxxx-xxxx 형식으로 입력해주세요.</td>
 							</tr>
 						</table>
-						<!-- <span style="width:105px;">이메일 아이디</span>
-						<input type="text"   placeholder="이메일 주소를 입력해주세요." required="" style="width: 70%;" >
-						<br>
-						<span style="width:105px;">비밀번호</span>
-						<input type="password"  placeholder="비밀번호를 입력해주세요." required="" style="width: 70%;">
-						<br>
-						<span style="width:105px;">비밀번호 확인</span>
-						<input type="password"  placeholder="비밀번호를 입력해주세요." required=""  style="width: 70%;">
-						<br>
-						<span style="width:105px;">닉네임</span>
-						<input type="text"   placeholder="" required="" style="width: 70%;">
-						<br> -->
 						<br>
 						<div class="signUp" style="padding-right:100px;">
 						<button style="width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="submit">회원가입하기</button>

@@ -939,6 +939,9 @@ public class UserMypageDAO {
 				userCancleContent.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
 				userCancleContent.setAccomoName(rset.getString("ACCOMO_NAME"));
 				userCancleContent.setRoomName(rset.getString("ROOM_NAME"));
+				userCancleContent.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				userCancleContent.setRoomNo(rset.getInt("ROOM_NO"));
+				userCancleContent.setPaymentTime(rset.getDate("PAYMENT_TIME"));
 				
 			}
 			
@@ -1118,6 +1121,9 @@ public class UserMypageDAO {
 				userBookCancle.setPaymentMethod(rset.getString("PAYMENT_METHOD"));
 				userBookCancle.setPaymentNo(rset.getInt("PAYMENT_NO"));
 				userBookCancle.setRefundAmount((rset.getInt("PAYMENT_AMOUNT")-userBookCancle.getCancleFee()));
+				userBookCancle.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				userBookCancle.setRoomNo(rset.getInt("ROOM_NO"));
+				userBookCancle.setPaymentTime(rset.getDate("PAYMENT_TIME"));
 				
 			}
 			System.out.println(userBookCancle.getRefundAmount());
@@ -1134,7 +1140,7 @@ public class UserMypageDAO {
 	}
 
 	/**
-	 * 예약 취소사유 insert & 예약내역 update
+	 * 예약 취소사유 insert & 예약내역 update & 판매내역 insert
 	 * @param con
 	 * @param userCancelReason
 	 * @param bookNo 
@@ -1146,6 +1152,7 @@ public class UserMypageDAO {
 		int result = 0;
 		int result1 = 0;
 		int result2 = 0;
+		int result3 = 0;
 		
 		PreparedStatement pstmt = null;
 		
@@ -1179,11 +1186,35 @@ public class UserMypageDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			close(pstmt);
 		}
 		
-		result = result1 + result2;
+		if(userCancelReason.getCancleFee() > 0) {
+			/* 판매내역 insert */
+			String query3 = prop.getProperty("salesHistoryInsert");
+			System.out.println(query3);
+			
+			try {
+				pstmt = con.prepareStatement(query3);
+				pstmt.setInt(1, userCancelReason.getAccomoNo());
+				pstmt.setInt(2, userCancelReason.getRoomNo());
+				pstmt.setDate(3, userCancelReason.getPaymentTime());
+				pstmt.setInt(4, userCancelReason.getCancleFee());
+				pstmt.setInt(5, userCancelReason.getPaymentNo());
+				
+				result3 = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally { 
+				close(pstmt);
+			}
+		} else {
+			result3 = 1;
+			close(pstmt);
+		}
+
+		
+		result = result1 + result2 + result3;
 		
 		return result;
 	}

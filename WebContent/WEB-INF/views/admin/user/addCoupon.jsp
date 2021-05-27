@@ -156,6 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
          <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">사용자 정보</a></li>
          <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/black/list">블랙리스트 회원</a></li>
          <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/leave">탈퇴 회원</a></li>
+         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/best/review">베스트 리뷰어 선정</a></li>
       </ul>
       </nav>
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.QnADTO;
 import com.bonggeuda.sugbag.owner.notice.service.QuestionService;
 
@@ -21,14 +22,18 @@ public class QuestionContent extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//로그인 값
+		OwnerInfoDTO member = (OwnerInfoDTO)request.getSession().getAttribute("ownerNo");
+		int ownerNo = member.getOwnerNo();
+		
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
 		System.out.println(qnaNo);
 		
 		QuestionService contentService = new QuestionService();
 
 		/*결과값 반환*/
-		AdminQnADTO selectContent = contentService.selectContent(qnaNo);
-		AdminQnADTO selectAnswer = contentService.selectAnswer(qnaNo);
+		AdminQnADTO selectContent = contentService.selectContent(qnaNo,ownerNo);
+		AdminQnADTO selectAnswer = contentService.selectAnswer(qnaNo,ownerNo);
 		
 		request.setAttribute("selectContent", selectContent); //jsp에 값 반환
 		request.setAttribute("selectAnswer", selectAnswer); 

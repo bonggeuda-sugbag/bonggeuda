@@ -1,5 +1,7 @@
 package com.bonggeuda.sugbag.model.dto;
 
+import java.sql.Date;
+
 public class UserBookContentDTO {
 
 	private String bookCheckDate;
@@ -20,13 +22,17 @@ public class UserBookContentDTO {
 	private String reasonCancle;
 	private int paymentNo;
 	private String bookApproveYN;
+	private int accomoNo;
+	private int roomNo;
+	private Date paymentTime;
 	
 	public UserBookContentDTO() {}
 
 	public UserBookContentDTO(String bookCheckDate, String checkoutDate, String bookCheckIn, String checkOut,
 			int bookNo, String bookUserName, String bookPhone, int cancleAmount, String thumbnailPath,
 			String accomoName, String roomName, int paymentAmount, String paymentMethod, int refundAmount,
-			int cancleFee, String reasonCancle, int paymentNo, String bookApproveYN) {
+			int cancleFee, String reasonCancle, int paymentNo, String bookApproveYN, int accomoNo, int roomNo,
+			Date paymentTime) {
 		super();
 		this.bookCheckDate = bookCheckDate;
 		this.checkoutDate = checkoutDate;
@@ -46,6 +52,9 @@ public class UserBookContentDTO {
 		this.reasonCancle = reasonCancle;
 		this.paymentNo = paymentNo;
 		this.bookApproveYN = bookApproveYN;
+		this.accomoNo = accomoNo;
+		this.roomNo = roomNo;
+		this.paymentTime = paymentTime;
 	}
 
 	public String getBookCheckDate() {
@@ -192,6 +201,30 @@ public class UserBookContentDTO {
 		this.bookApproveYN = bookApproveYN;
 	}
 
+	public int getAccomoNo() {
+		return accomoNo;
+	}
+
+	public void setAccomoNo(int accomoNo) {
+		this.accomoNo = accomoNo;
+	}
+
+	public int getRoomNo() {
+		return roomNo;
+	}
+
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
+	}
+
+	public Date getPaymentTime() {
+		return paymentTime;
+	}
+
+	public void setPaymentTime(Date paymentTime) {
+		this.paymentTime = paymentTime;
+	}
+
 	@Override
 	public String toString() {
 		return "UserBookContentDTO [bookCheckDate=" + bookCheckDate + ", checkoutDate=" + checkoutDate
@@ -200,7 +233,8 @@ public class UserBookContentDTO {
 				+ thumbnailPath + ", accomoName=" + accomoName + ", roomName=" + roomName + ", paymentAmount="
 				+ paymentAmount + ", paymentMethod=" + paymentMethod + ", refundAmount=" + refundAmount + ", cancleFee="
 				+ cancleFee + ", reasonCancle=" + reasonCancle + ", paymentNo=" + paymentNo + ", bookApproveYN="
-				+ bookApproveYN + "]";
+				+ bookApproveYN + ", accomoNo=" + accomoNo + ", roomNo=" + roomNo + ", paymentTime=" + paymentTime
+				+ "]";
 	}
 
 }

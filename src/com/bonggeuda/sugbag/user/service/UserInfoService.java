@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.user.dao.UserInfoDAO;
+import com.bonggeuda.sugbag.user.dto.BestReviewDTO;
 import com.bonggeuda.sugbag.user.dto.ReservationDetailDTO;
 import com.bonggeuda.sugbag.user.dto.UserBlistDTO;
 import com.bonggeuda.sugbag.user.dto.UserCouponDTO;
@@ -235,6 +236,30 @@ public class UserInfoService {
 		
 		return bookListCount;
 	}
+
+	public List<BestReviewDTO> selectBestReviewList(PageInfoDTO pageInfo) {
+
+		Connection con = getConnection();
+		
+		List<BestReviewDTO> bestReviewList = userInfoDAO.selectBestReviewList(con, pageInfo);
+		
+		close(con);
+		
+		return bestReviewList;
+	}
+
+	public int selectBestReviewCount() {
+	
+		Connection con = getConnection();
+		
+		int bestReviewCount = userInfoDAO.selectBestReviewCount(con);
+		
+		close(con);
+		
+		return bestReviewCount;
+	}
+
+
 
 
 

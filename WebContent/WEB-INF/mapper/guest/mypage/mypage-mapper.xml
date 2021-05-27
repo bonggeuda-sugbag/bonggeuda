@@ -140,7 +140,7 @@
          WHERE R.WRITER_TYPE = 'guest'
            AND R.MEMBER_NO = ?
            AND R.REPORTED_TYPE = 'owner'
-         ORDER BY R.REPORT_DATE DESC
+         ORDER BY R.REPORT_NO DESC
     </entry>
     <entry key="reportListSelect">
 		SELECT C.RNUM
@@ -167,7 +167,7 @@
                            WHERE R.WRITER_TYPE = 'guest'
         		             AND R.MEMBER_NO = ?
         		             AND R.REPORTED_TYPE = 'owner'
-        		           ORDER BY R.REPORT_DATE DESC
+        		           ORDER BY R.REPORT_NO DESC
                          ) B
                ) C
          WHERE C.RNUM BETWEEN ? AND ?
@@ -288,6 +288,9 @@
              , BL.BOOK_PHONE
              , CH.CANCLE_AMOUNT
              , A.THUMBNAIL_PATH
+             , AI.ACCOMO_NO
+             , RI.ROOM_NO
+             , P.PAYMENT_TIME
           FROM BOOK_LIST BL
           JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
           JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
@@ -364,6 +367,9 @@
              , A.THUMBNAIL_PATH
              , P.PAYMENT_METHOD
              , P.PAYMENT_NO
+             , AI.ACCOMO_NO
+             , RI.ROOM_NO
+             , P.PAYMENT_TIME
           FROM BOOK_LIST BL
           JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
           JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
@@ -400,6 +406,28 @@
    		   SET BOOK_STATUS_YNC = 'C'
    		 WHERE USER_NO = ?
    		   AND BOOK_NO = ?
+   </entry>
+   
+   <entry key="salesHistoryInsert">
+   		INSERT
+   		  INTO SALES_HISTORY
+   		     ( SALES_NO
+             , ACCOMO_NO
+             , ROOM_NO
+             , SALES_DATE
+             , SALES_PRICE
+             , PAYMENT_NO
+             , STL_YN
+             )
+        VALUES
+             ( SEQ_SALES_NUMBER.NEXTVAL
+             , ?
+             , ?
+             , ?
+             , ?
+             , ?
+             , DEFAULT
+             )
    </entry>
    
    <entry key="reviewInfoSelect">

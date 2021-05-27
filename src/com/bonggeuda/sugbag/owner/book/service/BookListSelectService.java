@@ -18,11 +18,11 @@ public class BookListSelectService {
 	
 	private BookingListSelectDAO bookDAO = new BookingListSelectDAO();
 
-	public List<BookDTO> bookListSelect(PageInfoDTO pageInfo) {
+	public List<BookDTO> bookListSelect(PageInfoDTO pageInfo, int ownerNo) {
 		
 		Connection con = getConnection();
 		
-		List<BookDTO> bookListSelect = bookDAO.selectBookList(con, pageInfo);
+		List<BookDTO> bookListSelect = bookDAO.selectBookList(con, pageInfo, ownerNo);
 		
 		close(con);
 		
@@ -45,8 +45,6 @@ public class BookListSelectService {
 		Connection con = getConnection();
 		
 		int bookAllowUpdate = bookDAO.bookAllowUpdate(con,bookNo);
-		
-		
 		
 		if(bookAllowUpdate > 0) {
 			commit(con);
@@ -128,11 +126,11 @@ public class BookListSelectService {
 		return bookRejectBookConfirmUpdate;
 	}
 
-	public int selectTotalCount() {
+	public int selectTotalCount(int ownerNo) {
 
 		Connection con = getConnection();
 		
-		int totalCount = bookDAO.selectTotalCount(con);
+		int totalCount = bookDAO.selectTotalCount(con,ownerNo);
 		
 		if(totalCount > 0) {
 			commit(con);
@@ -144,11 +142,11 @@ public class BookListSelectService {
 		return totalCount;
 	}
 
-	public List<BookDTO> bookPastListSelect(PageInfoDTO pageInfo) {
+	public List<BookDTO> bookPastListSelect(PageInfoDTO pageInfo, int ownerNo) {
 		
 		Connection con = getConnection();
 		
-		List<BookDTO> bookListSelect = bookDAO.selectBookPastList(con, pageInfo);
+		List<BookDTO> bookListSelect = bookDAO.selectBookPastList(con, pageInfo, ownerNo);
 		
 		close(con);
 		

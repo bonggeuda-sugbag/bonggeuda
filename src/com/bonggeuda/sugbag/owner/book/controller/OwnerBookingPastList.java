@@ -9,10 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
 import com.bonggeuda.sugbag.owner.notice.service.QuestionService;
@@ -40,7 +42,11 @@ public class OwnerBookingPastList extends HttpServlet {
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		BookListSelectService BookListService = new BookListSelectService();
 		
-		int totalCount = BookListService.selectTotalCount();
+		//로그인 값
+		HttpSession session = request.getSession();
+		int ownerNo = (Integer)session.getAttribute("ownerNo");
+		
+		int totalCount = BookListService.selectTotalCount(ownerNo);
 		
 		System.out.println("totalCount 체크 : " + totalCount);
 
@@ -55,7 +61,7 @@ public class OwnerBookingPastList extends HttpServlet {
 
 		System.out.println(pageInfo);
 		
-		List<BookDTO> bookList = BookListService.bookPastListSelect(pageInfo);
+		List<BookDTO> bookList = BookListService.bookPastListSelect(pageInfo, ownerNo);
 		
 		System.out.println("전체내역조회 : " + bookList);
 		
@@ -80,7 +86,8 @@ public class OwnerBookingPastList extends HttpServlet {
 		
 		BookingContentDTO bookContentDTO = new BookingContentDTO();
 		
-		
+
+
 		bookContentDTO = bookService.selectBookContent(bookNo);
 		/* 2. 페이넘 넘겨 받아서 세일즈 히스토리에 있는지 여부. 있으면 숙소 이용완료 확정*/
 		int completeCount = bookService.selectcompleteCount(bookNo);
@@ -88,6 +95,7 @@ public class OwnerBookingPastList extends HttpServlet {
 		
 		request.setAttribute("completeCount", completeCount);
 		request.setAttribute("bookStatusYNC",bookStatusYNC );
+
 		request.setAttribute("bookContentDTO", bookContentDTO );
 		String path = "";
 		path = "/WEB-INF/views/owner/bookingList/bookingPastContent.jsp";

@@ -311,7 +311,12 @@
   	      JOIN SALES_HISTORY S ON(P.PAYMENT_NO = S.PAYMENT_NO)
   	      JOIN BOOK_LIST B ON(P.BOOK_NO = B.BOOK_NO)
  	     WHERE B.BOOK_NO = ?
+	</entry>
 	
+	<entry key="updateYn">
+    UPDATE OWNER_QNA
+ 	   SET OWNER_ANSWER_YN = 'Y'
+ 	 WHERE OWNER_QNA_NO = ?
 	</entry>
 	
 </properties>

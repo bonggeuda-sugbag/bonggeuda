@@ -12,11 +12,14 @@ public class UserInfoDTO {
 	private String phoneNumber; // 휴대전화
 	private int point; //포인트 
 	private String detail;
+	private int startPoint;
+	private int reviewNo;
+	private int upCount;
 	
 	public UserInfoDTO() {}
 
 	public UserInfoDTO(int rnum, int userNo, String name, String email, String password, String phoneNumber, int point,
-			String detail) {
+			String detail, int startPoint, int reviewNo, int upCount) {
 		super();
 		this.rnum = rnum;
 		this.userNo = userNo;
@@ -26,6 +29,9 @@ public class UserInfoDTO {
 		this.phoneNumber = phoneNumber;
 		this.point = point;
 		this.detail = detail;
+		this.startPoint = startPoint;
+		this.reviewNo = reviewNo;
+		this.upCount = upCount;
 	}
 
 	public int getRnum() {
@@ -92,19 +98,36 @@ public class UserInfoDTO {
 		this.detail = detail;
 	}
 
+	public int getStartPoint() {
+		return startPoint;
+	}
+
+	public void setStartPoint(int startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public int getReviewNo() {
+		return reviewNo;
+	}
+
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
+	}
+
+	public int getUpCount() {
+		return upCount;
+	}
+
+	public void setUpCount(int upCount) {
+		this.upCount = upCount;
+	}
+
 	@Override
 	public String toString() {
 		return "UserInfoDTO [rnum=" + rnum + ", userNo=" + userNo + ", name=" + name + ", email=" + email
 				+ ", password=" + password + ", phoneNumber=" + phoneNumber + ", point=" + point + ", detail=" + detail
-				+ "]";
+				+ ", startPoint=" + startPoint + ", reviewNo=" + reviewNo + ", upCount=" + upCount + "]";
 	}
 
-	
-	
-
-	
-	
-	
-	
 	
 }

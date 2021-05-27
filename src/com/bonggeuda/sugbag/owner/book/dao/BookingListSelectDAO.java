@@ -30,7 +30,7 @@ public class BookingListSelectDAO {
 		}
 	}
 
-	public List<BookDTO> selectBookList(Connection con, PageInfoDTO pageInfo) {
+	public List<BookDTO> selectBookList(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -43,7 +43,7 @@ public class BookingListSelectDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			
@@ -258,7 +258,7 @@ public class BookingListSelectDAO {
 		return insertRejectBookHistory;
 	}
 
-	public int selectTotalCount(Connection con) {
+	public int selectTotalCount(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -275,7 +275,7 @@ public class BookingListSelectDAO {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			
 			rset = pstmt.executeQuery();
 
@@ -293,12 +293,14 @@ public class BookingListSelectDAO {
 		return totalCount;
 	}
 
-	public List<BookDTO> selectBookPastList(Connection con, PageInfoDTO pageInfo) {
+	public List<BookDTO> selectBookPastList(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rset = null;
 		
 		List<BookDTO> selectBookedList = new ArrayList<>();
+	
 		/* 반환 시킬 변수를 지정하자*/
 		BookDTO bookDTO = new BookDTO();
 		
@@ -306,7 +308,7 @@ public class BookingListSelectDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			
@@ -396,6 +398,7 @@ public class BookingListSelectDAO {
 		return selectcompleteCount;
 	}
 }
+
 
 
 

@@ -157,7 +157,8 @@
 				</th>
 				<td>
 				<form action="${ pageContext.servletContext.contextPath }/registration1" method="post">
-					<div class="form-layer">
+<%-- 					<input type="hidden" name="ownerNo" value="${ sessionScope.member.ownerNo }">
+ --%>					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>상호명<br>(법인명)</span>
 						<input type="text" class="select-nomalsize" name="accomoName" placeholder="사업자 등록증상 상호명" value="" required="required">
 					</div>
