@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+
 	<entry key="selectOwnerInfo">
 	    SELECT
 	           *
@@ -151,6 +152,18 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	<entry key="selectImagePath">
+
+	  SELECT
+			 THUMBNAIL_PATH
+		FROM ATTACHMENT A
+		JOIN REPORT R ON(R.REPORT_NO = A.REF_NO)
+	   WHERE CATEGORY_NO = 6
+		 AND R.REPORT_NO = ?
+	
+	
+	
+	</entry>
 	<entry key="selectAccomo">
 		SELECT
 		       ACCOMO_NAME

@@ -64,12 +64,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><span ><a  href="adminUserManagement.html">사용자관리</a></span></li>
+				<li><span ><a  href="${ pageContext.servletContext.contextPath }/user/list">사용자관리</a></span></li>
 				<li><a  href="adminCompanyManagementInfo.html">업체관리</a></li>
-				<li><a  href="adminReservationStatus.html">예약현황</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/user/booklist">예약현황</a></li>
 				<li><a  href="adminPaymentInformation.html">매출관리</a></li>
-				<li><a  href="adminOnlineQuestionUser.html">문의&신고</a></li>
-				<li><a  href="adminOnlineNotice.html">공지사항</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/qna/list">문의&신고</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/notice/list">공지&이벤트</a></li>
 			</ul>
 
 			
@@ -167,7 +167,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<nav>
 				<div class="col-md-3 blog-sidebar">
 				<ul>
-					<li class="blog-list"><a href="adminOnlineNotice.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">공지사항</a></li>
+						<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/notice/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">공지사항</a></li>
+					<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/event/list">이벤트</a></li>
 				</ul>
 				</nav>
                

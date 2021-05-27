@@ -6,7 +6,7 @@
 		  INTO REPORT
 		VALUES
 		(
-		  SEQ_REPORT_NO.NEXTVAL
+		  ?
 		, ?
 		, ?
 		, ?
@@ -16,6 +16,36 @@
 		, ?
 		, ?
 		)
+	</entry>
+	
+	<entry key="isnertReportImage">
+	    INSERT
+	      INTO ATTACHMENT
+	    VALUES
+	    (
+	      SEQ_ATTACHMENT_NO.NEXTVAL
+	    , 6
+	    , ?
+	    , ?
+	    , ?
+	    , ?
+	    , ?
+	    , 'Y'
+	    , REPORT_NO_SEQ.NEXTVAL
+	    
+	    
+	    )
+	
+	
+	</entry>
+	
+	<entry key="selectRefNoMax">
+
+	    SELECT
+	           MAX(REF_NO)
+	      FROM ATTACHMENT
+	     WHERE CATEGORY_NO = 6
+	
 	</entry>
 
 	

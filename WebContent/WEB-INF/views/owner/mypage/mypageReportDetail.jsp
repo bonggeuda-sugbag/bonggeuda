@@ -103,10 +103,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<nav>
 			<div class="col-md-3 blog-sidebar">
 			<ul>
+<<<<<<< HEAD
+				<li class="blog-list" ><a href="/bonggeuda/owner/mypage">마이 페이지</a></li>
+				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/mypgeReport"  style="color: #6eceda;" >신고 내역</a></li>
+				<li class="blog-list" style=><a href="/bonggeuda/owner/settlement" >정산 신청</a></li>
+				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
+=======
 				<li class="blog-list"><a href="/bonggeuda/owner/mypage">마이 페이지</a></li>
 				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/mypgeReport" style="color: #6eceda;">신고 내역</a></li>
 				<li class="blog-list"><a href="/bonggeuda/owner/settlement" >정산 신청</a></li>
 				<li class="blog-list"><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
 			</ul>
 			</nav>
 		</div>
@@ -152,9 +159,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</table>
 		<br>
 		<p>
-		<c:out value="${ requestScope.reportDTO.reportReason }"/>
-			<br><br>
-			첨부사진!
+		<img src="${pageContext.servletContext.contextPath }/${ requestScope.imagePath }" style="width: 360px; height: 230px;">
+			<br><br><br>
+			<div>
+			 
+			 <c:out value="${ requestScope.reportDTO.reportReason }"/>
+			</div>
 		</p>
 		<br>
 		<table class="type09">

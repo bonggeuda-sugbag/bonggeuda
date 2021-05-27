@@ -326,6 +326,9 @@ public class BookingListSelectDAO {
 				bookDTO.setBookStatusYNC(rset.getString("BOOK_STATUS_YNC"));
 				bookDTO.setRowNum(rset.getInt("RNUM"));
 
+				bookDTO.setUserNo(rset.getInt("USER_NO"));
+				bookDTO.setOwnerNo(rset.getInt("OWNER_NO"));
+				
 				selectBookedList.add(bookDTO);
 				
 			}

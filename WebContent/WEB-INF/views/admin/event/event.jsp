@@ -62,12 +62,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><span ><a  href="adminUserManagement.html">사용자관리</a></span></li>
+				<li><span ><a  href="${ pageContext.servletContext.contextPath }/user/list">사용자관리</a></span></li>
 				<li><a  href="adminCompanyManagementInfo.html">업체관리</a></li>
-				<li><a  href="adminReservationStatus.html">예약현황</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/user/booklist">예약현황</a></li>
 				<li><a  href="adminPaymentInformation.html">매출관리</a></li>
-				<li><a  href="adminOnlineQuestionUser.html">문의&신고</a></li>
-				<li><a  href="adminOnlineNotice.html">공지사항</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/qna/list">문의&신고</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/notice/list">공지&이벤트</a></li>
 			</ul>
 
 			
@@ -151,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
-	<h3><span>공지사항</span></h3> 
+	<h3><span>공지&이벤트</span></h3> 
 
 	<div class="clearfix"> </div>      		
 	</div>
@@ -160,22 +160,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--blog-->
 	<div class="blog">
 		<div class="container">
+
 			<div class="blog-list">
 				<nav>
 				<div class="col-md-3 blog-sidebar">
 				<ul>
-					<li class="blog-list"><a href="adminOnlineNotice.html" ">공지사항</a></li>
-					<li class="blog-list"><a href="adminEvent.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">이벤트</a></li>
+					<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/notice/list">공지사항</a></li>
+					<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/event/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">이벤트</a></li>
 				</ul>
 				</nav>
+				 <form action="${ pageContext.servletContext.contextPath }/event/insert" method="get">
 				<div class="tab" style="display: flex;">
 				   <span class="tab_btn active">이벤트</span> 
 				   <!-- <select>
 					   <option selected=""></option>
 					   <option value="1">N</option>
 				   </select> -->
-				   <p><button type="button" onclick="location.href='adminOnlineNoticeWrite.html'" style="margin-left: 610px;">작성하기</button></p>
+				  
+				   <p><button type="submit" style="margin-left: 610px;">작성하기</button></p>
+				 	
 				</div>
+				</form>
 				<table class="table table-hover" style="width: 800px;">
 					<thead>
 						<tr>
@@ -188,16 +193,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</thead>
 					<tbody>
    		            <c:forEach var="event" items="${ requestScope.eventList }">
-					<form action="${ pageContext.servletContext.contextPath }/qna/detail" method="get"> 
+   		            <form action="${ pageContext.servletContext.contextPath }/event/detail" method="get">
 						<tr>
 							<td><c:out value="${event.rnum }"/></td>
 							<td><c:out value="${event.title }"/></td>
 							<td><c:out value="${event.startDate }"/></td>
 							<td><c:out value="${event.endDate }"/></td>
 							<td><button id="detail">상세보기</button></td>
-						<%-- <input type="hidden" name="eventNo" value= "${ event.number }">	 --%>				
+							<input type="hidden" name="eventNo" value= "${ event.number }">	 	
 						</tr>
-            		</form>
+					</form>
 					</c:forEach>
 					</tbody>
 				 </table>
@@ -206,17 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<div class="clearfix"> </div>
-	<nav style="margin-left: 850px;">
-		<ul class="pagination">
-		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-		  <li><a href="#">2</a></li>
-		  <li><a href="#">3</a></li>
-		  <li><a href="#">4</a></li>
-		  <li><a href="#">5</a></li>
-		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-	   </ul>
-	</nav>
+
 </div>
 
 </div>

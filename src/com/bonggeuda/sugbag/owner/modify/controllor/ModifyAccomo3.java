@@ -30,7 +30,7 @@ public class ModifyAccomo3 extends HttpServlet {
 		// 
 		RmAccomoInfoDTO rmAcoomoDTO = new RmAccomoInfoDTO();
 		
-		int accomoNo = Integer.parseInt(request.getParameter("rmAccomoNo"));
+		int rmAccomoNo = Integer.parseInt(request.getParameter("rmAccomoNo"));
 		String accomoName = request.getParameter("accomoName");
 		String ceoName = request.getParameter("ceoName");
 		String accomoType = request.getParameter("accomoType");
@@ -42,7 +42,6 @@ public class ModifyAccomo3 extends HttpServlet {
 		String accomoPath = request.getParameter("accomoPath");
 		String near = request.getParameter("near");
 		String rule = request.getParameter("rule");
-		System.out.println(rule + " 룰 왜 안떠!!!!!!!!!!!!!!!!");
 		String parking = request.getParameter("parking");
 		String checkIn = request.getParameter("checkIn");
 		String checkOut = "11:00";
@@ -62,7 +61,7 @@ public class ModifyAccomo3 extends HttpServlet {
 		System.out.println("arrayFacility"  + arrayFacility);
 		
 		rmAcoomoDTO.setAccomoName(accomoName);
-		rmAcoomoDTO.setAccomoNo(accomoNo);
+		rmAcoomoDTO.setRmAccomoNo(rmAccomoNo);
 		rmAcoomoDTO.setAccomoPath(accomoPath);
 		rmAcoomoDTO.setAccomoType(accomoType);
 		rmAcoomoDTO.setAddress(address);

@@ -26,6 +26,10 @@
 			case "infoUpdate" :
 				movePath = "${ pageContext.servletContext.contextPath }/usermyinfo/select";
 				break;
+
+			case "insertEvent" :
+				movePath = "${ pageContext.servletContext.contextPath }/event/list";
+
 			case "userLogin" :
 				movePath = "${ pageContext.servletContext.contextPath }/login/guest";
 				break;
