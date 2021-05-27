@@ -16,6 +16,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             margin-left: 25%;
             margin-right: 5%;
       }
+      
+      table.table tr th{
+			text-align: center;
+			padding: 5px;
+			line-height: 2.5;
+			font-weight: 500;
+			width: auto;
+	  }
    </style>
 
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
@@ -36,7 +44,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-<body>
+<body style="background: white;">
 <!--header-->
 
 
