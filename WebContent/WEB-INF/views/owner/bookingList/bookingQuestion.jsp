@@ -45,7 +45,7 @@ th a:hover {
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
