@@ -18,6 +18,7 @@ import java.util.Properties;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
+import com.bonggeuda.sugbag.model.dto.RoomDTO;
 
 public class ManagementRoomSelectDAO {
 	
@@ -301,4 +302,94 @@ public class ManagementRoomSelectDAO {
 	      
 	      return accomoList;   
 	}
+
+
+	/**
+	 * 숙소에 대한 객실 정보리스트 보는 메소드
+	 * @param con
+	 * @param roomcAcomoNo
+	 * @return
+	 */
+	public List<RoomDTO> selectRoomListDAO(Connection con, int roomcAcomoNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<RoomDTO> roomList = new ArrayList<RoomDTO>();
+		RoomDTO roomDTO = new RoomDTO();
+		
+		
+		String query = prop.getProperty("selectRoomList");		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1,roomcAcomoNo );
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				
+				roomDTO = new RoomDTO();
+				
+				roomDTO.setRoomNo(rset.getInt("ROOM_NO"));
+				roomDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				roomDTO.setRoomName(rset.getString("ROOM_NAME"));
+				roomDTO.setRoomFee(rset.getInt("ROOM_FEE"));
+				roomDTO.setPeakFee(rset.getInt("PEAK_FEE"));
+				roomDTO.setImagePath(rset.getString("THUMBNAIL_PATH"));
+				
+				roomList.add(roomDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return roomList;
+	}
+
+	/**
+	 * 룸 넘버를 가지고 객실 수정 페이지 들어가기
+	 * @param con
+	 * @param roomNo
+	 * @return
+	 */
+	public RoomDTO selectRoomInfoDAO(Connection con, int roomNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		RoomDTO roomDTO = new RoomDTO();
+		
+		String query = prop.getProperty("selectRoomDetail");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1,roomNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				roomDTO = new RoomDTO();
+				
+				roomDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				roomDTO.setRoomNo(rset.getInt("ROOM_NO"));
+				roomDTO.setRoomName(rset.getString("ROOM_NAME"));
+				roomDTO.setRoomMax(rset.getInt("ROOM_MAX"));
+				roomDTO.setRoomIntro(rset.getString("ROOM_INTRO"));
+				roomDTO.setRoomFee(rset.getInt("ROOM_FEE"));
+				roomDTO.setPeakFee(rset.getInt("PEAK_FEE"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return roomDTO;
+	}
+
+
 }

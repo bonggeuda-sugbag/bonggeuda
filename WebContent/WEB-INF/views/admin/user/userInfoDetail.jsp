@@ -52,8 +52,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 </style>
-<body>
-	<!--header-->
+<body style="background: white;">
+<!--header-->
 
 
 
@@ -207,6 +207,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">사용자 정보</a></li>
 						         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/black/list">블랙리스트 회원</a></li>
 						         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/leave">탈퇴 회원</a></li>
+						         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/best/review">베스트 리뷰어 선정</a></li>
 							</ul>
 					</nav>
 					<table class="table table-bordered" style="width: 800px;">
@@ -254,16 +255,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</tr>
 							<!-- //포인트 -->
 
-							<!-- 리뷰목록 조회 -->
+							<!-- 리뷰 별점 -->
 							<tr>
-								<th style="text-align: center; padding-top: 14px;">리뷰목록 조회</th>
-								<td class="bd_r_none"><span class="form-body"> <input
-										class="form-control normal-size" type="text" name="aname"
-										style="width: 60%;" disabled="disabled">
-								</span></td>
+								<th style="text-align: center; padding-top: 14px;">리뷰 업갯수</th>
+								<td><c:out value="${ reviewInfo.upCount }"></c:out></td>
 								<input type="hidden" name="hduserNo" value= "${ hduserNo }">
 							</tr>
-							<!-- //리뷰목록 조회 -->
+							<!-- //리뷰 별점 -->
 							
 							
 						</tbody>

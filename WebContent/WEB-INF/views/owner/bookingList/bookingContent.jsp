@@ -249,9 +249,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<ul class="reason-list" style="text-align: left;">
 							<li>
 								<div class="reason-innder-box reason-innder-box6"  style="margin-bottom: 10px;">
-									<textarea class="rejectrReasonTextarea" placeholder="고객님께 전달드릴 예약 거절 사유를 적어주세요. 수정 불가능 하오니 신중히 적어주세요." name="rejectReson">
-									
-									</textarea>
+									<textarea class="rejectrReasonTextarea" placeholder="고객님께 전달드릴 예약 거절 사유를 적어주세요. 수정 불가능 하오니 신중히 적어주세요." name="rejectReson"></textarea>
 								</div>
 							</li>
 							</ul>
@@ -268,7 +266,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<input type="hidden" name="roomName" value="${ requestScope.bookContentDTO.roomName }">
 							<input type="hidden" name="bookUserName" value="${requestScope.bookContentDTO.bookUserName}">
 														
-							<div class="button-wrap"><button type="submit">거절하기</button></div>
+							<div class="button-wrap"><button type="submit" class="submit-btn">거절하기</button></div>
 						</div>
 						</form>
 					</div>

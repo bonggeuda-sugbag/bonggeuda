@@ -25,6 +25,42 @@ public class LoginDAO {
 			e.printStackTrace();
 		}
 	}
+	
+
+	/**
+	 * 암호화된 사용자 비밀번호 조회
+	 * @param con
+	 * @param loginEmail
+	 * @param loginPassword
+	 * @return
+	 */
+	public String selectEncryptedPwd(Connection con, String loginEmail, String loginPassword) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String encPwd = null;
+		
+		String query = prop.getProperty("selectEncryptedPwd");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, loginEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				encPwd = rset.getString("USER_PWD");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return encPwd;
+	}
 
 	/**
 	 * 사용자 로그인 체크
@@ -46,7 +82,6 @@ public class LoginDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, loginEmail);
-			pstmt.setString(2, loginPassword);
 			
 			rset = pstmt.executeQuery();
 			
@@ -146,7 +181,7 @@ public class LoginDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		MemberDTO userMember = new MemberDTO();
+		MemberDTO adminMember = new MemberDTO();
 		
 		String query = prop.getProperty("userLoginCheck");
 		System.out.println(query);
@@ -154,30 +189,29 @@ public class LoginDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, loginEmail);
-			pstmt.setString(2, loginPassword);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				
-				userMember.setUserNo(rset.getInt("USER_NO"));
-				userMember.setUserId(rset.getString("USER_ID"));
-				userMember.setUserPwd(rset.getString("USER_PWD"));
-				userMember.setUserPhone(rset.getString("USER_PHONE"));
-				userMember.setReportCnt(rset.getInt("REPORT_COUNT"));
-				userMember.setNickName(rset.getString("USER_NICKNAME"));
-				userMember.setWithDrawYn(rset.getString("USER_WITHDRAW_YN"));
-				userMember.setUserRole(rset.getString("USER_ROLE"));
-				userMember.setSignDate(rset.getDate("SIGNDATE"));
-				userMember.setWithDrawDate(rset.getDate("WITHDRAWDATE"));
+				adminMember.setUserNo(rset.getInt("USER_NO"));
+				adminMember.setUserId(rset.getString("USER_ID"));
+				adminMember.setUserPwd(rset.getString("USER_PWD"));
+				adminMember.setUserPhone(rset.getString("USER_PHONE"));
+				adminMember.setReportCnt(rset.getInt("REPORT_COUNT"));
+				adminMember.setNickName(rset.getString("USER_NICKNAME"));
+				adminMember.setWithDrawYn(rset.getString("USER_WITHDRAW_YN"));
+				adminMember.setUserRole(rset.getString("USER_ROLE"));
+				adminMember.setSignDate(rset.getDate("SIGNDATE"));
+				adminMember.setWithDrawDate(rset.getDate("WITHDRAWDATE"));
 				
 			}
 			
-			System.out.println("login 정보 : " + userMember);
-			if(userMember.getUserId() == null) {
-				userMember = null;
+			System.out.println("login 정보 : " + adminMember);
+			if(adminMember.getUserId() == null) {
+				adminMember = null;
 			}
-			System.out.println("login 정보 확인 : " + userMember);
+			System.out.println("login 정보 확인 : " + adminMember);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -186,7 +220,54 @@ public class LoginDAO {
 			close(pstmt);
 		}
 		
-		return userMember;
+		return adminMember;
 	}
+
+	/**
+	 * 사용자 회원가입 insert & POINT 테이블 값 insert
+	 * @param con
+	 * @param requestMember
+	 * @return
+	 */
+	public int registMember(Connection con, MemberDTO requestMember) {
+
+		PreparedStatement pstmt = null;
+		
+		int result1 = 0;
+		int result2 = 0;
+		
+		/* 회원정보 등록 */
+		String query = prop.getProperty("signUpRegist");
+		
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, requestMember.getUserId());
+			pstmt.setString(2, requestMember.getUserPwd());
+			pstmt.setString(3, requestMember.getUserPhone());
+			pstmt.setString(4, requestMember.getNickName());
+			
+			
+			result1 = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		/* point정보 등록 */
+		String query2 = prop.getProperty("pointInsert");
+		try {
+			pstmt = con.prepareStatement(query2);
+			
+			result2 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		int result = result1 + result2;
+		
+		return result;
+	}
+
 	
 }

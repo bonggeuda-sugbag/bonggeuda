@@ -21,8 +21,8 @@ import com.bonggeuda.sugbag.user.service.UserInfoService;
 @WebServlet("/user/list")
 public class ManagementListServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("호출확인");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
@@ -54,7 +54,7 @@ public class ManagementListServlet extends HttpServlet {
 		/* 조회 해온다. */
 		List<UserInfoDTO> userList = userInfoServie.selectBoardList(pageInfo);
 		
-//		System.out.println("userList : " + userList);
+		System.out.println("userList : " + userList);
 		
 		String path = "";
 		if(userList != null) {

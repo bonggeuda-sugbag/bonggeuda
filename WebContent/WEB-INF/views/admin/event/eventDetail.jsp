@@ -50,7 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-<body>
+<body style="background: white;">
 <!--header-->
 
 
@@ -176,7 +176,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="tab">
 				   <span class="tab_btn active">이벤트</span> 
 				</div>
-                <table class="type09" border="1px">
+                <table class="type09" border="1px" style="width : 60%">
                     <thead>
                         <tr>
                             <th scope="cols"></th>
@@ -206,27 +206,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </input>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
-				<p>
-				<c:forEach var="thumnail" items="${ requestScope.eventThumnailInfo }">
-				<input class="form-control textarea-layer" style="width: 700px; height: 120px; margin-left: 285px;" disabled>
-				<c:if test="${ thumnail.thumnailPath ne null }">
-				<img src="${ pageContext.servletContext.contextPath }/${ thumnail.thumnailPath }" style="width: 30%">
-				</c:if>
-				</input>
-				 </c:forEach>
-				</p>
-                <br>
-                <table class="type09" border="1px"  style="margin-left: 285px;">
-                    <thead>
                         <tr>
-                            <th scope="cols"></th>
-                            <th scope="cols"></th>
+                        	<td colspan="4" style=" padding-top: 20px; padding-bottom: 20px; ">
+                        		<c:forEach var="thumnail" items="${ requestScope.eventThumnailInfo }">
+								<c:if test="${ thumnail.thumnailPath ne null }">
+								<img src="${ pageContext.servletContext.contextPath }/${ thumnail.thumnailPath }" style="width: 30%" >
+								</c:if>
+								</c:forEach>
+                        	</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                       
                     </tbody>
                 </table>
                 <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">처리완료</button>

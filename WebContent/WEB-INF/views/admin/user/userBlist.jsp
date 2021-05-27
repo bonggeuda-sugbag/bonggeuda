@@ -16,6 +16,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             margin-left: 25%;
             margin-right: 5%;
       }
+      
+      table.table tr th{
+			text-align: center;
+			padding: 5px;
+			line-height: 2.5;
+			font-weight: 500;
+			width: auto;
+	  }
    </style>
 
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
@@ -36,7 +44,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-<body>
+<body style="background: white;">
 <!--header-->
 
 
@@ -156,6 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/list">사용자 정보</a></li>
          <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/black/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">블랙리스트 회원</a></li>
          <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/leave">탈퇴 회원</a></li>
+                   <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/best/review">베스트 리뷰어 선정</a></li>
       </ul>
       </nav>
       <table class="table" style="width: 800px;">
