@@ -145,6 +145,8 @@
 				<c:forEach var="board" items="${ requestScope.bookList }">
 				<form action="/bonggeuda/owner/bookingPastList" method="post">
 				<input type="hidden" name="bookNo" value="${board.bookNo}">
+				<input type="hidden" name="bookStatusYNC" value="${board.bookStatusYNC}">
+				
 				   	<tr>
 						<th><button type="submit" class="list-btn">${ board.rowNum }</button></th>
 						<th><button type="submit" class="list-btn"><c:out value="${ board.accomoName }"/></button></th>
@@ -158,13 +160,14 @@
 						<th>						
 						<c:choose>
 							<c:when test="${ board.bookStatusYNC eq 'Y'}">
-							 <button type="submit" class="list-btn">결제 완료</button>
+							 <button type="submit" class="list-btn"><p style="color: green;">결제 완료</p></button>
+							 
 							</c:when>
 							<c:when test="${ board.bookStatusYNC eq 'N'}">
-							 <button type="submit" class="list-btn">예약 거절</button>
+							 <button type="submit" class="list-btn"><p style="color: orange;">예약 거절</p></button>
 							</c:when>
 							<c:when test="${ board.bookStatusYNC eq 'C'}">
-							 <button type="submit" class="list-btn">사용자 환불</button>
+							 <button type="submit" class="list-btn"><p style="color: red;">사용자 환불</p></button>
 							</c:when>
 						</c:choose>
 						</th>
@@ -175,12 +178,9 @@
 							<c:out value="${board.userNo}"/>/
 							
 							<input type="hidden" name="ownerNo" value="${board.ownerNo}">
-<<<<<<< HEAD
 							${board.ownerNo}:오너넘
 							<button type="submit" style="background-color: white;    border: 1px;">
-=======
 							<button type="submit" style="background-color: white; border: 1px;">
->>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
 							<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/siren.png" style="width: 26px; height: 26px;">
 							</button>
 							</form>

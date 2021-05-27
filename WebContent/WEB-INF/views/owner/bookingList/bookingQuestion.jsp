@@ -45,7 +45,7 @@ th a:hover {
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
@@ -138,7 +138,16 @@ th a:hover {
 						</th>
 						<th><c:out value="${ qlist.writer }"/></th>
 						<th><c:out value="${ qlist.qnaDate }"/></th>
-						<th><c:out value="${ qlist.answerYn }"/></th>
+						<th>
+						<c:choose>
+							<c:when test="${ qlist.answerYn eq 'Y'}">
+							답변 완료
+							</c:when>
+							<c:when test="${ qlist.answerYn eq 'N'}">
+							대기중
+							</c:when>
+						</c:choose>
+						</th>
 					</tr>   
 					</c:forEach>
 				</tbody>

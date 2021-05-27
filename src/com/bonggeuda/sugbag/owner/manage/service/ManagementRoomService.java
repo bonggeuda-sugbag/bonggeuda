@@ -12,13 +12,13 @@ import java.util.List;
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
+import com.bonggeuda.sugbag.model.dto.RoomDTO;
 import com.bonggeuda.sugbag.owner.manage.dao.ManagementRoomSelectDAO;
 
 public class ManagementRoomService {
 	
 	private ManagementRoomSelectDAO roomDAO = new ManagementRoomSelectDAO();
 	
-
 	public int selectHasRoom(int ownerNo) {
 
 		/* Connection 생성 */
@@ -31,7 +31,6 @@ public class ManagementRoomService {
 		return hasRoom;
 	}
 
-
 	public List<RmAccomoInfoDTO> selectAccomoList(int ownerNo) {
 		
 		Connection con = getConnection();
@@ -42,7 +41,6 @@ public class ManagementRoomService {
 
 		return accomoList;
 	}
-
 
 	public String selectRmImagePath(int ownerNo) {
 		
@@ -55,7 +53,6 @@ public class ManagementRoomService {
 		
 		return selectrmImagePath;
 	}
-
 
 	public int insertRmAccomo(RmAccomoInfoDTO rmAcoomoDTO) {
 		Connection con = getConnection();
@@ -96,11 +93,8 @@ public class ManagementRoomService {
 		      
 		      close(con);
 		      
-		      
 		      return accomoList;
-		      
 		   }
-
 
 	public List<RmAccomoInfoDTO> selectApplyRejectAccomoList(int ownerNo) {
 		
@@ -111,6 +105,39 @@ public class ManagementRoomService {
 	      
 	      close(con);
 		return accomoList;
+	}
+
+
+
+	public List<RoomDTO> selectRoomList(int roomcAcomoNo) {
+		
+	    Connection con = getConnection();
+	    
+	    List<RoomDTO> roomList = new ArrayList<RoomDTO>();
+	    
+	    roomList = roomDAO.selectRoomListDAO(con,roomcAcomoNo);
+	    
+	    close(con);
+
+		
+		
+		return roomList;
+	}
+
+
+	public RoomDTO selectRoomInfo(int roomNo) {
+
+	    Connection con = getConnection();
+
+	    RoomDTO roomDTO = new RoomDTO();
+	    
+	    roomDTO = roomDAO.selectRoomInfoDAO(con,roomNo);
+	    
+	    close(con);
+		
+		
+		
+		return roomDTO;
 	}
 
 

@@ -71,12 +71,15 @@
 	       REQUEST,
 	       R.ROOM_NO,
 	       R.ROOM_NAME,
-	       R.ROOM_FEE, /* 일자 계산해서 넣기 */
+	       R.ROOM_FEE, 
 	       A.ACCOMO_NAME,
            U.USER_ID,
            U.USER_PHONE,
            P.PAYMENT_TIME,
-           P.PAYMENT_METHOD
+           P.PAYMENT_METHOD,
+           P.PAYMENT_AMOUNT,
+           A.ACCOMO_NO,
+           P.PAYMENT_NO
 	  FROM BOOK_LIST B
 	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
 	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
@@ -165,7 +168,7 @@
 	, SYSDATE
 	, 'Y'
 	, null
-	, SEQ_HISTORYNO.NEXTVAL
+	, SEQ_HISTORY_NO.NEXTVAL
 	) 
 	</entry>
 	
@@ -191,7 +194,7 @@
 	, SYSDATE
 	, 'N'
 	, ?
-	, SEQ_HISTORYNO.NEXTVAL
+	, SEQ_HISTORY_NO.NEXTVAL
 	) 
 	</entry>
 	
@@ -284,6 +287,36 @@
 	 WHERE A.OWNER_NO = ?
 	   AND BOOK_APPROVE_YN = 'N'
 	   AND BOOK_STATUS_YNC = 'Y'
+	</entry>
+	
+	<entry key="insertSelectHistory">
+		INSERT
+		  INTO SALES_HISTORY
+		VALUES
+		(
+		  SEQ_SALES_NO.NEXTVAL
+		, ?
+		, ?
+		, SYSDATE
+		, ? 
+		, ?
+		, DEFAULT
+		) 
+	</entry>
+	
+	<entry key="selectcompleteCount">
+	    SELECT 
+               COUNT(*)
+  		  FROM PAYMENT P
+  	      JOIN SALES_HISTORY S ON(P.PAYMENT_NO = S.PAYMENT_NO)
+  	      JOIN BOOK_LIST B ON(P.BOOK_NO = B.BOOK_NO)
+ 	     WHERE B.BOOK_NO = ?
+	</entry>
+	
+	<entry key="updateYn">
+    UPDATE OWNER_QNA
+ 	   SET OWNER_ANSWER_YN = 'Y'
+ 	 WHERE OWNER_QNA_NO = ?
 	</entry>
 	
 </properties>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 
 /**
  * Servlet implementation class ownerLoginTest
@@ -17,7 +18,7 @@ import com.bonggeuda.sugbag.model.dto.MemberDTO;
 public class ownerLoginTest extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		MemberDTO member = new MemberDTO(1,"user01","pass01","010-1111-1111",0,"넘버원","N","U",new java.sql.Date(System.currentTimeMillis()), null);
+//		OwnerInfoDTO member = new OwnerInfoDTO(2,"abc222@naver.com","abc222","010-2222-2222","N",new java.sql.Date(System.currentTimeMillis()),null);
 //		HttpSession session = request.getSession();
 //		session.setAttribute("member", member);
 		request.getRequestDispatcher("/WEB-INF/views/owner/main/main.jsp").forward(request, response);
@@ -27,6 +28,8 @@ public class ownerLoginTest extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
 	}
 
 }

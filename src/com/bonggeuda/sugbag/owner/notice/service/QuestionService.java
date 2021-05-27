@@ -18,33 +18,33 @@ public class QuestionService {
 	/*QuestionDAO와 연결할 필드 변수*/
 	QuestionDAO questionDAO = new QuestionDAO();
 	
-	public List<QnADTO> selectQuestion() {
+	public List<QnADTO> selectQuestion(int ownerNo) {
 
 		Connection con = getConnection();
 		
-		List<QnADTO> selectQuestion = questionDAO.selectQuestion(con);
+		List<QnADTO> selectQuestion = questionDAO.selectQuestion(con,ownerNo);
 		
 		close(con);
 
 		return selectQuestion;
 	}
 
-	public AdminQnADTO selectContent(int qnaNo) {
+	public AdminQnADTO selectContent(int qnaNo, int ownerNo) {
 		
 		Connection con = getConnection();
 		
-		AdminQnADTO selectContent = questionDAO.selectContent(con, qnaNo);
+		AdminQnADTO selectContent = questionDAO.selectContent(con, qnaNo, ownerNo);
 		
 		close(con);
 
 		return selectContent;
 	}
 
-	public int InsertQuestion(AdminQnADTO questionWrite) {
+	public int InsertQuestion(AdminQnADTO questionWrite, int ownerNo) {
 
 		Connection con = getConnection();
 		
-		int insertQuestion = questionDAO.insertQuestion(con, questionWrite);
+		int insertQuestion = questionDAO.insertQuestion(con, questionWrite, ownerNo);
 		
 		if(insertQuestion > 0) {
 			commit(con);
@@ -56,22 +56,22 @@ public class QuestionService {
 		return insertQuestion;
 	}
 
-	public AdminQnADTO selectAnswer(int qnaNo) {
+	public AdminQnADTO selectAnswer(int qnaNo, int ownerNo) {
 
 		Connection con = getConnection();
 		
-		AdminQnADTO selectAnswer = questionDAO.selectAnswer(con, qnaNo);
+		AdminQnADTO selectAnswer = questionDAO.selectAnswer(con, qnaNo, ownerNo);
 		
 		close(con);
 
 		return selectAnswer;
 	}
 
-	public int selectTotalCount() {
+	public int selectTotalCount(int ownerNo) {
 
 		Connection con = getConnection();
 		
-		int totalCount = questionDAO.selectTotalCount(con);
+		int totalCount = questionDAO.selectTotalCount(con, ownerNo);
 		
 		if(totalCount > 0) {
 			commit(con);
@@ -83,11 +83,11 @@ public class QuestionService {
 		return totalCount;
 	}
 
-	public List<QnADTO> selectQuestion(PageInfoDTO pageInfo) {
+	public List<QnADTO> selectQuestion(PageInfoDTO pageInfo, int ownerNo) {
 
 		Connection con = getConnection();
 		
-		List<QnADTO> selectQuestion = questionDAO.selectQuestion(con, pageInfo);
+		List<QnADTO> selectQuestion = questionDAO.selectQuestion(con, pageInfo, ownerNo);
 		
 		close(con);
 

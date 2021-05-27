@@ -98,7 +98,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="tab">
 			    <form action="/bonggeuda/owner/requestTaxBill" method="post"> 
 			    <span class="tab_btn active">발행 목록</span>
-				<button class="submit-btn" type="submit" style="margin-left:800px;">발급 신청</button>
 				</form>
 			 </div>
 			<c:if test="${ !empty requestScope.taxBillList }">

@@ -416,7 +416,7 @@ public class UserMypageService {
 		
 		int result = mypageDAO.insertCancel(con, userCancelReason, userNo, bookNo);
 		
-		if(result > 1) {
+		if(result > 2) {
 			commit(con);
 		} else {
 			rollback(con);

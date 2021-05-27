@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.QnADTO;
 import com.bonggeuda.sugbag.owner.notice.service.QuestionService;
@@ -21,6 +22,10 @@ import com.bonggeuda.sugbag.owner.notice.service.QuestionService;
 public class QuestionList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//로그인 값
+		OwnerInfoDTO member = (OwnerInfoDTO)request.getSession().getAttribute("ownerNo");
+		int ownerNo = member.getOwnerNo();
 		
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
@@ -37,7 +42,7 @@ public class QuestionList extends HttpServlet {
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		QuestionService questionService = new QuestionService();
 		
-		int totalCount = questionService.selectTotalCount();
+		int totalCount = questionService.selectTotalCount(ownerNo);
 		
 		System.out.println("totalCount 체크 : " + totalCount);
 
@@ -53,7 +58,7 @@ public class QuestionList extends HttpServlet {
 		System.out.println(pageInfo);
 
 		/*결과값 반환*/
-		List<QnADTO> selectQuestion = questionService.selectQuestion(pageInfo);
+		List<QnADTO> selectQuestion = questionService.selectQuestion(pageInfo,ownerNo);
 		
 		System.out.println("전체문의조회 : " + selectQuestion);
 

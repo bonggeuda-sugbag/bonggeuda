@@ -131,10 +131,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 숙소 수정
             </form>
             
-            <form action="/bonggeuda/owner/roomModify" method="post">
+            <form action="/bonggeuda/owner/roomList" method="post">
+            
                <button  class="submit-btn" type="submit">
                <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
-                객실 수정
+                객실 목록 보기
             </form>
 
          

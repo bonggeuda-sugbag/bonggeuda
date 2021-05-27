@@ -30,7 +30,7 @@ public class BookingListSelectDAO {
 		}
 	}
 
-	public List<BookDTO> selectBookList(Connection con, PageInfoDTO pageInfo) {
+	public List<BookDTO> selectBookList(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -43,7 +43,7 @@ public class BookingListSelectDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			
@@ -119,7 +119,10 @@ public class BookingListSelectDAO {
 				bookConDTO.setUserPhone(rset.getString("USER_PHONE"));
 				bookConDTO.setBookRequestDate(rset.getString("PAYMENT_TIME"));
 				bookConDTO.setPaymentMethod(rset.getString("PAYMENT_METHOD"));
-				
+				bookConDTO.setPaymentFee(rset.getInt("PAYMENT_AMOUNT"));
+				bookConDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				bookConDTO.setPaymentNo(rset.getInt("PAYMENT_NO"));
+				bookConDTO.setRoomNo(rset.getInt("ROOM_NO"));
 				
 			}
 		} catch (SQLException e) {
@@ -255,7 +258,7 @@ public class BookingListSelectDAO {
 		return insertRejectBookHistory;
 	}
 
-	public int selectTotalCount(Connection con) {
+	public int selectTotalCount(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -272,7 +275,7 @@ public class BookingListSelectDAO {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			
 			rset = pstmt.executeQuery();
 
@@ -290,12 +293,14 @@ public class BookingListSelectDAO {
 		return totalCount;
 	}
 
-	public List<BookDTO> selectBookPastList(Connection con, PageInfoDTO pageInfo) {
+	public List<BookDTO> selectBookPastList(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rset = null;
 		
 		List<BookDTO> selectBookedList = new ArrayList<>();
+	
 		/* 반환 시킬 변수를 지정하자*/
 		BookDTO bookDTO = new BookDTO();
 		
@@ -303,7 +308,7 @@ public class BookingListSelectDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			
@@ -341,7 +346,59 @@ public class BookingListSelectDAO {
 		
 		return selectBookedList;
 	}
+
+	public int insertSelectHistoryDAO(Connection con, int roomNo, int paymentFee, int paymentNo, int accomoNo) {
+
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertSelectHistory");
+		
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, roomNo);
+			pstmt.setInt(3, paymentFee);
+			pstmt.setInt(4, paymentNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
+	public int selectcompleteCountDAO(int bookNo, Connection con) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int selectcompleteCount = 0;
+		String query = prop.getProperty("selectcompleteCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				selectcompleteCount = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return selectcompleteCount;
+	}
 }
+
 
 
 

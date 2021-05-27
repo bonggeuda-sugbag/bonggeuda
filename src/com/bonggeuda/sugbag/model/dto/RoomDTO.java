@@ -18,10 +18,15 @@ public class RoomDTO {
 
 	private List<AttachmentDTO> attachmentList;
 	
+	private String imagePath;
+	
+	private int requestNo;
+	
 	public RoomDTO() {}
 
 	public RoomDTO(int roomNo, int accomoNo, String roomName, int roomMax, String roomIntro, int roomFee,
-			String visibleYn, int peakFee, AttachmentDTO attachment, List<AttachmentDTO> attachmentList) {
+			String visibleYn, int peakFee, AttachmentDTO attachment, List<AttachmentDTO> attachmentList,
+			String imagePath, int requestNo) {
 		super();
 		this.roomNo = roomNo;
 		this.accomoNo = accomoNo;
@@ -33,6 +38,8 @@ public class RoomDTO {
 		this.peakFee = peakFee;
 		this.attachment = attachment;
 		this.attachmentList = attachmentList;
+		this.imagePath = imagePath;
+		this.requestNo = requestNo;
 	}
 
 	public int getRoomNo() {
@@ -115,13 +122,33 @@ public class RoomDTO {
 		this.attachmentList = attachmentList;
 	}
 
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public int getRequestNo() {
+		return requestNo;
+	}
+
+	public void setRequestNo(int requestNo) {
+		this.requestNo = requestNo;
+	}
+
 	@Override
 	public String toString() {
 		return "RoomDTO [roomNo=" + roomNo + ", accomoNo=" + accomoNo + ", roomName=" + roomName + ", roomMax="
 				+ roomMax + ", roomIntro=" + roomIntro + ", roomFee=" + roomFee + ", visibleYn=" + visibleYn
-				+ ", peakFee=" + peakFee + ", attachment=" + attachment + ", attachmentList=" + attachmentList + "]";
+				+ ", peakFee=" + peakFee + ", attachment=" + attachment + ", attachmentList=" + attachmentList
+				+ ", imagePath=" + imagePath + ", requestNo=" + requestNo + "]";
 	}
 
+	
+
+	
 	
 	
 }
