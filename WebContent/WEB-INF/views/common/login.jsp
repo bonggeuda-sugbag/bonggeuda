@@ -247,7 +247,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					button.action = "${ pageContext.servletContext.contextPath }/owner/login/check";
 					button.submit();
 				} else if(d == 3) {
-					button.action = "${pageContext.servletContext.contextPath }/user/list";
+					button.action = "${pageContext.servletContext.contextPath }/admin/login/check";
 					button.submit();
 				}
 				
