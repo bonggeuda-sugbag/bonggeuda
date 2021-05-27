@@ -79,9 +79,9 @@ public class AdminReportService {
 		int insertReport = adminReportDAO.insertReport (con, dto);
 		
 		if(insertReport  > 0) {
-			commit(con);
+			adminReportDAO.updateUserCount(con, dto);
 		}else {
-			rollback(con);
+			
 		}
 		
 		close(con);

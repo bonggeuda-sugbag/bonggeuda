@@ -8,6 +8,7 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.bonggeuda.adminEvent.dto.EventDTO;
 import com.bonggeuda.sugbag.model.dao.UserMypageDAO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
@@ -478,6 +479,8 @@ public class UserMypageService {
 		return result;
 		
 	}
+
+
 
 
 

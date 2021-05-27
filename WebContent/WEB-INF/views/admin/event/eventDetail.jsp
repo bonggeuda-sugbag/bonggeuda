@@ -10,25 +10,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-	<style>
-		div.tab, div.tab-content {
-			  margin-left: 25%;
-			  margin-right: 6%;
-		}
-		.table tbody tr th{
-			background: white;
-		}
-		table.table tr th{
-			text-align: center;
-			padding: 5px;
-			line-height: 2.5;
-			font-weight: 500;
-			width: auto;
-		}
-		th a:hover{
-			color: #6eceda !important;
-		}
-	 </style>
+    <style>
+        div.tab, div.tab-content {
+              margin-left: 25%;
+              margin-right: 14%;
+        }
+        .table tbody tr th{
+            background: white;
+        }
+        table.table tr th{
+            text-align: center;
+            padding: 5px;
+            line-height: 2.5;
+            font-weight: 500;
+            width: auto;
+        }
+        th a:hover{
+            color: #6eceda !important;
+        }
+        
+		
+
+     </style>
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -39,7 +42,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="${pageContext.servletContext.contextPath }/resources/admin/css/styles.css" rel="stylesheet">
 <!--//menu-->
 <!--theme-style-->
-<link href="${pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.servletContext.contextPath }/resources/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />  
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -74,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 			<!---pop-up-box---->
 				   
-				<link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+			<link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
             <script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
 			<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
@@ -151,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
-	<h3><span>공지&이벤트</span></h3> 
+	<h3><span>문의&신고</span></h3> 
 
 	<div class="clearfix"> </div>      		
 	</div>
@@ -160,61 +163,78 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--blog-->
 	<div class="blog">
 		<div class="container">
-
+		
 			<div class="blog-list">
 				<nav>
 				<div class="col-md-3 blog-sidebar">
-				<ul>
-					<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/notice/list">공지사항</a></li>
-					<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/event/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">이벤트</a></li>
-				</ul>
+                    <ul>
+                       <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/notice/list">공지사항</a></li>
+					   <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/event/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">이벤트</a></li>
+                    </ul>
 				</nav>
-				 <form action="${ pageContext.servletContext.contextPath }/event/insert" method="get">
-				<div class="tab" style="display: flex;">
+               
+				<div class="tab">
 				   <span class="tab_btn active">이벤트</span> 
-				   <!-- <select>
-					   <option selected=""></option>
-					   <option value="1">N</option>
-				   </select> -->
-				  
-				   <p><button type="submit" style="margin-left: 610px;">작성하기</button></p>
-				 	
 				</div>
-				</form>
-				<table class="table table-hover" style="width: 800px;">
-					<thead>
-						<tr>
-							<th><b>이벤트 번호</b></th>
-							<th><b>제목</b></th>
-							<th><b>시작일</b></th>
-							<th><b>끝나는일</b></th>
-							<th><b>상세정보</b></th>
-						</tr>
-					</thead>
-					<tbody>
-   		            <c:forEach var="event" items="${ requestScope.eventList }">
-   		            <form action="${ pageContext.servletContext.contextPath }/event/detail" method="get">
-						<tr>
-							<td><c:out value="${event.rnum }"/></td>
-							<td><c:out value="${event.title }"/></td>
-							<td><c:out value="${event.startDate }"/></td>
-							<td><c:out value="${event.endDate }"/></td>
-							<td><button id="detail">상세보기</button></td>
-							<input type="hidden" name="eventNo" value= "${ event.number }">	 	
-						</tr>
-					</form>
-					</c:forEach>
-					</tbody>
-				 </table>
-				 
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"> </div>
-
-</div>
-
-</div>
+                <table class="type09" border="1px">
+                    <thead>
+                        <tr>
+                            <th scope="cols"></th>
+                            <th scope="cols"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                            <th scope="row">제목</th>
+                            <td colspan="3" style="width: 645px;" >
+                            <input name="title" value="${ eventDetailInfo.title }" style="width: 640px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            
+                            </input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">시작일</th>
+                            <td>
+                            <input name="date" value="${ eventDetailInfo.startDate }" style="width: 296px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            
+                            </input>
+                            </td>
+                            <th scope="row" style="text-align: center;">종료일</th>
+                            <td>
+                            <input name="date" value="${ eventDetailInfo.endDate }" style="width: 296px; height: 20px; border: 0; resize: none; overflow:hidden;">
+                            
+                            </input>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+				<p>
+				<c:forEach var="thumnail" items="${ requestScope.eventThumnailInfo }">
+				<input class="form-control textarea-layer" style="width: 700px; height: 120px; margin-left: 285px;" disabled>
+				<c:if test="${ thumnail.thumnailPath ne null }">
+				<img src="${ pageContext.servletContext.contextPath }/${ thumnail.thumnailPath }" style="width: 30%">
+				</c:if>
+				</input>
+				 </c:forEach>
+				</p>
+                <br>
+                <table class="type09" border="1px"  style="margin-left: 285px;">
+                    <thead>
+                        <tr>
+                            <th scope="cols"></th>
+                            <th scope="cols"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+                <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">처리완료</button>
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <br><br><br><br><br>
+        <br><br><br><br><br>
 <!--//blog-->
 <!--footer-->
 <div class="footer">
