@@ -35,6 +35,7 @@ public class BookingAnswer extends HttpServlet {
 		BookingQnAService qnaService = new BookingQnAService();
 		
 		/*결과값 반환*/
+		int updateYn = qnaService.updateYn(qnaNo);
 		int insetAnswer = qnaService.InsertAnswer(qnaDTO); //값을 int형으로 반환받아야 함
 		
 		/*목록으로로 이동*/

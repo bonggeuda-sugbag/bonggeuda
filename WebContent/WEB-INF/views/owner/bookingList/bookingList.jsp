@@ -191,7 +191,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					  <li><a href="#">5</a></li>
 					  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 				   </ul>
-				   </nav>
+				</nav>
 			</div>
 			
 			<%-- 페이지 처리 --%>

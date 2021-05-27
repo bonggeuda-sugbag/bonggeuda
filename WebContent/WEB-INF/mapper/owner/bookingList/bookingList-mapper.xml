@@ -286,4 +286,10 @@
 	   AND BOOK_STATUS_YNC = 'Y'
 	</entry>
 	
+	<entry key="updateYn">
+    UPDATE OWNER_QNA
+ 	   SET OWNER_ANSWER_YN = 'Y'
+ 	 WHERE OWNER_QNA_NO = ?
+	</entry>
+	
 </properties>
