@@ -26,12 +26,16 @@ public class BookingContentDTO {
 	private int paymentFee;
 	private String paymentMethod;
 	
+	private int accomoNo;
+	private int paymentNo;
+	
 	public BookingContentDTO() { }
 
 	public BookingContentDTO(String bookCheckDate, String bookApproveYn, int roomNo, int userNo, int ownerNo,
 			String bookStatusYNC, long day, String bookImg, String bookUserName, int bookPersonnel, String accomoName,
 			String roomName, int bookNo, String bookRequestDate, String bookCheckIn, String bookCheckoutDate,
-			String request, String userPhone, String email, int paymentFee, String paymentMethod) {
+			String request, String userPhone, String email, int paymentFee, String paymentMethod, int accomoNo,
+			int paymentNo) {
 		super();
 		this.bookCheckDate = bookCheckDate;
 		this.bookApproveYn = bookApproveYn;
@@ -54,6 +58,8 @@ public class BookingContentDTO {
 		this.email = email;
 		this.paymentFee = paymentFee;
 		this.paymentMethod = paymentMethod;
+		this.accomoNo = accomoNo;
+		this.paymentNo = paymentNo;
 	}
 
 	public String getBookCheckDate() {
@@ -224,6 +230,22 @@ public class BookingContentDTO {
 		this.paymentMethod = paymentMethod;
 	}
 
+	public int getAccomoNo() {
+		return accomoNo;
+	}
+
+	public void setAccomoNo(int accomoNo) {
+		this.accomoNo = accomoNo;
+	}
+
+	public int getPaymentNo() {
+		return paymentNo;
+	}
+
+	public void setPaymentNo(int paymentNo) {
+		this.paymentNo = paymentNo;
+	}
+
 	@Override
 	public String toString() {
 		return "BookingContentDTO [bookCheckDate=" + bookCheckDate + ", bookApproveYn=" + bookApproveYn + ", roomNo="
@@ -232,7 +254,8 @@ public class BookingContentDTO {
 				+ ", accomoName=" + accomoName + ", roomName=" + roomName + ", bookNo=" + bookNo + ", bookRequestDate="
 				+ bookRequestDate + ", bookCheckIn=" + bookCheckIn + ", bookCheckoutDate=" + bookCheckoutDate
 				+ ", request=" + request + ", userPhone=" + userPhone + ", email=" + email + ", paymentFee="
-				+ paymentFee + ", paymentMethod=" + paymentMethod + "]";
+				+ paymentFee + ", paymentMethod=" + paymentMethod + ", accomoNo=" + accomoNo + ", paymentNo="
+				+ paymentNo + "]";
 	}
 
 	

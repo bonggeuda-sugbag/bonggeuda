@@ -119,7 +119,10 @@ public class BookingListSelectDAO {
 				bookConDTO.setUserPhone(rset.getString("USER_PHONE"));
 				bookConDTO.setBookRequestDate(rset.getString("PAYMENT_TIME"));
 				bookConDTO.setPaymentMethod(rset.getString("PAYMENT_METHOD"));
-				
+				bookConDTO.setPaymentFee(rset.getInt("PAYMENT_AMOUNT"));
+				bookConDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				bookConDTO.setPaymentNo(rset.getInt("PAYMENT_NO"));
+				bookConDTO.setRoomNo(rset.getInt("ROOM_NO"));
 				
 			}
 		} catch (SQLException e) {
@@ -340,6 +343,57 @@ public class BookingListSelectDAO {
 		}
 		
 		return selectBookedList;
+	}
+
+	public int insertSelectHistoryDAO(Connection con, int roomNo, int paymentFee, int paymentNo, int accomoNo) {
+
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertSelectHistory");
+		
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, roomNo);
+			pstmt.setInt(3, paymentFee);
+			pstmt.setInt(4, paymentNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
+	public int selectcompleteCountDAO(int bookNo, Connection con) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int selectcompleteCount = 0;
+		String query = prop.getProperty("selectcompleteCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				selectcompleteCount = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return selectcompleteCount;
 	}
 }
 

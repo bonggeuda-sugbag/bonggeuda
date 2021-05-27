@@ -155,4 +155,29 @@ public class BookListSelectService {
 		return bookListSelect;
 	}
 
+	public int insertSalesHistory(int accomoNo, int roomNo, int paymentFee, int paymentNo) {
+		Connection con = getConnection();
+
+		int result = bookDAO.insertSelectHistoryDAO(con,roomNo,paymentFee,paymentNo,accomoNo);
+		
+		if(result > 0) {
+			commit(con);
+			System.out.println("커밋됨");
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int selectcompleteCount(int bookNo) {
+		Connection con = getConnection();
+		
+		int selectcompleteCount = bookDAO.selectcompleteCountDAO(bookNo,con);
+		
+		return selectcompleteCount;
+	}
+
 }
