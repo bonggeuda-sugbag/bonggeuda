@@ -82,7 +82,7 @@
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -107,7 +107,7 @@
 				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>
-			<table id="registTb" class="table table-bordered" style="margin-top: -50px;">
+			<table id="registTb" class="table table-bordered" style="margin-top: -50px; margin: initial;">
 			<tbody>
 				<tr class="tr1">
 					<th>
@@ -130,7 +130,7 @@
 						<td>
 							<div class="form-layer" >
 								<input type="password" class="select-nomalsize" type="password" name="ownerPwd" value="${ requestScope.selectOwner.ownerPwd }">
-								<button class="submit-btn" type="submit" style="margin-left: 20px;">비밀번호 변경하기</button>
+								<button class="submit-btn" type="submit" style="margin-left: 20px;">변경하기</button>
 							</div>
 	
 						</td>
@@ -146,7 +146,7 @@
 					<td>
 						<div class="form-layer">
 							<input type="text" class="select-nomalsize" name="ownerPhone" placeholder="휴대전화 번호" value="${ requestScope.selectOwner.ownerPhone }">
-							<button class="submit-btn" type="submit" style="margin-left: 20px;">휴대전화번호 변경하기</button>
+							<button class="submit-btn" type="submit" style="margin-left: 20px;">변경하기</button>
 						</div>
 						
 					</td>
@@ -163,24 +163,13 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<br>
-					<th colspan="2" style="background-color: white; ">
-						<div>
-							
-							<br>
-							<form action="" >
-								
-								<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;  background-color: orange;"  onclick="location.href='#pop01'">
-									회원 탈퇴하기
-								</button>
-							</form>
-						</div>
-					</th>
-				</tr>
 			</tbody>
-			<br><br>
-	</table>
+		</table>
+		<form action="" >
+			<button class="submit-btn" type="submit" style="margin-bottom: 10px; background-color: #ccc; box-shadow: 0 3px 0 #a3a3a3; margin-left:800px; margin-top: 15px;" onclick="location.href='#pop01'">
+				회원 탈퇴
+			</button>
+		</form>
 </div>
 <!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

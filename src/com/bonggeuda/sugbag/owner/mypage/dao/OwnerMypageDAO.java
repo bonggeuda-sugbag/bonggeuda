@@ -16,6 +16,7 @@ import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.NoticeDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
 import com.bonggeuda.sugbag.model.dto.RequestTaxBillDTO;
 import com.bonggeuda.sugbag.model.dto.SettlementDTO;
@@ -75,7 +76,7 @@ public class OwnerMypageDAO {
 	}
 
 
-	public List<ReportDTO> selectReportList(Connection con, int ownerNo) {
+	public List<ReportDTO> selectReportList(Connection con, PageInfoDTO pageInfo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -88,7 +89,9 @@ public class OwnerMypageDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, ownerNo);
+			pstmt.setInt(1, 1);//업체번호
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -104,6 +107,7 @@ public class OwnerMypageDAO {
 				reportDTO.setReportStatus(rset.getString("REPORT_STATUS"));
 				reportDTO.setReportedType(rset.getString("REPORTED_TYPE"));
 				reportDTO.setReportedNo(rset.getInt("REPORTED_NO"));
+				reportDTO.setRowNum(rset.getInt("RNUM"));
 				
 				selectReprotList.add(reportDTO);
 				
@@ -197,9 +201,6 @@ public class OwnerMypageDAO {
 			close(con);
 			close(rset);
 		}
-
-
-		
 		
 		return rejectReason;
 	}
@@ -230,35 +231,38 @@ public class OwnerMypageDAO {
 		return ownerWithdrawUpdate;
 	}
 
-	public List<RequestTaxBillDTO> selectTaxBillListDAO(Connection con, int ownerNo) {
+	public List<RequestTaxBillDTO> selectTaxBillListDAO(Connection con, PageInfoDTO pageInfo) {
 		
 		PreparedStatement pstmt = null;
 		
 		ResultSet rset = null;
 		
 		List<RequestTaxBillDTO> selectTaxBillList = new ArrayList<RequestTaxBillDTO>();
+		
 		RequestTaxBillDTO requestTaxBillDTO = new RequestTaxBillDTO();
 		
 		String query = prop.getProperty("selectTaxBillList");
 		
+		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			
-			pstmt.setInt(1,ownerNo );
+			pstmt.setInt(1, 1);//업체번호
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				
 				requestTaxBillDTO = new RequestTaxBillDTO();
 				
-				requestTaxBillDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
-				requestTaxBillDTO.setRequestDate(rset.getString("REQUEST_DATE"));
-				requestTaxBillDTO.setRequestStartDate(rset.getString("REQUEST_START"));
-				requestTaxBillDTO.setRequestEndDate(rset.getString("REQUEST_END"));
 				requestTaxBillDTO.setRequestNo(rset.getInt("REQUEST_NO"));
+				requestTaxBillDTO.setRequestDate(rset.getString("REQUEST_DATE"));
+				requestTaxBillDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				requestTaxBillDTO.setResponseYn(rset.getString("RESPONSE_YN"));
+				requestTaxBillDTO.setStlNo(rset.getInt("STL_NO"));
 				requestTaxBillDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				requestTaxBillDTO.setRowNum(rset.getInt("RNUM"));
 				
 				selectTaxBillList.add(requestTaxBillDTO);
 			}
@@ -271,7 +275,6 @@ public class OwnerMypageDAO {
 			close(rset);
 		}
 
-		
 		return selectTaxBillList;
 	}
 
@@ -303,8 +306,6 @@ public class OwnerMypageDAO {
 			close(rset);
 		}
 
-		
-		
 		return insertRequestTaxBill;
 	}
 
@@ -326,6 +327,7 @@ public class OwnerMypageDAO {
 			pstmt.setInt(1, ownerNo);
 			
 			rset = pstmt.executeQuery();
+			
 			while(rset.next()){
 				accomoDTO = new AccomoDTO();
 				
@@ -374,16 +376,16 @@ public class OwnerMypageDAO {
 		return accomoNo;
 	}
 
-	public List<SettlementDTO> selectStl(Connection con) {
+	public List<SettlementDTO> selectStl(Connection con, PageInfoDTO pageInfo) {
 		
 		System.out.println("들어왔나");
 		
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		
 		ResultSet rset = null;
 
 		/* 반환시킬 변수 지정 */
-		List<SettlementDTO> selectStl = null;
+		List<SettlementDTO> selectStl = new ArrayList<>(); //모든 행을 다 받아서 최종 리스트를 만듬
 		
 		/* --> selectedAll 가지고 xml감 */
 		String query = prop.getProperty("selectStl");
@@ -393,10 +395,12 @@ public class OwnerMypageDAO {
 
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
-			stmt = con.prepareStatement(query);
-			
-			rset = stmt.executeQuery(query);
-			selectStl = new ArrayList<>(); //모든 행을 다 받아서 최종 리스트를 만듬
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1); //업체번호
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
+
+			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				
@@ -406,7 +410,9 @@ public class OwnerMypageDAO {
 				stl.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				stl.setReqDate(rset.getDate("REQUEST_DATE"));
 				stl.setStlYn(rset.getString("STL_YN"));
-				
+				stl.setAccomoName(rset.getString("ACCOMO_NAME"));
+				stl.setRowNum(rset.getInt("RNUM"));
+
 				selectStl.add(stl); //한 행씩 저장됨
 			}
 			
@@ -416,10 +422,176 @@ public class OwnerMypageDAO {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 
 		return selectStl;
+	}
+
+	public List<AccomoDTO> selectAccomo(Connection con) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		List<AccomoDTO> selectAccomo = new ArrayList<AccomoDTO>();
+		
+		String query = prop.getProperty("selectAccomo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1); //업체번호
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				AccomoDTO accomoName = new AccomoDTO();
+				accomoName.setAccomoName(rset.getString("ACCOMO_NAME"));
+				accomoName.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				selectAccomo.add(accomoName);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return selectAccomo;
+	}
+
+	public int insertStl(Connection con, int accomoNo) {
+
+		PreparedStatement pstmt = null;
+		
+		/* 반환시킬 변수 지정 */
+		int insert = 0;
+		
+		String query = prop.getProperty("insertStl");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, accomoNo);
+			
+			insert = pstmt.executeUpdate();
+			System.out.println(insert);
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+     
+		return insert;
+	}
+	
+	//신고페이지 카운트
+	public int selectTotalCount(Connection con) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		/* 반환시킬 변수 지정 */
+		int totalCount = 0;
+		
+		String query = prop.getProperty("reportTotalCount");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+     
+		return totalCount;
+	}
+
+	//정산페이지 카운트
+	public int selectStlTotalCount(Connection con) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		/* 반환시킬 변수 지정 */
+		int stlTotalCount = 0;
+		
+		String query = prop.getProperty("stlTotalCount");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1); //업체번호
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				stlTotalCount = rset.getInt("COUNT(*)");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+     
+		return stlTotalCount;
+	}
+
+	public int taxTotalCount(Connection con) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		/* 반환시킬 변수 지정 */
+		int taxTotalCount = 0;
+		
+		String query = prop.getProperty("taxTotalCount");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, 1); //업체번호
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				taxTotalCount = rset.getInt("COUNT(*)");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+     
+		return taxTotalCount;
 	}
 
 }

@@ -30,8 +30,8 @@
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
-				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>

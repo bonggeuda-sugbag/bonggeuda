@@ -405,7 +405,6 @@ public class BookDAO {
 				
 			}
 			
-			System.out.println(couponPoint);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -429,9 +428,6 @@ public class BookDAO {
 		List<AccomoInfoDTO> searchResult = null;
 		
 		String query = new QueryBuilder().queryBuiler(search).toString();
-		System.out.println("검색조건 쿼리문");
-		System.out.println(search);
-		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, search.getPersonnal());
@@ -654,7 +650,6 @@ public class BookDAO {
         
 		List<ReviewDTO> reviewList = null;
 		String query = new QueryBuilder().reviewSelectBuilder(bestReview).toString();
-		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, accomoNo);
@@ -902,7 +897,6 @@ public class BookDAO {
 				roomInfo.setRoomFee(rset.getInt("ROOM_FEE"));
 				roomInfo.setPeakFee(rset.getInt("PEAK_FEE"));
 				
-				System.out.println("DAO 에서 호출한 값 : " + roomInfo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -947,5 +941,181 @@ public class BookDAO {
 		}
 		
 		return discount;
+	}
+
+	/**
+	 * 업다운상태조회
+	 * @param con
+	 * @param userNo
+	 * @return
+	 */
+	public Map<Integer, String> selectUpDownStatus(Connection con, int userNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Map<Integer, String> reviewStaus = null;
+		
+		String query = prop.getProperty("selectRivewStatus");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			reviewStaus = new HashMap<>();
+			
+			while(rset.next()) {
+				reviewStaus.put(rset.getInt("리뷰번호"), rset.getString("상태"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reviewStaus;
+	}
+
+	/**
+	 * 기존이력조회
+	 * @param con
+	 * @param review
+	 * @return
+	 */
+	public int selectExistingReview(Connection con, ReviewDTO review) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int reviewHistory = 0;
+		
+		String query = prop.getProperty("selectReviewHistory");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, review.getUserNo());
+			pstmt.setInt(2, review.getReviewNo());
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				reviewHistory = rset.getInt("이력번호");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reviewHistory;
+	}
+
+	/**
+	 * 리뷰이력 insert
+	 * @param con
+	 * @param review
+	 * @return
+	 */
+	public int insertReviewHistory(Connection con, ReviewDTO review) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertReviewHistory");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, review.getUpdownStatus());
+			pstmt.setInt(2, review.getReviewNo());
+			pstmt.setInt(3, review.getUserNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/**
+	 * 리뷰이력 업데이트
+	 * @param con
+	 * @param review
+	 * @return
+	 */
+	public int updateReviewHistory(Connection con, ReviewDTO review) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateReviewHistory");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, review.getUpdownStatus());
+			pstmt.setInt(2, review.getHistoryNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectUpCnt(Connection con, ReviewDTO review) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int upCnt = 0;
+		
+		String query = prop.getProperty("selectOneRvUpCnt");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, review.getReviewNo());
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				upCnt = rset.getInt("업");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return upCnt;
+	}
+
+	public int selectUpDownCnt(Connection con, ReviewDTO review) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int downCnt = 0;
+		
+		String query = prop.getProperty("selectOneRvDwnCnt");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, review.getReviewNo());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				downCnt = rset.getInt("다운");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return downCnt;
 	}
 }

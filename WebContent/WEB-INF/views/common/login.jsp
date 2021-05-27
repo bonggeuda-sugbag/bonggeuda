@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,9 +106,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
 	<div class="container">
 		<!--logo-->
-			<div class="logo">
-				<h1><a href="index.html">BONGGUEDA</a></h1>
-			</div>
+		<div class="logo">
+			<h1><a href="index.html">BONGGUEDA</a></h1>
+		</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
@@ -129,37 +124,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 		<div class="clearfix"> </div>
 		</div>	
-</div>
+	</div>
 <!--//-->	
 	<div class="clearfix"> </div>
-		<!--initiate accordion-->
-		<script type="text/javascript">
-			$(function() {
-			    var menu_ul = $('.menu > li > ul'),
-			           menu_a  = $('.menu > li > a');
-			    menu_ul.hide();
-			    menu_a.click(function(e) {
-			        e.preventDefault();
-			        if(!$(this).hasClass('active')) {
-			            menu_a.removeClass('active');
-			            menu_ul.filter(':visible').slideUp('normal');
-			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-			        } else {
-			            $(this).removeClass('active');
-			            $(this).next().stop(true,true).slideUp('normal');
-			        }
-			    });
-			
-			});
-		</script>
-      		
-	</div>
+
 </div>
 <!--//header-->
 <!--contact-->
 <div class="login-right">
 	<div class="container">
-		<h3>Login</h3>
+		<!-- <h3>Login</h3> -->
+		<p class="space_or" style="width:50%; margin: 0 auto;"><span style="font-size: 40px; width:120px; left: 44%; background:#fff">Login</span></p><br><br>
 		<div class="login-icons" style= "width: 100%;">
 					<a id="custom-login-btn" href="javascript:loginWithKakao()">
   						<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/>
@@ -169,108 +144,118 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   		<br>
   		<p class="space_or" style="width:50%; margin: 0 auto;"><span>또는</span></p>
 		<div class="login-top">
-				<form action="${ pageContext.servletContext.contextPath }/login/check" method="post" onsubmit="return loginconfirm()">
+			<form action="" name="loginForm" method="post" onsubmit="return loginconfirm()"> 
 				<div class="form-info">
-						<input type="text" name="loginEmail" class="text" placeholder="Email Adress" style="width: 70%;">
-						<input type="password" name="loginPassword" placeholder="Password" style="width: 70%;">
-						<br>
+					<input type="text" name="loginEmail" id="loginEmail" class="text" placeholder="Email Adress" style="width: 70%;">
+					<input type="password" name="loginPassword" id=loginPassword placeholder="Password" style="width: 70%;">
+					<br>
 						<!-- <label class="hvr-sweep-to-right">
 							<input type="submit" value="Submit">
 						</label> -->
 				</div>
 				
-				<!-- 사용자,업체 로그인 -->
+				<!-- 사용자 로그인, 업체 로그인, 회원가입 -->
 				<div class="login-icons" style= "width: 100%;">
-  						<!-- <button class="api-btn" onclick="kakaoLogout()">로그아웃</button> -->
+  					<!-- <button class="api-btn" onclick="kakaoLogout()">로그아웃</button> -->
 					<br>
-					<button style="margin-right: 30px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/guest'">사용자 로그인</button>
-					<button style=" width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/owner'">업체 로그인</button>
+					<button style="margin-right: 15px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('1');">사용자 로그인</button>
+					<button style="margin-right: 15px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('2');">업체 로그인</button>
+					<button style="margin-right: 15px; width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/usersignup/insert';">사용자 회원가입</button>
+					<button style="width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='';">업체 회원가입</button>
 
 					<br>
 					<div class="clearfix"> </div>
 				</div>
-				
-				<!-- 회원가입 -->
-				<div class="create" style="padding-right: 80px;">
-					<a class="hvr-sweep-to-right" href="register.html">Create an Account</a>
-					<div class="clearfix"> </div>
-				</div>
-				<br>
+
+				<br><br>
 				
 				<!-- 관리자 로그인 -->
-					<div class="adminlogin-icons" style= "width: 100%;">
-						<button style="width: 120px; height: 40px; float:right" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/user/list'">관리자 모드</button>
-					</div>
-				</form>
+
+
+
+
+				<div class="adminlogin-icons" style= "width: 100%;">
+					<button style="width: 100px; height: 30px; float:right" class="btns-wrap__submit-btn" type="button" onclick="login('3');">관리자 모드</button>
+				</div>
+			</form>
+
 				    
     
-<script type="text/javascript">
-	Kakao.init('ef9dad5f79ec8fd8bd957ac3e023cbdd');
-
-	/* 로그인 */
-  	function loginWithKakao() {
-    	Kakao.Auth.login({
-      	success: function(authObj) {
-        	alert(JSON.stringify(authObj))
-      	},
-     	 	fail: function(err) {
-        	alert(JSON.stringify(err))
-      	},
-    	})
-  	}
-  
-  
-	/* 사용자 정보 가져오기 */
-	Kakao.Auth.createLoginButton({
-		container: '#kakao-login-btn',
-		success: function(authObj) {
-			Kakao.API.request({
-		    url: '/v2/user/me',
-		    success: function(res) {
-		    	alert(JSON.stringify(res))
-		    },
-		    fail: function(error) {
-		        alert(
-		        'login success, but failed to request user information: ' +
-		        JSON.stringify(error)
-		        )
-		    },
-		    })
-		},
-		fail: function(err) {
-		    alert('failed to login: ' + JSON.stringify(err))
-		},
-	})
-		  
-	/* 로그아웃 */
-	function kakaoLogout() {
-	    if (!Kakao.Auth.getAccessToken()) {
-	      alert('Not logged in.')
-	      return
-	    }
-	    Kakao.Auth.logout(function() {
-	      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
-	    })
-	}
-	
-	/* 로그인 정보 체크 */
-	function loginconfirm() {
-		/* var nickName = document.getElementById("userNickName").value;
+		<script type="text/javascript">
+			Kakao.init('ef9dad5f79ec8fd8bd957ac3e023cbdd');
 		
-		if(nickName!='') {
-			if(nickNameCnt != 0) {
-				alert("닉네임이 변경되었습니다.");
-           	 	return true;
-        	} else {
-            	alert("중복확인을 해주세요.");
-            	return false;
-        	}
-		} else {
-			alert("닉네임을 입력해주세요.");
-			return false;
-		} */
-	}
-</script>
+			/* 로그인 */
+		  	function loginWithKakao() {
+		    	Kakao.Auth.login({
+		      	success: function(authObj) {
+		        	alert(JSON.stringify(authObj))
+		      	},
+		     	 	fail: function(err) {
+		        	alert(JSON.stringify(err))
+		      	},
+		    	})
+		  	}
+		  
+		  
+			/* 사용자 정보 가져오기 */
+			Kakao.Auth.createLoginButton({
+				container: '#kakao-login-btn',
+				success: function(authObj) {
+					Kakao.API.request({
+				    	url: '/v2/user/me',
+				    	success: function(res) {
+				    		alert(JSON.stringify(res))
+				    		var userEmail = response.kakao_account.email;
+				    		var usernickName = response.properties.nickname;
+				    		
+				    		console.log("userEmail", userEmail);
+				    		console.log("userNickName",userNickName);
+				    		
+				    	},
+				    	fail: function(error) {
+				        	alert(
+				        	'login success, but failed to request user information: ' +
+				        	JSON.stringify(error)
+				        	)
+				    	},
+				    })
+				},
+				fail: function(err) {
+				    alert('failed to login: ' + JSON.stringify(err))
+				},
+			})
+				  
+			/* 로그아웃 */
+		
+			function kakaoLogout() {
+			    if (!Kakao.Auth.getAccessToken()) {
+			      alert('Not logged in.')
+			      return
+			    }
+			    Kakao.Auth.logout(function() {
+			      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
+			    })
+			}
+			
+			function login(d) {
+				var button = document.loginForm;
+				
+				if(d == 1) {
+					button.action = "${ pageContext.servletContext.contextPath }/user/login/check";
+					button.submit();
+				} else if(d == 2) {
+					button.action = "${ pageContext.servletContext.contextPath }/owner/login/check";
+					button.submit();
+				} else if(d == 3) {
+					button.action = "${pageContext.servletContext.contextPath }/user/list";
+					button.submit();
+				}
+				
+			}
+			
+			
+			
+		</script>
 
 			
 	</div>

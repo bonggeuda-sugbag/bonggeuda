@@ -101,7 +101,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -151,7 +151,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</nav>
 
 		</div>
-		<table class="type09">
+		<table class="type09" style="color:black;">
 			<thead>
 				<tr>
 					<th scope="cols" colspan="4"></th>
@@ -211,31 +211,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</tr>
 			</thead>
 		</table>
-		<div style="display: inline-flex;">
+		<br>
+		<div style="display: inline-flex; margin-left: 345px;">
 		<form action="/bonggeuda/owner/bookAllow" method="get">
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px " >
-		<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}">
-		<input type="hidden" name="email" value="${requestScope.bookContentDTO.email}">
-		<input type="hidden" name="bookRequestDate" value="${requestScope.bookContentDTO.bookCheckDate}">
-		<input type="hidden" name="bookCheckInTime" value="${requestScope.bookContentDTO.bookCheckIn}">
-		<input type="hidden" name="bookCheckoutDate" value="${requestScope.bookContentDTO.bookCheckoutDate}">
-		
-		<input type="hidden" name="accomoName" value="${ requestScope.bookContentDTO.accomoName }">
-		<input type="hidden" name="roomName" value="${ requestScope.bookContentDTO.roomName }">
-		<input type="hidden" name="bookUserName" value="${requestScope.bookContentDTO.bookUserName}">
-
-		예약 승인
+		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; margin-right: 30px; width: 90px;" >
+			<input type="hidden" name="bookNo" value="${requestScope.bookContentDTO.bookNo}">
+			<input type="hidden" name="email" value="${requestScope.bookContentDTO.email}">
+			<input type="hidden" name="bookRequestDate" value="${requestScope.bookContentDTO.bookCheckDate}">
+			<input type="hidden" name="bookCheckInTime" value="${requestScope.bookContentDTO.bookCheckIn}">
+			<input type="hidden" name="bookCheckoutDate" value="${requestScope.bookContentDTO.bookCheckoutDate}">
+			
+			<input type="hidden" name="accomoName" value="${ requestScope.bookContentDTO.accomoName }">
+			<input type="hidden" name="roomName" value="${ requestScope.bookContentDTO.roomName }">
+			<input type="hidden" name="bookUserName" value="${requestScope.bookContentDTO.bookUserName}">
+			예약 승인
 		</button>
 		</form>
 		
-		
-		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;" onclick="location.href='#pop01'" >
-		예약 거절
+		<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; width: 90px;" onclick="location.href='#pop01'" >
+			예약 거절
 		</button>
 		</div>
 		
-		
-
 		<!-- 예약거절 팝업창 -->
 		<div id="pop01" class="overlay">
 			<div class="popup">

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다 숙박숙박 :: 신고 내역 </title>
+<title>봉그다 숙박숙박 :: 정산 요청 </title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
@@ -54,7 +54,7 @@
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -79,9 +79,13 @@
 				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>
-			
+			<c:forEach var="stl" items="${ requestScope.selectStl }"> 
 			<div class="tab">
-			    <span class="tab_btn active">정산 신청</span>
+			    <form action="/bonggeuda/owner/settlement" method="post"> 
+			    <span class="tab_btn active">신청 내역</span>
+			    <button class="submit-btn" type="submit" style="margin-left:800px;">정산 신청</button>
+			    <input type="hidden" value="${ stl.reqStlNo }">
+			    </form>
 			 </div>
 			<table class="table table-hover" style="width: 1000px;">
 				<thead>
@@ -93,40 +97,24 @@
 				    </tr>
 				</thead>
 				<tbody>
-				<c:forEach var="reportBoard" items="${ requestScope.reportList }"> 
-				<c:set var="i" value="${ i+1 }"/>
 				   	<tr>
-						<th>${ i }</th>
-						<th>
-						<form action="/bonggeuda/owner/reportDetail" method="post">
-						<input type="hidden" name="reportNo" value="${reportBoard.reportNo}">
-						<button class="submit-btn" type="submit" style="color: black">
-						<c:out value="${ reportBoard.reportTitle }"/>
-						</button>
-						</form>
-						</th>
-						<th>
-						<c:out value="${ reportBoard.reportDate }"/>
-						</th>
+						<th><c:out value="${ stl.reqStlNo }"/></th>
+						<th><c:out value="${ stl.accomoName }"/></th>
+						<th><c:out value="${ stl.reqDate }"/></th>
 						<th>
 						<c:choose>
-							
-						<c:when test="${ reportBoard.reportStatus eq 'Y'}">
-						처리완료
-						</c:when>
-						<c:when test="${ reportBoard.reportStatus eq 'N'}">
-						처리중
-						</c:when>
-						<c:when test="${ reportBoard.reportStatus eq 'C'}">
-						신고 거절
-						</c:when>
-						
+							<c:when test="${ stl.stlYn eq 'Y'}">
+							정산완료
+							</c:when>
+							<c:when test="${ stl.stlYn eq 'N'}">
+							대기중
+							</c:when>
 						</c:choose>
-							</th>
+						</th>
 					</tr>   
-				</c:forEach>
 				</tbody>
 			 </table>
+			</c:forEach>
 			 <div class="tab_each" style="display:block">
 				<nav>
 					<ul class="pagination">

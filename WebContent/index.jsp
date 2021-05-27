@@ -8,20 +8,11 @@
 </head>
 <body>
 
-
- 	<jsp:forward page="/corona"/> 
-
+		<jsp:forward page="/corona"/>
 
 
-<!-- 	<script>
 
-		(function(){
-			
-			location.href="${ pageContext.servletContext.contextPath}/user/list";    
-			
-		})();
 
-	</script>  -->
 
 
 

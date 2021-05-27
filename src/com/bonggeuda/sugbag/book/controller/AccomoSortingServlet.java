@@ -24,7 +24,6 @@ public class AccomoSortingServlet extends HttpServlet {
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("솔팅서블릿호출");
 		Map<String,String[]> requestMap = request.getParameterMap();
 		Set<String> keySet = requestMap.keySet();
 		Iterator<String> keyIter = keySet.iterator();
@@ -51,7 +50,7 @@ public class AccomoSortingServlet extends HttpServlet {
 		search.setType(type);
 		search.setFacility(checkList);
 		search.setCategory(3);
-		if(personnel != null) {
+		if(personnel.length()>0) {
 			search.setPersonnal(Integer.parseInt(personnel));
 		}
 		String searchCondition = "";

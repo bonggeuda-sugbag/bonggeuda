@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다 숙박숙박 :: 마이 페이지</title>
+<title>봉그다 숙박숙박 :: 세금계산서 신청</title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
 
@@ -60,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">Bonggeuda</a></h1>
+				<h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
@@ -70,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -89,10 +89,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<nav>
 			<div class="col-md-3 blog-sidebar">
 			<ul>
-				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/mypage"style="color: #6eceda;" >마이 페이지</a></li>
+				<li class="blog-list" ><a href="/bonggeuda/owner/mypage">마이 페이지</a></li>
 				<li class="blog-list" ><a href="/bonggeuda/owner/mypgeReport" >신고 내역</a></li>
 				<li class="blog-list" style=><a href="/bonggeuda/owner/settlement" >정산 신청</a></li>
-				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
+				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/taxbillList" style="color: #6eceda;" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>
 			<div class="tab">
@@ -101,42 +101,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<button class="submit-btn" type="submit" style="margin-left:800px;">발급 신청</button>
 				</form>
 			 </div>
+			<c:if test="${ !empty requestScope.taxBillList }">
 			<table class="table table-hover" style="width: 1000px;">
 				<thead>
 				    <tr>
 						<th><b>번호</b></th>
-						<th><b> 신청한 숙소이름</b> </th>
-						<th><b>신청일자</b></th>
-						<th><b>기간</b></th>
+						<th><b>정산 숙소</b> </th>
+						<th><b>신청일</b></th>
 						<th><b>처리</b></th>
 						<th><b>발급</b></th>
 				    </tr>
 				</thead>
 				<tbody>
 				<c:forEach var="taxBillList" items="${ requestScope.taxBillList }">
-				
-				<c:set var="i" value="${ i+1 }"/>
-				   	<tr>
-						<tr>
-							<th>${ i }</th>
-							<th><c:out value="${ taxBillList.accomoName }"/> </th>
-							<th><c:out value="${ taxBillList.requestDate.substring(0,10) }"/></th>
-							<th><c:out value="${ taxBillList.requestStartDate.substring(0,10) }"/> ~ <c:out value="${ taxBillList.requestEndDate.substring(0,10) }"/></th>
-							<c:choose>
-							
-								<c:when test="${ taxBillList.responseYn eq 'Y'}">
-							<th>발급 완료</th>
-							<th><button class="submit-btn" type="submit">다운로드</button></tr>
-								</c:when>
-								<c:when test="${ taxBillList.responseYn eq 'N'}">
-							<th>처리중</th>
-							<th><button class="submit-btn" type="submit" style="background: gray" disabled>발급 대기중</button></tr>
-								</c:when>
-							</c:choose>
-						</tr>   
+					<tr>
+						<th>${ taxBillList.rowNum }</th>
+						<th><c:out value="${ taxBillList.accomoName }"/> </th>
+						<th><c:out value="${ taxBillList.requestDate }"/></th>
+						<c:choose>
+							<c:when test="${ taxBillList.responseYn eq 'Y'}">
+								<th>발급 완료</th>
+								<th>
+									<form action="/bonggeuda/owner/#" method="post">
+										<button type="submit" style="background-color: white; border: 1px;">
+											<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/pdf.png" style="width: 28px; height: 28px;">
+										</button>
+									</form>
+								</th>
+							</c:when>
+							<c:when test="${ taxBillList.responseYn eq 'N'}">
+								<th>처리중</th>
+								<th>-</th>
+							</c:when>
+						</c:choose>
 					</tr>   
 				</c:forEach>
-
 				</tbody>
 			 </table>
 			 <div class="tab_each" style="display:block">
@@ -150,11 +149,163 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					  <li><a href="#">5</a></li>
 					  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 				   </ul>
-				   </nav>
+				</nav>
 			</div>
+			
+			<%-- 페이지 처리 --%>
+		<div class="pagingArea" align="center">
+			<c:choose>
+			    <c:when test="${ empty requestScope.searchValue }">
+				    <button id="startPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="prevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="nextPage">></button>
+					</c:if>
+					
+					<button id="maxPage">>></button> 
+			     </c:when>
+			    <c:otherwise>
+   				    <button id="searchStartPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="searchPrevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="searchNextPage">></button>
+					</c:if>
+					
+					<button id="searchMaxPage">>></button> 
+			    </c:otherwise>
+			</c:choose>   
+		</div>
+		<%-- 페이지 처리 --%>
+		</c:if>
+		
+		<c:if test="${ empty requestScope.taxBillList }">
+			<div class="list_none" style="display: block;">
+				<br>
+				<b>신청 내역이 없습니다.</b>
+				<br><br>
+			</div>
+		</c:if>
 		</div>
 	</div>
 </div>
+<script>
+		const link = "${ pageContext.servletContext.contextPath }/owner/taxbillList";
+		//const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		if(document.getElementById("searchStartPage")) {
+			const $searchStartPage = document.getElementById("searchStartPage");
+			$searchStartPage.onclick = function() {
+				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchPrevPage")) {
+			const $searchPrevPage = document.getElementById("searchPrevPage");
+			$searchPrevPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchNextPage")) {
+			const $searchNextPage = document.getElementById("searchNextPage");
+			$searchNextPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchMaxPage")) {
+			const $searchMaxPage = document.getElementById("searchMaxPage");
+			$searchMaxPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+/* 		if(document.getElementsByTagName("th")) {
+			
+			const $tds = document.getElementsByTagName("th");
+			for(let i = 0; i < $tds.length; i++) {
+
+				$tds[i].onclick = function() {
+					//상세보기 페이지로 이동
+					location.href="${pageContext.servletContext.contextPath }/owner/question/content?qnaNo="
+						+ this.parentNode.children[0].innerText
+				}
+			}
+		} */
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+	</script>
 <!--footer-->
 <div class="footer-bottom">
 	<div class="container">
