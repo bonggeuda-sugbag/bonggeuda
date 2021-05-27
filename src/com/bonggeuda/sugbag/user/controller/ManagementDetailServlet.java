@@ -23,8 +23,10 @@ public class ManagementDetailServlet extends HttpServlet {
 		UserInfoService userInfoService = new UserInfoService();
 		
 		UserInfoDTO userInfo = userInfoService.selectDetail(request.getParameter("hduserNo"));
+	
 		
-		System.out.println(userInfo);
+		System.out.println("디테일!!!::"  + request.getParameter("hduserNo"));
+
 		
 		String path = "";
 		

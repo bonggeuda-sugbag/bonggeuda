@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +14,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    <style>
       div.tab, div.tab-content {
             margin-left: 25%;
-            margin-right: 5%;
+            margin-right: 4.8%;
       }
-      
-      table.table tr th{
+      		
+      		table.table tr th{
 			text-align: center;
 			padding: 5px;
 			line-height: 2.5;
@@ -47,9 +47,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body style="background: white;">
 <!--header-->
 
-
-
-
 <div class="header">
    <div class="container">
       <!--logo-->
@@ -66,8 +63,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a  href="${ pageContext.servletContext.contextPath }/qna/list">문의&신고</a></li>
 				<li><a  href="${ pageContext.servletContext.contextPath }/notice/list">공지&이벤트</a></li>
          </ul>
-
-         
       <div class="clearfix"> </div>
          <!---pop-up-box---->
                
@@ -111,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </div>
                      </div>
                 </div>
-           		<script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
+                <script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
                    <script type="text/javascript">
                       $(document).ready(function () {
                           $('#horizontalTab').easyResponsiveTabs({
@@ -161,48 +156,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <nav>
       <div class="col-md-3 blog-sidebar">
       <ul>
-        <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/list">사용자 정보</a></li>
-         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/black/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">블랙리스트 회원</a></li>
+         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/list">사용자 정보</a></li>
+         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/black/list">블랙리스트 회원</a></li>
          <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/leave">탈퇴 회원</a></li>
-                   <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/best/review">베스트 리뷰어 선정</a></li>
+         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/best/review" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">베스트 리뷰 선정</a></li>
       </ul>
       </nav>
       <table class="table" style="width: 800px;">
 
-                  
          <div class="tab">
-            <span class="tab_btn active" >블랙리스트 회원</span>
+            <span class="tab_btn active" >베스트 리뷰 선정</span>
          </div>
-         
 
          <thead>
             <tr>
-               <th>블랙리스트 신고번호</th>
-               <th>블랙리스트 사유</th>
-               <th>작성자 구분</th>
-               <th>회원번호</th>
-               <th>등록일</th>
+               <th>리뷰 번호</th>
+               <th>리뷰 제목</th>
+               <th>회원아이디</th>
+               <th>상세정보</th>
             </tr>
          </thead>
          <tbody>
-			<c:forEach var="bList" items="${ requestScope.blackList }">
-			<form action="${ pageContext.servletContext.contextPath }/black/list" method="get">
+			<c:forEach var="best" items="${ requestScope.bestReviewList }">
+			<form action="${ pageContext.servletContext.contextPath }/bestreview/detail" method="post">
 			<tr>
-				<td><c:out value="${ bList.rnum }"/></td>
-				<td><c:out value="${ bList.reason}"/></td>
-				<td><c:out value="${ bList.writerType}"/></td>
-				<td><c:out value="${ bList.memberNo }"/></td>
-				<td><c:out value="${ bList.enrollDate }"/></td>
-				
+				<td><c:out value="${ best.rnum }"/></td>
+				<td><c:out value="${ best.title }"/></td>
+				<td><c:out value="${ best.userId }"/></td>
+				<td><button>상세보기</button></td>
+				<input type="hidden" name="no" value= "${ best.accomoNo }">
 			</tr>
             </form>
-			</c:forEach> 
+			</c:forEach>
          </tbody>
       </table>
-
-      <%--<label style="color: #6eceda; font-size: 1.3em; font-weight: 600;">회원 검색</label>
-      <input type="text" name="" id="" style="width: 150px;"><button><i class="glyphicon glyphicon-search"></i></button>
-       --%>
    </div>
 
 
@@ -210,6 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <div class="clearfix"> 
 
    </div>
+
    	<%-- 페이지 처리 --%>
 		<div class="pagingArea" align="center">
 			<c:choose>
@@ -268,9 +256,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</c:choose>   
 		</div>
 		
+		<!-- 검색 폼 -->
+		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/user/search" method="get">		
+			<div class="search-area" align="center">
+				<c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <select id="searchCondition" name="searchCondition">
+							<option value="userId" <c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>회원번호</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
+				    </c:when>
+				    <c:otherwise>
+					    <select id="searchCondition" name="searchCondition">
+							<option value="userId">아이디</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" >
+				        <input type="hidden" name="userId" value= "${ user.email }">
+				    </c:otherwise>
+				</c:choose>
+				<button type="submit">검색하기</button>
+				<%-- <c:if test="${ !empty requestScope.loginMember }">
+					<button id="writeBoard">작성하기</button>
+				</c:if> --%>
+			</div>
+		</form>
+		
 		<script>
-		const link = "${ pageContext.servletContext.contextPath }/black/list";
-		const searchLink = "${ pageContext.servletContext.contextPath }/blackList/searchMemberNo";
+		const link = "${ pageContext.servletContext.contextPath }/best/review";
+		const searchLink = "${ pageContext.servletContext.contextPath }/user/search";
 			
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");
@@ -327,8 +340,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
 			}
 		}
-/* 		
-		if(document.getElementsByTagName("td")) {
+		
+/*  		if(document.getElementsByTagName("td")) {
 			
 			const $tds = document.getElementsByTagName("td");
 			for(let i = 0; i < $tds.length; i++) {
@@ -336,11 +349,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$tds[i].onclick = function() {
 				
 					alert(this.parentNode.children[0].innerText);
+					location.href = "${ pageContext.servletContext.contextPath }/user/detail/";
 				}
 				
 			}
 			
-		} */
+		}   */
 		
 		function pageButtonAction(text) {
 			location.href = link + "?currentPage=" + text;
@@ -348,38 +362,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function seachPageButtonAction(text) {
 			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
 		}
-		</script>
-		
-		<!-- 검색 폼 -->
-		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/blackList/searchMemberNo" method="get">		
-			<div class="search-area" align="center">
-				<c:choose>
-				    <c:when test="${ !empty requestScope.searchValue }">
-   					    <select id="searchCondition" name="searchCondition">
-							<option value="userNo" <c:if test="${requestScope.searchCondition eq 'userNo'}">selected</c:if>>회원번호</option>
-							<option value="writer" <c:if test="${requestScope.searchCondition eq 'writer'}">selected</c:if>>작성자</option>
-							<option value="title" <c:if test="${requestScope.searchCondition eq 'title'}">selected</c:if>>제목</option>
-							<option value="content" <c:if test="${requestScope.searchCondition eq 'content'}">selected</c:if>>내용</option>
-						</select>
-				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
-				    </c:when>
-				    <c:otherwise>
-					    <select id="searchCondition" name="searchCondition">
-							<option value="userNo">회원번호</option>
-							<option value="writer">작성자</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-						</select>
-				        <input type="search" id="searchValue" name="searchValue" >
-				        <input type="hidden" name="memberNo" value= "${ bList.memberNo  }">
-				    </c:otherwise>
-				</c:choose>
-				<button type="submit">검색하기</button>
-				<%-- <c:if test="${ !empty requestScope.loginMember }">
-					<button id="writeBoard">작성하기</button>
-				</c:if> --%>
-			</div>
-		</form>
+	</script>
 </div>
 
 </div>

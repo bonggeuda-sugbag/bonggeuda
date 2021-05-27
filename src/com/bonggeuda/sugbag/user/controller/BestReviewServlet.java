@@ -11,18 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
-import com.bonggeuda.sugbag.user.dto.UserInfoDTO;
+import com.bonggeuda.sugbag.user.dto.BestReviewDTO;
 import com.bonggeuda.sugbag.user.service.UserInfoService;
 
 /**
- * 사용자 관리 리스트 불러오는 서블릿
- * Servlet implementation class UserSelectListServlet
+ * Servlet implementation class BestReviewServlet
  */
-@WebServlet("/user/list")
-public class ManagementListServlet extends HttpServlet {
+@WebServlet("/best/review")
+public class BestReviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
@@ -37,7 +36,7 @@ public class ManagementListServlet extends HttpServlet {
 		/* 전체 게시물 수가 필요 */
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		UserInfoService userInfoServie = new UserInfoService();
-		int totalCount = userInfoServie.selectTotalCount();
+		int bestReviewCount = userInfoServie.selectBestReviewCount();
 		
 //		System.out.println("totalCount 체크 : " + totalCount);
 		
@@ -47,23 +46,24 @@ public class ManagementListServlet extends HttpServlet {
 		int buttonAmount = 5;
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
+		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, bestReviewCount, limit, buttonAmount);
 		
 //		System.out.println(pageInfo);
 		
 		/* 조회 해온다. */
-		List<UserInfoDTO> userList = userInfoServie.selectBoardList(pageInfo);
+		List<BestReviewDTO> bestReviewList = userInfoServie.selectBestReviewList(pageInfo);
 		
-		System.out.println("userList : " + userList);
+		System.out.println("bestReviewList : " + bestReviewList);
 		
 		String path = "";
-		if(userList != null) {
-			path = "/WEB-INF/views/admin/user/userInfo.jsp";
-			request.setAttribute("userList", userList);
+		if(bestReviewList != null) {
+			path = "/WEB-INF/views/admin/user/bestReview.jsp";
+			request.setAttribute("bestReviewList", bestReviewList);
 			request.setAttribute("pageInfo", pageInfo);
 		} 
 		
 		request.getRequestDispatcher(path).forward(request, response);
+		
 	}
 
 }

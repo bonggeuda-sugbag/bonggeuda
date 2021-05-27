@@ -14,6 +14,7 @@ SELECT
     , C.USER_NICKNAME
     , C.USER_ID
     , C.USER_PHONE
+    , C.REVIEW_NO
   FROM (
         SELECT
                ROWNUM RNUM
@@ -21,13 +22,17 @@ SELECT
              , B.USER_NICKNAME
              , B.USER_ID
              , B.USER_PHONE
+             , B.REVIEW_NO
            FROM(
                 SELECT
                       A.USER_NO
                     , A.USER_NICKNAME
                     , A.USER_ID
                     , A.USER_PHONE
+                    , R.REVIEW_NO
                  FROM USER_INFO A
+                 JOIN BOOK_LIST B ON (A.USER_NO = B.USER_NO)
+                 JOIN REVIEW R ON(B.BOOK_NO = R.BOOK_NO)
                 WHERE A.USER_NO NOT IN 0
                 )B
         )C
@@ -158,26 +163,26 @@ WHERE C.RNUM BETWEEN ? AND ?
 	</entry>
 	
 		<entry key="selectSearch">
-SELECT
-      C.RNUM
-    , C.USER_NO
-    , C.USER_NICKNAME
-    , C.USER_ID
-    , C.USER_PHONE
-  FROM (
         SELECT
-               ROWNUM RNUM
-             , B.USER_NO
-             , B.USER_NICKNAME
-             , B.USER_ID
-             , B.USER_PHONE
-           FROM(
-                SELECT
-                      A.USER_NO
-                    , A.USER_NICKNAME
-                    , A.USER_ID
-                    , A.USER_PHONE
-                 FROM USER_INFO A
+  	  	       C.RNUM
+   		     , C.USER_NO
+    		 , C.USER_NICKNAME
+    		 , C.USER_ID
+    		 , C.USER_PHONE
+  		  FROM(
+       		   SELECT
+              		  ROWNUM RNUM
+            	    , B.USER_NO
+             	   	, B.USER_NICKNAME
+         	        , B.USER_ID
+           		    , B.USER_PHONE
+           		 FROM(
+                	  SELECT
+                   	 	     A.USER_NO
+                   		   , A.USER_NICKNAME
+                   	  	   , A.USER_ID
+                   		   , A.USER_PHONE
+                 		FROM USER_INFO A
                 WHERE A.USER_NO NOT IN 0
                 )B
         )C
@@ -352,12 +357,51 @@ WHERE C.RNUM BETWEEN ? AND ?
               AND C.MEMBER_NO = ?
 	</entry>
 	
-		<entry key="selectBlackNoCount">
+	<entry key="selectBlackNoCount">
         SELECT 
                COUNT(*)
          FROM BLIST 
         WHERE MEMBER_NO = ?
 	</entry>
 	
+	<entry key="selectBestReview">
+        SELECT 
+               C.RNUM
+     		 , C.REVIEW_NO
+    		 , C.REVIEW_TITLE
+    		 , C.USER_ID
+    		 , C.ACCOMO_NO
+		  FROM(
+			   SELECT
+      				  ROWNUM RNUM
+     			    , B.REVIEW_NO
+    			    , B.REVIEW_TITLE
+     				, B.USER_ID
+     				, B.ACCOMO_NO
+				 FROM(     
+  					  SELECT 
+       						 A.REVIEW_NO
+      					   , A.REVIEW_TITLE
+      					   , U.USER_ID
+                           , AI.ACCOMO_NO
+  					    FROM REVIEW A
+  						JOIN BOOK_LIST B ON (A.BOOK_NO = B.BOOK_NO)
+  						JOIN USER_INFO U ON (B.USER_NO = U.USER_NO)
+                        JOIN ROOM_INFO R ON (B.ROOM_NO = R.ROOM_NO)
+                        JOIN ACCOMO_INFO AI ON (R.ACCOMO_NO = AI.ACCOMO_NO)
+  					 )B
+  			  )C
+  			  WHERE C.RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectBestReviewCount">
+	SELECT 
+       COUNT(*)
+  					    FROM REVIEW A
+  						JOIN BOOK_LIST B ON (A.BOOK_NO = B.BOOK_NO)
+  						JOIN USER_INFO U ON (B.USER_NO = U.USER_NO)
+                        JOIN ROOM_INFO R ON (B.ROOM_NO = R.ROOM_NO)
+                        JOIN ACCOMO_INFO AI ON (R.ACCOMO_NO = AI.ACCOMO_NO)
+	</entry>
 
 </properties>

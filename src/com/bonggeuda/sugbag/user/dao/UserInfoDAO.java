@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
+import com.bonggeuda.sugbag.user.dto.BestReviewDTO;
 import com.bonggeuda.sugbag.user.dto.ReservationDetailDTO;
 import com.bonggeuda.sugbag.user.dto.UserBlistDTO;
 import com.bonggeuda.sugbag.user.dto.UserCouponDTO;
@@ -90,6 +91,9 @@ public class UserInfoDAO {
 				userInfo.setName(rset.getString("USER_NICKNAME"));
 				userInfo.setEmail(rset.getString("USER_ID"));
 				userInfo.setPhoneNumber(rset.getString("USER_PHONE"));
+				userInfo.setReviewNo(rset.getInt("REVIEW_NO"));
+				userInfo.setUserNo(rset.getInt("USER_NO"));
+				
 				
 				userList.add(userInfo);
 			}
@@ -116,9 +120,8 @@ public class UserInfoDAO {
 		try {
 		
 			pstmt = con.prepareStatement(query);
-//			System.out.println("userNo :" + userNo);
 			pstmt.setString(1, userNo);
-			
+
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -129,6 +132,8 @@ public class UserInfoDAO {
 				userInfo.setPhoneNumber(rset.getString("USER_PHONE"));
 				userInfo.setPoint(rset.getInt("POINT"));
 				userInfo.setUserNo(rset.getInt("USER_NO"));
+
+			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -721,6 +726,76 @@ public class UserInfoDAO {
 		
 		return bookListCount;
 	}
+
+
+	public List<BestReviewDTO> selectBestReviewList(Connection con, PageInfoDTO pageInfo) {
+	
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<BestReviewDTO> bestReviewList = null;
+		
+		String query = prop.getProperty("selectBestReview");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+		
+			rset = pstmt.executeQuery();
+			
+			bestReviewList = new ArrayList<>();
+			
+			while(rset.next()) {
+				BestReviewDTO bestInfo = new BestReviewDTO();
+					
+				bestInfo.setRnum(rset.getInt("RNUM"));
+				bestInfo.setTitle(rset.getString("REVIEW_TITLE"));
+				bestInfo.setUserId(rset.getString("USER_ID"));
+				bestInfo.setReviewNo(rset.getInt("REVIEW_NO"));
+				bestInfo.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				
+				bestReviewList.add(bestInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bestReviewList;
+	}
+
+
+	public int selectBestReviewCount(Connection con) {
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int bestReviewCount = 0;
+		
+		String query = prop.getProperty("selectBestReviewCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				bestReviewCount = rset.getInt("COUNT(*)");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+	
+		return bestReviewCount;
+	}
+
+
 }
 
 
