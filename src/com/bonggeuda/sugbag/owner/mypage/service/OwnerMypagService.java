@@ -37,11 +37,11 @@ public class OwnerMypagService {
 		return selectOwner;
 	}
 
-	public List<ReportDTO> selectReportList(PageInfoDTO pageInfo) {
+	public List<ReportDTO> selectReportList(PageInfoDTO pageInfo, int ownerNo) {
 
 		Connection con = getConnection();
 		
-		List<ReportDTO> selectReportList = ownerDAO.selectReportList(con, pageInfo);
+		List<ReportDTO> selectReportList = ownerDAO.selectReportList(con, pageInfo, ownerNo);
 
 		close(con);
 		
@@ -87,22 +87,23 @@ public class OwnerMypagService {
 		return ownerWithdrawUpdate;
 	}
 
-	public List<RequestTaxBillDTO> selectTaxBillList(PageInfoDTO pageInfo) {
+	public List<RequestTaxBillDTO> selectTaxBillList(PageInfoDTO pageInfo, int ownerNo) {
 		
 		Connection con = getConnection();
 
-		List<RequestTaxBillDTO> selectTaxBillList = ownerDAO.selectTaxBillListDAO(con,pageInfo);
+		List<RequestTaxBillDTO> selectTaxBillList = ownerDAO.selectTaxBillListDAO(con,pageInfo,ownerNo);
 		
 		close(con);
 
 		return selectTaxBillList;
 	}
 
-	public int insertRequestTaxBill(int ownerNo, Date startDate ,Date endDate,int accomoNo) {
+	public int insertRequestTaxBill(int stlNo, int accomoNo) {
 		
 		Connection con = getConnection();
 
-		int insertRequestTaxBill = ownerDAO.insertRequestTaxBillDAO(con,ownerNo, startDate, endDate, accomoNo );
+		int insertRequestTaxBill = ownerDAO.insertRequestTaxBillDAO(con,stlNo,accomoNo);
+		
 		System.out.println("insertRequestTaxBill" + insertRequestTaxBill);
 		
 		if(insertRequestTaxBill > 0) {
@@ -138,11 +139,11 @@ public class OwnerMypagService {
 		return selectAccomoNo;
 	}
 
-	public List<SettlementDTO> selectStl(PageInfoDTO pageInfo) {
+	public List<SettlementDTO> selectStl(PageInfoDTO pageInfo, int ownerNo) {
 	
 		Connection con = getConnection();
 		
-		List<SettlementDTO> selectStl = ownerDAO.selectStl(con, pageInfo);
+		List<SettlementDTO> selectStl = ownerDAO.selectStl(con, pageInfo, ownerNo);
 		
 		close(con);
 
@@ -160,11 +161,11 @@ public class OwnerMypagService {
 		return selectImagePath;
 	}
 	
-	public List<AccomoDTO> selectAccomo() {
+	public List<AccomoDTO> selectAccomo(int ownerNo) {
 
 		Connection con = getConnection();
 		
-		List<AccomoDTO> selectAccomo = ownerDAO.selectAccomo(con);
+		List<AccomoDTO> selectAccomo = ownerDAO.selectAccomo(con,ownerNo);
 		
 		close(con);
 		
@@ -188,11 +189,11 @@ public class OwnerMypagService {
 	}
 	
 	//신고
-	public int selectTotalCount() {
+	public int selectTotalCount(int ownerNo) {
 
 		Connection con = getConnection();
 		
-		int totalCount = ownerDAO.selectTotalCount(con);
+		int totalCount = ownerDAO.selectTotalCount(con,ownerNo);
 		
 		if(totalCount > 0) {
 			commit(con);
@@ -205,11 +206,11 @@ public class OwnerMypagService {
 	}
 	
 	//정산신청
-	public int selectStlTotalCount() {
+	public int selectStlTotalCount(int ownerNo) {
 
 		Connection con = getConnection();
 		
-		int stlTotalCount = ownerDAO.selectStlTotalCount(con);
+		int stlTotalCount = ownerDAO.selectStlTotalCount(con, ownerNo);
 		
 		if(stlTotalCount > 0) {
 			commit(con);
@@ -222,11 +223,11 @@ public class OwnerMypagService {
 	}
 
 	//세금계산서 신청
-	public int taxTotalCount() {
+	public int taxTotalCount(int ownerNo) {
 	
 		Connection con = getConnection();
 		
-		int taxTotalCount = ownerDAO.taxTotalCount(con);
+		int taxTotalCount = ownerDAO.taxTotalCount(con, ownerNo);
 		
 		if(taxTotalCount > 0) {
 			commit(con);

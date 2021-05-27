@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
 import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
@@ -27,6 +29,10 @@ public class MypageReportList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//로그인 값
+		HttpSession session = request.getSession();
+		int ownerNo = (Integer)session.getAttribute("ownerNo");
+		
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
@@ -42,7 +48,7 @@ public class MypageReportList extends HttpServlet {
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		OwnerMypagService reportListService = new OwnerMypagService();
 		
-		int totalCount = reportListService.selectTotalCount();
+		int totalCount = reportListService.selectTotalCount(ownerNo);
 		
 		System.out.println("totalCount 체크 : " + totalCount);
 		
@@ -57,7 +63,7 @@ public class MypageReportList extends HttpServlet {
 
 		System.out.println(pageInfo);
 		
-		List<ReportDTO> reportList = reportListService.selectReportList(pageInfo);
+		List<ReportDTO> reportList = reportListService.selectReportList(pageInfo,ownerNo);
 		
 		request.setAttribute("reportList", reportList);
 		

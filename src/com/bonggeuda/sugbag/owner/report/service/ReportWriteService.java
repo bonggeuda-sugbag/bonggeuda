@@ -10,13 +10,10 @@ import java.sql.Connection;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.owner.report.dao.ReportWriteDAO;
 
-
-
 public class ReportWriteService {
 	
 	private ReportWriteDAO reportDAO = new ReportWriteDAO();
 	
-
 	/**
 	 * Owner Report 테이블 인서트
 	 * @param refNoMax 
@@ -35,8 +32,6 @@ public class ReportWriteService {
 		
 		int reportInsert = reportDAO.insertReport(refNoMax,con, writerType, reportedType, userNo, ownerNo, reportTitle, reportContent);
 		
-
-		 
 		if(reportInsert > 0) {
 			commit(con);
 		}else{
@@ -47,7 +42,6 @@ public class ReportWriteService {
 		
 		return reportInsert;
 	}
-
 
 	public int insertReportThumbnail(AttachmentDTO tempFileInfo) {
 		
@@ -67,7 +61,6 @@ public class ReportWriteService {
 		return result;
 	}
 
-
 	public int selectRefMaxNo() {
 		
 		Connection con = getConnection();
@@ -75,9 +68,6 @@ public class ReportWriteService {
 		int result = 0;
 		
 		result = reportDAO.selectMaxRefNo(con);
-		
-		
-		
 		
 		return result;
 	}

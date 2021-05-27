@@ -14,18 +14,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>봉그다 숙박숙박 :: 예약 관리</title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
-
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
-
-
 	<meta charset="UTF-8" />
-
 	<link rel="shortcut icon" href="../favicon.ico"> 
 	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />

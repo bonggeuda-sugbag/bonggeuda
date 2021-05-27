@@ -11,7 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.bonggeuda.sugbag.model.dto.BookingContentDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
@@ -40,8 +43,13 @@ public class OwnerBookingList extends HttpServlet {
 		/* 전체 게시물 수가 필요 */
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		BookListSelectService BookListService = new BookListSelectService();
+				
+		//로그인 값
+		HttpSession session = request.getSession();
+		int ownerNo = (Integer)session.getAttribute("ownerNo"); 	
+		System.out.println(ownerNo);
 		
-		int totalCount = BookListService.selectTotalCount();
+		int totalCount = BookListService.selectTotalCount(ownerNo);
 		
 		System.out.println("totalCount 체크 : " + totalCount);
 		
@@ -56,7 +64,7 @@ public class OwnerBookingList extends HttpServlet {
 
 		System.out.println(pageInfo);
 		
-		List<BookDTO> bookList = BookListService.bookListSelect(pageInfo);
+		List<BookDTO> bookList = BookListService.bookListSelect(pageInfo, ownerNo);
 		
 		System.out.println("전체내역조회 : " + bookList);
 			
@@ -78,10 +86,8 @@ public class OwnerBookingList extends HttpServlet {
 		
 		BookListSelectService bookService = new BookListSelectService();
 
-		
 		bookContentDTO = bookService.selectBookContent(bookNo);
 		
-
 		request.setAttribute("bookContentDTO", bookContentDTO );
 		
 		String path = "";

@@ -105,8 +105,6 @@ public class ManagementRoomSelectDAO {
 			close(rset);
 		}
 		
-		
-		
 		return selectAccomoList;
 	}
 
@@ -135,8 +133,6 @@ public class ManagementRoomSelectDAO {
 			close(pstmt);
 			close(rset);
 		}
-		
-		
 		
 		return selectRmImagePathDAO;
 	}
@@ -170,8 +166,6 @@ public class ManagementRoomSelectDAO {
 			pstmt.setInt(18, rmAccomoInfoDTO.getOwnerNo());
 			
 			insertResult = pstmt.executeUpdate();
-			
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -306,8 +300,5 @@ public class ManagementRoomSelectDAO {
 	      }
 	      
 	      return accomoList;   
-	   
 	}
-
-
 }

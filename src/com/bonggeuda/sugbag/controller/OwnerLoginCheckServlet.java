@@ -34,9 +34,14 @@ public class OwnerLoginCheckServlet extends HttpServlet {
 		
 		OwnerInfoDTO loginMember = loginService.ownerLoginCheck(loginEmail, loginPassword);
 		
+		System.out.println(loginMember);
+		
 		if(loginMember != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
+			session.setAttribute("ownerNo", loginMember.getOwnerNo());
+			System.out.println(loginMember.getOwnerNo());
+			System.out.println("체크서블릿");
 			
 //			System.out.println("request.getContextPath() : " + request.getContextPath());
 //			response.sendRedirect(request.getContextPath());

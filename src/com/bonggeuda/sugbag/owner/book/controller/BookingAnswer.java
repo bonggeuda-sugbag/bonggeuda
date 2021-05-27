@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.owner.book.service.BookingQnAService;
 
 
@@ -27,6 +29,10 @@ public class BookingAnswer extends HttpServlet {
 		
 		/*전달받은 값을 넣어줄 객체 선언*/
 		AdminQnADTO qnaDTO = new AdminQnADTO();
+		
+		//로그인 값
+		HttpSession session = request.getSession();
+		int ownerNo = (Integer)session.getAttribute("ownerNo");
 		
 		qnaDTO.setAdminQnANo(qnaNo);
 		qnaDTO.setAdminQnAContent(content);
