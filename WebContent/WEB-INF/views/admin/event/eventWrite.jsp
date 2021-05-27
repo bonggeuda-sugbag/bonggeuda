@@ -64,12 +64,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><span ><a  href="adminUserManagement.html">사용자관리</a></span></li>
+				<li><span ><a  href="${ pageContext.servletContext.contextPath }/user/list">사용자관리</a></span></li>
 				<li><a  href="adminCompanyManagementInfo.html">업체관리</a></li>
-				<li><a  href="adminReservationStatus.html">예약현황</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/user/booklist">예약현황</a></li>
 				<li><a  href="adminPaymentInformation.html">매출관리</a></li>
-				<li><a  href="adminOnlineQuestionUser.html">문의&신고</a></li>
-				<li><a  href="adminOnlineNotice.html">공지사항</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/qna/list">문의&신고</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/notice/list">공지&이벤트</a></li>
 			</ul>
 
 			
@@ -153,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->	
 <div class=" banner-buying">
 	<div class=" container">
-	<h3><span>공지사항</span></h3> 
+	<h3><span>공지&이벤트</span></h3> 
 
 	<div class="clearfix"> </div>      		
 	</div>
@@ -161,19 +161,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//header-->
 <!--blog-->
 	<div class="blog">
-	<form action="${ pageContext.servletContext.contextPath }/notice/insert" method="post">
+	  <form action="${ pageContext.servletContext.contextPath }/event/insert" method="post" enctype="multipart/form-data"> 
 		<div class="container">
 			<div class="blog-list">
 				<nav>
 				<div class="col-md-3 blog-sidebar">
 				<ul>
-					<li class="blog-list"><a href="adminOnlineNotice.html" ">공지사항</a></li>
-					<li class="blog-list"><a href="adminEvent.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">이벤트</a></li>
+					<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/notice/list">공지사항</a></li>
+					<li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/event/list" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">이벤트</a></li>
 				</ul>
 				</nav>
                
 				<div class="tab">
-				   <span class="tab_btn active">이벤트</span> 
+				   <span class="tab_btn active">공지사항</span> 
 				</div>
                 <table class="type09" border="1px">
                     <thead>
@@ -184,79 +184,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">이벤트번호</th>
-                            <td><input style="width: 300px; height: 20px; border: 0; resize: none;" name="writer"></input></td>
-                            <th scope="row" style="text-align: center;">제목</th>
-                            <td><input style="width: 300px; height: 20px; border: 0; resize: none;" name="writer"></input></td>
+                            <th scope="row">제목</th>
+                            <td colspan="3" style="width: 650px;" ><input style="width: 650px; height: 20px; border: 0; resize: none;" name="title" type="text"></input></td>
                         </tr>
                         <tr>
                             <th scope="row">시작일</th>
-                            <td><input type="date" style="width: 300px; height: 20px; border: 0; resize: none;" name="writeDate"></input></td>
+                            <td><input style="width: 300px; height: 20px; border: 0; resize: none;" name="startDate"></input></td>
                             <th scope="row" style="text-align: center;">종료일</th>
-                            <td><input type="date" style="width: 300px; height: 20px; border: 0; resize: none;" name="writeDate"></input></td>
+                            <td><input style="width: 300px; height: 20px; border: 0; resize: none;" name="endDate"></input></td>
                         </tr>
+						<tr>
+							<td width="100px">사진제목</td>
+							<td colspan="3"><input type="text" size="86"></td>
+						</tr>
+						<tr>
+							<td>대표 이미지</td>
+							<td colspan="3">
+								<div class="title-img-area" id="titleImgArea">
+									<img id="titleImg" width="652" height="200">
+								</div>
+							</td>
+						</tr>
                     </tbody>
                 </table>
-                <table class="type09">
-                    <thead>
-                        <tr>
-                            <th scope="cols"></th>
-                            <th scope="cols"></th>
-                        </tr>
-                    </thead>
-                </table>
-        <div class="outer outer-thumbnail-insert">
-		<form action="${ pageContext.servletContext.contextPath }/thumbnail/insert" method="post" encType="multipart/form-data">
-			<div class="thumbnail-insert-area">
-				<table align="center">
-					<tr>
-						<td width="100px">제목</td>
-						<td colspan="3"><input type="text" size="45" name="title"></td>
-					</tr>
-					<tr>
-						<td>대표 이미지</td>
-						<td colspan="3">
-							<div class="title-img-area" id="titleImgArea">
-								<img id="titleImg" width="350" height="200">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>내용 사진</td>
-						<td>
-							<div class="content-img-area1" id="contentImgArea1">
-								<img id="contentImg1" width="120" height="100">
-							</div>
-						</td>
-						<td>
-							<div class="content-img-area2" id="contentImgArea2">
-								<img id="contentImg2" width="120" height="100">
-							</div>
-						</td>
-						<td>
-							<div class="content-img-area3" id="contentImgArea3">
-								<img id="contentImg3" width="120" height="100">
-							</div>
-						</td>
-						
-					</tr>
-
-				</table>
-				<div class="thumbnail-file-area">
+				<div class="thumbnail-file-area" style="margin-left: 285px;">
 					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
 					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
 					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
 					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
 				</div>
-			</div>
-			<br>
-			<div class="thumbnail-btn-area">
-				<button>취소하기</button>
-				<button type="submit">작성완료</button>
-			</div>
-		</form>
-			
-		<script>
+				
+				<br>
+				<div class="thumbnail-btn-area">
+					<button type="submit">작성완료</button>
+				</div>
+
+
+            </div>
+        </div>
+	</form>
+	</div>
+	
+			<script>
 			
 			const $titleImgArea = document.getElementById("titleImgArea");
 			const $contentImgArea1 = document.getElementById("contentImgArea1");

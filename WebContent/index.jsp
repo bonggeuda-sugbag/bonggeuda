@@ -9,19 +9,19 @@
 <body>
 
 
-		<jsp:forward page="/corona"/>
+ 	<jsp:forward page="/corona"/> 
 
 
 
-	<script>
+<!-- 	<script>
 
 		(function(){
 			
-			location.href="${ pageContext.servletContext.contextPath}/notice/list";    
+			location.href="${ pageContext.servletContext.contextPath}/user/list";    
 			
 		})();
 
-	</script>
+	</script>  -->
 
 
 

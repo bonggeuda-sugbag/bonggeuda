@@ -67,7 +67,7 @@ public class RegistrationAccomo2 extends HttpServlet {
 			 * */
 			Map<String, String> parameter = new HashMap<>();
 			
-			// 체크박스용
+			
 			
 			List<Map<String, String>> fileList = new ArrayList<>();
 			

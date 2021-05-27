@@ -199,7 +199,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				<!-- 관리자 로그인 -->
 					<div class="adminlogin-icons" style= "width: 100%;">
-						<button style="width: 120px; height: 40px; float:right" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/admin'">관리자 모드</button>
+						<button style="width: 120px; height: 40px; float:right" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/user/list'">관리자 모드</button>
 					</div>
 				</form>
 				    
