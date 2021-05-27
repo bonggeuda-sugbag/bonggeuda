@@ -153,4 +153,20 @@ public class BookListSelectService {
 		return bookListSelect;
 	}
 
+	public int TotalCount(int ownerNo) {
+
+		Connection con = getConnection();
+		
+		int totalCount = bookDAO.totalCount(con,ownerNo);
+		
+		if(totalCount > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return totalCount;
+	}
+
 }

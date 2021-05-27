@@ -86,68 +86,61 @@
 	</entry>
 	
 	<entry key="selectPastBookingList">
-	SELECT Y.RNUM,
-	       Y.BOOK_NO,
-	       Y.BOOK_USER_NAME,
-	       Y.BOOK_PERSONNEL,
-	       Y.BOOK_CHECK_DATE,
-	       Y.BOOK_CHECKOUT_DATE,
-	       Y.BOOK_APPROVE_YN,
-           Y.BOOK_STATUS_YNC,
-	       Y.BOOK_CHECK_IN,
-	       Y.REQUEST,
-	       Y.ROOM_NO,
-	       Y.ROOM_NAME,
-	       Y.ROOM_FEE, 
-	       Y.ACCOMO_NAME,
-           Y.USER_PHONE,
-           Y.USER_NO,
-           Y.OWNER_NO
-     FROM (SELECT ROWNUM RNUM,
-	       X.BOOK_NO,
-	       X.BOOK_USER_NAME,
-	       X.BOOK_PERSONNEL,
-	       X.BOOK_CHECK_DATE,
-	       X.BOOK_CHECKOUT_DATE,
-	       X.BOOK_APPROVE_YN,
-           X.BOOK_STATUS_YNC,
-	       X.BOOK_CHECK_IN,
-	       X.REQUEST,
-	       X.ROOM_NO,
-	       X.ROOM_NAME,
-	       X.ROOM_FEE, 
-	       X.ACCOMO_NAME,
-           X.USER_PHONE,
-           X.USER_NO,
-           X.OWNER_NO
-     FROM (SELECT
-	       B.BOOK_NO,
-	       BOOK_USER_NAME,
-	       BOOK_PERSONNEL,
-	       B.BOOK_CHECK_DATE,
-	       BOOK_CHECKOUT_DATE,
-	       BOOK_APPROVE_YN,
-           BOOK_STATUS_YNC,
-	       BOOK_CHECK_IN,
-	       REQUEST,
-	       R.ROOM_NO,
-	       R.ROOM_NAME,
-	       R.ROOM_FEE, 
-	       A.ACCOMO_NAME,
-           U.USER_PHONE,
-           U.USER_NO,
-           A.OWNER_NO
-	  FROM BOOK_LIST B
-	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
-	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
-      JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
-	 WHERE A.OWNER_NO = ?
-       AND BOOK_APPROVE_YN = 'Y'
-        OR BOOK_STATUS_YNC = 'N'
-        OR BOOK_STATUS_YNC = 'C'
-     ORDER BY B.BOOK_NO DESC)X)Y 
+	SELECT Y.RNUM
+	     , Y.OWNER_NO
+	     , Y.BOOK_NO
+	     , Y.BOOK_USER_NAME
+	     , Y.BOOK_PERSONNEL
+	     , Y.BOOK_CHECK_DATE
+	     , Y.BOOK_CHECKOUT_DATE
+	     , Y.BOOK_APPROVE_YN
+	     , Y.BOOK_CHECK_IN
+	     , Y.REQUEST
+	     , Y.ACCOMO_NAME
+	     , Y.ROOM_NAME
+	     , Y.ROOM_NO
+	     , Y.USER_NO
+	     , Y.BOOK_STATUS_YNC
+	     , Y.BOOK_PHONE
+	FROM (SELECT ROWNUM RNUM
+	     , X.OWNER_NO
+	     , X.BOOK_NO
+	     , X.BOOK_USER_NAME
+	     , X.BOOK_PERSONNEL
+	     , X.BOOK_CHECK_DATE
+	     , X.BOOK_CHECKOUT_DATE
+	     , X.BOOK_APPROVE_YN
+	     , X.BOOK_CHECK_IN
+	     , X.REQUEST
+	     , X.ACCOMO_NAME
+	     , X.ROOM_NAME
+	     , X.ROOM_NO
+	     , X.USER_NO
+	     , X.BOOK_STATUS_YNC
+	     , X.BOOK_PHONE
+	FROM(SELECT 
+	       C.OWNER_NO
+	     , A.BOOK_NO
+	     , A.BOOK_USER_NAME
+	     , A.BOOK_PERSONNEL
+	     , A.BOOK_CHECK_DATE
+	     , A.BOOK_CHECKOUT_DATE
+	     , A.BOOK_APPROVE_YN
+	     , A.BOOK_CHECK_IN
+	     , A.REQUEST
+	     , C.ACCOMO_NAME
+	     , A.ROOM_NO
+	     , B.ROOM_NAME
+	     , A.USER_NO
+	     , A.BOOK_STATUS_YNC
+	     , A.BOOK_PHONE
+	  FROM BOOK_LIST A, ROOM_INFO B, ACCOMO_INFO C
+	 WHERE C.OWNER_NO = ?
+	   AND C.ACCOMO_NO = B.ACCOMO_NO
+	   AND A.ROOM_NO = B.ROOM_NO
+	   AND BOOK_APPROVE_YN = 'Y'
+	 ORDER BY A.BOOK_NO DESC)X)Y
      WHERE RNUM BETWEEN ? AND ?
-        
 	</entry>
 	
 	<entry key="bookAllowUpadte">
@@ -180,7 +173,6 @@
   	   SET BOOK_APPROVE_YN = 'Y'
      WHERE BOOK_NO = ?
 	</entry>
-	
 	
 	<entry key="insertRejectBookHistory">
 	INSERT
@@ -234,7 +226,6 @@
 		 WHERE A.USER_NO = B.USER_NO
            AND C.ACCOMO_NO = A.ACCOMO_NO
            AND C.OWNER_NO = ?
-		 ORDER BY OWNER_QNA_NO DESC
 	</entry>
 	
 	<entry key="selectContent">
@@ -274,14 +265,23 @@
 	   AND A.OWNER_QNA_NO = ?
 	</entry>
 	
-	<entry key="bookingTotalCount">
+	<entry key="pastBookingTotalCount">
     SELECT
 	       COUNT(*)
-	  FROM BOOK_LIST B
-	  JOIN ROOM_INFO R ON(B.ROOM_NO = R.ROOM_NO)
-	  JOIN ACCOMO_INFO A ON(R.ACCOMO_NO = A.ACCOMO_NO)
-      JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
-	 WHERE A.OWNER_NO = ?
+	  FROM BOOK_LIST A, ROOM_INFO B, ACCOMO_INFO C
+	 WHERE C.OWNER_NO = ?
+	   AND C.ACCOMO_NO = B.ACCOMO_NO
+	   AND A.ROOM_NO = B.ROOM_NO
+	   AND BOOK_APPROVE_YN = 'Y'
+	</entry>
+	
+	<entry key="bookingTotalCount">
+  	SELECT
+	       COUNT(*)
+	  FROM BOOK_LIST A, ROOM_INFO B, ACCOMO_INFO C
+	 WHERE C.OWNER_NO = ?
+       AND A.ROOM_NO = B.ROOM_NO
+       AND C.ACCOMO_NO = B.ACCOMO_NO
 	   AND BOOK_APPROVE_YN = 'N'
 	   AND BOOK_STATUS_YNC = 'Y'
 	</entry>

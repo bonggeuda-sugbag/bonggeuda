@@ -264,7 +264,7 @@ public class BookingListSelectDAO {
 		/* 반환시킬 변수 지정 */
 		int totalCount = 0;
 		
-		String query = prop.getProperty("bookingTotalCount");
+		String query = prop.getProperty("pastBookingTotalCount");
 
 		//잘 넘어왔는지 확인용 출력
 		System.out.println(query);
@@ -318,13 +318,13 @@ public class BookingListSelectDAO {
 				bookDTO.setBookUserName(rset.getString("BOOK_USER_NAME"));
 				bookDTO.setBookPersonnel(rset.getInt("BOOK_PERSONNEL"));
 				bookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE")); // 디비에서도 문자열 값임.
-				bookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECK_DATE"));
+				bookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
 				bookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
 				bookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
 				bookDTO.setRequest(rset.getString("REQUEST"));
 				bookDTO.setRoomName(rset.getString("ROOM_NAME"));
 				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
-				bookDTO.setUserPhone(rset.getString("USER_PHONE"));
+				bookDTO.setUserPhone(rset.getString("BOOK_PHONE"));
 				bookDTO.setBookStatusYNC(rset.getString("BOOK_STATUS_YNC"));
 				bookDTO.setRowNum(rset.getInt("RNUM"));
 
@@ -342,5 +342,40 @@ public class BookingListSelectDAO {
 		}
 		
 		return selectBookedList;
+	}
+
+	public int totalCount(Connection con, int ownerNo) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		/* 반환시킬 변수 지정 */
+		int totalCount = 0;
+		
+		String query = prop.getProperty("bookingTotalCount");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNo);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+     
+		return totalCount;
 	}
 }

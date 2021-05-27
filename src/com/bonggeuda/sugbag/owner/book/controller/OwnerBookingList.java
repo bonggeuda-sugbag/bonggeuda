@@ -49,7 +49,7 @@ public class OwnerBookingList extends HttpServlet {
 		int ownerNo = (Integer)session.getAttribute("ownerNo"); 	
 		System.out.println(ownerNo);
 		
-		int totalCount = BookListService.selectTotalCount(ownerNo);
+		int totalCount = BookListService.TotalCount(ownerNo);
 		
 		System.out.println("totalCount 체크 : " + totalCount);
 		
