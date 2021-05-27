@@ -74,17 +74,28 @@ public class OwnerBookingPastList extends HttpServlet {
 	}
 
 
+	/**
+	 * 예약 지난내역에서 상세정보 보는 페이지로 이동
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		BookListSelectService bookService = new BookListSelectService();
 		/* 1. BookNO 가져오기 */
 		int bookNo = Integer.parseInt(request.getParameter("bookNo")); 
+		String bookStatusYNC = request.getParameter("bookStatusYNC");
 		
 		BookingContentDTO bookContentDTO = new BookingContentDTO();
 		
-		BookListSelectService bookService = new BookListSelectService();
+
 
 		bookContentDTO = bookService.selectBookContent(bookNo);
+		/* 2. 페이넘 넘겨 받아서 세일즈 히스토리에 있는지 여부. 있으면 숙소 이용완료 확정*/
+		int completeCount = bookService.selectcompleteCount(bookNo);
+
 		
+		request.setAttribute("completeCount", completeCount);
+		request.setAttribute("bookStatusYNC",bookStatusYNC );
+
 		request.setAttribute("bookContentDTO", bookContentDTO );
 		String path = "";
 		path = "/WEB-INF/views/owner/bookingList/bookingPastContent.jsp";
