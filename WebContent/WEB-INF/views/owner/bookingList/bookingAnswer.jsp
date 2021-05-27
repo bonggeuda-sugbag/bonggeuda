@@ -58,7 +58,7 @@
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -149,8 +149,9 @@
 			<div>
 				<br>
 				<b>관리자 답변</b> 
-				<textarea class="form-control textarea-layer" name="content" style="width: 800px; height: 120px; margin-left: 255px; font-size: 15px;" placeholder="답변을 작성해 주세요."></textarea>
-				<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">등록</button>
+				<textarea class="form-control textarea-layer" name="content" style="width: 900px; height: 120px; margin-left: 255px; font-size: 15px;" placeholder="답변을 작성해 주세요."></textarea>
+				<br>
+				<button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px; margin-left: 420px; width: 60px;">등록</button>
 			</div>
 			</form>
 		</c:if>
@@ -167,9 +168,6 @@
 		</c:if>
 	</div>
 </div>
-<br><br><br><br><br>
-<br><br><br><br><br>
-<br><br><br><br><br>
 <!--footer-->
 <div class="footer-bottom">
 	<div class="container">

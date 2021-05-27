@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
+import com.bonggeuda.sugbag.model.dto.RoomDTO;
 import com.bonggeuda.sugbag.owner.manage.service.ManagementRoomService;
 
 /**
@@ -45,6 +46,9 @@ public class OwnerManagementRoom extends HttpServlet {
       List<RmAccomoInfoDTO> rejectAccomoList = new ArrayList<RmAccomoInfoDTO>();
       rejectAccomoList = accomoBoardService.selectApplyRejectAccomoList(ownerNo);
       
+      /* 4. 승인된 숙소들의 방 목록 조회 */
+      List<RoomDTO> roomList = new ArrayList<RoomDTO>();
+      //roomList = accomoBoardService.selectRoomList()
 
 
       

@@ -59,6 +59,10 @@ h1,h2,h3,h4,h5,h6,label,p{
 /*---------------------------------------------------------------------------------------------------------------------------------------------*/
 /*--header--*/
 /* 추가한 css */
+textarea{
+    resize:none;
+}
+
 div ul li a:hover{
 	color: black;
 }
@@ -377,7 +381,7 @@ ul.stepbox a{
 	margin-top: 9px;
 	height: 40px;
 	width: 150px;
-	font-size: 12px;
+	font-size: 15px;
 	background-color: rgba(0, 0, 0, 0.01);
 	border-radius: 3px;
 	border: rgba(0, 0, 0, 0.2) solid 1px;

@@ -1,42 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다 숙박숙박 :: 신고 내역 </title>
+<title>봉그다 숙박숙박 :: 정산 요청 </title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
-
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
-
-
-	<meta charset="UTF-8" />
-
-	<link rel="shortcut icon" href="../favicon.ico"> 
-	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
-	<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
+<meta charset="UTF-8" />
+<link rel="shortcut icon" href="../favicon.ico"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <style>
 	div.tab, div.tab-content {
 		  margin-left: 20%;
 		  margin-right: 4.8%;
 	}
-	.table tbody tr th{
+	.table tbody tr th {
 		background: white;
 	}
 	table.table tr th{
@@ -49,12 +36,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	th a:hover{
 		color: #6eceda !important;
 	}
-	.list-btn{
-		background:white;
-		border:0;
-		outline:0;
-	}
- </style>
 </style>
 </head>
 <body>
@@ -72,7 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
-				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
 				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
@@ -93,49 +74,65 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="col-md-3 blog-sidebar">
 			<ul>
 				<li class="blog-list"><a href="/bonggeuda/owner/mypage">마이 페이지</a></li>
-				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/mypgeReport" style="color: #6eceda;">신고 내역</a></li>
-				<li class="blog-list" style=><a href="/bonggeuda/owner/settlement" >정산 신청</a></li>
+				<li class="blog-list" ><a href="/bonggeuda/owner/mypgeReport" >신고 내역</a></li>
+				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/settlement" style="color: #6eceda;">정산 신청</a></li>
 				<li class="blog-list" style=><a href="/bonggeuda/owner/taxbillList" >세금 계산서 발행</a></li>
 			</ul>
 			</nav>
 			
+			<form action="/bonggeuda/owner/settlement" method="post"> 
+				<div class="tab">
+				   	<span class="tab_btn active">신청하기</span>
+				</div>
+				<div style="color:black;">
+				<br>숙소 선택&nbsp;&nbsp;:&nbsp;&nbsp;
+				<select name="accmoName" class="select-time" style="font-size: 15px;">
+					<c:forEach var="accmoNames" items="${ requestScope.selectAccomo }">						
+						<option value="${ accmoNames.accomoName }">
+							<c:out value="${ accmoNames.accomoName }"/>							
+							<input type="hidden" name="accomoNo" value="${ accmoNames.accomoNo }">
+						</option>
+					</c:forEach>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="submit-btn" type="submit">
+					정산 신청
+				</button>
+				</div>
+			</form>
+			<br><br><br><br>
+			
 			<div class="tab">
-			    <span class="tab_btn active">신고 내역</span>
-			 </div>
-			<c:if test="${ !empty requestScope.reportList }">
+			    <span class="tab_btn active">신청 내역</span>
+			</div>
+			<c:if test="${ !empty requestScope.selectStl }">
 			<table class="table table-hover" style="width: 1000px;">
 				<thead>
 				    <tr>
 						<th><b>번호</b></th>
-						<th><b>신고제목</b></th>
-						<th><b>신고일자</b></th>
-						<th><b>처리상태</b></th>
+						<th><b>숙소명</b></th>
+						<th><b>신청일</b></th>
+						<th><b>정산상태</b></th>
 				    </tr>
 				</thead>
 				<tbody>
-					<c:forEach var="reportBoard" items="${ requestScope.reportList }">
-					<form action="/bonggeuda/owner/reportDetail" method="post">
-					<input type="hidden" name="reportNo" value="${reportBoard.reportNo}">
+				<c:forEach var="stl" items="${ requestScope.selectStl }"> 
 				   	<tr>
-						<th><button class="list-btn" type="submit" style="color: black">${ reportBoard.rowNum }</button></th>
-						<th><button class="list-btn" type="submit" style="color: black"><c:out value="${ reportBoard.reportTitle }"/></button></th>
-						<th><button class="list-btn" type="submit" style="color: black"><c:out value="${ reportBoard.reportDate }"/></button></th>
+						<th><c:out value="${ stl.rowNum }"/></th>
+						<th><c:out value="${ stl.accomoName }"/></th>
+						<th><c:out value="${ stl.reqDate }"/></th>
 						<th>
-							<c:choose>
-								<c:when test="${ reportBoard.reportStatus eq 'Y'}">
-								<button class="list-btn" type="submit" style="color: black">처리완료</button>
-								</c:when>
-								<c:when test="${ reportBoard.reportStatus eq 'N'}">
-								<button class="list-btn" type="submit" style="color: black">처리중</button>
-								</c:when>
-								<c:when test="${ reportBoard.reportStatus eq 'C'}">
-								<button class="list-btn" type="submit" style="color: black">신고 거절</button>
-								</c:when>
-							</c:choose>
+						<c:choose>
+							<c:when test="${ stl.stlYn eq 'Y'}">
+								정산완료
+							</c:when>
+							<c:when test="${ stl.stlYn eq 'N'}">
+								대기중
+							</c:when>
+						</c:choose>
 						</th>
-					</tr>
-					</form>
-					</c:forEach>
+					</tr>   
+				</c:forEach>
 				</tbody>
 			 </table>
 			 <div class="tab_each" style="display:block">
@@ -216,19 +213,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<%-- 페이지 처리 --%>
 		</c:if>
 		
-		<c:if test="${ empty requestScope.reportList }">
+		<c:if test="${ empty requestScope.selectStl }">
 			<div class="list_none" style="display: block;">
-			<br>
-			<b>신고 내역이 없습니다.</b>
-			<br><br>
+				<br>
+				<b>신청 내역이 없습니다.</b>
+				<br><br>
 			</div>
 		</c:if>
-		
 		</div>
 	</div>
 </div>
 <script>
-		const link = "${ pageContext.servletContext.contextPath }/owner/mypgeReport";
+		const link = "${ pageContext.servletContext.contextPath }/owner/settlement";
 		//const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
 			
 		if(document.getElementById("startPage")) {
@@ -320,6 +316,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 </div>
 </div>
 </div>
-<!--//footer-->
 </body>
 </html>

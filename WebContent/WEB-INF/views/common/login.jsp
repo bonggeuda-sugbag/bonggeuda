@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,9 +106,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
 	<div class="container">
 		<!--logo-->
-			<div class="logo">
-				<h1><a href="index.html">BONGGUEDA</a></h1>
-			</div>
+		<div class="logo">
+			<h1><a href="index.html">BONGGUEDA</a></h1>
+		</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
@@ -130,31 +124,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 		<div class="clearfix"> </div>
 		</div>	
-</div>
+	</div>
 <!--//-->	
 	<div class="clearfix"> </div>
-		<!--initiate accordion-->
-		<script type="text/javascript">
-			$(function() {
-			    var menu_ul = $('.menu > li > ul'),
-			           menu_a  = $('.menu > li > a');
-			    menu_ul.hide();
-			    menu_a.click(function(e) {
-			        e.preventDefault();
-			        if(!$(this).hasClass('active')) {
-			            menu_a.removeClass('active');
-			            menu_ul.filter(':visible').slideUp('normal');
-			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-			        } else {
-			            $(this).removeClass('active');
-			            $(this).next().stop(true,true).slideUp('normal');
-			        }
-			    });
-			
-			});
-		</script>
-      		
-	</div>
+
 </div>
 <!--//header-->
 <!--contact-->
@@ -183,17 +156,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				<!-- 사용자 로그인, 업체 로그인, 회원가입 -->
 				<div class="login-icons" style= "width: 100%;">
-  					<button class="api-btn" onclick="kakaoLogout()">로그아웃</button>
+  					<!-- <button class="api-btn" onclick="kakaoLogout()">로그아웃</button> -->
 					<br>
-					<button style="margin-right: 30px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('1');">사용자 로그인</button>
-					<button style="margin-right: 30px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('2');">업체 로그인</button>
-					<button style="width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='';">회원가입</button>
+					<button style="margin-right: 15px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('1');">사용자 로그인</button>
+					<button style="margin-right: 15px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('2');">업체 로그인</button>
+					<button style="margin-right: 15px; width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/usersignup/insert';">사용자 회원가입</button>
+					<button style="width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='';">업체 회원가입</button>
 
 					<br>
 					<div class="clearfix"> </div>
 				</div>
 
-				<br>
+				<br><br>
 				
 				<!-- 관리자 로그인 -->
 				<div class="adminlogin-icons" style= "width: 100%;">

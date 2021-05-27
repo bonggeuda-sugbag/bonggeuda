@@ -35,6 +35,9 @@
 			case "adminLogin" :
 				movePath = "${ pageContext.servletContext.contextPath }/login/admin";
 				break;
+			case "insertMember" :
+				movePath = "${ pageContext.servletContext.contextPath }/login/test";
+				break;
 
 		}
 		

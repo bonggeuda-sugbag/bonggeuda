@@ -108,7 +108,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -158,7 +158,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</nav>
 
 		</div>
-		<table class="type09">
+		<table class="type09" style="color:black;">
 			<thead>
 				<tr>
 					<th scope="cols" colspan="4"></th>

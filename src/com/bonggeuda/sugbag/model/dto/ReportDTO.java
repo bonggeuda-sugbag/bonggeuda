@@ -18,8 +18,8 @@ public class ReportDTO {
 	private String reportAnswer;
 	private String approveYN; // 연준 추가
 	private int rowNum;
-	
-	private List<AttachmentDTO> attachmentList; //신고첨부사진
+
+	private List<AttachmentDTO> attachmentList; // 신고첨부사진
 
 	public ReportDTO() {
 		super();
@@ -165,7 +165,5 @@ public class ReportDTO {
 				+ ", accomoName=" + accomoName + ", reportAnswer=" + reportAnswer + ", approveYN=" + approveYN
 				+ ", rowNum=" + rowNum + ", attachmentList=" + attachmentList + "]";
 	}
-
-	
 	
 }

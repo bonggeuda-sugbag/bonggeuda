@@ -7,16 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<jsp:forward page="/corona"/>
+<script>
+window.onload = function() {
+    alert("정산 신청 되었습니다.");
+    
+    location.href ="settlement"; 
+}
+</script>
 
-	<!-- <script>
 
-		(function(){
-			
-			location.href="${ pageContext.servletContext.contextPath}/notice/list";    
-			
-		})();
-
-	</script> -->
 </body>
 </html>
