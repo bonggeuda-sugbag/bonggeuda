@@ -488,7 +488,7 @@ popup>li{
 .reviewScore h5{
 	margin-left: 13px;
 }
-.like{
+/* .like{
     width: 30px;
     height: 20px;
     margin-left: 13px;
@@ -503,7 +503,7 @@ popup>li{
     background: url(${pageContext.servletContext.contextPath }/resources/guest/images/likeun.png) 0 0 no-repeat;
     background-size: 20px 20px;
     
-}
+} */
 
 .topReview{
     border: 1px solid;
@@ -569,9 +569,9 @@ textarea {
 <jsp:include page="../../common/guestheader.jsp"/>
     
     <!--//-->	
-    <!-- 숙소상세정보 -->
     <center>
 
+    <!-- 숙소상세정보 -->
         <div style="width: 1170px; margin-top: 30px; padding: 10px 35px 10px 35px;">
             <!-- 숙소사진, 이름 -->
             <div style=" width : 1100px; height : 500px; padding:10px 10px 10px 0px;display: flex; flex-direction: row;">
@@ -596,11 +596,16 @@ textarea {
                     <div><h4> - 주소 : ${accomo.address }</h4></div>
                     <br>
                     <div><h4> - 오시는길 : ${accomo.path }</h4></div>
-                    <br><br>
+                    <br>
+                
                     <div class="ownerComment">
-                        <h4 style="text-align: left;"><b>사장님 한마디</b></h4>
+                        <h4 style="text-align: left;"><b>1박 기준에 따른 요금안내</b></h4>
                         <br>
-                        <p>제주도 최고의 호텔!!<br>여기로오세요~</p>
+                        <p> <strong>기준 체크인 시간 : ${accomo.checkIn}</strong> <br>
+                            <strong>기준 체크아웃 시간 : 11:00</strong> <br>
+                           (기준 체크인시간부터 기준체크아웃 시간까지 전체 이용시 1박 요금이 적용됩니다.)<br>
+                           (이외 이용시간에 따라 요금이 다르게 적용됩니다.)
+                           </p>
                     </div>
                 </div>
             </div>
@@ -710,6 +715,17 @@ textarea {
 					<div style="display: flex;">
 						<h4 style="margin : 15px;">체크인 </h4>
 						<select style="width: 150px;" name="checkInTime" required="required">
+							<option value="00:00">00:00</option>
+							<option value="01:00">01:00</option>
+							<option value="02:00">02:00</option>
+							<option value="03:00">03:00</option>
+							<option value="04:00">04:00</option>
+							<option value="05:00">04:00</option>
+							<option value="06:00">04:00</option>
+							<option value="07:00">04:00</option>
+							<option value="08:00">04:00</option>
+							<option value="09:00">04:00</option>
+							<option value="10:00">04:00</option>
 							<option value="11:00">11:00</option>
 							<option value="12:00">12:00</option>
 							<option value="13:00">13:00</option>
@@ -723,16 +739,12 @@ textarea {
 							<option value="21:00">21:00</option>
 							<option value="22:00">22:00</option>
 							<option value="23:00">23:00</option>
-							<option value="00:00">00:00</option>
-							<option value="01:00">01:00</option>
-							<option value="02:00">02:00</option>
-							<option value="03:00">03:00</option>
-							<option value="04:00">04:00</option>
+
 						</select>
 					</div>
 					<div style="text-align: left;">
-						<p>체크인 가능시간</p>
-						<p> ${accomo.checkIn} 이후</p>
+						<p>기준 체크인 시간</p>
+						<p> ${accomo.checkIn}</p>
 					</div>
 				<!-- //예약일자 입력 -->
 				</div>
@@ -1042,13 +1054,13 @@ textarea {
                                     <c:when test="${normalReview.updownStatus eq 'U' }">
                                         <div class="likeClick" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this.name)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${noarmalReview.reviewNo }"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${normalReview.reviewNo }"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
                                     </c:when>
                                      <c:when test="${normalReview.updownStatus eq 'D' }">
                                         <div class="like"id="like${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlikeClick"id="unlike${noarmalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlikeClick"id="unlike${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
                                     </c:when>
                                     <c:otherwise>

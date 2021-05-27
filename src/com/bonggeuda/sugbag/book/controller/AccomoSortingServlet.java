@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bonggeuda.sugbag.common.comparator.AscPrice;
+import com.bonggeuda.sugbag.common.comparator.AscReviewScore;
+import com.bonggeuda.sugbag.common.comparator.DescPrice;
+import com.bonggeuda.sugbag.common.comparator.DescReviewScore;
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.service.BookService;
@@ -24,19 +28,7 @@ public class AccomoSortingServlet extends HttpServlet {
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String,String[]> requestMap = request.getParameterMap();
-		Set<String> keySet = requestMap.keySet();
-		Iterator<String> keyIter = keySet.iterator();
-		while(keyIter.hasNext()) {
-			String key = keyIter.next();
-			String[] value = requestMap.get(key);
-			
-			System.out.println("key : " + key);
-			for(int i = 0; i < value.length; i++) {
-				System.out.println("value[" + i + "] : " +value[i]);
-			}
-		}
-		
+
 		//숙소타입
 		String type = request.getParameter("type");
 		//검색할 편의시설
@@ -77,16 +69,28 @@ public class AccomoSortingServlet extends HttpServlet {
 					accomoList.get(i).setReviewScore((double)priceNrvScore.get(1).get(accomoNo));
 				}
 			}
+			String sortType = request.getParameter("sortType");
+			
+			//정렬(낮은가격순, 높은가격순, 높은평점순, 낮은평점순)
+			switch(sortType) {
+			    case "highScore": accomoList.sort(new DescReviewScore());break;
+			    case "lowScore": accomoList.sort(new AscReviewScore());break;
+			    case "highPrice": accomoList.sort(new DescPrice());break;
+			    case "lowPrice":accomoList.sort(new AscPrice());break;
+
+			
+			} 
+			System.out.println(sortType);
 			path = "/WEB-INF/views/guest/accomoInfo/list.jsp";
 			System.out.println(accomoList);
 			request.setAttribute("checkList", checkList);
 			request.setAttribute("accomoList", accomoList);
 			request.setAttribute("type", type);
 			request.setAttribute("seacrh", searchCondition);
+			request.getRequestDispatcher(path).forward(request, response);
 		} else {
 			System.out.println("숙소목록 조회에 실패했습니다.!!");
 		}
-		
 	}
 
 }

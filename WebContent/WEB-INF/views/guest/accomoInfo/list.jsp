@@ -223,7 +223,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					var sortType="";
 			    	var personnel = document.getElementsByName("personnel")[0].value;
 					switch(p.value){
-					    case "highScore" : sortType="highPrice"; break;
+					    case "highScore" : sortType="highScore"; break;
+					    case "lowScore" : sortType="lowScore"; break;
 					    case "lowPrice" : sortType="lowPrice"; break;
 					    case "highPrice" : sortType="highPrice"; break;
 					}

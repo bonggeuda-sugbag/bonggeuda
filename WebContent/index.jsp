@@ -10,13 +10,5 @@
 
 		<jsp:forward page="/corona"/>
 
-
-
-
-
-
-
-
-
 </body>
 </html>
