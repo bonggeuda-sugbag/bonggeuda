@@ -1,7 +1,9 @@
 package com.bonggeuda.sugbag.service;
 
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.commit;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
+import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +12,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.HashMap;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.bonggeuda.sugbag.model.dao.LoginDAO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
@@ -32,9 +36,19 @@ public class LoginService {
 
 		Connection con = getConnection();
 		
-		MemberDTO userloginMember = loginDAO.userLoginCheck(con, loginEmail, loginPassword);
+		MemberDTO userloginMember = null;
 		
-		close(con);
+		String encPwd = loginDAO.selectEncryptedPwd(con, loginEmail, loginPassword);
+		
+		System.out.println("encPwd : " + encPwd);
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		if(passwordEncoder.matches(loginPassword, encPwd)); {
+			
+			userloginMember = loginDAO.userLoginCheck(con, loginEmail, loginPassword);
+			
+		}
 		
 		return userloginMember;
 		
@@ -67,16 +81,28 @@ public class LoginService {
 		
 		Connection con = getConnection();
 		
-		MemberDTO adminloginMember = loginDAO.adminLoginCheck(con, loginEmail, loginPassword);
+		MemberDTO adminloginMember = null;
 		
-		close(con);
+		String encPwd = loginDAO.selectEncryptedPwd(con, loginEmail, loginPassword);
+		
+		System.out.println("encPwd : " + encPwd);
+				
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		if(passwordEncoder.matches(loginPassword, encPwd)); {
+			
+			adminloginMember = loginDAO.adminLoginCheck(con, loginEmail, loginPassword);
+			
+		}
 		
 		return adminloginMember;
 	}
 	
-	
-	
-	
+	/**
+	 * 카카오 로그이 토큰
+	 * @param access_Token
+	 * @return
+	 */
 	public HashMap<String, Object> getUserInfo (String access_Token) {
 	    
 	    //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
@@ -121,6 +147,28 @@ public class LoginService {
 	    }
 	    
 	    return userInfo;
+	}
+
+	/**
+	 * 사용자 회원가입
+	 * @param requestMember
+	 * @return
+	 */
+	public int registMember(MemberDTO requestMember) {
+
+		Connection con = getConnection();
+		
+		int result = loginDAO.registMember(con, requestMember);
+		
+		if(result > 1) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 

@@ -14,7 +14,7 @@ import com.bonggeuda.sugbag.service.LoginService;
 /**
  * Servlet implementation class SignUpServlet
  */
-@WebServlet("/usersignup/insert")
+@WebServlet("/login/check/regist")
 public class UserSignUpServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,10 +27,11 @@ public class UserSignUpServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 회원정보 등록 & POINT테이블 값 insert */
 		String memberId = request.getParameter("email");
 		String memberPwd = request.getParameter("password");
-		String nickname = request.getParameter("phone");
-		String phone = request.getParameter("nickName");
+		String nickname = request.getParameter("nickName");
+		String phone = request.getParameter("phone");
 		
 		MemberDTO requestMember = new MemberDTO();
 		requestMember.setUserId(memberId);
@@ -42,13 +43,13 @@ public class UserSignUpServlet extends HttpServlet {
 		
 		LoginService loginService = new LoginService();
 		
-		int result = 0;/* loginService.registMember(requestMember); */
+		int result = loginService.registMember(requestMember);
 		
 		System.out.println("memberController result : " + result);
 		
 		String page = "";
 		
-		if(result > 0) {
+		if(result >1) {
 			
 			page = "/WEB-INF/views/guest/moreNotice/narasuccess.jsp";
 			request.setAttribute("successCode", "insertMember");

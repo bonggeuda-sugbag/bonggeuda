@@ -15,7 +15,7 @@ import com.bonggeuda.sugbag.service.LoginService;
 /**
  * Servlet implementation class LoginCheckServlet
  */
-@WebServlet("/user/login/check")
+@WebServlet("/login/check/user")
 public class UserLoginCheckServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
