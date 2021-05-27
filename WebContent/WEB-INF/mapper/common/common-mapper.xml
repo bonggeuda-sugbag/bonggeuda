@@ -9,11 +9,28 @@
 		   AND USER_WITHDRAW_YN = 'N'
 		   
 	</entry>
+	
 	<entry key="ownerLoginCheck">
 		SELECT *
 		  FROM OWNER_INFO
 		 WHERE OWNER_ID = ?
 		   AND OWNER_PWD =?
 		   AND OWNER_WITHDRAW_YN = 'N'
+	</entry>
+	
+	<entry key="signUpRegist">
+		INSERT
+		  INTO USER_INFO
+		VALUES ( USER_NO
+               , USER_ID
+               , USER_PWD
+               , USER_PHONE
+               , REPORT_COUNT
+               , USER_NICKNAME
+               , USER_WITHDRAW_YN
+               , USER_ROLE
+SIGNDATE
+WITHDRAWDATE
+		       )
 	</entry>
 </properties>

@@ -52,8 +52,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 </style>
-<body>
-	<!--header-->
+<body style="background: white;">
+<!--header-->
 
 
 

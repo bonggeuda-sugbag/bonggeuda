@@ -50,7 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-<body>
+<body style="background: white;">
 <!--header-->
 
 
@@ -207,17 +207,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </input>
                             </td>
                         </tr>
+                        <tr>
+                        	<td colspan="4" style=" padding-top: 20px; padding-bottom: 20px; ">
+                        		<c:forEach var="thumnail" items="${ requestScope.reportThumnailInfo }">
+								<c:if test="${ thumnail.thumnailPath ne null }">
+								<img src="${ pageContext.servletContext.contextPath }/${ thumnail.thumnailPath }" style="width: 30%">
+								</c:if>
+								</c:forEach>
+                        	</td>
+                        </tr>
                     </tbody>
                 </table>
-				<p>
-				<c:forEach var="thumnail" items="${ requestScope.reportThumnailInfo }">
-				<input class="form-control textarea-layer" style="width: 700px; height: 120px; margin-left: 285px;" disabled>
-				<c:if test="${ thumnail.thumnailPath ne null }">
-				<img src="${ pageContext.servletContext.contextPath }/${ thumnail.thumnailPath }" style="width: 30%">
-				</c:if>
-				</input>
-				 </c:forEach>
-				</p>
+
                 <br>
                 <table class="type09" border="1px"  style="margin-left: 285px;">
                     <thead>
