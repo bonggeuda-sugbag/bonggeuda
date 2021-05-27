@@ -155,4 +155,15 @@ public class OwnerMypagService {
 		return selectStl;
 	}
 
+	public String selectImagePath(int reportNo) {
+		
+		Connection con = getConnection();
+		String selectImagePath = ownerDAO.selectImagePathDAO(con,reportNo);
+		
+		close(con);
+		
+		
+		return selectImagePath;
+	}
+
 }

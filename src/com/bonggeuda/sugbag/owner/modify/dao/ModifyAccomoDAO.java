@@ -214,6 +214,35 @@ public class ModifyAccomoDAO {
 		return result;
 	}
 
+
+	public int selectRmCountDAO(Connection con, int accomoNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectRmCount");
+		int selectRmCount = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, accomoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				selectRmCount = rset.getInt("COUNT(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return selectRmCount;
+	}
+
 }
 
 

@@ -22,23 +22,49 @@ public class ModifyAccomo extends HttpServlet {
 	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
-		System.out.println(accomoNo);
-
-		RmAccomoInfoDTO rmAccomoInfo = new RmAccomoInfoDTO();
+		
 		
 		ModifyAccomoService modifyService = new ModifyAccomoService();
 		
-		rmAccomoInfo = modifyService.selectAccomoInfo(accomoNo);
-		System.out.println(" @@ " + rmAccomoInfo);
-				
-		request.setAttribute("rmAccomoInfo", rmAccomoInfo);
+
+		int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
+		System.out.println(accomoNo);
+		RmAccomoInfoDTO rmAccomoInfo = new RmAccomoInfoDTO();
 		
-		String path = "";
-		path = "/WEB-INF/views/owner/roomModify/roomModification.jsp";
-		request.getAttribute(path);
-		request.getRequestDispatcher(path).forward(request, response);
+		
+	      /* 숙소 수정중 인지 카운트 세서 보내주기*/
+	     int isRemo = modifyService.selectrmCount(accomoNo);
+	     
+	     System.out.println("isRemo " + isRemo);
+	     String path = "";
+	     
+	     if(isRemo > 0) {
+	    	 path = "/WEB-INF/views/owner/roomManagement/thisRoomRM.jsp";
+	    	 request.getAttribute(path);
+	    	 request.getRequestDispatcher(path).forward(request, response);
+	    	 
+	     }else {
+	    	 
+	 		rmAccomoInfo = modifyService.selectAccomoInfo(accomoNo);
+					
+			request.setAttribute("rmAccomoInfo", rmAccomoInfo);
+			
+			path = "/WEB-INF/views/owner/roomModify/roomModification.jsp";
+			request.getAttribute(path);
+			request.getRequestDispatcher(path).forward(request, response);
+	    	 
+	   
+	    	 
+	     }
+		
+		
+		
+		
+		
+
+		
+		
+
 	}
 
 }

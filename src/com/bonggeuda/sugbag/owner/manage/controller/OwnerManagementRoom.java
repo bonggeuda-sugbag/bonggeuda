@@ -44,6 +44,8 @@ public class OwnerManagementRoom extends HttpServlet {
       /* 3. 숙소 승인 거절된 숙소 리스트 */
       List<RmAccomoInfoDTO> rejectAccomoList = new ArrayList<RmAccomoInfoDTO>();
       rejectAccomoList = accomoBoardService.selectApplyRejectAccomoList(ownerNo);
+      
+
 
       
       

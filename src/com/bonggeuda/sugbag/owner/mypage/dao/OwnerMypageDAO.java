@@ -422,4 +422,30 @@ public class OwnerMypageDAO {
 		return selectStl;
 	}
 
+	public String selectImagePathDAO(Connection con, int reportNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String selectImagePathDAO = "";
+		
+		String query = prop.getProperty("selectImagePath");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, reportNo);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				selectImagePathDAO = rset.getString("THUMBNAIL_PATH");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return selectImagePathDAO;
+	}
+
 }

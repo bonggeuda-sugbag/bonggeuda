@@ -25,7 +25,7 @@ import com.bonggeuda.sugbag.model.dto.ReportDTO;
 import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
 import com.bonggeuda.sugbag.owner.modify.service.ModifyAccomoService;
 import com.bonggeuda.sugbag.owner.regist.service.AccomoService;
-import com.bonggeuda.sugbag.owner.report.dao.ReportWriteService;
+import com.bonggeuda.sugbag.owner.report.service.ReportWriteService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -58,8 +58,9 @@ public class ReportWrite extends HttpServlet {
 		request.getAttribute(path);
 		request.getRequestDispatcher(path).forward(request, response);
 		
-
 	}
+
+	
 
 
 	/**
@@ -185,16 +186,9 @@ public class ReportWrite extends HttpServlet {
 				System.out.println("fileList : " + fileList);
 				
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
-				RmAccomoInfoDTO thumbnail = new RmAccomoInfoDTO();
+				ReportDTO thumbnail = new ReportDTO();
 
-				//List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
-				// 먼저 currval 조회
-				AccomoService accomoService = new AccomoService();
-				int selectReqNoMax = 0;
-				selectReqNoMax = accomoService.selectCurrval();
-				System.out.println("조회해온 리퀘스트 넘 최댓값 : " + selectReqNoMax);
-				selectReqNoMax += 1;
-				
+
 				
 				
 				AttachmentDTO tempFileInfo = new AttachmentDTO();
@@ -214,10 +208,17 @@ public class ReportWrite extends HttpServlet {
 				
 				System.out.println("thumbnail board : " + thumbnail);
 				
+				//REF NO 맥스값 조회후 +1 해서 인서트
+				ReportWriteService  reportImageInsert = new ReportWriteService();
+				int refNoMax = reportImageInsert.selectRefMaxNo();
+				
+				// 1 더해주기 (넥스트발) 
+				
+				
+				System.out.println("refNoMax" + refNoMax);
 				/* 서비스 메소드를 요청한다. */
-				ModifyAccomoService  moAccomoService = new ModifyAccomoService();
 				int result = 0;
-				result = moAccomoService.insertAccomoThumbnail(tempFileInfo);
+				result = reportImageInsert.insertReportThumbnail(tempFileInfo);
 				
 				System.out.println("리젙트는?????  " + result);
 
@@ -228,19 +229,19 @@ public class ReportWrite extends HttpServlet {
 				String writerType = "owner";
 				String reportedType = "guest";
 				
-				int userNo = Integer.parseInt(request.getParameter("userNo")); 
-				int ownerNo = Integer.parseInt(request.getParameter("ownerNo")); 
+				int userNo = Integer.parseInt(parameter.get("userNo")); 
+				int ownerNo = Integer.parseInt(parameter.get("ownerNo")); 
 				
-				String reportTitle = request.getParameter("reportTitle");
-				String reportContent = request.getParameter("reportContent");
+				String reportTitle = parameter.get("reportTitle");
+				String reportContent = parameter.get("reportContent");
 				System.out.println(reportTitle + reportContent);
 				
 				
 				
 				ReportWriteService reportInsertService = new ReportWriteService();
 				
-				
-				int reportInsert = reportInsertService.reportInsertService(writerType,reportedType,userNo,ownerNo,reportTitle,reportContent);
+				refNoMax +=1;
+				int reportInsert = reportInsertService.reportInsertService(refNoMax,writerType,reportedType,userNo,ownerNo,reportTitle,reportContent);
 				
 				System.out.println(reportInsert + "reportInsert");
 				
@@ -250,7 +251,7 @@ public class ReportWrite extends HttpServlet {
 					path = "/WEB-INF/views/owner/report/reportSuccessPage.jsp";
 					request.getAttribute(path);
 					request.getRequestDispatcher(path).forward(request, response);
-
+				}
 				
 				
 			} catch (Exception e) {
@@ -280,10 +281,10 @@ public class ReportWrite extends HttpServlet {
 		
 
 			
-			
-			
-		}
-
 	}
-
 }
+
+
+
+
+

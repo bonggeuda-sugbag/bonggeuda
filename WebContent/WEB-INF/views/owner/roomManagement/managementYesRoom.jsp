@@ -127,6 +127,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <form action="/bonggeuda/owner/accomoModify" method="post">
                <button  class="submit-btn" type="submit">
                <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+               
                 숙소 수정
             </form>
             

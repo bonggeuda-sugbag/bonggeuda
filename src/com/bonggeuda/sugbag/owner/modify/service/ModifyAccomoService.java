@@ -91,6 +91,25 @@ public class ModifyAccomoService {
 	}
 
 
+	public int selectrmCount(int accomoNo) {
+		
+		Connection con = getConnection();
+
+		int result = 0;
+
+		result = modifyDAO.selectRmCountDAO(con,accomoNo);
+
+		if(result > 0) {
+			commit(con);
+			
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+
 
 
 }

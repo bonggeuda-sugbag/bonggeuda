@@ -173,11 +173,22 @@ SELECT
 		)
 	</entry>
 
-<entry key="selectcurrval">
-SELECT
-SEQ_REQUEST_NO.CURRVAL
-FROM DUAL;
-</entry>
+	<entry key="selectcurrval">
+		SELECT
+		SEQ_REQUEST_NO.CURRVAL
+		FROM DUAL;
+	</entry>
+
+	<entry key="selectRmCount">
+		SELECT
+		   	   COUNT(*)
+	 	  FROM RM_ACCOMO_INFO R
+		  JOIN ACCOMO_INFO A ON (R.RM_ACCOMO_NO = A.ACCOMO_NO)
+		 WHERE R.RM_TYPE = 'RM'
+		   AND R.APPROVAL_YN = 'N'
+		   AND ACCOMO_NO = ?
+		
+	</entry>
 
 	
 </properties>
