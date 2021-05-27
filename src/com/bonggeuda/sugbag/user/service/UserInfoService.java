@@ -225,6 +225,17 @@ public class UserInfoService {
 		return blackNoCount;
 	}
 
+	public int selectbookCount() {
+		
+		Connection con = getConnection();
+		
+		int bookListCount = userInfoDAO.selectbookCount(con);
+		
+		close(con);
+		
+		return bookListCount;
+	}
+
 
 
 

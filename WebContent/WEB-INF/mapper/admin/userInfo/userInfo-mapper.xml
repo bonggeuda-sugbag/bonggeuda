@@ -275,6 +275,14 @@ WHERE C.RNUM BETWEEN ? AND ?
          WHERE B.USER_ID = ?
 	</entry>
 	
+	<entry key="selectBookListCount">
+       SELECT 
+             COUNT(*)
+         FROM BOOK_LIST A
+         JOIN USER_INFO B ON (A.USER_NO = B.USER_NO)
+         JOIN PAYMENT C ON ( A.BOOK_NO = C.BOOK_NO)
+	</entry>
+	
 	<entry key="selectBlackList">
         SELECT
                C.RNUM

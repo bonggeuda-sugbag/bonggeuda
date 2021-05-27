@@ -21,7 +21,7 @@ import com.bonggeuda.sugbag.user.service.UserInfoService;
 @WebServlet("/user/list")
 public class ManagementListServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		System.out.println("호출확인");
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
