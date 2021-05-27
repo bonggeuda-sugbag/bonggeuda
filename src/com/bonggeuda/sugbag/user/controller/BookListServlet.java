@@ -37,9 +37,9 @@ public class BookListServlet extends HttpServlet {
 		/* 전체 게시물 수가 필요 */
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		UserInfoService userInfoServie = new UserInfoService();
-		int totalCount = userInfoServie.selectTotalCount();
+		int bookListCount = userInfoServie.selectbookCount();
 		
-		System.out.println("totalCount 체크 : " + totalCount);
+		System.out.println("bookListCount 체크 : " + bookListCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
@@ -47,7 +47,7 @@ public class BookListServlet extends HttpServlet {
 		int buttonAmount = 5;
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
+		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, bookListCount, limit, buttonAmount);
 		
 		System.out.println(pageInfo);
 		
