@@ -148,4 +148,90 @@ public class RoomDAO {
 		return selectEnRoomNoMax;
 	}
 
+	public int selectRmRoomReqNoMaxDAO(Connection con) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectRmRoomReqNoMax");
+		int selectRmRoomReqNoMax = 0;
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				selectRmRoomReqNoMax = rset.getInt("MAX(REQUEST_NO)"); 
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return selectRmRoomReqNoMax;
+	}
+
+	public int insertRmRoomThumbnailDAO(Connection con, int selectReqNoMax, AttachmentDTO tempFileInfo) {
+		
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertRmRoomThumbnail");
+		
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, tempFileInfo.getOriginName());
+			pstmt.setString(2, tempFileInfo.getSavedName());
+			pstmt.setString(3, tempFileInfo.getSavePath());
+			pstmt.setString(4, tempFileInfo.getFileType());
+			pstmt.setString(5, tempFileInfo.getThumbnailPath());
+			pstmt.setInt(6, selectReqNoMax);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public int insertRmRoomInfoDAO(Connection con, RoomDTO roomDTO) {
+
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertRmRoomInfo");
+		int result = 0;
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, roomDTO.getRoomNo());
+			pstmt.setInt(2, roomDTO.getAccomoNo());
+			pstmt.setString(3, roomDTO.getRoomName());
+			pstmt.setInt(4, roomDTO.getRoomMax());
+			pstmt.setString(5, roomDTO.getRoomIntro());
+			pstmt.setInt(6, roomDTO.getRoomFee());
+			pstmt.setInt(7, roomDTO.getPeakFee());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 }
+
+
+
+
+
+
+
+

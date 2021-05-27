@@ -1,4 +1,4 @@
-package com.bonggeuda.sugbag.owner.regist.controller;
+package com.bonggeuda.sugbag.owner.modify.controllor;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,28 +17,33 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
+import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
+import com.bonggeuda.sugbag.owner.modify.service.ModifyAccomoService;
+import com.bonggeuda.sugbag.owner.regist.service.AccomoService;
 import com.bonggeuda.sugbag.owner.regist.service.RoomService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
 /**
- * Servlet implementation class RegistrationAccomo4
+ * Servlet implementation class RoomModify
  */
-@WebServlet("/registration4")
-public class RegistrationAccomo4 extends HttpServlet {
+@WebServlet("/owner/modifyRoom")
+public class InsertRoomModify extends HttpServlet {
+
+       
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
 			
-			System.out.println("파일 저장 ROOT 경로 : " + rootLocation);
-			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
-			System.out.println("인코딩 방식 : " + encodingType);
+
 			
 			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
@@ -58,6 +62,9 @@ public class RegistrationAccomo4 extends HttpServlet {
 			 * 파일에 대한 정보는 리스트에, 다른 파라미터의 정보는 모두 맵에 담을 것이다.
 			 * */
 			Map<String, String> parameter = new HashMap<>();
+			
+			
+			
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
 			/* 파일을 업로드할 시 최대 크기나 임시 저장할 폴더의 경로 등을 포함하기 위한 인스턴스이다. */
@@ -96,10 +103,10 @@ public class RegistrationAccomo4 extends HttpServlet {
 							int dot = originFileName.lastIndexOf(".");
 							String ext = originFileName.substring(dot);
 							
-							String randomFileName = item.getName();//UUID.randomUUID().toString().replace("-", "") + ext;
+							String randomFileName = item.getName(); // UUID.randomUUID().toString().replace("-", "") + ext;
 							
 							/* 저장할 파일 정보를 담은 인스턴스를 생성하고 */
-							File storeFile = new File(fileUploadDirectory + "/" + randomFileName);
+							File storeFile = new File(fileUploadDirectory  +"/"+ randomFileName);
 							
 							/* 저장한다 */
 							item.write(storeFile);
@@ -115,16 +122,18 @@ public class RegistrationAccomo4 extends HttpServlet {
 							int width = 0;
 							int height = 0;
 							if("thumbnailImg1".equals(filedName)) {
-								fileMap.put("fileType", "TITLE");
+								fileMap.put("fileType", "BODY"); // 타이틀에서 보디로 변경
 								
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
+								System.out.println("보디로 왔나요?");
 							} else {
-								fileMap.put("fileType", "BODY");
-								
-								width = 120;
-								height = 100;
+								fileMap.put("fileType", "BODY"); // 타이틀에서 보디로 변경
+								System.out.println("엘스로 왔나요");
+								/* 썸네일로 변환 할 사이즈를 지정한다. */
+								width = 350;
+								height = 200;
 							}
 							
 							/* 썸네일로 변환 후 저장한다. */
@@ -148,179 +157,83 @@ public class RegistrationAccomo4 extends HttpServlet {
 						 * */
 //						parameter.put(item.getFieldName(), item.getString());
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+						//parameterValue.put("facility",new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
+						
 						
 					}
 				}
+							
 				
 				System.out.println("parameter : " + parameter);
+				//parameter.get(key)
 				System.out.println("fileList : " + fileList);
 				
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
-				RoomDTO thumbnail = new RoomDTO();
+				RmAccomoInfoDTO thumbnail = new RmAccomoInfoDTO();
 
-			//	thumbnail.setWriterMemberNo(((MemberDTO) request.getSession().getAttribute("loginMember")).getNo());// int ownerNo으로 대체
+				//List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
+				//RM_ROOM_INFO 의  REQUEST_NO 의 최댓값을 조회해서 어태치먼트에 인서트 해주자
 				
-				thumbnail.setAttachmentList(new ArrayList<AttachmentDTO>());
+				int selectReqNoMax = 0;
+				RoomService roomService = new RoomService();
+				selectReqNoMax = roomService.selectRmRoomReqNoMax();
+				System.out.println("조회해온 리퀘스트 넘 최댓값 : " + selectReqNoMax);
+				selectReqNoMax += 1;
 				
-				List<AttachmentDTO> list = thumbnail.getAttachmentList();
+				
+				
+				AttachmentDTO tempFileInfo = new AttachmentDTO();
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
+					tempFileInfo = new AttachmentDTO();
 					
-					AttachmentDTO tempFileInfo = new AttachmentDTO();
 					tempFileInfo.setOriginName(file.get("originFileName"));
 					tempFileInfo.setSavedName(file.get("savedFileName"));
 					tempFileInfo.setSavePath(file.get("savePath"));
 					tempFileInfo.setFileType(file.get("fileType"));
 					tempFileInfo.setThumbnailPath(file.get("thumbnailPath"));
 					
-					list.add(tempFileInfo);
+					System.out.println(tempFileInfo);
+					//list.add(tempFileInfo);
 				}
 				
 				System.out.println("thumbnail board : " + thumbnail);
 				
+				/* 서비스 메소드를 요청한다. */
+				int result = 0;
+				result = roomService.insertRmRoomThumbnail(tempFileInfo,selectReqNoMax);
 				
+				System.out.println("리젙트는?????  " + result);
+
+
+
+				/*RM_ROOM_INFO 에 인서트 */
+				RoomDTO roomDTO = new RoomDTO();
 				
-				/* 성공 실패 페이지를 구분하여 연결한다. */
-				String path = "";
+				roomDTO.setRoomNo(Integer.parseInt(parameter.get("roomNo")));
+				roomDTO.setAccomoNo(Integer.parseInt(parameter.get("accomoNo")));
+				roomDTO.setPeakFee(Integer.parseInt(parameter.get("peakFee")));
+				roomDTO.setRoomFee(Integer.parseInt(parameter.get("roomFee")));
+				roomDTO.setRoomIntro(parameter.get("roomIntro"));
+				roomDTO.setRoomMax(Integer.parseInt(parameter.get("roomMax")));
+				roomDTO.setRoomName(parameter.get("roomName"));
+				System.out.println(roomDTO);
+				/* DTO 값 RM_ROOM_INFO에 인서트*/
+				int finalResult = 0;
+				finalResult = roomService.insertRmRoomInfo(roomDTO);
+
+				if(result > 0 && finalResult > 0) {
 					
-					/* 값을 한번에 담아서 넘길 리스트 생성 */
-					ArrayList<RoomDTO> roomList = new ArrayList<RoomDTO>();
-					
-					/*객실추가 1*/
-//					String roomName = request.getParameter("roomName");
-//					int roomMax = Integer.parseInt(request.getParameter("roomMax"));
-//					//객실사진받아오기
-//					String roomIntro = request.getParameter("roomIntro");
-//					int roomFee = Integer.parseInt(request.getParameter("roomFee"));
-//					int peakFee = Integer.parseInt(request.getParameter("peakFee"));
-					
-					/*전달받은 값을 넣어줄 객체 선언*/
-					RoomDTO roomDTO = new RoomDTO();
-					
-					roomDTO.setRoomName(parameter.get("roomName"));
-					roomDTO.setRoomMax(Integer.parseInt(parameter.get("roomMax")));
-					roomDTO.setRoomIntro(parameter.get("roomIntro"));
-					roomDTO.setRoomFee(Integer.parseInt(parameter.get("roomFee")));
-					roomDTO.setPeakFee(Integer.parseInt(parameter.get("peakFee")));
-					
-					roomList.add(roomDTO);
-					
-					/*객실추가 2*/
-					if (!parameter.get("roomName2").isEmpty()) { //값이 입력되면 저장
-						
-//						String roomName2 = request.getParameter("roomName2");
-//						int roomMax2 = Integer.parseInt(request.getParameter("roomMax2"));
-//						//객실사진받아오기
-//						String roomIntro2 = request.getParameter("roomIntro2");
-//						int roomFee2 = Integer.parseInt(request.getParameter("roomFee2"));
-//						int peakFee2 = Integer.parseInt(request.getParameter("peakFee2"));
-						
-						RoomDTO roomDTO2 = new RoomDTO();
-						
-						roomDTO2.setRoomName(parameter.get("roomName2"));
-						roomDTO2.setRoomMax(Integer.parseInt(parameter.get("roomMax2")));
-						roomDTO2.setRoomIntro(parameter.get("roomIntro2"));
-						roomDTO2.setRoomFee(Integer.parseInt(parameter.get("roomFee2")));
-						roomDTO2.setPeakFee(Integer.parseInt(parameter.get("peakFee2")));
-						
-						roomList.add(roomDTO2);
-					}
-					
-					/*객실추가 3*/
-					if (!parameter.get("roomName3").isEmpty()) {
-						
-//						String roomName3 = request.getParameter("roomName3");
-//						int roomMax3 = Integer.parseInt(request.getParameter("roomMax3"));
-//						//객실사진받아오기
-//						String roomIntro3 = request.getParameter("roomIntro3");
-//						int roomFee3 = Integer.parseInt(request.getParameter("roomFee3"));
-//						int peakFee3 = Integer.parseInt(request.getParameter("peakFee3"));
-						
-						RoomDTO roomDTO3 = new RoomDTO();
-						
-						roomDTO3.setRoomName(parameter.get("roomName3"));
-						roomDTO3.setRoomMax(Integer.parseInt(parameter.get("roomMax3")));
-						roomDTO3.setRoomIntro(parameter.get("roomIntro3"));
-						roomDTO3.setRoomFee(Integer.parseInt(parameter.get("roomFee3")));
-						roomDTO3.setPeakFee(Integer.parseInt(parameter.get("peakFee3")));
-						
-						roomList.add(roomDTO3);
-					}
-					
-					/*객실추가 4*/
-					if (!parameter.get("roomName4").isEmpty()) {
-						
-//						String roomName4 = request.getParameter("roomName4");
-//						int roomMax4 = Integer.parseInt(request.getParameter("roomMax4"));
-//						//객실사진받아오기
-//						String roomIntro4 = request.getParameter("roomIntro4");
-//						int roomFee4 = Integer.parseInt(request.getParameter("roomFee4"));
-//						int peakFee4 = Integer.parseInt(request.getParameter("peakFee4"));
-						
-						RoomDTO roomDTO4 = new RoomDTO();
-						
-						roomDTO4.setRoomName(parameter.get("roomName4"));
-						roomDTO4.setRoomMax(Integer.parseInt(parameter.get("roomMax4")));
-						roomDTO4.setRoomIntro(parameter.get("roomIntro4"));
-						roomDTO4.setRoomFee(Integer.parseInt(parameter.get("roomFee4")));
-						roomDTO4.setPeakFee(Integer.parseInt(parameter.get("peakFee4")));
-						
-						roomList.add(roomDTO4);
-					}
-					
-					/*객실추가 5*/
-					if (!parameter.get("roomName5").isEmpty()) {
-						
-//						String roomName5 = request.getParameter("roomName5");
-//						int roomMax5 = Integer.parseInt(request.getParameter("roomMax5"));
-//						//객실사진받아오기
-//						String roomIntro5 = request.getParameter("roomIntro5");
-//						int roomFee5 = Integer.parseInt(request.getParameter("roomFee5"));
-//						int peakFee5 = Integer.parseInt(request.getParameter("peakFee5"));
-						
-						RoomDTO roomDTO5 = new RoomDTO();
-						
-						roomDTO5.setRoomName(parameter.get("roomName5"));
-						roomDTO5.setRoomMax(Integer.parseInt(parameter.get("roomMax5")));
-						roomDTO5.setRoomIntro(parameter.get("roomIntro5"));
-						roomDTO5.setRoomFee(Integer.parseInt(parameter.get("roomFee5")));
-						roomDTO5.setPeakFee(Integer.parseInt(parameter.get("peakFee5")));
-						
-						roomList.add(roomDTO5);
-					}
-					
-					System.out.println("리스트 값 저장 확인 : " + roomList);
-					// 방금 인서트 된 숙소 EN_ACCOMO_NO 값 조회해 오기
-					RoomService roomServaice = new RoomService();
-					// 객실 인서트(사진아님) 할때 넘겨줄 값
-					
-					
-					
-					/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-					 * 사진 여기서 인서트 */
-					/* 서비스 메소드를 요청한다. */
-					int result = new RoomService().insertThumbnail(thumbnail,roomList);
-					
-					
-					/*값을 전달하기 위한 비지니스 로직 호출*/
-					RoomService roomService = new RoomService();
-					
-					/*결과값 반환*/
-					//int insertRoom = roomService.InsertRoomServlet(roomList,enAccoMoNoMax); //값을 int형으로 반환받아야 함
-					
-					//request.setAttribute("successCode", "insertThumbnail");
-					/*메인페이지로 이동*/
-					
-					path = "/WEB-INF/views/owner/main/main.jsp";
-					
+					String path="";
+
+					path = "/WEB-INF/views/owner/roomModify/roomListSuccess.jsp";
 					request.getRequestDispatcher(path).forward(request, response);
-					
-					
-				
+				}
 				
 				
 			} catch (Exception e) {
 				//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.
+				e.printStackTrace();
 				int cnt = 0;
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
@@ -343,6 +256,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 
 		}
 
+		
 	}
 
 }

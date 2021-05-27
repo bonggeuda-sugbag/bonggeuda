@@ -90,4 +90,68 @@ public class RoomService {
 		return selectenAccoMoNoMax;
 	}
 
+
+
+
+	public int selectRmRoomReqNoMax() {
+		Connection con = getConnection();
+
+		int selectRmRoomReqNoMax = 0;
+		
+		selectRmRoomReqNoMax = roomDAO.selectRmRoomReqNoMaxDAO(con);
+		
+		return selectRmRoomReqNoMax;
+	}
+
+
+
+
+	/**
+	 * 객실 수정시 어테치 먼트 인서트 메소드
+	 * @param tempFileInfo
+	 * @param selectReqNoMax
+	 * @return
+	 */
+	public int insertRmRoomThumbnail(AttachmentDTO tempFileInfo, int selectReqNoMax) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = roomDAO.insertRmRoomThumbnailDAO(con,selectReqNoMax,tempFileInfo);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		
+		return result;
+	}
+
+
+
+
+	/**
+	 * 객실 수정정보 RM_ROOM_INFO 에 인서트
+	 * @param roomDTO
+	 * @return
+	 */
+	public int insertRmRoomInfo(RoomDTO roomDTO) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = roomDAO.insertRmRoomInfoDAO(con, roomDTO);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
 }

@@ -117,7 +117,7 @@ public class ModifyAccomo2 extends HttpServlet {
 							int dot = originFileName.lastIndexOf(".");
 							String ext = originFileName.substring(dot);
 							
-							String randomFileName = UUID.randomUUID().toString().replace("-", "") + ext;
+							String randomFileName = item.getName();//UUID.randomUUID().toString().replace("-", "") + ext;
 							
 							/* 저장할 파일 정보를 담은 인스턴스를 생성하고 */
 							File storeFile = new File(fileUploadDirectory  +"/"+ randomFileName);
@@ -155,7 +155,8 @@ public class ModifyAccomo2 extends HttpServlet {
 									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);
 							
 							/* 나중에 웹서버에서 접근 가능한 경로 형태로 썸네일의 저장 경로도 함께 저장한다. */
-							fileMap.put("thumbnailPath", "resources/upload/thumbnail/thumbnail_" + randomFileName);
+							//fileMap.put("thumbnailPath", "resources/upload/thumbnail/thumbnail_" + randomFileName);
+							fileMap.put("thumbnailPath", "resources/upload/" + randomFileName);
 							
 							fileList.add(fileMap);
 							
