@@ -78,12 +78,55 @@
 	  FROM RM_ACCOMO_INFO
 	</entry>
 	
-		<entry key="maxRmRoomNoNext">
+	<entry key="maxRmRoomNoNext">
     SELECT
 	       MAX(REQUEST_NO)
 	  FROM RM_ROOM_INFO
 	</entry>
 	
 
+	<entry key="selectRmRoomReqNoMax">
+	    SELECT
+	           MAX(REQUEST_NO)
+	      FROM RM_ROOM_INFO
+	
+	</entry>
+	
+	<entry key="insertRmRoomThumbnail">
+	    INSERT
+          INTO ATTACHMENT
+        VALUES
+        (
+         SEQ_ATTACHMENT_NO.NEXTVAL
+        , 2
+        , ? /*오리진*/
+        , ? /*세이브 네임*/
+        , ? /* 세이브 패스*/
+        , ? /* 파일 타입*/
+        , ? /* 떰브네일패스*/
+        , 'Y'
+        , ? /* 조회해온 리퀘스트 넘값 +1*/
+        )
+	</entry>
+	
+	<entry key="insertRmRoomInfo">
+	    INSERT
+	      INTO RM_ROOM_INFO
+	    VALUES
+	    (
+	      SEQ_ROOM_REQUEST_NO.NEXTVAL
+	    , ?
+	    , ?
+	    , ?
+	    , ?
+	    , ?
+	    , ?
+	    , 'Y'
+	    , 'RM'
+	    , NULL
+	    , 'N'
+	    , ?
+	    )
+	</entry>
 	
 </properties>

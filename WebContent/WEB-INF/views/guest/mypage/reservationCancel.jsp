@@ -147,8 +147,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td>환불금액</td>
 						<td style="color:red;"><c:out value="${ requestScope.userBookCancle.refundAmount }"/>원</td>
 						<input type="hidden" value="${ requestScope.userBookCancle.refundAmount }" name="refundAmount">
+						<input type="hidden" value="${ requestScope.userBookCancle.paymentAmount }" name="paymentAmount">
+						<input type="hidden" value="${ requestScope.userBookCancle.accomoNo }" name="accomoNo">
+						<input type="hidden" value="${ requestScope.userBookCancle.roomNo }" name="roomNo">
+						<input type="hidden" value="${ requestScope.userBookCancle.paymentTime }" name="paymentTime">
 						<input type="hidden" value="${ requestScope.userBookCancle.paymentNo }" name="paymentNo">						
 						<input type="hidden" value="${ requestScope.userBookCancle.bookNo }" name="bookNo">						
+						<input type="hidden" value="${ requestScope.userBookCancle.cancleFee }" name="cancleFee">						
 					</tr>
 					<tr>
 						<td>환불수단</td>

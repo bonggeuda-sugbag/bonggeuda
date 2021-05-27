@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+	<entry key="selectEncryptedPwd">
+        SELECT
+               USER_PWD
+          FROM USER_INFO
+         WHERE USER_WITHDRAW_YN = 'N'
+           AND USER_ID = ?
+	</entry>
+
 	<entry key="userLoginCheck">
 		SELECT *
 		  FROM USER_INFO
 		 WHERE USER_ID = ?
-		   AND USER_PWD =?
 		   AND USER_WITHDRAW_YN = 'N'
 		   
 	</entry>
@@ -21,16 +28,42 @@
 	<entry key="signUpRegist">
 		INSERT
 		  INTO USER_INFO
-		VALUES ( USER_NO
-               , USER_ID
-               , USER_PWD
-               , USER_PHONE
-               , REPORT_COUNT
-               , USER_NICKNAME
-               , USER_WITHDRAW_YN
-               , USER_ROLE
-SIGNDATE
-WITHDRAWDATE
+		     ( USER_NO
+             , USER_ID
+             , USER_PWD
+             , USER_PHONE
+             , REPORT_COUNT
+             , USER_NICKNAME
+             , USER_WITHDRAW_YN
+             , USER_ROLE
+             , SIGNDATE
+             , WITHDRAWDATE
 		       )
+		VALUES ( SEQ_USER_INFO.NEXTVAL
+		       , ?
+		       , ?
+		       , ?
+		       , DEFAULT
+		       , ?
+		       , DEFAULT
+		       , DEFAULT
+		       , SYSDATE
+		       , NULL
+		       )
+	</entry>
+	
+	<entry key="pointInsert">
+		INSERT
+		  INTO POINT
+		     ( POINT_NO
+		     , USER_NO
+		     , POINT
+		     )
+		VALUES
+		     ( SQU_POINT.NEXTVAL
+		     , SEQ_USER_INFO.CURRVAL
+		     , DEFAULT
+		     )
+		  
 	</entry>
 </properties>

@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<br>
 					<button style="margin-right: 15px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('1');">사용자 로그인</button>
 					<button style="margin-right: 15px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('2');">업체 로그인</button>
-					<button style="margin-right: 15px; width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/usersignup/insert';">사용자 회원가입</button>
+					<button style="margin-right: 15px; width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/check/regist';">사용자 회원가입</button>
 					<button style="width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='';">업체 회원가입</button>
 
 					<br>
@@ -241,13 +241,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				var button = document.loginForm;
 				
 				if(d == 1) {
-					button.action = "${ pageContext.servletContext.contextPath }/user/login/check";
+					button.action = "${ pageContext.servletContext.contextPath }/login/check/user";
 					button.submit();
 				} else if(d == 2) {
-					button.action = "${ pageContext.servletContext.contextPath }/owner/login/check";
+					button.action = "${ pageContext.servletContext.contextPath }/login/check/owner";
 					button.submit();
 				} else if(d == 3) {
-					button.action = "${pageContext.servletContext.contextPath }/admin/login/check";
+					button.action = "${pageContext.servletContext.contextPath }/login/check/admin";
 					button.submit();
 				}
 				

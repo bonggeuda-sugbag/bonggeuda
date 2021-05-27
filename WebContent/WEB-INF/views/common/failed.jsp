@@ -21,7 +21,7 @@
 				break;
 			case "failInsertUser" : 
 				failMessage = "회원가입 중 오류가 발생하였습니다. 다시 시도해주세요.";
-				movePath = "${ pageContext.servletContext.contextPath }/usersignup/insert";
+				movePath = "${ pageContext.servletContext.contextPath }/login/check/regist";
 				break;
 		}
 
