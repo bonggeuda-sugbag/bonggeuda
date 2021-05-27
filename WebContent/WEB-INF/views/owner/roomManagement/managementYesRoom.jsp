@@ -62,7 +62,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -108,23 +108,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <th>숙소 설정</th>
    </thead>
    <tbody>
-      <c:forEach var="accomoList" items="${ requestScope.RmAccmoInfoDTOList }">
+      <c:forEach var="accomoList" items="${ requestScope.approveAccomoList }">
       <tr class="room1">
          <th style="background-color: white;">
-         <c:choose>
-         
-         <c:when test="${ accomoList.rmType eq 'EN'}">
-         
-            <img src="${pageContext.servletContext.contextPath }/${ accomoList.thumbNailPath }" style="width: 370px; height: 250px;">
-         </c:when>
-         <c:when test="${ accomoList.rmType eq 'RM'}">
-         <!-- RM 일때는 CATEGORY_NO = 1 인 사진 조회해 와야댐.-->
-            <img src="${pageContext.servletContext.contextPath }/${ requestScope.rmImagePathSelect }" style="width: 370px; height: 250px;">
-         </c:when>
 
-         
-         </c:choose>
-         
+            <img src="${pageContext.servletContext.contextPath }/${ accomoList.imagePath }" style="width: 360px; height: 230px;">
+ 
 
          </th>
          <td class="roomList">
@@ -133,30 +122,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <br>
       
             <div>
-      <c:choose>
-         
-         <c:when test="${ accomoList.approvalYN eq 'N'}">
-              	 숙소 등록 승인 대기중 
-         </c:when>
-         <c:when test="${ accomoList.approvalYN eq 'Y'}"> 
+
        <!-- rm 히스토리의 approveStatus가 Y인 애들은 등록 됐다는 거지 -->
             <form action="/bonggeuda/owner/accomoModify" method="post">
                <button  class="submit-btn" type="submit">
-               <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.enAccomoNO }"/>">
+               <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+               
                 숙소 수정
             </form>
+            
             <form action="/bonggeuda/owner/roomModify" method="post">
                <button  class="submit-btn" type="submit">
-               <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ accomoList.rmAccomoNo }"/>">
+               <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
                 객실 수정
             </form>
-         </c:when>
-         <c:when test="${ accomoList.approvalStatus eq 'C'}"> 
-       <!-- rm 히스토리의 approveStatus가 Y인 애들은 등록 됐다는 거지 -->
-   				숙소 승인 거절됨
-            </form>
-         </c:when>
-         </c:choose>
+
          
 
             </div>
@@ -170,25 +150,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </ul>
             <button class="roomModifyBtn" onClick="location.href='managementToReview.html'">  리뷰 보러가기</button>
          </td>
-         <td class="roomCondition">
-         <c:choose>
-         
-         <c:when test="${ accomoList.approvalYN eq 'Y'}">
-        	 관리자 승인 완료
-         </c:when>
-         <c:when test="${ accomoList.approvalYN eq 'N'}">
-         	숙소 검수 중
-         </c:when>
-         <c:when test="${ accomoList.approvalYN eq 'C'}">
-                     <br>
-            <p style="color: red; font-size: 20px">숙소 등록 거절</p>
-            <br>
-            
-            <button type="submit" class="submit-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
-         </c:when>
+         <td class="roomCondition"  style="color: green; font-size: 24px; ">
+         <br>
+ 			<p>
+        	 관리자 <br>승인 완료
+ 			</p>
 
-         
-         </c:choose>
+                     <br>
+<!--             <p style="color: red; font-size: 20px">숙소 등록 거절</p>
+            <br> -->
+            
+<!--             <button type="submit" class="submit-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
+ -->       
          </td>
          <td>
             <br>
@@ -199,6 +172,123 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <button class="roomModifyBtnPublic" id="roomDisable" onclick="roomAble()" disabled="disabled" style="background-color: lightgray;">숙소 공개</button>
             <button class="roomModifyBtnPrivate" id="roomDisable" onclick="roomDisable()" style="background-color: lightgreen;">숙소 비공개</button>
             
+
+
+         </td>
+      </tr>
+   </c:forEach>
+   </tbody>
+   
+</table>
+
+<br><br>
+
+<table class="table-bordered table" id="registTb" style="width: 65%;" >
+승인 대기중인 숙소들
+   <thead>
+      <th>숙소 대표이미지</th>
+      <th>숙소 정보</th>
+      <th>숙소 평점 및 리뷰</th>
+      <th>숙소 상태</th>
+      <th>숙소 설정</th>
+   </thead>
+   <tbody>
+      <c:forEach var="accomoList" items="${ requestScope.applyEnrollAccomoList }">
+      <tr class="room1">
+         <th style="background-color: white;">
+
+            <img src="${pageContext.servletContext.contextPath }/${ accomoList.thumbNailPath }" style="width: 360px; height: 230px;">
+ 
+
+         </th>
+         <td class="roomList">
+            <p class="roomName"><c:out value="${ accomoList.accomoName }"/></p>
+            <p class="roomForm"><c:out value="${ accomoList.accomoType }"/></p>
+            <br>
+      
+            <div>
+
+				숙소 승인 대기중
+
+
+            </div>
+
+         </td>
+         <td class=""style="width: 270px;">
+			승인 대기중 입니다.
+         </td>
+         <td class="roomCondition" style="color: black; font-size: 20px; ">
+ 			<br>
+        	 승인<br>
+        	  대기중입니다
+
+                     <br>   
+         </td>
+         <td>
+            <br>
+            <button class="roomModifyBtn" onclick="roomRemove()" style="background-color: orangered;">숙소 삭제</button>
+            <br>
+            <br>
+            
+
+
+         </td>
+      </tr>
+   </c:forEach>
+   </tbody>
+</table>
+
+<br><br><br>
+
+<table class="table-bordered table" id="registTb" style="width: 65%;" >
+승인 거절된 숙소들
+   <thead>
+      <th>숙소 대표이미지</th>
+      <th>숙소 정보</th>
+      <th>숙소 평점 및 리뷰</th>
+      <th>숙소 상태</th>
+      <th>숙소 설정</th>
+   </thead>
+   <tbody>
+      <c:forEach var="accomoList" items="${ requestScope.rejectAccomoList }">
+      <tr class="room1">
+         <th style="background-color: white;">
+
+            <img src="${pageContext.servletContext.contextPath }/${ accomoList.thumbNailPath }" style="width: 360px; height: 230px;">
+ 
+
+         </th>
+         <td class="roomList">
+            <p class="roomName"><c:out value="${ accomoList.accomoName }"/></p>
+            <p class="roomForm"><c:out value="${ accomoList.accomoType }"/></p>
+            <br>
+      
+            <div>
+
+				숙소 거절
+
+         
+
+            </div>
+
+         </td>
+         <td class="" >
+         </td>
+         <td class="roomCondition">
+ 
+
+                     <br>
+             <p style="color: red; font-size: 20px">숙소 등록 거절</p>
+            <br> 
+            
+             <button type="submit" class="submit-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
+      
+         </td>
+         <td>
+            <br>
+            <button class="roomModifyBtn" onclick="roomRemove()" style="background-color: orangered;">숙소 삭제</button>
+            <br>
+            <br>
 
 
          </td>

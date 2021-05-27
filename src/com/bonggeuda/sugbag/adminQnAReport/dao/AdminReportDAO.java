@@ -286,4 +286,9 @@ public class AdminReportDAO {
 		return reportThumnailInfo;
 	}
 
+	public void updateUserCount(Connection con, ReportHistoryDTO dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

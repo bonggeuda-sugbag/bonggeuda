@@ -6,6 +6,7 @@ import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.getConnection;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
@@ -70,6 +71,46 @@ public class ManagementRoomService {
 		}
 		
 		return insertResult;
+	}
+
+
+	   public List<AccomoDTO> selectApproveAccomoService(int ownerNo) {
+		      
+		      Connection con = getConnection();
+		            
+		      List<AccomoDTO> accomoList = new ArrayList<AccomoDTO>();
+		      accomoList = roomDAO.selectApproveAccomoDAO(ownerNo, con);
+		      
+		      close(con);
+		      
+		      return accomoList;
+		   }
+
+
+	   public List<RmAccomoInfoDTO> selectApplyEnrollAccomoList(int ownerNo) {
+		      
+		      Connection con = getConnection();
+		      
+		      List<RmAccomoInfoDTO> accomoList = new ArrayList<RmAccomoInfoDTO>();
+		      accomoList = roomDAO.selectApplyEnrollAccomoListDAO(ownerNo, con);
+		      
+		      close(con);
+		      
+		      
+		      return accomoList;
+		      
+		   }
+
+
+	public List<RmAccomoInfoDTO> selectApplyRejectAccomoList(int ownerNo) {
+		
+	      Connection con = getConnection();
+	      
+	      List<RmAccomoInfoDTO> accomoList = new ArrayList<RmAccomoInfoDTO>();
+	      accomoList = roomDAO.selectApplyRejectAccomoListDAO(ownerNo,con);
+	      
+	      close(con);
+		return accomoList;
 	}
 
 

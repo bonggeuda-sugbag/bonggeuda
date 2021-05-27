@@ -170,10 +170,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<br><br>
 				
 				<!-- 관리자 로그인 -->
+
+
+
+
 				<div class="adminlogin-icons" style= "width: 100%;">
 					<button style="width: 100px; height: 30px; float:right" class="btns-wrap__submit-btn" type="button" onclick="login('3');">관리자 모드</button>
 				</div>
 			</form>
+
 				    
     
 		<script type="text/javascript">
@@ -242,7 +247,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					button.action = "${ pageContext.servletContext.contextPath }/owner/login/check";
 					button.submit();
 				} else if(d == 3) {
-					button.action = "${ pageContext.servletContext.contextPath }/admin/login/check";
+					button.action = "${pageContext.servletContext.contextPath }/user/list";
 					button.submit();
 				}
 				

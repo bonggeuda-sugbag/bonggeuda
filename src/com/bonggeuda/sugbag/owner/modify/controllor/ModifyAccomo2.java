@@ -218,7 +218,7 @@ public class ModifyAccomo2 extends HttpServlet {
 				System.out.println("리젙트는?????????? " + result);
 				// 값 받기
 				
-				rmAcoomoDTO.setAccomoNo(Integer.parseInt(parameter.get("rmAccomoNo")));
+				rmAcoomoDTO.setRmAccomoNo(Integer.parseInt(parameter.get("rmAccomoNo")));
 				rmAcoomoDTO.setAccomoName(parameter.get("accomoName"));
 				rmAcoomoDTO.setCeoName(parameter.get("ceoName"));
 				rmAcoomoDTO.setAccomoType(parameter.get("accomoType"));

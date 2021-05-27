@@ -178,15 +178,9 @@ public class RegistrationAccomo4 extends HttpServlet {
 				System.out.println("thumbnail board : " + thumbnail);
 				
 				
-				// 방금 인서트 된 숙소 EN_ACCOMO_NO 값 조회해 오기
-				RoomService roomServaice = new RoomService();
-				int enAccoMoNoMax = roomServaice.selectenAccoMoNoMax();
-				/* 서비스 메소드를 요청한다. */
-				int result = new RoomService().insertThumbnail(thumbnail);
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				String path = "";
-				if(result > 0) {
 					
 					/* 값을 한번에 담아서 넘길 리스트 생성 */
 					ArrayList<RoomDTO> roomList = new ArrayList<RoomDTO>();
@@ -295,12 +289,23 @@ public class RegistrationAccomo4 extends HttpServlet {
 					}
 					
 					System.out.println("리스트 값 저장 확인 : " + roomList);
+					// 방금 인서트 된 숙소 EN_ACCOMO_NO 값 조회해 오기
+					RoomService roomServaice = new RoomService();
+					// 객실 인서트(사진아님) 할때 넘겨줄 값
+					
+					
+					
+					/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+					 * 사진 여기서 인서트 */
+					/* 서비스 메소드를 요청한다. */
+					int result = new RoomService().insertThumbnail(thumbnail,roomList);
+					
 					
 					/*값을 전달하기 위한 비지니스 로직 호출*/
 					RoomService roomService = new RoomService();
 					
 					/*결과값 반환*/
-					int insertRoom = roomService.InsertRoomServlet(roomList,enAccoMoNoMax); //값을 int형으로 반환받아야 함
+					//int insertRoom = roomService.InsertRoomServlet(roomList,enAccoMoNoMax); //값을 int형으로 반환받아야 함
 					
 					//request.setAttribute("successCode", "insertThumbnail");
 					/*메인페이지로 이동*/
@@ -310,12 +315,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 					request.getRequestDispatcher(path).forward(request, response);
 					
 					
-				} else {
-					System.out.println("인서트 실패!");
-					path = "/WEB-INF/views/owner/mypage/mypage.jsp";
-					
-					request.getRequestDispatcher(path).forward(request, response);
-				}
+				
 				
 				
 			} catch (Exception e) {

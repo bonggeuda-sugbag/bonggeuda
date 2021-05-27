@@ -49,6 +49,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	th a:hover{
 		color: #6eceda !important;
 	}
+	.list-btn{
+		background:white;
+		border:0;
+		outline:0;
+	}
+	
  </style>
 </head>
 <body>
@@ -68,7 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -145,36 +151,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<th><b>시작 날짜</b></th>
 						<th><b>종료 날짜</b></th>
 						<th><b>예약확인</b></th>
-						<th><b>이용상태</b></th>
-						
+						<!-- <th><b>이용상태</b></th> -->
 				    </tr>
 				</thead>
 				<tbody>
 				<c:forEach var="board" items="${ requestScope.bookList }">
+ 				<form action="/bonggeuda/owner/bookingList" method="post">
+				<input type="hidden" name="bookNo" value="${board.bookNo}">
 				   	<tr>				   	
-						<th>${ board.rowNum }</th>
-						<th><c:out value="${ board.accomoName }"/></th>
- 						<th>
- 						<form action="/bonggeuda/owner/bookingList" method="post"><button type="submit" class="submit-btn"><c:out value="${ board.roomName }"/> </button>
-						<input type="hidden" name="bookNo" value="${board.bookNo}">
-						
-						</th>
- 						</form>
- 						</th>
-						<th><c:out value="${ board.bookUserName }"/></th>
-						<th><c:out value="${ board.userPhone }"/></th> 
-						<th><c:out value="${ board.bookPersonnel }"/></th> 
-						<th><c:out value="${ board.bookCheckDate }"/></th>
-						<th><c:out value="${ board.bookCheckoutDate }"/></th>
-						<th>승인 대기</th>  
-						<th>
+						<th><button type="submit" class="list-btn">${ board.rowNum }</button></th>
+						<th><button type="submit" class="list-btn"><c:out value="${ board.accomoName }"/></button></th>
+ 						<th><button type="submit" class="list-btn"><c:out value="${ board.roomName }"/></button></th>
+						<th><button type="submit" class="list-btn"><c:out value="${ board.bookUserName }"/></button></th>
+						<th><button type="submit" class="list-btn"><c:out value="${ board.userPhone }"/></button></th> 
+						<th><button type="submit" class="list-btn"><c:out value="${ board.bookPersonnel }"/></button></th> 
+						<th><button type="submit" class="list-btn"><c:out value="${ board.bookCheckDate }"/></button></th>
+						<th><button type="submit" class="list-btn"><c:out value="${ board.bookCheckoutDate }"/></button></th>
+						<th><button type="submit" class="list-btn">대기중</th>  
+						<%-- <th>
 						<c:choose>
 							<c:when test="${ board.bookStatusYNC eq 'Y'}">
-							 결제 완료
+							<button type="submit" class="list-btn">결제 완료</button>
 							</c:when>
 						</c:choose>
-						</th>
+						</th> --%>
 					</tr>   
+					</form>
 				</c:forEach>
 				</tbody>
 			 </table>

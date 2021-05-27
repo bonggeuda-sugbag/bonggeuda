@@ -7,6 +7,7 @@ import java.util.List;
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.NoticeDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.ReportDTO;
 import com.bonggeuda.sugbag.model.dto.RequestTaxBillDTO;
 import com.bonggeuda.sugbag.model.dto.SettlementDTO;
@@ -36,13 +37,12 @@ public class OwnerMypagService {
 		return selectOwner;
 	}
 
-	public List<ReportDTO> seletReportList(int ownerNo) {
+	public List<ReportDTO> selectReportList(PageInfoDTO pageInfo) {
 
 		Connection con = getConnection();
 		
-		List<ReportDTO> selectReportList = ownerDAO.selectReportList(con,ownerNo);
+		List<ReportDTO> selectReportList = ownerDAO.selectReportList(con, pageInfo);
 
-		
 		close(con);
 		
 		return selectReportList;
@@ -82,24 +82,19 @@ public class OwnerMypagService {
 			rollback(con);
 		}
 		
-		
 		close(con);
 
-		
 		return ownerWithdrawUpdate;
 	}
 
-	public List<RequestTaxBillDTO> selectTaxBillList(int ownerNo) {
+	public List<RequestTaxBillDTO> selectTaxBillList(PageInfoDTO pageInfo) {
 		
 		Connection con = getConnection();
 
-		List<RequestTaxBillDTO> selectTaxBillList = ownerDAO.selectTaxBillListDAO(con,ownerNo);
+		List<RequestTaxBillDTO> selectTaxBillList = ownerDAO.selectTaxBillListDAO(con,pageInfo);
 		
 		close(con);
-		
-		
-		
-		
+
 		return selectTaxBillList;
 	}
 
@@ -109,6 +104,7 @@ public class OwnerMypagService {
 
 		int insertRequestTaxBill = ownerDAO.insertRequestTaxBillDAO(con,ownerNo, startDate, endDate, accomoNo );
 		System.out.println("insertRequestTaxBill" + insertRequestTaxBill);
+		
 		if(insertRequestTaxBill > 0) {
 			commit(con);
 		}else {
@@ -128,7 +124,6 @@ public class OwnerMypagService {
 		
 		close(con);
 		
-		
 		return selectAccomoNames;
 	}
 
@@ -143,16 +138,104 @@ public class OwnerMypagService {
 		return selectAccomoNo;
 	}
 
-	public List<SettlementDTO> selectStl() {
-		
+	public List<SettlementDTO> selectStl(PageInfoDTO pageInfo) {
 	
 		Connection con = getConnection();
 		
-		List<SettlementDTO> selectStl = ownerDAO.selectStl(con);
+		List<SettlementDTO> selectStl = ownerDAO.selectStl(con, pageInfo);
 		
 		close(con);
 
 		return selectStl;
+	}
+
+	public String selectImagePath(int reportNo) {
+		
+		Connection con = getConnection();
+		String selectImagePath = ownerDAO.selectImagePathDAO(con,reportNo);
+		
+		close(con);
+		
+		
+		return selectImagePath;
+	}
+	
+	public List<AccomoDTO> selectAccomo() {
+
+		Connection con = getConnection();
+		
+		List<AccomoDTO> selectAccomo = ownerDAO.selectAccomo(con);
+		
+		close(con);
+		
+		return selectAccomo;
+	}
+
+	public int insertStl(int accomoNo) {
+		
+		Connection con = getConnection();
+		
+		int insertStl = ownerDAO.insertStl(con, accomoNo);
+		
+		if(insertStl > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return insertStl;
+	}
+	
+	//신고
+	public int selectTotalCount() {
+
+		Connection con = getConnection();
+		
+		int totalCount = ownerDAO.selectTotalCount(con);
+		
+		if(totalCount > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return totalCount;
+	}
+	
+	//정산신청
+	public int selectStlTotalCount() {
+
+		Connection con = getConnection();
+		
+		int stlTotalCount = ownerDAO.selectStlTotalCount(con);
+		
+		if(stlTotalCount > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return stlTotalCount;
+	}
+
+	//세금계산서 신청
+	public int taxTotalCount() {
+	
+		Connection con = getConnection();
+		
+		int taxTotalCount = ownerDAO.taxTotalCount(con);
+		
+		if(taxTotalCount > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return taxTotalCount;
 	}
 
 }

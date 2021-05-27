@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -9,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다 숙박숙박 :: 신고하기</title>
+<title>봉그다 숙박숙박 :: 신고</title>
 
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
@@ -49,7 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -62,7 +63,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <br><br>
 <!-- 문의작성 -->
-<form action="/bonggeuda/owner/reportWrite" method="get">
+<form action="/bonggeuda/owner/reportWrite" method="post" encType="multipart/form-data">
 <input type="hidden" name="userNo" value="${ requestScope.forReort.userNo}">
 <input type="hidden" name="ownerNo" value="${ requestScope.forReort.ownerNo}">
 <div class="box">
@@ -70,9 +71,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="writeNameBox">
 			<div class="writeNameBoxContent">
 				<p style="text-align: center; font-weight: bold;">제목 
-					<input type="text" class="titleInput" placeholder="제목을 입력하세요." name="reportTitle" required>
+					<input type="text" class="titleInput" placeholder="제목을 입력하세요." name="reportTitle" required="required">
 					
-					<button type="file" onclick="notice();" >사진 첨부</button>
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)"   style=" display: inline-flex;">
 				</p>
 			</div>
 		</div>

@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bonggeuda.adminEvent.dto.EventDTO;
-import com.bonggeuda.sugbag.adminNotice.dto.AdminNoticeDTO;
 import com.bonggeuda.sugbag.common.config.ConfigLocation;
+import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 
 public class AdminEventDAO {
@@ -98,6 +98,127 @@ public class AdminEventDAO {
 		
 //		System.out.println(totalCount);
 		return eventCount;
+	}
+
+	public EventDTO selectEventDetail(Connection con, int eventNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectEventDetail");
+		
+		EventDTO eventDetailInfo = new EventDTO();
+		
+		try {
+		
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, eventNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				eventDetailInfo.setTitle(rset.getString("EVENT_TITLE"));
+				eventDetailInfo.setStartDate(rset.getDate("EVENT_START"));
+				eventDetailInfo.setEndDate(rset.getDate("EVENT_END"));
+		
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return eventDetailInfo;
+	}
+
+	public List<EventDTO> selectEventThumnail(Connection con, int eventNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectEventThumnail");
+		
+		List<EventDTO> eventThumnailInfo = null;
+	
+		
+		try {
+		
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, eventNo);
+			
+			rset = pstmt.executeQuery();
+			eventThumnailInfo = new ArrayList<>();
+			
+			while(rset.next()) {
+
+				EventDTO thumnailInfo = new EventDTO();
+				
+				thumnailInfo.setThumnailPath(rset.getString("THUMBNAIL_PATH"));
+				
+				eventThumnailInfo.add(thumnailInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println("DAO : "  + eventThumnailInfo);
+		return eventThumnailInfo;
+	}
+
+	public int insertEvent(Connection con, EventDTO eventInfo) {
+
+		System.out.println("dao들어와라ㅏㅅ");
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("insertEvent");
+		
+		try {
+			pstmt= con.prepareStatement(query);
+			
+			pstmt.setString(1, eventInfo.getTitle());
+			pstmt.setDate(2, eventInfo.getStartDate());
+			pstmt.setDate(3, eventInfo.getEndDate());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertAttachment(Connection con, AttachmentDTO attachmentDTO) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertEventAttachment");
+		try {
+			System.out.println(query);
+			pstmt = con.prepareStatement(query);
+			System.out.println(attachmentDTO);
+			pstmt.setInt(1, attachmentDTO.getCategoryNo());
+			pstmt.setString(2, attachmentDTO.getOriginName());
+			pstmt.setString(3, attachmentDTO.getSavedName());
+			pstmt.setString(4, attachmentDTO.getSavePath());
+			pstmt.setString(5, attachmentDTO.getFileType());
+			pstmt.setString(6, attachmentDTO.getThumbnailPath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

@@ -44,8 +44,8 @@
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
-				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -242,11 +242,11 @@
          <td>
             <div class="basic" >
                   <span class="form-title" style="display:inline-block";>객실명</span>
-                  <input class="select-nomalsize" type="text" name="roomName" placeholder="이름을 입력하세요." value="">
+                  <input class="select-nomalsize" type="text" name="roomName" placeholder="이름을 입력하세요." value="" required="required">
                </div>
                   <span class="form-title" style="display:inline-block";>최대 정원</span>
                   <span>
-                     <select name="roomMax" class="select-nomalsize">
+                     <select name="roomMax" class="select-nomalsize" >
                         <option value="1">1명</option>
                         <option value="2" selected>2명</option>
                         <option value="3">3명</option>
@@ -276,7 +276,7 @@
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
                   <span class="form-title" style="display:inline-block";>    </span>
                   <br>
-					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)" required="required">
                </div>
             </td>   
          </tr>
@@ -286,7 +286,7 @@
             </th>
             <td>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="8" name="roomIntro" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요."></textarea>
+                  <textarea class="form-control textarea-layer" rows="8" name="roomIntro" placeholder="객실 내 침대 구성과, 전용 욕실 여부 등 객실 소개/구성을 자세히 기재해 주세요." required="required"></textarea>
                   <div remain-traffic_info" class="maxText">(최대 1000자)</div>
                </div>
             </td>
@@ -298,7 +298,7 @@
             <td>
                <div class="basic">
                   <span class="form-title" style="display:inline-block";>정상가(비수기)</span>
-                  <input class="select-nomalsize" type="number" name="roomFee"  value="" style="width: 150px;" min="0" step="1000">
+                  <input class="select-nomalsize" type="number" name="roomFee"  value="" style="width: 150px;" min="0" step="1000" required="required">
                   <span class="form-title" style="display:inline-block";>원</span>
                </div>
 

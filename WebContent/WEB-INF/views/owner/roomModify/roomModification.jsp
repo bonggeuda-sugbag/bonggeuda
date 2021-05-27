@@ -44,12 +44,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
-				<li><a href="registration.html">숙소등록</a></li>
-				<li><a href="managementYesRoom.html">숙소관리</a></li>
-				<li><a href="booking.html">예약관리</a></li>
-				<li><a href="QnA.html">공지사항</a></li>
-				<li><a  href="mypage.html">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>

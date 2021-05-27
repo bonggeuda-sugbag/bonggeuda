@@ -1,35 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
 <title>봉그다 숙박숙박 :: 예약 관리</title>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
-
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />	
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
-
-
-	<meta charset="UTF-8" />
-
-	<link rel="shortcut icon" href="../favicon.ico"> 
-	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
-	<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
+<meta charset="UTF-8" />
+<link rel="shortcut icon" href="../favicon.ico"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <style>
 	div.tab, div.tab-content {
@@ -48,6 +35,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	}
 	th a:hover{
 		color: #6eceda !important;
+	}
+	.list-btn{
+		background:white;
+		border:0;
+		outline:0;
 	}
  </style>
 </head>
@@ -68,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
 				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -144,50 +136,57 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<th><b>예약 인원</b></th>
 						<th><b>시작 날짜</b></th>
 						<th><b>종료 날짜</b></th>
-						<th><b>예약확인</b></th>
+						<!-- <th><b>예약확인</b></th> -->
 						<th><b>이용상태</b></th>
 						<th><b>신고</b></th>
 				    </tr>
 				</thead>
 				<tbody>
 				<c:forEach var="board" items="${ requestScope.bookList }">
+				<form action="/bonggeuda/owner/bookingPastList" method="post">
+				<input type="hidden" name="bookNo" value="${board.bookNo}">
 				   	<tr>
-						<th>${ board.rowNum }</th>
-						<th><c:out value="${ board.accomoName }"/></th>
- 						<th>
- 						<form action="/bonggeuda/owner/bookingPastList" method="post"><button type="submit" class="submit-btn"><c:out value="${ board.roomName }"/> </button>
-						<input type="hidden" name="bookNo" value="${board.bookNo}"></th>
- 						</form>
- 						</th>
-						<th><c:out value="${ board.bookUserName }"/></th>
-						<th><c:out value="${ board.userPhone }"/></th> 
-						<th><c:out value="${ board.bookPersonnel }"/></th> 
-						<th><c:out value="${ board.bookCheckDate }"/></th>
-						<th><c:out value="${ board.bookCheckoutDate }"/></th>
-						<th><c:out value="${ board.bookApproveYn }"/></th> 
+						<th><button type="submit" class="list-btn">${ board.rowNum }</button></th>
+						<th><button type="submit" class="list-btn"><c:out value="${ board.accomoName }"/></button></th>
+ 						<th><button type="submit" class="list-btn"><c:out value="${ board.roomName }"/></button></th>
+						<th><button type="submit" class="list-btn"><c:out value="${ board.bookUserName }"/></button></th>
+						<th><button type="submit" class="list-btn"><c:out value="${ board.userPhone }"/></button></th> 
+						<th><button type="submit" class="list-btn"><c:out value="${ board.bookPersonnel }"/></button></th> 
+						<th><button type="submit" class="list-btn"><c:out value="${ board.bookCheckDate }"/></button></th>
+						<th><button type="submit" class="list-btn"><c:out value="${ board.bookCheckoutDate }"/></button></th>
+<%-- 					<th><button type="submit" class="list-btn"><c:out value="${ board.bookApproveYn }"/></button></th>--%>						
 						<th>						
 						<c:choose>
 							<c:when test="${ board.bookStatusYNC eq 'Y'}">
-							 결재 완료
+							 <button type="submit" class="list-btn">결제 완료</button>
 							</c:when>
 							<c:when test="${ board.bookStatusYNC eq 'N'}">
-							 예약 거절
+							 <button type="submit" class="list-btn">예약 거절</button>
 							</c:when>
 							<c:when test="${ board.bookStatusYNC eq 'C'}">
-							 사용자 환불
+							 <button type="submit" class="list-btn">사용자 환불</button>
 							</c:when>
 						</c:choose>
 						</th>
+						</form>  
 						<th>
-							<form action="/bonggeuda/owner/reportWrite" method="post">
+							<form action="/bonggeuda/owner/reportWrite" method="get">
 							<input type="hidden" name="userNo" value="${board.userNo}">
+							<c:out value="${board.userNo}"/>/
+							
 							<input type="hidden" name="ownerNo" value="${board.ownerNo}">
+<<<<<<< HEAD
+							${board.ownerNo}:오너넘
 							<button type="submit" style="background-color: white;    border: 1px;">
+=======
+							<button type="submit" style="background-color: white; border: 1px;">
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
 							<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/siren.png" style="width: 26px; height: 26px;">
 							</button>
 							</form>
 						</th>
-					</tr>   
+					</tr>
+					 
 					</c:forEach>
 				</tbody>
 			 </table>

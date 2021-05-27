@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다 숙박숙박 :: 숙소 등록</title>
+<title>봉그다 숙박숙박 :: 숙소 수정</title>
 <link href="${pageContext.servletContext.contextPath}/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath}/resources/owner/js/jquery.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/owner/js/scripts.js"></script>
@@ -30,10 +30,10 @@
 			<ul class="right-icons">
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
-				<li><a href="/bonggeuda/owner/booking">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
 				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
-				<li><a  href="/bonggeuda/owner/mypage">마이페이지</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>

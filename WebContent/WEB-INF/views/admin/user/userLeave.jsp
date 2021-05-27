@@ -16,6 +16,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             margin-left: 25%;
             margin-right: 5%;
       }
+      
+      table.table tr th{
+			text-align: center;
+			padding: 5px;
+			line-height: 2.5;
+			font-weight: 500;
+			width: auto;
+	  }
    </style>
 
 <title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Blog :: w3layouts</title>
@@ -51,12 +59,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <!--//logo-->
       <div class="top-nav">
          <ul class="right-icons">
-				<li><span ><a  href="adminUserManagement.html">사용자관리</a></span></li>
+				<li><span ><a  href="${ pageContext.servletContext.contextPath }/user/list">사용자관리</a></span></li>
 				<li><a  href="adminCompanyManagementInfo.html">업체관리</a></li>
-				<li><a  href="adminReservationStatus.html">예약현황</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/user/booklist">예약현황</a></li>
 				<li><a  href="adminPaymentInformation.html">매출관리</a></li>
-				<li><a  href="adminOnlineQuestionUser.html">문의&신고</a></li>
-				<li><a  href="adminOnlineNotice.html">공지사항</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/qna/list">문의&신고</a></li>
+				<li><a  href="${ pageContext.servletContext.contextPath }/notice/list">공지&이벤트</a></li>
          </ul>
 
          
@@ -153,9 +161,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <nav>
       <div class="col-md-3 blog-sidebar">
       <ul>
-         <li class="blog-list"><a href="adminUserManagement.html">사용자 정보</a></li>
-         <li class="blog-list"><a href="adminUserManagementBlist.html">블랙리스트 회원</a></li>
-         <li class="blog-list"><a href="adminUserManagementLeave.html" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">탈퇴 회원</a></li>
+		 <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/list">사용자 정보</a></li>
+         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/black/list">블랙리스트 회원</a></li>
+         <li class="blog-list"><a href="${ pageContext.servletContext.contextPath }/user/leave" style="color: #6eceda; font-size: 1.3em; font-weight: 600;">탈퇴 회원</a></li>
       </ul>
       </nav>
       <table class="table" style="width: 800px;">
@@ -260,18 +268,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    <c:when test="${ !empty requestScope.searchValue }">
    					    <select id="searchCondition" name="searchCondition">
 							<option value="userId" <c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>아이디</option>
-							<option value="writer" <c:if test="${requestScope.searchCondition eq 'writer'}">selected</c:if>>작성자</option>
-							<option value="title" <c:if test="${requestScope.searchCondition eq 'title'}">selected</c:if>>제목</option>
-							<option value="content" <c:if test="${requestScope.searchCondition eq 'content'}">selected</c:if>>내용</option>
 						</select>
 				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
 				    </c:when>
 				    <c:otherwise>
 					    <select id="searchCondition" name="searchCondition">
 							<option value="userId">아이디</option>
-							<option value="writer">작성자</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
 						</select>
 				        <input type="search" id="searchValue" name="searchValue" >
 				        <input type="hidden" name="userId" value= "${ user.email }">
