@@ -6,6 +6,13 @@
 <html>
 <head>
 <style>
+ table.table tr th{
+         text-align: center;
+         padding: 5px;
+         line-height: 2.5;
+         font-weight: 500;
+         width: auto;
+    	}
 div.tab, div.tab-content {
 	margin-left: 25%;
 	margin-right: 5%;
