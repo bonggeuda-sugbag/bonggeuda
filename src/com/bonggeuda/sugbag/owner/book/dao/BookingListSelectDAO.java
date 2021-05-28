@@ -149,7 +149,6 @@ public class BookingListSelectDAO {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(con);
 		}
 		
 		return bookAllowUpdate;
@@ -427,6 +426,32 @@ public class BookingListSelectDAO {
 		}
 		
 		return selectcompleteCount;
+	}
+
+	public int bookAllowStatusUpdateDAO(Connection con, int bookNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("bookAllowStatusUpadte");
+		
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }
 

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.model.dto.RmAccomoInfoDTO;
 import com.bonggeuda.sugbag.owner.manage.service.ManagementRoomService;
@@ -72,7 +73,10 @@ public class ModifyAccomo3 extends HttpServlet {
 		rmAcoomoDTO.setFacility(facility);
 		rmAcoomoDTO.setHomepage(homepage);
 		rmAcoomoDTO.setNear(near);
-		int ownerNo = 1;
+		//로그인 값
+	    HttpSession session = request.getSession();
+	    int ownerNo = (Integer)session.getAttribute("ownerNo");
+	    
 		rmAcoomoDTO.setOwnerNo(ownerNo);
 		rmAcoomoDTO.setParking(parking);
 		rmAcoomoDTO.setPeakEnd(peakEnd);
@@ -90,7 +94,7 @@ public class ModifyAccomo3 extends HttpServlet {
 			
 			String path = "";
 			
-			path = "/WEB-INF/views/owner/main/main.jsp";
+			path = "/WEB-INF/views/owner/roomManagement/managementYesRoom.jsp";
 			request.getAttribute(path);
 			
 			//request.setAttribute("successCode", "insertThumbnail");

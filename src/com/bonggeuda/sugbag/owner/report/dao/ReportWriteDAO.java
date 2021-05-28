@@ -89,7 +89,7 @@ public class ReportWriteDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("selectRefNoMax");
+		String query = prop.getProperty("selectRefortNoNoMax");
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -97,7 +97,7 @@ public class ReportWriteDAO {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				result = rset.getInt("MAX(REF_NO)");
+				result = rset.getInt("MAX(REPORT_NO))");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -210,7 +210,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<input type="text" class="select-nomalsize"  style="margin-bottom: 8px;"  name="address" placeholder="사업자 등록증상 주소를 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.address }"/>">
 						<button class="submit-btn" type="button" style="margin-left: 10px;" onclick="openZipSearch()"  >주소 검색</button>
 						<br>
-						<input type="text" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize" name="adrDetail" placeholder="나머지 주소를 입력하세요." value="null">
+						<input type="text" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize" name="adrDetail" placeholder="나머지 주소를 입력하세요." value="">
 					</div>
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>세금계산서<br> 이메일</span>

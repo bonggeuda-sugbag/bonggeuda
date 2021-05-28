@@ -124,18 +124,34 @@
 				</tr>
 				<tr>
 					<th>
+					<form action="${ pageContext.servletContext.contextPath }/owner/passwordChange" method="post" onsubmit="return modifypwd()">
 						<p class="thName">
-							비밀번호 
+							비밀번호 변경 
 						</p>
 						<td>
 							<div class="form-layer" >
-								<input type="password" class="select-nomalsize" type="password" name="ownerPwd" value="${ requestScope.selectOwner.ownerPwd }">
-								<button class="submit-btn" type="submit" style="margin-left: 20px;">변경하기</button>
+								<input  class="select-nomalsize"  id="pwd" onchange="isSame()" type="password" name="ownerPwd" value="">
+							
 							</div>
 	
 						</td>
 						
 					</th>
+				</tr>
+				<tr>
+					<th>
+						<p class="thName">
+							비밀번호 확인
+						</p>
+						<td>
+							<div class="form-layer" >
+								<input id="pwdcheck" onchange="isSame()"  class="select-nomalsize" type="password" name="ownerPwdChange" >
+								<button class="submit-btn" type="submit" style="margin-left: 20px;">변경하기</button>&nbsp;&nbsp;<span id="same"></span>
+							</div>
+						</td>
+	
+					</th>
+					</form>
 				</tr>
 				<tr class="tr1">
 					<th>
@@ -145,12 +161,32 @@
 					</th>
 					<td>
 						<div class="form-layer">
-							<input type="text" class="select-nomalsize" name="ownerPhone" placeholder="휴대전화 번호" value="${ requestScope.selectOwner.ownerPhone }">
-							<button class="submit-btn" type="submit" style="margin-left: 20px;">변경하기</button>
+							<input type="text" class="select-nomalsize" name="ownerPhone" placeholder="휴대전화 번호" value="${ requestScope.selectOwner.ownerPhone }" disabled="disabled" style="background: lightgray">
 						</div>
 						
 					</td>
 				</tr>
+				<tr class="tr1">
+					<th>
+					
+						<p class="thName">
+							휴대전화 번호<br> 변경
+						</p>
+					</th>
+					<td>
+				<p style="color: gray; font-size: 13px">	* 전화번호 형식으로 입력해주세요. (ex.010-xxxx-xxxx)</p>
+						<div class="form-layer">
+					<form action="${ pageContext.servletContext.contextPath }/owner/phoneNoChange" method="post" onsubmit="return modifyphonenumber()">
+						
+							<input type="text" class="select-nomalsize" name="ownerPhonechange" placeholder="변경할 휴대전화 번호를 입력해주세요" id="userPhone">
+							<button class="submit-btn" type="submit" style="margin-left: 20px;">변경하기</button>
+					</form>
+						</div>
+					
+						
+					</td>
+				</tr>
+				
 				<tr class="tr1">
 					<th>
 						<p class="thName">
@@ -158,8 +194,9 @@
 						</p>
 					</th>
 					<td>
+					<p style="color: gray; font-size: 13px">* 신고 누적횟수에 따라 불이익을 받을 수 있습니다.</p>
 						<div class="form-layer">
-							<input type="text" class="select-nomalsize" name="account_holder" value="15" disabled style="background-color: lightgrey; font-size: large; width: 70px; font-weight: bold; text-align: center; color: magenta;">
+							<input type="text" class="select-nomalsize" value="${ requestScope.reportedCount }" name="account_holder" value="15" disabled style="background-color: lightgrey; font-size: large; width: 70px; font-weight: bold; text-align: center; color: magenta;">
 						</div>
 					</td>
 				</tr>
@@ -208,10 +245,6 @@
 										<label for="reasonRdo2">예약, 취소, 혜택받기 등 사용이 어려워요</label>
 									</li>
 									<li>
-										<input id="reasonRdo3" type="radio" name="radios" value="POINT_COUPON_TOO_LITTLE">
-										<label for="reasonRdo3">복권 1등에 당첨됐어요</label>
-									</li>
-									<li>
 										<input id="reasonRdo4" type="radio" name="radios" value="INFO_TO_DELETE">
 										<label for="reasonRdo4">개인정보 보호를 위해 삭제할 정보가 있어요</label>
 									</li>
@@ -220,10 +253,10 @@
 										<label for="reasonRdo5">다른 계정이 있어요</label>
 									</li>
 									<li>
-										<input id="reasonRdo6" type="radio" name="radios" value="OTHER" checked>
+										<input id="reasonRdo6" type="radio" name="radios1" value="" checked>
 										<label for="reasonRdo6">기타</label>
 										<div class="reason-innder-box reason-innder-box6"  style="margin-bottom: 10px;">
-											<input name="reason" style="width:100%;float: left;" placeholder="죄송합니다 제발 탈퇴하지 말아주세요">
+											<input name="reason" style="width:100%;float: left;" placeholder="탈퇴 사유를 적어주세요">
 										</div>
 									</li>
 									</ul>
@@ -275,6 +308,61 @@
             
         }
     }).open();
+</script>
+<script type="text/javascript">
+/* 비밀번호 변경 유효성 */
+function isSame() {
+	var pwd = document.getElementById("pwd").value;
+	var pwdcheck = document.getElementById("pwdcheck").value;
+	if(pwd!='' && pwdcheck!='') {
+		if(pwd == pwdcheck) {
+			document.getElementById('same').innerHTML='비밀번호가 일치합니다.';
+			document.getElementById('same').style.color='blue';
+		}
+		else {
+			document.getElementById('same').innerHTML='비밀번호가 일치하지 않습니다.';
+			document.getElementById('same').style.color='red';
+		}
+	}
+}
+
+/* 비밀번호 변경 유효성 */
+function modifypwd() {
+	var pwd = document.getElementById("pwd").value;
+	var pwdcheck = document.getElementById("pwdcheck").value;
+	if(pwd!='' && pwdcheck!='') {
+		if(pwd == pwdcheck) {
+			alert("비밀번호가 변경되었습니다.");
+			return true;
+		}
+		else {
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+	} else {
+		alert("비밀번호를 입력해주세요.");
+		return false;
+	}
+}
+/* 전화번호 수정 유효성 */
+function modifyphonenumber() {
+	var phone = document.getElementById("userPhone").value;
+	var regExp = /010-\d{4}-\d{4}/;
+	
+	if(phone!='') {
+		if(regExp.test(phone)) {
+			alert("전화번호가 변경되었습니다.");
+       	 	return true;
+    	} else {
+        	alert("전화번호 형식으로 입력해주세요. (ex.010-xxxx-xxxx)");
+        	return false;
+    	}
+	} else {
+		alert("전화번호를 입력해주세요.");
+		return false;
+	}
+}
+
 </script>
 </div>
 </div>

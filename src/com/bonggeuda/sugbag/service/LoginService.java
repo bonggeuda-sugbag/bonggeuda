@@ -171,5 +171,37 @@ public class LoginService {
 		return result;
 	}
 
+	/**
+	 * 회원가입시 닉네임 중복확인
+	 * @param nickName
+	 * @return
+	 */
+	public int selectUserNickName(String nickName) {
+		
+		Connection con = getConnection();
+		
+		int userNickName = loginDAO.selectUserNickName(con, nickName);
+		
+		close(con);
+		
+		return userNickName;
+	}
+
+	/**
+	 * 회원가입시 이메일 중복확인
+	 * @param email
+	 * @return
+	 */
+	public int selectUserEmail(String email) {
+
+		Connection con = getConnection();
+		
+		int userEmail = loginDAO.selectUserEmail(con, email);
+		
+		close(con);
+		
+		return userEmail;
+	}
+
 
 }

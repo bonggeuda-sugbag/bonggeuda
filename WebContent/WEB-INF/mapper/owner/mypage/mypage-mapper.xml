@@ -203,6 +203,44 @@
 	 	 WHERE A.OWNER_NO = ?
 	</entry>
 	
+	<entry key="selectreportedCount">
+	      SELECT 
+                 COUNT(*)
+            FROM REPORT
+           WHERE REPORTED_TYPE = 'owner'
+             AND REPORT_STATUS = 'Y'
+             AND REPORTED_NO = ?
+	
+	</entry>
+	
+	<entry key="updatePwd">
+	     UPDATE OWNER_INFO
+            SET OWNER_PWD = ?
+          WHERE OWNER_NO = ?
+
+	
+	</entry>
+	
+	
+	<entry key="insertWithdraw">
+		 INSERT 
+		   INTO WITHDRAW_REASON
+		 VALUES
+		 (
+		   SEQ_WITHDRAW_NO.NEXTVAL
+		 , ?
+		 , ?
+		 , 'owner'
+		 )
+	
+	</entry>
+	
+	<entry key="updatePhoneNo">
+		UPDATE OWNER_INFO
+		   SET OWNER_PHONE = ?
+		 WHERE OWNER_NO = ?
+	
+	</entry>
 	
 	
 </properties>
