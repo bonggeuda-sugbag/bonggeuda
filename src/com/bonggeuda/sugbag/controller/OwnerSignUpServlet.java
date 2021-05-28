@@ -26,8 +26,8 @@ public class OwnerSignUpServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		/* 회원정보 등록 & POINT테이블 값 insert */
+		System.out.println("owner회원가입 서블릿");
+		/* 업체정보 등록 */
 		String memberId = request.getParameter("email");
 		String memberPwd = request.getParameter("password");
 		String phone = request.getParameter("phone");
@@ -47,7 +47,7 @@ public class OwnerSignUpServlet extends HttpServlet {
 		
 		String page = "";
 		
-		if(result >1) {
+		if(result > 0) {
 			
 			page = "/WEB-INF/views/guest/moreNotice/narasuccess.jsp";
 			request.setAttribute("successCode", "insertMember");

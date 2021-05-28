@@ -8,6 +8,14 @@
          WHERE USER_WITHDRAW_YN = 'N'
            AND USER_ID = ?
 	</entry>
+	
+	<entry key="selectEncryptedOwnerPwd">
+        SELECT
+               OWNER_PWD
+          FROM OWNER_INFO
+         WHERE OWNER_WITHDRAW_YN = 'N'
+           AND OWNER_ID = ?
+	</entry>
 
 	<entry key="userLoginCheck">
 		SELECT *

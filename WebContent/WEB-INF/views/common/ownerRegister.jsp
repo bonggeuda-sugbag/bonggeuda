@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<p class="space_or" style="width:50%; margin: 0 auto;"><span style="font-size: 40px; width:160px; left: 45%; background:#fff">Register</span></p><br>
 		<div class="login-top" style="padding-left: 170px;">
 			<div class="form-info">
-				<form action="${ pageContext.servletContext.contextPath }/login/check/regist" method="post" onsubmit="return registerCheck()">
+				<form action="${ pageContext.servletContext.contextPath }/login/check/registTwo" method="post" onsubmit="return registerCheck()">
 					<table class="signup" style="text-align:left;">
 						<tr>
 							<td style="padding-bottom: 15px;">이메일 아이디</td>
@@ -231,13 +231,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			if(email!='') {
 				if(!regExp.test(email)) {
-		        	alert("이메일 형식으로 입력해주세요.");
+		        	alert("aaa이메일 형식으로 입력해주세요.");
 		    	} else {
 		    		
 		    		if(emailCnt != 0) {
 						num++;
 		        	} else {
-		            	alert("이미 사용중인 이메일입니다.");
+		            	alert("aaa이미 사용중인 이메일입니다.");
 		        	}
 		    	}
 			} else {

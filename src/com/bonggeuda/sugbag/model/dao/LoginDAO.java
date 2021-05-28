@@ -61,6 +61,41 @@ public class LoginDAO {
 		
 		return encPwd;
 	}
+	
+	/**
+	 * 암호화된 업체 비밀번호 조회
+	 * @param con
+	 * @param loginEmail
+	 * @param loginPassword
+	 * @return
+	 */
+	public String selectEncryptedOwnerPwd(Connection con, String loginEmail, String loginPassword) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String encPwd = null;
+		
+		String query = prop.getProperty("selectEncryptedOwnerPwd");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, loginEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				encPwd = rset.getString("OWNER_PWD");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return encPwd;
+	}
 
 	/**
 	 * 사용자 로그인 체크
@@ -376,6 +411,9 @@ public class LoginDAO {
 		return result;
 		
 	}
+
+
+	
 
 	
 }

@@ -269,13 +269,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			if(email!='') {
 				if(!regExp.test(email)) {
-		        	alert("aaa이메일 형식으로 입력해주세요.");
+		        	alert("이메일 형식으로 입력해주세요.");
 		    	} else {
 		    		
 		    		if(emailCnt != 0) {
 						num++;
 		        	} else {
-		            	alert("aaa이미 사용중인 이메일입니다.");
+		            	alert("이미 사용중인 이메일입니다.");
 		        	}
 		    	}
 			} else {
