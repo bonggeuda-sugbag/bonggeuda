@@ -411,7 +411,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type = "hidden" id="checkOutDate"name="checkOutDate" value="${bookInfo.bookCheckoutDate}">
 						<input type = "hidden" id="checkInTime"name="checkInTime" value="${bookInfo.bookCheckIn}">
 						<input type = "hidden" id="personnel" name="personnel" value="${bookInfo.bookPersonnel}">
-						<input type = "hidden" id="pointNo" name="pointNo" value="73">
+						<input type = "hidden" id="pointNo" name="pointNo" value="${point.pointNo }">
 						<input id="couponDiscount" type = "hidden" name="couponDiscount" value=0>
 						
 					</p>
