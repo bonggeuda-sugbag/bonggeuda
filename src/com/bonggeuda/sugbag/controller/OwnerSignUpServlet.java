@@ -26,7 +26,6 @@ public class OwnerSignUpServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("owner회원가입 서블릿");
 		/* 업체정보 등록 */
 		String memberId = request.getParameter("email");
 		String memberPwd = request.getParameter("password");

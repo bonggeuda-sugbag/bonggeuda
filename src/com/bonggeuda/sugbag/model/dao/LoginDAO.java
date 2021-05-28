@@ -171,7 +171,6 @@ public class LoginDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, loginEmail);
-			pstmt.setString(2, loginPassword);
 			
 			rset = pstmt.executeQuery();
 			

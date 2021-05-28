@@ -107,19 +107,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="${ pageContext.servletContext.contextPath }">BONGGEUDA</a></h1>
+				<h1><a href="index.html">REAL HOME</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
 
-<!-- 				<li><span ><a  href="adminUserManagement.html">사용자관리</a></span></li>
+				<li><span ><a  href="adminUserManagement.html">사용자관리</a></span></li>
 				<li><a  href="adminCompanyManagementInfo.html">업체관리</a></li>
 				<li><a  href="adminReservationStatus.html">예약현황</a></li>
 				<li><a  href="adminPaymentInformation.html">매출관리</a></li>
 				<li><a  href="adminOnlineQuestionUser.html">문의&신고</a></li>
-				<li><a  href="adminOnlineNotice.html">공지사항</a></li> 
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li> -->
+				<li><a  href="adminOnlineNotice.html">공지사항</a></li>
+				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
 				
 			</ul>
 
@@ -185,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 	
 				</form>
-				<div class="loginin" style="padding-right: 120px;">등록된 계정이 있으신가요? <a href="${ pageContext.servletContext.contextPath }/login/test">로그인하기</a></div>
+				<div class="loginin" style="padding-right: 120px;">Already have a Real Home account? <a href="${ pageContext.servletContext.contextPath }/login/test">Login</a></div>
 			</div>
 		</div>
 	</div>
@@ -262,68 +262,68 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function registerCheck() {
 		var num = 0;
 		
-		if(num != 4) {
-			/* 이메일 유효성 */
-			var email = document.getElementById("email").value;
-			var regExp = /^[\w]+@[\w]+(\.[\w]+){1,3}$/;
-			
-			if(email!='') {
-				if(!regExp.test(email)) {
-		        	alert("이메일 형식으로 입력해주세요.");
-		    	} else {
-		    		
-		    		if(emailCnt != 0) {
-						num++;
-		        	} else {
-		            	alert("이미 사용중인 이메일입니다.");
-		        	}
-		    	}
-			} else {
-				alert("이메일을 입력해주세요.");
-			}
-			
-			/* 비밀번호 유효성 */
-			var pwd = document.getElementById("password").value;
-			var pwdcheck = document.getElementById("passwordCheck").value;
-			if(pwd!='' && pwdcheck!='') {
-				if(pwd != pwdcheck) {
-					alert("비밀번호가 일치하지 않습니다.");
-				} else {
-					num++;
-				}
-			} else {
-				alert("비밀번호를 입력해주세요.");
-			}
-			
-			/* 닉네임 중복성 */
-			var nickName = document.getElementById("nickName").value;
-			
-			if(nickName!='') {
-				if(nickNameCnt != 0) {
-					num++;
-	        	} else {
-	            	alert("이미 사용중인 닉네임입니다.");
-	        	}
-			} else {
-				alert("닉네임을 입력해주세요.");
-			}
-			
-			/* 전화번호 유효성 */
-			var phone = document.getElementById("phone").value;
-			var regExp2 = /010-\d{4}-\d{4}/;
-			
-			if(phone!='') {
-				if(!regExp2.test(phone)) {
-		        	alert("전화번호 형식으로 입력해주세요. (ex.010-xxxx-xxxx)");
-		    	} else {
-		    		num++;
-		    	}
-			} else {
-				alert("전화번호를 입력해주세요.");
-			}
 		
-			return false
+		/* 이메일 유효성 */
+		var email = document.getElementById("email").value;
+		var regExp = /^[\w]+@[\w]+(\.[\w]+){1,3}$/;
+			
+		if(email!='') {
+			if(!regExp.test(email)) {
+		       	alert("이메일 형식으로 입력해주세요.");
+		   	} else {
+		   		
+		   		if(emailCnt != 0) {
+					num++;
+		       	} else {
+		           	alert("이미 사용중인 이메일입니다.");
+		       	}
+		   	}
 		} else {
+			alert("이메일을 입력해주세요.");
+		}
+			
+		/* 비밀번호 유효성 */
+		var pwd = document.getElementById("password").value;
+		var pwdcheck = document.getElementById("passwordCheck").value;
+		if(pwd!='' && pwdcheck!='') {
+			if(pwd != pwdcheck) {
+				alert("비밀번호가 일치하지 않습니다.");
+			} else {
+				num++;
+			}
+		} else {
+			alert("비밀번호를 입력해주세요.");
+		}
+			
+		/* 닉네임 중복성 */
+		var nickName = document.getElementById("nickName").value;
+			
+		if(nickName!='') {
+			if(nickNameCnt != 0) {
+				num++;
+	       	} else {
+	           	alert("이미 사용중인 닉네임입니다.");
+	       	}
+		} else {
+			alert("닉네임을 입력해주세요.");
+		}
+			
+		/* 전화번호 유효성 */
+		var phone = document.getElementById("phone").value;
+		var regExp2 = /010-\d{4}-\d{4}/;
+			
+		if(phone!='') {
+			if(!regExp2.test(phone)) {
+		       	alert("전화번호 형식으로 입력해주세요. (ex.010-xxxx-xxxx)");
+		   	} else {
+		   		num++;
+		   	}
+		} else {
+			alert("전화번호를 입력해주세요.");
+		}
+		if(num != 4) {
+			return false
+		}else {
 			alert("회원가입이 완료되었습니다.");
 			return true;
 		}

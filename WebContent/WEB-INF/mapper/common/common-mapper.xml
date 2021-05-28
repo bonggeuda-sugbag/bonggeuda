@@ -29,7 +29,6 @@
 		SELECT *
 		  FROM OWNER_INFO
 		 WHERE OWNER_ID = ?
-		   AND OWNER_PWD =?
 		   AND OWNER_WITHDRAW_YN = 'N'
 	</entry>
 	
