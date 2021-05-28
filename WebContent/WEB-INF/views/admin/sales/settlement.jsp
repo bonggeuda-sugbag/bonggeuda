@@ -99,11 +99,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 						<tr>
 							<th>정산일</th>
-							<th>정산 총합 판매액</th>
-							<th>정산 총합 수수료</th>
-							<th>정산 총합 단가</th>
-							<th>정산 총합 공급가</th>
-							<th>정산 총합 세액</th>
+							<th>정산 합 판매액</th>
+							<th>정산 합 수수료</th>
+							<th>정산 합 단가</th>
+							<th>정산 합 공급가</th>
+							<th>정산 합 세액</th>
 							<th>정산액</th>
 							<th>지급상태</th>
 						</tr>
