@@ -225,6 +225,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function nickNameDuplication() {
 		var nickNameCnt = 0;
 		var intputNickname = document.getElementById("nickName").value;
+		var regExp3 = /^[\w]+@[\w]+(\.[\w]+){1,3}$/;
 		
 		$.ajax({
 	         url: "${ pageContext.servletContext.contextPath }/userinfo/duplication",
@@ -233,9 +234,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	         success: function(data,textStatus,xhr){
 	        	console.log(data);
 	            if (data == 0){
-	            	document.getElementById('nickNameDuplication').innerHTML='사용할 수 있는 닉네임입니다.';
-					document.getElementById('nickNameDuplication').style.color='blue';
-	               	nickNameCnt = 1;
+	            	if(!regExp.test(email)) {
+			        	alert("이메일 형식으로 입력해주세요.");
+			    	} else {
+	            		document.getElementById('nickNameDuplication').innerHTML='사용할 수 있는 닉네임입니다.';
+						document.getElementById('nickNameDuplication').style.color='blue';
+	               		nickNameCnt = 1;
+			    	}
 	            } else if(data != 0) {
 	            	document.getElementById('nickNameDuplication').innerHTML='이미 사용중인 닉네임입니다.';
 					document.getElementById('nickNameDuplication').style.color='red';

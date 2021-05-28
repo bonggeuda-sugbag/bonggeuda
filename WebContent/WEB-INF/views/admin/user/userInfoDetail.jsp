@@ -184,17 +184,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--//-->
-	<div class=" banner-buying">
-		<div class=" container">
-			<h3>
-				<span>사용자 관리</span>
-			</h3>
-
-			<div class="clearfix"></div>
-		</div>
-
-
-	</div>
 	<!--//header-->
 	<!--blog-->
 	<div class="blog">
@@ -252,15 +241,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<tr>
 								<th style="text-align: center; padding-top: 14px;">포인트</th>
 								<td><c:out value="${ userInfo.point }"></c:out></td>
+								<input type="hidden" name="hduserNo" value= "${ hduserNo }">
 							</tr>
 							<!-- //포인트 -->
 
 							<!-- 리뷰 별점 -->
-							<tr>
+<%-- 							<tr>
 								<th style="text-align: center; padding-top: 14px;">리뷰 업갯수</th>
 								<td><c:out value="${ reviewInfo.upCount }"></c:out></td>
 								<input type="hidden" name="hduserNo" value= "${ hduserNo }">
-							</tr>
+							</tr> --%>
 							<!-- //리뷰 별점 -->
 							
 							

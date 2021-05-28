@@ -114,43 +114,49 @@
 				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/sales" style="color: #6eceda;">매출 내역</a></li>
 			</ul>
 			</nav>
+			
+			<c:forEach var="sales" items="${ requestScope.selectSales }">
 			<div id="content" class="sub_wrap more_wrap">
 				<div class="align_rt">
 					<!-- Tab -->
 					<div class="tab">
-						<span class="tab_btn active">숲 속 통나무집</span>
+						<span class="tab_btn active"><c:out value="${ sales.accomoName }"></c:out></span>
 						<span class="tab_btn" onclick="location.href='booking_sales2.html'">다른숙소명</a></span>
 					</div>
 				</div>
 			</div>
 			<table class="table" style="width: 1000px;">
 				<thead>
-					<tr></tr>
+					<tr>
 						<th  style="background: #eaeaea;"><b>숙소명</b></th>
 					</tr>
 				</thead>
 				<tbody>
 				   	<tr>
-						<th>숲 속 통나무집</th>
+						<th><c:out value="${ sales.accomoName }"></c:out></th>
 					</tr>
 				</tbody>
 			</table>
 			<br>
+			</c:forEach>
+			
 			<table class="table" style="width: 1000px;">
 				<thead>
 					<tr>
 						<th colspan="4" style="background: #eaeaea;"><b>객실별 예약건수</b></th>
 					</tr>
 					<th><b>기간</b></th>
-					<th><b>숙소명</b></th>
 					<th><b>예약</b></th>
+					<th><b>객실명</b></th>
 					<th><b>합산예약</b></th>
 				</thead>
 				<tbody>
 				   	<tr>
 						<th rowspan="3">2021 - 05</th>
-						<td class="midName">통나무 1호</td>
-						<td>5 (건)</td>
+						<c:forEach var="sales" items="${ requestScope.selectSales }">
+							<td class="midName"><c:out value="${ sales.roomName }"></c:out></td>
+							<td><c:out value="${ sales.bookCount }"></c:out> (건)</td>
+						</c:forEach>
 						<th rowspan="3"> 총 28 (건)</th>
 					</tr>				   	
 					<tr>
@@ -236,7 +242,6 @@
 					</tr>
 				 </tbody>
 			  </table>
-			
 			 <div class="tab_each" style="display:block">
 				<nav>
 					<ul class="pagination">
@@ -250,6 +255,7 @@
 				   </ul>
 				</nav>
 			</div>
+			
 		</div>
 	</div>
 </div>

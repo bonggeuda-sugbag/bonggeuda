@@ -132,9 +132,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</table>
 			</div>
 
+			<c:if test="${ empty requestScope.reviewHistory.bookNo }">
 			<div>
 				<button class="review-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userwritereview/selectAndinsert?bookNo=${ requestScope.userCompleteContent.bookNo }';">리뷰작성</button>
 			</div>
+			</c:if>
+			<c:if test="${ !empty requestScope.reviewHistory.bookNo }">
+			<div>
+				<button class="review-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userwritereview/selectAndinsert?bookNo=${ requestScope.userCompleteContent.bookNo }';">리뷰작성</button>
+			</div>
+			</c:if>
 
 		</div>
 	</div>

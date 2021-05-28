@@ -66,14 +66,14 @@ public class ManagementSearchIdServlet extends HttpServlet {
 		/* 조회해온다 */
 		List<UserInfoDTO> userList = userInfoServie.selectSearchList(condition, value, pageInfo);
 		
-		System.out.println("userList : " + userList);
+		System.out.println("검색 userList : " + userList);
 		
 		String path = "";
 		if(userList != null) {
 			path = "/WEB-INF/views/admin/user/userInfo.jsp";
 			request.setAttribute("userList", userList);
 			request.setAttribute("pageInfo", pageInfo);
-			
+			response.setContentType("text/html;charset=UTF-8");
 		} 
 		
 		request.getRequestDispatcher(path).forward(request, response);

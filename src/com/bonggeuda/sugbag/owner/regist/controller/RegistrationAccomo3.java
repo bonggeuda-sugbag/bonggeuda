@@ -22,11 +22,11 @@ public class RegistrationAccomo3 extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//로그인 값
 	    HttpSession session = request.getSession();
 	    int ownerNo = (Integer)session.getAttribute("ownerNo");
 	    System.out.println("ownerNo : " + ownerNo);
-		System.out.println("여기는 오는가?");
+
+	    System.out.println("여기는 오는가?");
 		
 		/*등록3단계*/
 		String checkIn = request.getParameter("checkIn");

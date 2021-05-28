@@ -23,7 +23,7 @@ import com.bonggeuda.sugbag.service.BookService;
  * Servlet implementation class AccomoSerchServlet
  */
 @WebServlet("/accomoSelect/search")
-public class AccomoSerachServlet extends HttpServlet {
+public class AccomoSearchServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}

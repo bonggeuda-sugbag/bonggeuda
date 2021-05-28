@@ -18,9 +18,9 @@ import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import static com.bonggeuda.sugbag.jdbc.JDBCTemplate.close;
 
 public class BookingListSelectDAO {
+	
 	private Properties prop = new Properties();
 
-	
 	public BookingListSelectDAO() {
 	
 		try {

@@ -107,18 +107,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 		<div class="logo">
-			<h1><a href="index.html">BONGGUEDA</a></h1>
+			<h1><a href="${ pageContext.servletContext.contextPath }">BONGGUEDA</a></h1>
 		</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
 
-				<li><span ><a  href="index.html">사용자 관리</a></span></li>
+	<!-- 			<li><span ><a  href="index.html">사용자 관리</a></span></li>
 				<li><a  href="about.html">업체 관리</a></li>
 				<li><a  href="blog.html">예약현황</a></li>
 				<li><a  href="terms.html">결제정보</a></li>
 				<li><a  href="terms.html">온라인 문의</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li> -->
 				
 			</ul>
 		<div class="clearfix"> </div>

@@ -91,7 +91,6 @@ public class UserInfoDAO {
 				userInfo.setName(rset.getString("USER_NICKNAME"));
 				userInfo.setEmail(rset.getString("USER_ID"));
 				userInfo.setPhoneNumber(rset.getString("USER_PHONE"));
-				userInfo.setReviewNo(rset.getInt("REVIEW_NO"));
 				userInfo.setUserNo(rset.getInt("USER_NO"));
 				
 				
@@ -116,6 +115,7 @@ public class UserInfoDAO {
 		String query = prop.getProperty("selectDetail");
 		
 		UserInfoDTO userInfo = new UserInfoDTO();
+		
 		
 		try {
 		
@@ -202,7 +202,7 @@ public class UserInfoDAO {
 				leaveInfo.setEmail(rset.getString("USER_ID"));
 				leaveInfo.setReason(rset.getString("WITHDRAW_REASON"));
 				leaveInfo.setLeaveDate(rset.getDate("WITHDRAWDATE"));
-				leaveInfo.setLeaveDate(rset.getDate("WITHDRAWDATE"));
+				leaveInfo.setYear(rset.getDate("YEAR"));
 				
 				leaveList.add(leaveInfo);
 			}
@@ -224,10 +224,12 @@ public class UserInfoDAO {
 		
 		String query = null;
 		List<UserInfoDTO> userList = null;
-		
+		System.out.println("디에이오 " + value);
 		if(condition.equals("userId")) {
 			
 			query = prop.getProperty("selectSearch");
+		} else if(condition.equals("userName")){
+			query = prop.getProperty("selectNameSearch");
 		}
 		
 		try {
@@ -247,6 +249,7 @@ public class UserInfoDAO {
 				userInfo.setName(rset.getString("USER_NICKNAME"));
 				userInfo.setEmail(rset.getString("USER_ID"));
 				userInfo.setPhoneNumber(rset.getString("USER_PHONE"));
+				userInfo.setUserNo(rset.getInt("USER_NO"));
 				
 				userList.add(userInfo);
 			}
@@ -273,6 +276,8 @@ public class UserInfoDAO {
 		if(condition.equals("userId")) {
 			
 			query = prop.getProperty("selectSearchCount");
+		} else if(condition.equals("userName")){
+			query = prop.getProperty("selectNameCount");
 		}
 		
 		try {

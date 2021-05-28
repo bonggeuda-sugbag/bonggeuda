@@ -364,7 +364,7 @@ popup>li{
     text-align: right;
     
 }
-.reviewStar11{
+.reviewStar10{
     clear: both;
     width: 120px;
     height: 24px;
@@ -597,6 +597,8 @@ textarea {
                     <br>
                     <div><h4> - 오시는길 : ${accomo.path }</h4></div>
                     <br>
+                    <div><h4> - 성수기 기간 : ${accomo.peakStart } ~ ${accomo.peakEnd }</h4></div>
+                    <br>
                 
                     <div class="ownerComment">
                         <h4 style="text-align: left;"><b>1박 기준에 따른 요금안내</b></h4>
@@ -702,30 +704,30 @@ textarea {
 
 					<div style="display: flex; ">
 						<h4 style="margin: 15px;" >입실일</h4>
-						<input type="date" name="checkInDate" required="required">
+						<input id="checkInD" type="date" name="checkInDate" required="required" >
 					</div>
 					<div style="display: flex; ">
 						<h4 style="margin: 15px;">퇴실일</h4>
-						<input type="date" name="checkOutDate" required="required">
+						<input id="checkOutD" type="date" name="checkOutDate" required="required" >
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin: 15px;">인원</h4>
-						<input type="number" name="people" min="1" style="width: 100px; text-align: center;" required="required">
+						<input id="person"type="number" name="people" min="1" style="width: 100px; text-align: center;" required="required">
 					</div>
 					<div style="display: flex;">
 						<h4 style="margin : 15px;">체크인 </h4>
-						<select style="width: 150px;" name="checkInTime" required="required">
+						<select id="checInT"style="width: 150px;" name="checkInTime" required="required">
 							<option value="00:00">00:00</option>
 							<option value="01:00">01:00</option>
 							<option value="02:00">02:00</option>
 							<option value="03:00">03:00</option>
 							<option value="04:00">04:00</option>
-							<option value="05:00">04:00</option>
-							<option value="06:00">04:00</option>
-							<option value="07:00">04:00</option>
-							<option value="08:00">04:00</option>
-							<option value="09:00">04:00</option>
-							<option value="10:00">04:00</option>
+							<option value="05:00">05:00</option>
+							<option value="06:00">06:00</option>
+							<option value="07:00">07:00</option>
+							<option value="08:00">08:00</option>
+							<option value="09:00">09:00</option>
+							<option value="10:00">10:00</option>
 							<option value="11:00">11:00</option>
 							<option value="12:00">12:00</option>
 							<option value="13:00">13:00</option>
@@ -739,13 +741,10 @@ textarea {
 							<option value="21:00">21:00</option>
 							<option value="22:00">22:00</option>
 							<option value="23:00">23:00</option>
-
 						</select>
 					</div>
-					<div style="text-align: left;">
-						<p>기준 체크인 시간</p>
-						<p> ${accomo.checkIn}</p>
-					</div>
+
+
 				<!-- //예약일자 입력 -->
 				</div>
 
@@ -757,26 +756,35 @@ textarea {
 						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/${roomList.attachment.thumbnailPath }) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
 							<div><h3>${roomList.roomName}</h3></div>
-							<br><br>
+							<br>
 							<div style="display: flex;">
-								<div style="width: 40%;">가격</div>
+								<div style="width: 40%;">정원</div>
+								<div style="margin-left: 40px; width: 50%;">${roomList.roomMax } 인</div>
+								<input type="hidden" name="roomMax" value="${roomList.roomMax }">
+							</div>
+							<hr>
+							<div style="display: flex;">
+								<div style="width: 40%;">비수기요금</div>
 								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
 								<input type="hidden" name="price" value="${roomList.roomFee }">
 							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
 							<hr>
-							<div>
-								<button type="button" class="info_btn" onclick="location.href='#pop01';" >객실이용안내 ></button>
+							<div style="display: flex;">
+								<div style="width: 40%;">성수기요금</div>
+								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
+								<input type="hidden" name="price" value="${roomList.peakFee }">
+							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
-							<div id="pop01" class="overlay">
-							<div class="popup">
-							<a href="#none" class="close">&times;</a>
-							<strong style="text-align: center;">객실 이용 안내</strong>
-					<br>
+				<%-- <div id="pop01" class="overlay">
+				<div class="popup">
+				<a href="#none" class="close">&times;</a>
+				<strong style="text-align: center;">객실 이용 안내</strong>
+				<br>
 				<section>
 					<p>기본정보</p>
 					<ul>
-						<li>${roomList.roomMax }인 기준 최대 ${roomList.roomMax }인</li>
+						<li>a 인 기준 최대 a인</li>
 					</ul>
 				</section>
 				<hr>
@@ -796,18 +804,17 @@ textarea {
 				</section>
 				
 			</div>
-		</div>
+		</div> --%>
 							<hr>
 							<div>
 								<input type="hidden" name="accomoName" value="${accomo.accomoName }">
 								<input type="hidden" name="accomoNo" value="${accomo.accomoNo }">
-								<input type="hidden" name="roomMax" value="${roomList.roomMax }">
 								<input type="hidden" name="peakFee" value="${roomList.peakFee }">
 								<input type="hidden" name="roomName" value="${roomList.roomName }">
 								
 								<input type="hidden" name="AccomoCheckIn" value="${accomo.checkIn }">
 								
-								<button class="detail_btn" type="submit" name="roomNo" value="${roomList.roomNo }">예약하기</button>
+								<button class="detail_btn" type="submit" name="roomNo" value="${roomList.roomNo }" onclick="()">예약하기</button>
 							</div>
 						</div>
 					</div>
@@ -964,10 +971,18 @@ textarea {
                         </c:when>
                     </c:choose>
                     
-                    
+                    <c:choose>
+                        <c:when test="${accomo.reviewScore eq 0}">
+                     <p>
+                        전체리뷰  :  0 개
+                    </p>
+                    </p>
+                        </c:when>
+                        <c:otherwise>
                      <p>
                         전체리뷰  :  ${totalCount} 개
-                    </p>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <hr>   
                 <br>
@@ -1115,8 +1130,6 @@ textarea {
                                 			reviewNo : reviewNo
                                 		},
                                 		success:function(data, textStatus, xhr){
-                                			console.table(data);
-                                			console.log(data);
                                 			document.getElementsByName(reviewName)[0].innerHTML = data.up;
                                 			document.getElementsByName(reviewName)[1].innerHTML = data.down;
                                 			
@@ -1170,7 +1183,9 @@ textarea {
                 </ul> 
 				<hr>
 				<div class="clearfix"> </div>
-	    <nav>
+<!-- 	    <nav>
+	    
+	    
 		<ul class="pagination">
 		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
@@ -1180,7 +1195,7 @@ textarea {
 		  <li><a href="#">5</a></li>
 		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 	   </ul>
-	   </nav>
+	   </nav> -->
                 
                 <!-- //리뷰내용 -->
             </div>

@@ -101,7 +101,9 @@ public class UserInfoService {
 		
 		close(con);
 		
+		System.out.println("서비스:!!!!!!!!" + value);
 		return searchList;
+		
 	}
 
 	public int searchCount(String condition, String value) {

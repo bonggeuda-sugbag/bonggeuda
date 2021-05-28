@@ -121,9 +121,10 @@ public class BestReviewDetailServlet extends HttpServlet {
 		
 		//리뷰리스트, 베스트리뷰,
 		if(bestReview !=null || reviewList!=null) {
-			path="/WEB-INF/views/guest/accomoInfo/review.jsp";
+			path="/WEB-INF/views/admin/user/reviewBest.jsp";
 			request.setAttribute("bestReview", bestReview);
 			request.setAttribute("reviewList", reviewList);
+			request.setAttribute("accomo", accomo);
 			request.setAttribute("pageInfo", pageInfo);
 			request.setAttribute("totalCount", totalCount);
 			
