@@ -193,8 +193,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 
 	/* 이메일 중복확인 */
-	var emailCnt = 0;
 	function emailDuplication() {
+		var emailCnt = 0;
 		var intputEmail = document.getElementById("email").value;
 		
 		$.ajax({
@@ -222,8 +222,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 	
 	/* 닉네임 중복확인 */
-	var nickNameCnt = 0;
 	function nickNameDuplication() {
+		var nickNameCnt = 0;
 		var intputNickname = document.getElementById("nickName").value;
 		
 		$.ajax({
@@ -316,6 +316,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 			return false
 		} else {
+			alert("회원가입이 완료되었습니다.");
 			return true;
 		}
 	}
