@@ -165,13 +165,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td colspan="2" id="same" style="font-size:12px; text-align: right; padding-bottom:15px;"><span id="same" style="line-height:15px;"></span></td>
 						</tr>
 						<tr>
-							<td style="padding-bottom: 15px;">닉네임</td>
-							<td><input id="nickName" name="nickName" type="text" placeholder="닉네임을 입력해주세요." onchange="nickNameDuplication()" style="width: 250px;"></td>
-						</tr>
-						<tr>
-							<td colspan="2" id="nickNameDuplication" style="font-size:12px; text-align: right; padding-bottom:15px;"><span id="nickNameDuplication" style="line-height:15px;"></span></td>
-						</tr>
-						<tr>
 							<td style="padding-bottom: 15px;">전화번호</td>
 							<td><input id="phone" name="phone" type="text" placeholder="전화번호를 입력해주세요." style="width: 250px;"></td>
 						</tr>
@@ -226,43 +219,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	         
 	      });
 	}
-	
-	/* 닉네임 중복확인 */
-		var nickNameCnt = 0;
-	function nickNameDuplication() {
-		var intputNickname = document.getElementById("nickName").value;
-		
-		$.ajax({
-	         url: "${ pageContext.servletContext.contextPath }/userinfo/duplication",
-	         type: "get",
-	         data:{ intputNickname : intputNickname },
-	         success: function(data,textStatus,xhr){
-	        	console.log(data);
-	            if (data == 0){
-	            	
-	            		document.getElementById('nickNameDuplication').innerHTML='사용할 수 있는 닉네임입니다.';
-						document.getElementById('nickNameDuplication').style.color='blue';
-	               		nickNameCnt = 1;
-			    	
-	            } else if(data != 0) {
-	            	document.getElementById('nickNameDuplication').innerHTML='이미 사용중인 닉네임입니다.';
-					document.getElementById('nickNameDuplication').style.color='red';
-	            }
-	         },
-	         error: function(xhr, status, error){
-	            console.log(xhr);
-	            console.log(status);
-	            console.log(error);
-	         }
-	         
-	      });
-	}
 
 	/* 회원가입 유효성 테스트 */
 	function registerCheck() {
 		var num = 0;
 		
-		if(num != 4) {
+		if(num != 3) {
 			/* 이메일 유효성 */
 			var email = document.getElementById("email").value;
 			var regExp = /^[\w]+@[\w]+(\.[\w]+){1,3}$/;
@@ -293,19 +255,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				}
 			} else {
 				alert("비밀번호를 입력해주세요.");
-			}
-			
-			/* 닉네임 중복성 */
-			var nickName = document.getElementById("nickName").value;
-			
-			if(nickName!='') {
-				if(nickNameCnt != 0) {
-					num++;
-	        	} else {
-	            	alert("이미 사용중인 닉네임입니다.");
-	        	}
-			} else {
-				alert("닉네임을 입력해주세요.");
 			}
 			
 			/* 전화번호 유효성 */

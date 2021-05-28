@@ -343,5 +343,39 @@ public class LoginDAO {
 		return result;
 	}
 
+
+	/**
+	 * 업체 회원가입
+	 * @param con
+	 * @param requestMember
+	 * @return
+	 */
+	public int registMember(Connection con, OwnerInfoDTO requestMember) {
+
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		/* 회원정보 등록 */
+		String query = prop.getProperty("signUpRegistOwner");
+		
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, requestMember.getOwnerID());
+			pstmt.setString(2, requestMember.getOwnerPwd());
+			pstmt.setString(3, requestMember.getOwnerPhone());
+			
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
 	
 }

@@ -203,5 +203,28 @@ public class LoginService {
 		return userEmail;
 	}
 
+	/**
+	 * 업체 회원가입
+	 * @param requestMember
+	 * @return
+	 */
+	public int registMember(OwnerInfoDTO requestMember) {
+
+		Connection con = getConnection();
+		
+		int result = loginDAO.registMember(con, requestMember);
+		
+		if(result > 1) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+		
+	}
+
 
 }

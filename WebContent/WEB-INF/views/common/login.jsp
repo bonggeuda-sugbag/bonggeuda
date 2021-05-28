@@ -161,7 +161,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<button style="margin-right: 15px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('1');">사용자 로그인</button>
 					<button style="margin-right: 15px; width: 120px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="login('2');">업체 로그인</button>
 					<button style="margin-right: 15px; width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/check/regist';">사용자 회원가입</button>
-					<button style="width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='';">업체 회원가입</button>
+					<button style="width: 130px; height: 40px;" class="btns-wrap__submit-btn" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/login/check/registTwo';">업체 회원가입</button>
 
 					<br>
 					<div class="clearfix"> </div>

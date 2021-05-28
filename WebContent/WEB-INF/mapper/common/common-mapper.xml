@@ -52,6 +52,27 @@
 		       )
 	</entry>
 	
+	<entry key="signUpRegistOwner">
+		INSERT
+		  INTO OWNER_INFO
+		     ( OWNER_NO
+             , OWNER_ID
+             , OWNER_PWD
+             , OWNER_PHONE
+             , OWNER_WITHDRAW_YN
+             , OWNER_SIGNDATE
+             , OWNER_WITHDATE
+		     )
+		VALUES ( SEQ_OWNER_NO.NEXTVAL
+		       , ?
+		       , ?
+		       , ?
+		       , DEFAULT
+		       , SYSDATE
+		       , NULL
+		       )
+	</entry>
+	
 	<entry key="pointInsert">
 		INSERT
 		  INTO POINT
