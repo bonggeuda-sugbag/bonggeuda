@@ -376,7 +376,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<input id="reasonRdo6" type="radio" name="radios" value="기타" checked>
 										<label for="reasonRdo6">기타</label>
 										<div class="reason-innder-box reason-innder-box6"  style="margin-bottom: 10px;">
-											<input name="reason" style="width:100%;float: left;" placeholder="사유를 입력하세요">
+											<input id="reasonDetail" name="reason" style="width:100%;float: left;" placeholder="사유를 입력하세요">
 										</div>
 									</li>
 									</ul>
@@ -400,6 +400,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									}
 								});
 							});
+							
 						</script>
 					</div>
 				</div>
