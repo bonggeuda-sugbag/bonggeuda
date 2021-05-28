@@ -193,8 +193,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 
 	/* 이메일 중복확인 */
-	function emailDuplication() {
 		var emailCnt = 0;
+	function emailDuplication() {
 		var intputEmail = document.getElementById("email").value;
 		
 		$.ajax({
@@ -222,8 +222,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 	
 	/* 닉네임 중복확인 */
-	function nickNameDuplication() {
 		var nickNameCnt = 0;
+	function nickNameDuplication() {
 		var intputNickname = document.getElementById("nickName").value;
 		var regExp3 = /^[\w]+@[\w]+(\.[\w]+){1,3}$/;
 		
@@ -234,7 +234,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	         success: function(data,textStatus,xhr){
 	        	console.log(data);
 	            if (data == 0){
-	            	if(!regExp.test(email)) {
+	            	if(!regExp3.test(email)) {
 			        	alert("이메일 형식으로 입력해주세요.");
 			    	} else {
 	            		document.getElementById('nickNameDuplication').innerHTML='사용할 수 있는 닉네임입니다.';
