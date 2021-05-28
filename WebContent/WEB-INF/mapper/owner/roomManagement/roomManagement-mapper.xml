@@ -4,7 +4,7 @@
 	<entry key="selectRoomCount">
         SELECT 
                COUNT(*)
-          FROM ACCOMO_INFO A
+          FROM RM_ACCOMO_INFO A
          WHERE A.OWNER_NO = ?
 	</entry>
 	
