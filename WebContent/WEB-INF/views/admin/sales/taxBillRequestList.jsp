@@ -369,6 +369,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							location.href = "${pageContext.servletContext.contextPath}"
 									+ "/sales/taxbillinfo?stlNo="
 									+ this.parentNode.children[3].innerText
+									+ "&requestNo="
+									+ this.parentNode.children[0].innerText
 									+ "&taxStatus=${requestScope.taxStatus}";
 						} 
 
