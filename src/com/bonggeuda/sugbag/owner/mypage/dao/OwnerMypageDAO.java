@@ -76,7 +76,7 @@ public class OwnerMypageDAO {
 	}
 
 
-	public List<ReportDTO> selectReportList(Connection con, PageInfoDTO pageInfo) {
+	public List<ReportDTO> selectReportList(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -89,7 +89,7 @@ public class OwnerMypageDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);//업체번호
+			pstmt.setInt(1, ownerNo);//업체번호
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			
@@ -231,7 +231,7 @@ public class OwnerMypageDAO {
 		return ownerWithdrawUpdate;
 	}
 
-	public List<RequestTaxBillDTO> selectTaxBillListDAO(Connection con, PageInfoDTO pageInfo) {
+	public List<RequestTaxBillDTO> selectTaxBillListDAO(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -247,7 +247,7 @@ public class OwnerMypageDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);//업체번호
+			pstmt.setInt(1, ownerNo);//업체번호
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			
@@ -278,7 +278,7 @@ public class OwnerMypageDAO {
 		return selectTaxBillList;
 	}
 
-	public int insertRequestTaxBillDAO(Connection con, int ownerNo, Date startDate, Date endDate, int accomoNo) {
+	public int insertRequestTaxBillDAO(Connection con, int stlNo, int accomoNo) {
 		
 		PreparedStatement pstmt = null;
 
@@ -293,9 +293,8 @@ public class OwnerMypageDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setDate(1, startDate);
-			pstmt.setDate(2, endDate);
-			pstmt.setInt(3, accomoNo);
+			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, stlNo);
 			
 			insertRequestTaxBill = pstmt.executeUpdate();
 			
@@ -343,8 +342,6 @@ public class OwnerMypageDAO {
 			e.printStackTrace();
 		}
 		
-		
-		
 		return selectAccomoNames;
 	}
 
@@ -372,11 +369,10 @@ public class OwnerMypageDAO {
 			e.printStackTrace();
 		}
 		
-
 		return accomoNo;
 	}
 
-	public List<SettlementDTO> selectStl(Connection con, PageInfoDTO pageInfo) {
+	public List<SettlementDTO> selectStl(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 		
 		System.out.println("들어왔나");
 		
@@ -396,7 +392,7 @@ public class OwnerMypageDAO {
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); //업체번호
+			pstmt.setInt(1, ownerNo); //업체번호
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 
@@ -450,11 +446,10 @@ public class OwnerMypageDAO {
 			e.printStackTrace();
 		}
 		
-		
 		return selectImagePathDAO;
 	}
 	
-	public List<AccomoDTO> selectAccomo(Connection con) {
+	public List<AccomoDTO> selectAccomo(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -466,7 +461,7 @@ public class OwnerMypageDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); //업체번호
+			pstmt.setInt(1, ownerNo); //업체번호
 			
 			rset = pstmt.executeQuery();
 			
@@ -514,7 +509,7 @@ public class OwnerMypageDAO {
 	}
 	
 	//신고페이지 카운트
-	public int selectTotalCount(Connection con) {
+	public int selectTotalCount(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -531,7 +526,7 @@ public class OwnerMypageDAO {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			
 			rset = pstmt.executeQuery();
 
@@ -550,7 +545,7 @@ public class OwnerMypageDAO {
 	}
 
 	//정산페이지 카운트
-	public int selectStlTotalCount(Connection con) {
+	public int selectStlTotalCount(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -567,7 +562,7 @@ public class OwnerMypageDAO {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); //업체번호
+			pstmt.setInt(1, ownerNo); //업체번호
 			
 			rset = pstmt.executeQuery();
 
@@ -585,7 +580,7 @@ public class OwnerMypageDAO {
 		return stlTotalCount;
 	}
 
-	public int taxTotalCount(Connection con) {
+	public int taxTotalCount(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -602,7 +597,7 @@ public class OwnerMypageDAO {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); //업체번호
+			pstmt.setInt(1, ownerNo); //업체번호
 			
 			rset = pstmt.executeQuery();
 

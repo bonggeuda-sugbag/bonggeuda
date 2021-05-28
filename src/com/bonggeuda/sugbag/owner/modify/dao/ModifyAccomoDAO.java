@@ -26,7 +26,6 @@ public class ModifyAccomoDAO {
 		}
 		
 	}
-	
 
 	public RmAccomoInfoDTO selectRmAccomoInfoDAO(Connection con, int accomoNo) {
 		
@@ -65,8 +64,6 @@ public class ModifyAccomoDAO {
 //				rmAccomoDTO.setPeakEnd(rset.getDate("PEAK_DATE_END"));
 //				rmAccomoDTO.setPeakStart(rset.getDate("PEAK_DATE_START"));
 				
-				
-				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,13 +72,8 @@ public class ModifyAccomoDAO {
 			close(rset);
 		}
 		
-		 
-		
-		
-		
 		return rmAccomoDTO;
 	}
-
 
 	public int insertModifyAttachment(Connection con, AttachmentDTO tempFileInfo, int selectReqNoMax) {
 		
@@ -89,8 +81,6 @@ public class ModifyAccomoDAO {
 		int result = 0;
 		
 		String query = prop.getProperty("insertModifyAccomoAttachment");
-		
-		
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -110,12 +100,8 @@ public class ModifyAccomoDAO {
 			close(pstmt);
 		}
 		
-		
-		
-		
 		return result;
 	}
-
 
 	public RmAccomoInfoDTO selectRmAccomoInfoDAOTwo(Connection con, int rmAccomoNo) {
 		
@@ -149,8 +135,6 @@ public class ModifyAccomoDAO {
 		return rmAccomoDTO;
 	}
 
-
-	
 	public RmAccomoInfoDTO selectRmAccomoInfoDAOThree(Connection con, int rmAccomoNo) {
 		
 		PreparedStatement pstmt = null;
@@ -175,11 +159,8 @@ public class ModifyAccomoDAO {
 			e.printStackTrace();
 		}
 
-		
-		
 		return rmAccomoDTO;
 	}
-
 
 	public int insertAccomoAttachment(Connection con, AttachmentDTO tempFileInfo, int seqCurrvalSelect) {
 		
@@ -187,8 +168,6 @@ public class ModifyAccomoDAO {
 		int result = 0;
 		
 		String query = prop.getProperty("insertAccomoAttachment");
-		
-		
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -208,12 +187,8 @@ public class ModifyAccomoDAO {
 			close(pstmt);
 		}
 		
-		
-		
-		
 		return result;
 	}
-
 
 	public int selectRmCountDAO(Connection con, int accomoNo) {
 		

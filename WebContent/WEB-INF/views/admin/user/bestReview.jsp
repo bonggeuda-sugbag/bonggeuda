@@ -178,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
          </thead>
          <tbody>
 			<c:forEach var="best" items="${ requestScope.bestReviewList }">
-			<form action="${ pageContext.servletContext.contextPath }/bestreview/detail" method="post">
+			<form action="${ pageContext.servletContext.contextPath }/bestreview/detail" method="get">
 			<tr>
 				<td><c:out value="${ best.rnum }"/></td>
 				<td><c:out value="${ best.title }"/></td>

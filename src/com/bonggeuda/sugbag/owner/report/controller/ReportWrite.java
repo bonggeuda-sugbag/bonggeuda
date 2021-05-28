@@ -40,16 +40,13 @@ public class ReportWrite extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
 		int userNo = Integer.parseInt(request.getParameter("userNo")); 
 		int ownerNo = Integer.parseInt(request.getParameter("ownerNo")); 
-
 		
 		/* 이정보 담아서  신고 jsp 로 넘겨주자 */
 		BookDTO forReort = new BookDTO();
 		forReort.setUserNo(userNo);
 		forReort.setOwnerNo(ownerNo);
-		
 		
 		request.setAttribute("forReort", forReort);
 		
@@ -59,9 +56,6 @@ public class ReportWrite extends HttpServlet {
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
-
-	
-
 
 	/**
 	 * 신고 페이지로 이동 
@@ -73,9 +67,7 @@ public class ReportWrite extends HttpServlet {
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
-			
 
-			
 			String fileUploadDirectory = rootLocation + "/esources/upload/original/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
 			
@@ -88,8 +80,6 @@ public class ReportWrite extends HttpServlet {
 			}
 
 			Map<String, String> parameter = new HashMap<>();
-			
-	
 			
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
@@ -176,10 +166,8 @@ public class ReportWrite extends HttpServlet {
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 						//parameterValue.put("facility",new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 						
-						
 					}
 				}
-							
 				
 				System.out.println("parameter : " + parameter);
 				//parameter.get(key)
@@ -188,9 +176,6 @@ public class ReportWrite extends HttpServlet {
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
 				ReportDTO thumbnail = new ReportDTO();
 
-
-				
-				
 				AttachmentDTO tempFileInfo = new AttachmentDTO();
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
@@ -222,10 +207,6 @@ public class ReportWrite extends HttpServlet {
 				
 				System.out.println("리젙트는?????  " + result);
 
-
-
-				
-
 				String writerType = "owner";
 				String reportedType = "guest";
 				
@@ -235,8 +216,6 @@ public class ReportWrite extends HttpServlet {
 				String reportTitle = parameter.get("reportTitle");
 				String reportContent = parameter.get("reportContent");
 				System.out.println(reportTitle + reportContent);
-				
-				
 				
 				ReportWriteService reportInsertService = new ReportWriteService();
 				
@@ -274,13 +253,8 @@ public class ReportWrite extends HttpServlet {
 				} else {
 					e.printStackTrace();
 				}
-				
 			} 
-
 		}
-		
-
-			
 	}
 }
 

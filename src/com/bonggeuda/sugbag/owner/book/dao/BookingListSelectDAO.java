@@ -30,7 +30,7 @@ public class BookingListSelectDAO {
 		}
 	}
 
-	public List<BookDTO> selectBookList(Connection con, PageInfoDTO pageInfo) {
+	public List<BookDTO> selectBookList(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -43,7 +43,7 @@ public class BookingListSelectDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			
@@ -119,8 +119,10 @@ public class BookingListSelectDAO {
 				bookConDTO.setUserPhone(rset.getString("USER_PHONE"));
 				bookConDTO.setBookRequestDate(rset.getString("PAYMENT_TIME"));
 				bookConDTO.setPaymentMethod(rset.getString("PAYMENT_METHOD"));
-				
-				
+				bookConDTO.setPaymentFee(rset.getInt("PAYMENT_AMOUNT"));
+				bookConDTO.setAccomoNo(rset.getInt("ACCOMO_NO"));
+				bookConDTO.setPaymentNo(rset.getInt("PAYMENT_NO"));
+				bookConDTO.setRoomNo(rset.getInt("ROOM_NO"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -142,7 +144,6 @@ public class BookingListSelectDAO {
 			
 			pstmt.setInt(1, bookNo);
 			
-			
 			bookAllowUpdate = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -150,7 +151,6 @@ public class BookingListSelectDAO {
 			close(pstmt);
 			close(con);
 		}
-		
 		
 		return bookAllowUpdate;
 	}
@@ -255,7 +255,7 @@ public class BookingListSelectDAO {
 		return insertRejectBookHistory;
 	}
 
-	public int selectTotalCount(Connection con) {
+	public int selectTotalCount(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -264,7 +264,7 @@ public class BookingListSelectDAO {
 		/* 반환시킬 변수 지정 */
 		int totalCount = 0;
 		
-		String query = prop.getProperty("bookingTotalCount");
+		String query = prop.getProperty("pastBookingTotalCount");
 
 		//잘 넘어왔는지 확인용 출력
 		System.out.println(query);
@@ -272,7 +272,7 @@ public class BookingListSelectDAO {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			
 			rset = pstmt.executeQuery();
 
@@ -290,12 +290,14 @@ public class BookingListSelectDAO {
 		return totalCount;
 	}
 
-	public List<BookDTO> selectBookPastList(Connection con, PageInfoDTO pageInfo) {
+	public List<BookDTO> selectBookPastList(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rset = null;
 		
 		List<BookDTO> selectBookedList = new ArrayList<>();
+	
 		/* 반환 시킬 변수를 지정하자*/
 		BookDTO bookDTO = new BookDTO();
 		
@@ -303,7 +305,7 @@ public class BookingListSelectDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			
@@ -316,13 +318,13 @@ public class BookingListSelectDAO {
 				bookDTO.setBookUserName(rset.getString("BOOK_USER_NAME"));
 				bookDTO.setBookPersonnel(rset.getInt("BOOK_PERSONNEL"));
 				bookDTO.setBookCheckDate(rset.getString("BOOK_CHECK_DATE")); // 디비에서도 문자열 값임.
-				bookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECK_DATE"));
+				bookDTO.setBookCheckoutDate(rset.getString("BOOK_CHECKOUT_DATE"));
 				bookDTO.setBookApproveYn(rset.getString("BOOK_APPROVE_YN"));
 				bookDTO.setBookCheckIn(rset.getString("BOOK_CHECK_IN"));
 				bookDTO.setRequest(rset.getString("REQUEST"));
 				bookDTO.setRoomName(rset.getString("ROOM_NAME"));
 				bookDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
-				bookDTO.setUserPhone(rset.getString("USER_PHONE"));
+				bookDTO.setUserPhone(rset.getString("BOOK_PHONE"));
 				bookDTO.setBookStatusYNC(rset.getString("BOOK_STATUS_YNC"));
 				bookDTO.setRowNum(rset.getInt("RNUM"));
 
@@ -341,7 +343,93 @@ public class BookingListSelectDAO {
 		
 		return selectBookedList;
 	}
+
+	public int totalCount(Connection con, int ownerNo) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		/* 반환시킬 변수 지정 */
+		int totalCount = 0;
+		
+		String query = prop.getProperty("bookingTotalCount");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNo);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+     
+		return totalCount;
+	}
+
+	public int insertSelectHistoryDAO(Connection con, int roomNo, int paymentFee, int paymentNo, int accomoNo) {
+
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertSelectHistory");
+		
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, accomoNo);
+			pstmt.setInt(2, roomNo);
+			pstmt.setInt(3, paymentFee);
+			pstmt.setInt(4, paymentNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public int selectcompleteCountDAO(int bookNo, Connection con) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int selectcompleteCount = 0;
+		String query = prop.getProperty("selectcompleteCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				selectcompleteCount = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return selectcompleteCount;
+	}
 }
+
 
 
 

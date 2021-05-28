@@ -15,12 +15,12 @@ public class AccomoService {
 	/*AccomoDAO와 연결할 필드 변수*/
 	private AccomoDAO accomoDAO = new AccomoDAO();
 	
-	public int InsertAccomoServlet(AccomoDTO accomoDTO) {
+	public int InsertAccomoServlet(AccomoDTO accomoDTO, int ownerNo) {
 
 		Connection con = getConnection();
 
 		/*Connection과 함께 정보를 전달하여 조회.*/
-		int inserAccomo = accomoDAO.InsertAccomo(con, accomoDTO);
+		int inserAccomo = accomoDAO.InsertAccomo(con, accomoDTO, ownerNo);
 		
 		if(inserAccomo > 0) {
 			commit(con);

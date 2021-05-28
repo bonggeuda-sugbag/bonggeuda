@@ -113,16 +113,15 @@
 	</entry>
 	
 	<entry key="insertRequestTaxBill">
-		INSERT
+ 		INSERT
   		INTO REQUEST_TAX_BILL
 		VALUES
 		(
  		  SEQUENCE_REQUEST_NO.NEXTVAL
-		, ?
-		, ?
 		, SYSDATE
 		, ?
 		, DEFAULT
+		, ?
 		)
 	</entry>
 	
@@ -160,10 +159,8 @@
 		JOIN REPORT R ON(R.REPORT_NO = A.REF_NO)
 	   WHERE CATEGORY_NO = 6
 		 AND R.REPORT_NO = ?
-	
-	
-	
 	</entry>
+	
 	<entry key="selectAccomo">
 		SELECT
 		       ACCOMO_NAME

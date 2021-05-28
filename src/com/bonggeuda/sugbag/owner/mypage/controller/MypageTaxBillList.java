@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.RequestTaxBillDTO;
 import com.bonggeuda.sugbag.owner.mypage.service.OwnerMypagService;
@@ -23,6 +25,10 @@ import com.bonggeuda.sugbag.owner.mypage.service.OwnerMypagService;
 public class MypageTaxBillList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//로그인 값
+		HttpSession session = request.getSession();
+		int ownerNo = (Integer)session.getAttribute("ownerNo");
 		
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
@@ -39,7 +45,7 @@ public class MypageTaxBillList extends HttpServlet {
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		OwnerMypagService ownerService = new OwnerMypagService();
 		
-		int taxTotalCount = ownerService.taxTotalCount();
+		int taxTotalCount = ownerService.taxTotalCount(ownerNo);
 		
 		System.out.println("totalCount 체크 : " + taxTotalCount);
 		
@@ -56,7 +62,7 @@ public class MypageTaxBillList extends HttpServlet {
 
 		List<RequestTaxBillDTO> taxBillList = new ArrayList<>();
 		
-		taxBillList = ownerService.selectTaxBillList(pageInfo);
+		taxBillList = ownerService.selectTaxBillList(pageInfo,ownerNo);
 		
 		String path = "";
 		path = "/WEB-INF/views/owner/mypage/mypageTaxbillList.jsp";

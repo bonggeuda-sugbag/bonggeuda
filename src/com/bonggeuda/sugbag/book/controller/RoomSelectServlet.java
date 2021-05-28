@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
+import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.RoomDTO;
 import com.bonggeuda.sugbag.service.BookService;
 
@@ -20,6 +21,9 @@ import com.bonggeuda.sugbag.service.BookService;
 public class RoomSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		int accomoNo = Integer.parseInt(request.getParameter("no"));
 		//숙소정보, 사진조회
 		BookService booksvc = new BookService();
@@ -38,8 +42,19 @@ public class RoomSelectServlet extends HttpServlet {
 		} else {
 			System.out.println("숙소상세보기실패~^^");
 		}
-		
-		request.getRequestDispatcher(path).forward(request, response);;
+		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
+		if(member == null) {
+			path = "";
+			System.out.println("컨텍스트 패스 : " + request.getContextPath());
+			path = request.getContextPath() + "/WEB-INF/views/common/login.jsp";
+			System.out.println(path);
+			response.sendRedirect(path);
+//			System.out.println("리얼패스 : " + request.getRealPath());
+//			response.sendRedirect();
+		} else {
+			request.getRequestDispatcher(path).forward(request, response);;
+			
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -145,6 +145,8 @@
 				<c:forEach var="board" items="${ requestScope.bookList }">
 				<form action="/bonggeuda/owner/bookingPastList" method="post">
 				<input type="hidden" name="bookNo" value="${board.bookNo}">
+				<input type="hidden" name="bookStatusYNC" value="${board.bookStatusYNC}">
+				
 				   	<tr>
 						<th><button type="submit" class="list-btn">${ board.rowNum }</button></th>
 						<th><button type="submit" class="list-btn"><c:out value="${ board.accomoName }"/></button></th>
@@ -159,6 +161,7 @@
 						<c:choose>
 							<c:when test="${ board.bookStatusYNC eq 'Y'}">
 							 <button type="submit" class="list-btn"><p style="color: green;">결제 완료</p></button>
+							 
 							</c:when>
 							<c:when test="${ board.bookStatusYNC eq 'N'}">
 							 <button type="submit" class="list-btn"><p style="color: orange;">예약 거절</p></button>

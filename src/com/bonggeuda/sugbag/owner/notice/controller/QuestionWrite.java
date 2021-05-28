@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.owner.notice.service.QuestionService;
 
 /**
@@ -18,6 +19,10 @@ public class QuestionWrite extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		//로그인 값
+		OwnerInfoDTO member = (OwnerInfoDTO)request.getSession().getAttribute("ownerNo");
+		int ownerNo = member.getOwnerNo();
+		
 		System.out.println("작성했어");
 		
 		String title = request.getParameter("title");
@@ -33,7 +38,7 @@ public class QuestionWrite extends HttpServlet {
 		QuestionService questionService = new QuestionService();
 		
 		/*결과값 반환*/
-		int insetQuestion = questionService.InsertQuestion(QuestionWrite); //값을 int형으로 반환받아야 함
+		int insetQuestion = questionService.InsertQuestion(QuestionWrite, ownerNo); //값을 int형으로 반환받아야 함
 		
 		/*1:1 문의로 이동*/
 		String path="";
