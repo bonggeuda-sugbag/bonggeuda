@@ -146,13 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>   
 </div>
 <!--//-->   
-<div class=" banner-buying">
-   <div class=" container">
-   <h3><span>사용자 관리</span></h3> 
 
-   <div class="clearfix"> </div>            
-   </div>
-</div>
 <!--//header-->
 <!--blog-->
 <div class="blog">
@@ -189,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<td><c:out value="${ leave.email }"/></td>
 				<td><c:out value="${ leave.reason }"/></td>
 				<td><c:out value="${ leave.leaveDate }"/></td>
-				<td><c:out value="${ leave.leaveDate }"/></td>
+				<td><c:out value="${ leave.year }"/></td>
 				<input type="hidden" name="hduserNo" value= "${ user.userNo }">
 			</tr>
             

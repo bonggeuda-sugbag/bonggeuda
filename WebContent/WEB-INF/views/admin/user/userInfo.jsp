@@ -141,13 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>   
 </div>
 <!--//-->   
-<div class=" banner-buying">
-   <div class=" container">
-   <h3><span>사용자 관리</span></h3> 
 
-   <div class="clearfix"> </div>            
-   </div>
-</div>
 <!--//header-->
 <!--blog-->
 <div class="blog">
@@ -187,7 +181,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<td><c:out value="${ user.phoneNumber }"/></td>
 				<td><button>상세보기</button></td>
 				<input type="hidden" name="hduserNo" value= "${ user.userNo }">
-				<input type="hidden" name="reviewNo" value= "${ user.reviewNo }">
 			</tr>
             </form>
 			</c:forEach>
@@ -266,15 +259,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    <c:when test="${ !empty requestScope.searchValue }">
    					    <select id="searchCondition" name="searchCondition">
 							<option value="userId" <c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>회원번호</option>
+							<option value="userName" <c:if test="${requestScope.searchCondition eq 'name'}">selected</c:if>>닉네임</option>
 						</select>
 				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
 				    </c:when>
 				    <c:otherwise>
 					    <select id="searchCondition" name="searchCondition">
 							<option value="userId">아이디</option>
+							<option value="userName">닉네임</option>
 						</select>
 				        <input type="search" id="searchValue" name="searchValue" >
 				        <input type="hidden" name="userId" value= "${ user.email }">
+				        <input type="hidden" name="userName" value= "${ user.name }">
 				    </c:otherwise>
 				</c:choose>
 				<button type="submit">검색하기</button>

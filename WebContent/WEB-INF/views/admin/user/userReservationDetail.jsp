@@ -138,13 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>   
 </div>
 <!--//-->   
-<div class=" banner-buying">
-   <div class=" container">
-   <h3><span>매출관리</span></h3> 
 
-   <div class="clearfix"> </div>            
-   </div>
-</div>
 <!--//header-->
 <!--blog-->
 <div class="blog">
@@ -231,17 +225,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              <!--// 업체 승인여부 -->
 
             <!-- 예약정보 발송여부 -->
-            <tr>
+<!--             <tr>
                 <th style="text-align: center; padding-top: 14px; ">예약정보 발송여부</th>
 
-             </tr>
+             </tr> -->
              <!--// 예약정보 발송여부 -->
 
    </tbody>
 </table>
-      <div class="submit-layer" style="display: flex;">
+  <!--     <div class="submit-layer" style="display: flex;">
          <input type='button' value='예약정보발송' style="margin-left: 575px;"/>
-      </div>
+      </div> -->
 
    </div>
 	</form>	

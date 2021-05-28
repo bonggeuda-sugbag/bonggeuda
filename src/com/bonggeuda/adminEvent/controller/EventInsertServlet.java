@@ -152,7 +152,7 @@ public class EventInsertServlet extends HttpServlet {
 					reviewImg.setSavePath(file.get("savePath"));
 					reviewImg.setFileType(file.get("fileType"));
 					reviewImg.setThumbnailPath(file.get("thumbnailPath"));
-					reviewImg.setCategoryNo(8);
+					reviewImg.setCategoryNo(7);
 					
 					list.add(reviewImg);
 				}
