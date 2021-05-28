@@ -52,12 +52,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><span ><a  href="${ pageContext.servletContext.contextPath }">메인페이지</a></span></li>
 				<li><a  href="${ pageContext.servletContext.contextPath }/usernotice/select">더보기</a></li>
 				<li><a  href="${ pageContext.servletContext.contextPath }/point/select">마이페이지</a></li>
-				<li>${sessionScope.member.nickName} 님 환영합니다.</li>
+				<li><a><strong>${sessionScope.member.nickName}</strong> 님 환영합니다.</a></li>
 				<%-- <li><a  href="${pageContext.servletContext.contextPath }/login/test"><i class="glyphicon glyphicon-user"> </i>로그인</a></li> --%>
 			</ul>
 			<!-- //상단메뉴바 -->
 			</div>
+
 		</c:if>
+		
 		<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix" > </div>

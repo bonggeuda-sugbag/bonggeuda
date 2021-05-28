@@ -582,7 +582,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         const paymentType = document.getElementsByName("paymentType")[0].value; 
         const couponNo = document.getElementsByName("couponNo")[0].value;
         const pointNo = document.getElementsByName("pointNo")[0].value;
-        alert(finalPrice);
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
@@ -617,6 +616,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         alert(msg);
                         
                     } else {
+                    	alert("결제에 실패했습니다.");
+                    	return;
                         //[3] 아직 제대로 결제가 되지 않았습니다.
                         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
                     }
@@ -642,7 +643,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     	                    	couponNo : couponNo
     				    	},
     				    	success:function(data, textStatus, xhr){
-    				    		alert("서블릿 요청성공!");
+    				    		alert("결제성공!!\n예약이 완료었습니다.");
     				    		location.replace("${pageContext.servletContext.contextPath}/userbooklist/select")
     				    	},
     				    	error:function(xhr,status,error){
@@ -650,7 +651,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     				    	}
     				    });
                 
-                alert("결제성공!");
+                ;
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;

@@ -80,9 +80,7 @@ public class AccomoSortingServlet extends HttpServlet {
 
 			
 			} 
-			System.out.println(sortType);
 			path = "/WEB-INF/views/guest/accomoInfo/list.jsp";
-			System.out.println(accomoList);
 			request.setAttribute("checkList", checkList);
 			request.setAttribute("accomoList", accomoList);
 			request.setAttribute("type", type);
