@@ -15,16 +15,18 @@ public class UserleaveDTO implements Serializable{
 	private String email; // 아이디
 	private String reason; // 탈퇴이유
 	private java.sql.Date leaveDate; // 탈퇴날짜
+	private java.sql.Date year; // 탈퇴날짜
 	
 	public UserleaveDTO() {}
 
-	public UserleaveDTO(int rnum, int leaveNo, String email, String reason, Date leaveDate) {
+	public UserleaveDTO(int rnum, int leaveNo, String email, String reason, Date leaveDate, Date year) {
 		super();
 		this.rnum = rnum;
 		this.leaveNo = leaveNo;
 		this.email = email;
 		this.reason = reason;
 		this.leaveDate = leaveDate;
+		this.year = year;
 	}
 
 	public int getRnum() {
@@ -67,6 +69,14 @@ public class UserleaveDTO implements Serializable{
 		this.leaveDate = leaveDate;
 	}
 
+	public java.sql.Date getYear() {
+		return year;
+	}
+
+	public void setYear(java.sql.Date year) {
+		this.year = year;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -74,8 +84,9 @@ public class UserleaveDTO implements Serializable{
 	@Override
 	public String toString() {
 		return "UserleaveDTO [rnum=" + rnum + ", leaveNo=" + leaveNo + ", email=" + email + ", reason=" + reason
-				+ ", leaveDate=" + leaveDate + "]";
+				+ ", leaveDate=" + leaveDate + ", year=" + year + "]";
 	}
+
 
 
 	

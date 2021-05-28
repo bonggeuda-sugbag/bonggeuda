@@ -22,6 +22,7 @@
 				break;
 			case "insertReview" :
 				movePath = "${ pageContext.servletContext.contextPath }/userbooklist/select";
+				alert("리뷰가 등록되었습니다.");
 				break;
 			case "infoUpdate" :
 				movePath = "${ pageContext.servletContext.contextPath }/usermyinfo/select";
@@ -29,7 +30,7 @@
 
 			case "insertEvent" :
 				movePath = "${ pageContext.servletContext.contextPath }/event/list";
-
+				break;
 			case "userLogin" :
 				movePath = "${ pageContext.servletContext.contextPath }/login/guest";
 				break;

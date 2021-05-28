@@ -89,13 +89,12 @@ public class PaymentServlet extends HttpServlet {
 		}
 		payment.setDiscount(discount);
 		
-		
-		int pointNo = 1;
+		int pointNo = Integer.parseInt(request.getParameter("pointNo"));
 		
 		PointHistoryDTO pointGet = new PointHistoryDTO();
 		pointGet.setGetuseType("G");
 		
-		int getPoint = (int)(amount * 0.03);//결제금액의 3% 적립
+		int getPoint = (int)(amount * 0.01);//결제금액의 3% 적립
 		getPoint = ((int) Math.ceil(getPoint*0.1)) * 10; 
 		pointGet.setPoint(getPoint);
 		pointGet.setPointPath("숙소결제완료");
@@ -112,8 +111,8 @@ public class PaymentServlet extends HttpServlet {
 			couponUse.setCouponNo(couponNo);
 			couponUse.setUseDate(payment.getPaymentTime());
 		}
-//		int pointNo = Integer.parseInt(request.getParameter("pointNo"));
-		//포인트 사용시 포인트이력생성
+	
+//		포인트 사용시 포인트이력생성
 		PointHistoryDTO pointUse = new PointHistoryDTO();
 		if(payment.getPointYN().equals("Y")) {
 			pointUse.setGetuseType("U");

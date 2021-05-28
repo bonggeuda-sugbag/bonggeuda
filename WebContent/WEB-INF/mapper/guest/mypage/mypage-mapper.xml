@@ -484,5 +484,11 @@
               , SQU_REVIEW.CURRVAL
               )
     </entry>
+    
+    <entry key="reviewHistorySelect">
+    	SELECT *
+    	  FROM REVIEW
+    	 WHERE BOOK_NO = ?   
+    </entry>
 
 </properties>

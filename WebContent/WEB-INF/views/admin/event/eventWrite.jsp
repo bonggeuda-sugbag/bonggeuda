@@ -151,13 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>	
 </div>
 <!--//-->	
-<div class=" banner-buying">
-	<div class=" container">
-	<h3><span>공지&이벤트</span></h3> 
 
-	<div class="clearfix"> </div>      		
-	</div>
-</div>
 <!--//header-->
 <!--blog-->
 	<div class="blog">
@@ -209,9 +203,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </table>
 				<div class="thumbnail-file-area" style="margin-left: 285px;">
 					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
-					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+	<!-- 				<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
 					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
-					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
+					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)"> -->
 				</div>
 				
 				<br>
@@ -226,11 +220,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	
 			<script>
-			
 			const $titleImgArea = document.getElementById("titleImgArea");
-			const $contentImgArea1 = document.getElementById("contentImgArea1");
+/* 			const $contentImgArea1 = document.getElementById("contentImgArea1");
 			const $contentImgArea2 = document.getElementById("contentImgArea2");
-			const $contentImgArea3 = document.getElementById("contentImgArea3");
+			const $contentImgArea3 = document.getElementById("contentImgArea3"); */
 			
 			$titleImgArea.onclick = function() { 
 				document.getElementById("thumbnailImg1").click(); 
@@ -270,17 +263,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					reader.readAsDataURL(value.files[0]);
 				}
 			}
-			
-		</script>
+			</script>
+
 		
-	</div>
-      <button class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">이벤트 등록</button>
-    	</div>
-        </div>
-        </form>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
-        <br><br><br><br><br>
 <!--//blog-->
 <!--footer-->
 <div class="footer">

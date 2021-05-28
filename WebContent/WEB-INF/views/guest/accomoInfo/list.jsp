@@ -47,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 }
 
 .suksoList{
-    width: 800px; height:250px;background-color: pink;
+    width: 800px; height:250px;
     border-style: 0px;
 	
 }
@@ -146,8 +146,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<form method="post" action = "${pageContext.servletContext.contextPath}/accomoSelect/search"> 
 		
 		<div>
-			<button class="reset" >초기화</button>
-			<button id="searchFacility"class="accept" >적용</button>
+			<button class="reset" type="button" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/list?value=${type }';">초기화</button>
+			<button id="searchFacility"class="accept" >적용 </button>
 		</div>
 		<hr>
 		<div>
@@ -246,18 +246,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			    	location.href="${pageContext.servletContext.contextPath}/accomo/sorting?sortType="+sortType+"&facility="+arr+"&type=${type}&personnel="+personnel;
 			    }
 			</script>
-			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<c:choose>
-			    <c:when test="${empty accomo}">
-		        	
+			    <c:when test="${empty accomoList}">
 			        <div class="suksoList">
 			            <p>일치하는 숙소 정보가 없습니다.</p>
 			        </div>
-			 
 			    </c:when>
 		    <c:otherwise>
-
-
+			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<%-- <div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value='+'${accomo}';" > --%>
 			<form "name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
             <div id="forRemove" class="remove">
@@ -289,9 +285,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			</div>
 			</form>
+			</c:forEach>
 			</c:otherwise>
 			</c:choose> 
-			</c:forEach>
 			
 		</div>
 </div>

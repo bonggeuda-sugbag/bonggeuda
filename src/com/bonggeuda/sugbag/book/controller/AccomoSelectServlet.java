@@ -20,15 +20,17 @@ import com.bonggeuda.sugbag.service.BookService;
 public class AccomoSelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("서블릿요청확인");
+		System.out.println("숙소 검색서블릿요청확인");
 		// 숙소타입구분
 		String accomoType = request.getParameter("value");
-		String type="";
-		switch(accomoType) {
-		    case "hotel" : type = "호텔"; break;
-		    case "pension" : type = "펜션"; break;
-		    case "guestHouse" : type = "게스트하우스"; break;
-		} 
+		String type=accomoType;
+		System.out.println(type);
+//		switch(accomoType) {
+//		    case "hotel" : type = "호텔"; break;
+//		    case "pension" : type = "펜션"; break;
+//		    case "guestHouse" : type = "게스트하우스"; break;
+//		} 
+	    System.out.println(type);
 		// 타입별 숙소 리스트 검색
 		BookService booksvc = new BookService();
 		// 사진 카테고리
