@@ -1326,5 +1326,48 @@ public class UserMypageDAO {
 		
 	}
 
+	/**
+	 * 리뷰내역 조회하기
+	 * @param con
+	 * @param userNo
+	 * @param bookNo 
+	 * @return
+	 */
+	public ReviewDTO reviewSelect(Connection con, int userNo, int bookNo) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		ReviewDTO review = null;
+		
+		String query = prop.getProperty("reviewHistorySelect");
+		
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				review = new ReviewDTO();
+				
+				review.setBookNo(rset.getInt("BOOK_NO"));
+			}
+			
+			System.out.println(review);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return review;
+	}
+
 
 }

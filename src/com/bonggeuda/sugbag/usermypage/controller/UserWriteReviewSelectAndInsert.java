@@ -151,7 +151,6 @@ public class UserWriteReviewSelectAndInsert extends HttpServlet {
 				
 				
 
-				System.out.println("2");
 				//첨부파일
 				userReview.setAttachmentList(new ArrayList<AttachmentDTO>());
 				List<AttachmentDTO> list = userReview.getAttachmentList();
@@ -168,7 +167,7 @@ public class UserWriteReviewSelectAndInsert extends HttpServlet {
 					
 					list.add(reviewImg);
 				}
-				System.out.println("3");
+				
 				/* 리뷰내용 insert 하기 */
 				UserMypageService mypageService = new UserMypageService();
 				int result = mypageService.insertReview(userReview);

@@ -91,12 +91,12 @@
 				</div>
 				<div style="color:black;">
 				<br>숙소 선택&nbsp;&nbsp;:&nbsp;&nbsp;
-				<select name="accmoName" class="select-time" style="font-size: 15px;">
+				<select name="accomoNo" class="select-time" style="font-size: 15px;">
 					<c:forEach var="accmoNames" items="${ requestScope.selectAccomo }">						
-						<option value="${ accmoNames.accomoName }">
+						<option value="${ accmoNames.accomoNo }">
 							<c:out value="${ accmoNames.accomoName }"/>							
-							<input type="hidden" name="accomoNo" value="${ accmoNames.accomoNo }">
-						</option>
+<%--  							<input type="hidden" name="accomoNo" value="${ accmoNames.accomoNo }">
+ --%> 						</option>
 					</c:forEach>
 				</select>
 				&nbsp;&nbsp;&nbsp;&nbsp;

@@ -195,7 +195,7 @@ SELECT
   		  FROM ROOM_INFO R
   		  JOIN ATTACHMENT A ON(R.ROOM_NO = A.REF_NO)
  		 WHERE ACCOMO_NO = ?
-   		   AND A.CATEGORY_NO = 2
+   		   AND A.CATEGORY_NO = 4
 	</entry>
 	
 	<entry key="selectRoomDetail">
