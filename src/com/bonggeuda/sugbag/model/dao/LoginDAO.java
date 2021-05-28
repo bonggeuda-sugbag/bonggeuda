@@ -61,6 +61,41 @@ public class LoginDAO {
 		
 		return encPwd;
 	}
+	
+	/**
+	 * 암호화된 업체 비밀번호 조회
+	 * @param con
+	 * @param loginEmail
+	 * @param loginPassword
+	 * @return
+	 */
+	public String selectEncryptedOwnerPwd(Connection con, String loginEmail, String loginPassword) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String encPwd = null;
+		
+		String query = prop.getProperty("selectEncryptedOwnerPwd");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, loginEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				encPwd = rset.getString("OWNER_PWD");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return encPwd;
+	}
 
 	/**
 	 * 사용자 로그인 체크
@@ -136,7 +171,6 @@ public class LoginDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, loginEmail);
-			pstmt.setString(2, loginPassword);
 			
 			rset = pstmt.executeQuery();
 			
@@ -342,6 +376,43 @@ public class LoginDAO {
 		
 		return result;
 	}
+
+
+	/**
+	 * 업체 회원가입
+	 * @param con
+	 * @param requestMember
+	 * @return
+	 */
+	public int registMember(Connection con, OwnerInfoDTO requestMember) {
+
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		/* 회원정보 등록 */
+		String query = prop.getProperty("signUpRegistOwner");
+		
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, requestMember.getOwnerID());
+			pstmt.setString(2, requestMember.getOwnerPwd());
+			pstmt.setString(3, requestMember.getOwnerPhone());
+			
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+
+	
 
 	
 }

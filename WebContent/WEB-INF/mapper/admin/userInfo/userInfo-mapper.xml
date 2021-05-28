@@ -336,7 +336,7 @@ WHERE C.RNUM BETWEEN ? AND ?
             		, B.MEMBER_NO
             		, B.BLIST_REASON
             		, B.WRITER_TYPE
-            		,B.ENROLL_DATE
+            		, B.ENROLL_DATE
                 FROM(
                       SELECT
                     		 A.BLIST_NO
@@ -345,9 +345,8 @@ WHERE C.RNUM BETWEEN ? AND ?
                    		   , A.WRITER_TYPE
                  		   , A.ENROLL_DATE
               		    FROM BLIST A
-              		    JOIN OWNER_INFO O ON (A.MEMBER_NO = O.OWNER_NO)
-                        JOIN USER_INFO U ON (A.MEMBER_NO = U.USER_NO)
-              		)B
+                        WHERE WRITER_TYPE = 'user'
+                        )B
         	  )C
         	WHERE C.RNUM BETWEEN ? AND ?
 	</entry>

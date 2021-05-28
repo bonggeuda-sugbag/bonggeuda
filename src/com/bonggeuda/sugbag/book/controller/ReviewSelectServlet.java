@@ -31,7 +31,7 @@ public class ReviewSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-		
+		System.out.println("리뷰서블릿 요청확인");
 		int userNo = member.getUserNo();
         BookService bsvc = new BookService();
         int totalCount = 0;
@@ -109,11 +109,8 @@ public class ReviewSelectServlet extends HttpServlet {
 			request.setAttribute("bestReview", bestReview);
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("totalCount", totalCount);
-//			request.setAttribute("pageInfo", pageInfo);
-			System.out.println();
 			
 		} else {
-			
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 		

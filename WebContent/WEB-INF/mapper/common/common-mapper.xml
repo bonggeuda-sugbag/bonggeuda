@@ -8,6 +8,14 @@
          WHERE USER_WITHDRAW_YN = 'N'
            AND USER_ID = ?
 	</entry>
+	
+	<entry key="selectEncryptedOwnerPwd">
+        SELECT
+               OWNER_PWD
+          FROM OWNER_INFO
+         WHERE OWNER_WITHDRAW_YN = 'N'
+           AND OWNER_ID = ?
+	</entry>
 
 	<entry key="userLoginCheck">
 		SELECT *
@@ -21,7 +29,6 @@
 		SELECT *
 		  FROM OWNER_INFO
 		 WHERE OWNER_ID = ?
-		   AND OWNER_PWD =?
 		   AND OWNER_WITHDRAW_YN = 'N'
 	</entry>
 	
@@ -46,6 +53,27 @@
 		       , DEFAULT
 		       , ?
 		       , DEFAULT
+		       , DEFAULT
+		       , SYSDATE
+		       , NULL
+		       )
+	</entry>
+	
+	<entry key="signUpRegistOwner">
+		INSERT
+		  INTO OWNER_INFO
+		     ( OWNER_NO
+             , OWNER_ID
+             , OWNER_PWD
+             , OWNER_PHONE
+             , OWNER_WITHDRAW_YN
+             , OWNER_SIGNDATE
+             , OWNER_WITHDATE
+		     )
+		VALUES ( SEQ_OWNER_NO.NEXTVAL
+		       , ?
+		       , ?
+		       , ?
 		       , DEFAULT
 		       , SYSDATE
 		       , NULL

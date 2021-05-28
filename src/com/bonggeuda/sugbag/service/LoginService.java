@@ -64,9 +64,16 @@ public class LoginService {
 
 		Connection con = getConnection();
 		
-		OwnerInfoDTO ownerloginMember = loginDAO.ownerLoginCheck(con, loginEmail, loginPassword);
+		OwnerInfoDTO ownerloginMember = null;
 		
-		close(con);
+		String encPwd = loginDAO.selectEncryptedOwnerPwd(con, loginEmail, loginPassword);
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		if(passwordEncoder.matches(loginPassword, encPwd)); {
+			
+			ownerloginMember = loginDAO.ownerLoginCheck(con, loginEmail, loginPassword);
+		}
 		
 		return ownerloginMember;
 	}
@@ -142,7 +149,6 @@ public class LoginService {
 	        userInfo.put("email", email);
 	        
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
 	        e.printStackTrace();
 	    }
 	    
@@ -201,6 +207,29 @@ public class LoginService {
 		close(con);
 		
 		return userEmail;
+	}
+
+	/**
+	 * 업체 회원가입
+	 * @param requestMember
+	 * @return
+	 */
+	public int registMember(OwnerInfoDTO requestMember) {
+
+		Connection con = getConnection();
+		
+		int result = loginDAO.registMember(con, requestMember);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+		
 	}
 
 

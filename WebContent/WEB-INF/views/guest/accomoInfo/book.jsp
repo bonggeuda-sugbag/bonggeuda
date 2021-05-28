@@ -697,7 +697,7 @@ textarea {
 			<br>
 			<!-- <객실안내/예약 탭> -->
 			<div id="btn1_content">
-			<form method = "POST" action="${pageContext.servletContext.contextPath }/book/booking">
+			<form method = "POST" onsubmit="bookChecking();" action="${pageContext.servletContext.contextPath }/book/booking">
 			
 				<div style="width: 1100px; height: 60px; padding:5px 10px 5px 10px;display: flex;justify-content: space-around; background-color: white;">
 					<!-- 예약일자 입력 -->
@@ -776,35 +776,6 @@ textarea {
 								<input type="hidden" name="price" value="${roomList.peakFee }">
 							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
-				<%-- <div id="pop01" class="overlay">
-				<div class="popup">
-				<a href="#none" class="close">&times;</a>
-				<strong style="text-align: center;">객실 이용 안내</strong>
-				<br>
-				<section>
-					<p>기본정보</p>
-					<ul>
-						<li>a 인 기준 최대 a인</li>
-					</ul>
-				</section>
-				<hr>
-				<section>
-					<p>편의시설</p>
-					<ul>
-						<li>${accomo.facility}</li>
-					</ul>
-				</section>
-				<hr>
-				<section>
-					<p>성수기날짜 및 요금</p>
-					<ul>
-						<li>${accomo.peakStart } ~ ${accomo.peakEnd }</li>
-						<li>${roomList.peakFee}</li>
-					</ul>
-				</section>
-				
-			</div>
-		</div> --%>
 							<hr>
 							<div>
 								<input type="hidden" name="accomoName" value="${accomo.accomoName }">
@@ -819,6 +790,19 @@ textarea {
 						</div>
 					</div>
 					</c:forEach>
+					<script>
+					    function bookChecking(){
+					    	var chekInD = document.getElementbyId("checkInD");
+					    	var chekInD = document.getElementbyId("checkOutD");
+					    	var chekInD = document.getElementbyId("person");
+					    	
+					    	console.log(a);
+					    	console.log(b);
+					    	console.log(c);
+					    	
+					    	
+					    }
+					</script>
 					<!--// 객실정보 -->
 				</center>
 				</form>

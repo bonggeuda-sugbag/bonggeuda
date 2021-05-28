@@ -28,7 +28,6 @@ public class RoomSelectServlet extends HttpServlet {
 		BookService booksvc = new BookService();
 		int categoryType = 3;
 		AccomoInfoDTO accomo = booksvc.selectAccomoInfo(accomoNo, categoryType);
-
 		//객실정보 조회
 		categoryType = 4;
 		List<RoomDTO> roomList = booksvc.selectRoomList(accomoNo,categoryType);
@@ -38,21 +37,8 @@ public class RoomSelectServlet extends HttpServlet {
 			path = "review";
 			request.setAttribute("accomo", accomo);
 			request.setAttribute("roomList", roomList);
+			request.getRequestDispatcher(path).forward(request, response);
 		} else {
-			System.out.println("숙소상세보기실패~^^");
-		}
-		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-		if(member == null) {
-			path = "";
-			System.out.println("컨텍스트 패스 : " + request.getContextPath());
-			path = request.getContextPath() + "/WEB-INF/views/common/login.jsp";
-			System.out.println(path);
-			response.sendRedirect(path);
-//			System.out.println("리얼패스 : " + request.getRealPath());
-//			response.sendRedirect();
-		} else {
-			request.getRequestDispatcher(path).forward(request, response);;
-			
 		}
 	}
 
