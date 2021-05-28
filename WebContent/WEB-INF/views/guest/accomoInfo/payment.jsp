@@ -335,7 +335,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p style="margin: 0px 85px 0px 0px; font-size: 18px;">포인트사용<small>(1000포인트단위 사용가능)</small></p>
 						<c:choose>
 						<c:when test="${empty point || point.point == 0}">
-						<input type="text" value = "0"readonly style="text-align: right; width: 10%; height: 30px;margin-left: 150px;"></input><b style="margin: 5px 0px 0px 5px;">/ 0 포인트</b>
+						<input name="point" type="text" value = "0"readonly style="text-align: right; width: 10%; height: 30px;margin-left: 150px;"></input><b style="margin: 5px 0px 0px 5px;">/ 0 포인트</b>
 						</c:when>
 						<c:otherwise>
 						<!-- <p style="width:40%;margin: 0px 85px 0px 0px; font-size: 18px;">사용가능 포인트 : </p> -->
@@ -411,7 +411,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type = "hidden" id="checkOutDate"name="checkOutDate" value="${bookInfo.bookCheckoutDate}">
 						<input type = "hidden" id="checkInTime"name="checkInTime" value="${bookInfo.bookCheckIn}">
 						<input type = "hidden" id="personnel" name="personnel" value="${bookInfo.bookPersonnel}">
-						<input type = "hidden" id="pointNo" name="pointNo" value="${point.pointNo }">
+						<input type = "hidden" id="pointNo" name="pointNo" value="73">
 						<input id="couponDiscount" type = "hidden" name="couponDiscount" value=0>
 						
 					</p>

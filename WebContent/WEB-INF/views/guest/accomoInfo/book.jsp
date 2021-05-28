@@ -364,7 +364,7 @@ popup>li{
     text-align: right;
     
 }
-.reviewStar11{
+.reviewStar10{
     clear: both;
     width: 120px;
     height: 24px;
@@ -597,6 +597,8 @@ textarea {
                     <br>
                     <div><h4> - 오시는길 : ${accomo.path }</h4></div>
                     <br>
+                    <div><h4> - 성수기 기간 : ${accomo.peakStart } ~ ${accomo.peakEnd }</h4></div>
+                    <br>
                 
                     <div class="ownerComment">
                         <h4 style="text-align: left;"><b>1박 기준에 따른 요금안내</b></h4>
@@ -754,26 +756,35 @@ textarea {
 						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/${roomList.attachment.thumbnailPath }) no-repeat; background-size: 100%;" ></div>
 						<div class="detailInfo" >
 							<div><h3>${roomList.roomName}</h3></div>
-							<br><br>
+							<br>
 							<div style="display: flex;">
-								<div style="width: 40%;">가격</div>
+								<div style="width: 40%;">정원</div>
+								<div style="margin-left: 40px; width: 50%;">${roomList.roomMax } 인</div>
+								<input type="hidden" name="roomMax" value="${roomList.roomMax }">
+							</div>
+							<hr>
+							<div style="display: flex;">
+								<div style="width: 40%;">비수기요금</div>
 								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
 								<input type="hidden" name="price" value="${roomList.roomFee }">
 							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
 							<hr>
-							<div>
-								<button type="button" class="info_btn" onclick="location.href='#pop01';" >객실이용안내 ></button>
+							<div style="display: flex;">
+								<div style="width: 40%;">성수기요금</div>
+								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
+								<input type="hidden" name="price" value="${roomList.peakFee }">
+							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
-							<div id="pop01" class="overlay">
-							<div class="popup">
-							<a href="#none" class="close">&times;</a>
-							<strong style="text-align: center;">객실 이용 안내</strong>
-					<br>
+				<%-- <div id="pop01" class="overlay">
+				<div class="popup">
+				<a href="#none" class="close">&times;</a>
+				<strong style="text-align: center;">객실 이용 안내</strong>
+				<br>
 				<section>
 					<p>기본정보</p>
 					<ul>
-						<li>${roomList.roomMax }인 기준 최대 ${roomList.roomMax }인</li>
+						<li>a 인 기준 최대 a인</li>
 					</ul>
 				</section>
 				<hr>
@@ -793,12 +804,11 @@ textarea {
 				</section>
 				
 			</div>
-		</div>
+		</div> --%>
 							<hr>
 							<div>
 								<input type="hidden" name="accomoName" value="${accomo.accomoName }">
 								<input type="hidden" name="accomoNo" value="${accomo.accomoNo }">
-								<input type="hidden" name="roomMax" value="${roomList.roomMax }">
 								<input type="hidden" name="peakFee" value="${roomList.peakFee }">
 								<input type="hidden" name="roomName" value="${roomList.roomName }">
 								
@@ -962,15 +972,15 @@ textarea {
                     </c:choose>
                     
                     <c:choose>
-                        <c:when test="${empty totaCount}">
+                        <c:when test="${accomo.reviewScore eq 0}">
                      <p>
                         전체리뷰  :  0 개
+                    </p>
                     </p>
                         </c:when>
                         <c:otherwise>
                      <p>
                         전체리뷰  :  ${totalCount} 개
-                    </p>
                         </c:otherwise>
                     </c:choose>
                 </div>

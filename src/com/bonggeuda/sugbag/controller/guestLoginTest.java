@@ -19,9 +19,9 @@ public class guestLoginTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("요청확인");
 		
-		MemberDTO member = new MemberDTO(1,"user01","pass01","010-1111-1111",0,"넘버원","N","U",new java.sql.Date(System.currentTimeMillis()), null);
-		HttpSession session = request.getSession();
-		session.setAttribute("member", member);
+//		MemberDTO member = new MemberDTO(79,"friend093@naver.com","pass01","010-1111-1111",0,"넘버원","N","U",new java.sql.Date(System.currentTimeMillis()), null);
+//		HttpSession session = request.getSession();
+//		session.setAttribute("member", member);
 		request.getRequestDispatcher("/WEB-INF/views/guest/main/main.jsp").forward(request, response);
 	}
 	

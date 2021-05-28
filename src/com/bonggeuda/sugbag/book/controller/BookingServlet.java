@@ -88,13 +88,14 @@ public class BookingServlet extends HttpServlet {
 		List couponPoint = new BookService().selectCouponPoint(userNo);
 		
 		PointDTO point = null;
-		List<CouponDTO> couponList = new ArrayList<>();
+		List couponList = new ArrayList<>();
 
 		for(int i = 0; i < couponPoint.size(); i++) {
 			
 			if(couponPoint.get(i) != null) {
 				if(couponPoint.get(i) instanceof PointDTO)  {
 					point = (PointDTO) couponPoint.get(i);
+					System.out.println("너왜 안담기냐 : " +point);
 				} else if(couponPoint.get(i) instanceof CouponDTO) {
 					CouponDTO coupon = (CouponDTO) couponPoint.get(i);
 					Date today = new java.sql.Date(System.currentTimeMillis());
