@@ -29,6 +29,10 @@ import com.google.gson.JsonObject;
 @WebServlet("/accomoSelect/review")
 public class ReviewSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
+		
+		int userNo = member.getUserNo();
         BookService bsvc = new BookService();
 		//1. 베스트 리뷰 조회
 		int accomoNo = Integer.parseInt(request.getParameter("no"));
@@ -42,8 +46,7 @@ public class ReviewSelectServlet extends HttpServlet {
 		Map<Integer,String> reviewPicture = bsvc.selectReviewPicture(accomoNo,categoryNo);
 		
 		//4.리뷰업다운상태
-		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-		int userNo = member.getUserNo();
+		
 		Map<Integer, String> upDownStatus = bsvc.selectReviewUpDownStatus(userNo);
 		
 		//베스트리뷰에 좋아요 싫어요 업다운상태 사진 추가
@@ -119,6 +122,7 @@ public class ReviewSelectServlet extends HttpServlet {
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("pageInfo", pageInfo);
 			request.setAttribute("totalCount", totalCount);
+			System.out.println();
 			
 		} else {
 			System.out.println("응 돌아가");

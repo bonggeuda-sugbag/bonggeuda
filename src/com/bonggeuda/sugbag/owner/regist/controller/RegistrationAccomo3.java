@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.owner.regist.service.AccomoService;
 
 /**
@@ -19,7 +20,11 @@ import com.bonggeuda.sugbag.owner.regist.service.AccomoService;
 public class RegistrationAccomo3 extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		//로그인 값
+		OwnerInfoDTO member = (OwnerInfoDTO)request.getSession().getAttribute("ownerNo");
+		int ownerNo = member.getOwnerNo();
+		
 		System.out.println("여기는 오는가?");
 		/*등록3단계*/
 		String checkIn = request.getParameter("checkIn");
@@ -68,10 +73,7 @@ public class RegistrationAccomo3 extends HttpServlet {
 		accomoDTO.setFacility(facility);
 		System.out.println("arrayFacility"  + arrayFacility[1]);
 		
-
-		
-				
-		int insertAccomo = accomoService.InsertAccomoServlet(accomoDTO ); //값을 int형으로 반환받아야 함
+		int insertAccomo = accomoService.InsertAccomoServlet(accomoDTO, ownerNo); //값을 int형으로 반환받아야 함
 		System.out.println(insertAccomo);
 		
 		String path="";

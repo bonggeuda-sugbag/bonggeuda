@@ -36,6 +36,11 @@
 	th a:hover{
 		color: #6eceda !important;
 	}
+	.list-btn{
+		background:white;
+		border:0;
+		outline:0;
+	}
 </style>
 </head>
 <body>
@@ -113,6 +118,7 @@
 						<th><b>숙소명</b></th>
 						<th><b>신청일</b></th>
 						<th><b>정산상태</b></th>
+						<th><b>세금계산서 신청</b></th>
 				    </tr>
 				</thead>
 				<tbody>
@@ -130,6 +136,19 @@
 								대기중
 							</c:when>
 						</c:choose>
+						</th>
+						<th>
+ 							<form action="/bonggeuda/owner/requestTaxBill" method="post">
+	 							<c:choose>
+									<c:when test="${ stl.stlYn eq 'Y'}">
+										<button class="list-btn" name="reqStlNo" value="${ stl.reqStlNo }">신청하기</button>
+										<input class="list-btn" type="hidden" name="accomoNo" value="${ stl.accomoNo }"></button>
+									</c:when>
+									<c:when test="${ stl.stlYn eq 'N'}">
+										-
+								</c:when>
+								</c:choose>
+							</form>
 						</th>
 					</tr>   
 				</c:forEach>

@@ -26,8 +26,6 @@ public class ReportWriteDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	public int insertReport(int refNoMax, Connection con, String writerType, String reportedType, int userNo, int ownerNo, String reportTitle,
 			String reportContent) {
@@ -41,10 +39,10 @@ public class ReportWriteDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setInt(1, refNoMax );
+			pstmt.setInt(1, refNoMax);
 			pstmt.setString(2, writerType);
 			pstmt.setString(3, reportContent);
-			pstmt.setInt(4, 1);//
+			pstmt.setInt(4, ownerNo);
 			pstmt.setString(5, reportTitle);
 			pstmt.setString(6, reportedType);
 			pstmt.setInt(7, userNo);
@@ -58,13 +56,8 @@ public class ReportWriteDAO {
 			close(con);
 		}
 
-		
-		
-		
 		return insertReport;
 	}
-
-
 
 	public int insertReportImage(Connection con, AttachmentDTO tempFileInfo) {
 		PreparedStatement pstmt = null;
@@ -89,8 +82,6 @@ public class ReportWriteDAO {
 		return result;
 	}
 
-
-
 	public int selectMaxRefNo(Connection con) {
 		
 		int result = 0;
@@ -111,8 +102,6 @@ public class ReportWriteDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 		
 		return result;
 	}

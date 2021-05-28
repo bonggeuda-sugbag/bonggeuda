@@ -82,4 +82,20 @@ public class BookingQnAService {
 
 		return selectAnswer;
 	}
+
+	public int updateYn(int qnaNo) {
+		
+		Connection con = getConnection();
+		
+		int updateYn = qnaDAO.updateYn(con, qnaNo);
+		
+		if(updateYn > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return updateYn;
+	}
 }

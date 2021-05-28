@@ -7,8 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script>
+window.onload = function() {
+    alert("이미 발급이 신청된 내역입니다.");
+    
+    location.href ="taxbillList"; 
+}
+</script>
 
-		<jsp:forward page="/corona"/>
 
 </body>
 </html>

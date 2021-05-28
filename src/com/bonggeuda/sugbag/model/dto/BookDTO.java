@@ -20,6 +20,7 @@ public class BookDTO {
 	private String bookImg;
 	private String userPhone; // userPhone 추가
 	private int rowNum;
+	private int accomoNo;
 
 	public BookDTO() {
 	}
@@ -27,7 +28,7 @@ public class BookDTO {
 	public BookDTO(int bookNo, String bookUserName, int bookPersonnel, String bookCheckDate, String bookCheckoutDate,
 			String bookApproveYn, String bookCheckIn, String request, int roomNo, int userNo, int ownerNo,
 			String bookStatusYNC, String roomName, String accomoName, long day, String bookImg, String userPhone,
-			int rowNum) {
+			int rowNum, int accomoNo) {
 		super();
 		this.bookNo = bookNo;
 		this.bookUserName = bookUserName;
@@ -47,6 +48,7 @@ public class BookDTO {
 		this.bookImg = bookImg;
 		this.userPhone = userPhone;
 		this.rowNum = rowNum;
+		this.accomoNo = accomoNo;
 	}
 
 	public int getBookNo() {
@@ -193,6 +195,14 @@ public class BookDTO {
 		this.rowNum = rowNum;
 	}
 
+	public int getAccomoNo() {
+		return accomoNo;
+	}
+
+	public void setAccomoNo(int accomoNo) {
+		this.accomoNo = accomoNo;
+	}
+
 	@Override
 	public String toString() {
 		return "BookDTO [bookNo=" + bookNo + ", bookUserName=" + bookUserName + ", bookPersonnel=" + bookPersonnel
@@ -200,7 +210,8 @@ public class BookDTO {
 				+ bookApproveYn + ", bookCheckIn=" + bookCheckIn + ", request=" + request + ", roomNo=" + roomNo
 				+ ", userNo=" + userNo + ", ownerNo=" + ownerNo + ", bookStatusYNC=" + bookStatusYNC + ", roomName="
 				+ roomName + ", accomoName=" + accomoName + ", day=" + day + ", bookImg=" + bookImg + ", userPhone="
-				+ userPhone + ", rowNum=" + rowNum + "]";
+				+ userPhone + ", rowNum=" + rowNum + ", accomoNo=" + accomoNo + "]";
 	}
+
 
 }

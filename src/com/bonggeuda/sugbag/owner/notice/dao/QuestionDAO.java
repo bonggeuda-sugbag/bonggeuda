@@ -30,7 +30,7 @@ public class QuestionDAO {
 		}
 	}
 	
-	public List<QnADTO> selectQuestion(Connection con) {
+	public List<QnADTO> selectQuestion(Connection con, int ownerNo) {
 				
 		PreparedStatement pstmt = null;
 		
@@ -47,7 +47,7 @@ public class QuestionDAO {
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); //업체번호 받아오기
+			pstmt.setInt(1, ownerNo); //업체번호 받아오기
 			
 			rset = pstmt.executeQuery();
 			
@@ -77,7 +77,7 @@ public class QuestionDAO {
 		return selectQuestion;
 	}
 
-	public AdminQnADTO selectContent(Connection con, int qnaNo) {
+	public AdminQnADTO selectContent(Connection con, int qnaNo, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -94,7 +94,7 @@ public class QuestionDAO {
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); 	//업체번호 받아오기
+			pstmt.setInt(1, ownerNo); 	//업체번호 받아오기
 			pstmt.setInt(2, qnaNo); //문의번호 받아오기
 			
 			rset = pstmt.executeQuery();
@@ -120,7 +120,7 @@ public class QuestionDAO {
 		return selectContent;
 	}
 
-	public int insertQuestion(Connection con, AdminQnADTO questionWrite) {
+	public int insertQuestion(Connection con, AdminQnADTO questionWrite, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -138,7 +138,7 @@ public class QuestionDAO {
 			
 			pstmt.setString(1, questionWrite.getAdminQnATitle());
 			pstmt.setString(2, questionWrite.getAdminQnAContent());
-			pstmt.setInt(3, 1);
+			pstmt.setInt(3, ownerNo);
 			
 			insert = pstmt.executeUpdate();
 			System.out.println(insert);
@@ -152,7 +152,7 @@ public class QuestionDAO {
 		return insert;
 	}
 
-	public AdminQnADTO selectAnswer(Connection con, int qnaNo) {
+	public AdminQnADTO selectAnswer(Connection con, int qnaNo, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -171,7 +171,7 @@ public class QuestionDAO {
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); 	//업체번호 받아오기
+			pstmt.setInt(1, ownerNo); 	//업체번호 받아오기
 			pstmt.setInt(2, qnaNo); //문의번호 받아오기
 			
 			rset = pstmt.executeQuery();
@@ -194,7 +194,7 @@ public class QuestionDAO {
 		return selectAnswer;
 	}
 
-	public int selectTotalCount(Connection con) {
+	public int selectTotalCount(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -211,7 +211,7 @@ public class QuestionDAO {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			
 			rset = pstmt.executeQuery();
 
@@ -229,7 +229,7 @@ public class QuestionDAO {
 		return totalCount;
 	}
 
-	public List<QnADTO> selectQuestion(Connection con, PageInfoDTO pageInfo) {
+	public List<QnADTO> selectQuestion(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 	
 		PreparedStatement pstmt = null;
 		
@@ -245,7 +245,7 @@ public class QuestionDAO {
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); //업체번호 받아오기
+			pstmt.setInt(1, ownerNo); //업체번호 받아오기
 			pstmt.setInt(2, pageInfo.getStartRow());
 			pstmt.setInt(3, pageInfo.getEndRow());
 			

@@ -8,11 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
+import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.SettlementDTO;
 import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
@@ -26,6 +28,10 @@ import com.bonggeuda.sugbag.owner.notice.service.QuestionService;
 public class SettlementList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//로그인 값
+		HttpSession session = request.getSession();
+		int ownerNo = (Integer)session.getAttribute("ownerNo");
 		
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
@@ -42,7 +48,7 @@ public class SettlementList extends HttpServlet {
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		OwnerMypagService stlService = new OwnerMypagService();
 		
-		int stlTotalCount = stlService.selectStlTotalCount();
+		int stlTotalCount = stlService.selectStlTotalCount(ownerNo);
 		
 		System.out.println("totalCount 체크 : " + stlTotalCount);
 		
@@ -58,8 +64,8 @@ public class SettlementList extends HttpServlet {
 		System.out.println(pageInfo);
 	
 		/*결과값 반환*/
-		List<SettlementDTO> selectStl = stlService.selectStl(pageInfo);
-		List<AccomoDTO> selectAccomo = stlService.selectAccomo();
+		List<SettlementDTO> selectStl = stlService.selectStl(pageInfo,ownerNo);
+		List<AccomoDTO> selectAccomo = stlService.selectAccomo(ownerNo);
 		
 		String path = "";
 		path = "/WEB-INF/views/owner/mypage/settlementList.jsp";

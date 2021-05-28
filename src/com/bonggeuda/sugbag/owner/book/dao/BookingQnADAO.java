@@ -229,4 +229,35 @@ public class BookingQnADAO {
 		return selectAnswer;
 	}
 
+	public int updateYn(Connection con, int qnaNo) {
+
+		PreparedStatement pstmt = null;
+		
+		/* 반환시킬 변수 지정 */
+		int updateYn = 0;
+		
+		String query = prop.getProperty("updateYn");
+
+		//잘 넘어왔는지 확인용 출력
+		System.out.println(query);
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, qnaNo);
+			
+			updateYn = pstmt.executeUpdate();
+			
+			System.out.println(updateYn);
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+     
+		return updateYn;
+	}
+
 }
