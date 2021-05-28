@@ -16,6 +16,7 @@
         JOIN ATTACHMENT A ON (A.ACCOMO_NO = A.REF_NO)
        WHERE A.OWNER_NO = ?
          AND A.CATEGORY_NO = 3
+         AND VISIBLE_YN = 'Y'
 
     </entry>
 	<entry key="selectApplyEnrollAccomoList">
@@ -148,7 +149,7 @@ SELECT
 		INTO RM_ACCOMO_INFO
 		VALUES
 		(
-		SEQ_REQUEST_NO.NEXTVAL
+		  ? /* 받아온 selectRequestNextVal 값 */
 		, ?
 		, ?
 		, ?
@@ -203,6 +204,22 @@ SELECT
                  *
             FROM ROOM_INFO
            WHERE ROOM_NO = ?
+	</entry>
+	
+	<entry key="rmRoomCount">
+	      SELECT
+                 COUNT(*)
+            FROM RM_ROOM_INFO
+           WHERE ROOM_NO_RM = ?
+             AND APPROVAL_YN = 'N'
+	
+	</entry>
+	
+	<entry key="deleteAccomo">
+		UPDATE ACCOMO_INFO
+		   SET VISIBLE_YN = 'N'
+		 WHERE ACCOMO_NO = ?
+
 	</entry>
 
 	

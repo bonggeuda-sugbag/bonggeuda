@@ -26,7 +26,6 @@ public class ModifyRoom extends HttpServlet {
 		
 		/* 넘겨온 룸 넘버를 조회해서 객실 에 뿌려주기 */
 		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
-		System.out.println("roomNo  : " + roomNo);
 		
 		RoomDTO roomDTO = new RoomDTO();
 		
@@ -34,14 +33,28 @@ public class ModifyRoom extends HttpServlet {
 		
 		roomDTO = roomService.selectRoomInfo(roomNo);
 		
-		System.out.println("roomDTO  " +roomDTO);
-		String path="";
+		/* 숙소 수정중인지 카운트 해서 뿌려주기 */
+		int rmRoomCount = roomService.rmRoomCountService(roomNo);
 		
-		request.setAttribute("roomDTO", roomDTO);
+		
+		
+		String path="";
+	     if(rmRoomCount > 0) {
+	    	 path = "/WEB-INF/views/owner/roomManagement/thisRoomRM.jsp";
+	    	 request.getAttribute(path);
+	    	 request.getRequestDispatcher(path).forward(request, response);
+	    	 
+	     }else {
+	    	 
+	    	 request.setAttribute("roomDTO", roomDTO);
+	    	 
+	    	 path = "/WEB-INF/views/owner/roomModify/roomModify.jsp";
+	    	 request.getAttribute(path);
+	    	 request.getRequestDispatcher(path).forward(request, response);
+	    	 
 
-		path = "/WEB-INF/views/owner/roomModify/roomModify.jsp";
-		request.getAttribute(path);
-		request.getRequestDispatcher(path).forward(request, response);
+	     }
+		
 		
 
 	}

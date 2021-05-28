@@ -9,10 +9,11 @@
 <body>
 <script>
 window.onload = function() {
-    alert("이미 객실 수정 요청중 입니다.");
+    alert("객실 삭제 완료 됐습니다.");
     
     location.href ="managementRoom"; 
 }
 </script>
+
 </body>
 </html>

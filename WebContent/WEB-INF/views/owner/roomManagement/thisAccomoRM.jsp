@@ -9,7 +9,7 @@
 <body>
 <script>
 window.onload = function() {
-    alert("이미 객실 수정 요청중 입니다.");
+    alert("이미 숙소 수정 요청중 입니다.");
     
     location.href ="managementRoom"; 
 }
