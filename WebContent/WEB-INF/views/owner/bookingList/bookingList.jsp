@@ -247,9 +247,9 @@
 		
 		<c:if test="${ empty requestScope.bookList }">
 			<div class="list_none" style="display: block;">
-			<br>
-			<b>예약 내역이 없습니다.</b>
-			<br><br>
+				<br>
+				<b>예약 내역이 없습니다.</b>
+				<br><br>
 			</div>
 		</c:if>
 		

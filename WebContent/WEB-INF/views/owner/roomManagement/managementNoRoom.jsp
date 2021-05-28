@@ -106,9 +106,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <div style="background-color: rgba(0, 0, 0, 0.1); margin: auto; height: 250px; width: 690px; border-radius: 5px;">
 	<br>
-	<p style="font-size: 31px; text-align: center; font-weight: bold;">등록된 숙소가 없습니다.</p>
+	<p style="font-size: 31px; text-align: center; font-weight: bold; color:black;">등록된 숙소가 없습니다.</p>
 	<br><br>
-	<p style="font-size: 20px; text-align: center;">나의 멋진 숙소를 공유하고 널리 알려보세요.</p>
+	<p style="font-size: 20px; text-align: center; color:black;">나의 멋진 숙소를 공유하고 널리 알려보세요.</p>
 	<div style="text-align: center;">
 	<br><br>	
 	<button class="submit-btn" type="submit" onclick="location.href='registration.html'">숙소 등록 하러가기</button>
