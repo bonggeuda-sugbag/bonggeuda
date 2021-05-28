@@ -20,6 +20,8 @@ public class TaxBillInfoServlet extends HttpServlet {
 	
 		int stlNo = Integer.parseInt(request.getParameter("stlNo"));
 		
+		int requestNo = Integer.parseInt(request.getParameter("requestNo"));
+		
 		String taxStatus = request.getParameter("taxStatus");
 		
 		System.out.println("taxStatus : " + taxStatus);
@@ -29,6 +31,7 @@ public class TaxBillInfoServlet extends HttpServlet {
 		TaxBillDTO taxBill = new TaxBillDTO();
 		
 		taxBill = service.taxBillInfo(stlNo);
+		taxBill.setRequestNo(requestNo);
 
 		String path = "";
 		if(taxBill != null) {
