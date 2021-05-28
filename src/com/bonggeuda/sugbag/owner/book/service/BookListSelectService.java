@@ -43,8 +43,10 @@ public class BookListSelectService {
 		Connection con = getConnection();
 		
 		int bookAllowUpdate = bookDAO.bookAllowUpdate(con,bookNo);
+		int bookAllowStatusUpdate = bookDAO.bookAllowStatusUpdateDAO(con,bookNo);
 		
-		if(bookAllowUpdate > 0) {
+		if( bookAllowUpdate > 0 && bookAllowStatusUpdate > 0)
+		{
 			commit(con);
 		}else {
 			rollback(con);
@@ -52,7 +54,7 @@ public class BookListSelectService {
 	
 		close(con);
 		
-		return bookAllowUpdate;
+		return bookAllowStatusUpdate;
 	}
 
 	public int insertBookHistory(int bookNo) {

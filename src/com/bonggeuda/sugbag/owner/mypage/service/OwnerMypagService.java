@@ -239,4 +239,59 @@ public class OwnerMypagService {
 		return taxTotalCount;
 	}
 
+	public int selectreportedCount(int ownerNo) {
+		
+		Connection con = getConnection();
+
+		int selectreportedCount = ownerDAO.selectreportedCountDAO(con, ownerNo);
+		
+		close(con);
+		
+		return selectreportedCount;
+	}
+
+	public int updatePwd(String pwd, int ownerNo) {
+		Connection con = getConnection();
+		
+		int result  = ownerDAO.updatePwdDAO(con,pwd,ownerNo);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+	public int ownerWithdrawInsertService(String realWithdrawReason, int ownerNo) {
+		
+		Connection con = getConnection();
+		
+		int result = ownerDAO.insertWithdrawDAO( realWithdrawReason,ownerNo,con);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+	public int updatePhoneNo(int ownerNo, String phone) {
+		
+		Connection con = getConnection();
+
+		int result = ownerDAO.updatePhoneNoDAO(con,ownerNo, phone);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
 }

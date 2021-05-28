@@ -112,7 +112,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       
          <th style="background-color: white;">
 
-            <img src="${pageContext.servletContext.contextPath }/${ roomList.imagePath }" style="width: 350px; height: 200px;">
+            <img src="${pageContext.servletContext.contextPath }/${ roomList.roomList }" style="width: 350px; height: 200px;">
  
 
          </th>

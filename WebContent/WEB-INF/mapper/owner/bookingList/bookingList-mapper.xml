@@ -54,7 +54,7 @@
       JOIN USER_INFO U ON(B.USER_NO = U.USER_NO)
 	 WHERE A.OWNER_NO = ?
 	   AND BOOK_APPROVE_YN = 'N'
-	   AND BOOK_STATUS_YNC = 'Y'
+	   AND BOOK_STATUS_YNC = 'N'
 	 ORDER BY B.BOOK_NO DESC) D) E
 	 WHERE RNUM BETWEEN ? AND ?
 	</entry>
@@ -152,6 +152,12 @@
      WHERE BOOK_NO = ?
 	</entry>
 	
+	<entry key="bookAllowStatusUpadte">
+	UPDATE BOOK_LIST
+  	   SET BOOK_STATUS_YNC = 'Y'
+     WHERE BOOK_NO = ?
+	</entry>
+	
 	<entry key="insertAllowBookHistory">
 	INSERT
 	  INTO BOOK_HISTORY
@@ -173,7 +179,7 @@
 	
 	<entry key="bookRejectBookConfirmUpadte">
 	UPDATE BOOK_LIST
-  	   SET BOOK_APPROVE_YN = 'Y'
+  	   SET BOOK_APPROVE_YN = 'X' /* X = 업주 거절 */
      WHERE BOOK_NO = ?
 	</entry>
 	
@@ -317,6 +323,15 @@
     UPDATE OWNER_QNA
  	   SET OWNER_ANSWER_YN = 'Y'
  	 WHERE OWNER_QNA_NO = ?
+	</entry>
+	
+	<entry key="selectAccomoList">
+	SELECT A.ACCOMO_NO
+	     , A.ACCOMO_NAME
+	     , B.ROOM_NAME
+	  FROM ACCOMO_INFO A, ROOM_INFO B
+	 WHERE A.OWNER_NO = ?
+	   AND B.ACCOMO_NO = A.ACCOMO_NO
 	</entry>
 	
 </properties>
