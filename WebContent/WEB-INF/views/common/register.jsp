@@ -193,8 +193,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 
 	/* 이메일 중복확인 */
+	var emailCnt = 0;
 	function emailDuplication() {
-		var emailCnt = 0;
 		var intputEmail = document.getElementById("email").value;
 		
 		$.ajax({
@@ -202,11 +202,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	         type: "get",
 	         data:{ intputEmail : intputEmail },
 	         success: function(data,textStatus,xhr){
-	        	 console.log(data);
+	        	console.log(data);
+				var regExp3 = /^[\w]+@[\w]+(\.[\w]+){1,3}$/;
 	            if (data == 0){
+	            	if(!regExp3.test(email)) {
+	            		document.getElementById('emailDuplication').innerHTML='이메일 형식으로 입력해주세요.';
+						document.getElementById('emailDuplication').style.color='red';
+			    	} else {
 	            	document.getElementById('emailDuplication').innerHTML='사용할 수 있는 이메일입니다.';
 					document.getElementById('emailDuplication').style.color='blue';
 	               	emailCnt = 1;
+			    	}
 	            } else if(data != 0) {
 	            	document.getElementById('emailDuplication').innerHTML='이미 사용중인 이메일입니다.';
 					document.getElementById('emailDuplication').style.color='red';
@@ -222,10 +228,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 	
 	/* 닉네임 중복확인 */
-	function nickNameDuplication() {
 		var nickNameCnt = 0;
+	function nickNameDuplication() {
 		var intputNickname = document.getElementById("nickName").value;
-		var regExp3 = /^[\w]+@[\w]+(\.[\w]+){1,3}$/;
 		
 		$.ajax({
 	         url: "${ pageContext.servletContext.contextPath }/userinfo/duplication",
@@ -234,13 +239,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	         success: function(data,textStatus,xhr){
 	        	console.log(data);
 	            if (data == 0){
-	            	if(!regExp.test(email)) {
-			        	alert("이메일 형식으로 입력해주세요.");
-			    	} else {
+	            	
 	            		document.getElementById('nickNameDuplication').innerHTML='사용할 수 있는 닉네임입니다.';
 						document.getElementById('nickNameDuplication').style.color='blue';
 	               		nickNameCnt = 1;
-			    	}
+			    	
 	            } else if(data != 0) {
 	            	document.getElementById('nickNameDuplication').innerHTML='이미 사용중인 닉네임입니다.';
 					document.getElementById('nickNameDuplication').style.color='red';

@@ -90,6 +90,7 @@ public class PaymentServlet extends HttpServlet {
 		payment.setDiscount(discount);
 		
 		int pointNo = Integer.parseInt(request.getParameter("pointNo"));
+		System.out.println("포인트번호 확인 : "+ pointNo);
 		
 		PointHistoryDTO pointGet = new PointHistoryDTO();
 		pointGet.setGetuseType("G");

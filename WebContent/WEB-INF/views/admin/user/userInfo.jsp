@@ -57,7 +57,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="top-nav">
          <ul class="right-icons">
 				<li><span ><a  href="${ pageContext.servletContext.contextPath }/user/list">사용자관리</a></span></li>
+<<<<<<< HEAD
 				<li onclick="location.href='${pageContext.servletContext.contextPath}/owner/list'"><a>업체관리</a></li>
+=======
+				<li><a  href="${ pageContext.servletContext.contextPath }/owner/list">업체관리</a></li>
+>>>>>>> branch 'master' of https://github.com/bonggeuda-sugbag/bonggeuda.git
 				<li><a  href="${ pageContext.servletContext.contextPath }/user/booklist">예약현황</a></li>
 				<li onclick="location.href='${pageContext.servletContext.contextPath}/sales/paylist'"><a>매출관리</a></li>
 				<li><a  href="${ pageContext.servletContext.contextPath }/qna/list">문의&신고</a></li>
