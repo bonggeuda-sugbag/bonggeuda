@@ -24,13 +24,12 @@ public class UserCompleteContentSelect extends HttpServlet {
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 				
 		UserMypageService mypageService = new UserMypageService();
-		
 		UserBookContentDTO userCompleteContent = mypageService.selectCompleteContent(userNo, bookNo);
 		
+
 		ReviewDTO reviewHistory = mypageService.selectReviewHistory(userNo, bookNo);
 		
 		System.out.println("reviewHistory : " + reviewHistory);
-		
 		
 		String path = "/WEB-INF/views/guest/mypage/usagehistory.jsp";
 		request.setAttribute("userCompleteContent", userCompleteContent);

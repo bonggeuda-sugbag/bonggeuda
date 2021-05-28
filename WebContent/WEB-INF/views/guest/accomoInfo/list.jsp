@@ -255,9 +255,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    <c:otherwise>
 			<c:forEach var="accomo" items="${ requestScope.accomoList}" varStatus="st">
 			<%-- <div class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/resources/guest/images/sampleHouse.PNG) no-repeat; background-size: 800px 250px;" onclick="location.href='${pageContext.servletContext.contextPath }/accomoSelect/room?value='+'${accomo}';" > --%>
-			<form "name="selectRoom" method="get" action="${pageContext.servletContext.contextPath }/accomoSelect/room">
+			<form name="selectRoom" method="get" onsubmit="return loginYN()"action="${pageContext.servletContext.contextPath }/accomoSelect/room">
             <div id="forRemove" class="remove">
-			<button id="accomPicture"  type="submit" name="no" value='${accomo.accomoNo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/${accomo.attachment.thumbnailPath }) no-repeat; background-size: 800px 250px;">
+			<button id="accomPicture"  type="submit"  name="no" value='${accomo.accomoNo}' class="suksoList" style="background: url(${pageContext.servletContext.contextPath }/${accomo.attachment.thumbnailPath }) no-repeat; background-size: 800px 250px;">
 				<div class="infoThumb" >
 					<h2 id="accomoName">${accomo.accomoName }</h2>
 					<br>
@@ -281,14 +281,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					</div>
 				</div>
+			<script>
+			    function loginYN(){
+			    	var a = "${sessionScope.member}";
+			    	if(a ==""){
+			    		var a = confirm("로그인이 필요한 페이지입니다.\n 로그인 하시겠습니까?");
+			    		if(a){
+			    			location.replace("${pageContext.servletContext.contextPath }/login/test") ;
+			    			return false;
+			    		} else {
+			    			return false
+			    		}
+			    	} else {
+			    		return true;
+			    	}
+			    }
+			</script>
 			</button>
+			
 			
 			</div>
 			</form>
 			</c:forEach>
 			</c:otherwise>
 			</c:choose> 
-			
 		</div>
 </div>
 

@@ -202,7 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	         type: "get",
 	         data:{ intputEmail : intputEmail },
 	         success: function(data,textStatus,xhr){
-	        	console.log(data);
+	        	console.table(data);
 				var regExp3 = /^[\w]+@[\w]+(\.[\w]+){1,3}$/;
 	            if (data == 0){
 	            	if(!regExp3.test(intputEmail)) {
@@ -269,13 +269,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			if(email!='') {
 				if(!regExp.test(email)) {
-		        	alert("이메일 형식으로 입력해주세요.");
+		        	alert("aaa이메일 형식으로 입력해주세요.");
 		    	} else {
 		    		
 		    		if(emailCnt != 0) {
 						num++;
 		        	} else {
-		            	alert("이미 사용중인 이메일입니다.");
+		            	alert("aaa이미 사용중인 이메일입니다.");
 		        	}
 		    	}
 			} else {
