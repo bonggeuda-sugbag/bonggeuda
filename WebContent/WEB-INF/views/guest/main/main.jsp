@@ -148,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="bottom-header">
 				<div class="header-bottom">
 					<div class=" bottom-head" style="position: relative; left: 170px;">
-						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=hotel">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=호텔">
 							<div class="buy-media" >
 								<i class="buy"> </i>
 								<h6>호텔</h6>
@@ -156,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</a>
 					</div>
 					<div class=" bottom-head"  style="position: relative; left: 310px;">
-						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=pension">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=펜션">
 							<div class="buy-media">
 							<i class="rent"> </i>
 							<h6>펜션</h6>
@@ -164,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</a>
 					</div>
 					<div class=" bottom-head"  style="position: relative; left: 470px;">
-						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=guestHouse">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=게스트하우스">
 							<div class="buy-media">
 							<i class="pg"> </i>
 							<h6>게스트하우스</h6>

@@ -72,7 +72,25 @@ public class ReviewSelectServlet extends HttpServlet {
 				bestReview.get(i).setUpdownStatus(upDownStatus.get(no));
 			}
 		}
-		//5.베스트리뷰를 제외한 전체 리뷰 조회
+		
+		//5.페이징처리
+		
+//		String currentPage = request.getParameter("currentPage");
+//		
+//		int pageNo = 1;
+//		
+//		if(currentPage != null && !"".equals(currentPage)) {
+//			pageNo = Integer.parseInt(currentPage);
+//		}
+//		
+//		int limit = 3;
+//		int buttonAmount = 5;
+//		int total = bsvc.selectAccomoReviewCount(bestReview, accomoNo);
+//		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, total, limit, buttonAmount);
+//		
+
+		
+		//6.베스트리뷰를 제외한 전체 리뷰 조회
 		List<ReviewDTO> reviewList = bsvc.selectAllReviewList(bestReview, accomoNo);
 		
 		for(int i = 0; i < reviewList.size(); i++) {
@@ -97,31 +115,14 @@ public class ReviewSelectServlet extends HttpServlet {
 				reviewList.get(i).setUpdownStatus(upDownStatus.get(no));
 			}
 		}
-		//6.페이징처리
-		String currentPage = request.getParameter("currentPage");
-        
-		int pageNo = 1;
-		
-		if(currentPage != null && !"".equals(currentPage)) {
-			pageNo = Integer.parseInt(currentPage);
-		}
-		
-		int totalCount = reviewList.size()+bestReview.size();
-		
-		int limit = 10;
-		int buttonAmount = 5;
-		
-		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
 		String path="";
-		
 		//리뷰리스트, 베스트리뷰,
 		if(bestReview !=null || reviewList!=null) {
 			path="/WEB-INF/views/guest/accomoInfo/book.jsp";
 			request.setAttribute("bestReview", bestReview);
 			request.setAttribute("reviewList", reviewList);
-			request.setAttribute("pageInfo", pageInfo);
-			request.setAttribute("totalCount", totalCount);
+//			request.setAttribute("pageInfo", pageInfo);
 			System.out.println();
 			
 		} else {

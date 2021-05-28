@@ -63,7 +63,6 @@ public class BookingServlet extends HttpServlet {
 		//결제금액 계산
 		//숙소의 1박시간 계산
 		int accomCheckInTime = Integer.parseInt(checkInStandard.substring(0, 2)); //숙소가 정한 체크인시간
-		System.out.println("숙소가 정한 체크인시간은 ? : " + accomCheckInTime);
 		int OnedayTime = 0;
 		if((11-accomCheckInTime)>0) {
 			OnedayTime = accomCheckInTime-11;
@@ -81,7 +80,7 @@ public class BookingServlet extends HttpServlet {
 		long useDay = ((userCheckOutT.getTime() - userCheckInT.getTime())/(OnedayTime*60*60*1000));
 		Double useTimeCalc = (((userCheckOutT.getTime() - userCheckInT.getTime())/(OnedayTime*60*60*1000.0))*100)/100;
 		Double useTime = Math.round(useTimeCalc* 100)/100.0;
-		
+		//이용금액 계산
 		int totalPriceCalc = (int)(roomInfo.getRoomFee() * useTimeCalc);
 		int totalPrice = (totalPriceCalc/100) * 100;
 		bookInfo.setDay(useDay);

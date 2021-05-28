@@ -23,7 +23,6 @@ public class RoomSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		
 		int accomoNo = Integer.parseInt(request.getParameter("no"));
 		//숙소정보, 사진조회
 		BookService booksvc = new BookService();
