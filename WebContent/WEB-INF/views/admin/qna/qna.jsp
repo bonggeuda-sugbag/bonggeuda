@@ -149,13 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>	
 </div>
 <!--//-->	
-<div class=" banner-buying">
-	<div class=" container">
-	<h3><span>문의&신고</span></h3> 
 
-	<div class="clearfix"> </div>      		
-	</div>
-</div>
 <!--//header-->
 <!--blog-->
 	<div class="blog">

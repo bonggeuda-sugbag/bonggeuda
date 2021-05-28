@@ -137,13 +137,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>   
 </div>
 <!--//-->   
-<div class=" banner-buying">
-   <div class=" container">
-   <h3><span>사용자 관리</span></h3> 
-
-   <div class="clearfix"> </div>            
-   </div>
-</div>
 <!--//header-->
 <!--blog-->
 <div class="blog">
@@ -235,8 +228,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    </tbody>
 </table>
       <div class="submit-layer" style="display: flex;">
-         <button class="btn btn-yeogi btn-submit" type="submit" style="margin-left: 500px;">확인</button>
-         <button class="btn btn-yeogi btn-submit" type="submit" style="margin-left: 5px;">목록</button>
+         <button class="btn btn-yeogi btn-submit" type="submit" style="margin-left: 550px;">확인</button>
       </div>
 
 

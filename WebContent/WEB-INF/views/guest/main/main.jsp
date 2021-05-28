@@ -148,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="bottom-header">
 				<div class="header-bottom">
 					<div class=" bottom-head" style="position: relative; left: 170px;">
-						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=hotel">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=호텔">
 							<div class="buy-media" >
 								<i class="buy"> </i>
 								<h6>호텔</h6>
@@ -156,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</a>
 					</div>
 					<div class=" bottom-head"  style="position: relative; left: 310px;">
-						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=pension">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=펜션">
 							<div class="buy-media">
 							<i class="rent"> </i>
 							<h6>펜션</h6>
@@ -164,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</a>
 					</div>
 					<div class=" bottom-head"  style="position: relative; left: 470px;">
-						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=guestHouse">
+						<a href="${pageContext.servletContext.contextPath }/accomoSelect/list?value=게스트하우스">
 							<div class="buy-media">
 							<i class="pg"> </i>
 							<h6>게스트하우스</h6>
@@ -227,17 +227,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			     	 </a>
 			     	   <div class="most-1">
 
-			     	   	 <h5><a href="more_notice.html">공지사항</a></h5>
+			     	   	 <h5><a href="${pageContext.servletContext.contextPath }/usernotice/select">공지사항</a></h5>
 
 			     	   </div>
 			 </div>
 			  <div class="col-md-4 box_2">
 		     	 <a href="event.jsp" class="mask">
-			     	   	<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/resources/guest/images/pc5.jpg" alt="">
+			     	   	<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath}/resources/guest/images/pc5.jpg" alt="">
 			     	 </a>
 		     	   <div class="most-1">
 
-			     	   	<h5><a href="event.html">이벤트</a></h5>
+			     	   	<h5><a href="${pageContext.servletContext.contextPath }/userevent/select">이벤트</a></h5>
 
 			     	   </div>
 		     	

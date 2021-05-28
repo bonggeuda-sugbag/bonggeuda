@@ -90,29 +90,47 @@ public class QueryBuilder {
 		}
 		String select2 = "ORDER BY RV.REVIEW_NO DESC\r\n"
 				+ "                ) B\r\n"
-				+ "          )A\r\n"
-				+ " WHERE A.RNUM BETWEEN ? AND ?";
+				+ "          )A\r\n";
 		qr.append(select2);
 		return qr; 
 		
 	}
 	
-    public StringBuilder NotInBuilder (List<ReviewDTO> review) {
-		
-		StringBuilder notIn = new StringBuilder(); 
-		String start = "AND RV.REVIEW_NO NOT IN(";
-		notIn.append(start);
-		
-		for(int i = 0; i < review.size(); i++) {
-			if(i < review.size()-1) {
-				String condition = review.get(i).getReviewNo() + ",";
-				notIn.append(condition);
-			} else {
-				String condition = review.get(i).getReviewNo() + ")";
-				notIn.append(condition);
-			}
-		}
+//    public StringBuilder reviewCountBuilder(List<ReviewDTO> bestReview) {
+//		
+//		StringBuilder qr = new StringBuilder();
+//		String select = "SELECT\r\n"
+//				+ "       COUNT(*) 총수\r\n"
+//				+ "  FROM REVIEW RV   \r\n"
+//				+ "  JOIN BOOK_LIST BL ON(RV.BOOK_NO = BL.BOOK_NO)\r\n"
+//				+ "  JOIN ROOM_INFO RI ON(BL.ROOM_NO = RI.ROOM_NO)\r\n"
+//				+ "  JOIN USER_INFO UI ON(BL.USER_NO = UI.USER_NO)\r\n"
+//				+ " WHERE RI.ACCOMO_NO = ?";
+//		qr.append(select);
+//		if(bestReview.size()>0) {
+//			String searchCondtion = NotInBuilder(bestReview).toString();
+//			qr.append(searchCondtion);
+//		}
+//		return qr; 
+//		
+//	}
 
-		return notIn;
-	}
+    public StringBuilder NotInBuilder (List<ReviewDTO> review) {
+	
+	    StringBuilder notIn = new StringBuilder(); 
+	    String start = "AND RV.REVIEW_NO NOT IN(";
+	    notIn.append(start);
+	    
+	    for(int i = 0; i < review.size(); i++) {
+	    	if(i < review.size()-1) {
+	    		String condition = review.get(i).getReviewNo() + ",";
+	    		notIn.append(condition);
+	    	} else {
+	    		String condition = review.get(i).getReviewNo() + ")";
+	    		notIn.append(condition);
+	    	}
+	    }
+        
+	    return notIn;
+}
 }

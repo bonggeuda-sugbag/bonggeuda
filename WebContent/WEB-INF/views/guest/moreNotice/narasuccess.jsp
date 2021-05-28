@@ -30,7 +30,7 @@
 
 			case "insertEvent" :
 				movePath = "${ pageContext.servletContext.contextPath }/event/list";
-
+				break;
 			case "userLogin" :
 				movePath = "${ pageContext.servletContext.contextPath }/login/guest";
 				break;

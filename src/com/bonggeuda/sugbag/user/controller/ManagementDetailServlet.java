@@ -34,6 +34,7 @@ public class ManagementDetailServlet extends HttpServlet {
 			path = "/WEB-INF/views/admin/user/userInfoDetail.jsp";
 			request.setAttribute("userInfo", userInfo);
 			request.setAttribute("hduserNo", request.getParameter("hduserNo"));
+			
 		} 
 		
 

@@ -54,7 +54,7 @@ public class ManagementListServlet extends HttpServlet {
 		/* 조회 해온다. */
 		List<UserInfoDTO> userList = userInfoServie.selectBoardList(pageInfo);
 		
-		System.out.println("userList : " + userList);
+		System.out.println("처음 userList : " + userList);
 		
 		String path = "";
 		if(userList != null) {

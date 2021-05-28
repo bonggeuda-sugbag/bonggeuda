@@ -7,6 +7,10 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +33,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <style>
 .container h3{
 	display: block; 
@@ -330,7 +335,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p style="margin: 0px 85px 0px 0px; font-size: 18px;">포인트사용<small>(1000포인트단위 사용가능)</small></p>
 						<c:choose>
 						<c:when test="${empty point || point.point == 0}">
-						<input type="text" value = "0"readonly style="text-align: right; width: 10%; height: 30px;margin-left: 150px;"></input><b style="margin: 5px 0px 0px 5px;">/ 0 포인트</b>
+						<input name="point" type="text" value = "0"readonly style="text-align: right; width: 10%; height: 30px;margin-left: 150px;"></input><b style="margin: 5px 0px 0px 5px;">/ 0 포인트</b>
 						</c:when>
 						<c:otherwise>
 						<!-- <p style="width:40%;margin: 0px 85px 0px 0px; font-size: 18px;">사용가능 포인트 : </p> -->
@@ -406,7 +411,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type = "hidden" id="checkOutDate"name="checkOutDate" value="${bookInfo.bookCheckoutDate}">
 						<input type = "hidden" id="checkInTime"name="checkInTime" value="${bookInfo.bookCheckIn}">
 						<input type = "hidden" id="personnel" name="personnel" value="${bookInfo.bookPersonnel}">
-						<input type = "hidden" id="pointNo" name="pointNo" value="${point.pointNo }">
+						<input type = "hidden" id="pointNo" name="pointNo" value="73">
 						<input id="couponDiscount" type = "hidden" name="couponDiscount" value=0>
 						
 					</p>
@@ -572,10 +577,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         const roomNo = document.getElementsByName("roomNo")[0].value; 
         const request = document.getElementsByName("request")[0].value;
         const finalPrice = document.getElementsByName("finalPrice")[0].value; 
-        const point = document.getElementsByName("point")[0].value; 
+        const point = document.getElementsByName("point")[0].value;
         const couponDiscount = document.getElementsByName("couponDiscount")[0].value; 
         const paymentType = document.getElementsByName("paymentType")[0].value; 
         const couponNo = document.getElementsByName("couponNo")[0].value;
+        const pointNo = document.getElementsByName("pointNo")[0].value;
         alert(finalPrice);
         IMP.request_pay({
             pg : 'kakaopay',
@@ -630,6 +636,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     	                    	request : request,
     	                    	finalPrice : finalPrice,
     	                    	point : point,
+    	                    	pointNo : pointNo,
     	                    	couponDiscount : couponDiscount,
     	                    	paymentType : paymentType,
     	                    	couponNo : couponNo

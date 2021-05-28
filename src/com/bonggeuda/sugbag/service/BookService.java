@@ -16,6 +16,7 @@ import com.bonggeuda.sugbag.model.dto.AccomoSearchDTO;
 import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PaymentDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.ReviewDTO;
@@ -421,5 +422,23 @@ public class BookService {
 		close(con);
 		return upDown;
 	}
+
+	/**
+	 * 페이징처리를 위한 리뷰 전체 수 조회
+	 * @param bestReview
+	 * @param accomoNo
+	 * @return
+	 */
+//	public int selectAccomoReviewCount(List<ReviewDTO> bestReview, int accomoNo) {
+//		
+//		Connection con = getConnection();
+//		
+//		int totalCount = 0;
+//		
+//		totalCount = bookDao.selectTotalCount(con, bestReview, accomoNo);
+//		
+//		close(con);
+//		return totalCount;
+//	}
 
 }
