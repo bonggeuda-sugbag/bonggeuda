@@ -53,7 +53,7 @@ public class BestReviewServlet extends HttpServlet {
 		/* 조회 해온다. */
 		List<BestReviewDTO> bestReviewList = userInfoServie.selectBestReviewList(pageInfo);
 		
-		System.out.println("bestReviewList : " + bestReviewList);
+		System.out.println("bestReviewList!!! : " + bestReviewList);
 		
 		String path = "";
 		if(bestReviewList != null) {
