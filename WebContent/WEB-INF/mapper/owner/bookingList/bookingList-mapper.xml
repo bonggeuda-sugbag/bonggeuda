@@ -319,4 +319,13 @@
  	 WHERE OWNER_QNA_NO = ?
 	</entry>
 	
+	<entry key="selectAccomoList">
+	SELECT A.ACCOMO_NO
+	     , A.ACCOMO_NAME
+	     , B.ROOM_NAME
+	  FROM ACCOMO_INFO A, ROOM_INFO B
+	 WHERE A.OWNER_NO = ?
+	   AND B.ACCOMO_NO = A.ACCOMO_NO
+	</entry>
+	
 </properties>
