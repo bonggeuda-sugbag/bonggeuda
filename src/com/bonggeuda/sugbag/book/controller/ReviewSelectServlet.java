@@ -126,7 +126,7 @@ public class ReviewSelectServlet extends HttpServlet {
 			System.out.println();
 			
 		} else {
-			System.out.println("응 돌아가");
+			
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 		
