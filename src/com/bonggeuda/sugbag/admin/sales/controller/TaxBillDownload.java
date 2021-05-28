@@ -1,7 +1,7 @@
 package com.bonggeuda.sugbag.admin.sales.controller;
 
-import java.io.FileOutputStream;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.UUID;
@@ -39,7 +39,7 @@ public class TaxBillDownload extends HttpServlet {
 			byte[] file = Base64.decodeBase64(binaryData);
 			String fileName = UUID.randomUUID().toString().replace("-", "");
 			
-			stream = new FileOutputStream(request.getServletContext().getRealPath("/") + "/resources/taxBill/" + fileName + ".png");
+			stream = new FileOutputStream(request.getServletContext().getRealPath("/") + "resources/taxBill/" + fileName);
 			stream.write(file);
 			stream.close();
 			
@@ -47,6 +47,7 @@ public class TaxBillDownload extends HttpServlet {
 			
 			PrintWriter out = response.getWriter();
 			
+			System.out.println(requestNo);
 			updateResult = service.updateTaxRequest(requestNo);
 			
 			insertResult = service.insertTaxHistory(requestNo, fileName + ".png");

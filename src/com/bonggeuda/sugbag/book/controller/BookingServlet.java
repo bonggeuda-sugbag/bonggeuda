@@ -95,7 +95,6 @@ public class BookingServlet extends HttpServlet {
 			if(couponPoint.get(i) != null) {
 				if(couponPoint.get(i) instanceof PointDTO)  {
 					point = (PointDTO) couponPoint.get(i);
-					System.out.println("너왜 안담기냐 : " +point);
 				} else if(couponPoint.get(i) instanceof CouponDTO) {
 					CouponDTO coupon = (CouponDTO) couponPoint.get(i);
 					Date today = new java.sql.Date(System.currentTimeMillis());

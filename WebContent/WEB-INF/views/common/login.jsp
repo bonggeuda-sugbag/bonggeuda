@@ -107,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 		<div class="logo">
-			<h1><a href="${ pageContext.servletContext.contextPath }">BONGGUEDA</a></h1>
+			<h1><a href="${ pageContext.servletContext.contextPath }">BONGGEUDA</a></h1>
 		</div>
 		<!--//logo-->
 		<div class="top-nav">

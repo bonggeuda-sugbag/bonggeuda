@@ -107,19 +107,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<!--logo-->
 			<div class="logo">
-				<h1><a href="index.html">REAL HOME</a></h1>
+				<h1><a href="${ pageContext.servletContext.contextPath }">BONGGEUDA</a></h1>
 			</div>
 		<!--//logo-->
 		<div class="top-nav">
 			<ul class="right-icons">
 
-				<li><span ><a  href="adminUserManagement.html">사용자관리</a></span></li>
+<!-- 				<li><span ><a  href="adminUserManagement.html">사용자관리</a></span></li>
 				<li><a  href="adminCompanyManagementInfo.html">업체관리</a></li>
 				<li><a  href="adminReservationStatus.html">예약현황</a></li>
 				<li><a  href="adminPaymentInformation.html">매출관리</a></li>
 				<li><a  href="adminOnlineQuestionUser.html">문의&신고</a></li>
-				<li><a  href="adminOnlineNotice.html">공지사항</a></li>
-				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li>
+				<li><a  href="adminOnlineNotice.html">공지사항</a></li> 
+				<li><a  href="login.html"><i class="glyphicon glyphicon-user"> </i>로그인</a></li> -->
 				
 			</ul>
 
@@ -185,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 	
 				</form>
-				<div class="loginin" style="padding-right: 120px;">Already have a Real Home account? <a href="${ pageContext.servletContext.contextPath }/login/test">Login</a></div>
+				<div class="loginin" style="padding-right: 120px;">등록된 계정이 있으신가요? <a href="${ pageContext.servletContext.contextPath }/login/test">로그인하기</a></div>
 			</div>
 		</div>
 	</div>
