@@ -20,16 +20,16 @@ public class AccomoService {
 		Connection con = getConnection();
 
 		/*Connection과 함께 정보를 전달하여 조회.*/
-		int inserAccomo = accomoDAO.InsertAccomo(con, accomoDTO, ownerNo);
+		int insertAccomo = accomoDAO.InsertAccomo(con, accomoDTO, ownerNo);
 		
-		if(inserAccomo > 0) {
+		if(insertAccomo > 0) {
 			commit(con);
 		} else {
 			rollback(con);
 		}
 		close(con);
 		
-		return inserAccomo;
+		return insertAccomo;
 	}
 
 	public int selectEnNo() {

@@ -240,9 +240,9 @@ s
 				<td>
 					<div class="basic">
 						<span class="form-title" style="display:inline-block";>기간 선택</span>
-						<label><input type="date" name="peakStart"></label>
+						<label><input type="date" name="peakStart" required="required"></label>
 						<span>~</span>
-						<label><input type="date" name="peakEnd"></label>
+						<label><input type="date" name="peakEnd" required="required"></label>
 					</div>
 				</td>
 			</tr>

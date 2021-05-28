@@ -43,7 +43,6 @@ public class ModifyRoomList extends HttpServlet {
 		ManagementRoomService roomService = new ManagementRoomService();
 		
 		selectRoomList = roomService.selectRoomList(roomcAcomoNo);
-		
 		System.out.println("selectRoomList" + selectRoomList);
 		
 		request.setAttribute("selectRoomList", selectRoomList);

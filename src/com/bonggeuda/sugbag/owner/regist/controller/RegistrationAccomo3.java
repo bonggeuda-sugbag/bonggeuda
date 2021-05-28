@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
@@ -22,10 +23,11 @@ public class RegistrationAccomo3 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//로그인 값
-		OwnerInfoDTO member = (OwnerInfoDTO)request.getSession().getAttribute("ownerNo");
-		int ownerNo = member.getOwnerNo();
-		
+	    HttpSession session = request.getSession();
+	    int ownerNo = (Integer)session.getAttribute("ownerNo");
+	    System.out.println("ownerNo : " + ownerNo);
 		System.out.println("여기는 오는가?");
+		
 		/*등록3단계*/
 		String checkIn = request.getParameter("checkIn");
 		String checkOut = request.getParameter("checkOut"); 
@@ -57,9 +59,10 @@ public class RegistrationAccomo3 extends HttpServlet {
 		accomoDTO.setCheckOut(checkOut);
 		accomoDTO.setPeakStart(peakStart);
 		accomoDTO.setPeakEnd(peakEnd);
-		accomoDTO.setOwnerNo(Integer.parseInt(request.getParameter("ownerNo")));
-		accomoDTO.setEnAccomoNo(selectEnNo + 1); //현재 등록된 번호보다 1 증가한 값을 담아줌
+		accomoDTO.setOwnerNo(ownerNo);
 		
+		accomoDTO.setEnAccomoNo(selectEnNo + 1); //현재 등록된 번호보다 1 증가한 값을 담아줌
+		System.out.println("selectEnNo :" + selectEnNo);
 		String[] arrayFacility = request.getParameterValues("facility");
 		String facility = "";
 		for(int i=0; i < arrayFacility.length; i++) {
