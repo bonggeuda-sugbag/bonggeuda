@@ -41,19 +41,6 @@ public class RoomSelectServlet extends HttpServlet {
 		} else {
 			System.out.println("숙소상세보기실패~^^");
 		}
-		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-		if(member == null) {
-			path = "";
-			System.out.println("컨텍스트 패스 : " + request.getContextPath());
-			path = request.getContextPath() + "/WEB-INF/views/common/login.jsp";
-			System.out.println(path);
-			response.sendRedirect(path);
-//			System.out.println("리얼패스 : " + request.getRealPath());
-//			response.sendRedirect();
-		} else {
-			request.getRequestDispatcher(path).forward(request, response);;
-			
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   
 <!--A Design by W3layouts 
 Author: W3layout
@@ -221,8 +221,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container margin:0 auto;">
 			<h3 style="text-align: center;" >  봉그다 소식  </h3>
 			<br><br><br>
+				
 				<div class="col-md-4 box_2">
-			     	 <a href="more_notice.jsp" class="mask">
+			     	 <a href="${pageContext.servletContext.contextPath }/usernotice/select" class="mask">
 			     	   	<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/resources/guest/images/pc4.jpg" alt="">
 			     	 </a>
 			     	   <div class="most-1">
@@ -232,7 +233,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			     	   </div>
 			 </div>
 			  <div class="col-md-4 box_2">
-		     	 <a href="event.jsp" class="mask">
+		     	 <a href="${pageContext.servletContext.contextPath }/usernotice/select" class="mask">
 			     	   	<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath}/resources/guest/images/pc5.jpg" alt="">
 			     	 </a>
 		     	   <div class="most-1">
