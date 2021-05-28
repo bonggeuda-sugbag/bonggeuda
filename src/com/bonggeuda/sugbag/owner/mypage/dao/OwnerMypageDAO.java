@@ -735,7 +735,7 @@ public class OwnerMypageDAO {
 		
 		
 		
-		return 0;
+		return result;
 	}
 
 }
