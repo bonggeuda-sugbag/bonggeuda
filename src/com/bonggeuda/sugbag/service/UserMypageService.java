@@ -481,6 +481,25 @@ public class UserMypageService {
 	}
 
 
+	/**
+	 * 리뷰내역 조회하기
+	 * @param userNo
+	 * @param bookNo
+	 * @return
+	 */
+	public ReviewDTO selectReviewHistory(int userNo, int bookNo) {
+
+		Connection con = getConnection();
+		
+		ReviewDTO reviewDTO = mypageDAO.reviewSelect(con, userNo, bookNo);
+		
+		close(con);
+		
+		return reviewDTO;
+		
+	}
+
+
 
 
 

@@ -269,5 +269,79 @@ public class LoginDAO {
 		return result;
 	}
 
+
+	/**
+	 * 회원가입시 닉네임 중복확인
+	 * @param con
+	 * @param nickName
+	 * @return
+	 */
+	public int selectUserNickName(Connection con, String nickName) {
+
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("userNicknameSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nickName);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	/**
+	 * 회원가입시 이메일 중복확인
+	 * @param con
+	 * @param email
+	 * @return
+	 */
+	public int selectUserEmail(Connection con, String email) {
+
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("userEmailSelect");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, email);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
 }

@@ -34,16 +34,39 @@ public class OwnerWithdraw extends HttpServlet {
 		
 		int ownerWithdrawUpdate = 0;
 		
+		// 오너 인포에서 윗드오루 Y 로 업데이트
 		OwnerMypagService ownerMypageService = new OwnerMypagService();
 		ownerWithdrawUpdate = ownerMypageService.ownerWithdrawUpdateService(ownerNo);
 		
+		/* 윗드로우 테이블 인서트 */
+		String withdrawReasonRadioButton = request.getParameter("radios");
+		String withdrawReason = request.getParameter("reason");
+		String realWithdrawReason = "";
+		System.out.println("withdrawReasonRadioButton : " + withdrawReasonRadioButton);
+		System.out.println("withdrawReason : " + withdrawReason);
 		
+		int ownerWithdrawInsert = 0;
+		if(withdrawReasonRadioButton != null) {
+			realWithdrawReason = withdrawReasonRadioButton;
+			ownerWithdrawInsert = ownerMypageService.ownerWithdrawInsertService(realWithdrawReason,ownerNo);
+			System.out.println(realWithdrawReason + " 여기로 들어옴1");
+
+		}else {
+			realWithdrawReason = withdrawReason;
+			ownerWithdrawInsert = ownerMypageService.ownerWithdrawInsertService(realWithdrawReason,ownerNo);
+			System.out.println(realWithdrawReason + " 여기로 들어옴2");
+
+		}
 		
+		if(ownerWithdrawInsert > 0) {
+			
+			String path = "";
+			path = "/WEB-INF/views/owner/login/login.jsp";
+			request.getAttribute(path);
+			request.getRequestDispatcher(path).forward(request, response);
+			
+		}
 		
-		String path = "";
-		path = "/WEB-INF/views/owner/login/login.jsp";
-		request.getAttribute(path);
-		request.getRequestDispatcher(path).forward(request, response);
 		
 		
 		

@@ -619,7 +619,7 @@ textarea {
     
                     <c:choose>
                         <c:when test="${ accomo.reviewScore eq 0}">
-                            <h3>등록된 리뷰가 없어요</h3>
+                            <h3>등록된 리뷰없음</h3>
                             <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar00" ></div>

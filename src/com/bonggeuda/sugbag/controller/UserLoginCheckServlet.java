@@ -46,7 +46,7 @@ public class UserLoginCheckServlet extends HttpServlet {
 		if(loginMember != null && loginMember.getUserNo() != 0) {			// 사용자 로그인
 			
 			HttpSession session = request.getSession();
-			session.setAttribute("loginMember", loginMember);
+			session.setAttribute("member", loginMember);
 //			
 //			System.out.println("request.getContextPath() : " + request.getContextPath());
 //			response.sendRedirect(request.getContextPath());

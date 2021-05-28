@@ -39,12 +39,11 @@
 	
 	</entry>
 	
-	<entry key="selectRefNoMax">
+	<entry key="selectRefortNoNoMax">
 
-	    SELECT
-	           MAX(REF_NO)
-	      FROM ATTACHMENT
-	     WHERE CATEGORY_NO = 6
+        SELECT
+	           MAX(REPORT_NO)
+	      FROM REPORT
 	
 	</entry>
 

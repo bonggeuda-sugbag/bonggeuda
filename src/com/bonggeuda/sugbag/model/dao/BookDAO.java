@@ -24,6 +24,7 @@ import com.bonggeuda.sugbag.model.dto.BookDTO;
 import com.bonggeuda.sugbag.model.dto.CouponDTO;
 import com.bonggeuda.sugbag.model.dto.CouponHistoryDTO;
 import com.bonggeuda.sugbag.model.dto.OwnerQnADTO;
+import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
 import com.bonggeuda.sugbag.model.dto.PaymentDTO;
 import com.bonggeuda.sugbag.model.dto.PointDTO;
 import com.bonggeuda.sugbag.model.dto.PointHistoryDTO;
@@ -650,11 +651,12 @@ public class BookDAO {
         
 		List<ReviewDTO> reviewList = null;
 		String query = new QueryBuilder().reviewSelectBuilder(bestReview).toString();
+		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, accomoNo);
-			pstmt.setInt(2, 1);
-			pstmt.setInt(3, 4);
+//			pstmt.setInt(2, pageInfo.getStartRow());
+//			pstmt.setInt(3, pageInfo.getEndRow());
 			rset = pstmt.executeQuery();
 			
 			reviewList = new ArrayList();
@@ -1118,4 +1120,31 @@ public class BookDAO {
 		
 		return downCnt;
 	}
+
+//	public int selectTotalCount(Connection con, List<ReviewDTO> bestReview, int accomoNo) {
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		int TotalCount = 0;
+//		
+//		String query = new QueryBuilder().reviewCountBuilder(bestReview).toString();
+//		
+//		try {
+//			pstmt = con.prepareStatement(query);
+//			pstmt.setInt(1, accomoNo);
+//			rset = pstmt.executeQuery();
+//			
+//			if(rset.next()) {
+//				TotalCount = rset.getInt("총수");
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(rset);
+//			close(pstmt);
+//		}
+//		
+//		return TotalCount;
+//	}
 }
