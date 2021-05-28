@@ -136,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     기타
                                 </option>
                             </select>
-                            <input name="cancelReasonTwo" style="width:700px ;" placeholder="사유를 입력하세요">
+                            <input id="cancelReasonTwo" name="cancelReasonTwo" style="width:700px ;" placeholder="사유를 입력하세요">
                         </td>
 					</tr>
 					<tr>
@@ -200,7 +200,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div>
                 
 				<button class="reservation-cancle-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userbookcontent/select?bookNo=${ requestScope.userBookCancle.bookNo }';">이전</button>
-				<button class="reservation-cancle-btn" type="submit" onclick="cancelconfirm()">취소확정</button>
+				<button class="reservation-cancle-btn" type="submit" onsubmit="return cancelConfirm()">취소확정</button>
 			</div>
 
 		</div>
@@ -209,7 +209,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	<script>
 		function cancelconfirm() {
-			alert("예약이 취소되었습니다.");
+			
+			var reason = document.getElementById("cancelReasonTwo").value;
+			
+			if(reason!='') {
+				alert("예약이 취소되었습니다.");
+				return true;
+			} else {
+				alert("사유를 입력해주세요.");
+				return false;
+			}
 		}
 	
 	</script>

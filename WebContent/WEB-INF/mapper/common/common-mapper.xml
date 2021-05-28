@@ -66,4 +66,16 @@
 		     )
 		  
 	</entry>
+	
+	<entry key="userNicknameSelect">
+		SELECT COUNT(*)
+		  FROM USER_INFO
+		 WHERE USER_NICKNAME = ?
+    </entry>
+    
+    <entry key="userEmailSelect">
+		SELECT COUNT(*)
+		  FROM USER_INFO
+		 WHERE USER_ID = ?
+    </entry>
 </properties>

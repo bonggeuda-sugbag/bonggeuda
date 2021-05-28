@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
+import com.bonggeuda.sugbag.model.dto.AccomoInfoDTO;
 import com.bonggeuda.sugbag.model.dto.AttachmentDTO;
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
@@ -28,21 +29,29 @@ public class BestReviewDetailServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BookService bsvc = new BookService();
+       
 		//1. 베스트 리뷰 조회
 		int accomoNo = Integer.parseInt(request.getParameter("no"));
 		List<ReviewDTO> bestReview =  bsvc.selectBestReview(accomoNo);
 		
+		 //숙소정보, 사진조회
+        BookService booksvc = new BookService();
+        int categoryType = 3;
+        AccomoInfoDTO accomo = booksvc.selectAccomoInfo(accomoNo, categoryType);
+		
 		//2. 리뷰의 UP, DOWN을 COUNT 한 값 가져오기(0:업, 1 :다운)
 		List<Map<Integer,Integer>> upDownCnt = bsvc.selectUpDownCnt(accomoNo);
+		
+		
 		
 		//3.리뷰 사진 조회
 		int categoryNo = 5;
 		Map<Integer,String> reviewPicture = bsvc.selectReviewPicture(accomoNo,categoryNo);
-		
-		//4.리뷰업다운상태
-		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-		int userNo = member.getUserNo();
-		Map<Integer, String> upDownStatus = bsvc.selectReviewUpDownStatus(userNo);
+	
+//		//4.리뷰업다운상태
+//		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
+//		int userNo = member.getUserNo();
+//		Map<Integer, String> upDownStatus = bsvc.selectReviewUpDownStatus(userNo);
 		
 		//베스트리뷰에 좋아요 싫어요 업다운상태 사진 추가
 		for(int i = 0; i < bestReview.size(); i++) {
@@ -63,9 +72,9 @@ public class BestReviewDetailServlet extends HttpServlet {
 			}
 			
 			//업다운상태 추가
-			if(upDownStatus.get(no) != null) {
-				bestReview.get(i).setUpdownStatus(upDownStatus.get(no));
-			}
+//			if(upDownStatus.get(no) != null) {
+//				bestReview.get(i).setUpdownStatus(upDownStatus.get(no));
+//			}
 		}
 		//5.베스트리뷰를 제외한 전체 리뷰 조회
 		List<ReviewDTO> reviewList = bsvc.selectAllReviewList(bestReview, accomoNo);
@@ -88,9 +97,9 @@ public class BestReviewDetailServlet extends HttpServlet {
 			}
 			
 			//업다운상태추가
-			if(upDownStatus.get(no) != null) {
-				reviewList.get(i).setUpdownStatus(upDownStatus.get(no));
-			}
+//			if(upDownStatus.get(no) != null) {
+//				reviewList.get(i).setUpdownStatus(upDownStatus.get(no));
+//			}
 		}
 		//6.페이징처리
 		String currentPage = request.getParameter("currentPage");
