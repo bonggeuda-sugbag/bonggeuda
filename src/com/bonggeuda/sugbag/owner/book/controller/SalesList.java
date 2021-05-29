@@ -51,7 +51,8 @@ public class SalesList extends HttpServlet {
 		int bookingCount = salesService.selectBookCount(accmoNo);
 		
 		/* 4. 숙소 총 매출 조회*/
-
+		int sumSalePrice = salesService.sumSalePriceService(accmoNo);
+		
 		
 		String path = "";
 		path = "/WEB-INF/views/owner/bookingList/salesList.jsp";
@@ -63,6 +64,8 @@ public class SalesList extends HttpServlet {
 		request.setAttribute("roomNamsList", roomNamsList);
 		/* 3. 숙소 총예약건수 보내주기*/
 		request.setAttribute("bookingCount", bookingCount);
+		/* 4. */
+		request.setAttribute("sumSalePrice",sumSalePrice );
 
 		
 
