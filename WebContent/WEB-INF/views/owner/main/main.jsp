@@ -66,7 +66,7 @@
 					 <li>
 			          	 <div class="banner1">
 			           		<div class="caption">
-					          	<h3><span>제주를 대표하는 숙박 예약 사이트 봉그다</span></h3> <!-- 메인화면 문구설정, 총 3페이지 -->
+					          	<h3><span>제주 1등 숙박 예약 사이트 봉그다</span></h3> <!-- 메인화면 문구설정, 총 3페이지 -->
 					          	<p>업주 여러분 환영합니다 !</p>
 			          		</div>
 			          	</div>
@@ -74,7 +74,7 @@
 					 <li>
 			          	 <div class="banner2">
 			           		<div class="caption">
-								<h3><span>봉그다 숙박숙박과 함께 할 숙소를 찾습니다.</span></h3>
+								<h3><span>봉그다 숙박숙박과 함께 하세요.</span></h3>
 								<p>여러분의 멋진 숙소를 등록해 보세요.</p>
 			          		</div>
 			          	</div>

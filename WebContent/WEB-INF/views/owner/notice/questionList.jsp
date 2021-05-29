@@ -65,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--header-->
 <!--//-->	
-<div class=" banner-booking"> <!--상단 메뉴바-->
+<div class=" banner-notice"> <!--상단 메뉴바-->
 	<div class=" container">
 		<h3>1:1 문의</h3> 
 	</div>
