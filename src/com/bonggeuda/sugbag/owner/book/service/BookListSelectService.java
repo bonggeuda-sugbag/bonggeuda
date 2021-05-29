@@ -43,9 +43,9 @@ public class BookListSelectService {
 		Connection con = getConnection();
 		
 		int bookAllowUpdate = bookDAO.bookAllowUpdate(con,bookNo);
-		int bookAllowStatusUpdate = bookDAO.bookAllowStatusUpdateDAO(con,bookNo);
+		//int bookAllowStatusUpdate = bookDAO.bookAllowStatusUpdateDAO(con,bookNo);
 		
-		if( bookAllowUpdate > 0 && bookAllowStatusUpdate > 0)
+		if(bookAllowUpdate > 0)
 		{
 			commit(con);
 		}else {
@@ -54,7 +54,7 @@ public class BookListSelectService {
 	
 		close(con);
 		
-		return bookAllowStatusUpdate;
+		return bookAllowUpdate;
 	}
 
 	public int insertBookHistory(int bookNo) {
@@ -180,7 +180,6 @@ public class BookListSelectService {
 		}else {
 			rollback(con);
 		}
-		
 		close(con);
 		
 		return result;
@@ -192,6 +191,23 @@ public class BookListSelectService {
 		int selectcompleteCount = bookDAO.selectcompleteCountDAO(bookNo,con);
 		
 		return selectcompleteCount;
+	}
+
+	public int bookFinUpdate(int bookNo) {
+
+		Connection con = getConnection();
+		
+		int bookFin = bookDAO.bookAllowStatusUpdateDAO(con,bookNo);
+		
+		if(bookFin > 0)
+		{
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return bookFin;
 	}
 
 }

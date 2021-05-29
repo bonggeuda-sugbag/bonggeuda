@@ -24,7 +24,6 @@ public class BookingQuestion extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
 		//로그인 값
 	    HttpSession session = request.getSession();
 	    int ownerNo = (Integer)session.getAttribute("ownerNo");

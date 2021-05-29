@@ -155,7 +155,7 @@
 	
 	<entry key="bookAllowStatusUpadte">
 	UPDATE BOOK_LIST
-  	   SET BOOK_STATUS_YNC = 'N'
+  	   SET BOOK_STATUS_YNC = 'Y'
      WHERE BOOK_NO = ?
 	</entry>
 	

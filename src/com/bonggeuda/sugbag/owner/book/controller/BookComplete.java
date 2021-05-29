@@ -24,36 +24,38 @@ public class BookComplete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
 		/* 1. book history에 인서트*/
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 		
+		System.out.println("예약확정 할 예약번호 : " + bookNo);
+	
 		BookListSelectService bookService = new BookListSelectService();
 		
-		//bookNo = bookService.insertBookHistory(bookNo);
-		// 예약 승인/거절 시 북 히스토리에 업데이트 댐
+		int bookFin = 0;
+		bookFin = bookService.bookFinUpdate(bookNo);
 		
-		/* 2.sales history 인서트 */
-		int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
-		int roomNo = Integer.parseInt(request.getParameter("roomNo"));
-		int paymentFee = Integer.parseInt(request.getParameter("paymentFee"));
-		int paymentNo = Integer.parseInt(request.getParameter("paymentNo"));
+		System.out.println("예약 확정되면 1 : " + bookNo);
 		
-		int result = bookService.insertSalesHistory(accomoNo,roomNo,paymentFee,paymentNo);
-		
-		/* */
-		
-		/* 3. 지난 예약목록 리스트로 이동 */
-		if(result > 0) {
+		if(bookFin > 0) {
 			
-			String path="";
-			path = "/WEB-INF/views/owner/bookingList/bookingPast.jsp";
-			request.getRequestDispatcher(path).forward(request, response);	
-		}else {
-			String path="";
-			path = "/WEB-INF/views/owner/mypage/mypage.jsp";
-			request.getRequestDispatcher(path).forward(request, response);	
+			/* 2.sales history 인서트 */
+			int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
+			int roomNo = Integer.parseInt(request.getParameter("roomNo"));
+			int paymentFee = Integer.parseInt(request.getParameter("paymentFee"));
+			int paymentNo = Integer.parseInt(request.getParameter("paymentNo"));
+			
+			int result = bookService.insertSalesHistory(accomoNo,roomNo,paymentFee,paymentNo);
+			
+			/* 3. 지난 예약목록 리스트로 이동 */
+			if(result > 0) {
+				String path="";
+				path = "/WEB-INF/views/owner/bookingList/bookFinish.jsp";
+				request.getRequestDispatcher(path).forward(request, response);	
+			}else {
+				String path="";
+				path = "/WEB-INF/views/owner/bookingList/bookFinishFail.jsp";
+				request.getRequestDispatcher(path).forward(request, response);	
+			}
 		}
 	}
-
 }

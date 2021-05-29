@@ -223,7 +223,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</table>
 		<br>
 
-		<c:if test="${ requestScope.bookStatusYNC eq 'Y' && requestScope.completeCount == 0 }">
+		<c:if test="${ requestScope.bookStatusYNC eq 'N' && requestScope.completeCount == 0 }">
 			<form action="${ pageContext.servletContext.contextPath }/owner/bookComplete" method="post">
 			<input type="hidden" name="accomoNo" value="${ bookContentDTO.accomoNo}">
 			<input type="hidden" name="roomNo" value="${ bookContentDTO.roomNo}">
@@ -236,7 +236,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</form>
 		</c:if>
 		
-		<c:if test="${ requestScope.bookStatusYNC eq 'Y' && requestScope.completeCount > 0 }">
+		<c:if test="${ requestScope.bookStatusYNC eq 'N' && requestScope.completeCount > 0 }">
 		* 이미 이용완료된 객실입니다.
 		</c:if>
 		
