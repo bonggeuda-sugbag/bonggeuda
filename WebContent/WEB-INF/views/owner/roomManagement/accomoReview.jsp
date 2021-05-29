@@ -10,18 +10,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>봉그다숙박숙박</title>
-<link href="${pageContext.servletContext.contextPath }/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<title>Real Home A Real Estate Category Flat Bootstarp Resposive Website Template | Buy :: w3layouts</title>
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="${pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/guest/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--menu-->
-<script src="${pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
-<link href="${pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
-<!--//menu-->
+<script src="${pageContext.servletContext.contextPath}/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/styles.css" rel="stylesheet">
 
-<!-- theme-style -->
-<link href="${pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
@@ -31,7 +29,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 .container h3{
 	display: block; 
@@ -364,7 +361,7 @@ popup>li{
     text-align: right;
     
 }
-.reviewStar10{
+.reviewStar11{
     clear: both;
     width: 120px;
     height: 24px;
@@ -565,14 +562,105 @@ textarea {
 <body>
 <!--header-->
 
-
-<jsp:include page="../../common/guestheader.jsp"/>
-    
+<div class="header">
+   <div class="container">
+      <!--logo-->
+         <div class="logo">
+            <h1><a href="index.html">Bonggeuda</a></h1>
+         </div>
+      <!--//logo-->
+      <div class="top-nav">
+         <ul class="right-icons">
+			<li><span ><a  href="${ pageContext.servletContext.contextPath }/user/list">사용자관리</a></span></li>
+				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
+				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
+				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
+				<li><a href="/bonggeuda/owner/notice">공지사항</a></li>
+				<li><a href="/bonggeuda/owner/mypage">마이페이지</a></li>
+				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
+         </ul>
+      <div class="clearfix"> </div>
+         <!---pop-up-box---->
+               
+            <link href="${pageContext.servletContext.contextPath }/resources/admin/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+            <script src="${pageContext.servletContext.contextPath }/resources/admin/js/jquery.magnific-popup.js" type="text/javascript"></script>
+         <!---//pop-up-box---->
+            <div id="small-dialog" class="mfp-hide">
+                   <!----- tabs-box ---->
+            <div class="sap_tabs">   
+                 <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                    <ul class="resp-tabs-list">
+                         <li class="resp-tab-item " aria-controls="tab_item-0" role="tab"><span>All Homes</span></li>
+                       <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>For Sale</span></li>
+                       <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>For Rent</span></li>
+                       <div class="clearfix"></div>
+                    </ul>                  
+                    <div class="resp-tabs-container">
+                          <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>All Homes</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
+                            <div class="facts">
+                                <div class="login">
+                                 <input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">      
+                                  <input type="submit" value="">
+                               </div>        
+                             </div>
+                          </div>
+                          <h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span>For Sale</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+                           <div class="facts">                           
+                              <div class="login">
+                                 <input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">      
+                                  <input type="submit" value="">
+                               </div> 
+                             </div>   
+                         </div>                           
+                           <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span>For Rent</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                            <div class="facts">
+                              <div class="login">
+                                 <input type="text" value="Search Address, Neighborhood, City or Zip" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Address, Neighborhood, City or Zip';}">      
+                                  <input type="submit" value="">
+                               </div> 
+                              </div>   
+                         </div>
+                     </div>
+                </div>
+                <script src="${pageContext.servletContext.contextPath }/resources/admin/js/easyResponsiveTabs.js" type="text/javascript"></script>
+                   <script type="text/javascript">
+                      $(document).ready(function () {
+                          $('#horizontalTab').easyResponsiveTabs({
+                              type: 'default', //Types: default, vertical, accordion           
+                              width: 'auto', //auto or any width like 600px
+                              fit: true   // 100% fit in a container
+                          });
+                      });
+                     </script>   
+            </div>
+            </div>
+             <script>
+                  $(document).ready(function() {
+                  $('.popup-with-zoom-anim').magnificPopup({
+                     type: 'inline',
+                     fixedContentPos: false,
+                     fixedBgPos: true,
+                     overflowY: 'auto',
+                     closeBtnInside: true,
+                     preloader: false,
+                     midClick: true,
+                     removalDelay: 300,
+                     mainClass: 'my-mfp-zoom-in'
+                  });
+                                                                  
+                  });
+            </script>
+               
+   
+      </div>
+      <div class="clearfix"> </div>
+      </div>   
+</div>
     <!--//-->	
+    <!-- 숙소상세정보 -->
     <center>
 
-    <!-- 숙소상세정보 -->
-        <div style="width: 1170px; margin-top: 30px; padding: 10px 35px 10px 35px;">
+       <div style="width: 1170px; margin-top: 30px; padding: 10px 35px 10px 35px;">
             <!-- 숙소사진, 이름 -->
             <div style=" width : 1100px; height : 500px; padding:10px 10px 10px 0px;display: flex; flex-direction: row;">
                 <!-- 숙소사진 -->
@@ -596,266 +684,27 @@ textarea {
                     <div><h4> - 주소 : ${accomo.address }</h4></div>
                     <br>
                     <div><h4> - 오시는길 : ${accomo.path }</h4></div>
-                    <br>
-                    <div><h4> - 성수기 기간 : ${accomo.peakStart } ~ ${accomo.peakEnd }</h4></div>
-                    <br>
-                
+                    <br><br>
                     <div class="ownerComment">
-                        <h4 style="text-align: left;"><b>1박 기준에 따른 요금안내</b></h4>
+                        <h4 style="text-align: left;"><b>사장님 한마디</b></h4>
                         <br>
-                        <p> <strong>기준 체크인 시간 : ${accomo.checkIn}</strong> <br>
-                            <strong>기준 체크아웃 시간 : 11:00</strong> <br>
-                           (기준 체크인시간부터 기준체크아웃 시간까지 전체 이용시 1박 요금이 적용됩니다.)<br>
-                           (이외 이용시간에 따라 요금이 다르게 적용됩니다.)
-                           </p>
+                        <p>제주도 최고의 호텔!!<br>여기로오세요~</p>
                     </div>
                 </div>
             </div>
 
             <br><br>
             <!-- 안내/예약, 정보, 리뷰 -->
-            <div style="display: flex; width: 100%;">
-				<div class="selectType">
-					<button class="tab_button" id="book" type="button" style="color: #6eceda; border-bottom: 3px solid #6eceda;" onclick="tabChange(this);">
-						<span>객실안내 / 예약</span>
-					</button>
-					<button class="tab_button" id="info" type="button" onclick="tabChange(this);" >
-						<span>숙소정보</span>
-					</button>
-					<button class="tab_button3" id="review" type="button" onclick="tabChange(this);">
-						 <span>리뷰</span>
-					</button>
-					<button class="tab_button" id="question" type="button" onclick="tabChange(this);">
-						<span>문의하기</span>
-					</button>
-				</div>
-				<div style="text-align: right; display: flex; ">
-					<button style="padding:5px;background: red; color: white; border-radius: 10px; box-shadow: 0 3px 0 orange; border-style: none;"onclick="location.href='${pageContext.servletContext.contextPath }/book/report?no=${ accomo.accomoNo }';">신고하기</button>
-					<div style="margin-left:5px; width: 30px; height: 30px; background: url(${pageContext.servletContext.contextPath }/resources/guest/images/신고.jpg) no-repeat; background-size: 30px 30px;"></div>
-				</div>
-			</div>
-            <script>
-				function tabChange(tc){
-					
-					document.getElementById(tc.id).style.color="#6eceda";
-					document.getElementById(tc.id).style.borderBottom="3px solid #6eceda";
-
-					if(tc.id=="book"){
-						document.getElementById("btn1_content").style.display="block";
-						document.getElementById("btn2_content").style.display="none";
-						document.getElementById("btn3_content").style.display="none";
-						document.getElementById("btn4_content").style.display="none";
-						document.getElementById("info").style.color="black";
-						document.getElementById("info").style.borderBottomStyle="none";
-						document.getElementById("review").style.color="black";
-						document.getElementById("review").style.borderBottomStyle="none";
-						document.getElementById("question").style.color="black";
-						document.getElementById("question").style.borderBottomStyle="none";
-						
-					}
-					if(tc.id =="info"){
-						document.getElementById("btn1_content").style.display="none";
-						document.getElementById("btn2_content").style.display="block";
-						document.getElementById("btn3_content").style.display="none";
-						document.getElementById("btn4_content").style.display="none";
-						document.getElementById("book").style.color="black";
-						document.getElementById("book").style.borderBottomStyle="none";
-						document.getElementById("review").style.color="black";
-						document.getElementById("review").style.borderBottomStyle="none";
-						document.getElementById("question").style.color="black";
-						document.getElementById("question").style.borderBottomStyle="none";
-						
-					} 
-					if(tc.id=="review"){
-						document.getElementById("btn1_content").style.display="none";
-						document.getElementById("btn2_content").style.display="none";
-						document.getElementById("btn3_content").style.display="block";
-						document.getElementById("btn4_content").style.display="none";
-						document.getElementById("book").style.color="black";
-						document.getElementById("book").style.borderBottomStyle="none";
-						document.getElementById("info").style.color="black";
-						document.getElementById("info").style.borderBottomStyle="none";
-						document.getElementById("question").style.color="black";
-						document.getElementById("question").style.borderBottomStyle="none";
-					}
-					if(tc.id=="question"){
-					    document.getElementById("btn1_content").style.display="none";
-						document.getElementById("btn2_content").style.display="none";
-						document.getElementById("btn3_content").style.display="none";
-						document.getElementById("btn4_content").style.display="block";
-						document.getElementById("book").style.color="black";
-						document.getElementById("book").style.borderBottomStyle="none";
-						document.getElementById("info").style.color="black";
-						document.getElementById("info").style.borderBottomStyle="none";
-						document.getElementById("review").style.color="black";
-						document.getElementById("review").style.borderBottomStyle="none";
-					}
-				}
-			</script>
             
-			<br>
-			<br>
-			<!-- <객실안내/예약 탭> -->
-			<div id="btn1_content">
-			<form method = "POST" onsubmit="return bookChecking();" action="${pageContext.servletContext.contextPath }/book/booking">
-			
-				<div style="width: 1100px; height: 60px; padding:5px 10px 5px 10px;display: flex;justify-content: space-around; background-color: white;">
-					<!-- 예약일자 입력 -->
-
-					<div style="display: flex; ">
-						<h4 style="margin: 15px;" >입실일</h4>
-						<input id="checkInD" type="date" name="checkInDate" required="required" >
-					</div>
-					<div style="display: flex; ">
-						<h4 style="margin: 15px;">퇴실일</h4>
-						<input id="checkOutD" type="date" name="checkOutDate" required="required" >
-					</div>
-					<div style="display: flex;">
-						<h4 style="margin: 15px;">인원</h4>
-						<input id="person"type="number" name="people" min="1" style="width: 100px; text-align: center;" required="required">
-					</div>
-					<div style="display: flex;">
-						<h4 style="margin : 15px;">체크인 </h4>
-						<select id="checInT"style="width: 150px;" name="checkInTime" required="required">
-							<option value="00:00">00:00</option>
-							<option value="01:00">01:00</option>
-							<option value="02:00">02:00</option>
-							<option value="03:00">03:00</option>
-							<option value="04:00">04:00</option>
-							<option value="05:00">05:00</option>
-							<option value="06:00">06:00</option>
-							<option value="07:00">07:00</option>
-							<option value="08:00">08:00</option>
-							<option value="09:00">09:00</option>
-							<option value="10:00">10:00</option>
-							<option value="11:00">11:00</option>
-							<option value="12:00">12:00</option>
-							<option value="13:00">13:00</option>
-							<option value="14:00">14:00</option>
-							<option value="15:00">15:00</option>
-							<option value="16:00">16:00</option>
-							<option value="17:00">17:00</option>
-							<option value="18:00">18:00</option>
-							<option value="19:00">19:00</option>
-							<option value="20:00">20:00</option>
-							<option value="21:00">21:00</option>
-							<option value="22:00">22:00</option>
-							<option value="23:00">23:00</option>
-						</select>
-					</div>
-
-
-				<!-- //예약일자 입력 -->
-				</div>
-
-				<hr>
-				<center>
-					<!-- 객실정보 -->
-					<c:forEach var="roomList" items="${ roomList }" varStatus ="st">
-					<div class="detailList" > 
-						<div class="detailImg" style="background: url(${pageContext.servletContext.contextPath }/${roomList.attachment.thumbnailPath }) no-repeat; background-size: 100%;" ></div>
-						<div class="detailInfo" >
-							<div><h3>${roomList.roomName}</h3></div>
-							<br>
-							<div style="display: flex;">
-								<div style="width: 40%;">정원</div>
-								<div style="margin-left: 40px; width: 50%;">${roomList.roomMax } 인</div>
-								<input type="hidden" name="roomMax" value="${roomList.roomMax }">
-							</div>
-							<hr>
-							<div style="display: flex;">
-								<div style="width: 40%;">비수기요금</div>
-								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
-								<input type="hidden" name="price" value="${roomList.roomFee }">
-							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
-							</div>
-							<hr>
-							<div style="display: flex;">
-								<div style="width: 40%;">성수기요금</div>
-								<div style="margin-left: 40px; width: 50%;">${roomList.peakFee }원 / 1박</div>
-								<input type="hidden" name="peakFee" value="${roomList.peakFee }">
-							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
-							</div>
-							<hr>
-							<div>
-								<input type="hidden" name="accomoName" value="${accomo.accomoName }">
-								<input type="hidden" name="accomoNo" value="${accomo.accomoNo }">
-								<input type="hidden" name="peakFee" value="${roomList.peakFee }">
-								<input type="hidden" name="roomName" value="${roomList.roomName }">
-								
-								<input type="hidden" name="AccomoCheckIn" value="${accomo.checkIn }">
-								
-								<button class="detail_btn" type="submit" name="roomNo" value="${roomList.roomNo }">예약하기</button>
-							</div>
-						</div>
-					</div>
-					</c:forEach>
-					
-					<!--// 객실정보 -->
-				</center>
-				</form>
+            <div style="width:600px; height:30px; display: flex; ">
+                
+				<button type="button" style="padding : 0 20px 0 20px" >
+                    <span>리뷰목록</span>
+				</button>
 			</div>
-			<!-- 숙소상세정보 -->
-			<div id="btn2_content"class="accordion vertical" style="display: none;">
-				<ul>
-					<li>
-						<input type="checkbox" id="checkbox-1" name="checkbox-accordion" />
-						<label for="checkbox-1">기본정보</label>
-						<div class="content">
-							<h3>주변정보</h3>
-							<p>- ${ accomo.near }</p>
-							<h3>공지사항</h3>
-							<p>- 성수기 : ${accomo.peakStart } ~ ${accomo.peakEnd }</p>
-							<p>- ${accomo.rule }</p>
-							<h3>기본정보</h3>
-							<p>- 입실가능시간 : ${accomo.checkIn } | 퇴실 : ${accomo.checkOut }</p>
-							<p>- 주차요금 : ${accomo.parking}</p>
-							<h3>취소 및 환불 규정</h3>
-							<p>- 체크인 3일 이전 : 100% 환불</p>
-							<p>- 체크인 2일전 : 수수료 10% 제외 후 환불</p>
-							<p>- 체크인 1일전 ~ 당일 및 No-show : 수수료 20% 제외 후 환불</p>
-							<p>- 취소, 환불 시 수수료가 발생할 수 있습니다.</p>
-							<h3>확인사항 및 기타</h3>
-							<p>- 최대 인원 초과시 입실이 불가합니다.</p>
-							<p>- 보호자 동반없는 미성년자는 이용하실 수 없습니다.</p>
-							<p>- 해당 이미지는 실제와 상이 할 수 있습니다.</p>
-							<p>- 위의 정보는 펜션의 사정에 따라 변경될 수 있습니다.</p>
-							<p>- 성수기 기간동안 일부 객실의 경우 요금변동이 있을 수 있습니다.</p>
-						</div>
-					</li>
-					<hr>
-					<li>
-						<input type="checkbox" id="checkbox-2" name="checkbox-accordion" />
-						<label for="checkbox-2">편의시설 및 서비스</label>
-						<div class="content2">
-							<p>${accomo.facility }</p>
-						</div>
-					</li>
-					
-				</ul>
-			</div>
-			<hr>
-            <!-- //숙소상세정보 -->
-                  <script>
-					    function bookChecking(){
-					    	alert("호출은 되나?");
-					    	var chekInD = document.getElementbyId("checkInD").value;
-					    	var chekOutD = document.getElementbyId("checkOutD").value;
-					    	var checkP = document.getElementbyId("person");
-					    	if(chekInD>chekOutD){
-					    		alert("체크인날짜가 더 빠릅니다.")
-					    		return false;
-					    	} 
-					    	if(chekInD<chekOutD){
-					    		alert("체크아웃 날짜가 이후임")
-					    	}
-					    	console.log(a);
-					    	console.log(b);
-					    	console.log(c);
-					    }
-					</script>
-			<!-- 리뷰 -->
-			<div id="btn3_content" style="display: none;">
+            <hr>
+            <!-- 리뷰 -->
+			<div id="btn3_content">
                 <div style="margin: 0 auto;">
                     <br>
     
@@ -960,18 +809,10 @@ textarea {
                         </c:when>
                     </c:choose>
                     
-                    <c:choose>
-                        <c:when test="${accomo.reviewScore eq 0}">
-                     <p>
-                        전체리뷰  :  0 개
-                    </p>
-                    </p>
-                        </c:when>
-                        <c:otherwise>
+                    
                      <p>
                         전체리뷰  :  ${totalCount} 개
-                        </c:otherwise>
-                    </c:choose>
+                    </p>
                 </div>
                 <hr>   
                 <br>
@@ -986,26 +827,10 @@ textarea {
                                 <div>
                                     <h4><strong>${best.title }</strong></h4>
                                 </div>
-                                <c:choose>
-                                    <c:when test="${best.updownStatus eq 'U' }">
-                                        <div class="likeClick" id="like${best.reviewNo}"value = '${best.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div class="like" id="like${best.reviewNo}"value = '${best.reviewNo}'  ></div>
                                         <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${best.reviewNo }"value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${best.reviewNo}"value = '${best.reviewNo}' ></div>
                                         <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
-                                    </c:when>
-                                     <c:when test="${best.updownStatus eq 'D' }">
-                                        <div class="like"id="like${best.reviewNo}" value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
-                                        <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
-                                        <div class="unlikeClick"id="unlike${best.reviewNo}" value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
-                                        <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="like" id="like${best.reviewNo}"value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
-                                        <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${best.reviewNo}"value = '${best.reviewNo}' onclick="likeHate(this)"></div>
-                                        <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
-                                    </c:otherwise>
-                                </c:choose>
                             </div>
 							
                             <div class="reviewScore" style="display: flex;">
@@ -1054,83 +879,10 @@ textarea {
                                 <div>
                                     <h4><strong>${normalReview.title}</strong></h4>
                                 </div>
-								<c:choose>
-                                    <c:when test="${normalReview.updownStatus eq 'U' }">
-                                        <div class="likeClick" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this.name)"></div>
+                                        <div class="like" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  ></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${normalReview.reviewNo }"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${normalReview.reviewNo}"value = '${normalReview.reviewNo}' ></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
-                                    </c:when>
-                                     <c:when test="${normalReview.updownStatus eq 'D' }">
-                                        <div class="like"id="like${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
-                                        <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlikeClick"id="unlike${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
-                                        <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="like" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
-                                        <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this)"></div>
-                                        <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
-                                    </c:otherwise>
-                                </c:choose>
-                                <script>
-                                function likeHate(p){
-                                	
-                                	var reviewNo = document.getElementById(p.id).attributes.value.value;
-									var className = document.getElementById(p.id).className;
-                                	var reviewName = "review" + reviewNo;
-                                	var anotherId = "";
-                                	var status = "";
-
-                                	switch(className){
-                                	case "like" : 
-                                		document.getElementById(p.id).className = "likeClick";
-                                		anotherId = "unlike" + reviewNo;
-                                		document.getElementById(anotherId).className = "unlike"; 
-                                		status = "U";
-                                		break;
-                                	case "likeClick" :
-                                		document.getElementById(p.id).className = "like";
-                                		anotherId = "unlike" + reviewNo;
-                                		document.getElementById(anotherId).className = "unlike";
-                                		status = "N";
-                                		break;
-                                	case "unlike" :
-                                		document.getElementById(p.id).className = "unlikeClick";
-                                		anotherId = "like" + reviewNo;
-                                		document.getElementById(anotherId).className = "like";
-                                		status = "D";
-                                		break;
-                                	case "unlikeClick" :
-                                		document.getElementById(p.id).className = "unlike";
-                                		anotherId = "like" + reviewNo;
-                                		document.getElementById(anotherId).className = "like";
-                                		status = "N";
-                                		break;
-                                	}
-                                	
-                                	$.ajax({
-                                		
-                                		url:"${pageContext.servletContext.contextPath}/accomoSelect/review",
-                                		type:"post",
-                                		data:{
-                                			status : status,
-                                			reviewNo : reviewNo
-                                		},
-                                		success:function(data, textStatus, xhr){
-                                			document.getElementsByName(reviewName)[0].innerHTML = data.up;
-                                			document.getElementsByName(reviewName)[1].innerHTML = data.down;
-                                			
-                                		}
-                                		
-                                		
-                                		
-                                	});
-
-                                }
-
-                                </script>
                             </div>
 							<div class="reviewScore" style="display: flex;">
 							<c:choose>
@@ -1172,9 +924,7 @@ textarea {
                 </ul> 
 				<hr>
 				<div class="clearfix"> </div>
-<!-- 	    <nav>
-	    
-	    
+	    <nav>
 		<ul class="pagination">
 		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
@@ -1184,42 +934,19 @@ textarea {
 		  <li><a href="#">5</a></li>
 		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 	   </ul>
-	   </nav> -->
+	   </nav>
                 
                 <!-- //리뷰내용 -->
             </div>
-			<!-- //리뷰 -->
-			<!-- 문의 -->
-			<div id="btn4_content" >
-			<form method="post" action="${pageContext.servletContext.contextPath}/book/question">
-				<table  style="padding-top:50px;" align = center width=100% border=0 cellpadding=2 style="margin: auto;">
-					<tr>
-					<td bgcolor=white align="center">
-					<table class = "table2">
-						<tr>
-						<td style="width: 50px;">제목</td>
-						<td >
-							<input type="text" class = "question-title" name="title">
-							<input type="hidden" name="accomoNo" value="${accomo.accomoNo }">
-							<input type="hidden" name="userNo" value="${sessionScope.member.userNo }">
-						</td>
-						</tr>
-		
-						<tr>
-						<!-- <td>내용</td> -->
-						<td colspan="2"><textarea name = "content" cols=85 rows=15 placeholder="문의 내용을 입력해주세요"></textarea></td>
-						</tr>
-					</table>
-						<center>
-							<button class="submit_QnA" type="submit">작성</button>
-						</center>
-					</td>
-					</tr>
-			</table>
-			</form>
-			</div>
+            
+             <!-- //리뷰정보 -->
+             <!-- 리뷰내용 -->
+           
+           
+        </div>
         </center>
-	
+
+
 <!--footer-->
 <div class="footer">
 	<div class="container">

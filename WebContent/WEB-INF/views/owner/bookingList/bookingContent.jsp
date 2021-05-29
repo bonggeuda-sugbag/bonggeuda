@@ -146,7 +146,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li class="blog-list" style=" font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/bookingList" style="color: #6eceda;">실시간 예약 현황</a></li>
 				<li class="blog-list"><a href="/bonggeuda/owner/bookingPastList">지난 예약</a></li>
 				<li class="blog-list"><a href="/bonggeuda/owner/book/question">고객 문의</a></li>
-				<li class="blog-list"><a href="/bonggeuda/owner/sales">매출 내역</a></li>
 			</ul>
 			</nav>
 

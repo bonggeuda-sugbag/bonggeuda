@@ -365,4 +365,11 @@
 	
 	</entry>
 	
+	<entry key="sumSalePrice">
+	SELECT SUM(SALES_PRICE)
+	  FROM SALES_HISTORY
+     WHERE ACCOMO_NO = ?
+	
+	</entry>
+	
 </properties>

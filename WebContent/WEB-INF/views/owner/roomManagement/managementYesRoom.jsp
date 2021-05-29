@@ -70,6 +70,42 @@
 	.table-bordered {
     	border: 0px solid #ddd;
 	}
+
+    .overlay {
+	  position: fixed;
+	  top: 0;
+	  bottom: 0;
+	  left: 0;
+	  right: 0;
+	  background: rgba(0, 0, 0, 0.7);
+	  transition: opacity 500ms;
+	  visibility: hidden;
+	  opacity: 0;
+	  z-index: 900;
+	}
+	.overlay:target {
+	  visibility: visible;
+	  opacity: 1;
+	}
+	.popup {
+	  position: fixed;
+	  width: 60%;
+	  padding: 10px;
+	  max-width: 500px;
+	  border-radius: 10px;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  background: rgba(255, 255, 255, .9);
+	  /* "delay" the visibility transition */
+	  -webkit-transition: opacity .5s, visibility 0s linear .5s;
+	  transition: opacity .5s, visibility 0s linear .5s;
+	  z-index: 1;
+	}
+	.h4{
+		text-align: center;
+		font-size: 2em;
+	}
 </style>
 </head>
 <body>
@@ -254,9 +290,25 @@
          </td>
          <td style="text-align: center;">
             <br><br>
-            	<p style="color: red; font-size: 16px"><b>숙소 등록 거절</b></p>
-            
-             <button type="submit" class="list-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
+            <p style="color: red; font-size: 16px"><b>숙소 등록 거절</b></p>
+            <button type="submit" class="list-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
+            <div id="pop01" class="overlay">
+				<div class="popup">
+					<a href="#none" class="close">&times;</a>
+						<p style="font-size: 20px; color: red; padding-bottom: 10px;">숙소 승인 거절</p>
+							<div class="cont-step cont-step_02" id="contStep02" style="display: block;">
+							<div class="cont-step_preface">
+								<h4 class="h4">거절 사유 </h4>
+							</div>
+							<br>
+							<!-- 탈퇴이유 -->
+							<div class="reason-innder-box reason-innder-box6"  style="margin-bottom: 10px;">
+								<textarea class="rejectrReasonTextarea" placeholder="고객님께 전달드릴 예약 거절 사유를 적어주세요. 수정 불가능 하오니 신중히 적어주세요." name="rejectReson" style="height: 120px; margin-left: -5px; font-size: 22px" disabled="disabled" >${ accomoList.insPectionComment }</textarea>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
          </td>
          <td class="roomCondition"  style="color: black; font-size: 16px; ">
             <br><br>

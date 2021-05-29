@@ -108,9 +108,7 @@
 			<nav>
 			<div class="col-md-3 blog-sidebar">
 			<ul>
-				<li class="blog-list"><a href="/bonggeuda/owner/bookingList">실시간 예약 현황</a></li>
-				<li class="blog-list"><a href="/bonggeuda/owner/bookingPastList">지난 예약</a></li>
-				<li class="blog-list"><a href="/bonggeuda/owner/book/question">고객 문의</a></li>
+
 				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/sales" style="color: #6eceda;">매출 내역</a></li>
 			</ul>
 			</nav>
@@ -143,21 +141,21 @@
 			<table class="table" style="width: 1000px;">
 				<thead>
 					<tr>
-						<th colspan="4" style="background: #eaeaea;"><b>${ requestScope.accomoName } 의 총 예약건수 : ${ requestScope.bookingCount }</b></th>
+						<th colspan="4" style="background: #eaeaea;"><b>${ requestScope.accomoName } 의 총 예약건수 : ${ requestScope.bookingCount } 회 / 총 매출 : ${ requestScope.sumSalePrice } 원 </b></th>
 					</tr>
  					<!-- <th><b>기간</b></th> -->
-					<th><b>예약</b></th>
-					<th><b>객실명</b></th>
-					<th><b>합산예약</b></th>
+					<th><b>예약 가능</b></th>
+					<th><b>보유 객실</b></th>
+
 				</thead>
 				<tbody>
 				<c:forEach var="roomNames" items="${ requestScope.roomNamsList }">
 				<tr>
 				
 					<!-- <th rowspan="rowspanCount">2021 - 05</th> -->
-					<td>예약</td>
+					<td>예약 가능</td>
 					<td>${ roomNames }</td>
-					<td></td>
+					<td> </td>
 				</tr>
 				</c:forEach>
 					
@@ -165,63 +163,11 @@
 				</tbody>
 			 </table>
 			 <div class="tab_each" style="display:block">
-				<nav>
-					<ul class="pagination">
-					  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-					  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-				   </ul>
-				</nav>
+
 			</div>
 			 <br>
-			 <table class="table" style="width: 1000px;">
-				 <thead>
-					 <tr>
-						 <th colspan="6" style="background: #eaeaea;"><b>월 매출</b></th>
-					 </tr>
-					 <th><b>기간</b></th>
-					 <th><b>매출액</b></th>
-					 <th><b>수수료</b></th>
-					 <th><b>정산액</b></th>
-				 </thead>
-				 <tbody>
-					<tr>
-						<th>2021 - 05</th>
-						<td>3,000,000 (원)</td>
-						<td>300,000 (원)</td>
-						<td>2,700,000 (원)</td>
-					</tr>
-					<tr>
-						<th>2021 - 04</th>
-						<td>3,000,000 (원)</td>
-						<td>300,000 (원)</td>
-						<td>2,700,000 (원)</td>
-					</tr>
-					<tr>
-						<th>2021 - 03</th>
-						<td>3,000,000 (원)</td>
-						<td>300,000 (원)</td>
-						<td>2,700,000 (원)</td>
-					</tr>
-				 </tbody>
-			  </table>
-			 <div class="tab_each" style="display:block">
-				<nav>
-					<ul class="pagination">
-					  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-					  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-				   </ul>
-				</nav>
-			</div>
+
+
 			
 		</div>
 	</div>
