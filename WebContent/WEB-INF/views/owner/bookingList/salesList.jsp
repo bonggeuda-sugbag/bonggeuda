@@ -105,14 +105,6 @@
 <div class="blog">
 	<div class="container">
 		<div class="blog-list">
-			<nav>
-			<div class="col-md-3 blog-sidebar">
-			<ul>
-
-				<li class="blog-list" style="font-size: 1.3em; font-weight: 600;"><a href="/bonggeuda/owner/sales" style="color: #6eceda;">매출 내역</a></li>
-			</ul>
-			</nav>
-			
 			<c:forEach var="sales" items="${ requestScope.selectSales }">
 			<div id="content" class="sub_wrap more_wrap">
 				<div class="align_rt">
@@ -137,42 +129,31 @@
 			</table>
 			<br>
 			</c:forEach>
-			
-			<table class="table" style="width: 1000px;">
+			<table class="table" style="width: 1000px; margin-left: 135px; color:black;">
 				<thead>
 					<tr>
-						<th colspan="4" style="background: #eaeaea;"><b>${ requestScope.accomoName } 의 총 예약건수 : ${ requestScope.bookingCount } 회 / 총 매출 : ${ requestScope.sumSalePrice } 원 </b></th>
+						<th colspan="4" style="background: #eaeaea;"><b>${ requestScope.accomoName } 의 총 예약건수 &nbsp;:&nbsp; ${ requestScope.bookingCount } 회 &nbsp;&nbsp;/ &nbsp;&nbsp;총 매출 &nbsp;:&nbsp; ${ requestScope.sumSalePrice } 원 </b></th>
 					</tr>
  					<!-- <th><b>기간</b></th> -->
 					<th><b>예약 가능</b></th>
 					<th><b>보유 객실</b></th>
-
 				</thead>
 				<tbody>
 				<c:forEach var="roomNames" items="${ requestScope.roomNamsList }">
 				<tr>
-				
 					<!-- <th rowspan="rowspanCount">2021 - 05</th> -->
 					<td>예약 가능</td>
 					<td>${ roomNames }</td>
-					<td> </td>
 				</tr>
 				</c:forEach>
-					
-					
 				</tbody>
 			 </table>
 			 <div class="tab_each" style="display:block">
-
 			</div>
 			 <br>
-
-
-			
 		</div>
 	</div>
 </div>
-<br><br><br><br><br>
 <br><br><br><br><br>
 <br><br><br><br><br>
 <!--footer-->

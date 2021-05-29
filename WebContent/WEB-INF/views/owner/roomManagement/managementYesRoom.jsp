@@ -21,7 +21,6 @@
 <style>
    .roomCondition{
       text-align: center;
-      width: 200px;
       margin-top: 100px;
       font-weight: bold;
       font-size: 13px;
@@ -190,21 +189,17 @@
             </form>
             </div>
          </td>
-         <td class="" >
-            <ul class="liMaginLefe">
-               <li style="margin-top: 10px;"> 이번달 예약 : n 개</li>
-               <li> 별점 : n </li>
-               <li style="margin-bottom: 15px;"> 리뷰 : n개 </li>
-            </ul>
+         <td>
+         	<br><br>
             <form action="${ pageContext.servletContext.contextPath }/owner/accomoReview"  method="post">
             <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
-            <button class="list-btn" >  리뷰 보러가기</button>
+            <button class="list-btn">▷ 리뷰 보러가기</button>
             </form>
             
             <form action="${ pageContext.servletContext.contextPath }/owner/sales"  method="post">
             <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
             <input type="hidden" name="accomoName" value="<c:out value="${ accomoList.accomoName }"/>">
-            <button class="list-btn" type="submit" >  매출내역 보러가기</button>
+            <button class="list-btn" type="submit" >▷ 매출내역 보러가기</button>
             </form>
          </td>
          <td class="roomCondition"  style="color: black; font-size: 16px; ">
@@ -226,7 +221,7 @@
 <br><br><br><br>
 
 <div class="tab" style="width: 60%;">
-	<span class="tab_btn active">승인 대기중인 숙소</span>
+	<span class="tab_btn active">승인 대기 숙소</span>
 </div>
 <table class="table-bordered table" id="registTb" style="width: 60%;" >
    <thead>
@@ -298,7 +293,7 @@
 						<p style="font-size: 20px; color: red; padding-bottom: 10px;">숙소 승인 거절</p>
 							<div class="cont-step cont-step_02" id="contStep02" style="display: block;">
 							<div class="cont-step_preface">
-								<h4 class="h4">거절 사유 </h4>
+								<h4 class="h4">거절 사유</h4>
 							</div>
 							<br>
 							<!-- 탈퇴이유 -->
@@ -321,7 +316,6 @@
       </tr>
    </c:forEach>
    </tbody>
-   
 </table>
 
 <script>
@@ -339,14 +333,11 @@
         		alert("취소하셨습니다.")
         		return false;
   		 	}
-  	   
        }else{
           alert("취소하셨습니다.")
           return false;
        }
    }
-   
-
 /*    function roomDisable(){
 
    var result = confirm("비공개 하시겠습니까?");
@@ -365,8 +356,6 @@
    }else{
       alert("취소하셨습니다.")
    }
-
-   
 }
 
 function roomAble(){
@@ -383,7 +372,6 @@ if(result){
    alert("숙소 공개 되었습니다.")
 }else{
    alert("취소하셨습니다.")
-
 }
 } */
 </script>
