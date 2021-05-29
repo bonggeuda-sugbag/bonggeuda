@@ -134,24 +134,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="login-right">
 	<div class="container">
 		<!-- <h3>Login</h3> -->
-		<p class="space_or" style="width:50%; margin: 0 auto;"><span style="font-size: 40px; width:120px; left: 44%; background:#fff">Login</span></p><br><br>
+		<p class="space_or" style="width:50%; margin: 0 auto;"><span style="font-size: 40px; width:120px; left: 44%; background:#fff">Login</span></p><br>
 		<div class="login-icons" style= "width: 100%;">
-					<a id="custom-login-btn" href="javascript:loginWithKakao()">
+					<!-- <a id="custom-login-btn" href="javascript:loginWithKakao()">
   						<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/>
-  					</a>
+  					</a> -->
+
+  					<!-- <a href="https://kauth.kakao.com/oauth/authorize?client_id=0e7b4b3a3265b6903de2c662f14dacc2&redirect_uri=http://localhost:8989/bonggeuda/user/kakao/login&response_type=code">
+  						<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/>
+  					</a> -->
   		</div>
+<!--   		<br>
   		<br>
-  		<br>
-  		<p class="space_or" style="width:50%; margin: 0 auto;"><span>또는</span></p>
+  		<p class="space_or" style="width:50%; margin: 0 auto;"><span>또는</span></p> -->
 		<div class="login-top">
 			<form action="" name="loginForm" method="post" onsubmit="return loginconfirm()"> 
 				<div class="form-info">
 					<input type="text" name="loginEmail" id="loginEmail" class="text" placeholder="Email Adress" style="width: 70%;">
 					<input type="password" name="loginPassword" id=loginPassword placeholder="Password" style="width: 70%;">
-					<br>
-						<!-- <label class="hvr-sweep-to-right">
-							<input type="submit" value="Submit">
-						</label> -->
+					<br><br>
 				</div>
 				
 				<!-- 사용자 로그인, 업체 로그인, 회원가입 -->
@@ -185,28 +186,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			Kakao.init('ef9dad5f79ec8fd8bd957ac3e023cbdd');
 		
 			/* 로그인 */
-		  	function loginWithKakao() {
+/* 		  	function loginWithKakao() {
 		    	Kakao.Auth.login({
-		      	success: function(authObj) {
+		      		success: function(authObj) {
 		        	alert(JSON.stringify(authObj))
-		      	},
+		      		},
 		     	 	fail: function(err) {
 		        	alert(JSON.stringify(err))
-		      	},
+		      		},
+		    		redirectUri: 'http://localhost:8989/bonggeuda/user/kakao/login'
 		    	})
-		  	}
+		  	} */
 		  
-		  
-			/* 사용자 정보 가져오기 */
-			Kakao.Auth.createLoginButton({
+ 			/* 사용자 정보 가져오기 */
+			/* Kakao.Auth.createLoginButton({
 				container: '#kakao-login-btn',
 				success: function(authObj) {
 					Kakao.API.request({
 				    	url: '/v2/user/me',
 				    	success: function(res) {
 				    		alert(JSON.stringify(res))
-				    		var userEmail = response.kakao_account.email;
-				    		var usernickName = response.properties.nickname;
+				    		var userId = res.id;
+				    		var userEmail = res.kakao_account.email;
+				    		var usernickName = res.properties.nickname;
+				    		var image = res.properties.profile_image;
+				    		var html = '<br>' + email + '<br>' + name;
+				    		
+				    		html += '<br><img src="' + image + '">';
+				    		
+				    		$('body').append(html);
 				    		
 				    		console.log("userEmail", userEmail);
 				    		console.log("userNickName",userNickName);
@@ -219,24 +227,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				        	)
 				    	},
 				    })
+				    var token = authObj.access_token;
 				},
 				fail: function(err) {
 				    alert('failed to login: ' + JSON.stringify(err))
 				},
-			})
+			}) */
 				  
-			/* 로그아웃 */
-		
-			function kakaoLogout() {
-			    if (!Kakao.Auth.getAccessToken()) {
-			      alert('Not logged in.')
-			      return
-			    }
-			    Kakao.Auth.logout(function() {
-			      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
-			    })
-			}
-			
 			function login(d) {
 				var button = document.loginForm;
 				
@@ -252,8 +249,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				}
 				
 			}
-			
-			
 			
 		</script>
 
