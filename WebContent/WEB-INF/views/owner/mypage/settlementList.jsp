@@ -95,8 +95,8 @@
 					<c:forEach var="accmoNames" items="${ requestScope.selectAccomo }">						
 						<option value="${ accmoNames.accomoNo }">
 							<c:out value="${ accmoNames.accomoName }"/>							
-<%--  							<input type="hidden" name="accomoNo" value="${ accmoNames.accomoNo }">
- --%> 						</option>
+  							<%-- <input type="hidden" name="accomoNo" value="${ accmoNames.accomoNo }"> --%>
+ 						</option>
 					</c:forEach>
 				</select>
 				&nbsp;&nbsp;&nbsp;&nbsp;

@@ -280,34 +280,35 @@ public class OwnerMypageDAO {
 		return selectTaxBillList;
 	}
 
-	public int insertRequestTaxBillDAO(Connection con, int stlNo, int accomoNo) {
+	public int insertRequestTaxBillDAO(Connection con, int accomoNo, int stlNo) {
+		
+		System.out.println("택스 디에이오");
 		
 		PreparedStatement pstmt = null;
 
-		ResultSet rset = null;
-		
-		int insertRequestTaxBill = 0;
-		
-		RequestTaxBillDTO taxBillDTO = new RequestTaxBillDTO();
-		
+		int result = 0;
+				
 		String query = prop.getProperty("insertRequestTaxBill");
+				
+		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setInt(1, accomoNo);
-			pstmt.setInt(2, stlNo);
+			pstmt.setInt(2, accomoNo);
+			pstmt.setInt(3, stlNo);
 			
-			insertRequestTaxBill = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(rset);
+			close(con);
 		}
 
-		return insertRequestTaxBill;
+		return result;
 	}
 
 	public List<AccomoDTO> selectAccomoNamesDAO(int ownerNo, Connection con) {
@@ -484,6 +485,7 @@ public class OwnerMypageDAO {
 
 	public int insertStl(Connection con, int accomoNo) {
 
+		System.out.println("정산 신청@@@@@@@@@@@@@@@@@@@");
 		PreparedStatement pstmt = null;
 		
 		/* 반환시킬 변수 지정 */

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.model.dto.AdminQnADTO;
 import com.bonggeuda.sugbag.model.dto.OwnerInfoDTO;
@@ -20,8 +21,8 @@ public class QuestionWrite extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//로그인 값
-		OwnerInfoDTO member = (OwnerInfoDTO)request.getSession().getAttribute("ownerNo");
-		int ownerNo = member.getOwnerNo();
+		HttpSession session = request.getSession();
+		int ownerNo = (Integer)session.getAttribute("ownerNo");
 		
 		System.out.println("작성했어");
 		

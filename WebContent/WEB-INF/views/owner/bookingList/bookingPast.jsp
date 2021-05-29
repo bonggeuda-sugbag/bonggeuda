@@ -160,16 +160,16 @@
  --%>						<th>						
 						<c:choose>
 							<c:when test="${ board.bookStatusYNC eq 'N' && board.bookApproveYn eq 'Y' }">
-							 <button type="submit" class="list-btn"><p style="color: orange;">결제 완료</p></button>
+								 <button type="submit" class="list-btn"><p style="color: orange;">결제 완료</p></button>
 							</c:when>
 							<c:when test="${ board.bookStatusYNC eq 'N' && board.bookApproveYn eq 'X' }">
-							 <button type="submit" class="list-btn"><p style="color: red;">예약 거절</p></button>
+								 <button type="submit" class="list-btn"><p style="color: red;">예약 거절</p></button>
 							</c:when>
 							<c:when test="${ board.bookStatusYNC eq 'Y' && board.bookApproveYn eq 'Y'}">
-							 <button type="submit" class="list-btn"><p style="color: green;">이용 완료</p></button>
+								 <button type="submit" class="list-btn"><p style="color: green;">이용 완료</p></button>
 							</c:when>
 							<c:when test="${ board.bookStatusYNC eq 'C'}">
-							 <button type="submit" class="list-btn"><p style="color: red;">사용자 환불</p></button>
+								 <button type="submit" class="list-btn"><p style="color: red;">사용자 환불</p></button>
 							</c:when>
 	
 						</c:choose>

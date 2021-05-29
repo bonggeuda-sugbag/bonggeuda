@@ -102,19 +102,18 @@ public class OwnerMypagService {
 		
 		Connection con = getConnection();
 
-		int insertRequestTaxBill = ownerDAO.insertRequestTaxBillDAO(con,stlNo,accomoNo);
+		int result = ownerDAO.insertRequestTaxBillDAO(con,accomoNo,stlNo);
 		
-		System.out.println("insertRequestTaxBill" + insertRequestTaxBill);
+		System.out.println("세금계산서신청 : " + result);
 		
-		if(insertRequestTaxBill > 0) {
+		if(result > 0) {
 			commit(con);
 		}else {
 			rollback(con);
 		}
-		
 		close(con);
 		
-		return insertRequestTaxBill;
+		return result;
 	}
 
 	public List<AccomoDTO> selectAccomoNames(int ownerNo) {

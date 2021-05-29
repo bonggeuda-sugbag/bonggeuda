@@ -9,9 +9,9 @@
 <body>
 <script>
 window.onload = function() {
-    alert("예약 승인 되었습니다");
+    alert("이용 완료 할 수 없는 내역입니다.");
     
-    location.href ="bookingList"; 
+    location.href ="bookingPastList"; 
 }
 </script>
 

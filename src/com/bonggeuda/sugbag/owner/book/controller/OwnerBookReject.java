@@ -19,7 +19,9 @@ public class OwnerBookReject extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		BookListSelectService bookRejectService = new BookListSelectService();
+		
 		int bookNo = Integer.parseInt(request.getParameter("bookNo")); 
+		
 		String rejecetReason = request.getParameter("rejectReson");/* 거절 사유 */
 		
 		//이메일 보낼 주소 및 내용 가져오기
@@ -31,18 +33,15 @@ public class OwnerBookReject extends HttpServlet {
 		String bookAccomoName = request.getParameter("accomoName");
 		String bookRoomName = request.getParameter("roomName");
 		 
-		
-		
-		
 		int bookReject = 0;
 		int bookRejectBookConfirm = 0;
 		bookReject = bookRejectService.bookRejectUpdate(bookNo); 
 		bookRejectBookConfirm = bookRejectService.bookRejectBookConfirmUpdate(bookNo);
-		
 
-		
 		if(bookReject > 0 && bookRejectBookConfirm > 0) {
+			
 			int bookRejectHistory = 0;
+			
 			bookRejectHistory = bookRejectService.bookRejectHistoryInsert(bookNo,rejecetReason);
 			
 			/* 메일 보내기*/
@@ -56,18 +55,9 @@ public class OwnerBookReject extends HttpServlet {
 			request.getRequestDispatcher(path).forward(request, response);
 		
 		}
-		
-		
-		
-		
 	}
-	
-	
-	
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
-
 }

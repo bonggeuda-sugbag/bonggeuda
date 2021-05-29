@@ -33,17 +33,13 @@ public class OwnerBookAllow extends HttpServlet {
 		String bookAccomoName = request.getParameter("accomoName");
 		String bookRoomName = request.getParameter("roomName");
 		
-		
 		BookListSelectService bookAllowService = new BookListSelectService();
 
 		bookAllow = bookAllowService.bookAllowUpdate(bookNo);
 		
-		
-		
 		if(bookAllow > 0) {
 			/* 승인 시 BookHistory 인서트 DTO에 담자. */
 			int bookHistoryInsert = 0;
-			
 			
 			BookListSelectService bookAllowHistoy = new BookListSelectService();
 			
