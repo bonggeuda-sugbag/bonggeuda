@@ -176,12 +176,14 @@ public class RegistrationAccomo2 extends HttpServlet {
 				RmAccomoInfoDTO thumbnail = new RmAccomoInfoDTO();
 
 				//List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
-				// 먼저 currval 조회
+				//
 				AccomoService accomoService = new AccomoService();
-				int selectReqNoMax = 0;
-				selectReqNoMax = accomoService.selectCurrval();
-				System.out.println("조회해온 리퀘스트 넘 최댓값 : " + selectReqNoMax);
-				selectReqNoMax += 1;
+				int selectRequestNextVal = 0;
+				
+				/* 리퀘스트 넘의 넥스트발을 조회해서 그값을 둘다 넣어주기*/
+				selectRequestNextVal = accomoService.selectRequestNextValService();
+				
+				System.out.println("조회해온 리퀘스트 넘 넥스트발 : " + selectRequestNextVal);
 				
 				
 				
@@ -205,7 +207,10 @@ public class RegistrationAccomo2 extends HttpServlet {
 				/* 서비스 메소드를 요청한다. */
 				ModifyAccomoService  moAccomoService = new ModifyAccomoService();
 				int result = 0;
-				result = moAccomoService.insertAccomoThumbnail(tempFileInfo,selectReqNoMax);
+				result = moAccomoService.insertAccomoThumbnail(tempFileInfo,selectRequestNextVal);
+				
+				
+				
 				
 				System.out.println("리젙트는?????  " + result);
 
@@ -232,6 +237,7 @@ public class RegistrationAccomo2 extends HttpServlet {
 				
 				/*숙소등록3번 jsp로 값 넘기기*/
 				request.setAttribute("accomoDTO", accomoDTO);
+				request.setAttribute("selectRequestNextVal", selectRequestNextVal);
 				
 				String path="";
 				

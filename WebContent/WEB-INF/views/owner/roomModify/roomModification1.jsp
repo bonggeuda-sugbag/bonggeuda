@@ -128,7 +128,7 @@
                   <p class="description text-normal">* 첫 이미지가 메인 이미지이며 드래그를 통해 순서 변경이 가능합니다.</p>
                   <span class="form-title" style="display:inline-block;">    </span>
                   <br>
-					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)" required="required">
                </div>
             </td>   
             
@@ -139,7 +139,7 @@
             </th>
             <td>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="9" name="accomoPath" placeholder="주요 버스터미널이나 기차역 혹은 공항 등에서 숙소까지 찾아가는 방법을 자세히 기재해 주세요.">${ requestScope.rmAcoomoDTO.accomoPath }</textarea>
+                  <textarea class="form-control textarea-layer" rows="9" name="accomoPath" placeholder="주요 버스터미널이나 기차역 혹은 공항 등에서 숙소까지 찾아가는 방법을 자세히 기재해 주세요."required="required">${ requestScope.rmAcoomoDTO.accomoPath }</textarea>
                   <div remain-traffic_info" class="maxText">(최대 1000자)</div>
                </div>
                
@@ -154,7 +154,7 @@
                   <p class="description" style="margin-bottom: 3px;">* 숙소 주변의 명소(교통, 관광, 쇼핑 등 )와 이동수단, 게스트하우스로부터 소요시간을 기입해주세요.</p>
                </div>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="숙소 주변의 명소를 홍보하여 주세요. 교통, 관광, 쇼핑 명소부터 게스트하우스까지의 소요시간을 작성해 주시면 게스트들이 예약할 때 큰 도움이 됩니다.">${ requestScope.rmAcoomoDTO.near }</textarea>
+                  <textarea class="form-control textarea-layer" rows="9" name="near" placeholder="숙소 주변의 명소를 홍보하여 주세요. 교통, 관광, 쇼핑 명소부터 게스트하우스까지의 소요시간을 작성해 주시면 게스트들이 예약할 때 큰 도움이 됩니다." required="required">${ requestScope.rmAcoomoDTO.near }</textarea>
                   <div remain-traffic_info" class="maxText">(최대 1000자)</div>
                </div>
             </td>
@@ -166,7 +166,7 @@
             </th>
             <td>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="7" name="rule" placeholder="숙소 내 필수 이용규칙을 기재해주세요." >${ requestScope.rmAcoomoDTO.rule }</textarea>
+                  <textarea class="form-control textarea-layer" rows="7" name="rule" placeholder="숙소 내 필수 이용규칙을 기재해주세요." required="required">${ requestScope.rmAcoomoDTO.rule }</textarea>
                   <div remain-traffic_info" class="maxText">(최대 500자)</div>
                </div>
             </td>
@@ -178,7 +178,7 @@
             </th>
             <td>
                <div class="form-layer">
-                  <textarea class="form-control textarea-layer" rows="7" name="parking" placeholder="주차장 유/무료 정보 및 시간당 요금을 기재해주세요.">${ requestScope.rmAcoomoDTO.parking }</textarea>
+                  <textarea class="form-control textarea-layer" rows="7" name="parking" placeholder="주차장 유/무료 정보 및 시간당 요금을 기재해주세요." required="required">${ requestScope.rmAcoomoDTO.parking }</textarea>
                   
                   <div remain-traffic_info" class="maxText">(최대 500자)</div>
                </div>
@@ -196,7 +196,7 @@
             	  <input type="hidden" name="adrDetail" value="<c:out value="${ requestScope.rmAcoomoDTO.adrDetail }"/>">
             	  <input type="hidden" name="email" value="<c:out value="${ requestScope.rmAcoomoDTO.email }"/>">
             	  <input type="hidden" name="homepage" value="<c:out value="${ requestScope.rmAcoomoDTO.homepage }"/>">
-            	  ${ requestScope.rmAcoomoDTO.rmAccomoNo }
+            	
                   <button name="" value="" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
 
             </th>

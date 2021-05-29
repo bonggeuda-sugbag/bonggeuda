@@ -123,7 +123,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       
             <div>
 
-       <!-- rm 히스토리의 approveStatus가 Y인 애들은 등록 됐다는 거지 -->
             <form action="/bonggeuda/owner/accomoModify" method="post">
                <button  class="submit-btn" type="submit">
                <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
@@ -149,7 +148,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                <li> 별점 : n </li>
                <li style="margin-bottom: 15px;"> 리뷰 : n개 </li>
             </ul>
-            <button class="roomModifyBtn" onClick="location.href='managementToReview.html'">  리뷰 보러가기</button>
+            <form action="${ pageContext.servletContext.contextPath }/owner/accomoReview"  method="post">
+            <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+            <button class="roomModifyBtn" >  리뷰 보러가기</button>
+            </form>
+            
+            <form action="${ pageContext.servletContext.contextPath }/owner/sales"  method="post">
+            <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+            <input type="hidden" name="accomoName" value="<c:out value="${ accomoList.accomoName }"/>">
+            <button class="roomModifyBtn" type="submit" >  매출내역 보러가기</button>
+            </form>
          </td>
          <td class="roomCondition"  style="color: green; font-size: 24px; ">
          <br>
@@ -166,13 +174,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          </td>
          <td>
             <br>
-            <button class="roomModifyBtn" onclick="roomRemove()" style="background-color: orangered;">숙소 삭제</button>
+            <br>
+            <form action="${ pageContext.servletContext.contextPath }/owner/AccomoRemove" id="pwdform" method="post" onsubmit="return roomRemove()">
+            <input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+            <button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
+            </form>
             <br>
             <br>
-            
-            <button class="roomModifyBtnPublic" id="roomDisable" onclick="roomAble()" disabled="disabled" style="background-color: lightgray;">숙소 공개</button>
-            <button class="roomModifyBtnPrivate" id="roomDisable" onclick="roomDisable()" style="background-color: lightgreen;">숙소 비공개</button>
-            
+                       
 
 
          </td>
@@ -223,13 +232,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         	 승인<br>
         	  대기중입니다
 
-                     <br>   
+                        
          </td>
          <td>
+         <br>
             <br>
-            <button class="roomModifyBtn" onclick="roomRemove()" style="background-color: orangered;">숙소 삭제</button>
-            <br>
-            <br>
+            <form action="${ pageContext.servletContext.contextPath }/owner/StayAccomoRemove" id="pwdform" method="post" onsubmit="return roomRemove()">
+            <input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+            <button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
+            </form>
             
 
 
@@ -287,7 +298,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          </td>
          <td>
             <br>
-            <button class="roomModifyBtn" onclick="roomRemove()" style="background-color: orangered;">숙소 삭제</button>
+            <br>
+            <form action="${ pageContext.servletContext.contextPath }/owner/RejectAccomoRemove" id="pwdform" method="post" onsubmit="return roomRemove()">
+            <input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+            <button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
+            </form>
             <br>
             <br>
 
@@ -302,15 +317,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
    function roomRemove(){
    var result = confirm("정말 삭제 하시겠습니까?");
-   if(result){
-      alert("숙소 삭제 되었습니다.")
-      $(".room1").remove();
-   }else{
-      alert("취소하셨습니다.")
+   
+       if(result){
+  		 var realResult = confirm("확인을 누르시면 모든 숙소 정보가 삭제 됩니다. 그래도 삭제 하시겠습니까?");
+  		 
+  		 	if(realResult){
+  		 		
+          		alert("숙소를 삭제합니다.")
+          		return true;
+  		 	}else{
+        		alert("취소하셨습니다.")
+        		return false;
+  		 	}
+  	   
+       }else{
+          alert("취소하셨습니다.")
+          return false;
+       }
    }
-   }
+   
 
-   function roomDisable(){
+/*    function roomDisable(){
 
    var result = confirm("비공개 하시겠습니까?");
 
@@ -348,7 +375,7 @@ if(result){
    alert("취소하셨습니다.")
 
 }
-}
+} */
 </script>
 </div>
 </div>

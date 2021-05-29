@@ -26,6 +26,7 @@ public class AccomoDTO {
 	private int enAccomoNo;		// 숙소등록번호
 	
 	private String imagePath;
+	private int requsetNo;
 
 	public AccomoDTO() {
 		super();
@@ -34,7 +35,7 @@ public class AccomoDTO {
 	public AccomoDTO(int accomoNo, int ownerNo, String accomoName, String ceoName, String accomoType, String registNo,
 			String address, String adrDetail, String email, String homepage, String facility, String accomoPath,
 			String near, String rule, String parking, String checkIn, String checkOut, Date peakStart, Date peakEnd,
-			int enAccomoNo, String imagePath) {
+			int enAccomoNo, String imagePath, int requsetNo) {
 		super();
 		this.accomoNo = accomoNo;
 		this.ownerNo = ownerNo;
@@ -57,6 +58,7 @@ public class AccomoDTO {
 		this.peakEnd = peakEnd;
 		this.enAccomoNo = enAccomoNo;
 		this.imagePath = imagePath;
+		this.requsetNo = requsetNo;
 	}
 
 	public int getAccomoNo() {
@@ -227,6 +229,14 @@ public class AccomoDTO {
 		this.imagePath = imagePath;
 	}
 
+	public int getRequsetNo() {
+		return requsetNo;
+	}
+
+	public void setRequsetNo(int requsetNo) {
+		this.requsetNo = requsetNo;
+	}
+
 	@Override
 	public String toString() {
 		return "AccomoDTO [accomoNo=" + accomoNo + ", ownerNo=" + ownerNo + ", accomoName=" + accomoName + ", ceoName="
@@ -234,8 +244,10 @@ public class AccomoDTO {
 				+ ", adrDetail=" + adrDetail + ", email=" + email + ", homepage=" + homepage + ", facility=" + facility
 				+ ", accomoPath=" + accomoPath + ", near=" + near + ", rule=" + rule + ", parking=" + parking
 				+ ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", peakStart=" + peakStart + ", peakEnd="
-				+ peakEnd + ", enAccomoNo=" + enAccomoNo + ", imagePath=" + imagePath + "]";
+				+ peakEnd + ", enAccomoNo=" + enAccomoNo + ", imagePath=" + imagePath + ", requsetNo=" + requsetNo
+				+ "]";
 	}
+
 
 	
 	

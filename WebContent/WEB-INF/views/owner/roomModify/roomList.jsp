@@ -112,7 +112,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       
          <th style="background-color: white;">
 
-            <img src="${pageContext.servletContext.contextPath }/${ roomList.roomList }" style="width: 350px; height: 200px;">
+            <img src="${pageContext.servletContext.contextPath }/${ roomList.imagePath }" style="width: 350px; height: 200px;">
  
 
          </th>
@@ -135,7 +135,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                <button  class="submit-btn" type="submit">
                <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ roomList.accomoNo }"/>">
                <input type="hidden" name="roomNo" value="<c:out value="${ roomList.roomNo }"/>">
-               <c:out value="${ roomList.roomNo }"/>
+             
                 객실 수정
             </form>
             

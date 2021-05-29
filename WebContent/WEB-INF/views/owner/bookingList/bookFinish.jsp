@@ -9,10 +9,11 @@
 <body>
 <script>
 window.onload = function() {
-    alert("이미 객실 수정 요청중 입니다.");
+    alert("이용 완료 되었습니다");
     
-    location.href ="managementRoom"; 
+    location.href ="bookingPastList"; 
 }
 </script>
+
 </body>
 </html>

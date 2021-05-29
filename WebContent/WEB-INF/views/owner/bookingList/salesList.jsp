@@ -143,58 +143,25 @@
 			<table class="table" style="width: 1000px;">
 				<thead>
 					<tr>
-						<th colspan="4" style="background: #eaeaea;"><b>객실별 예약건수</b></th>
+						<th colspan="4" style="background: #eaeaea;"><b>${ requestScope.accomoName } 의 총 예약건수 : ${ requestScope.bookingCount }</b></th>
 					</tr>
-					<th><b>기간</b></th>
+ 					<!-- <th><b>기간</b></th> -->
 					<th><b>예약</b></th>
 					<th><b>객실명</b></th>
 					<th><b>합산예약</b></th>
 				</thead>
 				<tbody>
-				   	<tr>
-						<th rowspan="3">2021 - 05</th>
-						<c:forEach var="sales" items="${ requestScope.selectSales }">
-							<td class="midName"><c:out value="${ sales.roomName }"></c:out></td>
-							<td><c:out value="${ sales.bookCount }"></c:out> (건)</td>
-						</c:forEach>
-						<th rowspan="3"> 총 28 (건)</th>
-					</tr>				   	
-					<tr>
-						<td class="midName">통나무 2호</td>
-						<td>10 (건)</td>
-					</tr>
-					<tr>
-						<td class="midName">통나무 3호</td>
-						<td>13 (건)</td>
-					</tr>
-					<tr>
-						<th rowspan="3">2021 - 04</th>
-						<td class="midName">통나무 1호</td>
-						<td>8 (건)</td>
-						<th rowspan="3"> 총 26 (건)</th>
-					</tr>				   	
-					<tr>
-						<td class="midName">통나무 2호</td>
-						<td>7 (건)</td>
-					</tr>
-					<tr>
-						<td class="midName">통나무 3호</td>
-						<td>11 (건)</td>
-					</tr>
-					<tr>
-						<th rowspan="3">2021 - 03</th>
-						<td class="midName">통나무 1호</td>
-						<td>5 (건)</td>
-						<th rowspan="3"> 총 17 (건)</th>
-					</tr>				   	
-					<tr>
-						<td class="midName">통나무 2호</td>
-						<td>5 (건)</td>
-					</tr>
-					<tr>
-						<td class="midName">통나무 3호</td>
-						<td>7 (건)</td>
-					</tr>
+				<c:forEach var="roomNames" items="${ requestScope.roomNamsList }">
+				<tr>
+				
+					<!-- <th rowspan="rowspanCount">2021 - 05</th> -->
+					<td>예약</td>
+					<td>${ roomNames }</td>
+					<td></td>
+				</tr>
+				</c:forEach>
+					
+					
 				</tbody>
 			 </table>
 			 <div class="tab_each" style="display:block">

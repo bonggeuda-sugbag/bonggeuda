@@ -186,11 +186,15 @@ public class ModifyAccomo2 extends HttpServlet {
 
 				//List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
 				
+				/* 리퀘스트 넘의 넥스트발을 조회해서 그값을 둘다 넣어주기*/
+				int selectRequestNextVal = 0;
 				AccomoService accomoService = new AccomoService();
-				int selectReqNoMax = 0;
-				selectReqNoMax = accomoService.selectCurrval();
-				System.out.println("조회해온 리퀘스트 넘 최댓값 : " + selectReqNoMax);
-				selectReqNoMax += 1;
+
+				selectRequestNextVal = accomoService.selectRequestNextValService();
+				
+				System.out.println("조회해온 리퀘스트 넘 넥스트발 : " + selectRequestNextVal);
+				
+				
 				
 				AttachmentDTO tempFileInfo = new AttachmentDTO();
 				for(int i = 0; i < fileList.size(); i++) {
@@ -215,7 +219,7 @@ public class ModifyAccomo2 extends HttpServlet {
 				RmAccomoInfoDTO rmAcoomoDTO = new RmAccomoInfoDTO();
 
 				int result = 0;
-				result = MoAccomoService.insertModifyAccomoThumbnail(tempFileInfo,selectReqNoMax);
+				result = MoAccomoService.insertModifyAccomoThumbnail(tempFileInfo,selectRequestNextVal);
 				System.out.println("리젙트는?????????? " + result);
 				// 값 받기
 				
@@ -235,7 +239,7 @@ public class ModifyAccomo2 extends HttpServlet {
 				
 //				String[] arrayFacility = parameterValue.get("arrayFacility");
 //				System.out.println("편의시설 : " + arrayFacility);
-
+  
 				
 				
 				
@@ -243,7 +247,8 @@ public class ModifyAccomo2 extends HttpServlet {
 
 				
 				request.setAttribute("rmAcoomoDTO", rmAcoomoDTO);
-				
+				request.setAttribute("selectRequestNextVal", selectRequestNextVal);
+
 				String path = "";
 				
 				path = "/WEB-INF/views/owner/roomModify/roomModification2.jsp";

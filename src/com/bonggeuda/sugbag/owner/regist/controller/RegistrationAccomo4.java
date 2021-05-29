@@ -47,35 +47,25 @@ public class RegistrationAccomo4 extends HttpServlet {
 			File directory = new File(fileUploadDirectory);
 			File directory2 = new File(thumbnailDirectory);
 			
-			/* 파일 저장경로가 존재하지 않는 경우 디렉토리를 생성한다. */
 			if(!directory.exists() || !directory2.exists()) {
-				/* 폴더를 한 개만 생성할거면 mkdir, 상위 폴더도 존재하지 않으면 한 번에 생성하란 의미로 mkdirs를 이용한다. */
 				System.out.println("폴더 생성 : " + directory.mkdirs());
 				System.out.println("폴더 생성 : " + directory2.mkdirs());
 			}
 			
-			/* 이게 최종적으로 request를 parsing하고 파일을 저장한 뒤 필요한 내용을 담을 리스트와 맵이다.
-			 * 파일에 대한 정보는 리스트에, 다른 파라미터의 정보는 모두 맵에 담을 것이다.
-			 * */
 			Map<String, String> parameter = new HashMap<>();
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
-			/* 파일을 업로드할 시 최대 크기나 임시 저장할 폴더의 경로 등을 포함하기 위한 인스턴스이다. */
 			DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
 	        fileItemFactory.setRepository(new File(fileUploadDirectory));
 	        fileItemFactory.setSizeThreshold(maxFileSize);
 	        
-	        /* 서블릿에서 기본 제공하는거 말고 꼭 commons fileupload 라이브러이에 있는 클래스로 임포트 해야 한다. */
 	        ServletFileUpload fileUpload = new ServletFileUpload(fileItemFactory);
-//	        fileUpload.setHeaderEncoding(encodingType);		//별 의미 없는 듯 하다. 기본값은 null인데 파일명은 자동으로 UTF-8로 인코딩한 거 같다.
 	        
 	        try {
-	        	/* request를 파싱하여 데이터 하나 하나를 FileItem 인스턴로 반환한다. */
 				List<FileItem> fileItems = fileUpload.parseRequest(request);
 				
 				for(FileItem item : fileItems) {
-					/* 폼 데이터는 isFormField 속성이 true이고, 파일은 isFormField 속성이 false이다. */
-					System.out.println(item);
+					//System.out.println(item);
 				}
 				
 				/* 위에서 출력해본 모든 item들을 다 처리할 것이다. */
@@ -87,9 +77,6 @@ public class RegistrationAccomo4 extends HttpServlet {
 						/* 파일 데이터인 경우 */
 						if(item.getSize() > 0) {
 							
-							/* 파일의 사이즈가 0보다 커야 전송된 파일이 있다는 의미이다. 
-							 * 전송된 파일이 있는 경우에만 처리하고, 0인 경우에는 무시하도록 로직을 작성한다.
-							 * */
 							String filedName = item.getFieldName();
 							String originFileName = item.getName();
 							
@@ -141,12 +128,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 						}
 						
 					} else {
-						/* 폼 데이터인 경우 */
-						/* 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
-						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
-						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
-						 * */
-//						parameter.put(item.getFieldName(), item.getString());
+
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 						
 					}
@@ -184,15 +166,9 @@ public class RegistrationAccomo4 extends HttpServlet {
 				String path = "";
 					
 					/* 값을 한번에 담아서 넘길 리스트 생성 */
-					ArrayList<RoomDTO> roomList = new ArrayList<RoomDTO>();
+					List<RoomDTO> roomList = new ArrayList<RoomDTO>();
 					
-					/*객실추가 1*/
-//					String roomName = request.getParameter("roomName");
-//					int roomMax = Integer.parseInt(request.getParameter("roomMax"));
-//					//객실사진받아오기
-//					String roomIntro = request.getParameter("roomIntro");
-//					int roomFee = Integer.parseInt(request.getParameter("roomFee"));
-//					int peakFee = Integer.parseInt(request.getParameter("peakFee"));
+
 					
 					/*전달받은 값을 넣어줄 객체 선언*/
 					RoomDTO roomDTO = new RoomDTO();
@@ -208,12 +184,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 					/*객실추가 2*/
 					if (!parameter.get("roomName2").isEmpty()) { //값이 입력되면 저장
 						
-//						String roomName2 = request.getParameter("roomName2");
-//						int roomMax2 = Integer.parseInt(request.getParameter("roomMax2"));
-//						//객실사진받아오기
-//						String roomIntro2 = request.getParameter("roomIntro2");
-//						int roomFee2 = Integer.parseInt(request.getParameter("roomFee2"));
-//						int peakFee2 = Integer.parseInt(request.getParameter("peakFee2"));
+
 						
 						RoomDTO roomDTO2 = new RoomDTO();
 						
@@ -229,12 +200,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 					/*객실추가 3*/
 					if (!parameter.get("roomName3").isEmpty()) {
 						
-//						String roomName3 = request.getParameter("roomName3");
-//						int roomMax3 = Integer.parseInt(request.getParameter("roomMax3"));
-//						//객실사진받아오기
-//						String roomIntro3 = request.getParameter("roomIntro3");
-//						int roomFee3 = Integer.parseInt(request.getParameter("roomFee3"));
-//						int peakFee3 = Integer.parseInt(request.getParameter("peakFee3"));
+
 						
 						RoomDTO roomDTO3 = new RoomDTO();
 						
@@ -250,12 +216,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 					/*객실추가 4*/
 					if (!parameter.get("roomName4").isEmpty()) {
 						
-//						String roomName4 = request.getParameter("roomName4");
-//						int roomMax4 = Integer.parseInt(request.getParameter("roomMax4"));
-//						//객실사진받아오기
-//						String roomIntro4 = request.getParameter("roomIntro4");
-//						int roomFee4 = Integer.parseInt(request.getParameter("roomFee4"));
-//						int peakFee4 = Integer.parseInt(request.getParameter("peakFee4"));
+
 						
 						RoomDTO roomDTO4 = new RoomDTO();
 						
@@ -271,12 +232,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 					/*객실추가 5*/
 					if (!parameter.get("roomName5").isEmpty()) {
 						
-//						String roomName5 = request.getParameter("roomName5");
-//						int roomMax5 = Integer.parseInt(request.getParameter("roomMax5"));
-//						//객실사진받아오기
-//						String roomIntro5 = request.getParameter("roomIntro5");
-//						int roomFee5 = Integer.parseInt(request.getParameter("roomFee5"));
-//						int peakFee5 = Integer.parseInt(request.getParameter("peakFee5"));
+
 						
 						RoomDTO roomDTO5 = new RoomDTO();
 						
@@ -296,20 +252,17 @@ public class RegistrationAccomo4 extends HttpServlet {
 					
 					
 					
-					/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-					 * 사진 여기서 인서트 */
+					/* 사진 여기서 인서트 */
 					/* 서비스 메소드를 요청한다. */
 					int result = new RoomService().insertThumbnail(thumbnail,roomList);
+					
+					
 					
 					
 					/*값을 전달하기 위한 비지니스 로직 호출*/
 					RoomService roomService = new RoomService();
 					
-					/*결과값 반환*/
-					//int insertRoom = roomService.InsertRoomServlet(roomList,enAccoMoNoMax); //값을 int형으로 반환받아야 함
-					
-					//request.setAttribute("successCode", "insertThumbnail");
-					/*메인페이지로 이동*/
+
 					
 					path = "/WEB-INF/views/owner/main/main.jsp";
 					

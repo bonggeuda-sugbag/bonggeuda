@@ -43,11 +43,11 @@ public class AccomoService {
 		return slectEnNo;
 	}
 
-	public int selectCurrval() {
+	public int selectRequestNextValService() {
 
 		Connection con = getConnection();
 
-		int selectCurrval = accomoDAO.selectSeqCurrval(con);
+		int selectCurrval = accomoDAO.selectRequestNextVal(con);
 		
 		close(con);
 

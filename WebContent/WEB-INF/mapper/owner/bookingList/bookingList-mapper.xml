@@ -89,7 +89,7 @@
 	</entry>
 	
 	<entry key="selectPastBookingList">
-	SELECT Y.RNUM
+		SELECT Y.RNUM
 	     , Y.OWNER_NO
 	     , Y.BOOK_NO
 	     , Y.BOOK_USER_NAME
@@ -138,10 +138,11 @@
 	     , A.BOOK_STATUS_YNC
 	     , A.BOOK_PHONE
 	  FROM BOOK_LIST A, ROOM_INFO B, ACCOMO_INFO C
-	 WHERE C.OWNER_NO = ?
+	 WHERE NOT (BOOK_STATUS_YNC = 'N' 
+       AND BOOK_APPROVE_YN = 'N')
+       AND C.OWNER_NO = ?
 	   AND C.ACCOMO_NO = B.ACCOMO_NO
 	   AND A.ROOM_NO = B.ROOM_NO
-	   AND BOOK_APPROVE_YN = 'Y'
 	 ORDER BY A.BOOK_NO DESC)X)Y
      WHERE RNUM BETWEEN ? AND ?
 	</entry>
@@ -190,7 +191,7 @@
 	(
 	  ?
 	, SYSDATE
-	, 'N'
+	, 'X'
 	, ?
 	, SEQ_HISTORY_NO.NEXTVAL
 	) 
@@ -278,10 +279,11 @@
     SELECT
 	       COUNT(*)
 	  FROM BOOK_LIST A, ROOM_INFO B, ACCOMO_INFO C
-	 WHERE C.OWNER_NO = ?
+	  WHERE NOT (BOOK_STATUS_YNC = 'N' 
+       AND BOOK_APPROVE_YN = 'N')
+       AND C.OWNER_NO = ?
 	   AND C.ACCOMO_NO = B.ACCOMO_NO
 	   AND A.ROOM_NO = B.ROOM_NO
-	   AND BOOK_APPROVE_YN = 'Y'
 	</entry>
 	
 	<entry key="bookingTotalCount">
@@ -327,11 +329,40 @@
 	
 	<entry key="selectAccomoList">
 	SELECT A.ACCOMO_NO
-	     , A.ACCOMO_NAME
-	     , B.ROOM_NAME
+	     , A.ACCOMO_NAM
 	  FROM ACCOMO_INFO A, ROOM_INFO B
 	 WHERE A.OWNER_NO = ?
 	   AND B.ACCOMO_NO = A.ACCOMO_NO
+	</entry>
+	
+	<entry key="rowspanCount">
+	SELECT count(*)
+	  FROM ACCOMO_INFO A
+      JOIN ATTACHMENT T ON(A.ACCOMO_NO = T.REF_NO)
+      JOIN ROOM_INFO R ON(A.ACCOMO_NO = R.ACCOMO_NO)
+	 WHERE A.OWNER_NO = ?
+       AND A.ACCOMO_NO = ?
+       AND A.VISIBLE_YN = 'Y'
+	</entry>
+	
+	<entry key="selectRoomName">
+	SELECT A.ACCOMO_NO
+         , R.ROOM_NO
+         , R.ROOM_NAME
+	  FROM ACCOMO_INFO A
+      JOIN ATTACHMENT T ON(A.ACCOMO_NO = T.REF_NO)
+      JOIN ROOM_INFO R ON(A.ACCOMO_NO = R.ACCOMO_NO)
+	 WHERE A.OWNER_NO = ?
+       AND A.ACCOMO_NO = ?
+       AND A.VISIBLE_YN = 'Y'
+	
+	</entry>
+	
+	<entry key="selectBookCount">
+	SELECT count(*)
+	  FROM SALES_HISTORY
+     WHERE ACCOMO_NO  = ?
+	
 	</entry>
 	
 </properties>

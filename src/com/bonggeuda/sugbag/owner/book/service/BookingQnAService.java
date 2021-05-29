@@ -18,11 +18,11 @@ public class BookingQnAService {
 	/*QuestionDAO와 연결할 필드 변수*/
 	BookingQnADAO qnaDAO = new BookingQnADAO();
 	
-	public int selectTotalCount() {
+	public int selectTotalCount(int ownerNo) {
 
 		Connection con = getConnection();
 		
-		int totalCount = qnaDAO.selectTotalCount(con);
+		int totalCount = qnaDAO.selectTotalCount(con,ownerNo);
 		
 		if(totalCount > 0) {
 			commit(con);
@@ -34,11 +34,11 @@ public class BookingQnAService {
 		return totalCount;
 	}
 
-	public List<QnADTO> selectQuestion(PageInfoDTO pageInfo) {
+	public List<QnADTO> selectQuestion(PageInfoDTO pageInfo, int ownerNo) {
 		
 		Connection con = getConnection();
 		
-		List<QnADTO> selectQuestion = qnaDAO.selectQuestion(con, pageInfo);
+		List<QnADTO> selectQuestion = qnaDAO.selectQuestion(con, pageInfo,ownerNo);
 		
 		close(con);
 

@@ -31,7 +31,7 @@ public class RoomDAO {
 		}
 	}
 	
-	public int InsertRoom(Connection con, ArrayList<RoomDTO> roomList) {
+	public int InsertRoom(Connection con, RoomDTO roomDTO) {
 		
 //		System.out.println("리스트0 : " + roomList.get(0));
 //		System.out.println("리스트1 : " + roomList.get(1));
@@ -50,17 +50,17 @@ public class RoomDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			for(int i=0; i < roomList.size(); i++){
+			
 				
-				pstmt.setString(1, roomList.get(i).getRoomName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
-				pstmt.setInt(2, roomList.get(i).getRoomMax());
-				pstmt.setString(3, roomList.get(i).getRoomIntro());
-				pstmt.setInt(4, roomList.get(i).getRoomFee());
-				pstmt.setInt(5, roomList.get(i).getPeakFee());
+				pstmt.setString(1, roomDTO.getRoomName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
+				pstmt.setInt(2, roomDTO.getRoomMax());
+				pstmt.setString(3, roomDTO.getRoomIntro());
+				pstmt.setInt(4, roomDTO.getRoomFee());
+				pstmt.setInt(5, roomDTO.getPeakFee());
 
 				insert = pstmt.executeUpdate();
 				System.out.println("등록한 객실 수 : " + insert);
-			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class RoomDAO {
 		return insert;
 	}
 
-	public int insertAttachment(Connection con, AttachmentDTO attachmentDTO, int roomRequestNextNo) {
+	public int insertAttachment(Connection con, AttachmentDTO attachmentDTO) {
 
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -84,7 +84,7 @@ public class RoomDAO {
 			pstmt.setString(3, attachmentDTO.getSavePath());
 			pstmt.setString(4, attachmentDTO.getFileType());
 			pstmt.setString(5, attachmentDTO.getThumbnailPath());
-			pstmt.setInt(6, roomRequestNextNo);
+			//pstmt.setInt(6, integer);
 			
 			result = pstmt.executeUpdate();
 			System.out.println("어테치먼트 리절트.. " + result);  // 리절트가 1이 나와주는데 왜 인서트 실패 라는거지?
@@ -117,18 +117,20 @@ public class RoomDAO {
 			
 			
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 
 		return selectEnAccomoNoMax;
 	}
 
-	public int selectRequestNextRoomNo(Connection con) {
+	public int roomRequestCurrvalDAO(Connection con) {
 		
 		PreparedStatement pstmt = null;
 		int selectEnRoomNoMax = 0;
 		ResultSet rset = null;
 
-		String query = prop.getProperty("maxRmRoomNoNext");
+		String query = prop.getProperty("roomRequestCurrval");
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -136,44 +138,48 @@ public class RoomDAO {
 			
 			if(rset.next()) {
 				
-				selectEnRoomNoMax = rset.getInt("MAX(REQUEST_NO)");
+				selectEnRoomNoMax = rset.getInt("CURRVAL");
 			}
 		} catch (SQLException e) {
 			
 			
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		
 		
 		return selectEnRoomNoMax;
 	}
 
-	public int selectRmRoomReqNoMaxDAO(Connection con) {
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query = prop.getProperty("selectRmRoomReqNoMax");
-		int selectRmRoomReqNoMax = 0;
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				
-				selectRmRoomReqNoMax = rset.getInt("MAX(REQUEST_NO)"); 
-			}
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return selectRmRoomReqNoMax;
-	}
+//	public int selectRmRoomReqNoMaxDAO(Connection con) {
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String query = prop.getProperty("selectRmRoomReqNoMax");
+//		int selectRmRoomReqNoMax = 0;
+//		try {
+//			pstmt = con.prepareStatement(query);
+//			
+//			rset = pstmt.executeQuery();
+//			
+//			if(rset.next()) {
+//				
+//				selectRmRoomReqNoMax = rset.getInt("MAX(REQUEST_NO)"); 
+//			}
+//			
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(pstmt);
+//		}
+//		
+//		return selectRmRoomReqNoMax;
+//	}
 
-	public int insertRmRoomThumbnailDAO(Connection con, int selectReqNoMax, AttachmentDTO tempFileInfo) {
+	public int insertRmRoomThumbnailDAO(Connection con, AttachmentDTO tempFileInfo) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -189,11 +195,13 @@ public class RoomDAO {
 			pstmt.setString(3, tempFileInfo.getSavePath());
 			pstmt.setString(4, tempFileInfo.getFileType());
 			pstmt.setString(5, tempFileInfo.getThumbnailPath());
-			pstmt.setInt(6, selectReqNoMax);
+			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		
 		return result;
@@ -221,10 +229,14 @@ public class RoomDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		
 		return result;
 	}
+
+
 
 }
 

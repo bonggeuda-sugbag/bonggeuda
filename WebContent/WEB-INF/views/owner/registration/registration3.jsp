@@ -225,7 +225,7 @@
 						<span class="form-title" style="display:inline-block";>체크아웃 시간</span>
 						<span>
 							<select name="checkOut" class="select-time">
-s
+
 								<option value="11:00" selected>11:00</option>
 
 							</select>
@@ -261,7 +261,8 @@ s
 		            	<input type="hidden" name="near" value="${ requestScope.accomoDTO.near }">
 		            	<input type="hidden" name="rule" value="${ requestScope.accomoDTO.rule }">
 		            	<input type="hidden" name="parking" value="${ requestScope.accomoDTO.parking }">
-		            	<input type="hidden" name="ownerNo" value="1">
+		            	<input type="hidden" name="selectRequestNextVal" value="${ requestScope.selectRequestNextVal }">
+		            	
 					</form>
 					
 				</th>

@@ -7,12 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
+<script >
 window.onload = function() {
-    alert("이미 객실 수정 요청중 입니다.");
+    alert("숙소 수정 요청 완료되었습니다.");
     
     location.href ="managementRoom"; 
 }
 </script>
+
 </body>
 </html>
