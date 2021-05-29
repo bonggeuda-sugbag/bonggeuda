@@ -1724,8 +1724,8 @@ transform: rotatey(360deg);
   -ms-transition: 0.5s all ease;
 }
 /*--배너 사진--*/
-.banner-booking {
-	background: url(../images/jeju2.jpg) no-repeat;
+.banner-regist {
+	background: url(../images/accomo.jpg) no-repeat;
 	width: 100%;
 	min-height: 250px;
 	background-size: cover;
@@ -1734,8 +1734,28 @@ transform: rotatey(360deg);
 	-o-background-size: cover;
 }
 
-.banner-buying {
-  background: url(../images/jeju1.jpg) no-repeat;
+.banner-manage {
+	background: url(../images/jeju1.jpg) no-repeat;
+	width: 100%;
+	min-height: 250px;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.banner-booking {
+	background: url(../images/accomo3.jpg) no-repeat;
+	width: 100%;
+	min-height: 250px;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.banner-notice {
+  background: url(../images/notice.jpg) no-repeat;
   width: 100%;
   min-height: 250px;
   background-size: cover;
@@ -1745,7 +1765,7 @@ transform: rotatey(360deg);
 }
 
 .banner-mypage {
-	background: url(../images/jeju3.jpg) no-repeat;
+	background: url(../images/jeju7.jpg) no-repeat;
 	width: 100%;
 	min-height: 250px;
 	background-size: cover;

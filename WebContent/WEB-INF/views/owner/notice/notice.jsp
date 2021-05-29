@@ -99,7 +99,7 @@ th a:hover {
 </div>
 <!--header-->
 	<!--//-->
-	<div class=" banner-booking">
+	<div class=" banner-notice">
 		<!--상단 메뉴바-->
 		<div class=" container">
 			<h3>공지사항</h3>
