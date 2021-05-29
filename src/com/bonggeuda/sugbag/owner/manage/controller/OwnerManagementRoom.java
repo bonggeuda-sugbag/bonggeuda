@@ -58,7 +58,7 @@ public class OwnerManagementRoom extends HttpServlet {
 		/* 조회 해오면페이지 이동. */
 		String path = "";
 
-		if (houseCount > 0) {
+//		if (houseCount > 0) {
 			request.setAttribute("approveAccomoList", approveAccomoList);
 			request.setAttribute("applyEnrollAccomoList", applyEnrollAccomoList);
 			request.setAttribute("rejectAccomoList", rejectAccomoList);
@@ -67,11 +67,11 @@ public class OwnerManagementRoom extends HttpServlet {
 			request.getAttribute(path);
 			request.getRequestDispatcher(path).forward(request, response);
 
-		} else {
-			path = "/WEB-INF/views/owner/roomManagement/managementNoRoom.jsp";
-			request.getAttribute(path);
-			request.getRequestDispatcher(path).forward(request, response);
-		}
+//		} else {
+//			path = "/WEB-INF/views/owner/roomManagement/managementNoRoom.jsp";
+//			request.getAttribute(path);
+//			request.getRequestDispatcher(path).forward(request, response);
+//		}
 
 	}
 	
