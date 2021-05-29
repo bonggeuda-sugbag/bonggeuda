@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 
 	<div class="tab" data-default="term">
-		<span class="tab_btn active" data-toggle="tab" href="#home" >나의 문의 내역</span>
+		<span class="tab_btn active" data-toggle="tab" href="#home" >예약취소</span>
 		<span class="tab_btn" data-toggle="tab" href="#menu1">쿠폰/포인트</span>
 		<span class="tab_btn" data-toggle="tab" href="#menu2">회원정보</span>
 		<span class="tab_btn" data-toggle="tab" href="#menu3">리뷰</span>
