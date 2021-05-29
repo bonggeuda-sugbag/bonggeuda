@@ -205,6 +205,7 @@ public class BookingListSelectDAO {
 	}
 	
 	public int bookRejectUpdateBookConfirm(Connection con, int bookNo) {
+		
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("bookRejectBookConfirmUpadte");
