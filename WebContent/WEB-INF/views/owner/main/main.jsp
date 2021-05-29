@@ -135,16 +135,22 @@
 <div class="content">
 	<div class="content-grid">
 		<div class="container">
+			 	<a href="/bonggeuda/owner/managementRoom" class="mask">
 			<h3 style="font-family:'nanum';">나의 숙소</h3>
-			<div class="col-md-4 box_2">
-			 	<a href="managementYesRoom.html" class="mask">
-			 		<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/resources/owner/images/pc4.jpg" alt="">
-			 		<span class="four">100,000원</span>
 			 	</a>
+			 	
+			 	<c:forEach var="accomoList" items="${ sessionScope.accomoList }">
+			<div class="col-md-4 box_2" style="float: left;">
+			 	<a href="/bonggeuda/owner/managementRoom" class="mask" style="margin-top: 10px;">
+			 		<img class="img-responsive zoom-img" src="${pageContext.servletContext.contextPath }/${ accomoList.imagePath }" alt="">
+			 		<span class="four">${ accomoList.accomoName }</span>
 			 	<div class="most-1">
-			 	   	<h5><a href="single.html">숲 속 통나무집</a></h5>
-			 	    	<p>게스트 하우스</p>
+			 	   	<h5><a href="single.html">${ accomoList.accomoName }</a></h5>
+			 	    	<p>${ accomoList.accomoType }</p>
 			 	</div>
+			 	</a>
+			 	</div>
+			 	</c:forEach>
 			</div>
 		</div>
 	</div>
