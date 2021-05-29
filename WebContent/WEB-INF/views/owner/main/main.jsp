@@ -34,6 +34,9 @@
 		height: auto;
 		text-align: center;
 	}
+	.caption h3 {
+		font-family: 'nanum';
+	}
 </style>
 </head>
 <body >
@@ -71,7 +74,7 @@
 					 <li>
 			          	 <div class="banner2">
 			           		<div class="caption">
-								<h3><span>봉그다 숙박숙박</span></h3>
+								<h3><span>제주를 대표하는 숙박 예약 사이트 봉그다 !</span></h3>
 								<p>여러분의 멋진 숙소를 등록해 보세요.</p>
 			          		</div>
 			          	</div>
@@ -79,7 +82,7 @@
 			         <li>
 			          	 <div class="banner3">
 			           		<div class="caption">
-								<h3><span>봉그다 숙박숙박</span></h3>
+								<h3><span>코로나 예방 수칙은 필수로 지켜주세요.</span></h3>
 								<p>다양한 고객들과 소통해 보세요.</p>
 			          		</div>
 			          	</div>
