@@ -327,11 +327,40 @@
 	
 	<entry key="selectAccomoList">
 	SELECT A.ACCOMO_NO
-	     , A.ACCOMO_NAME
-	     , B.ROOM_NAME
+	     , A.ACCOMO_NAM
 	  FROM ACCOMO_INFO A, ROOM_INFO B
 	 WHERE A.OWNER_NO = ?
 	   AND B.ACCOMO_NO = A.ACCOMO_NO
+	</entry>
+	
+	<entry key="rowspanCount">
+	SELECT count(*)
+	  FROM ACCOMO_INFO A
+      JOIN ATTACHMENT T ON(A.ACCOMO_NO = T.REF_NO)
+      JOIN ROOM_INFO R ON(A.ACCOMO_NO = R.ACCOMO_NO)
+	 WHERE A.OWNER_NO = ?
+       AND A.ACCOMO_NO = ?
+       AND A.VISIBLE_YN = 'Y'
+	</entry>
+	
+	<entry key="selectRoomName">
+	SELECT A.ACCOMO_NO
+         , R.ROOM_NO
+         , R.ROOM_NAME
+	  FROM ACCOMO_INFO A
+      JOIN ATTACHMENT T ON(A.ACCOMO_NO = T.REF_NO)
+      JOIN ROOM_INFO R ON(A.ACCOMO_NO = R.ACCOMO_NO)
+	 WHERE A.OWNER_NO = ?
+       AND A.ACCOMO_NO = ?
+       AND A.VISIBLE_YN = 'Y'
+	
+	</entry>
+	
+	<entry key="selectBookCount">
+	SELECT count(*)
+	  FROM SALES_HISTORY
+     WHERE ACCOMO_NO  = ?
+	
 	</entry>
 	
 </properties>

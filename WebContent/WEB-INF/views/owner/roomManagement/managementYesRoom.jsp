@@ -152,6 +152,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
             <button class="roomModifyBtn" >  리뷰 보러가기</button>
             </form>
+            
+            <form action="${ pageContext.servletContext.contextPath }/owner/sales"  method="post">
+            <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+            <input type="hidden" name="accomoName" value="<c:out value="${ accomoList.accomoName }"/>">
+            <button class="roomModifyBtn" type="submit" >  매출내역 보러가기</button>
+            </form>
          </td>
          <td class="roomCondition"  style="color: green; font-size: 24px; ">
          <br>

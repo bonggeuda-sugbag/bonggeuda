@@ -66,4 +66,92 @@ public class SalesDAO {
 		
 	}
 
+	public int rowspanCountDAO(Connection con, int ownerNo, int accmoNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int rowspanCount = 0;
+		
+		String query = prop.getProperty("rowspanCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNo);
+			pstmt.setInt(2, accmoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				rowspanCount = rset.getInt("COUNT(*)");
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return rowspanCount;
+	}
+
+	public List<String> selectRoomName(Connection con, int ownerNo, int accmoNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<String> selectRoomName = new  ArrayList<String>();
+
+		String query = prop.getProperty("selectRoomName");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNo);
+			pstmt.setInt(2, accmoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				selectRoomName.add(rset.getString("ROOM_NAME"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		
+		return selectRoomName;
+	}
+
+	public int selectBookCountDAO(Connection con, int accmoNo) {
+		
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int selectBookCount = 0;
+		
+		String query = prop.getProperty("selectBookCount");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accmoNo);
+
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				selectBookCount = rset.getInt("COUNT(*)");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return selectBookCount;
+	}
+
 }
