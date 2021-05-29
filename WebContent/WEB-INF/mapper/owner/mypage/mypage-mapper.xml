@@ -242,5 +242,14 @@
 	
 	</entry>
 	
+	<entry key="selectAccomoList">
+	         SELECT 
+               *
+           FROM ACCOMO_INFO C
+           JOIN ATTACHMENT A ON(C.ACCOMO_NO = A.REF_NO)
+          WHERE CATEGORY_NO = 3
+            AND OWNER_NO = ?
+	</entry>
+	
 	
 </properties>

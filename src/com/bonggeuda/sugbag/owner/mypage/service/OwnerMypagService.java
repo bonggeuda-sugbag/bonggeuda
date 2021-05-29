@@ -2,6 +2,7 @@ package com.bonggeuda.sugbag.owner.mypage.service;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bonggeuda.sugbag.model.dto.AccomoDTO;
@@ -253,6 +254,8 @@ public class OwnerMypagService {
 		Connection con = getConnection();
 		
 		int result  = ownerDAO.updatePwdDAO(con,pwd,ownerNo);
+		close(con);
+
 		
 		if(result > 0) {
 			commit(con);
@@ -268,6 +271,8 @@ public class OwnerMypagService {
 		Connection con = getConnection();
 		
 		int result = ownerDAO.insertWithdrawDAO( realWithdrawReason,ownerNo,con);
+		close(con);
+
 		
 		if(result > 0) {
 			commit(con);
@@ -283,6 +288,8 @@ public class OwnerMypagService {
 		Connection con = getConnection();
 
 		int result = ownerDAO.updatePhoneNoDAO(con,ownerNo, phone);
+		close(con);
+
 		
 		if(result > 0) {
 			commit(con);
@@ -291,6 +298,19 @@ public class OwnerMypagService {
 		}
 		
 		return result;
+	}
+
+	public List<AccomoDTO> selectAccomoList(int ownerNo) {
+		
+		Connection con = getConnection();
+		List<AccomoDTO> selectAccomoList = new ArrayList<AccomoDTO>();
+		
+		selectAccomoList = ownerDAO.selectAccomoListDAO(con,ownerNo);
+		
+		close(con);
+
+		
+		return selectAccomoList;
 	}
 
 }

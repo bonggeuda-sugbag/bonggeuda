@@ -740,4 +740,37 @@ public class OwnerMypageDAO {
 		return result;
 	}
 
+	public List<AccomoDTO> selectAccomoListDAO(Connection con, int ownerNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<AccomoDTO> selectAccomoList = new ArrayList<AccomoDTO>();
+		AccomoDTO accomoDTO = new AccomoDTO();
+		
+		String query = prop.getProperty("selectAccomoList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				accomoDTO = new AccomoDTO();
+				
+				accomoDTO.setImagePath(rset.getString("THUMBNAIL_PATH"));
+				accomoDTO.setAccomoName(rset.getString("ACCOMO_NAME"));
+				accomoDTO.setAccomoType(rset.getString("ACCOMO_TYPE"));
+				
+				selectAccomoList.add(accomoDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
+		
+		
+		return selectAccomoList;
+	}
+
 }
