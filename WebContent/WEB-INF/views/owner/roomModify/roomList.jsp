@@ -135,7 +135,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                <button  class="submit-btn" type="submit">
                <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ roomList.accomoNo }"/>">
                <input type="hidden" name="roomNo" value="<c:out value="${ roomList.roomNo }"/>">
-               <c:out value="${ roomList.roomNo }"/>
+             
                 객실 수정
             </form>
             

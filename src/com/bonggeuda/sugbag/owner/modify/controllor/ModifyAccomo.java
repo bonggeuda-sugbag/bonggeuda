@@ -39,7 +39,7 @@ public class ModifyAccomo extends HttpServlet {
 	     String path = "";
 	     
 	     if(isRemo > 0) {
-	    	 path = "/WEB-INF/views/owner/roomManagement/thisRoomRM.jsp";
+	    	 path = "/WEB-INF/views/owner/roomManagement/thisAccomoRM.jsp";
 	    	 request.getAttribute(path);
 	    	 request.getRequestDispatcher(path).forward(request, response);
 	    	 

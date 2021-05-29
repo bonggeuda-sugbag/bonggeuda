@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bonggeuda.sugbag.model.dto.MemberDTO;
+import com.bonggeuda.sugbag.model.dto.ReviewDTO;
 import com.bonggeuda.sugbag.model.dto.UserBookContentDTO;
 import com.bonggeuda.sugbag.service.UserMypageService;
 
@@ -23,12 +24,16 @@ public class UserCompleteContentSelect extends HttpServlet {
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 				
 		UserMypageService mypageService = new UserMypageService();
-		
 		UserBookContentDTO userCompleteContent = mypageService.selectCompleteContent(userNo, bookNo);
 		
+
+		ReviewDTO reviewHistory = mypageService.selectReviewHistory(userNo, bookNo);
+		
+		System.out.println("reviewHistory : " + reviewHistory);
 		
 		String path = "/WEB-INF/views/guest/mypage/usagehistory.jsp";
 		request.setAttribute("userCompleteContent", userCompleteContent);
+		request.setAttribute("reviewHistory", reviewHistory);
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}

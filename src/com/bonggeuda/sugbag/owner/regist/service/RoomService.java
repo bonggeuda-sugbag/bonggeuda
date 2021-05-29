@@ -38,22 +38,28 @@ public class RoomService {
 //		return inserRoom;
 //	}
 
-	public int insertThumbnail(RoomDTO thumbnail, ArrayList<RoomDTO> roomList) {
+	public int insertThumbnail(RoomDTO thumbnail, List<RoomDTO> roomList) {
 		
 		/* Connection 생성 */
 		Connection con = getConnection();
 		
 		// 인서트 되기전 최댓값 이니까
-		int roomRequestNextNo = roomDAO.selectRequestNextRoomNo(con); 
+		//int roomRequestNextNo = roomDAO.selectRequestNextRoomNo(con); 
 		
 		
-		int inserRoom = roomDAO.InsertRoom(con, roomList);
+		int insertRoom = 0;
 		
-		List<AttachmentDTO> fileList = thumbnail.getAttachmentList();
 		int attachmentResult = 0;
+
+		/* 리스트에 담아줌. 이엔어코모를 변수로 줘서*/
+		//List<Integer> requestNo = roomDAO.searchRequestNo(con);
+		//int request = 0;
+
+		List<AttachmentDTO> fileList = thumbnail.getAttachmentList();
+		
 		for(int i = 0; i < fileList.size(); i++) {
-			roomRequestNextNo++;
-			attachmentResult += roomDAO.insertAttachment(con, fileList.get(i),roomRequestNextNo);
+			insertRoom += roomDAO.InsertRoom(con, roomList.get(i)); // 넥스트발
+			attachmentResult += roomDAO.insertAttachment(con, fileList.get(i)); // 커발
 		}
 		
 		
@@ -93,15 +99,15 @@ public class RoomService {
 
 
 
-	public int selectRmRoomReqNoMax() {
-		Connection con = getConnection();
-
-		int selectRmRoomReqNoMax = 0;
-		
-		selectRmRoomReqNoMax = roomDAO.selectRmRoomReqNoMaxDAO(con);
-		
-		return selectRmRoomReqNoMax;
-	}
+//	public int selectRmRoomReqNoMax() {
+//		Connection con = getConnection();
+//
+//		int selectRmRoomReqNoMax = 0;
+//		
+//		selectRmRoomReqNoMax = roomDAO.selectRmRoomReqNoMaxDAO(con);
+//		
+//		return selectRmRoomReqNoMax;
+//	}
 
 
 
@@ -109,17 +115,20 @@ public class RoomService {
 	/**
 	 * 객실 수정시 어테치 먼트 인서트 메소드
 	 * @param tempFileInfo
+	 * @param roomDTO 
 	 * @param selectReqNoMax
 	 * @return
 	 */
-	public int insertRmRoomThumbnail(AttachmentDTO tempFileInfo, int selectReqNoMax) {
+	public int insertRmRoomThumbnail(AttachmentDTO tempFileInfo, RoomDTO roomDTO) {
 		Connection con = getConnection();
 		
 		int result = 0;
+		int resultInsertRmRoom = 0;
 		
-		result = roomDAO.insertRmRoomThumbnailDAO(con,selectReqNoMax,tempFileInfo);
+		resultInsertRmRoom = roomDAO.insertRmRoomInfoDAO(con, roomDTO);
+		result = roomDAO.insertRmRoomThumbnailDAO(con, tempFileInfo);
 		
-		if(result > 0) {
+		if(result > 0 && resultInsertRmRoom > 0) {
 			commit(con);
 		}else {
 			rollback(con);

@@ -138,7 +138,7 @@ public class ManagementRoomSelectDAO {
 		return selectRmImagePathDAO;
 	}
 
-	public int insertRmAccomoDAO(Connection con, RmAccomoInfoDTO rmAccomoInfoDTO) {
+	public int insertRmAccomoDAO(Connection con, RmAccomoInfoDTO rmAccomoInfoDTO, int selectRequestNextVal) {
 		
 		PreparedStatement pstmt = null;
 
@@ -147,24 +147,25 @@ public class ManagementRoomSelectDAO {
 		int insertResult = 0;
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, rmAccomoInfoDTO.getRmAccomoNo());
-			pstmt.setString(2, rmAccomoInfoDTO.getAccomoName());
-			pstmt.setString(3, rmAccomoInfoDTO.getCeoName());
-			pstmt.setString(4, rmAccomoInfoDTO.getAccomoType());
-			pstmt.setString(5, rmAccomoInfoDTO.getRegistNo());
-			pstmt.setString(6, rmAccomoInfoDTO.getAddress());
-			pstmt.setString(7, rmAccomoInfoDTO.getEmail());
-			pstmt.setString(8, rmAccomoInfoDTO.getHomepage());
-			pstmt.setString(9, rmAccomoInfoDTO.getFacility());
-			pstmt.setString(10, rmAccomoInfoDTO.getAccomoPath());
-			pstmt.setString(11, rmAccomoInfoDTO.getNear());
-			pstmt.setString(12, rmAccomoInfoDTO.getRule());
-			pstmt.setString(13, rmAccomoInfoDTO.getParking());
-			pstmt.setString(14, rmAccomoInfoDTO.getCheckIn());
-			pstmt.setString(15, rmAccomoInfoDTO.getCheckOut());
-			pstmt.setDate(16, rmAccomoInfoDTO.getPeakStart());
-			pstmt.setDate(17, rmAccomoInfoDTO.getPeakEnd());
-			pstmt.setInt(18, rmAccomoInfoDTO.getOwnerNo());
+			pstmt.setInt(1, selectRequestNextVal);
+			pstmt.setInt(2, rmAccomoInfoDTO.getRmAccomoNo());
+			pstmt.setString(3, rmAccomoInfoDTO.getAccomoName());
+			pstmt.setString(4, rmAccomoInfoDTO.getCeoName());
+			pstmt.setString(5, rmAccomoInfoDTO.getAccomoType());
+			pstmt.setString(6, rmAccomoInfoDTO.getRegistNo());
+			pstmt.setString(7, rmAccomoInfoDTO.getAddress());
+			pstmt.setString(8, rmAccomoInfoDTO.getEmail());
+			pstmt.setString(9, rmAccomoInfoDTO.getHomepage());
+			pstmt.setString(10, rmAccomoInfoDTO.getFacility());
+			pstmt.setString(11, rmAccomoInfoDTO.getAccomoPath());
+			pstmt.setString(12, rmAccomoInfoDTO.getNear());
+			pstmt.setString(13, rmAccomoInfoDTO.getRule());
+			pstmt.setString(14, rmAccomoInfoDTO.getParking());
+			pstmt.setString(15, rmAccomoInfoDTO.getCheckIn());
+			pstmt.setString(16, rmAccomoInfoDTO.getCheckOut());
+			pstmt.setDate(17, rmAccomoInfoDTO.getPeakStart());
+			pstmt.setDate(18, rmAccomoInfoDTO.getPeakEnd());
+			pstmt.setInt(19, rmAccomoInfoDTO.getOwnerNo());
 			
 			insertResult = pstmt.executeUpdate();
 			
@@ -202,6 +203,7 @@ public class ManagementRoomSelectDAO {
 		            accomoDTO.setCeoName(rset.getString("CEO_NAME"));
 		            accomoDTO.setAccomoType(rset.getString("ACCOMO_TYPE"));
 		            accomoDTO.setImagePath(rset.getString("THUMBNAIL_PATH"));
+		            
 		            
 		            accomoList.add(accomoDTO);
 		            
@@ -389,6 +391,53 @@ public class ManagementRoomSelectDAO {
 		
 		
 		return roomDTO;
+	}
+
+	public int rmRoomCountDAO(Connection con, int roomNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("rmRoomCount");
+		int rmRoomCount = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, roomNo );
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				rmRoomCount = rset.getInt("COUNT(*)");
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+
+		return rmRoomCount;
+	}
+
+	public int accomoDeleteDAO(Connection con, int accomoNo) {
+		
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("deleteAccomo");
+		int accomoDeleteResult = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, accomoNo);
+			
+			accomoDeleteResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return accomoDeleteResult;
 	}
 
 

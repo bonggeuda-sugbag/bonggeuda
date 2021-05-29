@@ -229,9 +229,9 @@
 				<td>
 					<div class="basic">
 						<span class="form-title" style="display:inline-block;">기간 선택</span>
-						<label><input type="date" name="peakStart" value="21-05-18"></label>
+						<label><input type="date" name="peakStart" value="21-05-18" required="required"></label>
 						<span>~</span>
-						<label><input type="date" name="peakEnd"></label>
+						<label><input type="date" name="peakEnd" required="required"></label>
 					</div>
 				</td>
 			</tr>
@@ -256,6 +256,8 @@
             	  <input type="hidden" name="checkOut" value="<c:out value="${ requestScope.rmAcoomoDTO.checkOut }"/>">
             	  <input type="hidden" name="peakStart" value="<c:out value="${ requestScope.rmAcoomoDTO.peakStart }"/>">
             	  <input type="hidden" name="peakEnd" value="<c:out value="${ requestScope.rmAcoomoDTO.peakEnd }"/>">
+            	  
+            	  <input type="hidden" name="selectRequestNextVal" value="<c:out value="${ requestScope.selectRequestNextVal }"/>">
             	  
             	  
             	  

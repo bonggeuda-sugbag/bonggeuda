@@ -80,25 +80,26 @@ public class AccomoDAO {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, accomoDTO.getAccomoName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
-			pstmt.setString(2, accomoDTO.getCeoName());
-			pstmt.setString(3, accomoDTO.getAccomoType());
-			pstmt.setString(4, accomoDTO.getRegistNo());
-			pstmt.setString(5, accomoDTO.getAddress());
+			pstmt.setInt(1, accomoDTO.getRequsetNo());
+			pstmt.setString(2, accomoDTO.getAccomoName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
+			pstmt.setString(3, accomoDTO.getCeoName());
+			pstmt.setString(4, accomoDTO.getAccomoType());
+			pstmt.setString(5, accomoDTO.getRegistNo());
+			pstmt.setString(6, accomoDTO.getAddress());
 			//pstmt.setString(7, accomoDTO.getAdrDetail());
-			pstmt.setString(6, accomoDTO.getEmail());
-			pstmt.setString(7, accomoDTO.getHomepage());
-			pstmt.setString(8, accomoDTO.getFacility());
-			pstmt.setString(9, accomoDTO.getAccomoPath());
-			pstmt.setString(10, accomoDTO.getNear());
-			pstmt.setString(11, accomoDTO.getRule());
-			pstmt.setString(12, accomoDTO.getParking());
-			pstmt.setString(13, accomoDTO.getCheckIn());
-			pstmt.setString(14, accomoDTO.getCheckOut());
-			pstmt.setDate(15, accomoDTO.getPeakStart());
-			pstmt.setDate(16, accomoDTO.getPeakEnd());
-			pstmt.setInt(17, ownerNo); //업체번호
-			pstmt.setInt(18, accomoDTO.getEnAccomoNo()); //등록숙소번호
+			pstmt.setString(7, accomoDTO.getEmail());
+			pstmt.setString(8, accomoDTO.getHomepage());
+			pstmt.setString(9, accomoDTO.getFacility());
+			pstmt.setString(10, accomoDTO.getAccomoPath());
+			pstmt.setString(11, accomoDTO.getNear());
+			pstmt.setString(12, accomoDTO.getRule());
+			pstmt.setString(13, accomoDTO.getParking());
+			pstmt.setString(14, accomoDTO.getCheckIn());
+			pstmt.setString(15, accomoDTO.getCheckOut());
+			pstmt.setDate(16, accomoDTO.getPeakStart());
+			pstmt.setDate(17, accomoDTO.getPeakEnd());
+			pstmt.setInt(18, ownerNo); //업체번호
+			 //등록숙소번호
 			
 			insert = pstmt.executeUpdate();
 			
@@ -113,14 +114,14 @@ public class AccomoDAO {
 		return insert;
 	}
 
-	public int selectSeqCurrval(Connection con) {
+	public int selectRequestNextVal(Connection con) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		int SeqReqSelectCurrval = 0;
+		int selectRequestNextVal = 0;
 		
-		String query = prop.getProperty("seqReqSelectCurrval");
+		String query = prop.getProperty("selectRequestNextVal");
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -128,16 +129,16 @@ public class AccomoDAO {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				SeqReqSelectCurrval = rset.getInt("MAX(REQUEST_NO)");
+				selectRequestNextVal = rset.getInt("NEXTVAL");
 				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("SeqReqSelectCurrval : " + SeqReqSelectCurrval);
+		System.out.println("SeqReqSelectCurrval : " + selectRequestNextVal);
 		
-		return SeqReqSelectCurrval;
+		return selectRequestNextVal;
 	}
 
 }

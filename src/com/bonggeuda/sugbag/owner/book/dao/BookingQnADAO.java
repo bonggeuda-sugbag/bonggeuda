@@ -30,7 +30,7 @@ public class BookingQnADAO {
 		}
 	}
 	
-	public int selectTotalCount(Connection con) {
+	public int selectTotalCount(Connection con, int ownerNo) {
 
 		PreparedStatement pstmt = null;
 		
@@ -47,7 +47,7 @@ public class BookingQnADAO {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, ownerNo);
 			
 			rset = pstmt.executeQuery();
 
@@ -65,7 +65,7 @@ public class BookingQnADAO {
 		return totalCount;
 	}
 
-	public List<QnADTO> selectQuestion(Connection con, PageInfoDTO pageInfo) {
+	public List<QnADTO> selectQuestion(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -81,7 +81,7 @@ public class BookingQnADAO {
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 1); //업체번호 받아오기
+			pstmt.setInt(1, ownerNo); //업체번호 받아오기
 			pstmt.setInt(2, pageInfo.getStartRow()); 
 			pstmt.setInt(3, pageInfo.getEndRow());
 			

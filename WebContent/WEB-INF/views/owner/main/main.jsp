@@ -48,7 +48,7 @@
 		<div class="top-nav">
 			<ul class="right-icons">
 				<li><a id="mypage">마이페이지</a>
-				<li><a href="/bonggeuda/"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
+				<li><a href="/bonggeuda/owner/logout"><i class="glyphicon glyphicon-user"></i>Logout</a></li>
 			</ul>
 		</div>
 	</div>

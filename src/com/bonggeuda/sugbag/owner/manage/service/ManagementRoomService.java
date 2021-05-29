@@ -54,12 +54,12 @@ public class ManagementRoomService {
 		return selectrmImagePath;
 	}
 
-	public int insertRmAccomo(RmAccomoInfoDTO rmAcoomoDTO) {
+	public int insertRmAccomo(RmAccomoInfoDTO rmAcoomoDTO, int selectRequestNextVal) {
 		Connection con = getConnection();
 		
 		int insertResult =  0;
 		
-		insertResult = roomDAO.insertRmAccomoDAO(con,rmAcoomoDTO);
+		insertResult = roomDAO.insertRmAccomoDAO(con,rmAcoomoDTO,selectRequestNextVal);
 
 		if(insertResult > 0) {
 			commit(con);
@@ -138,6 +138,31 @@ public class ManagementRoomService {
 		
 		
 		return roomDTO;
+	}
+
+	public int rmRoomCountService(int roomNo) {
+		
+	    Connection con = getConnection();
+	    
+	    int rmRoomCount = roomDAO.rmRoomCountDAO(con,roomNo);
+		
+		
+		return rmRoomCount;
+	}
+
+	public int deleteAccomo(int accomoNo) {
+		
+	    Connection con = getConnection();
+	    
+	    int deleteAccomo = roomDAO.accomoDeleteDAO(con,accomoNo);
+
+	    if(deleteAccomo > 0) {
+	    	commit(con);
+	    }else {
+	    	rollback(con);
+	    }
+	    
+		return deleteAccomo;
 	}
 
 

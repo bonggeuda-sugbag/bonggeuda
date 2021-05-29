@@ -6,7 +6,7 @@
 		INSERT INTO RM_ACCOMO_INFO
 		VALUES
 		(
-			SEQ_REQUEST_NO.NEXTVAL
+			?
 		  , NULL
 		  , ?
 		  , ?
@@ -27,7 +27,7 @@
           , DEFAULT
           , ?
           , 'EN'
-          , ?
+          , SEQ_EN_ACCOMO_NO.NEXTVAL
 		)
 	</entry>
 
@@ -35,7 +35,7 @@
 		INSERT INTO RM_ROOM_INFO
 		VALUES
 		(
-		    SEQ_ROOM_REQUEST_NO.NEXTVAL /* 이렇게 됐으니 */
+		    SEQ_ROOM_REQUEST_NO.NEXTVAL 
 		  , null
           , null
 		  , ?
@@ -44,7 +44,7 @@
 		  , ?
 		  , 'Y'
 		  , 'EN'
-          , (SELECT MAX(EN_ACCOMO_NO) FROM RM_ACCOMO_INFO)
+          , (SELECT MAX(EN_ACCOMO_NO) FROM RM_ACCOMO_INFO) /* 이미 숙소가 들어가 있으니까 최댓값을 가져옴. */
           , 'N'
           , ?
 		)
@@ -63,7 +63,7 @@
             , ? /* 파일 타입*/
             , ? /* 떰브네일패스*/
             , 'Y'
-            , ?
+            , SEQ_ROOM_REQUEST_NO.CURRVAL
             )
 	</entry>
 	<entry key="selectEnNo">
@@ -72,10 +72,10 @@
 		  FROM RM_ACCOMO_INFO
 	</entry>
 	
-	<entry key="seqReqSelectCurrval">
+	<entry key="selectRequestNextVal">
     SELECT
-	       MAX(REQUEST_NO)
-	  FROM RM_ACCOMO_INFO
+	       SEQ_REQUEST_NO.NEXTVAL
+	  FROM DUAL
 	</entry>
 	
 	<entry key="maxRmRoomNoNext">
@@ -85,10 +85,10 @@
 	</entry>
 	
 
-	<entry key="selectRmRoomReqNoMax">
+	<entry key="roomRequestCurrval">
 	    SELECT
-	           MAX(REQUEST_NO)
-	      FROM RM_ROOM_INFO
+	           SEQ_ROOM_REQUEST_NO.CURRVAL
+	      FROM DUAL
 	
 	</entry>
 	
@@ -105,7 +105,7 @@
         , ? /* 파일 타입*/
         , ? /* 떰브네일패스*/
         , 'Y'
-        , ? /* 조회해온 리퀘스트 넘값 +1*/
+        , SEQ_ROOM_REQUEST_NO.CURRVAL
         )
 	</entry>
 	

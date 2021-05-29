@@ -18,6 +18,14 @@
 		height: 50px;
 		text-align: left;
 	}
+	.review-btn2 {
+		border-radius: 10px;
+		margin-top: 5px;
+		background: #a3a3a3;
+		color: white;
+		border-style: none;
+		height: 40px;
+	}
 	.review-btn {
 		border-radius: 10px;
 		margin-top: 5px;
@@ -132,12 +140,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</table>
 			</div>
 
-			<c:if test="${ empty requestScope.reviewHistory.bookNo }">
+			<c:if test="${ requestScope.reviewHistory ne null }">
 			<div>
-				<button class="review-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userwritereview/selectAndinsert?bookNo=${ requestScope.userCompleteContent.bookNo }';">리뷰작성</button>
+				<button class="review-btn2" type="button">리뷰작성완료</button>
 			</div>
 			</c:if>
-			<c:if test="${ !empty requestScope.reviewHistory.bookNo }">
+			<c:if test="${ requestScope.reviewHistory eq null }">
 			<div>
 				<button class="review-btn" type="button" onclick="location.href='${ pageContext.servletContext.contextPath }/userwritereview/selectAndinsert?bookNo=${ requestScope.userCompleteContent.bookNo }';">리뷰작성</button>
 			</div>

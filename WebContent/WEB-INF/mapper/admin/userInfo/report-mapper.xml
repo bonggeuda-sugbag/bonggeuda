@@ -9,8 +9,6 @@
    		     , C.REPORT_DATE
     		 , C.REPORTED_TYPE
     		 , C.REPORT_STATUS
-    		 , C.USER_ID
-    		 , C.OWNER_ID
     		 , C.WRITER_TYPE
   		 FROM(
 			   SELECT 
@@ -20,8 +18,6 @@
     			   , B.REPORT_DATE
       			   , B.REPORTED_TYPE
     			   , B.REPORT_STATUS
-    			   , B.USER_ID
-    			   , B.OWNER_ID
     			   , B.WRITER_TYPE
      			FROM(
           			 SELECT
@@ -30,12 +26,8 @@
               			  , A.REPORT_DATE
               			  , A.REPORTED_TYPE
               		 	  , A.REPORT_STATUS
-              			  , U.USER_ID
-              			  , O.OWNER_ID
               			  , A.WRITER_TYPE
      		           FROM REPORT A
-     				   JOIN USER_INFO U ON ( A.MEMBER_NO = U.USER_NO)
-     		           JOIN OWNER_INFO O ON ( A.REPORTED_NO = O.OWNER_NO)
      				)B
 			 )C
           WHERE C.RNUM BETWEEN ? AND ?

@@ -30,6 +30,8 @@ public class ModifyAccomo3 extends HttpServlet {
 		// 값 받아와서 인서트 해주기
 		// 
 		RmAccomoInfoDTO rmAcoomoDTO = new RmAccomoInfoDTO();
+		//selectRequestNextVal
+		int selectRequestNextVal = Integer.parseInt(request.getParameter("selectRequestNextVal"));
 		
 		int rmAccomoNo = Integer.parseInt(request.getParameter("rmAccomoNo"));
 		String accomoName = request.getParameter("accomoName");
@@ -88,13 +90,13 @@ public class ModifyAccomo3 extends HttpServlet {
 		// 인서트 해주기
 		ManagementRoomService insertRoom = new ManagementRoomService();
 		
-		int insertResult = insertRoom.insertRmAccomo(rmAcoomoDTO);
+		int insertResult = insertRoom.insertRmAccomo(rmAcoomoDTO,selectRequestNextVal);
 		if(insertResult>0) {
 			request.setAttribute("rmAcoomoDTO", rmAcoomoDTO);
 			
 			String path = "";
 			
-			path = "/WEB-INF/views/owner/roomManagement/managementYesRoom.jsp";
+			path = "/WEB-INF/views/owner/roomModify/ModifyAccomoSuccess.jsp";
 			request.getAttribute(path);
 			
 			//request.setAttribute("successCode", "insertThumbnail");

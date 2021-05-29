@@ -26,6 +26,8 @@ public class RegistrationAccomo3 extends HttpServlet {
 	    int ownerNo = (Integer)session.getAttribute("ownerNo");
 	    System.out.println("ownerNo : " + ownerNo);
 
+	    
+	    
 	    System.out.println("여기는 오는가?");
 		
 		/*등록3단계*/
@@ -40,8 +42,8 @@ public class RegistrationAccomo3 extends HttpServlet {
 		/*값을 전달하기 위한 비지니스 로직 호출*/
 		AccomoService accomoService = new AccomoService();
 		
-		/*결과값 반환*/
-		int selectEnNo = accomoService.selectEnNo();
+		/* 리퀘스트 넘의 넥스트발을 조회해서 그값을 둘다 넣어주기*/
+		int selectRequestNextVal = Integer.parseInt(request.getParameter("selectRequestNextVal"));
 		
 		accomoDTO.setAccomoName(request.getParameter("accomoName"));
 		accomoDTO.setCeoName(request.getParameter("ceoName"));
@@ -61,8 +63,9 @@ public class RegistrationAccomo3 extends HttpServlet {
 		accomoDTO.setPeakEnd(peakEnd);
 		accomoDTO.setOwnerNo(ownerNo);
 		
-		accomoDTO.setEnAccomoNo(selectEnNo + 1); //현재 등록된 번호보다 1 증가한 값을 담아줌
-		System.out.println("selectEnNo :" + selectEnNo);
+		// accomoDTO.setEnAccomoNo(selectEnNo + 1); //현재 등록된 번호보다 1 증가한 값을 담아줌 시퀀스
+		accomoDTO.setRequsetNo(selectRequestNextVal);
+		System.out.println("selectRequestNextVal :" + selectRequestNextVal);
 		String[] arrayFacility = request.getParameterValues("facility");
 		String facility = "";
 		for(int i=0; i < arrayFacility.length; i++) {
@@ -77,7 +80,12 @@ public class RegistrationAccomo3 extends HttpServlet {
 		System.out.println("arrayFacility"  + arrayFacility[1]);
 		
 		int insertAccomo = accomoService.InsertAccomoServlet(accomoDTO, ownerNo); //값을 int형으로 반환받아야 함
-		System.out.println(insertAccomo);
+
+		
+		/* 사진 인서트 해주고 알이에프넘 리퀘스트넘 최댓값(넥스트 발 해준 ) 조회해서 해당 */
+		/* 어태치먼트의 어태치먼트 넘버 최뎃값 조회해서 */
+		
+		
 		
 		String path="";
 

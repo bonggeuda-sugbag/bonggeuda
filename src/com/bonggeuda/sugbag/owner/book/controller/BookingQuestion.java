@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bonggeuda.sugbag.common.paging.PageNation;
 import com.bonggeuda.sugbag.model.dto.PageInfoDTO;
@@ -23,6 +24,11 @@ public class BookingQuestion extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
+		//로그인 값
+	    HttpSession session = request.getSession();
+	    int ownerNo = (Integer)session.getAttribute("ownerNo");
+	    
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
@@ -38,7 +44,7 @@ public class BookingQuestion extends HttpServlet {
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		BookingQnAService qnaService = new BookingQnAService();
 		
-		int totalCount = qnaService.selectTotalCount();
+		int totalCount = qnaService.selectTotalCount(ownerNo);
 		
 		System.out.println("totalCount 체크 : " + totalCount);
 
@@ -54,7 +60,7 @@ public class BookingQuestion extends HttpServlet {
 		System.out.println(pageInfo);
 
 		/*결과값 반환*/
-		List<QnADTO> selectQuestion = qnaService.selectQuestion(pageInfo);
+		List<QnADTO> selectQuestion = qnaService.selectQuestion(pageInfo,ownerNo);
 		
 		System.out.println("전체 문의 조회 : " + selectQuestion);
 

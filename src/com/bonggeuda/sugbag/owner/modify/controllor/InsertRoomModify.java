@@ -171,14 +171,7 @@ public class InsertRoomModify extends HttpServlet {
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
 				RmAccomoInfoDTO thumbnail = new RmAccomoInfoDTO();
 
-				//List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
-				//RM_ROOM_INFO 의  REQUEST_NO 의 최댓값을 조회해서 어태치먼트에 인서트 해주자
-				
-				int selectReqNoMax = 0;
-				RoomService roomService = new RoomService();
-				selectReqNoMax = roomService.selectRmRoomReqNoMax();
-				System.out.println("조회해온 리퀘스트 넘 최댓값 : " + selectReqNoMax);
-				selectReqNoMax += 1;
+
 				
 				
 				
@@ -199,11 +192,6 @@ public class InsertRoomModify extends HttpServlet {
 				
 				System.out.println("thumbnail board : " + thumbnail);
 				
-				/* 서비스 메소드를 요청한다. */
-				int result = 0;
-				result = roomService.insertRmRoomThumbnail(tempFileInfo,selectReqNoMax);
-				
-				System.out.println("리젙트는?????  " + result);
 
 
 
@@ -219,10 +207,18 @@ public class InsertRoomModify extends HttpServlet {
 				roomDTO.setRoomName(parameter.get("roomName"));
 				System.out.println(roomDTO);
 				/* DTO 값 RM_ROOM_INFO에 인서트*/
-				int finalResult = 0;
-				finalResult = roomService.insertRmRoomInfo(roomDTO);
+				
+				RoomService roomService = new RoomService();
+				
+//				int finalResult = 0;
+//				finalResult = roomService.insertRmRoomInfo(roomDTO);
 
-				if(result > 0 && finalResult > 0) {
+				/* 서비스 메소드를 요청한다. */
+				int result = 0;
+				result = roomService.insertRmRoomThumbnail(tempFileInfo,roomDTO);
+				
+				System.out.println("리젙트는?????  " + result);
+				if(result > 0 ) {
 					
 					String path="";
 
