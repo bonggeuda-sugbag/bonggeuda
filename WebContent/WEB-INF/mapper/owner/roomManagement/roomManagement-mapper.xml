@@ -28,7 +28,7 @@
        WHERE R.OWNER_NO = ?
          AND R.APPROVAL_YN ='N' 
          AND A.CATEGORY_NO = 1
-           AND R.RM_TYPE = 'EN'
+         AND R.RM_TYPE = 'EN'
            
    
    	</entry>

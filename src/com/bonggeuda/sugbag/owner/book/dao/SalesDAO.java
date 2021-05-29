@@ -154,4 +154,32 @@ public class SalesDAO {
 		return selectBookCount;
 	}
 
+	public int sumSalePriceDAO(int accmoNo, Connection con) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int sumSalePrice = 0;
+		
+		String query = prop.getProperty("sumSalePrice");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accmoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				sumSalePrice = rset.getInt("SUM(SALES_PRICE)");
+			}
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		
+		return sumSalePrice;
+	}
+
 }

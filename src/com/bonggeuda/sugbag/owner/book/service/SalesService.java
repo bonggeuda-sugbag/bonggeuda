@@ -56,4 +56,13 @@ public class SalesService {
 		return selectBookCount;
 	}
 
+	public int sumSalePriceService(int accmoNo) {
+		Connection con = getConnection();		
+		
+		int sumSalePrice = salesDAO.sumSalePriceDAO(accmoNo,con);
+		
+		close(con);
+		return sumSalePrice;
+	}
+
 }
