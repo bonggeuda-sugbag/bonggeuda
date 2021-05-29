@@ -205,6 +205,7 @@ public class BookingListSelectDAO {
 	}
 	
 	public int bookRejectUpdateBookConfirm(Connection con, int bookNo) {
+		
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("bookRejectBookConfirmUpadte");
@@ -431,9 +432,12 @@ public class BookingListSelectDAO {
 	public int bookAllowStatusUpdateDAO(Connection con, int bookNo) {
 		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("bookAllowStatusUpadte");
+		
+		System.out.println("이용완료쿼리 : " + query);
 		
 		int result = 0;
 		

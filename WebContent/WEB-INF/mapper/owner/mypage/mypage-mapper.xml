@@ -121,7 +121,7 @@
 		, SYSDATE
 		, ?
 		, DEFAULT
-		, ?
+		, (SELECT STL_NO FROM SETTLEMENT WHERE ACCOMO_NO = ? AND STL_NO = ?)
 		)
 	</entry>
 	
@@ -173,7 +173,7 @@
 		 INSERT INTO REQUEST_STL
  		 VALUES
  		 (
-  		   SEQ_REQUEST_STL_NO.NEXTVAL
+  		   SEQ_STL_NO.NEXTVAL
  		 , ?
  		 , SYSDATE
  		 , 'N'

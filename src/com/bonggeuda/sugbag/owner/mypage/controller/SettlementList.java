@@ -29,6 +29,8 @@ public class SettlementList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("정산 겟 서블릿");
+		
 		//로그인 값
 		HttpSession session = request.getSession();
 		int ownerNo = (Integer)session.getAttribute("ownerNo");

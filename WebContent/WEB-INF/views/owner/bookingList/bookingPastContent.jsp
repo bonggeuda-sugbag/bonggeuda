@@ -223,21 +223,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</table>
 		<br>
 
-		<c:if test="${ requestScope.bookStatusYNC eq 'Y' && requestScope.completeCount == 0 }">
-
-		<form action="${ pageContext.servletContext.contextPath }/owner/bookComplete" method="post">
-		<input type="hidden" name="accomoNo" value="${ bookContentDTO.accomoNo}">
-		<input type="hidden" name="roomNo" value="${ bookContentDTO.roomNo}">
-		<input type="hidden" name="paymentNo" value="${ bookContentDTO.paymentNo}">
-		<input type="hidden" name="bookNo" value="${ bookContentDTO.bookNo}">
-		<input type="hidden" name="paymentFee" value="${ bookContentDTO.paymentFee}">
-		* 이용완료를 누르시면 정산 금액에 현재 객실 이용금액이 포함됩니다.
-		<br><br>
-		<button class="submit-btn" style="margin-left: 400px;" type="submit"> 숙소 이용 완료 </button>
-		</form>
-		
+		<c:if test="${ requestScope.bookStatusYNC eq 'N' && requestScope.completeCount == 0 }">
+			<form action="${ pageContext.servletContext.contextPath }/owner/bookComplete" method="post">
+			<input type="hidden" name="accomoNo" value="${ bookContentDTO.accomoNo}">
+			<input type="hidden" name="roomNo" value="${ bookContentDTO.roomNo}">
+			<input type="hidden" name="paymentNo" value="${ bookContentDTO.paymentNo}">
+			<input type="hidden" name="bookNo" value="${ bookContentDTO.bookNo}">
+			<input type="hidden" name="paymentFee" value="${ bookContentDTO.paymentFee}">
+			* 이용완료를 누르시면 정산 금액에 현재 객실 이용금액이 포함됩니다.
+			<br><br>
+			<button class="submit-btn" style="margin-left: 400px;" type="submit"> 숙소 이용 완료 </button>
+			</form>
 		</c:if>
-		<c:if test="${ requestScope.bookStatusYNC eq 'Y' && requestScope.completeCount > 0 }">
+		
+		<c:if test="${ requestScope.bookStatusYNC eq 'N' && requestScope.completeCount > 0 }">
 		* 이미 이용완료된 객실입니다.
 		</c:if>
 		
