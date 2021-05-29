@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,36 +9,69 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/jquery.min.js"></script>
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/scripts.js"></script>
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/event.js"></script>
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/styles.css" rel="stylesheet">
-
 <link href="${pageContext.servletContext.contextPath }/resources/owner/css/style.css" rel="stylesheet" type="text/css" media="all" />   
-
 <script src="${pageContext.servletContext.contextPath }/resources/owner/js/responsiveslides.min.js"></script>
-
-
-   <link rel="shortcut icon" href="../favicon.ico"> 
-   <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
-   <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
-   <script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
+<link rel="shortcut icon" href="../favicon.ico"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/default.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath }/resources/owner/css/component.css" />
+<script src="${pageContext.servletContext.contextPath }/resources/owner/js/modernizr.custom.js"></script>
 <style>
-   th{
-      background-color: lightgray;
-      color : black;
-   }
-
    .roomCondition{
       text-align: center;
-      width: 170px;
+      width: 200px;
       margin-top: 100px;
       font-weight: bold;
       font-size: 13px;
+   }
+   
+   .liMaginLefe {
+    	margin-left: 30px;
+    	color: black;
+	}
+	
+	.roomName {
+	   font-size: 20px;
+ 	   margin-left: 15px;
+ 	   margin-top: 25px;
+	}
+    
+    .roomForm {
+    	color: black;
+    	margin-left: 15px;
+    }
+    h1, h2, h3, h4, h5, h6, label, p {
+   	 	margin: -3px;
+	}
+	.roomModifyBtn {
+	    font-size: 15px;
+	    box-shadow: 0 3px 0 #c35a56;
+	}
+	.list-btn{
+		background:white;
+		border:0;
+		outline:0;
+		color:#777;
+		margin-left: 10px;
+	}
+	.list-btn:hover{
+		color:#6eceda;
+	}
+	th {
+    	background-color: #f5f5f5;   		
+    	color: black;
+	}
+	.roomModifyBtn:hover{
+	    font-size: 15px;
+	    box-shadow: 0 3px 0 #c35a56;
+	}
+	.table-bordered {
+    	border: 0px solid #ddd;
+	}
 </style>
-
 </head>
-
 <body>
 <!--header-->
 <div class="header">
@@ -92,55 +118,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          
          });
       </script>
-            
    </div>
 </div>
-
-
 <br><br>
-
-<table class="table-bordered table" id="registTb" style="width: 65%;" >
+<div class="tab" style="width: 60%;">
+	<span class="tab_btn active">승인된 숙소</span>
+</div>
+<table class="table-bordered table" id="registTb" style="width: 60%;" >
    <thead>
-      <th>숙소 대표이미지</th>
-      <th>숙소 정보</th>
-      <th>숙소 평점 및 리뷰</th>
-      <th>숙소 상태</th>
-      <th>숙소 설정</th>
+      <th>대표사진</th>
+      <th>숙소정보</th>
+      <th>평점 & 리뷰</th>
+      <th>관리</th>
    </thead>
    <tbody>
       <c:forEach var="accomoList" items="${ requestScope.approveAccomoList }">
       <tr class="room1">
          <th style="background-color: white;">
-
             <img src="${pageContext.servletContext.contextPath }/${ accomoList.imagePath }" style="width: 360px; height: 230px;">
- 
-
          </th>
          <td class="roomList">
             <p class="roomName"><c:out value="${ accomoList.accomoName }"/></p>
             <p class="roomForm"><c:out value="${ accomoList.accomoType }"/></p>
             <br>
-      
             <div>
-
             <form action="/bonggeuda/owner/accomoModify" method="post">
-               <button  class="submit-btn" type="submit">
+               <button  class="list-btn" type="submit">
                <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
-               
                 숙소 수정
             </form>
-            
             <form action="/bonggeuda/owner/roomList" method="post">
-            
-               <button  class="submit-btn" type="submit">
+               <button  class="list-btn" type="submit">
                <input type="hidden" name="roomcAcomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
                 객실 목록 보기
             </form>
-
-         
-
             </div>
-
          </td>
          <td class="" >
             <ul class="liMaginLefe">
@@ -150,163 +162,109 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </ul>
             <form action="${ pageContext.servletContext.contextPath }/owner/accomoReview"  method="post">
             <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
-            <button class="roomModifyBtn" >  리뷰 보러가기</button>
+            <button class="list-btn" >  리뷰 보러가기</button>
             </form>
             
             <form action="${ pageContext.servletContext.contextPath }/owner/sales"  method="post">
             <input type="hidden" name="accomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
             <input type="hidden" name="accomoName" value="<c:out value="${ accomoList.accomoName }"/>">
-            <button class="roomModifyBtn" type="submit" >  매출내역 보러가기</button>
+            <button class="list-btn" type="submit" >  매출내역 보러가기</button>
             </form>
          </td>
-         <td class="roomCondition"  style="color: green; font-size: 24px; ">
+         <td class="roomCondition"  style="color: black; font-size: 16px; ">
          <br>
  			<p>
-        	 관리자 <br>승인 완료
+        	 관리자 승인 완료
  			</p>
-
-                     <br>
-<!--             <p style="color: red; font-size: 20px">숙소 등록 거절</p>
-            <br> -->
-            
-<!--             <button type="submit" class="submit-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
- -->       
-         </td>
-         <td>
-            <br>
-            <br>
-            <form action="${ pageContext.servletContext.contextPath }/owner/AccomoRemove" id="pwdform" method="post" onsubmit="return roomRemove()">
-            <input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
-            <button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
-            </form>
-            <br>
-            <br>
-                       
-
-
+ 			<br>
+ 			<form action="${ pageContext.servletContext.contextPath }/owner/AccomoRemove" id="pwdform" method="post" onsubmit="return roomRemove()">
+            	<input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+            	<button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
+       		</form>
          </td>
       </tr>
    </c:forEach>
    </tbody>
-   
 </table>
 
-<br><br>
+<br><br><br><br>
 
-<table class="table-bordered table" id="registTb" style="width: 65%;" >
-승인 대기중인 숙소들
+<div class="tab" style="width: 60%;">
+	<span class="tab_btn active">승인 대기중인 숙소</span>
+</div>
+<table class="table-bordered table" id="registTb" style="width: 60%;" >
    <thead>
-      <th>숙소 대표이미지</th>
-      <th>숙소 정보</th>
-      <th>숙소 평점 및 리뷰</th>
-      <th>숙소 상태</th>
-      <th>숙소 설정</th>
+      <th>대표사진</th>
+      <th>숙소정보</th>
+      <th>평점 & 리뷰</th>
+      <th>관리</th>
    </thead>
    <tbody>
       <c:forEach var="accomoList" items="${ requestScope.applyEnrollAccomoList }">
       <tr class="room1">
          <th style="background-color: white;">
-
             <img src="${pageContext.servletContext.contextPath }/${ accomoList.thumbNailPath }" style="width: 360px; height: 230px;">
- 
-
          </th>
          <td class="roomList">
+        	<br>
             <p class="roomName"><c:out value="${ accomoList.accomoName }"/></p>
             <p class="roomForm"><c:out value="${ accomoList.accomoType }"/></p>
             <br>
-      
-            <div>
-
-				숙소 승인 대기중
-
-
-            </div>
-
          </td>
-         <td class=""style="width: 270px;">
-			승인 대기중 입니다.
+         <td align="center">
+         <br><br>
+         	승인 대기중
          </td>
-         <td class="roomCondition" style="color: black; font-size: 20px; ">
- 			<br>
-        	 승인<br>
-        	  대기중입니다
-
-                        
-         </td>
-         <td>
-         <br>
+         <td class="roomCondition"  style="color: black; font-size: 16px; ">
+        	<br>
             <br>
-            <form action="${ pageContext.servletContext.contextPath }/owner/StayAccomoRemove" id="pwdform" method="post" onsubmit="return roomRemove()">
-            <input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
-            <button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
-            </form>
-            
-
-
+         	<form action="${ pageContext.servletContext.contextPath }/owner/StayAccomoRemove" id="pwdform" method="post" onsubmit="return roomRemove()">
+          	  	<input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+          		<button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
+         	</form>
          </td>
       </tr>
    </c:forEach>
    </tbody>
 </table>
 
-<br><br><br>
+<br><br><br><br>
 
-<table class="table-bordered table" id="registTb" style="width: 65%;" >
-승인 거절된 숙소들
+<div class="tab" style="width: 60%;">
+	<span class="tab_btn active">거절된 숙소</span>
+</div>
+<table class="table-bordered table" id="registTb" style="width: 60%;" >
    <thead>
-      <th>숙소 대표이미지</th>
-      <th>숙소 정보</th>
-      <th>숙소 평점 및 리뷰</th>
-      <th>숙소 상태</th>
-      <th>숙소 설정</th>
+      <th>대표사진</th>
+      <th>숙소정보</th>
+      <th>승인 거절</th>
+      <th>관리</th>
    </thead>
    <tbody>
       <c:forEach var="accomoList" items="${ requestScope.rejectAccomoList }">
       <tr class="room1">
          <th style="background-color: white;">
-
             <img src="${pageContext.servletContext.contextPath }/${ accomoList.thumbNailPath }" style="width: 360px; height: 230px;">
- 
-
          </th>
          <td class="roomList">
+         <br>
             <p class="roomName"><c:out value="${ accomoList.accomoName }"/></p>
             <p class="roomForm"><c:out value="${ accomoList.accomoType }"/></p>
-            <br>
-      
-            <div>
-
-				숙소 거절
-
-         
-
-            </div>
-
+         <br>
          </td>
-         <td class="" >
-         </td>
-         <td class="roomCondition">
- 
-
-                     <br>
-             <p style="color: red; font-size: 20px">숙소 등록 거절</p>
-            <br> 
+         <td style="text-align: center;">
+            <br><br>
+            	<p style="color: red; font-size: 16px"><b>숙소 등록 거절</b></p>
             
-             <button type="submit" class="submit-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
-      
+             <button type="submit" class="list-btn" onclick="location.href='#pop01'">거절 사유 보기</button>
          </td>
-         <td>
-            <br>
-            <br>
+         <td class="roomCondition"  style="color: black; font-size: 16px; ">
+            <br><br>
             <form action="${ pageContext.servletContext.contextPath }/owner/RejectAccomoRemove" id="pwdform" method="post" onsubmit="return roomRemove()">
-            <input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
-            <button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
+            	<input type="hidden" name="acomoNo" value="<c:out value="${ accomoList.accomoNo }"/>">
+            	<button class="roomModifyBtn" type="submit" style="background-color: orangered;">숙소 삭제</button>
             </form>
-            <br>
-            <br>
-
-
+            <br><br>
          </td>
       </tr>
    </c:forEach>
@@ -379,7 +337,6 @@ if(result){
 </script>
 </div>
 </div>
-<br><br><br><br><br><br>
 <br><br><br><br><br><br>
 <br><br><br><br><br><br>
 <!--footer-->
