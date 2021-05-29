@@ -697,7 +697,7 @@ textarea {
 			<br>
 			<!-- <객실안내/예약 탭> -->
 			<div id="btn1_content">
-			<form method = "POST" onsubmit="bookChecking();" action="${pageContext.servletContext.contextPath }/book/booking">
+			<form method = "POST" onsubmit="return bookChecking();" action="${pageContext.servletContext.contextPath }/book/booking">
 			
 				<div style="width: 1100px; height: 60px; padding:5px 10px 5px 10px;display: flex;justify-content: space-around; background-color: white;">
 					<!-- 예약일자 입력 -->
@@ -772,8 +772,8 @@ textarea {
 							<hr>
 							<div style="display: flex;">
 								<div style="width: 40%;">성수기요금</div>
-								<div style="margin-left: 40px; width: 50%;">${roomList.roomFee }원 / 1박</div>
-								<input type="hidden" name="price" value="${roomList.peakFee }">
+								<div style="margin-left: 40px; width: 50%;">${roomList.peakFee }원 / 1박</div>
+								<input type="hidden" name="peakFee" value="${roomList.peakFee }">
 							<%-- <input type="hidden" name="roomNo" value="${roomList.roomNo }"> --%>
 							</div>
 							<hr>
@@ -785,24 +785,12 @@ textarea {
 								
 								<input type="hidden" name="AccomoCheckIn" value="${accomo.checkIn }">
 								
-								<button class="detail_btn" type="submit" name="roomNo" value="${roomList.roomNo }" onclick="()">예약하기</button>
+								<button class="detail_btn" type="submit" name="roomNo" value="${roomList.roomNo }">예약하기</button>
 							</div>
 						</div>
 					</div>
 					</c:forEach>
-					<script>
-					    function bookChecking(){
-					    	var chekInD = document.getElementbyId("checkInD");
-					    	var chekInD = document.getElementbyId("checkOutD");
-					    	var chekInD = document.getElementbyId("person");
-					    	
-					    	console.log(a);
-					    	console.log(b);
-					    	console.log(c);
-					    	
-					    	
-					    }
-					</script>
+					
 					<!--// 객실정보 -->
 				</center>
 				</form>
@@ -823,9 +811,9 @@ textarea {
 							<p>- 입실가능시간 : ${accomo.checkIn } | 퇴실 : ${accomo.checkOut }</p>
 							<p>- 주차요금 : ${accomo.parking}</p>
 							<h3>취소 및 환불 규정</h3>
-							<p>- 숙박일 기준 10일전 : 100% 환불</p>
-							<p>- 숙박일 기준 5일전 : 50% 환불</p>
-							<p>- 숙박일 기준 1일전 ~ 당일 및 No-show : 환불불가</p>
+							<p>- 체크인 3일 이전 : 100% 환불</p>
+							<p>- 체크인 2일전 : 수수료 10% 제외 후 환불</p>
+							<p>- 체크인 1일전 ~ 당일 및 No-show : 수수료 20% 제외 후 환불</p>
 							<p>- 취소, 환불 시 수수료가 발생할 수 있습니다.</p>
 							<h3>확인사항 및 기타</h3>
 							<p>- 최대 인원 초과시 입실이 불가합니다.</p>
@@ -848,7 +836,24 @@ textarea {
 			</div>
 			<hr>
             <!-- //숙소상세정보 -->
-
+                  <script>
+					    function bookChecking(){
+					    	alert("호출은 되나?");
+					    	var chekInD = document.getElementbyId("checkInD").value;
+					    	var chekOutD = document.getElementbyId("checkOutD").value;
+					    	var checkP = document.getElementbyId("person");
+					    	if(chekInD>chekOutD){
+					    		alert("체크인날짜가 더 빠릅니다.")
+					    		return false;
+					    	} 
+					    	if(chekInD<chekOutD){
+					    		alert("체크아웃 날짜가 이후임")
+					    	}
+					    	console.log(a);
+					    	console.log(b);
+					    	console.log(c);
+					    }
+					</script>
 			<!-- 리뷰 -->
 			<div id="btn3_content" style="display: none;">
                 <div style="margin: 0 auto;">

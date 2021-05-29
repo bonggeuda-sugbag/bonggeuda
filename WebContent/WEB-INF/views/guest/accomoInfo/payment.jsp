@@ -263,15 +263,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<hr>
                     <p>휴대폰 번호</p>
                     <!-- <p style="font-size: 15px;">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</p> -->
-                    <div style="width: 650px;height: 50px; display: flex; margin-top:15px">
-                        <input id= "phone" name="phone"type="tel" style="width: 600px; ;" placeholder="체크인시 필요한 정보입니다." required="required">
-                        <button style="width: 150px;margin-left: 30px; border: 0; outline: 0; background: #6eceda; color: white; font-weight: bold;box-shadow: 0 3px 0 #0e8c73;border-radius: 10px;">확인</button>
-                    </div>
+                   <!--  <div style="width: 650px;height: 50px; display: flex; margin-top:15px"> -->
+                        <input id= "phone" name="phone"type="tel" style="width: 650px; height: 50px; margin-top:15px"placeholder="체크인시 필요한 정보입니다." required="required">
+                       
+                    <!-- </div> -->
 					<hr>
 					<!-- 쿠폰,포인트 -->
 					<div style = "display :flex;">
+					
 					<p>할인수단선택</p>
-					<button type="button" id="discount">적용하기</button>
+					<!-- <-- <button type="button" id="discount">적용하기</button> -->
+					
+				     <button id = "discount" type = "button"style="width: 90px;margin-left: 30px; border: 0; outline: 0; background: #6eceda; color: white; font-weight: bold;box-shadow: 0 3px 0 #0e8c73;border-radius: 10px;">적용하기</button>
+				        <!-- </div> -->
 					<script>
 					    $("#discount").click(function(){
 					    	var couponNo = "0";
@@ -332,7 +336,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</select>
 					</div>
 					<div style="width: 100%; display: flex; margin-top: 15px;">
-						<p style="margin: 0px 85px 0px 0px; font-size: 18px;">포인트사용<small>(1000포인트단위 사용가능)</small></p>
+						<p style="margin: 0px 80px 0px 0px; font-size: 18px;">포인트사용<small>(1000포인트단위 사용가능)</small></p>
 						<c:choose>
 						<c:when test="${empty point || point.point == 0}">
 						<input name="point" type="text" value = "0"readonly style="text-align: right; width: 10%; height: 30px;margin-left: 150px;"></input><b style="margin: 5px 0px 0px 5px;">/ 0 포인트</b>
@@ -342,6 +346,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input  id="pointDis"name="point"type="number" step="1000" min="0" max="${point.point }"style="text-align: right; width: 10%; height: 30px;margin-left: 170px; "> <b style="margin: 5px 0px 0px 5px;">/ ${point.point } 포인트</b>
 						</c:otherwise>
 						</c:choose>
+					</div>
+					<div style="width: 100%; display: flex; margin-top: 15px;">
+						<p style="margin: 0px 80px 0px 0px; font-size: 18px;"><small>* 적용하기 버튼을 눌러야 할인이 적용됩니다.</small></p>
+					</div>
+					<div style="width: 100%; display: flex; margin-top: 5px;">
+                        <p style="margin: 0px 80px 0px 0px; font-size: 18px;"><small>* 환불시 사용한 쿠폰과 포인트는 반환되지 않습니다.</small></p>
 					</div>
 					<hr>
 					
@@ -370,11 +380,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </section>
                <!-- 결제동의 -->
                 <section class="agree" >
-                    <p class="all_check" ><label><input type="checkbox" name="checkAll" class="inp_chk_02"> <span>전체 동의</span></label></p> 
-                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required"><span><u>숙소이용규칙 및 취소/환불규정 동의</u><b>(필수)</b></span></label></p> 
-                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required"><span><u>개인정보 수집 및 이용 동의</u><b>(필수)</b></span></label></label></p> 
-                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required"><span><u>개인정보 제 3자 제공 동의</u><b>(필수)</b></span></label></p>
-                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required"><span><u>만 14세 이상 확인</u><b>(필수)</b></label></span></p>
+                    <p class="all_check" ><label><input id="allcheck" type="checkbox" name="checkAll" class="inp_chk_02" onclick="check(this);"> <span>전체 동의</span></label></p> 
+                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required" onclick="check(this)"><span><u>숙소이용규칙 및 취소/환불규정 동의</u><b>(필수)</b></span></label></p> 
+                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required" onclick="check(this)"><span><u>개인정보 수집 및 이용 동의</u><b>(필수)</b></span></label></label></p> 
+                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required" onclick="check(this)"><span><u>개인정보 제 3자 제공 동의</u><b>(필수)</b></span></label></p>
+                    <p><label><input type="checkbox" name="checkOne" class="inp_chk_02" required="required" onclick="check(this)"><span><u>만 14세 이상 확인</u><b>(필수)</b></label></span></p>
+                <script>
+                    function check(p){
+                    	var all = document.getElementById("allcheck");
+                    	var list = document.getElementsByName("checkOne");
+                    	if(p.id == "allcheck"){
+                        	if(all.checked){
+                        		for(var i = 0; i < list.length; i++){
+                    			list[i].checked = true;
+                        		}
+                        	} else {
+                        		for(var i = 0; i < list.length; i++){
+                        			list[i].checked = false;
+                        		}
+                        	}
+                        } else {
+                        	var num = 0;
+                        	for(var i = 0; i < list.length; i++){
+                        		if(list[i].checked){
+                        		num++;
+                        		}
+                        	}
+                        	if(num == 4){
+                        		all.checked = true;
+                        	} else{
+                        		all.checked = false;
+                        	}
+                        }
+                    }
+                </script>
                 </section>
 				
             </div>
@@ -422,10 +461,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</section>
 				<br>
 				<!-- <button class="payButton" onclick="location.href='mypage_reservation.html';">결제하기</button> -->
-				<button type="button" class="payButton" onclick="location.href='#pop01'">결제하기</button>
+				<button type="button" class="payButton" onclick="checkContent();">결제하기</button>
 				
 				
             </div>
+            <script>
+                function checkContent(){
+    		        var name = document.getElementById("bookName").value;
+    		        var phone = document.getElementById("phone").value;
+    		        var check = document.getElementById("allcheck").checked;
+    		        if(name.length == 0){
+    		        	alert("이름을 입력하세요");
+    		        	return;
+    		        }
+    		        if(phone.length ==0){
+    		        	alert("전화번호를 입력하세요");
+    		        	return
+    		        }
+    		        
+    		        if(check == false){
+    		        	alert("규정에 동의하셔야 결제가 가능합니다.");
+    		        	return;
+    		        }
+    		        location.href='#pop01';
+    		       
+                }
+            </script>
 			
 			<!-- 예약내역확인 -->
 			<div id="pop01" class="overlay">
