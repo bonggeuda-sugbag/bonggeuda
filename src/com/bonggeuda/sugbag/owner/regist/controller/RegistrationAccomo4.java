@@ -37,7 +37,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
 
-			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
+			String fileUploadDirectory = rootLocation + "/resources/upload/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
 			
 			File directory = new File(fileUploadDirectory);
