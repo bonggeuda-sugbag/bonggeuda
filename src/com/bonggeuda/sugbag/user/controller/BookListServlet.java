@@ -39,8 +39,6 @@ public class BookListServlet extends HttpServlet {
 		UserInfoService userInfoServie = new UserInfoService();
 		int bookListCount = userInfoServie.selectbookCount();
 		
-		System.out.println("bookListCount 체크 : " + bookListCount);
-		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
 		/* 한 번에 보여질 페이징 버튼의 수*/
@@ -53,8 +51,6 @@ public class BookListServlet extends HttpServlet {
 		
 		/* 조회 해온다. */
 		List<UserReservationStatusDTO> reservationList = userInfoServie.selectReservationList(pageInfo);
-		
-		System.out.println("어디 갔니 reservationList : " + reservationList);
 		
 		String path = "";
 		if(reservationList != null) {

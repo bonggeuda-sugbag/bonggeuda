@@ -30,7 +30,6 @@ public class ReportDetailServlet extends HttpServlet {
 		List<ReportDTO> reportThumnailInfo = new ArrayList<>();
 		reportThumnailInfo = adminReportService.selectReportThumnail(Integer.parseInt(request.getParameter("reportNo")));
 
-		System.out.println("신고접수번호~~~~~"+ request.getParameter("reportNo"));
 
 
 		
@@ -42,7 +41,6 @@ public class ReportDetailServlet extends HttpServlet {
 			request.setAttribute("reportThumnailInfo", reportThumnailInfo);
 			request.setAttribute("reportNo", request.getParameter("reportNo"));
 		} 
-		System.out.println("사진 경로 확인: " + reportThumnailInfo);
 
 		request.getRequestDispatcher(path).forward(request, response);
 	}

@@ -166,13 +166,13 @@ public class AdminEventDAO {
 			close(pstmt);
 		}
 		
-		System.out.println("DAO : "  + eventThumnailInfo);
+//		System.out.println("DAO : "  + eventThumnailInfo);
 		return eventThumnailInfo;
 	}
 
 	public int insertEvent(Connection con, EventDTO eventInfo) {
 
-		System.out.println("dao들어와라ㅏㅅ");
+//		System.out.println("dao들어와라ㅏㅅ");
 		PreparedStatement pstmt = null;
 		
 		int result = 0;

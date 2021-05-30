@@ -25,8 +25,6 @@ public class BookListSearchidServlet extends HttpServlet {
 		String condition = request.getParameter("searchCondition");
 		String value = request.getParameter("searchValue");
 
-		System.out.println("111111111111 : " + condition);
-		System.out.println("222222222222 : " + value);
 		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
 		 * */
@@ -49,8 +47,6 @@ public class BookListSearchidServlet extends HttpServlet {
 		UserInfoService userInfoServie = new UserInfoService();;
 		int bookCount = userInfoServie.searchBookCount(condition, value);
 		
-		System.out.println("bookCount : " + bookCount);
-		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
 		/* 한 번에 보여질 페이징 버튼의 갯수 */
@@ -63,8 +59,7 @@ public class BookListSearchidServlet extends HttpServlet {
 		
 		/* 조회해온다 */
 		List<UserReservationStatusDTO> reservationList = userInfoServie.selectSearchIdList(condition, value, pageInfo);
-		
-		System.out.println("reservationList : " + reservationList);
+
 		
 		String path = "";
 		if(reservationList != null) {

@@ -23,7 +23,7 @@ public class QnADetailServlet extends HttpServlet {
 		
 		QnADTO qnaInfo = adminqnaService.selectqnaDetail(Integer.parseInt(request.getParameter("qnaNo")));
 
-		System.out.println("rrrr"+ request.getParameter("qnaNo"));
+//		System.out.println("rrrr"+ request.getParameter("qnaNo"));
 		
 		String path = "";
 		

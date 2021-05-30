@@ -22,9 +22,6 @@ public class CouponInsertServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		System.out.println("두번째 확인 : " + request.getParameter("hduserNo"));
-		
 //		UserInfoService userInfoService = new UserInfoService();
 
 		String path="";
@@ -55,8 +52,7 @@ public class CouponInsertServlet extends HttpServlet {
 		dto.setDiscount(discount);
 
 		int insertCoupon = userInfoService.insertCoupon(dto,Integer.parseInt(request.getParameter("hduserNo")));
-		
-		System.out.println("값값값값: " + insertCoupon);
+
 		
 		String path="";
 		if(insertCoupon > 0 ) {

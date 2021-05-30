@@ -39,7 +39,6 @@ public class ReportInsertServlet extends HttpServlet {
 		dto.setContent(content);
 		
 		int insertReport= reportInfoService.insertReport(dto);
-		System.out.println("dto안에 값이 있나? : " + dto);
 		String path="";
 		if(insertReport > 0 ) {
 			path= "/bonggeuda/report/list";

@@ -38,8 +38,6 @@ public class BestReviewServlet extends HttpServlet {
 		UserInfoService userInfoServie = new UserInfoService();
 		int bestReviewCount = userInfoServie.selectBestReviewCount();
 		
-//		System.out.println("totalCount 체크 : " + totalCount);
-		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
 		/* 한 번에 보여질 페이징 버튼의 수*/
@@ -48,12 +46,9 @@ public class BestReviewServlet extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, bestReviewCount, limit, buttonAmount);
 		
-//		System.out.println(pageInfo);
-		
 		/* 조회 해온다. */
 		List<BestReviewDTO> bestReviewList = userInfoServie.selectBestReviewList(pageInfo);
-		
-		System.out.println("bestReviewList!!! : " + bestReviewList);
+
 		
 		String path = "";
 		if(bestReviewList != null) {
