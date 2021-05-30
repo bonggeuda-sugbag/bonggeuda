@@ -29,9 +29,6 @@ public class ReportDetailServlet extends HttpServlet {
 		 //썸네일 가져오는 코드
 		List<ReportDTO> reportThumnailInfo = new ArrayList<>();
 		reportThumnailInfo = adminReportService.selectReportThumnail(Integer.parseInt(request.getParameter("reportNo")));
-
-
-
 		
 		String path = "";
 		

@@ -23,11 +23,6 @@ public class NoticeDetailServlet extends HttpServlet {
 		
 		AdminNoticeDTO noticeInfo = adminNoticeService.selectNoticeDetail(request.getParameter("noticeNo"));
 		
-
-		System.out.println("rrrr"+ request.getParameter("noticeNo"));
-
-
-		
 		String path = "";
 		
 		if(noticeInfo != null) {
@@ -35,7 +30,6 @@ public class NoticeDetailServlet extends HttpServlet {
 			request.setAttribute("noticeInfo", noticeInfo);
 			request.setAttribute("noticeNo", request.getParameter("noticeNo"));
 		} 
-		
 
 		request.getRequestDispatcher(path).forward(request, response);
 	}

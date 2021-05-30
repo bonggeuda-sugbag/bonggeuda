@@ -26,7 +26,6 @@ public class BlackListSearchMemberNoServlet extends HttpServlet {
 		String condition = request.getParameter("searchCondition");
 		String value = request.getParameter("searchValue");
 
-		
 		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
 		 * */
@@ -48,7 +47,6 @@ public class BlackListSearchMemberNoServlet extends HttpServlet {
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		UserInfoService userInfoService  = new UserInfoService();;
 		int blackNoCount = userInfoService.searchMemberNoCount(condition, value);
-
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
@@ -57,7 +55,6 @@ public class BlackListSearchMemberNoServlet extends HttpServlet {
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, blackNoCount, limit, buttonAmount);
-		
 		
 		/* 조회해온다 */
 		List<UserBlistDTO> blackNoList = userInfoService.selectBlistMemberNo(condition, value, pageInfo);

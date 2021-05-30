@@ -39,7 +39,6 @@ public class BlackListServlet extends HttpServlet {
 		UserInfoService userInfoService = new UserInfoService();
 		int blackCount = userInfoService.selectblackCount();
 		
-		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
 		/* 한 번에 보여질 페이징 버튼의 수*/
@@ -47,8 +46,7 @@ public class BlackListServlet extends HttpServlet {
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, blackCount, limit, buttonAmount);
-		
-//		System.out.println(pageInfo);
+
 		
 		/* 조회 해온다. */
 		List<UserBlistDTO> blackList = userInfoService.selectBlackList(pageInfo);

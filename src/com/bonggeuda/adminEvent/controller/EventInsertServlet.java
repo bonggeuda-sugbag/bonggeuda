@@ -122,13 +122,11 @@ public class EventInsertServlet extends HttpServlet {
 					String key = keyIter.next();
 					String[] value = requestMap.get(key);
 					
-//					System.out.println("key : " + key);
 					for(int i = 0; i < value.length; i++) {
 						System.out.println("value[" + i + "] : " +value[i]);
 					}
 				}
 
-				
 				request.setCharacterEncoding("UTF-8");
 				
 				/* 이벤트 insert */
@@ -138,7 +136,6 @@ public class EventInsertServlet extends HttpServlet {
 				eventInfo.setStartDate(java.sql.Date.valueOf(parameter.get("startDate")));
 				eventInfo.setEndDate(java.sql.Date.valueOf(parameter.get("endDate")));
 				
-				System.out.println("2");
 				//첨부파일
 				eventInfo.setAttachmentList(new ArrayList<AttachmentDTO>());
 				List<AttachmentDTO> list = eventInfo.getAttachmentList();
@@ -155,7 +152,7 @@ public class EventInsertServlet extends HttpServlet {
 					
 					list.add(reviewImg);
 				}
-				System.out.println("3");
+
 				/* 리뷰내용 insert 하기 */
 				AdminEventService eventInsertService = new AdminEventService();
 				int result = eventInsertService.insertEvent(eventInfo);
