@@ -32,10 +32,7 @@ public class RoomDAO {
 	}
 	
 	public int InsertRoom(Connection con, RoomDTO roomDTO) {
-		
-//		System.out.println("리스트0 : " + roomList.get(0));
-//		System.out.println("리스트1 : " + roomList.get(1));
-//		System.out.println(roomList.size());
+
 		
 		PreparedStatement pstmt = null;
 		
@@ -44,9 +41,6 @@ public class RoomDAO {
 		
 		String query = prop.getProperty("insertRoom");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
-		
 		try {
 			pstmt = con.prepareStatement(query);
 			
@@ -59,7 +53,6 @@ public class RoomDAO {
 				pstmt.setInt(5, roomDTO.getPeakFee());
 
 				insert = pstmt.executeUpdate();
-				System.out.println("등록한 객실 수 : " + insert);
 			
 			
 		} catch (SQLException e) {
@@ -87,7 +80,6 @@ public class RoomDAO {
 			//pstmt.setInt(6, integer);
 			
 			result = pstmt.executeUpdate();
-			System.out.println("어테치먼트 리절트.. " + result);  // 리절트가 1이 나와주는데 왜 인서트 실패 라는거지?
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -152,32 +144,6 @@ public class RoomDAO {
 		return selectEnRoomNoMax;
 	}
 
-//	public int selectRmRoomReqNoMaxDAO(Connection con) {
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String query = prop.getProperty("selectRmRoomReqNoMax");
-//		int selectRmRoomReqNoMax = 0;
-//		try {
-//			pstmt = con.prepareStatement(query);
-//			
-//			rset = pstmt.executeQuery();
-//			
-//			if(rset.next()) {
-//				
-//				selectRmRoomReqNoMax = rset.getInt("MAX(REQUEST_NO)"); 
-//			}
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(pstmt);
-//		}
-//		
-//		return selectRmRoomReqNoMax;
-//	}
 
 	public int insertRmRoomThumbnailDAO(Connection con, AttachmentDTO tempFileInfo) {
 		

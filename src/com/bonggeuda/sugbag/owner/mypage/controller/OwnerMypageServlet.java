@@ -48,9 +48,7 @@ public class OwnerMypageServlet extends HttpServlet {
 		
 		
 		
-//		String path = "/WEB-INF/views/owner/mypage/mypage.jsp";
-//		
-//		request.getRequestDispatcher(path).forward(request, response);
+
 
 	}
 

@@ -82,7 +82,7 @@ public class InsertRoomModify extends HttpServlet {
 				
 				for(FileItem item : fileItems) {
 					/* 폼 데이터는 isFormField 속성이 true이고, 파일은 isFormField 속성이 false이다. */
-					System.out.println(item);
+					//System.out.println(item);
 				}
 				
 				/* 위에서 출력해본 모든 item들을 다 처리할 것이다. */
@@ -127,10 +127,8 @@ public class InsertRoomModify extends HttpServlet {
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
-								System.out.println("보디로 왔나요?");
 							} else {
 								fileMap.put("fileType", "BODY"); // 타이틀에서 보디로 변경
-								System.out.println("엘스로 왔나요");
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
@@ -164,9 +162,7 @@ public class InsertRoomModify extends HttpServlet {
 				}
 							
 				
-				System.out.println("parameter : " + parameter);
 				//parameter.get(key)
-				System.out.println("fileList : " + fileList);
 				
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
 				RmAccomoInfoDTO thumbnail = new RmAccomoInfoDTO();
@@ -186,11 +182,9 @@ public class InsertRoomModify extends HttpServlet {
 					tempFileInfo.setFileType(file.get("fileType"));
 					tempFileInfo.setThumbnailPath(file.get("thumbnailPath"));
 					
-					System.out.println(tempFileInfo);
 					//list.add(tempFileInfo);
 				}
 				
-				System.out.println("thumbnail board : " + thumbnail);
 				
 
 
@@ -205,7 +199,6 @@ public class InsertRoomModify extends HttpServlet {
 				roomDTO.setRoomIntro(parameter.get("roomIntro"));
 				roomDTO.setRoomMax(Integer.parseInt(parameter.get("roomMax")));
 				roomDTO.setRoomName(parameter.get("roomName"));
-				System.out.println(roomDTO);
 				/* DTO 값 RM_ROOM_INFO에 인서트*/
 				
 				RoomService roomService = new RoomService();
@@ -217,7 +210,6 @@ public class InsertRoomModify extends HttpServlet {
 				int result = 0;
 				result = roomService.insertRmRoomThumbnail(tempFileInfo,roomDTO);
 				
-				System.out.println("리젙트는?????  " + result);
 				if(result > 0 ) {
 					
 					String path="";

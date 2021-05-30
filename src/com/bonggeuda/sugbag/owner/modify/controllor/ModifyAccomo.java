@@ -28,14 +28,12 @@ public class ModifyAccomo extends HttpServlet {
 		
 
 		int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
-		System.out.println(accomoNo);
 		RmAccomoInfoDTO rmAccomoInfo = new RmAccomoInfoDTO();
 		
 		
 	      /* 숙소 수정중 인지 카운트 세서 보내주기*/
 	     int isRemo = modifyService.selectrmCount(accomoNo);
 	     
-	     System.out.println("isRemo " + isRemo);
 	     String path = "";
 	     
 	     if(isRemo > 0) {

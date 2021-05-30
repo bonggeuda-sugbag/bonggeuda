@@ -24,11 +24,7 @@ public class RegistrationAccomo3 extends HttpServlet {
 		
 	    HttpSession session = request.getSession();
 	    int ownerNo = (Integer)session.getAttribute("ownerNo");
-	    System.out.println("ownerNo : " + ownerNo);
 
-	    
-	    
-	    System.out.println("여기는 오는가?");
 		
 		/*등록3단계*/
 		String checkIn = request.getParameter("checkIn");
@@ -63,9 +59,8 @@ public class RegistrationAccomo3 extends HttpServlet {
 		accomoDTO.setPeakEnd(peakEnd);
 		accomoDTO.setOwnerNo(ownerNo);
 		
-		// accomoDTO.setEnAccomoNo(selectEnNo + 1); //현재 등록된 번호보다 1 증가한 값을 담아줌 시퀀스
 		accomoDTO.setRequsetNo(selectRequestNextVal);
-		System.out.println("selectRequestNextVal :" + selectRequestNextVal);
+		
 		String[] arrayFacility = request.getParameterValues("facility");
 		String facility = "";
 		for(int i=0; i < arrayFacility.length; i++) {
@@ -81,11 +76,6 @@ public class RegistrationAccomo3 extends HttpServlet {
 		
 		int insertAccomo = accomoService.InsertAccomoServlet(accomoDTO, ownerNo); //값을 int형으로 반환받아야 함
 
-		
-		/* 사진 인서트 해주고 알이에프넘 리퀘스트넘 최댓값(넥스트 발 해준 ) 조회해서 해당 */
-		/* 어태치먼트의 어태치먼트 넘버 최뎃값 조회해서 */
-		
-		
 		
 		String path="";
 

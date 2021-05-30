@@ -39,7 +39,7 @@ public class OwnerBListServlet extends HttpServlet {
 		
 		int totalCount = service.totalBlistCount();
 		
-		PageInfoDTO pageInfo = getPageInfo(pageNo, totalCount, 5, 5);
+		PageInfoDTO pageInfo = getPageInfo(pageNo, totalCount, 10, 5);
 		
 		bList = service.bListSelect(pageInfo);
 		System.out.println(bList);

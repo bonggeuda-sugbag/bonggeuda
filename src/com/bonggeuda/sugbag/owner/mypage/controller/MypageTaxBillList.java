@@ -46,9 +46,7 @@ public class MypageTaxBillList extends HttpServlet {
 		OwnerMypagService ownerService = new OwnerMypagService();
 		
 		int taxTotalCount = ownerService.taxTotalCount(ownerNo);
-		
-		System.out.println("totalCount 체크 : " + taxTotalCount);
-		
+				
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
 		

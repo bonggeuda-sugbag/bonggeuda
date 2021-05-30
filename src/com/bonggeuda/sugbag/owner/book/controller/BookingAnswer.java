@@ -23,9 +23,6 @@ public class BookingAnswer extends HttpServlet {
 	
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
 		String content = request.getParameter("content");
-
-		System.out.println(qnaNo);
-		System.out.println(content);
 		
 		/*전달받은 값을 넣어줄 객체 선언*/
 		AdminQnADTO qnaDTO = new AdminQnADTO();
@@ -54,7 +51,6 @@ public class BookingAnswer extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
-		System.out.println(qnaNo);
 		
 		BookingQnAService qnaService = new BookingQnAService();
 

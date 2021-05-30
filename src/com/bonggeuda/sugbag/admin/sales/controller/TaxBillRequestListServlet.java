@@ -49,10 +49,9 @@ public class TaxBillRequestListServlet extends HttpServlet {
 		
 		int requestCount = service.totalTaxRequestCount(taxStatus);
 		
-		PageInfoDTO pageInfo = getPageInfo(pageNo, requestCount, 7, 5);
+		PageInfoDTO pageInfo = getPageInfo(pageNo, requestCount, 10, 5);
 		
 		requestTaxList = service.requestTaxList(pageInfo, taxStatus);
-		
 		
 		String path = "";
 		if(requestTaxList != null) {

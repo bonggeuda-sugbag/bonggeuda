@@ -36,11 +36,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
-			
-			System.out.println("파일 저장 ROOT 경로 : " + rootLocation);
-			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
-			System.out.println("인코딩 방식 : " + encodingType);
-			
+
 			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
 			
@@ -134,8 +130,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 					}
 				}
 				
-				System.out.println("parameter : " + parameter);
-				System.out.println("fileList : " + fileList);
+
 				
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
 				RoomDTO thumbnail = new RoomDTO();
@@ -158,7 +153,6 @@ public class RegistrationAccomo4 extends HttpServlet {
 					list.add(tempFileInfo);
 				}
 				
-				System.out.println("thumbnail board : " + thumbnail);
 				
 				
 				
@@ -245,7 +239,6 @@ public class RegistrationAccomo4 extends HttpServlet {
 						roomList.add(roomDTO5);
 					}
 					
-					System.out.println("리스트 값 저장 확인 : " + roomList);
 					// 방금 인서트 된 숙소 EN_ACCOMO_NO 값 조회해 오기
 					RoomService roomServaice = new RoomService();
 					// 객실 인서트(사진아님) 할때 넘겨줄 값
