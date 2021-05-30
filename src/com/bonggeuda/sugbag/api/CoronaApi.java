@@ -79,10 +79,8 @@ public class CoronaApi extends HttpServlet {
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(parsingUrl);
 			doc.getDocumentElement().normalize();
-//			System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
 			//파싱할 tag
 			NodeList nList = doc.getElementsByTagName("item");
-//		    dSystem.out.println(nList.getLength()); //파싱할 리스트 수
 			XmlParsing getValue = new XmlParsing();
 			CoronaDTO coronaInfo = new CoronaDTO();
 			for(int i = 0; i < nList.getLength(); i++) {

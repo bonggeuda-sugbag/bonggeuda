@@ -187,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<c:choose>
 							<c:when test="${empty requestScope.prePerList }">
 								
-								<button id="statusButton" style="height: 40px">정산할 매출 내역이 없습니다.</button>
+								<button style="height: 40px">정산할 매출 내역이 없습니다.</button>
 							
 							</c:when>
 							<c:otherwise>

@@ -243,18 +243,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			     	   	<h5><a href="${pageContext.servletContext.contextPath }/userevent/select">이벤트</a></h5>
 
 			     	   </div>
-		     	
 		      </div>
-		
-			  
 		      </div>
-		 	
 			 <br><br><br><br><br><br><br>     	
 		</div>
 		
 	</div>
 
-	
 </body>
+
 
 </html>

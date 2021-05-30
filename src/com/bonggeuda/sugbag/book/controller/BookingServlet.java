@@ -119,7 +119,7 @@ public class BookingServlet extends HttpServlet {
 			request.setAttribute("couponList", couponList);
 			request.setAttribute("point", point);
 		} else {
-			System.out.println("에러페이지 갈 예정");
+//			System.out.println("에러페이지 갈 예정");
 		}
 		request.getRequestDispatcher(path).forward(request, response);;
 	}

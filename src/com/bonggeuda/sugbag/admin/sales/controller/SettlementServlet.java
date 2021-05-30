@@ -29,49 +29,19 @@ public class SettlementServlet extends HttpServlet {
 		AdminService service = new AdminService();
 		
 		String status = request.getParameter("status");
-		
-		//정산 요청시 정산건이 없으나 요청이 왔을경우 처리할것
-//		if(status.equals("Y")) {
-//			// requestList update
-//			int updateRequestListCount = 0;
-//			
-//			updateRequestListCount = service.updateRequestList(accomoNo);
-//			
-//			String path = "";
-//			
-//			if(updateRequestListCount >= 1) {
-//				path = "/WEB-INF/views/admin/common/success.jsp";
-//				request.setAttribute("successCode", "stlRequestYn");
-//				request.setAttribute("accomoNo", accomoNo);
-//				
-//				
-//			}
-//	        request.getRequestDispatcher(path).forward(request, response);
-//			
-//			
-//		}
-		
-//		int intAccomoNo = 0;
-//		if(accomoNo != null && !accomoNo.equals("")) {
-			
-//			int intAaccomoNo = Integer.parseInt(request.getParameter("accomoNo"));
-//		}
-		
+				
 		int insertStlCount = 0;
 		
 		// STL insert
 		insertStlCount = service.insertStl(accomoNo);
 		
-		
 		// salesNo select
 		List<Integer> salesNoList = new ArrayList<Integer>();
 		salesNoList = service.salesNoList(accomoNo);
 		
-		
 		// salesHistory update
 		int updateSalesHistoryCount = 0;
 		updateSalesHistoryCount = service.updateSalesHistory(accomoNo);
-		
 		
 		// stlHistory insert
 		int insertStlHistoryCount = 0;
@@ -80,10 +50,7 @@ public class SettlementServlet extends HttpServlet {
 		int totalCount = 1 + (salesNoList.size() * 2);
 		
 		int updateRequestList = service.updateRequestList(accomoNo);
-
-		if(updateRequestList >= 1) {
-			System.out.println("정산 요청건 업데이트 완료");
-		}
+		
 		String path = "";
 		if(totalCount == insertStlHistoryCount + updateSalesHistoryCount + insertStlCount) {
 			path = "/WEB-INF/views/admin/common/success.jsp";
@@ -99,3 +66,34 @@ public class SettlementServlet extends HttpServlet {
 
 
 }
+
+
+
+
+
+//정산 요청시 정산건이 없으나 요청이 왔을경우 처리할것
+//if(status.equals("Y")) {
+//	// requestList update
+//	int updateRequestListCount = 0;
+//	
+//	updateRequestListCount = service.updateRequestList(accomoNo);
+//	
+//	String path = "";
+//	
+//	if(updateRequestListCount >= 1) {
+//		path = "/WEB-INF/views/admin/common/success.jsp";
+//		request.setAttribute("successCode", "stlRequestYn");
+//		request.setAttribute("accomoNo", accomoNo);
+//		
+//		
+//	}
+//    request.getRequestDispatcher(path).forward(request, response);
+//	
+//	
+//}
+
+//int intAccomoNo = 0;
+//if(accomoNo != null && !accomoNo.equals("")) {
+	
+//	int intAaccomoNo = Integer.parseInt(request.getParameter("accomoNo"));
+//}
