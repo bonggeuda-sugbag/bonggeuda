@@ -34,14 +34,10 @@ public class NoticeInsertServlet extends HttpServlet {
 		AdminNoticeDTO  dto = new AdminNoticeDTO();
 		
 		String content = request.getParameter("content");
-//		Date.valueOf(request.getParameter("writeDate")); 
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
-		
-//		int condition = Integer.parseInt(request.getParameter("condition")); //상태여부 얼먀넘어면 사용가능
       
 		dto.setContent(content);
-//		dto.setWriteDate(Date.valueOf(request.getParameter("writeDate")));
 		dto.setWriteDate(new Date(System.currentTimeMillis()));
 		dto.setTitle(title);
 		dto.setWriter(writer);

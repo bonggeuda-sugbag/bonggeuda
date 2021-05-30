@@ -42,8 +42,7 @@ public class AccomoDAO {
 		
 		String selectQuery = prop.getProperty("selectEnNo");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(selectQuery);
+
 		
 		try {
 			pstmt = con.prepareStatement(selectQuery);
@@ -54,7 +53,6 @@ public class AccomoDAO {
 				
 				selectEnNo = rset.getInt("MAX(EN_ACCOMO_NO)");
 			}
-			System.out.println("등록숙소번호 : " + selectEnNo);
 					
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -103,7 +101,6 @@ public class AccomoDAO {
 			
 			insert = pstmt.executeUpdate();
 			
-			System.out.println(insert);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -136,7 +133,6 @@ public class AccomoDAO {
 			e.printStackTrace();
 		}
 		
-		System.out.println("SeqReqSelectCurrval : " + selectRequestNextVal);
 		
 		return selectRequestNextVal;
 	}

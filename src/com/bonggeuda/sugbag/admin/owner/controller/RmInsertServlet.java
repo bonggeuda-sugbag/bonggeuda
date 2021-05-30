@@ -56,11 +56,9 @@ public class RmInsertServlet extends HttpServlet {
 		attList2 = service.selectAttachment(accomo.getEnAccomoNo(), "r");
 		if(enMap != null) {
 			insertAccomoResult = service.accomoInsert(accomo, attList);
-			System.out.println("insertAccomoResult : " + insertAccomoResult);
 			
 			if(insertAccomoResult >= 1) {
 				insertRoomResult = service.roomInsert(roomList, attList2);
-				System.out.println("insertAccomoResult : " + insertRoomResult);
 			}
 		}
 		
@@ -69,13 +67,8 @@ public class RmInsertServlet extends HttpServlet {
 		int insertHistoryCount = 0;
 		
 		totalInsertCount = 1 + attList.size() + roomList.size() + attList2.size();
-		System.out.println("attListSize : " + attList.size());
-		System.out.println("att2ListSize : " + attList2.size());
-		System.out.println("roomListSize : "  + roomList.size());
-		System.out.println("totalInsertCount : " + totalInsertCount);
 		
 		insertCount = insertAccomoResult + insertRoomResult;
-		
 		
 //		전부다 insert완료 시 update, 이력 insert진행
 		if(totalInsertCount == insertCount) {
@@ -90,7 +83,6 @@ public class RmInsertServlet extends HttpServlet {
 			request.setAttribute("successCode", "insert");
 		}
 		request.getRequestDispatcher(path).forward(request, response);
-		
 		
 	}
 

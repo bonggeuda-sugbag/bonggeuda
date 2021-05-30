@@ -62,7 +62,6 @@ public class ModifyAccomo1 extends HttpServlet {
 		rmAcoomoDTO.setAdrDetail(adrDetail);
 		rmAcoomoDTO.setEmail(email);
 		rmAcoomoDTO.setHomepage(homepage);
-		System.out.println("요기는" + rmAcoomoDTO);
 		
 		
 		// 조회해 오고 담아서 뿌려주기

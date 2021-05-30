@@ -136,12 +136,6 @@ public class ReportWrite extends HttpServlet {
 								width = 350;
 								height = 200;
 								System.out.println("보디로 왔나요?");
-							} else {
-								fileMap.put("fileType", "BODY"); // 타이틀에서 보디로 변경
-								System.out.println("엘스로 왔나요");
-								/* 썸네일로 변환 할 사이즈를 지정한다. */
-								width = 350;
-								height = 200;
 							}
 							
 							/* 썸네일로 변환 후 저장한다. */
@@ -170,10 +164,7 @@ public class ReportWrite extends HttpServlet {
 					}
 				}
 				
-				System.out.println("parameter : " + parameter);
-				//parameter.get(key)
-				System.out.println("fileList : " + fileList);
-				
+
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
 				ReportDTO thumbnail = new ReportDTO();
 
@@ -187,18 +178,14 @@ public class ReportWrite extends HttpServlet {
 					tempFileInfo.setSavePath(file.get("savePath"));
 					tempFileInfo.setFileType(file.get("fileType"));
 					tempFileInfo.setThumbnailPath(file.get("thumbnailPath"));
-					
-					System.out.println(tempFileInfo);
-					//list.add(tempFileInfo);
+
 				}
 				
 				System.out.println("thumbnail board : " + thumbnail);
 				
-				//REF NO 맥스값 조회후 +1 해서 인서트
 				ReportWriteService  reportImageInsert = new ReportWriteService();
 				int refNoMax = reportImageInsert.selectRefMaxNo();
 				
-				// 1 더해주기 (넥스트발) 
 				refNoMax +=1;
 				
 				System.out.println("refNoMax" + refNoMax);

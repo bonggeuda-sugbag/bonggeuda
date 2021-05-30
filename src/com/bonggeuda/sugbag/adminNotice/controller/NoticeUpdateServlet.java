@@ -22,23 +22,17 @@ public class NoticeUpdateServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("두번째 확인 : " + request.getParameter("noticeNo"));
-		
 		AdminNoticeService updateNotice = new AdminNoticeService();
 		AdminNoticeDTO noticeInfo = new AdminNoticeDTO();
 		
-		String content = request.getParameter("content");
-//		Date.valueOf(request.getParameter("writeDate")); 
+		String content = request.getParameter("content"); 
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
 		
 		noticeInfo.setContent(content);
-//		updateDTO.setWriteDate(Date.valueOf(request.getParameter("writeDate")));
 		noticeInfo.setTitle(title);
 		noticeInfo.setWriter(writer);
-		
-		System.out.println("확인 : " + noticeInfo);
-		
+
 		int update = updateNotice.updateNoitce(noticeInfo,Integer.parseInt(request.getParameter("noticeNo")));
 		
 		Map<String,String[]> requestMap = request.getParameterMap();

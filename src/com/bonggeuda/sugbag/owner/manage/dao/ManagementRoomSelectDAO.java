@@ -42,7 +42,6 @@ public class ManagementRoomSelectDAO {
 		int totalCount = 0;
 		
 		String query = prop.getProperty("selectRoomCount");
-		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			
@@ -60,7 +59,6 @@ public class ManagementRoomSelectDAO {
 			close(pstmt);
 		}
 		
-		System.out.println("DAO 토탈 카운트1 : " + totalCount);
 		
 		return totalCount;
 

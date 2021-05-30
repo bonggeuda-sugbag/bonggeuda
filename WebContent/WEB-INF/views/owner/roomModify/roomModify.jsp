@@ -100,7 +100,7 @@
                </div>
                   <span class="form-title" style="display:inline-block";>최대 정원</span>
                   <span>
-                     <select name="roomMax" class="select-nomalsize"  value="<c:out value="${ requestScope.roomDTO.roomMax }"/>" >
+                     <select name="roomMax" class="select-nomalsize"  value="<c:out value="${ requestScope.roomDTO.roomMax }"/>" required="required" >
                         <option value="1">1명</option>
                         <option value="2" selected>2명</option>
                         <option value="3">3명</option>

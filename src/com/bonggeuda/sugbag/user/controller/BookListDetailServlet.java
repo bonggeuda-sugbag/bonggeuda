@@ -21,8 +21,6 @@ public class BookListDetailServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("두번째 값아아아아아아아!: " + request.getParameter("bookNo"));
-		
 		UserInfoService userInfoService = new UserInfoService();
 		
 		ReservationDetailDTO userReservationInfo = userInfoService.selectStatusDetail(request.getParameter("bookNo"));
@@ -34,7 +32,6 @@ public class BookListDetailServlet extends HttpServlet {
 		if(userReservationInfo != null) {
 			path = "/WEB-INF/views/admin/user/userReservationDetail.jsp";
 			request.setAttribute("userReservationInfo", userReservationInfo);
-//			request.setAttribute("bookNo", request.getParameter("bookNo"))
 		} 
 		
 

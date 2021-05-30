@@ -171,13 +171,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>상호명<br>(법인명)</span>
-						<input type="text" class="select-nomalsize" name="accomoName" placeholder="사업자 등록증상 상호명" value="<c:out value="${ requestScope.rmAccomoInfo.accomoName }"/>">
+						<input type="text" class="select-nomalsize" name="accomoName" placeholder="사업자 등록증상 상호명" value="<c:out value="${ requestScope.rmAccomoInfo.accomoName }"/>" required="required">
 					</div>
 					<p class="description">* 게스트하우스 이름은 별도로 기입이 가능하오니 필히 사업자 상호, 등록번호를 입력해주시기 바랍니다.
 					</p>
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>등록증상<br>대표명</span>
-						<input type="text" class="select-nomalsize" name="ceoName" placeholder="대표자 명을 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.ceoName }"/>">
+						<input type="text" class="select-nomalsize" name="ceoName" placeholder="대표자 명을 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.ceoName }"/>" required="required">
 					</div>
 
 					<div class="form-layer">
@@ -203,18 +203,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>사업자<br> 등록번호</span>
-						<input type="text" class="select-nomalsize" name="registNo" placeholder="숫자만 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.registNo }"/>">
+						<input type="text" class="select-nomalsize" name="registNo" placeholder="숫자만 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.registNo }"/>" required="required">
 					</div>
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>업체 주소</span>
-						<input type="text" class="select-nomalsize"  style="margin-bottom: 8px;"  name="address" placeholder="사업자 등록증상 주소를 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.address }"/>">
+						<input type="text" class="select-nomalsize"  style="margin-bottom: 8px;"  name="address" placeholder="사업자 등록증상 주소를 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.address }"/>" required="required">
 						<button class="submit-btn" type="button" style="margin-left: 10px;" onclick="openZipSearch()"  >주소 검색</button>
 						<br>
-						<input type="text" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize" name="adrDetail" placeholder="나머지 주소를 입력하세요." value="">
+						<input type="text" style="margin-left: 125px; margin-top: 0px;" class="select-nomalsize" name="adrDetail" placeholder="나머지 주소를 입력하세요." value="" >
 					</div>
 					<div class="form-layer">
 						<span class="form-title" style="display:inline-block";>세금계산서<br> 이메일</span>
-						<input type="text" class="select-nomalsize" name="email" placeholder="이메일을 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.email }"/>">
+						<input type="text" class="select-nomalsize" name="email" placeholder="이메일을 입력하세요" value="<c:out value="${ requestScope.rmAccomoInfo.email }"/>" required="required">
 					</div>
 
 				</td>

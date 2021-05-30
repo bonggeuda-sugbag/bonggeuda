@@ -31,16 +31,13 @@ public class SalesList extends HttpServlet {
 		//로그인 값
 		HttpSession session = request.getSession();
 		int ownerNo = (Integer)session.getAttribute("ownerNo"); 	
-		System.out.println(ownerNo);
 		
 		SalesService salesService = new SalesService();
 		int accmoNo = Integer.parseInt(request.getParameter("accomoNo"));
 		String accomoName = request.getParameter("accomoName");
-		System.out.println(accomoName + "@@@@@@@@@@@@@@@");
 		
 		/* 1. 로우 스팬용 숙소 총갯수 조회 */
 		int rowspanCount = salesService.rowspanCountService(ownerNo,accmoNo);
-		System.out.println(rowspanCount + "!!!!");
 		
 		/* 2. 객실명 받아오기 */
 		List<String> roomNamsList = new ArrayList<String>();

@@ -121,9 +121,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<c:when test="${ taxBillList.responseYn eq 'Y'}">
 								<th>발급 완료</th>
 								<th>
-									<form action="/bonggeuda/owner/#" method="post">
+									<form action="pdfDown.jsp" method="post">
 										<button type="submit" style="background-color: white; border: 1px;">
 											<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/pdf.png" style="width: 28px; height: 28px;">
+											<input type="hidden" name="param1" value="taxBill.pdf"/>
+											<input type="hidden" name="param2" value="taxBill2.pdf"/>
 										</button>
 									</form>
 								</th>

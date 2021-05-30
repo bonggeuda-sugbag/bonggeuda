@@ -39,8 +39,6 @@ public class ManagementListServlet extends HttpServlet {
 		UserInfoService userInfoServie = new UserInfoService();
 		int totalCount = userInfoServie.selectTotalCount();
 		
-//		System.out.println("totalCount 체크 : " + totalCount);
-		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
 		/* 한 번에 보여질 페이징 버튼의 수*/
@@ -49,13 +47,9 @@ public class ManagementListServlet extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
-//		System.out.println(pageInfo);
-		
 		/* 조회 해온다. */
 		List<UserInfoDTO> userList = userInfoServie.selectBoardList(pageInfo);
-		
-		System.out.println("처음 userList : " + userList);
-		
+	
 		String path = "";
 		if(userList != null) {
 			path = "/WEB-INF/views/admin/user/userInfo.jsp";

@@ -38,8 +38,6 @@ public class EventListServlet extends HttpServlet {
 		AdminEventService adminEventService = new AdminEventService();
 		int eventCount = adminEventService.selectEventTotalCount();
 		
-//		System.out.println("totalCount 체크 : " + totalCount);
-		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
 		/* 한 번에 보여질 페이징 버튼의 수*/
@@ -48,13 +46,9 @@ public class EventListServlet extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, eventCount, limit, buttonAmount);
 		
-//		System.out.println(pageInfo);
-		
 		/* 조회 해온다. */
 		List<EventDTO> eventList = adminEventService.selectEventList(pageInfo);
-		
-		System.out.println("eventList : " + eventList);
-		
+
 		String path = "";
 		if(eventList != null) {
 			path = "/WEB-INF/views/admin/event/event.jsp";

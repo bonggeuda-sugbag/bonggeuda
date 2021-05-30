@@ -22,8 +22,6 @@ public class QnADetailServlet extends HttpServlet {
 		AdminQnAService adminqnaService = new AdminQnAService();
 		
 		QnADTO qnaInfo = adminqnaService.selectqnaDetail(Integer.parseInt(request.getParameter("qnaNo")));
-
-		System.out.println("rrrr"+ request.getParameter("qnaNo"));
 		
 		String path = "";
 		
