@@ -48,7 +48,7 @@ public class ModifyAccomo2 extends HttpServlet {
 			
 
 			
-			String fileUploadDirectory = rootLocation + "/esources/upload/original/";
+			String fileUploadDirectory = rootLocation + "/esources/upload/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
 			
 			File directory = new File(fileUploadDirectory);

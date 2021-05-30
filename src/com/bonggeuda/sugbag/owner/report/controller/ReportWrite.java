@@ -188,12 +188,10 @@ public class ReportWrite extends HttpServlet {
 				
 				refNoMax +=1;
 				
-				System.out.println("refNoMax" + refNoMax);
 				/* 서비스 메소드를 요청한다. */
 				int result = 0;
 				result = reportImageInsert.insertReportThumbnail(tempFileInfo);
 				
-				System.out.println("리젙트는?????  " + result);
 
 				String writerType = "owner";
 				String reportedType = "guest";
@@ -203,14 +201,12 @@ public class ReportWrite extends HttpServlet {
 				
 				String reportTitle = parameter.get("reportTitle");
 				String reportContent = parameter.get("reportContent");
-				System.out.println(reportTitle + reportContent);
 				
 				ReportWriteService reportInsertService = new ReportWriteService();
 				
 				refNoMax +=1;
 				int reportInsert = reportInsertService.reportInsertService(refNoMax,writerType,reportedType,userNo,ownerNo,reportTitle,reportContent);
 				
-				System.out.println(reportInsert + "reportInsert");
 				
 				if(reportInsert > 0) {
 					

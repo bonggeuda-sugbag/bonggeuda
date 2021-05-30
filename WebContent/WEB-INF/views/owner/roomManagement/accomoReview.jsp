@@ -566,12 +566,11 @@ textarea {
    <div class="container">
       <!--logo-->
          <div class="logo">
-            <h1><a href="index.html">Bonggeuda</a></h1>
+            <h1><a href="/bonggeuda/owner/main">Bonggeuda</a></h1>
          </div>
       <!--//logo-->
       <div class="top-nav">
          <ul class="right-icons">
-			<li><span ><a  href="${ pageContext.servletContext.contextPath }/user/list">사용자관리</a></span></li>
 				<li><a href="/bonggeuda/owner/registration">숙소등록</a></li>
 				<li><a href="/bonggeuda/owner/managementRoom">숙소관리</a></li>
 				<li><a href="/bonggeuda/owner/bookingList">예약관리</a></li>
@@ -924,17 +923,7 @@ textarea {
                 </ul> 
 				<hr>
 				<div class="clearfix"> </div>
-	    <nav>
-		<ul class="pagination">
-		  <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-		  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-		  <li><a href="#">2</a></li>
-		  <li><a href="#">3</a></li>
-		  <li><a href="#">4</a></li>
-		  <li><a href="#">5</a></li>
-		  <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-	   </ul>
-	   </nav>
+	
                 
                 <!-- //리뷰내용 -->
             </div>

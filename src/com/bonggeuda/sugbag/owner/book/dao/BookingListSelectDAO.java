@@ -266,8 +266,7 @@ public class BookingListSelectDAO {
 		
 		String query = prop.getProperty("pastBookingTotalCount");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
+
 		
 		try {
 			
@@ -355,8 +354,7 @@ public class BookingListSelectDAO {
 		
 		String query = prop.getProperty("bookingTotalCount");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
+
 		
 		try {
 			
@@ -437,7 +435,7 @@ public class BookingListSelectDAO {
 		
 		String query = prop.getProperty("bookAllowStatusUpadte");
 		
-		System.out.println("이용완료쿼리 : " + query);
+
 		
 		int result = 0;
 		
