@@ -57,7 +57,6 @@ public class RegistrationAccomo2 extends HttpServlet {
 			
 	
 			if(!directory.exists() || !directory2.exists()) {
-				/* 폴더를 한 개만 생성할거면 mkdir, 상위 폴더도 존재하지 않으면 한 번에 생성하란 의미로 mkdirs를 이용한다. */
 				System.out.println("폴더 생성 : " + directory.mkdirs());
 				System.out.println("폴더 생성 : " + directory2.mkdirs());
 			}
@@ -88,9 +87,7 @@ public class RegistrationAccomo2 extends HttpServlet {
 						
 						if(item.getSize() > 0) {
 							
-							/* 파일의 사이즈가 0보다 커야 전송된 파일이 있다는 의미이다. 
-							 * 전송된 파일이 있는 경우에만 처리하고, 0인 경우에는 무시하도록 로직을 작성한다.
-							 * */
+
 							String filedName = item.getFieldName();
 							String originFileName = item.getName();
 							
@@ -99,20 +96,17 @@ public class RegistrationAccomo2 extends HttpServlet {
 							
 							String randomFileName = item.getName(); // UUID.randomUUID().toString().replace("-", "") + ext;
 							
-							/* 저장할 파일 정보를 담은 인스턴스를 생성하고 */
 							File storeFile = new File(fileUploadDirectory  +"/"+ randomFileName);
 							
-							/* 저장한다 */
+							/*  */
 							item.write(storeFile);
 							
-							/* 필요한 정보를 Map에 담는다. */
 							Map<String, String> fileMap = new HashMap<>();
 							fileMap.put("filedName", filedName);
 							fileMap.put("originFileName", originFileName);
 							fileMap.put("savedFileName", randomFileName);
 							fileMap.put("savePath", fileUploadDirectory);
 							
-							/* 제목 사진과 나머지 사진을 구분하고 썸네일도 생성한다. */
 							int width = 0;
 							int height = 0;
 							if("thumbnailImg1".equals(filedName)) {
@@ -121,7 +115,6 @@ public class RegistrationAccomo2 extends HttpServlet {
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
-								System.out.println("보디로 왔나요?");
 							}
 							
 							Thumbnails.of(fileUploadDirectory + randomFileName)
