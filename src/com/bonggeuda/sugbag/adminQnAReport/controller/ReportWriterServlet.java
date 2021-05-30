@@ -25,8 +25,6 @@ public class ReportWriterServlet extends HttpServlet {
 		String condition = request.getParameter("searchCondition");
 		String value = request.getParameter("searchValue");
 
-		System.out.println("111111111111 : " + condition);
-		System.out.println("222222222222 : " + value);
 		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
 		 * */
@@ -49,7 +47,6 @@ public class ReportWriterServlet extends HttpServlet {
 		AdminReportService adminReportservie = new AdminReportService();
 		int reportWriterCount = adminReportservie.searchReportWriterCount(condition, value);
 		
-		System.out.println("reportWriterCount : " + reportWriterCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
@@ -59,12 +56,10 @@ public class ReportWriterServlet extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, reportWriterCount, limit, buttonAmount);
 		
-		System.out.println(pageInfo);
 		
 		/* 조회해온다 */
 		List<ReportDTO> reportList = adminReportservie.selectSearchReportWriterList(condition, value, pageInfo);
 		
-		System.out.println("작성자구분reportList : " + reportList);
 		
 		String path = "";
 		if(reportList != null) {

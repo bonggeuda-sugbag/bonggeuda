@@ -146,7 +146,7 @@ public class UserInfoDAO {
 
 
 	public int insertCoupon (Connection con, UserCouponDTO dto, int hduserNo) { // 사용자 쿠폰 추가 insert
-		System.out.println(dto);
+
 		PreparedStatement pstmt = null;
 		
 		int result = 0;
@@ -224,7 +224,7 @@ public class UserInfoDAO {
 		
 		String query = null;
 		List<UserInfoDTO> userList = null;
-		System.out.println("디에이오 " + value);
+
 		if(condition.equals("userId")) {
 			
 			query = prop.getProperty("selectSearch");

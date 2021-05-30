@@ -39,7 +39,6 @@ public class BlackListServlet extends HttpServlet {
 		UserInfoService userInfoService = new UserInfoService();
 		int blackCount = userInfoService.selectblackCount();
 		
-		System.out.println("blackCount 체크 : " + blackCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
@@ -54,7 +53,6 @@ public class BlackListServlet extends HttpServlet {
 		/* 조회 해온다. */
 		List<UserBlistDTO> blackList = userInfoService.selectBlackList(pageInfo);
 		
-		System.out.println("blackList : " + blackList);
 		
 		String path = "";
 		if(blackList != null) {

@@ -34,7 +34,7 @@ public class QnAInsertServlet extends HttpServlet {
 		dto.setWriteDate(new Date(System.currentTimeMillis()));
 
 		int insertQna= qnaInfoService.insertQna(dto);
-		System.out.println("dto안에 값이 있나? : " + dto);
+//		System.out.println("dto안에 값이 있나? : " + dto);
 		String path="";
 		if(insertQna > 0 ) {
 			path= "/bonggeuda/qna/list";
