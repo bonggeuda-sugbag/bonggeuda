@@ -390,7 +390,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								// 라디오버튼 클릭시 이벤트 발생
 								$("input:radio[name=radios]").click(function(){
 							 
-									if($("input[name=radios]:checked").val() == "OTHER"){
+									if($("input[name=radios]:checked").val() == "기타"){
 										$("input:text[name=reason]").attr("disabled",false);
 										// radio 버튼의 value 값이 OTHER이라면 활성화
 							 
