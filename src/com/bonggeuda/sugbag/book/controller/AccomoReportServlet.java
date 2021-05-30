@@ -166,7 +166,7 @@ public class AccomoReportServlet extends HttpServlet {
 				}
 				
 				if(cnt == fileList.size()) {
-					System.out.println(" 실패한 사진삭제 완료");
+//					System.out.println(" 실패한 사진삭제 완료");
 				} else {
 					e.printStackTrace();
 				}

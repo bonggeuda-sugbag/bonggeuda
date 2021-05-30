@@ -163,7 +163,6 @@ public class AdminNoticeDAO {
 
 	public static int updateNoitce(Connection con, AdminNoticeDTO updateDTO, int noticeNo) {
 		
-		System.out.println("DAO" + noticeNo);
 		PreparedStatement pstmt = null;
 		
 		int result = 0;
@@ -193,7 +192,6 @@ public class AdminNoticeDAO {
 
 	public static int deleteNoitce(Connection con, AdminNoticeDTO noticeInfo, int noticeNo) {
 	
-		System.out.println("딜리트 :" + noticeNo);
 		PreparedStatement pstmt = null;
 		
 		int result = 0;

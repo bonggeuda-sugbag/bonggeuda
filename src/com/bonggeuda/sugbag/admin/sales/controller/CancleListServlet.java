@@ -50,7 +50,7 @@ public class CancleListServlet extends HttpServlet {
 		
 		int totalCancleCount = service.totalCancleCount(refundStatus);
 		
-		PageInfoDTO pageInfo = getPageInfo(pageNo, totalCancleCount, 10, 5);
+		PageInfoDTO pageInfo = getPageInfo(pageNo, totalCancleCount, 5, 5);
 		
 		cancleList = service.cancleList(pageInfo, refundStatus);
 		
@@ -63,6 +63,5 @@ public class CancleListServlet extends HttpServlet {
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
 
 }

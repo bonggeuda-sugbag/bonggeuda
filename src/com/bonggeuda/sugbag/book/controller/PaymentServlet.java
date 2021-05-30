@@ -39,7 +39,6 @@ public class PaymentServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("결제 서블릿 호출");
 		//예약자번호
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
 		int userNo = member.getUserNo();
@@ -90,7 +89,6 @@ public class PaymentServlet extends HttpServlet {
 		payment.setDiscount(discount);
 		
 		int pointNo = Integer.parseInt(request.getParameter("pointNo"));
-		System.out.println("포인트번호 확인 : "+ pointNo);
 		
 		PointHistoryDTO pointGet = new PointHistoryDTO();
 		pointGet.setGetuseType("G");

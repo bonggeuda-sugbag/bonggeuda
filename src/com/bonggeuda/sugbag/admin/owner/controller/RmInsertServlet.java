@@ -53,7 +53,10 @@ public class RmInsertServlet extends HttpServlet {
 		attList = service.selectAttachment(requestNo, "a");
 		
 //		ar = "r";
+		System.out.println("enAccomoNo : " + accomo.getEnAccomoNo());
 		attList2 = service.selectAttachment(accomo.getEnAccomoNo(), "r");
+		System.out.println("attList2 : " + attList2);
+		
 		if(enMap != null) {
 			insertAccomoResult = service.accomoInsert(accomo, attList);
 			
@@ -72,7 +75,6 @@ public class RmInsertServlet extends HttpServlet {
 		
 //		전부다 insert완료 시 update, 이력 insert진행
 		if(totalInsertCount == insertCount) {
-			
 			updateResult = service.updateRmList(enMap);
 			insertHistoryCount = service.insertHistory(enMap, cancleReason);
 		}

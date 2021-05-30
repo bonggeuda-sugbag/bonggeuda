@@ -28,6 +28,8 @@ public class TaxBillRequest extends HttpServlet {
 		int stlNo = Integer.parseInt(request.getParameter("reqStlNo"));
 		int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
 		
+		System.out.println(stlNo);
+		System.out.println(accomoNo);
 		
 		OwnerMypagService ownerService = new OwnerMypagService();
 		

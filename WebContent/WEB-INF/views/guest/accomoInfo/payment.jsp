@@ -626,7 +626,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     $("#doPay").click(function(){
         var IMP = window.IMP; // 생략가능
         
-        IMP.init('imp61135991'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+        IMP.init('imp61135991'); // 
         //전달해야하는 변수
         var msg;
         const bookName = document.getElementsByName("bookName")[0].value;
@@ -704,7 +704,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     	                    	couponNo : couponNo
     				    	},
     				    	success:function(data, textStatus, xhr){
-    				    		alert("결제성공!!\n예약이 완료었습니다.");
+    				    		alert("결제 성공하였습니다!!\n예약이 완료었습니다.");
     				    		location.replace("${pageContext.servletContext.contextPath}/userbooklist/select")
     				    	},
     				    	error:function(xhr,status,error){
@@ -717,7 +717,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                alert("결제실패!")
+                alert("결제 실패하였습니다.!")
             }
         });
         

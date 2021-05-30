@@ -29,13 +29,10 @@ public class RmListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AdminService service = new AdminService();
-		
 		Map<String, Object> totalRmMap = new HashMap<String, Object>();
-		
 		String yn = "N";
 		String enRm = "EN";
 		String accomoRoom = "accomo";
-		
 		String sortCondition1 = request.getParameter("sortCondition1");
 		String sortCondition2 = request.getParameter("sortCondition2");
 		String sortCondition3 = request.getParameter("sortCondition3");
@@ -59,9 +56,7 @@ public class RmListServlet extends HttpServlet {
 		} 
 		
 		String currentPage = request.getParameter("currentPage");
-		
 		int pageNo = 1;
-		
 		if(currentPage != null && !currentPage.equals("")) {
 			pageNo = Integer.parseInt(currentPage);
 		}
@@ -85,7 +80,6 @@ public class RmListServlet extends HttpServlet {
 				accomoSortList.add(rmAccomoInfo);
 			} 
 		}
-		
 		for(RoomInfoDTO rmRoomInfo : roomRmList) {
 			if(rmRoomInfo.getRmType().equals(enRm)) {
 				roomSortList.add(rmRoomInfo);
@@ -101,13 +95,12 @@ public class RmListServlet extends HttpServlet {
 		} else if(accomoRoom.equals("room")) {
 			totalYNCount = roomSortList.size();
 		}
-		
-		PageInfoDTO pageInfo = getPageInfo(pageNo, totalYNCount, 10, 5);
+		PageInfoDTO pageInfo = getPageInfo(pageNo, totalYNCount, 5, 5);
 		
 		List<AccomoInfoDTO> pageAccomoList = new ArrayList<AccomoInfoDTO>();
 		List<RoomInfoDTO> pageRoomList = new ArrayList<RoomInfoDTO>();
 		
-//		페이징 처리
+		// 페이징 처리
 		if(accomoRoom.equals("accomo")) {
 			for(int i = 1; i <= accomoSortList.size(); i++) {
 				if(i >= pageInfo.getStartRow() && i <= pageInfo.getEndRow()) {
@@ -139,15 +132,8 @@ public class RmListServlet extends HttpServlet {
 				request.setAttribute("sortCondition1", sortCondition1);
 				request.setAttribute("sortCondition2", sortCondition2);
 				request.setAttribute("sortCondition3", sortCondition3);
-				
 			}
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-	}
-
 }

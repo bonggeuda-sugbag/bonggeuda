@@ -31,7 +31,6 @@ public class ReviewSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-		System.out.println("리뷰서블릿 요청확인");
 		int userNo = member.getUserNo();
         BookService bsvc = new BookService();
         int totalCount = 0;
@@ -95,7 +94,6 @@ public class ReviewSelectServlet extends HttpServlet {
 				attach.setThumbnailPath(reviewPicture.get(no));
 				reviewList.get(i).setAttachment(attach);
 			}
-			
 			//업다운상태추가
 			if(upDownStatus.get(no) != null) {
 				reviewList.get(i).setUpdownStatus(upDownStatus.get(no));

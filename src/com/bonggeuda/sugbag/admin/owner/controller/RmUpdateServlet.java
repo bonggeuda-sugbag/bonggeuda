@@ -42,21 +42,16 @@ public class RmUpdateServlet extends HttpServlet {
 			requestNo = Integer.parseInt(accomoRequestNo);
 			
 			AccomoInfoDTO accomo = service.rmAccomoInfo(requestNo);
-			
 			updateMap.put("accomo", accomo);
 			updateMap.put("roomList", null);
 			
 			if(accomo != null) {
-				
 				updateResult = service.updateAccomo(accomo);
-				
 			}
 			
 			if(updateResult >= 2) {
-				
 				updateRmList = service.updateRmList(updateMap);
 				insertHistory = service.insertHistory(updateMap, cancleReason);
-				
 			}
 			
 			totalCount = updateResult + updateRmList + insertHistory;
@@ -78,16 +73,12 @@ public class RmUpdateServlet extends HttpServlet {
 			updateMap.put("roomList", roomList);
 			
 			if(roomList != null) {
-				
 				updateResult = service.updateRoom(roomList);
-				
 			}
 			
 			if(updateResult >= 2) {
-				
 				updateRmList = service.updateRmList(updateMap);
 				insertHistory = service.insertHistory(updateMap, cancleReason);
-				
 			}
 			
 			totalCount = updateResult + updateRmList + insertHistory;

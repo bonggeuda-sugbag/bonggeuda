@@ -37,7 +37,6 @@ public class OwnerListSelectServlet extends HttpServlet {
 		
 		if(currentPage != null && !currentPage.equals("")) {
 			pageNo = Integer.parseInt(currentPage);
-			
 		}
 		
 		int limit = 10;
