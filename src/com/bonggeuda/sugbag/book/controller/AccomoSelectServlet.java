@@ -23,19 +23,12 @@ public class AccomoSelectServlet extends HttpServlet {
 		// 숙소타입구분
 		String accomoType = request.getParameter("value");
 		String type=accomoType;
-//		switch(accomoType) {
-//		    case "hotel" : type = "호텔"; break;
-//		    case "pension" : type = "펜션"; break;
-//		    case "guestHouse" : type = "게스트하우스"; break;
-//		} 
-	    System.out.println(type);
 		// 타입별 숙소 리스트 검색
 		BookService booksvc = new BookService();
 		// 사진 카테고리
 		int category = 3;
 		List<AccomoInfoDTO> accomoList= booksvc.selectAccomoList(type,category);
 
-		
 		//최저가(0), 평점(1) 조회
 		List<Map> priceNrvScore = booksvc.selectPriceNstar(type);
 		

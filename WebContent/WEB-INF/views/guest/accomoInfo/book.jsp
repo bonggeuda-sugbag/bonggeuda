@@ -836,7 +836,7 @@ textarea {
 			</div>
 			<hr>
             <!-- //숙소상세정보 -->
-                  <script>
+                  <!-- <script>
 					    function bookChecking(){
 					    	alert("호출은 되나?");
 					    	var chekInD = document.getElementbyId("checkInD").value;
@@ -853,7 +853,7 @@ textarea {
 					    	console.log(b);
 					    	console.log(c);
 					    }
-					</script>
+					</script> -->
 			<!-- 리뷰 -->
 			<div id="btn3_content" style="display: none;">
                 <div style="margin: 0 auto;">
@@ -988,21 +988,21 @@ textarea {
                                 </div>
                                 <c:choose>
                                     <c:when test="${best.updownStatus eq 'U' }">
-                                        <div class="likeClick" id="like${best.reviewNo}"value = '${best.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div class="likeClick" id="like${best.reviewNo}"value = '${best.reviewNo}' onclick="likeHate(this);"></div>
                                         <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${best.reviewNo }"value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${best.reviewNo }"value = '${best.reviewNo}'  onclick="likeHate(this);"></div>
                                         <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
                                     </c:when>
                                      <c:when test="${best.updownStatus eq 'D' }">
-                                        <div class="like"id="like${best.reviewNo}" value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="like"id="like${best.reviewNo}" value = '${best.reviewNo}'  onclick="likeHate(this);"></div>
                                         <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
-                                        <div class="unlikeClick"id="unlike${best.reviewNo}" value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlikeClick"id="unlike${best.reviewNo}" value = '${best.reviewNo}'  onclick="likeHate(this);"></div>
                                         <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
                                     </c:when>
                                     <c:otherwise>
-                                        <div class="like" id="like${best.reviewNo}"value = '${best.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="like" id="like${best.reviewNo}"value = '${best.reviewNo}'  onclick="likeHate(this);"></div>
                                         <div><p name="review${best.reviewNo}">${best.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${best.reviewNo}"value = '${best.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${best.reviewNo}"value = '${best.reviewNo}' onclick="likeHate(this);"></div>
                                         <div><p name="review${best.reviewNo}">${best.downCnt }</p></div>
                                     </c:otherwise>
                                 </c:choose>
@@ -1056,81 +1056,25 @@ textarea {
                                 </div>
 								<c:choose>
                                     <c:when test="${normalReview.updownStatus eq 'U' }">
-                                        <div class="likeClick" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this.name)"></div>
+                                        <div class="likeClick" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this);"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${normalReview.reviewNo }"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${normalReview.reviewNo }"value = '${normalReview.reviewNo}'  onclick="likeHate(this);"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
                                     </c:when>
                                      <c:when test="${normalReview.updownStatus eq 'D' }">
-                                        <div class="like"id="like${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="like"id="like${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this);"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlikeClick"id="unlike${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="unlikeClick"id="unlike${normalReview.reviewNo}" value = '${normalReview.reviewNo}'  onclick="likeHate(this);"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
                                     </c:when>
                                     <c:otherwise>
-                                        <div class="like" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this)"></div>
+                                        <div class="like" id="like${normalReview.reviewNo}"value = '${normalReview.reviewNo}'  onclick="likeHate(this);"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.upCnt }</p></div>
-                                        <div class="unlike" id="unlike${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this)"></div>
+                                        <div class="unlike" id="unlike${normalReview.reviewNo}"value = '${normalReview.reviewNo}' onclick="likeHate(this);"></div>
                                         <div><p name="review${normalReview.reviewNo}">${normalReview.downCnt }</p></div>
                                     </c:otherwise>
                                 </c:choose>
-                                <script>
-                                function likeHate(p){
-                                	
-                                	var reviewNo = document.getElementById(p.id).attributes.value.value;
-									var className = document.getElementById(p.id).className;
-                                	var reviewName = "review" + reviewNo;
-                                	var anotherId = "";
-                                	var status = "";
-
-                                	switch(className){
-                                	case "like" : 
-                                		document.getElementById(p.id).className = "likeClick";
-                                		anotherId = "unlike" + reviewNo;
-                                		document.getElementById(anotherId).className = "unlike"; 
-                                		status = "U";
-                                		break;
-                                	case "likeClick" :
-                                		document.getElementById(p.id).className = "like";
-                                		anotherId = "unlike" + reviewNo;
-                                		document.getElementById(anotherId).className = "unlike";
-                                		status = "N";
-                                		break;
-                                	case "unlike" :
-                                		document.getElementById(p.id).className = "unlikeClick";
-                                		anotherId = "like" + reviewNo;
-                                		document.getElementById(anotherId).className = "like";
-                                		status = "D";
-                                		break;
-                                	case "unlikeClick" :
-                                		document.getElementById(p.id).className = "unlike";
-                                		anotherId = "like" + reviewNo;
-                                		document.getElementById(anotherId).className = "like";
-                                		status = "N";
-                                		break;
-                                	}
-                                	
-                                	$.ajax({
-                                		
-                                		url:"${pageContext.servletContext.contextPath}/accomoSelect/review",
-                                		type:"post",
-                                		data:{
-                                			status : status,
-                                			reviewNo : reviewNo
-                                		},
-                                		success:function(data, textStatus, xhr){
-                                			document.getElementsByName(reviewName)[0].innerHTML = data.up;
-                                			document.getElementsByName(reviewName)[1].innerHTML = data.down;
-                                			
-                                		}
-                                		
-                                		
-                                		
-                                	});
-
-                                }
-
-                                </script>
+                                
                             </div>
 							<div class="reviewScore" style="display: flex;">
 							<c:choose>
@@ -1170,6 +1114,57 @@ textarea {
                     </li>
                     </c:forEach>
                 </ul> 
+                <script>
+                                function likeHate(p){
+                                	
+                                	var reviewNo = document.getElementById(p.id).attributes.value.value;
+									var className = document.getElementById(p.id).className;
+                                	var reviewName = "review" + reviewNo;
+                                	var anotherId = "";
+                                	var status = "";
+                                	switch(className){
+                                	case "like" : 
+                                		document.getElementById(p.id).className = "likeClick";
+                                		anotherId = "unlike" + reviewNo;
+                                		document.getElementById(anotherId).className = "unlike"; 
+                                		status = "U";
+                                		break;
+                                	case "likeClick" :
+                                		document.getElementById(p.id).className = "like";
+                                		anotherId = "unlike" + reviewNo;
+                                		document.getElementById(anotherId).className = "unlike";
+                                		status = "N";
+                                		break;
+                                	case "unlike" :
+                                		document.getElementById(p.id).className = "unlikeClick";
+                                		anotherId = "like" + reviewNo;
+                                		document.getElementById(anotherId).className = "like";
+                                		status = "D";
+                                		break;
+                                	case "unlikeClick" :
+                                		document.getElementById(p.id).className = "unlike";
+                                		anotherId = "like" + reviewNo;
+                                		document.getElementById(anotherId).className = "like";
+                                		status = "N";
+                                		break;
+                                	}
+                                	$.ajax({
+                                		
+                                		url:"${pageContext.servletContext.contextPath}/accomoSelect/review",
+                                		type:"post",
+                                		data:{
+                                			status : status,
+                                			reviewNo : reviewNo
+                                		},
+                                		success:function(data, textStatus, xhr){
+                                			document.getElementsByName(reviewName)[0].innerHTML = data.up;
+                                			document.getElementsByName(reviewName)[1].innerHTML = data.down;
+                                			
+                                		}
+                                	});
+                                }
+
+                                </script>
 				<hr>
 				<div class="clearfix"> </div>
 <!-- 	    <nav>
