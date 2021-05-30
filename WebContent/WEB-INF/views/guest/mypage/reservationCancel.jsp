@@ -112,7 +112,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div id="cont_area" style="padding-top: 30px;"><!-- 본문 콘텐츠-->
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 100%;">
 
-			<div style="font-size: 15px; border: 1px solid; width: 100px; background: #6eceda; color: white; border-radius: 5px;">예약 확정</div>
+			<c:if test="${ requestScope.userBookCancle.bookApproveYN eq 'N' }">
+				<div style="font-size: 15px; border: 1px solid; width: 100px; background: yellow; color: darkgray; border-style: none; border-radius: 5px;">예약 대기</div>
+			</c:if>
+			<c:if test="${ requestScope.userBookCancle.bookApproveYN eq 'Y' }">
+				<div style="font-size: 15px; border: 1px solid; width: 100px; background: #6eceda; color: white; border-radius: 5px;">예약 확정</div>
+			</c:if>
 			<!-- <div style="font-size: 30px; margin-bottom: 20px; text-align: left;">제주 호텔</div>  -->
 			<!-- <img src="images/ga1.jpg" style="width: 70%; margin-bottom: 50px;"> -->
 
