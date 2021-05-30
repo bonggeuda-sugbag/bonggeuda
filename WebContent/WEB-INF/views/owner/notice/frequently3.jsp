@@ -74,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--header-->
 <!--//-->	
-<div class=" banner-booking"> <!--상단 메뉴바-->
+<div class=" banner-notice"> <!--상단 메뉴바-->
 	<div class=" container">
 		<h3>자주 묻는 질문</h3> 
 	<div class="clearfix"> </div>
@@ -123,29 +123,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div id="cont_area"><!-- 본문 콘텐츠-->
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 850px;">
 			<br><br>
-
-			<div style="font-weight: bold;">Q. 회원 가입 이후에 객실등록은 어떻게 하나요?</div><br>
+			<div style="font-weight: bold;">Q. 호스트하우스에는 어떤 기능이 있나요?</div><br>
 			<p style="background: #e9ebebbe;">
 				<br>
-				(1) 회원 가입은 별도의 가입비용 발생 없이 가입자의 이메일, 비밀번호만 입력하면 누구나 가입이 가능합니다.<br>
-				(2) 가입 이후 4단계 (마이페이지 작성, 소개 작성, 정책 작성, 객실 등록)을 모두 완료하시면 등록 요청이 완료 됩니다.
+				(1) 앱에 노출되는 게스트 정보, 소개를 직접 등록/편집/삭제할 수 있습니다.<br>
+				(2) 실시간 예약관리 및 요금 정보를 변경할 수 있습니다.<br>
+				(3) 1:1 문의를 통해 여기어때 운영팀과 쉽게 커뮤니케이션이 가능합니다
 				<br><br>
 			</p>
 			<br>
-			<div style="font-weight: bold;">Q. 숙소 소개 작성시 주의사항이 궁금해요.</div><br>
+			<div style="font-weight: bold;">Q. 마이페이지 작성시 주의사항이 궁금해요.</div><br>
 			<p style="background: #e9ebebbe;">
 				<br>
-				(1) 정보 등록 항목은 필수 정보와 부가 정보로 나뉘며 부가 정보 항목은는 기입할 내용이 없으면 작성하지 않으셔도 됩니다.<br>
-				(2) 우측 끝 “?” 아이콘은 화면 뷰가 어떻게 앱에서 표시되는지 미리 볼 수 있는 화면 이미지 입니다.<br>
-				(3) 작성시 어려움이 있으실 경우, ‘예시 문구 및 화면보기’를 클릭하여 알맞은 예시를 확인할 수 있습니다.
+				(1) 필수로 입력해야 하는 정보로는 [호스트 정보] 가 있으며 나머지 메뉴는 기입하지 않으셔도 되는 부가 정보입니다.<br>
+				(2) 사업자 등록정보는 사업자 등록증에 기재되어 있는 정보를 입력해주시기 바랍니다.<br>
+				(3) 업체 주소는 게스트 하우스 주소가 아닌, 등록증상 기재되어 있는 주소 입니다.
 				<br><br>
 			</p>
 			<br>
-			<div style="font-weight: bold;">Q. 숙소 정책 설정 시 주의사항이 궁금해요.</div><br>
+			<div style="font-weight: bold;">Q. 취소환불규정이 어떻게 되나요?</div><br>
 			<p style="background: #e9ebebbe;">
 				<br>
-				(1) 이용시간, 예약 유형, 예약 마감 시간 설정, 성수기 설정, 연박 할인 등 주요 정책(규칙)을 설정할 수 있습니다.<br>
-				(2) 예약 유형, 예약 마감 시간 설정, 연박 할인 설정은 11/15일 등록 및 변경이 가능합니다.
+				&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;취소일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;환불액<br></b>
+				&nbsp;&nbsp;7일전 취소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100% 환불<br>
+				&nbsp;&nbsp;6일~4일전 취소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50% 환불<br>
+				&nbsp;&nbsp;3일~당일취소 및 NO SHOW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;환불불가
 				<br><br>
 			</p>
 		</div>

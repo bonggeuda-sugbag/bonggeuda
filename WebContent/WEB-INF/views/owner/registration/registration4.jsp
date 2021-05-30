@@ -51,7 +51,7 @@
 	</div>
 </div>
 <!--header-->
-<div class=" banner-buying"> <!--상단 메뉴바-->
+<div class=" banner-regist"> <!--상단 메뉴바-->
    <div class=" container">
       <h3>숙소 등록</h3> 
       <!---->

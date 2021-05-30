@@ -74,9 +74,9 @@
 </div>
 <!--header-->
 <!--//-->	
-<div class=" banner-booking"> <!--상단 메뉴바-->
+<div class=" banner-manage"> <!--상단 메뉴바-->
 	<div class=" container">
-		<h3>예약 관리</h3> 
+		<h3>매출 내역</h3> 
 	<!---->
 	<div class="clearfix"> </div>
 		<!--initiate accordion-->

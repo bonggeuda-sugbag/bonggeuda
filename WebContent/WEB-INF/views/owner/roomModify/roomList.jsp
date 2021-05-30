@@ -68,7 +68,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 </div>
 <!--header-->
-<div class=" banner-buying">
+<div class=" banner-manage">
    <div class=" container">
       <h3>숙소 관리</h3> 
    <div class="clearfix"> </div>

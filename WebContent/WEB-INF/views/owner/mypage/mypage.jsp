@@ -196,7 +196,7 @@
 					<td>
 					<p style="color: gray; font-size: 13px">* 신고 누적횟수에 따라 불이익을 받을 수 있습니다.</p>
 						<div class="form-layer">
-							<input type="text" class="select-nomalsize" value="${ requestScope.reportedCount }" name="account_holder" value="15" disabled style="background-color: lightgrey; font-size: large; width: 70px; font-weight: bold; text-align: center; color: magenta;">
+							<input type="text" class="select-nomalsize" value="${ requestScope.reportedCount }" name="account_holder" value="15" disabled style="background-color: lightgrey; font-size: large; width: 70px; font-weight: bold; text-align: center; color: #e03633e8;">
 						</div>
 					</td>
 				</tr>

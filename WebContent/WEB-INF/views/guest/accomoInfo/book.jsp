@@ -870,7 +870,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore lt 1}">
-                            <h3>1보다작아요</h3>
+                            <h3>최악이에요</h3>
                             <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar05" ></div>
@@ -879,7 +879,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore ge 1 &&  accomo.reviewScore lt 1.5}">
-                            <h3>1점이상1.5미만이에요</h3>
+                            <h3>별로에요</h3>
                             <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar10" ></div>
@@ -888,7 +888,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore ge 1.5 && accomo.reviewScore lt 2}">
-                        <h3>1.5이상와2미만에요</h3>
+                        <h3>추천하지 않아요</h3>
                             <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar15" ></div>
@@ -897,7 +897,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore ge 2 && accomo.reviewScore lt 2.5}">
-                        <h3>2이상 2.5미만</h3>
+                        <h3>그냥그래요</h3>
                         <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar20" ></div>
@@ -906,7 +906,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore le 2 && accomo.reviewScore lt 3}">
-                        <h3>2.5이상점과 3점미만</h3>
+                        <h3>나쁘지 않아요</h3>
                         <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar25" ></div>
@@ -915,7 +915,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore ge 3 && accomo.reviewScore lt 3.5}">
-                        <h3>3과 3.5 사이이에요</h3>
+                        <h3>평범해요</h3>
                         <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar30" ></div>
@@ -924,7 +924,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore ge 3.5 && accomo.reviewScore lt 4}">
-                        <h3>3.5와 4 사이에요</h3>
+                        <h3>좋아요</h3>
                         <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar35" ></div>
@@ -932,7 +932,7 @@ textarea {
                             </div>
                             <br></c:when>
                         <c:when test="${ accomo.reviewScore ge 4 && accomo.reviewScore lt 4.5}">
-                        <h3>4점이에요</h3>
+                        <h3>만족해요</h3>
                         <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar40" ></div>
@@ -941,7 +941,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore ge 4.5 && accomo.reviewScore lt 5}">
-                        <h3>4와 5사이에요</h3>
+                        <h3>추천해요</h3>
                         <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar45" ></div>
@@ -950,7 +950,7 @@ textarea {
                             <br>
                         </c:when>
                         <c:when test="${ accomo.reviewScore eq 5}">
-                        <h3>5점이에요</h3>
+                        <h3>최고에요</h3>
                         <br>
                             <div style="display: flex; width: 180px; margin: 0 auto;">
                                 <div class="reviewStar50" ></div>

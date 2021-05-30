@@ -74,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--header-->
 <!--//-->	
-<div class=" banner-booking"> <!--상단 메뉴바-->
+<div class=" banner-notice"> <!--상단 메뉴바-->
 	<div class=" container">
 		<h3>자주 묻는 질문</h3> 
 	<div class="clearfix"> </div>
@@ -124,46 +124,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 850px;">
 			<br><br>
 
-			<div style="font-weight: bold;">Q. 회원 가입 이후에 객실등록은 어떻게 하나요?</div><br>
+			<div style="font-weight: bold;">Q. 예약 알림 설정 방법은 어떻게 하나요?</div><br>
 			<p style="background: #e9ebebbe;">
 				<br>
-				(1) 회원 가입은 별도의 가입비용 발생 없이 가입자의 이메일, 비밀번호만 입력하면 누구나 가입이 가능합니다.<br>
-				(2) 가입 이후 4단계 (마이페이지 작성, 소개 작성, 정책 작성, 객실 등록)을 모두 완료하시면 등록 요청이 완료 됩니다.
+				로그인 이후 우측 상단 마이페이지 > 예약알리미 접근 하시면 예약 알리미 설정이 가능합니다.<br><br>
+				[로그인 > 마이페이지 >예약 알리미]<br>
+				간단하게 이름, 문자/FAX/이메일, 번호, 수신 받을 요일, 시간 설정이 가능합니다.
 				<br><br>
 			</p>
 			<br>
-			<div style="font-weight: bold;">Q. 숙소 소개 작성시 주의사항이 궁금해요.</div><br>
+			<div style="font-weight: bold;">Q. 예약 관리에 대해 알고 싶어요.</div><br>
 			<p style="background: #e9ebebbe;">
 				<br>
-				(1) 정보 등록 항목은 필수 정보와 부가 정보로 나뉘며 부가 정보 항목은는 기입할 내용이 없으면 작성하지 않으셔도 됩니다.<br>
-				(2) 우측 끝 “?” 아이콘은 화면 뷰가 어떻게 앱에서 표시되는지 미리 볼 수 있는 화면 이미지 입니다.<br>
-				(3) 작성시 어려움이 있으실 경우, ‘예시 문구 및 화면보기’를 클릭하여 알맞은 예시를 확인할 수 있습니다.
+				객실관리에서 객실을 등록 하신 후 하단의 파란색 ‘저장 및 [실시간 예약관리] 반영’ 버튼을 클릭합니다.<br>
+				예약관리 > 실시간 예약관리 페이지에 생성된 객실의 수량과 가격, 개시/마감을 일자별로 설정할 수 있습니다.<br>
+				오늘 기준 최대 2개월까지 자동 세팅 됩니다.
 				<br><br>
 			</p>
 			<br>
-			<div style="font-weight: bold;">Q. 숙소 정책 설정 시 주의사항이 궁금해요.</div><br>
+			<div style="font-weight: bold;">Q. 예약유형 설정은 어떻게 하나요?</div><br>
 			<p style="background: #e9ebebbe;">
 				<br>
-				(1) 이용시간, 예약 유형, 예약 마감 시간 설정, 성수기 설정, 연박 할인 등 주요 정책(규칙)을 설정할 수 있습니다.<br>
-				(2) 예약 유형, 예약 마감 시간 설정, 연박 할인 설정은 11/15일 등록 및 변경이 가능합니다.
+				[숙소관리] > [이용규칙 관리] > [예약 유형] 항목에서 설정이 가능합니다.<br>
+				* 실시간 예약 : 승인 절차 없이 바로 예약/확정 시스템<br>
+				* 대기예약 : 예약 후 바로 확정이 아닌, 고객의 예약 요청 후 2시간 내에 사장님께서 가능/불가 응답을 주시면 예약이 처리되는 시스템
 				<br><br>
 			</p>
 			<br>
-			<div style="font-weight: bold;">Q. 고객 환불 규정이 궁금해요.</div><br>
-			<p style="background: #e9ebebbe;">
-				<br>
-				- 취소 및 환불 규정
-				<br>
-				<br>
-				- 숙박일 기준 10일전 : 100% 환불
-				<br>
-				- 숙박일 기준 5일전 : 50% 환불
-				<br>
-				- 숙박일 기준 1일전 ~ 당일 및 No-show : 환불불가
-				<br>
-				<br><br>
-			</p>
-			</div>
 		</div>
 	</div>
 </div>

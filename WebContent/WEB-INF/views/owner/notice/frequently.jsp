@@ -74,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--header-->
 <!--//-->	
-<div class=" banner-booking"> <!--상단 메뉴바-->
+<div class=" banner-notice"> <!--상단 메뉴바-->
 	<div class=" container">
 		<h3>자주 묻는 질문</h3> 
 	<div class="clearfix"> </div>
@@ -124,7 +124,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div id="cont_area"><!-- 본문 콘텐츠-->
 		<div class="cont_inner" id="policy_page" style="min-height: 435px; text-align: left; float: left; width: 850px;">
 			<br><br>
-
 			<div style="font-weight: bold;">Q. 회원 가입 이후에 객실등록은 어떻게 하나요?</div><br>
 			<p style="background: #e9ebebbe;">
 				<br>
