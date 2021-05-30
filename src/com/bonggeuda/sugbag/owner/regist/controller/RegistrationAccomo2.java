@@ -49,7 +49,7 @@ public class RegistrationAccomo2 extends HttpServlet {
 			
 
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
+			String fileUploadDirectory = rootLocation + "/resources/upload/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
 			
 			File directory = new File(fileUploadDirectory);
