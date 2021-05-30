@@ -76,7 +76,6 @@ public class AdminNoticeService {
 
 	public int updateNoitce(AdminNoticeDTO updateDTO, int noticeNo) {
 		
-		System.out.println("3번째" + noticeNo);
 		
 		Connection con = getConnection();
 		
