@@ -113,7 +113,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</c:forEach>
 			</tbody>
 		 </table>
-		
 		<%-- 페이지 처리 --%>
 		<div class="pagingArea" align="center">
 			<c:choose>
