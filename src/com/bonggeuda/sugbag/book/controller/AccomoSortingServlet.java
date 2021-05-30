@@ -87,7 +87,7 @@ public class AccomoSortingServlet extends HttpServlet {
 			request.setAttribute("seacrh", searchCondition);
 			request.getRequestDispatcher(path).forward(request, response);
 		} else {
-			System.out.println("숙소목록 조회에 실패했습니다.!!");
+//			System.out.println("숙소목록 조회에 실패했습니다.!!");
 		}
 	}
 

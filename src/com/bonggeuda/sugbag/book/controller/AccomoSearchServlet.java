@@ -73,13 +73,12 @@ public class AccomoSearchServlet extends HttpServlet {
 				}
 			}
 			path = "/WEB-INF/views/guest/accomoInfo/list.jsp";
-			System.out.println(accomoList);
 			request.setAttribute("checkList", checkList);
 			request.setAttribute("accomoList", accomoList);
 			request.setAttribute("type", type);
 			request.setAttribute("seacrh", searchCondition);
 		} else {
-			System.out.println("숙소목록 조회에 실패했습니다.!!");
+//			System.out.println("숙소목록 조회에 실패했습니다.!!");
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 //		JSONArray jsonArr = new JSONArray();
