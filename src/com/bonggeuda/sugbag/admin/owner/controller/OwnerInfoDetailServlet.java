@@ -49,12 +49,9 @@ public class OwnerInfoDetailServlet extends HttpServlet {
 		AdminService service = new AdminService();
 		
 		List<AccomoInfoDTO> accomoList = new ArrayList<AccomoInfoDTO>();
-		System.out.println("ownerNo : " + ownerNo);
 		// 처음만 1을 넘겨줌
 		accomoList = service.ownerDetailInfo(OWNERNO);
 		
-		System.out.println("로그용 : " + accomoList);
-		System.out.println("로그용 listSize" + accomoList.size());
 		int totalCount = accomoList.size();
 		
 		PageInfoDTO pageInfo = getPageInfo(ownerPageNo, totalCount, 1, 5);
@@ -66,7 +63,6 @@ public class OwnerInfoDetailServlet extends HttpServlet {
 			path = "/WEB-INF/views/admin/owner/ownerInfoDetail.jsp";
 			request.setAttribute("accomoInfo", accomoInfo);
 			request.setAttribute("pageInfo", pageInfo);
-			
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

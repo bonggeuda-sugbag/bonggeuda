@@ -791,10 +791,11 @@ public class OwnerDAO {
 					stmt = con.createStatement();
 					rset = stmt.executeQuery(query3);
 					int maxNum = 0;
+					
 					if (rset.next()) {
 						maxNum = rset.getInt(1);
+						
 					}
-
 					pstmt2 = con.prepareStatement(query2);
 
 					pstmt2.setInt(1, 4);
@@ -831,7 +832,7 @@ public class OwnerDAO {
 
 		ResultSet rset = null;
 
-		AttachmentDTO att = new AttachmentDTO();
+		AttachmentDTO att = null;
 		String query = "";
 
 		if (ar.equals("a")) {
@@ -849,6 +850,7 @@ public class OwnerDAO {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
+				att = new AttachmentDTO();
 
 				att.setAttachNo(rset.getInt("ATTACHMENT_NO"));
 				att.setCategoryNo(rset.getInt("CATEGORY_NO"));
@@ -859,6 +861,7 @@ public class OwnerDAO {
 				att.setSavePath(rset.getString("SAVE_PATH"));
 				att.setStatus(rset.getString("ATTACHMENT_STATUS"));
 				att.setThumbnailPath(rset.getString("THUMBNAIL_PATH"));
+				
 				attList.add(att);
 			}
 		} catch (SQLException e) {
@@ -868,6 +871,7 @@ public class OwnerDAO {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return attList;
 	}
 
