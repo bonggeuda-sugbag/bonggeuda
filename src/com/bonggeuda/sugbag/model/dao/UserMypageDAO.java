@@ -1124,6 +1124,7 @@ public class UserMypageDAO {
 				userBookCancle.setAccomoNo(rset.getInt("ACCOMO_NO"));
 				userBookCancle.setRoomNo(rset.getInt("ROOM_NO"));
 				userBookCancle.setPaymentTime(rset.getDate("PAYMENT_TIME"));
+				userBookCancle.setBookApproveYN(rset.getString("BOOK_APPROVE_YN"));
 				
 			}
 			System.out.println(userBookCancle.getRefundAmount());
