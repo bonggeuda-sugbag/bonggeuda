@@ -176,7 +176,6 @@ public class BookListSelectService {
 		
 		if(result > 0) {
 			commit(con);
-			System.out.println("커밋됨");
 		}else {
 			rollback(con);
 		}

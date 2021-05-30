@@ -26,23 +26,16 @@ public class MypageReprortDetail extends HttpServlet {
 		
 		//DTO에 담자~
 		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
-		System.out.println(reportNo);
 		OwnerMypagService selctReportDetailService = new OwnerMypagService();
 		
 		ReportDTO reportDTO  = new ReportDTO();
 		reportDTO = selctReportDetailService.selectReportDetail(reportNo);
-		System.out.println(reportDTO);
 		
-		// 거절 사유 보여주자 셀렉트 한번더 => 데이터 정상화 되면 풍어야댐
-		//String rejectReason = selctReportDetailService.selectRejectReason(reportNo);
-		//System.out.println("거절 사유는 ? " + rejectReason);
-		
+
 		// 이미지 경로 조회
 		String imagePath = selctReportDetailService.selectImagePath(reportNo);
-		System.out.println(imagePath);
 		
 		request.setAttribute("reportDTO",reportDTO );
-		//request.setAttribute("rejectReason", rejectReason);
 		request.setAttribute("imagePath", imagePath);
 		
 		

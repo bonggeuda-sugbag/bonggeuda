@@ -61,7 +61,6 @@ public class ModifyAccomo3 extends HttpServlet {
 				facility += ", ";
 			}
 		}
-		System.out.println("arrayFacility"  + arrayFacility);
 		
 		rmAcoomoDTO.setAccomoName(accomoName);
 		rmAcoomoDTO.setRmAccomoNo(rmAccomoNo);

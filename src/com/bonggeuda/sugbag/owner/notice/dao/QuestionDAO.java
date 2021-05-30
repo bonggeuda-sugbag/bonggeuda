@@ -41,8 +41,6 @@ public class QuestionDAO {
 		/* --> selectQuestion 가지고 xml감 */
 		String query = prop.getProperty("selectQuestion");
 		
-		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
 
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
@@ -65,7 +63,6 @@ public class QuestionDAO {
 				selectQuestion.add(Question); //한 행씩 저장됨
 			}
 			
-			System.out.println(selectQuestion);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -88,9 +85,6 @@ public class QuestionDAO {
 		/* --> selectQuestion 가지고 xml감 */
 		String query = prop.getProperty("selectContent");
 		
-		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
-		
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
@@ -108,7 +102,6 @@ public class QuestionDAO {
 				selectContent.setAdminQnAContent(rset.getString("ADMIN_QNA_CONTENT"));
 			}
 			
-			System.out.println(selectContent);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -129,8 +122,6 @@ public class QuestionDAO {
 		
 		String query = prop.getProperty("insertQuestion");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
 		
 		try {
 			
@@ -141,7 +132,6 @@ public class QuestionDAO {
 			pstmt.setInt(3, ownerNo);
 			
 			insert = pstmt.executeUpdate();
-			System.out.println(insert);
 				
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,10 +153,6 @@ public class QuestionDAO {
 		/* --> selectQuestion 가지고 xml감 */
 		String query = prop.getProperty("selectAnswer");
 		
-		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
-
-		System.out.println(qnaNo);
 		
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
@@ -182,7 +168,6 @@ public class QuestionDAO {
 				selectAnswer.setAnswerDate(rset.getDate("ANSWER_DATE"));
 			}
 			
-			System.out.println(selectAnswer);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -205,8 +190,6 @@ public class QuestionDAO {
 		
 		String query = prop.getProperty("selectTotalCount");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
 		
 		try {
 			
@@ -239,8 +222,6 @@ public class QuestionDAO {
 		
 		String query = prop.getProperty("selectQuestion");
 		
-		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
 
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
@@ -266,7 +247,6 @@ public class QuestionDAO {
 				selectQuestion.add(Question); //한 행씩 저장됨
 			}
 			
-			System.out.println(selectQuestion);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();

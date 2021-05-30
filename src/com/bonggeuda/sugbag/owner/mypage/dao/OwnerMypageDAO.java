@@ -245,7 +245,6 @@ public class OwnerMypageDAO {
 		
 		String query = prop.getProperty("selectTaxBillList");
 		
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -282,7 +281,6 @@ public class OwnerMypageDAO {
 
 	public int insertRequestTaxBillDAO(Connection con, int accomoNo, int stlNo) {
 		
-		System.out.println("택스 디에이오");
 		
 		PreparedStatement pstmt = null;
 
@@ -290,7 +288,6 @@ public class OwnerMypageDAO {
 				
 		String query = prop.getProperty("insertRequestTaxBill");
 				
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -377,7 +374,6 @@ public class OwnerMypageDAO {
 
 	public List<SettlementDTO> selectStl(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 		
-		System.out.println("들어왔나");
 		
 		PreparedStatement pstmt = null;
 		
@@ -388,9 +384,6 @@ public class OwnerMypageDAO {
 		
 		/* --> selectedAll 가지고 xml감 */
 		String query = prop.getProperty("selectStl");
-		
-		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
 
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
@@ -415,7 +408,6 @@ public class OwnerMypageDAO {
 				selectStl.add(stl); //한 행씩 저장됨
 			}
 			
-			System.out.println(selectStl);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -478,14 +470,12 @@ public class OwnerMypageDAO {
 			e.printStackTrace();
 		}
 		
-		System.out.println(selectAccomo);
 		
 		return selectAccomo;
 	}
 
 	public int insertStl(Connection con, int accomoNo) {
 
-		System.out.println("정산 신청@@@@@@@@@@@@@@@@@@@");
 		PreparedStatement pstmt = null;
 		
 		/* 반환시킬 변수 지정 */
@@ -494,7 +484,6 @@ public class OwnerMypageDAO {
 		String query = prop.getProperty("insertStl");
 
 		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
 		
 		try {
 			
@@ -503,7 +492,6 @@ public class OwnerMypageDAO {
 			pstmt.setInt(1, accomoNo);
 			
 			insert = pstmt.executeUpdate();
-			System.out.println(insert);
 				
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -526,9 +514,7 @@ public class OwnerMypageDAO {
 		
 		String query = prop.getProperty("reportTotalCount");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
-		
+
 		try {
 			
 			pstmt = con.prepareStatement(query);
@@ -562,9 +548,6 @@ public class OwnerMypageDAO {
 		
 		String query = prop.getProperty("stlTotalCount");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
-		
 		try {
 			
 			pstmt = con.prepareStatement(query);
@@ -597,9 +580,6 @@ public class OwnerMypageDAO {
 		
 		String query = prop.getProperty("taxTotalCount");
 
-		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
-		
 		try {
 			
 			pstmt = con.prepareStatement(query);
@@ -692,7 +672,6 @@ public class OwnerMypageDAO {
 		int result = 0;
 		
 		String query = prop.getProperty("insertWithdraw");
-		System.out.println("");
 		try {
 			pstmt = con.prepareStatement(query);
 			

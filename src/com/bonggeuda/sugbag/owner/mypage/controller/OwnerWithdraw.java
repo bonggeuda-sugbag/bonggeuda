@@ -42,19 +42,16 @@ public class OwnerWithdraw extends HttpServlet {
 		String withdrawReasonRadioButton = request.getParameter("radios");
 		String withdrawReason = request.getParameter("reason");
 		String realWithdrawReason = "";
-		System.out.println("withdrawReasonRadioButton : " + withdrawReasonRadioButton);
-		System.out.println("withdrawReason : " + withdrawReason);
+
 		
 		int ownerWithdrawInsert = 0;
 		if(withdrawReasonRadioButton != null) {
 			realWithdrawReason = withdrawReasonRadioButton;
 			ownerWithdrawInsert = ownerMypageService.ownerWithdrawInsertService(realWithdrawReason,ownerNo);
-			System.out.println(realWithdrawReason + " 여기로 들어옴1");
 
 		}else {
 			realWithdrawReason = withdrawReason;
 			ownerWithdrawInsert = ownerMypageService.ownerWithdrawInsertService(realWithdrawReason,ownerNo);
-			System.out.println(realWithdrawReason + " 여기로 들어옴2");
 
 		}
 		

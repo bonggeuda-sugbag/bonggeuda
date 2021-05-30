@@ -29,7 +29,6 @@ public class SettlementList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("정산 겟 서블릿");
 		
 		//로그인 값
 		HttpSession session = request.getSession();
@@ -52,7 +51,6 @@ public class SettlementList extends HttpServlet {
 		
 		int stlTotalCount = stlService.selectStlTotalCount(ownerNo);
 		
-		System.out.println("totalCount 체크 : " + stlTotalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
@@ -63,7 +61,6 @@ public class SettlementList extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, stlTotalCount, limit, buttonAmount);
 
-		System.out.println(pageInfo);
 	
 		/*결과값 반환*/
 		List<SettlementDTO> selectStl = stlService.selectStl(pageInfo,ownerNo);
@@ -80,10 +77,8 @@ public class SettlementList extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		System.out.println("작성했어");
 		
 		int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
-		System.out.println(accomoNo);
 		
 		/*값을 전달하기 위한 비지니스 로직 호출*/
 		OwnerMypagService reqStl = new OwnerMypagService();

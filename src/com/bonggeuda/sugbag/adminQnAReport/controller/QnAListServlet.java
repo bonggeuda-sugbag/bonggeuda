@@ -53,7 +53,7 @@ public class QnAListServlet extends HttpServlet {
 		/* 조회 해온다. */
 		List<QnADTO> qnaList = adminQnAService.selectQnaList(pageInfo);
 		
-		System.out.println("qnaList : " + qnaList);
+//		System.out.println("qnaList : " + qnaList);
 		
 		String path = "";
 		if(qnaList != null) {

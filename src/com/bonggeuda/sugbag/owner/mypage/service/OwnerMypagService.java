@@ -104,9 +104,7 @@ public class OwnerMypagService {
 		Connection con = getConnection();
 
 		int result = ownerDAO.insertRequestTaxBillDAO(con,accomoNo,stlNo);
-		
-		System.out.println("세금계산서신청 : " + result);
-		
+				
 		if(result > 0) {
 			commit(con);
 		}else {

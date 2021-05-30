@@ -27,14 +27,12 @@ public class BookComplete extends HttpServlet {
 		/* 1. book history에 인서트*/
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 		
-		System.out.println("예약확정 할 예약번호 : " + bookNo);
 	
 		BookListSelectService bookService = new BookListSelectService();
 		
 		int bookFin = 0;
 		bookFin = bookService.bookFinUpdate(bookNo);
 		
-		System.out.println("예약 확정되면 1 : " + bookNo);
 		
 		if(bookFin > 0) {
 			

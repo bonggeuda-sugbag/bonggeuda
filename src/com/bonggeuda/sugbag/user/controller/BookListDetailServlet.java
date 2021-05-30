@@ -21,7 +21,6 @@ public class BookListDetailServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("두번째 값아아아아아아아!: " + request.getParameter("bookNo"));
 		
 		UserInfoService userInfoService = new UserInfoService();
 		

@@ -40,7 +40,6 @@ public class EventInsertServlet extends HttpServlet {
 		
 		String path = "/WEB-INF/views/admin/event/eventWrite.jsp";
 		
-		System.out.println("서블릿");
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	
@@ -123,7 +122,7 @@ public class EventInsertServlet extends HttpServlet {
 					String key = keyIter.next();
 					String[] value = requestMap.get(key);
 					
-					System.out.println("key : " + key);
+//					System.out.println("key : " + key);
 					for(int i = 0; i < value.length; i++) {
 						System.out.println("value[" + i + "] : " +value[i]);
 					}

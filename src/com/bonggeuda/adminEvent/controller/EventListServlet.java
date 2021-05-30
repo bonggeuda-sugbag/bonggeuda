@@ -52,8 +52,7 @@ public class EventListServlet extends HttpServlet {
 		
 		/* 조회 해온다. */
 		List<EventDTO> eventList = adminEventService.selectEventList(pageInfo);
-		
-		System.out.println("eventList : " + eventList);
+
 		
 		String path = "";
 		if(eventList != null) {
