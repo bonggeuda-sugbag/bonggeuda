@@ -177,10 +177,9 @@
 						<th>
 							<form action="/bonggeuda/owner/reportWrite" method="get">
 							<input type="hidden" name="userNo" value="${board.userNo}">
-							<c:out value="${board.userNo}"/>/
 							
 							<input type="hidden" name="ownerNo" value="${board.ownerNo}">
-							${board.ownerNo}:오너넘
+							
 							<button type="submit" style="background-color: white;    border: 1px;">
 							<button type="submit" style="background-color: white; border: 1px;">
 							<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/siren.png" style="width: 26px; height: 26px;">

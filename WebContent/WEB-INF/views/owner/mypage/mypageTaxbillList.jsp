@@ -123,7 +123,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<th>
 									<form action="/bonggeuda/owner/#" method="post">
 										<button type="submit" style="background-color: white; border: 1px;">
+										
 											<img src="${pageContext.servletContext.contextPath }/resources/owner/icon/pdf.png" style="width: 28px; height: 28px;">
+									
 										</button>
 									</form>
 								</th>
