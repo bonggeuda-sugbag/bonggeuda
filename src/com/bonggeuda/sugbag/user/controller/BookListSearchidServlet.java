@@ -55,8 +55,6 @@ public class BookListSearchidServlet extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, bookCount, limit, buttonAmount);
 		
-		System.out.println(pageInfo);
-		
 		/* 조회해온다 */
 		List<UserReservationStatusDTO> reservationList = userInfoServie.selectSearchIdList(condition, value, pageInfo);
 

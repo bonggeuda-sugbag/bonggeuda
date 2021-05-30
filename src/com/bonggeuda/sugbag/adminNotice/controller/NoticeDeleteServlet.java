@@ -19,8 +19,6 @@ public class NoticeDeleteServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("삭제확인 : " + request.getParameter("noticeNo"));
-		
 		AdminNoticeService deleteNotice = new AdminNoticeService();
 		AdminNoticeDTO deleteInfo = new AdminNoticeDTO();
 		

@@ -39,7 +39,7 @@ public class PaymentListServlet extends HttpServlet {
 		
 		int totalPayCount = service.totalPayCount();
 		
-		PageInfoDTO pageInfo = getPageInfo(pageNo, totalPayCount, 17, 5);
+		PageInfoDTO pageInfo = getPageInfo(pageNo, totalPayCount, 10, 5);
 		
 		payList = service.payList(pageInfo);
 		

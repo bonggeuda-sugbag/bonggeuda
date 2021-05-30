@@ -28,14 +28,9 @@ public class ReportInsertServlet extends HttpServlet {
 		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
 		String content = request.getParameter("content");
 		String status = request.getParameter("status");
-		
-		
-
-//		int condition = Integer.parseInt(request.getParameter("condition")); //상태여부 얼먀넘어면 사용가능
       
 		dto.setReportNo(reportNo);
 		dto.setAnswerDate(new Date(System.currentTimeMillis()));
-//		dto.setStatus(status);
 		dto.setContent(content);
 		
 		int insertReport= reportInfoService.insertReport(dto);

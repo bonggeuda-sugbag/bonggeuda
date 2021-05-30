@@ -166,7 +166,7 @@ public class AdminEventDAO {
 			close(pstmt);
 		}
 		
-//		System.out.println("DAO : "  + eventThumnailInfo);
+		System.out.println("DAO : "  + eventThumnailInfo);
 		return eventThumnailInfo;
 	}
 

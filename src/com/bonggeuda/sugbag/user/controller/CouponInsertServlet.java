@@ -21,8 +21,6 @@ import com.bonggeuda.sugbag.user.service.UserInfoService;
 public class CouponInsertServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-//		UserInfoService userInfoService = new UserInfoService();
 
 		String path="";
 
@@ -53,7 +51,6 @@ public class CouponInsertServlet extends HttpServlet {
 
 		int insertCoupon = userInfoService.insertCoupon(dto,Integer.parseInt(request.getParameter("hduserNo")));
 
-		
 		String path="";
 		if(insertCoupon > 0 ) {
 			path= "/bonggeuda/user/list";

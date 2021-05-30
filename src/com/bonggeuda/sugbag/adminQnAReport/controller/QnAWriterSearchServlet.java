@@ -27,8 +27,6 @@ public class QnAWriterSearchServlet extends HttpServlet {
 		String condition = request.getParameter("searchCondition");
 		String value = request.getParameter("searchValue");
 
-		System.out.println("111111111111 : " + condition);
-		System.out.println("222222222222 : " + value);
 		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
 		 * */
@@ -60,13 +58,9 @@ public class QnAWriterSearchServlet extends HttpServlet {
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, writerCount, limit, buttonAmount);
-		
-		System.out.println(pageInfo);
-		
+
 		/* 조회해온다 */
 		List<QnADTO> qnaList = adminQnAService.selectSearchWriterList(condition, value, pageInfo);
-		
-		System.out.println("작성자구분qnaList : " + qnaList);
 		
 		String path = "";
 		if(qnaList != null) {
