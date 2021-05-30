@@ -944,7 +944,7 @@ textarea {
 			<div class="popup">
 
 				<strong style="text-align: center;"><label
-					value="${requestScope.accomo.requestNo }"></label>숙소 등록 거절 사유</strong> <br>
+					value="${requestScope.accomo.requestNo }"></label>숙소 등록/수정 거절 사유</strong> <br>
 				<section>
 					<textarea style="width: 400px; height: 200px; border: 2px;"
 						id="cancleReason"></textarea>

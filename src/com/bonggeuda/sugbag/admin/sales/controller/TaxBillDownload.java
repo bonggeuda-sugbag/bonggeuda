@@ -39,7 +39,7 @@ public class TaxBillDownload extends HttpServlet {
 			byte[] file = Base64.decodeBase64(binaryData);
 			String fileName = UUID.randomUUID().toString().replace("-", "");
 			
-			stream = new FileOutputStream("C:\\Users\\woong\\Desktop\\세미프로젝트\\semiProject\\git\\bonggeuda\\WebContent\\resources\\taxBill" + fileName);
+			stream = new FileOutputStream("C:\\Users\\woong\\Desktop\\세미프로젝트\\semiProject\\git\\bonggeuda\\WebContent\\resources\\taxBill\\" + fileName + ".png");
 			stream.write(file);
 			stream.close();
 			
@@ -56,7 +56,6 @@ public class TaxBillDownload extends HttpServlet {
 				System.out.println("이력 추가, 요청 업데이트 완료");
 			}
 			out.print("taxSuccess");
-			
 			
 		}catch(Exception e){
 			e.printStackTrace();

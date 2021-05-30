@@ -169,7 +169,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					</div>
 					<thead>
-						<tr>
+					<c:choose>
+						<c:when test="${requestScope.sortCondition3 eq 'accomo'}">
 							<th>요청 번호</th>
 							<th>업체 번호</th>
 							<th>등록/수정</th>
@@ -177,8 +178,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th>상호명</th>
 							<th>업종</th>
 							<th>처리 상태</th>
-
-						</tr>
+						</c:when>
+						<c:otherwise>
+							<th>요청 번호</th>
+							<th>등록/수정</th>
+							<th>객실 가격</th>
+							<th>객실명</th>
+							<th>인원수</th>
+							<th>처리상태</th>
+							
+						</c:otherwise>
+					
+					</c:choose>
+					
+	
 					</thead>
 					<tbody>
 
@@ -217,7 +230,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<c:forEach var="room" items="${requestScope.pageRoomList }">
 											<tr>
 												<td><c:out value="${room.requestNo }"></c:out></td>
-												<td><c:out value="${room.enAccomoNo }"></c:out></td>
 												<td><c:choose>
 														<c:when test="${room.rmType eq 'RM'}">
 												수정
@@ -285,18 +297,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 
 
-			<!-- 			<div class="clearfix"></div>
-			<nav>
-				<ul class="pagination">
-					<li class="disabled"><a href="#" aria-label="Previous"><span
-							aria-hidden="true">«</span></a></li>
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-				</ul> -->
 
 
 			<div class="pagingArea" align="center" style="margin-right: 20%">

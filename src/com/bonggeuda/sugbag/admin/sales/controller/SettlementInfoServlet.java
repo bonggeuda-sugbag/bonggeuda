@@ -29,7 +29,7 @@ public class SettlementInfoServlet extends HttpServlet {
 		
 		int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
 
-
+		// 정산 완료 리스트
 		List<SettlementDTO> stlList = new ArrayList<SettlementDTO>();
 
 		int pageNo1 = 1;
@@ -48,8 +48,7 @@ public class SettlementInfoServlet extends HttpServlet {
 
 		stlList = service.monthStlList(pageInfo1, accomoNo);
 
-////////////////////////////////////////////////////////////////////////////////////////////
-
+		// 미정산 매출 건별 리스트
 		List<StlPerDTO> prePerList = new ArrayList<StlPerDTO>();
 
 		int totalPreCount = service.totalPerCount(accomoNo, "N");
@@ -64,8 +63,8 @@ public class SettlementInfoServlet extends HttpServlet {
 		PageInfoDTO pageInfo2 = getPageInfo(pageNo2, totalPreCount, 7, 5);
 
 		prePerList = service.prePerList(accomoNo, pageInfo2);
-//////////////////////////////////////////////////////////////////////////////////////////
 
+		// 정산완료 매출건별 리스트
 		int pageNo3 = 1;
 		
 		List<StlPerDTO> stlPerList = new ArrayList<StlPerDTO>();

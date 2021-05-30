@@ -59,7 +59,7 @@ public class ReportWriteDAO {
 		return insertReport;
 	}
 
-	public int insertReportImage(Connection con, AttachmentDTO tempFileInfo) {
+	public int insertReportImage(Connection con, AttachmentDTO tempFileInfo, int refNoMax) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -72,6 +72,7 @@ public class ReportWriteDAO {
 			pstmt.setString(3, tempFileInfo.getSavePath());
 			pstmt.setString(4, tempFileInfo.getFileType());
 			pstmt.setString(5, tempFileInfo.getThumbnailPath());
+			pstmt.setInt(6, refNoMax);
 			
 			result = pstmt.executeUpdate();
 			
@@ -97,7 +98,7 @@ public class ReportWriteDAO {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				result = rset.getInt("MAX(REPORT_NO))");
+				result = rset.getInt("NEXTVAL");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

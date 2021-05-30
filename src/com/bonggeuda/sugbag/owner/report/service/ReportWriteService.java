@@ -43,13 +43,13 @@ public class ReportWriteService {
 		return reportInsert;
 	}
 
-	public int insertReportThumbnail(AttachmentDTO tempFileInfo) {
+	public int insertReportThumbnail(AttachmentDTO tempFileInfo, int refNoMax) {
 		
 		Connection con = getConnection();
 		
 		int result = 0;
 
-		result = reportDAO.insertReportImage(con,tempFileInfo);
+		result = reportDAO.insertReportImage(con,tempFileInfo,refNoMax);
 		
 		if(result > 0) {
 			commit(con);
