@@ -40,25 +40,15 @@ public class OwnerListSelectServlet extends HttpServlet {
 			
 		}
 		
-		int limit = 8;
+		int limit = 10;
 		
 		int buttonAmount = 5;
 		
 		int totalCount = service.selectTotalCount();
 		
-		
 		PageInfoDTO pageInfo = getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
 		List<OwnerInfoDTO> ownerList = new ArrayList<OwnerInfoDTO>();
-		
-////		ownerList json방식
-//		Gson gson = new Gson();
-//		
-//		String jsonOwnerList = gson.toJson(ownerList);
-//		
-//		PrintWriter out = response.getWriter();
-//		
-//		out.print(ownerList);
 		
 		ownerList = service.ownerListSelect(pageInfo);
 		
