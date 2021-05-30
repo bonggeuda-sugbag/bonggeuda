@@ -374,7 +374,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $startPage = document.getElementById("startPage1");
 			$startPage.onclick = function() {
 				location.href = link
-						+ "?currentPage1=1&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}";
+						+ "?currentPage1=1&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${prePerList[0].accomoNo}";
 			}
 		}
 
@@ -382,7 +382,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $prevPage = document.getElementById("prevPage1");
 			$prevPage.onclick = function() {
 				location.href = link
-						+ "?currentPage1=${ requestScope.pageInfo1.pageNo - 1 }&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}";
+						+ "?currentPage1=${ requestScope.pageInfo1.pageNo - 1 }&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 
 			}
 		}
@@ -391,7 +391,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $nextPage = document.getElementById("nextPage1");
 			$nextPage.onclick = function() {
 				location.href = link
-						+ "?currentPage1=${ requestScope.pageInfo1.pageNo + 1 }&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}";
+						+ "?currentPage1=${ requestScope.pageInfo1.pageNo + 1 }&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 			}
 		}
 
@@ -399,7 +399,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $maxPage = document.getElementById("maxPage1");
 			$maxPage.onclick = function() {
 				location.href = link
-						+ "?currentPage1=${ requestScope.pageInfo1.maxPage }&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}";
+						+ "?currentPage1=${ requestScope.pageInfo1.maxPage }&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 			}
 		}
 
@@ -407,14 +407,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			location.href = link
 					+ "?currentPage1="
 					+ text
-					+ "&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}";
+					+ "&currentPage2=${pageInfo2.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 		}
 
 		if (document.getElementById("startPage2")) {
 			const $startPage = document.getElementById("startPage2");
 			$startPage.onclick = function() {
 				location.href = link
-						+ "?currentPage2=1&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}";
+						+ "?currentPage2=1&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 			}
 		}
 
@@ -422,7 +422,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $prevPage = document.getElementById("prevPage2");
 			$prevPage.onclick = function() {
 				location.href = link
-						+ "?currentPage2=${ requestScope.pageInfo2.pageNo - 1 }&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}";
+						+ "?currentPage2=${ requestScope.pageInfo2.pageNo - 1 }&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 
 			}
 		}
@@ -431,7 +431,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $nextPage = document.getElementById("nextPage2");
 			$nextPage.onclick = function() {
 				location.href = link
-						+ "?currentPage2=${ requestScope.pageInfo2.pageNo + 1 }&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}";
+						+ "?currentPage2=${ requestScope.pageInfo2.pageNo + 1 }&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 			}
 		}
 
@@ -439,7 +439,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $maxPage = document.getElementById("maxPage2");
 			$maxPage.onclick = function() {
 				location.href = link
-						+ "?currentPage2=${ requestScope.pageInfo2.maxPage }&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}";
+						+ "?currentPage2=${ requestScope.pageInfo2.maxPage }&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 			}
 		}
 
@@ -447,14 +447,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			location.href = link
 					+ "?currentPage2="
 					+ text
-					+ "&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}";
+					+ "&currentPage1=${pageInfo1.pageNo}&currentPage3=${pageInfo3.pageNo}&accomoNo=${stlList[0].accomoNo}";
 		}
 
 		if (document.getElementById("startPage3")) {
 			const $startPage = document.getElementById("startPage3");
 			$startPage.onclick = function() {
 				location.href = link
-						+ "?currentPage3=1&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}";
+						+ "?currentPage3=1&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}&accomoNo=${stlList[0].accomoNo}";
 			}
 		}
 
@@ -462,7 +462,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $prevPage = document.getElementById("prevPage3");
 			$prevPage.onclick = function() {
 				location.href = link
-						+ "?currentPage3=${ requestScope.pageInfo3.pageNo - 1 }&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}";
+						+ "?currentPage3=${ requestScope.pageInfo3.pageNo - 1 }&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}&accomoNo=${stlList[0].accomoNo}";
 
 			}
 		}
@@ -471,7 +471,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $nextPage = document.getElementById("nextPage3");
 			$nextPage.onclick = function() {
 				location.href = link
-						+ "?currentPage3=${ requestScope.pageInfo3.pageNo + 1 }&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}";
+						+ "?currentPage3=${ requestScope.pageInfo3.pageNo + 1 }&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}&accomoNo=${stlList[0].accomoNo}";
 			}
 		}
 
@@ -479,7 +479,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			const $maxPage = document.getElementById("maxPage3");
 			$maxPage.onclick = function() {
 				location.href = link
-						+ "?currentPage3=${ requestScope.pageInfo3.maxPage }&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}";
+						+ "?currentPage3=${ requestScope.pageInfo3.maxPage }&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}&accomoNo=${stlList[0].accomoNo}";
 			}
 		}
 
@@ -487,7 +487,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			location.href = link
 					+ "?currentPage3="
 					+ text
-					+ "&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}";
+					+ "&currentPage1=${pageInfo1.pageNo}&currentPage2=${pageInfo2.pageNo}&accomoNo=${stlList[0].accomoNo}";
 		}
 	</script>
 
