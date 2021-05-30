@@ -31,7 +31,7 @@
 	    , ?
 	    , ?
 	    , 'Y'
-	    , REPORT_NO_SEQ.NEXTVAL
+	    , ?
 	    
 	    
 	    )
@@ -41,9 +41,8 @@
 	
 	<entry key="selectRefortNoNoMax">
 
-        SELECT
-	           MAX(REPORT_NO)
-	      FROM REPORT
+ 		SELECT REPORT_NO_SEQ.NEXTVAL
+ 		  FROM DUAL
 	
 	</entry>
 
