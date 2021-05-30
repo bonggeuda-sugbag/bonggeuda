@@ -42,7 +42,6 @@ public class BookingQnADAO {
 		String query = prop.getProperty("selectTotalCount");
 
 		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
 		
 		try {
 			
@@ -76,7 +75,6 @@ public class BookingQnADAO {
 		String query = prop.getProperty("selectQuestion");
 		
 		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
 		
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
@@ -102,7 +100,6 @@ public class BookingQnADAO {
 				selectQuestion.add(Question); //한 행씩 저장됨
 			}
 			
-			System.out.println("예약문의 전체 목록 : " + selectQuestion);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -127,7 +124,6 @@ public class BookingQnADAO {
 		String query = prop.getProperty("selectContent");
 		
 		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
 				
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
@@ -146,7 +142,6 @@ public class BookingQnADAO {
 				//selectContent.setAnswerContent(rset.getString("OWNER_ANSWER_CONTENT"));
 			}
 			
-			System.out.println(selectContent);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,7 +163,6 @@ public class BookingQnADAO {
 		String query = prop.getProperty("insertAnswer");
 
 		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
 		
 		try {
 			
@@ -178,7 +172,6 @@ public class BookingQnADAO {
 			pstmt.setInt(2, qnaDTO.getAdminQnANo());
 			
 			insert = pstmt.executeUpdate();
-			System.out.println(insert);
 				
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -201,7 +194,6 @@ public class BookingQnADAO {
 		String query = prop.getProperty("selectAnswer");
 		
 		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
 				
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
@@ -217,7 +209,6 @@ public class BookingQnADAO {
 				selectAnswer.setAnswerDate(rset.getDate("OWNER_ANSWER_DATE"));
 			}
 			
-			System.out.println(selectAnswer);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -239,7 +230,6 @@ public class BookingQnADAO {
 		String query = prop.getProperty("updateYn");
 
 		//잘 넘어왔는지 확인용 출력
-		System.out.println(query);
 		
 		try {
 			
@@ -249,7 +239,6 @@ public class BookingQnADAO {
 			
 			updateYn = pstmt.executeUpdate();
 			
-			System.out.println(updateYn);
 				
 		} catch (SQLException e) {
 			e.printStackTrace();

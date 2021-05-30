@@ -30,7 +30,6 @@ public class NoticeDAO {
 	
 	public List<NoticeDTO> selectNotice(Connection con) {
 		
-		System.out.println("들어왔나");
 		
 		Statement stmt = null;
 		
@@ -42,8 +41,6 @@ public class NoticeDAO {
 		/* --> selectedAll 가지고 xml감 */
 		String query = prop.getProperty("selectNotice");
 		
-		/*쿼리문 잘 실행되는지 출력*/
-		System.out.println(query);
 
 		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
@@ -64,7 +61,6 @@ public class NoticeDAO {
 				selectNotice.add(notice); //한 행씩 저장됨
 			}
 			
-			System.out.println(selectNotice);
 		
 		} catch (SQLException e) {
 			e.printStackTrace();

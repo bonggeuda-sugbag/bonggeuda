@@ -15,10 +15,6 @@ public class OwnerLogout extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		//String path = "";
-		//path = "/WEB-INF/views/owner/mypage/mypageReportList.jsp";
-
-		//request.getRequestDispatcher(path).forward(request, response);
 		
 		 response.sendRedirect("/bonggueda/");
 
