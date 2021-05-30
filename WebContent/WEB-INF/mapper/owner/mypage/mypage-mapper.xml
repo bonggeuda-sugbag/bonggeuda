@@ -249,6 +249,7 @@
            JOIN ATTACHMENT A ON(C.ACCOMO_NO = A.REF_NO)
           WHERE CATEGORY_NO = 3
             AND OWNER_NO = ?
+            AND VISIBLE_YN = 'Y'
 	</entry>
 	
 	

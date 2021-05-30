@@ -204,7 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </tbody>
                 </table>
 				<p>
-				<input name="content" value="${ noticeInfo.title }" class="form-control textarea-layer" style="width: 700px; height: 400px; margin-left: 285px; resize: none;">
+				<input  name="content" value="${ noticeInfo.content }" class="form-control textarea-layer" style="width: 700px; height: 400px; margin-left: 285px; resize: none;">
 				
 				</input>
 				<input type="hidden" name="noticeNo" value= "${ noticeNo }">

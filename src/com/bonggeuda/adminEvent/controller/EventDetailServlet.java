@@ -23,12 +23,10 @@ public class EventDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		AdminEventService adminEventDetailService = new AdminEventService();
-		
+		System.out.println(request.getParameter("eventNo"));
 		EventDTO eventDetailInfo = adminEventDetailService.selectEventDetail(Integer.parseInt(request.getParameter("eventNo")));
 		List<EventDTO> eventThumnailInfo = new ArrayList<>();
 		eventThumnailInfo = adminEventDetailService.selectEventThumnail(Integer.parseInt(request.getParameter("eventNo")));
-
-
 
 		
 		String path = "";
