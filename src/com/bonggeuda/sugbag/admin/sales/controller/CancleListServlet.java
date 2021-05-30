@@ -54,7 +54,6 @@ public class CancleListServlet extends HttpServlet {
 		
 		cancleList = service.cancleList(pageInfo, refundStatus);
 		
-		
 		String path = "";
 		if(cancleList != null) {
 			path = "/WEB-INF/views/admin/sales/cancleList.jsp";

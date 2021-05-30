@@ -28,7 +28,6 @@ public class EventDetailServlet extends HttpServlet {
 		List<EventDTO> eventThumnailInfo = new ArrayList<>();
 		eventThumnailInfo = adminEventDetailService.selectEventThumnail(Integer.parseInt(request.getParameter("eventNo")));
 
-//		System.out.println("rrrr"+ request.getParameter("eventNo"));
 
 
 		

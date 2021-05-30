@@ -12,9 +12,7 @@ import com.bonggeuda.sugbag.user.service.UserInfoService;
 
 @WebServlet("/user/detail")
 public class ManagementDetailServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-  
+
 	/**
 	 * 사용자 관리 리스트에서 상세보기 누르면 실행되는 서블릿 
 	 */
@@ -33,7 +31,6 @@ public class ManagementDetailServlet extends HttpServlet {
 			
 		} 
 		
-
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

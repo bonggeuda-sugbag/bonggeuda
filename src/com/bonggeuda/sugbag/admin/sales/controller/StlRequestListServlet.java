@@ -48,10 +48,9 @@ public class StlRequestListServlet extends HttpServlet {
 		
 		int requestCount = service.totalRequestCount(stlStatus);
 		
-		PageInfoDTO pageInfo = getPageInfo(pageNo, requestCount, 7, 5);
+		PageInfoDTO pageInfo = getPageInfo(pageNo, requestCount, 10, 5);
 		
 		requestList = service.requestList(pageInfo, stlStatus);
-		
 		
 		String path = "";
 		if(requestList != null) {

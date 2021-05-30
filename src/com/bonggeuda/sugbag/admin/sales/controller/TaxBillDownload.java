@@ -39,7 +39,7 @@ public class TaxBillDownload extends HttpServlet {
 			byte[] file = Base64.decodeBase64(binaryData);
 			String fileName = UUID.randomUUID().toString().replace("-", "");
 			
-			stream = new FileOutputStream(request.getServletContext().getRealPath("/") + "resources/taxBill/" + fileName);
+			stream = new FileOutputStream("C:\\Users\\woong\\Desktop\\세미프로젝트\\semiProject\\git\\bonggeuda\\WebContent\\resources\\taxBill" + fileName);
 			stream.write(file);
 			stream.close();
 			

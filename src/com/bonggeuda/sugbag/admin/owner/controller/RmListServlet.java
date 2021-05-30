@@ -102,7 +102,7 @@ public class RmListServlet extends HttpServlet {
 			totalYNCount = roomSortList.size();
 		}
 		
-		PageInfoDTO pageInfo = getPageInfo(pageNo, totalYNCount, 8, 5);
+		PageInfoDTO pageInfo = getPageInfo(pageNo, totalYNCount, 10, 5);
 		
 		List<AccomoInfoDTO> pageAccomoList = new ArrayList<AccomoInfoDTO>();
 		List<RoomInfoDTO> pageRoomList = new ArrayList<RoomInfoDTO>();
@@ -120,9 +120,7 @@ public class RmListServlet extends HttpServlet {
 					pageRoomList.add(roomSortList.get(i -1));
 				}
 			}
-			
 		}
-		
 		
 		String path = "";
 		if(totalRmMap != null) {
@@ -144,9 +142,7 @@ public class RmListServlet extends HttpServlet {
 				
 			}
 		}
-		
 		request.getRequestDispatcher(path).forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
