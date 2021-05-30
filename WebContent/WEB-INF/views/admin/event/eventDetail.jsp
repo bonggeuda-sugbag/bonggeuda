@@ -204,7 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         	<td colspan="4" style=" padding-top: 20px; padding-bottom: 20px; ">
                         		<c:forEach var="thumnail" items="${ requestScope.eventThumnailInfo }">
 								<c:if test="${ thumnail.thumnailPath ne null }">
-								<img src="${ pageContext.servletContext.contextPath }/${ thumnail.thumnailPath }" style="width: 30%" >
+								<img src="${ pageContext.servletContext.contextPath }/${ thumnail.thumnailPath }" style="width: 80%" >
 								</c:if>
 								</c:forEach>
                         	</td>

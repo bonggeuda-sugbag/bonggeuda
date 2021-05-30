@@ -39,7 +39,6 @@ public class AccomoQuestionServlet extends HttpServlet {
         if(result>0) {
         	path= "/userqnalist/select";
         } else {
-        	System.out.println("입력실패!");
         }
         response.sendRedirect(request.getContextPath() + path);
 	}

@@ -370,6 +370,7 @@
              , AI.ACCOMO_NO
              , RI.ROOM_NO
              , P.PAYMENT_TIME
+             , BL.BOOK_APPROVE_YN
           FROM BOOK_LIST BL
           JOIN ROOM_INFO RI ON(RI.ROOM_NO = BL.ROOM_NO)
           JOIN ACCOMO_INFO AI ON(AI.ACCOMO_NO = RI.ACCOMO_NO)
