@@ -3,6 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${pageContext.servletContext.contextPath}/resources/guest/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--menu-->
+<script src="${pageContext.servletContext.contextPath }/resources/guest/js/scripts.js"></script>
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/styles.css" rel="stylesheet">
+
+<!--theme-style-->
+<link href="${pageContext.servletContext.contextPath }/resources/guest/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/product.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/owl.carousel.css" rel="stylesheet" type="text/css" media="all" /> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -12,22 +32,22 @@
 	<div class="container">
 		<div class="footer-top-at">
 			<div class="col-md-3 amet-sed">
-				<h4>Our Company</h4>
+				<h4>이용자팀</h4>
 				<ul class="nav-bottom">
-					<li><a href="about.html">About Us</a></li>
-					<li><a href="blog.html">For Sale By Owner Blog</a></li>
-					<li><a href="mobile_app.html">Mobile</a></li>
-					<li><a href="terms.html">Terms & Conditions</a></li>
+					<li><a>위나라</a></li>
+					<li><a>이해승</a></li>
+					<li><a href="mobile_app.html">연락처</a></li>
+					<li><a href="terms.html">02-</a></li>
 					<li><a href="privacy.html">Privacy Policy</a></li>	
 					<li><a href="blog.html">Blog</a></li>
 					
 				</ul>	
 			</div>
 			<div class="col-md-3 amet-sed ">
-				<h4>Work With Us</h4>
+				<h4>업체팀</h4>
 					<ul class="nav-bottom">
-						<li><a href="single.html">Real Estate Brokers</a></li>
-						<li><a href="single.html">Business Development</a></li>
+						<li><a href="single.html">김소라</a></li>
+						<li><a href="single.html">민연준</a></li>
 						<li><a href="single.html">Affiliate Programs</a></li>
 						<li><a href="contact.html">Sitemap</a></li>
 						<li><a href="career.html">Careers</a></li>
@@ -35,7 +55,7 @@
 					</ul>	
 			</div>
 			<div class="col-md-3 amet-sed">
-				<h4>Customer Support</h4>
+				<h4>관리팀</h4>
 				<p>Mon-Fri, 7AM-7PM </p>
 				<p>Sat-Sun, 8AM-5PM </p>
 				<p>177-869-6559</p>
@@ -75,6 +95,7 @@
 			</div>
 		<div class="clearfix"> </div>
 	 	</div>
+	
 	</div>
 </div>
 <!--//footer-->
