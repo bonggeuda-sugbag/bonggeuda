@@ -42,8 +42,6 @@ public class UserWithdrawUpdate extends HttpServlet {
 		
 		int result = mypageService.userWithdraw(userWithdraw, userWithdrawReason);
 		
-		System.out.println(result);
-		
 		if(result > 1) {
 			
 			request.getSession().invalidate();

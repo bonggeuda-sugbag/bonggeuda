@@ -56,7 +56,6 @@ public class UserMypageDAO {
 		
 		String query = prop.getProperty("point");
 		
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -70,7 +69,6 @@ public class UserMypageDAO {
 				point.setPoint(rset.getInt("POINT"));
 			}
 			
-			System.out.println(point);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,8 +100,6 @@ public class UserMypageDAO {
 		
 		String query = prop.getProperty("pointHistory2");
 		
-		System.out.println(query);
-		
 		pointHistory = new ArrayList<>();
 		
 		try {
@@ -124,8 +120,6 @@ public class UserMypageDAO {
 				pointHistory.add(pointHistoryDTO);
 				
 			}
-			
-			System.out.println(pointHistory);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,8 +150,6 @@ public class UserMypageDAO {
 		
 		String query = prop.getProperty("pointHistory");
 		
-		System.out.println(query);
-		
 		pointHistory = new ArrayList<>();
 		
 		try {
@@ -180,8 +172,6 @@ public class UserMypageDAO {
 				pointHistory.add(pointHistoryDTO);
 				
 			}
-			
-			System.out.println(pointHistory);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -207,8 +197,6 @@ public class UserMypageDAO {
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("couponCount");
-		
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -246,7 +234,6 @@ public class UserMypageDAO {
 		List<CouponDTO> couponList = new ArrayList<>();
 		
 		String query = prop.getProperty("couponList");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -268,8 +255,6 @@ public class UserMypageDAO {
 				
 				couponList.add(coupon);
 			}
-			
-			System.out.println(couponList);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -296,8 +281,6 @@ public class UserMypageDAO {
 		
 		String query = prop.getProperty("myinfoSelect");
 		
-		System.out.println(query);
-		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userNo);
@@ -312,7 +295,6 @@ public class UserMypageDAO {
 				member.setReportCnt(rset.getInt("REPORT_COUNT"));
 				
 			}
-			System.out.println(member);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -337,7 +319,6 @@ public class UserMypageDAO {
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("nickNameUpdate");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -369,7 +350,6 @@ public class UserMypageDAO {
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("phoneUpdate");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -401,7 +381,6 @@ public class UserMypageDAO {
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("passwordUpdate");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -436,7 +415,6 @@ public class UserMypageDAO {
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("withdrawUpdate");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -451,7 +429,6 @@ public class UserMypageDAO {
 		}
 		
 		String query2 = prop.getProperty("withdrawInsert");
-		System.out.println(query2);
 		
 		try {
 			pstmt = con.prepareStatement(query2);
@@ -487,7 +464,6 @@ public class UserMypageDAO {
 		List<ReportDTO> report = new ArrayList<>();
 		
 		String query = prop.getProperty("reportListSelect2");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -507,8 +483,6 @@ public class UserMypageDAO {
 				
 				report.add(reportDTO);
 			}
-			
-			System.out.println(report);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -535,7 +509,6 @@ public class UserMypageDAO {
 		List<ReportDTO> report = new ArrayList<>();
 		
 		String query = prop.getProperty("reportListSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -558,8 +531,6 @@ public class UserMypageDAO {
 				
 				report.add(reportDTO);
 			}
-			
-			System.out.println(report);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -584,7 +555,6 @@ public class UserMypageDAO {
 		ReportDTO userReportContent = null;
 		
 		String query = prop.getProperty("reportContent");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -605,7 +575,6 @@ public class UserMypageDAO {
 				
 			}
 			
-			System.out.println(userReportContent);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -613,7 +582,6 @@ public class UserMypageDAO {
 		if(userReportContent == null) {
 			
 			String query2 = prop.getProperty("reportContentTwo");
-			System.out.println(query2);
 			
 			try {
 				pstmt = con.prepareStatement(query2);
@@ -634,7 +602,6 @@ public class UserMypageDAO {
 					
 				}
 				
-				System.out.println(userReportContent);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
@@ -661,7 +628,6 @@ public class UserMypageDAO {
 		List<AttachmentDTO> userReportImg = new ArrayList<>();
 		
 		String query = prop.getProperty("reportImgSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -679,7 +645,6 @@ public class UserMypageDAO {
 				userReportImg.add(reportImg);
 			} 
 			
-			System.out.println(userReportImg);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -705,7 +670,6 @@ public class UserMypageDAO {
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("userNicknameSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -741,7 +705,6 @@ public class UserMypageDAO {
 		List<BookDTO> bookList = new ArrayList<>();
 		
 		String query = prop.getProperty("userBookListSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -799,7 +762,6 @@ public class UserMypageDAO {
 		List<BookDTO> completeBooklist = new ArrayList<>();
 		
 		String query = prop.getProperty("userCompleteBookListSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -858,7 +820,6 @@ public class UserMypageDAO {
 		List<BookDTO> cancleBooklist = new ArrayList<>();
 		
 		String query = prop.getProperty("userCancleBookListSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -917,7 +878,6 @@ public class UserMypageDAO {
 		UserBookContentDTO userCancleContent = new UserBookContentDTO();
 		
 		String query = prop.getProperty("userCancleContentSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -945,7 +905,6 @@ public class UserMypageDAO {
 				
 			}
 			
-			System.out.println(userCancleContent);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -971,7 +930,6 @@ public class UserMypageDAO {
 		UserBookContentDTO userCompleteContent = new UserBookContentDTO();
 		
 		String query = prop.getProperty("userCompleteContentSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -996,7 +954,6 @@ public class UserMypageDAO {
 				
 			}
 			
-			System.out.println(userCompleteContent);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -1022,7 +979,6 @@ public class UserMypageDAO {
 		UserBookContentDTO userBookContent = new UserBookContentDTO();
 		
 		String query = prop.getProperty("userBookContentSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -1048,7 +1004,6 @@ public class UserMypageDAO {
 				
 			}			
 			
-			System.out.println(userBookContent);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -1074,7 +1029,6 @@ public class UserMypageDAO {
 		UserBookContentDTO userBookCancle = new UserBookContentDTO();
 		
 		String query = prop.getProperty("userBookCancleSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -1127,8 +1081,6 @@ public class UserMypageDAO {
 				userBookCancle.setBookApproveYN(rset.getString("BOOK_APPROVE_YN"));
 				
 			}
-			System.out.println(userBookCancle.getRefundAmount());
-			System.out.println(userBookCancle);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -1159,7 +1111,6 @@ public class UserMypageDAO {
 		
 		/* 예약 취소사유 insert */
 		String query = prop.getProperty("cancelHistoryInsert");
-		System.out.println(query);
 		
 		try {
 			
@@ -1175,7 +1126,6 @@ public class UserMypageDAO {
 		
 		/* 예약내역 update */
 		String query2 = prop.getProperty("cancelBookListUpdate");
-		System.out.println(query2);
 		
 		try {
 			
@@ -1192,7 +1142,6 @@ public class UserMypageDAO {
 		if(userCancelReason.getCancleFee() > 0) {
 			/* 판매내역 insert */
 			String query3 = prop.getProperty("salesHistoryInsert");
-			System.out.println(query3);
 			
 			try {
 				pstmt = con.prepareStatement(query3);
@@ -1235,7 +1184,6 @@ public class UserMypageDAO {
 		UserBookContentDTO reviewInfo = new UserBookContentDTO();
 		
 		String query = prop.getProperty("reviewInfoSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -1250,8 +1198,6 @@ public class UserMypageDAO {
 				reviewInfo.setRoomName(rset.getString("ROOM_NAME"));
 				reviewInfo.setBookNo(bookNo);
 			}
-			
-			System.out.println(reviewInfo);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1271,7 +1217,6 @@ public class UserMypageDAO {
 	 */
 	public int insertReview(Connection con, ReviewDTO userReview) {
 
-		System.out.println("dao들어와라ㅏㅅ");
 		PreparedStatement pstmt = null;
 		
 		int result = 0;
@@ -1344,8 +1289,6 @@ public class UserMypageDAO {
 		
 		String query = prop.getProperty("reviewHistorySelect");
 		
-		System.out.println(query);
-		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, bookNo);
@@ -1357,8 +1300,6 @@ public class UserMypageDAO {
 				
 				review.setBookNo(rset.getInt("BOOK_NO"));
 			}
-			
-			System.out.println(review);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

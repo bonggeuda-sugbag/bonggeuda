@@ -30,18 +30,9 @@ public class UserQnAListSelect extends HttpServlet {
 		
 		UserMoreInfoService moreinfoService = new UserMoreInfoService();
 		
-//		/* 업체에게 문의리스트 조회 */
-//		List<OwnerQnADTO> ownerQnA = new ArrayList<>();
-//		ownerQnA = moreinfoService.selectOwnerQnA(userNo);
-//		
-//		/* 관리자에게 문의리스트 조회 */
-//		List<AdminQnADTO> adminQnA = new ArrayList<>();
-//		adminQnA = moreinfoService.selectAdminQnA(userNo);
-		
 		/* 관리자에게 + 업체에게 문의리스트 조회 */
 		List<QnADTO> userqna2 = new ArrayList<>();
 		userqna2 = moreinfoService.selectQnA(userNo);
-		
 		
 		
 		/* 페이징처리 */
@@ -70,16 +61,12 @@ public class UserQnAListSelect extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
-		System.out.println(pageInfo);
-		
 		
 		/* 관리자에게 + 업체에게 문의리스트 조회 */
 		List<QnADTO> userqna = moreinfoService.selectQnA(userNo, pageInfo);
 		
 		
 		String path = "/WEB-INF/views/guest/moreNotice/QnA.jsp";
-//		request.setAttribute("ownerQnA", ownerQnA);
-//		request.setAttribute("adminQnA", adminQnA);
 		request.setAttribute("userqna", userqna);
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("totalCount", totalCount);
