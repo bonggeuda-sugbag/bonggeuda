@@ -167,7 +167,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</nav>
                
 				<div class="tab">
-				   <span class="tab_btn active">공지사항</span> 
+				   <span class="tab_btn active">이벤트</span> 
 				</div>
                 <table class="type09" border="1px">
                     <thead>

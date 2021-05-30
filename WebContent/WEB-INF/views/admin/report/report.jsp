@@ -164,11 +164,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</nav>
 				<div class="tab">
 				   <span class="tab_btn active">신고 내역</span> 
-				   <select>
-					   <option selected=""></option>
-					   <option value="1">사용자</option>
-					   <option value="2">업체</option>
-				   </select>
 				</div>
 				<table class="table table-hover" style="width: 800px;">
 					<thead>

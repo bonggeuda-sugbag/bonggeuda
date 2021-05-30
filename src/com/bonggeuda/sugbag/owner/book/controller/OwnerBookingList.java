@@ -50,9 +50,7 @@ public class OwnerBookingList extends HttpServlet {
 		System.out.println(ownerNo);
 		
 		int totalCount = BookListService.TotalCount(ownerNo);
-		
-		System.out.println("totalCount 체크 : " + totalCount);
-		
+				
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
 		

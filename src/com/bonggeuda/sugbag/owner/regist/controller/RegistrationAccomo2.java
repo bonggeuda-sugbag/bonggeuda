@@ -49,7 +49,7 @@ public class RegistrationAccomo2 extends HttpServlet {
 			
 
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/original/";
+			String fileUploadDirectory = rootLocation + "/resources/upload/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
 			
 			File directory = new File(fileUploadDirectory);
@@ -142,11 +142,6 @@ public class RegistrationAccomo2 extends HttpServlet {
 						
 					}
 				}
-							
-				
-				System.out.println("parameter : " + parameter);
-				System.out.println("fileList : " + fileList);
-				
 				/* 서비스를 요청할 수 있도록 BoardDTO에 담는다. */
 				RmAccomoInfoDTO thumbnail = new RmAccomoInfoDTO();
 
@@ -155,9 +150,7 @@ public class RegistrationAccomo2 extends HttpServlet {
 				
 				/* 리퀘스트 넘의 넥스트발을 조회해서 그값을 둘다 넣어주기*/
 				selectRequestNextVal = accomoService.selectRequestNextValService();
-				
-				System.out.println("조회해온 리퀘스트 넘 넥스트발 : " + selectRequestNextVal);
-				
+								
 				
 				
 				AttachmentDTO tempFileInfo = new AttachmentDTO();

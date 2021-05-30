@@ -170,7 +170,7 @@
       <c:forEach var="accomoList" items="${ requestScope.approveAccomoList }">
       <tr class="room1">
          <th style="background-color: white;">
-            <img src="${pageContext.servletContext.contextPath }/${ accomoList.imagePath }" style="width: 360px; height: 230px;">
+            <img src="${pageContext.servletContext.contextPath }/original/${ accomoList.imagePath }" style="width: 360px; height: 230px;">
          </th>
          <td class="roomList">
             <p class="roomName"><c:out value="${ accomoList.accomoName }"/></p>
