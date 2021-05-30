@@ -26,8 +26,6 @@ public class NoticeSerchWriterServlet extends HttpServlet {
 		String condition = request.getParameter("searchCondition");
 		String value = request.getParameter("searchValue");
 
-		System.out.println("111111111111 : " + condition);
-		System.out.println("222222222222 : " + value);
 		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
 		 * */
@@ -50,7 +48,7 @@ public class NoticeSerchWriterServlet extends HttpServlet {
 		AdminNoticeService adminNoticeService = new AdminNoticeService();
 		int noticeWriterCount = adminNoticeService.searchNoticeCount(condition, value);
 		
-		System.out.println("noticeWriterCount : " + noticeWriterCount);
+
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
@@ -65,7 +63,6 @@ public class NoticeSerchWriterServlet extends HttpServlet {
 		/* 조회해온다 */
 		List<AdminNoticeDTO> noitceList = adminNoticeService.selectSearchWriterList(condition, value, pageInfo);
 		
-		System.out.println("noitceList : " + noitceList);
 		
 		String path = "";
 		if(noitceList != null) {
