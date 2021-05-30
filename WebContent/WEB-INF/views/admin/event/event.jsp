@@ -205,6 +205,176 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<div class="clearfix"> </div>
+	<%-- 페이지 처리 --%>
+		<div class="pagingArea" align="center">
+			<c:choose>
+			    <c:when test="${ empty requestScope.searchValue }">
+			    
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="prevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if> <!-- 이부분은 버튼의 색을 바꾸기 위해 만들어준 분기 처리이다. -->
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="nextPage">></button>
+					</c:if>
+					
+			     </c:when>
+			    <c:otherwise>
+   			
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="searchPrevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="searchNextPage">></button>
+					</c:if>
+					
+			    </c:otherwise>
+			</c:choose>   
+		</div>
+		
+		<!-- 검색 폼 -->
+		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/qna/writerSearch" method="get">		
+			<div class="search-area" align="center">
+				<c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <select id="searchCondition" name="searchCondition">
+							<option value="writer" <c:if test="${requestScope.searchCondition eq 'writer'}">selected</c:if>>작성자</option>
+							<option value="title" <c:if test="${requestScope.searchCondition eq 'title'}">selected</c:if>>제목</option>
+							<option value="content" <c:if test="${requestScope.searchCondition eq 'content'}">selected</c:if>>내용</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
+				    </c:when>
+				    <c:otherwise>
+					    <select id="searchCondition" name="searchCondition">
+							<option value="writer">작성자</option>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" >
+				        <input type="hidden" name="userId" value= "${ user.email }">
+				    </c:otherwise>
+				</c:choose>
+				<button type="submit">검색하기</button>
+				<%-- <c:if test="${ !empty requestScope.loginMember }">
+					<button id="writeBoard">작성하기</button>
+				</c:if> --%>
+			</div>
+		</form>
+		
+		<script>
+		const link = "${ pageContext.servletContext.contextPath }/qna/list";
+		const searchLink = "${ pageContext.servletContext.contextPath }/qna/writerSearch";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		if(document.getElementById("searchStartPage")) {
+			const $searchStartPage = document.getElementById("searchStartPage");
+			$searchStartPage.onclick = function() {
+				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchPrevPage")) {
+			const $searchPrevPage = document.getElementById("searchPrevPage");
+			$searchPrevPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchNextPage")) {
+			const $searchNextPage = document.getElementById("searchNextPage");
+			$searchNextPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchMaxPage")) {
+			const $searchMaxPage = document.getElementById("searchMaxPage");
+			$searchMaxPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+/*  		if(document.getElementsByTagName("td")) {
+			
+			const $tds = document.getElementsByTagName("td");
+			for(let i = 0; i < $tds.length; i++) {
+				
+				$tds[i].onclick = function() {
+					
+					alert(this.parentNode.children[0].innerText);
+					location.href = "${ pageContext.servletContext.contextPath }/notice/detail/";
+				}
+				
+			}
+		
+		}  
+		 */
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+	</script>
 
 </div>
 
