@@ -68,7 +68,7 @@ public class ReportWrite extends HttpServlet {
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
 
-			String fileUploadDirectory = rootLocation + "/esources/upload/original/";
+			String fileUploadDirectory = rootLocation + "/esources/upload/";
 			String thumbnailDirectory = rootLocation + "/resources/upload/thumbnail/";
 			
 			File directory = new File(fileUploadDirectory);
