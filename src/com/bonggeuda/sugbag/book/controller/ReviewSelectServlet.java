@@ -108,7 +108,6 @@ public class ReviewSelectServlet extends HttpServlet {
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("totalCount", totalCount);
 			
-		} else {
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 		

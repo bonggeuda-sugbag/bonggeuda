@@ -24,22 +24,16 @@ public class AdminLoginCheckServlet extends HttpServlet {
 
 		String loginEmail = request.getParameter("loginEmail");
 		String loginPassword = request.getParameter("loginPassword");
-		
-		System.out.println("loginEmail : " + loginEmail);
-		System.out.println("loginPassword : " + loginPassword);
 
 		
 		LoginService loginService = new LoginService();
 		
 		MemberDTO loginMember = loginService.adminLoginCheck(loginEmail, loginPassword);
 		
-		if(loginMember != null && loginMember.getUserNo() == 0) {			// 사용자 로그인
+		if(loginMember != null && loginMember.getUserNo() == 0) {			// 관리자 로그인
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
-//						
-//			System.out.println("request.getContextPath() : " + request.getContextPath());
-//			response.sendRedirect(request.getContextPath());
 			
 			String page = "/WEB-INF/views/guest/moreNotice/narasuccess.jsp";
 			request.setAttribute("successCode", "adminLogin");
