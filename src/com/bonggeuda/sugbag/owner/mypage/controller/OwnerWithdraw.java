@@ -45,6 +45,7 @@ public class OwnerWithdraw extends HttpServlet {
 
 		
 		int ownerWithdrawInsert = 0;
+		
 		if(withdrawReasonRadioButton != null) {
 			realWithdrawReason = withdrawReasonRadioButton;
 			ownerWithdrawInsert = ownerMypageService.ownerWithdrawInsertService(realWithdrawReason,ownerNo);
