@@ -29,8 +29,6 @@ public class UserCompleteContentSelect extends HttpServlet {
 
 		ReviewDTO reviewHistory = mypageService.selectReviewHistory(userNo, bookNo);
 		
-		System.out.println("reviewHistory : " + reviewHistory);
-		
 		String path = "/WEB-INF/views/guest/mypage/usagehistory.jsp";
 		request.setAttribute("userCompleteContent", userCompleteContent);
 		request.setAttribute("reviewHistory", reviewHistory);

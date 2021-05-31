@@ -281,13 +281,11 @@ public class OwnerMypageDAO {
 
 	public int insertRequestTaxBillDAO(Connection con, int accomoNo, int stlNo) {
 		
-		
 		PreparedStatement pstmt = null;
 
 		int result = 0;
 				
 		String query = prop.getProperty("insertRequestTaxBill");
-				
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -374,18 +372,14 @@ public class OwnerMypageDAO {
 
 	public List<SettlementDTO> selectStl(Connection con, PageInfoDTO pageInfo, int ownerNo) {
 		
-		
 		PreparedStatement pstmt = null;
 		
 		ResultSet rset = null;
 
-		/* 반환시킬 변수 지정 */
 		List<SettlementDTO> selectStl = new ArrayList<>(); //모든 행을 다 받아서 최종 리스트를 만듬
 		
-		/* --> selectedAll 가지고 xml감 */
 		String query = prop.getProperty("selectStl");
 
-		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, ownerNo); //업체번호
@@ -408,7 +402,6 @@ public class OwnerMypageDAO {
 				selectStl.add(stl); //한 행씩 저장됨
 			}
 			
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

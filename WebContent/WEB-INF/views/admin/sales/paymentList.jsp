@@ -160,8 +160,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<form
 					action="${pageContext.servletContext.contextPath }/owner/search"
 					method="get">
-					<label style="color: #6eceda; font-size: 1.3em; font-weight: 600;">업체
-						아이디 검색</label> <input type="text" name="searchValue" style="width: 150px;">
+					<label style="color: #6eceda; font-size: 1.3em; font-weight: 600;">유저명
+						 검색</label> <input type="text" name="searchValue" style="width: 150px;">
 					<button type="submit" id="searchButton" style="margin-right: 15%">
 						<i class="glyphicon glyphicon-search"></i>
 					</button>

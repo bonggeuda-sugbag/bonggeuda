@@ -25,12 +25,11 @@ public class UserReportContentSelect extends HttpServlet {
 
 		int userNo = ((MemberDTO)request.getSession().getAttribute("member")).getUserNo();
 		int reportedNo = Integer.parseInt(request.getParameter("reportedNo"));
-		System.out.println(reportedNo);
 		
 		UserMypageService mypageService = new UserMypageService();
 		
 		ReportDTO userReportContent = mypageService.selectReportContent(userNo, reportedNo);
-//		AttachmentDTO userReportImg = mypageService.selectReportImg(userNo, reportedNo);
+
 		List<AttachmentDTO> userReportImg = new ArrayList<>();
 		userReportImg = mypageService.selectReportImg(userNo, reportedNo);
 		

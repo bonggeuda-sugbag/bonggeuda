@@ -72,6 +72,8 @@ public class RegistrationAccomo3 extends HttpServlet {
 			}
 		}
 		accomoDTO.setFacility(facility);
+		
+		
 		System.out.println("arrayFacility"  + arrayFacility[1]);
 		
 		int insertAccomo = accomoService.InsertAccomoServlet(accomoDTO, ownerNo); //값을 int형으로 반환받아야 함

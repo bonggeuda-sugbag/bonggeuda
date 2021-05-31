@@ -235,7 +235,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</form>
 		</c:if>
 		
-		<c:if test="${ requestScope.bookStatusYNC eq 'N' && requestScope.completeCount > 0 }">
+		<c:if test="${ requestScope.bookStatusYNC eq 'Y' && requestScope.completeCount > 0 }">
 		* 이미 이용완료된 객실입니다.
 		</c:if>
 		
