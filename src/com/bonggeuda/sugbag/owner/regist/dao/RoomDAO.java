@@ -33,7 +33,6 @@ public class RoomDAO {
 	
 	public int InsertRoom(Connection con, RoomDTO roomDTO) {
 
-		
 		PreparedStatement pstmt = null;
 		
 		/* 반환시킬 변수 지정 */
@@ -44,15 +43,13 @@ public class RoomDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			
-				
-				pstmt.setString(1, roomDTO.getRoomName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
-				pstmt.setInt(2, roomDTO.getRoomMax());
-				pstmt.setString(3, roomDTO.getRoomIntro());
-				pstmt.setInt(4, roomDTO.getRoomFee());
-				pstmt.setInt(5, roomDTO.getPeakFee());
+			pstmt.setString(1, roomDTO.getRoomName());
+			pstmt.setInt(2, roomDTO.getRoomMax());
+			pstmt.setString(3, roomDTO.getRoomIntro());
+			pstmt.setInt(4, roomDTO.getRoomFee());
+			pstmt.setInt(5, roomDTO.getPeakFee());
 
-				insert = pstmt.executeUpdate();
+			insert = pstmt.executeUpdate();
 			
 			
 		} catch (SQLException e) {

@@ -249,7 +249,7 @@
 			<tr>
 				<br>
 				<th colspan="2" style="background-color: white; ">
-						<button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
+					<button name="accomoName" value="${ requestScope.accomoDTO.accomoName }" class="submit-btn" type="submit" style="margin-top: 10px; margin-bottom: 10px;">저장하기</button>
 		            	<input type="hidden" name="ceoName" value="${ requestScope.accomoDTO.ceoName }">
 		            	<input type="hidden" name="accomoType" value="${ requestScope.accomoDTO.accomoType }">
 		            	<input type="hidden" name="registNo" value="${ requestScope.accomoDTO.registNo }">
@@ -262,9 +262,7 @@
 		            	<input type="hidden" name="rule" value="${ requestScope.accomoDTO.rule }">
 		            	<input type="hidden" name="parking" value="${ requestScope.accomoDTO.parking }">
 		            	<input type="hidden" name="selectRequestNextVal" value="${ requestScope.selectRequestNextVal }">
-		            	
 					</form>
-					
 				</th>
 			</tr>
 		</tbody>

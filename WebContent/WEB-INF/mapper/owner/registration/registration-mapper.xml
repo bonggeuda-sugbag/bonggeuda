@@ -44,7 +44,7 @@
 		  , ?
 		  , 'Y'
 		  , 'EN'
-          , (SELECT MAX(EN_ACCOMO_NO) FROM RM_ACCOMO_INFO) /* 이미 숙소가 들어가 있으니까 최댓값을 가져옴. */
+          , (SELECT MAX(EN_ACCOMO_NO) FROM RM_ACCOMO_INFO)
           , 'N'
           , ?
 		)

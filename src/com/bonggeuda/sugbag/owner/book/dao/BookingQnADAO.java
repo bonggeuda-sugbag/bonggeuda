@@ -70,13 +70,10 @@ public class BookingQnADAO {
 		
 		ResultSet rset = null;
 
-		List<QnADTO> selectQuestion = new ArrayList<>(); //모든 행을 다 받아서 최종 리스트를 만듬
+		List<QnADTO> selectQuestion = new ArrayList<>();
 		
 		String query = prop.getProperty("selectQuestion");
 		
-		/*쿼리문 잘 실행되는지 출력*/
-		
-		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, ownerNo); //업체번호 받아오기
@@ -99,7 +96,6 @@ public class BookingQnADAO {
 				
 				selectQuestion.add(Question); //한 행씩 저장됨
 			}
-			
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -157,15 +153,11 @@ public class BookingQnADAO {
 		
 		PreparedStatement pstmt = null;
 		
-		/* 반환시킬 변수 지정 */
 		int insert = 0;
 		
 		String query = prop.getProperty("insertAnswer");
-
-		//잘 넘어왔는지 확인용 출력
 		
 		try {
-			
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setString(1, qnaDTO.getAdminQnAContent());
@@ -178,7 +170,6 @@ public class BookingQnADAO {
 		} finally {
 			close(pstmt);
 		}
-     
 		return insert;
 	}
 
@@ -190,12 +181,8 @@ public class BookingQnADAO {
 
 	    AdminQnADTO selectAnswer = new AdminQnADTO(); //모든 행을 다 받아서 최종 리스트를 만듬
 		
-		/* --> selectQuestion 가지고 xml감 */
 		String query = prop.getProperty("selectAnswer");
 		
-		/*쿼리문 잘 실행되는지 출력*/
-				
-		/*디비에 들어가서 쿼리문에 따른 값 받아오기*/
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, qnaNo); //문의번호 받아오기
@@ -208,15 +195,12 @@ public class BookingQnADAO {
 				selectAnswer.setAnswerContent(rset.getString("OWNER_ANSWER_CONTENT"));
 				selectAnswer.setAnswerDate(rset.getDate("OWNER_ANSWER_DATE"));
 			}
-			
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-
 		return selectAnswer;
 	}
 

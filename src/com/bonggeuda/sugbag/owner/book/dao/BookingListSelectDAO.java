@@ -435,8 +435,6 @@ public class BookingListSelectDAO {
 		
 		String query = prop.getProperty("bookAllowStatusUpadte");
 		
-
-		
 		int result = 0;
 		
 		try {
