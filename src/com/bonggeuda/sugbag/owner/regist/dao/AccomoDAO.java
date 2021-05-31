@@ -68,23 +68,18 @@ public class AccomoDAO {
 
 		PreparedStatement pstmt = null;
 		
-		/* 반환시킬 변수 지정 */
 		int insert = 0;
-		ResultSet rset = null;
 		
 		String query = prop.getProperty("insertAccomo");
-
-		//잘 넘어왔는지 확인용 출력
 
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, accomoDTO.getRequsetNo());
-			pstmt.setString(2, accomoDTO.getAccomoName()); // <-위치 홀더의 시작인덱스 시작 값은 1.
+			pstmt.setString(2, accomoDTO.getAccomoName());
 			pstmt.setString(3, accomoDTO.getCeoName());
 			pstmt.setString(4, accomoDTO.getAccomoType());
 			pstmt.setString(5, accomoDTO.getRegistNo());
 			pstmt.setString(6, accomoDTO.getAddress());
-			//pstmt.setString(7, accomoDTO.getAdrDetail());
 			pstmt.setString(7, accomoDTO.getEmail());
 			pstmt.setString(8, accomoDTO.getHomepage());
 			pstmt.setString(9, accomoDTO.getFacility());
@@ -97,7 +92,6 @@ public class AccomoDAO {
 			pstmt.setDate(16, accomoDTO.getPeakStart());
 			pstmt.setDate(17, accomoDTO.getPeakEnd());
 			pstmt.setInt(18, ownerNo); //업체번호
-			 //등록숙소번호
 			
 			insert = pstmt.executeUpdate();
 			

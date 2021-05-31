@@ -152,17 +152,12 @@ public class RegistrationAccomo4 extends HttpServlet {
 					
 					list.add(tempFileInfo);
 				}
-				
-				
-				
-				
+
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				String path = "";
 					
 					/* 값을 한번에 담아서 넘길 리스트 생성 */
 					List<RoomDTO> roomList = new ArrayList<RoomDTO>();
-					
-
 					
 					/*전달받은 값을 넣어줄 객체 선언*/
 					RoomDTO roomDTO = new RoomDTO();
@@ -177,9 +172,7 @@ public class RegistrationAccomo4 extends HttpServlet {
 					
 					/*객실추가 2*/
 					if (!parameter.get("roomName2").isEmpty()) { //값이 입력되면 저장
-						
 
-						
 						RoomDTO roomDTO2 = new RoomDTO();
 						
 						roomDTO2.setRoomName(parameter.get("roomName2"));
@@ -193,8 +186,6 @@ public class RegistrationAccomo4 extends HttpServlet {
 					
 					/*객실추가 3*/
 					if (!parameter.get("roomName3").isEmpty()) {
-						
-
 						
 						RoomDTO roomDTO3 = new RoomDTO();
 						
@@ -210,8 +201,6 @@ public class RegistrationAccomo4 extends HttpServlet {
 					/*객실추가 4*/
 					if (!parameter.get("roomName4").isEmpty()) {
 						
-
-						
 						RoomDTO roomDTO4 = new RoomDTO();
 						
 						roomDTO4.setRoomName(parameter.get("roomName4"));
@@ -225,8 +214,6 @@ public class RegistrationAccomo4 extends HttpServlet {
 					
 					/*객실추가 5*/
 					if (!parameter.get("roomName5").isEmpty()) {
-						
-
 						
 						RoomDTO roomDTO5 = new RoomDTO();
 						
@@ -243,28 +230,17 @@ public class RegistrationAccomo4 extends HttpServlet {
 					RoomService roomServaice = new RoomService();
 					// 객실 인서트(사진아님) 할때 넘겨줄 값
 					
-					
-					
 					/* 사진 여기서 인서트 */
 					/* 서비스 메소드를 요청한다. */
 					int result = new RoomService().insertThumbnail(thumbnail,roomList);
 					
-					
-					
-					
 					/*값을 전달하기 위한 비지니스 로직 호출*/
 					RoomService roomService = new RoomService();
-					
-
 					
 					path = "/WEB-INF/views/owner/main/main.jsp";
 					
 					request.getRequestDispatcher(path).forward(request, response);
 					
-					
-				
-				
-				
 			} catch (Exception e) {
 				//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.
 				int cnt = 0;

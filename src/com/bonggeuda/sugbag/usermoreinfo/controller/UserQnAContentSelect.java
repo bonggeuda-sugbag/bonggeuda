@@ -34,14 +34,12 @@ public class UserQnAContentSelect extends HttpServlet {
 			AdminQnADTO adminQnA = new AdminQnADTO();
 			adminQnA = moreinfoService.selectAdminQnA(userNo, qnaNo);
 			request.setAttribute("adminQnA", adminQnA);
-			System.out.println("관리자 : " + adminQnA);
 			
 		} else {
 			/* 업체에게 문의리스트 조회 */
 			OwnerQnADTO ownerQnA = new OwnerQnADTO();
 			ownerQnA = moreinfoService.selectOwnerQnA(userNo, qnaNo);
 			request.setAttribute("ownerQnA", ownerQnA);
-			System.out.println("업체 : " + ownerQnA);
 		}
 		
 		String path = "/WEB-INF/views/guest/moreNotice/QnA_contents.jsp";

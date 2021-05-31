@@ -24,7 +24,6 @@ public class TaxBillRequest extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
 		int stlNo = Integer.parseInt(request.getParameter("reqStlNo"));
 		int accomoNo = Integer.parseInt(request.getParameter("accomoNo"));
 		

@@ -21,13 +21,10 @@ public class UserNickNameSelect extends HttpServlet {
 		
 		/* 닉네임 중복체크 시 필요한 정보 조회 */
 		String inputNickName = request.getParameter("intputNickname");
-		System.out.println(inputNickName);
 		
 		UserMypageService mypageService = new UserMypageService();
 		
 		int userNickname = mypageService.selectUserNickName(inputNickName);
-		
-		System.out.println(userNickname);
 		
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
@@ -35,12 +32,6 @@ public class UserNickNameSelect extends HttpServlet {
 		
 		out.flush();
 		out.close();
-		
-//		
-//		String path = "/WEB-INF/views/guest/mypage/myInformation.jsp";
-//		request.setAttribute("userNickname", userNickname);
-//		
-//		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 

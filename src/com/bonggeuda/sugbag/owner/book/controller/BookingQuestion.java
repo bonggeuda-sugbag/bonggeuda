@@ -44,7 +44,6 @@ public class BookingQuestion extends HttpServlet {
 		BookingQnAService qnaService = new BookingQnAService();
 		
 		int totalCount = qnaService.selectTotalCount(ownerNo);
-		
 
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;
@@ -55,11 +54,9 @@ public class BookingQuestion extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 
-
 		/*결과값 반환*/
 		List<QnADTO> selectQuestion = qnaService.selectQuestion(pageInfo,ownerNo);
 		
-
 		request.setAttribute("selectQuestion", selectQuestion); //jsp에 값 반환
 		
 		/*1:1 문의로 이동*/
