@@ -222,7 +222,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</table>
 		<br>
 
-		<c:if test="${ requestScope.bookStatusYNC eq 'N' && requestScope.completeCount == 0 }">
+		<c:if test="${ requestScope.bookStatusYNC eq 'N' && board.bookApproveYn eq 'Y' && requestScope.completeCount == 0 }">
 			<form action="${ pageContext.servletContext.contextPath }/owner/bookComplete" method="post">
 			<input type="hidden" name="accomoNo" value="${ bookContentDTO.accomoNo}">
 			<input type="hidden" name="roomNo" value="${ bookContentDTO.roomNo}">
