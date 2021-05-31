@@ -338,12 +338,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container">
 				<div class="col-md-4 footer-logo">
 					<h2>
-						<a href="index.html">REAL HOME</a>
+						<a href="index.html">BONGGEUDA</a>
 					</h2>
 				</div>
 				<div class="col-md-8 footer-class">
 					<p>
-						© 2015 Real Home. All Rights Reserved | Design by <a
+						© 2015 BONGGEUDA. All Rights Reserved | Design by <a
 							href="http://w3layouts.com/" target="_blank">W3layouts</a>
 					</p>
 				</div>

@@ -36,18 +36,17 @@ public class SalesList extends HttpServlet {
 		int accmoNo = Integer.parseInt(request.getParameter("accomoNo"));
 		String accomoName = request.getParameter("accomoName");
 		
-		/* 1. 로우 스팬용 숙소 총갯수 조회 */
-		int rowspanCount = salesService.rowspanCountService(ownerNo,accmoNo);
+
 		
-		/* 2. 객실명 받아오기 */
+		/* 1. 객실명 받아오기 */
 		List<String> roomNamsList = new ArrayList<String>();
 		roomNamsList = salesService.selectRoomName(ownerNo,accmoNo);
 		System.out.println(roomNamsList);
 		
-		/* 3. 숙소 총 예약 건수 조회 */
+		/* 2. 숙소 총 예약 건수 조회 */
 		int bookingCount = salesService.selectBookCount(accmoNo);
 		
-		/* 4. 숙소 총 매출 조회*/
+		/* 3. 숙소 총 매출 조회*/
 		int sumSalePrice = salesService.sumSalePriceService(accmoNo);
 		
 		
@@ -55,13 +54,12 @@ public class SalesList extends HttpServlet {
 		path = "/WEB-INF/views/owner/bookingList/salesList.jsp";
 		
 		request.setAttribute("accomoName", accomoName);
-		/*1. 로우스팬수 보내주기*/
-		request.setAttribute("rowspanCount", rowspanCount);
-		/* 2. 객실이름 보내주기 */
+
+		/* 1. 객실이름 보내주기 */
 		request.setAttribute("roomNamsList", roomNamsList);
-		/* 3. 숙소 총예약건수 보내주기*/
+		/* 2. 숙소 총예약건수 보내주기*/
 		request.setAttribute("bookingCount", bookingCount);
-		/* 4. */
+		/* 3. */
 		request.setAttribute("sumSalePrice",sumSalePrice );
 
 		

@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class=" banner-buying">
 	<div class=" container">
-	<h3><span>마이페이지</span></h3> 
+	<h3><span>더보기</span></h3> 
 
 	<div class="clearfix"> </div>      		
 	</div>

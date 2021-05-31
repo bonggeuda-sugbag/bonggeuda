@@ -47,7 +47,6 @@ public class UserMoreInfoDAO {
 		List<NoticeDTO> notice = new ArrayList<>();
 		
 		String query = prop.getProperty("noticeSelect2");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -88,7 +87,6 @@ public class UserMoreInfoDAO {
 		List<NoticeDTO> notice = new ArrayList<>();
 		
 		String query = prop.getProperty("noticeSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -107,7 +105,6 @@ public class UserMoreInfoDAO {
 				
 				notice.add(noticeDTO);
 			}
-			System.out.println(notice);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -131,7 +128,6 @@ public class UserMoreInfoDAO {
 		List<EventDTO> event = new ArrayList<>();
 		
 		String query = prop.getProperty("eventSelect2");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -151,7 +147,6 @@ public class UserMoreInfoDAO {
 				event.add(eventDTO);
 			}
 			
-			System.out.println(event);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -177,7 +172,6 @@ public class UserMoreInfoDAO {
 		List<EventDTO> event = new ArrayList<>();
 		
 		String query = prop.getProperty("eventSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -199,7 +193,6 @@ public class UserMoreInfoDAO {
 				event.add(eventDTO);
 			}
 			
-			System.out.println(event);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -226,7 +219,6 @@ public class UserMoreInfoDAO {
 		OwnerQnADTO ownerQnA = new OwnerQnADTO();
 		
 		String query = prop.getProperty("ownerQnAContentSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -246,7 +238,6 @@ public class UserMoreInfoDAO {
 				ownerQnA.setOwnerAnswerContent(rset.getString("OWNER_ANSWER_CONTENT"));
 				
 			}
-			System.out.println(ownerQnA);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -254,7 +245,6 @@ public class UserMoreInfoDAO {
 		if(ownerQnA.getOwnerAnswerContent() == null) {
 			
 			String query2 = prop.getProperty("ownerQnAContentSelectTwo");
-			System.out.println(query2);
 			
 			try {
 				pstmt = con.prepareStatement(query2);
@@ -274,7 +264,6 @@ public class UserMoreInfoDAO {
 					ownerQnA.setOwnerAnswerContent(rset.getString("OWNER_ANSWER_CONTENT"));
 					
 				}
-				System.out.println(ownerQnA);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
@@ -300,7 +289,6 @@ public class UserMoreInfoDAO {
 		AdminQnADTO adminQnA = new AdminQnADTO();
 		
 		String query = prop.getProperty("adminQnAContentSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -318,14 +306,12 @@ public class UserMoreInfoDAO {
 				adminQnA.setAnswerContent(rset.getString("ANSWER_CONTENT"));
 				
 			}			
-			System.out.println(adminQnA);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		if(adminQnA.getAdminQnAContent() == null) {
 			String query2 = prop.getProperty("adminQnAContentSelectTwo");
-			System.out.println(query2);
 			try {
 				pstmt = con.prepareStatement(query2);
 				pstmt.setInt(1, userNo);
@@ -368,7 +354,6 @@ public class UserMoreInfoDAO {
 		List<QnADTO> qna = new ArrayList<>();
 		
 		String query = prop.getProperty("adminQnAListSelect2");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -394,7 +379,6 @@ public class UserMoreInfoDAO {
 		
 			
 		String query2 = prop.getProperty("ownerQnAListSelect2");
-		System.out.println(query2);
 			
 		try {
 			pstmt = con.prepareStatement(query2);
@@ -423,8 +407,6 @@ public class UserMoreInfoDAO {
 		
 		/* 날짜로 내림차순 정렬 */
 		Collections.sort(qna, new QnADTO());
-		
-		System.out.println("gogogoog : " + qna);
 		return qna;
 	}
 
@@ -442,7 +424,6 @@ public class UserMoreInfoDAO {
 		List<QnADTO> qna = new ArrayList<>();
 		
 		String query = prop.getProperty("adminQnAListSelect");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -470,7 +451,6 @@ public class UserMoreInfoDAO {
 		
 			
 		String query2 = prop.getProperty("ownerQnAListSelect");
-		System.out.println(query2);
 			
 		try {
 			pstmt = con.prepareStatement(query2);
@@ -502,7 +482,6 @@ public class UserMoreInfoDAO {
 		/* 날짜로 내림차순 정렬 */
 		Collections.sort(qna, new QnADTO());
 		
-		System.out.println("gogogoog : " + qna);
 		return qna;
 	}
 
@@ -519,7 +498,6 @@ public class UserMoreInfoDAO {
 		PreparedStatement pstmt = null;
 		
 		String query = prop.getProperty("adminQnAInsert");
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);

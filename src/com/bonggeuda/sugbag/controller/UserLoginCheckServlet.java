@@ -19,13 +19,6 @@ import com.bonggeuda.sugbag.service.LoginService;
 public class UserLoginCheckServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//		String loginEmail = request.getParameter("loginEmail");
-//		String loginPassword = request.getParameter("loginPassword");
-//		
-//		LoginService loginService = new LoginService();
-//		
-//		MemberDTO member = loginService.loginCheck(loginEmail, loginPassword);
 	
 	}
 
@@ -35,10 +28,6 @@ public class UserLoginCheckServlet extends HttpServlet {
 		String loginEmail = request.getParameter("loginEmail");
 		String loginPassword = request.getParameter("loginPassword");
 		
-		System.out.println("loginEmail : " + loginEmail);
-		System.out.println("loginPassword : " + loginPassword);
-
-		
 		LoginService loginService = new LoginService();
 		
 		MemberDTO loginMember = loginService.userLoginCheck(loginEmail, loginPassword);
@@ -47,9 +36,6 @@ public class UserLoginCheckServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("member", loginMember);
-//			
-//			System.out.println("request.getContextPath() : " + request.getContextPath());
-//			response.sendRedirect(request.getContextPath());
 			
 			String page = "/WEB-INF/views/guest/moreNotice/narasuccess.jsp";
 			request.setAttribute("successCode", "userLogin");

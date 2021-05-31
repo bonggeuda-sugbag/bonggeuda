@@ -15,10 +15,6 @@ import com.bonggeuda.sugbag.owner.book.service.BookListSelectService;
 @WebServlet("/owner/bookComplete")
 public class BookComplete extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
 	/**
 	 * 예약 확정후 결제 이력 인서트 및 예약 이력 인서트
 	 */
@@ -26,13 +22,12 @@ public class BookComplete extends HttpServlet {
 
 		/* 1. book history에 인서트*/
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
-		
 	
 		BookListSelectService bookService = new BookListSelectService();
 		
 		int bookFin = 0;
-		bookFin = bookService.bookFinUpdate(bookNo);
 		
+		bookFin = bookService.bookFinUpdate(bookNo);
 		
 		if(bookFin > 0) {
 			

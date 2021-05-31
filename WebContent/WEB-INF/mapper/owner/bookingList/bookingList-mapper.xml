@@ -174,7 +174,7 @@
 	
 	<entry key="bookRejectUpadte">
 	UPDATE BOOK_LIST
-  	   SET BOOK_STATUS_YNC = 'N'
+  	   SET BOOK_STATUS_YNC = 'C'
      WHERE BOOK_NO = ?
 	</entry>
 	

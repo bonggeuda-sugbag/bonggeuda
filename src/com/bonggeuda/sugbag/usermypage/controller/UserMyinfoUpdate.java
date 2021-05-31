@@ -34,8 +34,6 @@ public class UserMyinfoUpdate extends HttpServlet {
 		
 		int result = mypageService.updateUserinfo(userMyinfo);
 		
-		System.out.println(result);
-		
 		if(result > 0) {
 			
 			String page = "/WEB-INF/views/guest/moreNotice/narasuccess.jsp";
